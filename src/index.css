@@ -1,7 +1,7 @@
 :root {
   --page: #f5f4ef;
   --folder: #000;
-  --folder-radius: 1.75rem;
+  --folder-radius: .3rem;
   --navbar-height: 0px;
   --folder-angle: -1deg;
 }
@@ -51,4 +51,11 @@ body {
   border-radius: var(--folder-radius) var(--folder-radius) 0 0;
   background: var(--folder);
   content: "";
+}
+
+@media (max-width: 720px) {
+  .folder {
+    height: 65%;
+    flex-basis: 65%;
+  }
 }
