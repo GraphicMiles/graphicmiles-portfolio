@@ -33,85 +33,98 @@ const staggerContainer = {
   },
 };
 
-function WorkTimeline({ children, count }: { children: ReactNode; count: number }) {
+function WorkTimeline({ children }: { children: ReactNode }) {
   const timelineRef = useRef<HTMLDivElement>(null);
-  const rowRefs = useRef<Array<HTMLDivElement | null>>([]);
-  const [progress, setProgress] = useState(0);
-  const [nodePositions, setNodePositions] = useState<number[]>([]);
+  const overlayRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    const timeline = timelineRef.current;
+    const overlay = overlayRef.current;
+    if (!timeline || !overlay) return;
+
+    let timelineTop = 0;
+    let timelineHeight = 0;
+    let currentReveal = 0;
+    let targetReveal = 0;
     let frame = 0;
+    let running = false;
 
     const measure = () => {
-      const timeline = timelineRef.current;
-      if (!timeline) return;
-
-      const height = timeline.getBoundingClientRect().height;
-      if (!height) return;
-
-      const positions = rowRefs.current.slice(0, count).map((row) => {
-        if (!row) return 0;
-        return ((row.offsetTop + 24) / height) * 100;
-      });
-
-      setNodePositions(positions);
-    };
-
-    const updateProgress = () => {
-      const timeline = timelineRef.current;
-      if (!timeline) return;
-
+      const scrollY = window.scrollY || window.pageYOffset;
       const rect = timeline.getBoundingClientRect();
-      const viewport = window.innerHeight;
-      const startTop = viewport * 0.72;
-      const endTop = viewport * 0.25 - rect.height;
-      const next = Math.min(1, Math.max(0, (startTop - rect.top) / (startTop - endTop)));
-
-      setProgress((current) => Math.abs(current - next) < 0.002 ? current : next);
+      timelineTop = rect.top + scrollY;
+      timelineHeight = rect.height;
     };
 
-    const scheduleUpdate = () => {
-      if (frame) cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(updateProgress);
+    const computeTarget = () => {
+      const scrollY = window.scrollY || window.pageYOffset;
+      const triggerY = scrollY + window.innerHeight * 0.35;
+      return Math.min(timelineHeight, Math.max(0, triggerY - timelineTop));
+    };
+
+    const onFrame = () => {
+      targetReveal = computeTarget();
+      currentReveal += (targetReveal - currentReveal) * 0.35;
+
+      if (Math.abs(targetReveal - currentReveal) < 0.25) currentReveal = targetReveal;
+
+      overlay.style.clipPath = `inset(0px 0px ${Math.max(0, timelineHeight - currentReveal)}px 0px)`;
+
+      if (currentReveal !== targetReveal) {
+        frame = requestAnimationFrame(onFrame);
+      } else {
+        running = false;
+      }
+    };
+
+    const requestTick = () => {
+      if (running) return;
+      running = true;
+      frame = requestAnimationFrame(onFrame);
+    };
+
+    const onResize = () => {
+      measure();
+      requestTick();
     };
 
     measure();
-    scheduleUpdate();
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
+    requestTick();
+    window.addEventListener("scroll", requestTick, { passive: true });
+    window.addEventListener("resize", onResize);
 
-    const resizeObserver = new ResizeObserver(measure);
-    if (timelineRef.current) resizeObserver.observe(timelineRef.current);
+    const resizeObserver = new ResizeObserver(onResize);
+    resizeObserver.observe(timeline);
 
     return () => {
       if (frame) cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("scroll", requestTick);
+      window.removeEventListener("resize", onResize);
       resizeObserver.disconnect();
     };
-  }, [count]);
+  }, []);
 
-  const fallbackPositions = Array.from({ length: count }, (_, index) => count === 1 ? 50 : 4 + (index / (count - 1)) * 92);
-  const positions = nodePositions.length === count ? nodePositions : fallbackPositions;
-  const firstPosition = positions[0] ?? 4;
-  const lastPosition = positions[positions.length - 1] ?? 96;
-  const activePosition = firstPosition + (lastPosition - firstPosition) * progress;
   const projectRows = Children.toArray(children);
+
+  const renderLayer = (layer: "base" | "overlay") => (
+    <div className={`work-timeline__layer work-timeline__layer--${layer}`}>
+      {projectRows.map((project, index) => (
+        <div className="timeline-row" key={`${layer}-project-${index}`}>
+          <div className="timeline-node-col" aria-hidden="true">
+            <span className="timeline-dot" />
+            <span className="timeline-line" />
+          </div>
+          <div className="timeline-content">{project}</div>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <div className="work-timeline" ref={timelineRef}>
-      <div className="work-timeline__rail" aria-hidden="true">
-        <span className="work-timeline__track" style={{ top: `${firstPosition}%`, bottom: `${100 - lastPosition}%` }} />
-        <span className="work-timeline__line-fill" style={{ top: `${firstPosition}%`, height: `${Math.max(0, activePosition - firstPosition)}%` }} />
-        {positions.map((position, index) => <span className="work-timeline__faded-node" style={{ top: `${position}%` }} key={`faded-node-${index}`} />)}
-        <span className="work-timeline__active-node" style={{ top: `${activePosition}%` }} />
-      </div>
-      <div className="work-timeline__projects">
-        {projectRows.map((project, index) => (
-          <div className="work-timeline__row" ref={(element) => { rowRefs.current[index] = element; }} key={`project-row-${index}`}>
-            {project}
-          </div>
-        ))}
+      {renderLayer("base")}
+      <div ref={overlayRef} className="work-timeline__overlay" aria-hidden="true">
+        {renderLayer("overlay")}
       </div>
     </div>
   );
@@ -200,7 +213,7 @@ export default function Home() {
               <span className="font-mono text-sm text-muted-foreground">01</span>
             </motion.div>
 
-            <WorkTimeline count={3}>
+            <WorkTimeline>
               {/* Project 3 - Toddler / ForgeAI (FEATURED) */}
               <ProjectCard 
                 title="Toddler / ForgeAI"
