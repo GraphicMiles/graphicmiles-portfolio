@@ -62,55 +62,44 @@ export default function Home() {
       <div className="noise-overlay" />
 
       {/* Navigation / Header */}
-      <header className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border/40">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="font-mono text-xs md:text-sm font-medium tracking-tight">GRAPHIC MILES</div>
-          <nav className="flex items-center gap-6 text-sm font-medium text-muted-foreground">
-            <a href="#work" className="hover:text-foreground transition-colors" data-testid="link-nav-work">Work</a>
-            <a href="#about" className="hover:text-foreground transition-colors" data-testid="link-nav-about">About</a>
-            <a href="#contact" className="text-primary hover:opacity-80 transition-opacity" data-testid="link-nav-contact">Contact</a>
+      <header className="site-nav">
+        <div className="site-nav__inner">
+          <a href="#hero" className="site-nav__brand" aria-label="Graphic Miles home">GRAPHIC MILES</a>
+          <nav className="site-nav__links" aria-label="Primary navigation">
+            <a href="#work" data-testid="link-nav-work">Work</a>
+            <a href="#about" data-testid="link-nav-about">About</a>
+            <a href="#contact" data-testid="link-nav-contact">Contact</a>
           </nav>
         </div>
       </header>
 
-      <main className="pt-16">
+      <main className="site-main">
         {/* HERO SECTION */}
-        <section id="hero" className="px-6 md:px-12 py-24 md:py-36 relative">
-          <motion.div 
-            className="max-w-6xl mx-auto w-full"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-          >
-            <motion.div variants={fadeInUp} className="mb-8 inline-flex items-center gap-3 px-3 py-1.5 rounded-full border border-border/60 bg-muted/30">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              <span className="font-mono text-[11px] uppercase tracking-wider font-medium text-muted-foreground">
-                Available — Open to new builds
-              </span>
-            </motion.div>
-
-            <motion.h1 variants={fadeInUp} className="text-5xl md:text-8xl lg:text-[7rem] font-bold tracking-[-0.04em] leading-[0.9] uppercase text-primary">
-              Raji Farouq <br className="hidden md:block" />
-              <span className="text-muted-foreground">Adewunmi</span>
-            </motion.h1>
-
-            <motion.div variants={fadeInUp} className="mt-12 flex flex-col md:flex-row md:items-end justify-between gap-8 border-t border-border pt-8">
-              <div className="max-w-xl">
-                <p className="text-xl md:text-2xl font-medium leading-tight text-primary">
-                  Product designer and fullstack engineer building systems that scale.
-                </p>
+        <section id="hero" className="hero-section" aria-labelledby="hero-title">
+          <div className="hero-section__inner">
+            <div className="hero-section__left">
+              <div className="hero-status">
+                <span className="hero-status__dot" />
+                <span>Available — Open to new builds</span>
               </div>
-              <div className="flex flex-col gap-1 font-mono text-xs md:text-sm text-muted-foreground text-left md:text-right">
-                <span className="flex items-center gap-2 md:justify-end">
-                  <MapPin className="w-3.5 h-3.5" /> Lagos, NG — Available Worldwide
-                </span>
+
+              <h1 id="hero-title" className="hero-title">
+                Raji Farouq <br />
+                <span>Adewunmi</span>
+              </h1>
+
+              <p className="hero-lede">
+                Product designer and fullstack engineer building systems that scale.
+              </p>
+            </div>
+
+            <aside className="hero-section__right" aria-label="Profile details">
+              <div className="hero-meta">
+                <span><MapPin className="hero-meta__icon" /> Lagos, NG — Available Worldwide</span>
                 <span>Alias: Graphic Miles</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </aside>
+          </div>
         </section>
 
         {/* WORK SECTION */}
