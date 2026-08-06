@@ -3,7 +3,7 @@
   --folder: #111210;
   --folder-radius: 1.75rem;
   --navbar-height: 0px;
-  --folder-rotation-x: -15deg;
+  --top-bend: -5deg;
 }
 
 * { box-sizing: border-box; }
@@ -66,21 +66,34 @@ body {
   width: 100%;
   height: 75%;
   flex: 0 0 100%;
-  background: var(--folder);
-  border-radius: var(--folder-radius) var(--folder-radius) 0 0;
-  transform: rotateX(var(--folder-rotation-x));
-  transform-origin: bottom center;
+  overflow: visible;
+  border-radius: 0 0 var(--folder-radius) var(--folder-radius);
+  background: linear-gradient(var(--folder), var(--folder)) 0 100% / 100% 90% no-repeat;
 }
 
-/* One same-color tab, sized in rem as requested. */
+/* The top tab is the same material as the body; only its profile changes. */
 .folder::before {
   position: absolute;
-  z-index: 1;
-  top: -3rem;
+  z-index: 2;
+  top: 0;
   right: 2rem;
   width: 12rem;
   height: 3rem;
   border-radius: var(--folder-radius) var(--folder-radius) 0 0;
   background: var(--folder);
   content: "";
+}
+
+/* The top edge drops slightly on the left, as in the sketch. */
+.folder::after {
+  position: absolute;
+  z-index: 1;
+  top: 8%;
+  right: 0;
+  left: 0;
+  height: 4%;
+  background: var(--folder);
+  content: "";
+  transform: rotate(var(--top-bend));
+  transform-origin: left center;
 }
