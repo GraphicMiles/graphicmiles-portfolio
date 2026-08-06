@@ -2,7 +2,7 @@
   --page: #f5f4ef;
   --folder: #111210;
   --folder-line: rgba(255, 255, 255, 0.18);
-  --skew: -15deg;
+  --tab-tilt: -15deg;
 }
 
 * { box-sizing: border-box; }
@@ -57,13 +57,11 @@ body {
 
 .folder {
   position: absolute;
-  right: -8%;
+  right: 0;
   bottom: 0;
-  left: -8%;
-  width: 116%;
+  left: 0;
+  width: 100%;
   height: 100%;
-  transform: skewX(var(--skew));
-  transform-origin: bottom center;
 }
 
 .folder-body,
@@ -80,7 +78,7 @@ body {
   height: calc(100% - 4.25rem);
   border: 1px solid var(--folder-line);
   border-top: 0;
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0 0 0.9rem 0.9rem;
 }
 
 .folder-tab {
@@ -90,16 +88,12 @@ body {
   height: 4.75rem;
   border: 1px solid var(--folder-line);
   border-bottom: 0;
-  border-radius: 1.45rem 1.45rem 0 0;
+  border-radius: 1.4rem 1.4rem 0 0;
+  transform: skewX(var(--tab-tilt));
+  transform-origin: bottom center;
 }
 
 @media (max-width: 720px) {
-  .folder {
-    right: -14%;
-    left: -14%;
-    width: 128%;
-  }
-
   .folder-tab {
     left: 18%;
     width: 29%;
