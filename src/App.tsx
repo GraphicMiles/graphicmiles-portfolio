@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Children, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -32,6 +32,90 @@ const staggerContainer = {
     },
   },
 };
+
+function WorkTimeline({ children, count }: { children: ReactNode; count: number }) {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const rowRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [progress, setProgress] = useState(0);
+  const [nodePositions, setNodePositions] = useState<number[]>([]);
+
+  useLayoutEffect(() => {
+    let frame = 0;
+
+    const measure = () => {
+      const timeline = timelineRef.current;
+      if (!timeline) return;
+
+      const height = timeline.getBoundingClientRect().height;
+      if (!height) return;
+
+      const positions = rowRefs.current.slice(0, count).map((row) => {
+        if (!row) return 0;
+        return ((row.offsetTop + 24) / height) * 100;
+      });
+
+      setNodePositions(positions);
+    };
+
+    const updateProgress = () => {
+      const timeline = timelineRef.current;
+      if (!timeline) return;
+
+      const rect = timeline.getBoundingClientRect();
+      const viewport = window.innerHeight;
+      const startTop = viewport * 0.72;
+      const endTop = viewport * 0.25 - rect.height;
+      const next = Math.min(1, Math.max(0, (startTop - rect.top) / (startTop - endTop)));
+
+      setProgress((current) => Math.abs(current - next) < 0.002 ? current : next);
+    };
+
+    const scheduleUpdate = () => {
+      if (frame) cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(updateProgress);
+    };
+
+    measure();
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    const resizeObserver = new ResizeObserver(measure);
+    if (timelineRef.current) resizeObserver.observe(timelineRef.current);
+
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      resizeObserver.disconnect();
+    };
+  }, [count]);
+
+  const fallbackPositions = Array.from({ length: count }, (_, index) => count === 1 ? 50 : 4 + (index / (count - 1)) * 92);
+  const positions = nodePositions.length === count ? nodePositions : fallbackPositions;
+  const firstPosition = positions[0] ?? 4;
+  const lastPosition = positions[positions.length - 1] ?? 96;
+  const activePosition = firstPosition + (lastPosition - firstPosition) * progress;
+  const projectRows = Children.toArray(children);
+
+  return (
+    <div className="work-timeline" ref={timelineRef}>
+      <div className="work-timeline__rail" aria-hidden="true">
+        <span className="work-timeline__track" style={{ top: `${firstPosition}%`, bottom: `${100 - lastPosition}%` }} />
+        <span className="work-timeline__line-fill" style={{ top: `${firstPosition}%`, height: `${Math.max(0, activePosition - firstPosition)}%` }} />
+        {positions.map((position, index) => <span className="work-timeline__faded-node" style={{ top: `${position}%` }} key={`faded-node-${index}`} />)}
+        <span className="work-timeline__active-node" style={{ top: `${activePosition}%` }} />
+      </div>
+      <div className="work-timeline__projects">
+        {projectRows.map((project, index) => (
+          <div className="work-timeline__row" ref={(element) => { rowRefs.current[index] = element; }} key={`project-row-${index}`}>
+            {project}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -116,7 +200,7 @@ export default function Home() {
               <span className="font-mono text-sm text-muted-foreground">01</span>
             </motion.div>
 
-            <div className="space-y-32">
+            <WorkTimeline count={3}>
               {/* Project 3 - Toddler / ForgeAI (FEATURED) */}
               <ProjectCard 
                 title="Toddler / ForgeAI"
@@ -150,7 +234,7 @@ export default function Home() {
                 stack="React Vite · Firebase · LiveKit · Capacitor"
                 visual={<ProjectVisuals.Chan />}
               />
-            </div>
+            </WorkTimeline>
           </div>
         </section>
 
