@@ -59,3 +59,10 @@ body {
     flex-basis: 65%;
   }
 }
+
+@media (max-width: 720px) {
+  .folder::before {
+    top: -8%;
+    height: 2rem;
+  }
+}
