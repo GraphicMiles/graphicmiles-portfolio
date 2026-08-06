@@ -28,3 +28,7 @@ npm run preview
 ```
 
 Project content lives in `src/content.ts`. Product visuals live in `src/components/ProjectVisuals.tsx`.
+
+## Standalone file
+
+`graphic-miles-standalone.html` is a self-contained version of the site. It includes inline CSS, JavaScript, SVG product previews, and embedded portrait images, so it can be opened directly without a build step or external assets.
