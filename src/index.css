@@ -1,25 +1,25 @@
 :root {
   --page: #f5f4ef;
-  --ink: #151615;
-  --line: rgba(21, 22, 21, 0.18);
-  --folder-1: #d5d0c6;
-  --folder-2: #e7dccb;
-  --folder-3: #c7d6e5;
-  --folder-4: #dfc9c4;
+  --folder: #111210;
+  --folder-line: rgba(255, 255, 255, 0.16);
 }
 
 * { box-sizing: border-box; }
 
-html, body, #root { min-height: 100%; }
-
-html { background: var(--page); }
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
 
 body {
   min-width: 320px;
-  margin: 0;
-  overflow-x: hidden;
   background: var(--page);
-  color: var(--ink);
+  color: var(--folder);
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
@@ -36,7 +36,10 @@ body {
 
 .folder-site {
   position: relative;
+  width: 100%;
+  height: 100svh;
   min-height: 100svh;
+  max-height: 100svh;
   overflow: hidden;
   background: var(--page);
 }
@@ -46,29 +49,24 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  width: 100%;
   height: 70svh;
-  min-height: 20rem;
-  padding: 0 clamp(1rem, 4vw, 4rem);
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-evenly;
-  gap: clamp(0.65rem, 2vw, 2rem);
 }
 
 .folder {
-  position: relative;
-  flex: 1 1 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
+  background: var(--folder);
   clip-path: polygon(
     0 8%,
-    15% 8%,
-    18% 0,
-    39% 0,
-    42% 8%,
+    17% 8%,
+    19.5% 0,
+    40% 0,
+    42.5% 8%,
     100% 8%,
     100% 100%,
     0 100%
@@ -78,31 +76,7 @@ body {
 .folder::after {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(21, 22, 21, 0.1);
+  border: 1px solid var(--folder-line);
   content: "";
   pointer-events: none;
-}
-
-.folder--stone { background: var(--folder-1); }
-.folder--sand { background: var(--folder-2); }
-.folder--blue { background: var(--folder-3); }
-.folder--rose { background: var(--folder-4); }
-
-@media (max-width: 720px) {
-  .folder-collection {
-    position: relative;
-    height: auto;
-    min-height: 100svh;
-    padding: 15vh 1rem 0;
-    flex-direction: column;
-    align-items: stretch;
-    justify-content: flex-start;
-    gap: 1rem;
-  }
-
-  .folder {
-    flex: 0 0 auto;
-    height: 70svh;
-    min-height: 20rem;
-  }
 }
