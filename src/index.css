@@ -77,8 +77,8 @@ body {
   position: absolute;
   z-index: 1;
   top: -3rem;
-  left: calc(50% - 3rem);
-  width: 6rem;
+  right: 2rem;
+  width: 12rem;
   height: 3rem;
   border-radius: var(--folder-radius) var(--folder-radius) 0 0;
   background: var(--folder);
