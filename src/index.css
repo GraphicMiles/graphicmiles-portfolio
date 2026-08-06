@@ -3,7 +3,7 @@
   --folder: #111210;
   --folder-radius: 1.75rem;
   --navbar-height: 0px;
-  --folder-tilt: -15deg;
+  --folder-rotation-x: -15deg;
 }
 
 * { box-sizing: border-box; }
@@ -63,12 +63,12 @@ body {
 
 .folder {
   position: relative;
-  width: 125%;
+  width: 100%;
   height: 75%;
-  flex: 0 0 125%;
+  flex: 0 0 100%;
   background: var(--folder);
   border-radius: var(--folder-radius) var(--folder-radius) 0 0;
-  transform: skewX(var(--folder-tilt));
+  transform: rotateX(var(--folder-rotation-x));
   transform-origin: bottom center;
 }
 
