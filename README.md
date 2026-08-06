@@ -1,15 +1,17 @@
 # Graphic Miles — Portfolio
 
-Portfolio for Raji Farouq Adewunmi (Graphic Miles) — Product Designer & Fullstack Engineer based in Lagos, NG.
+A product-design and engineering portfolio for Raji Farouq Adewunmi, based in Lagos.
+
+## Direction
+
+A quiet, editorial portfolio built around a clear homepage, three curated live products, real project context, and a restrained scroll-linked work timeline. The layout is responsive-first and uses no external fonts, generated noise, animation libraries, or UI-kit scaffolding.
 
 ## Stack
 
 - React 19 + TypeScript
 - Vite 7
-- Tailwind CSS v4
-- Framer Motion
-- shadcn/ui components
-- react-hook-form + Zod
+- Native CSS design tokens and responsive layout
+- Local portrait and static product visuals
 
 ## Run locally
 
@@ -18,19 +20,11 @@ npm install
 npm run dev
 ```
 
-## Build
+Build and preview:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Deploy
-
-Works with Vercel, Netlify, or any static host — just run `npm run build` and deploy the `dist/` folder.
-
-## Portrait assets
-
-Portrait photos live in `public/images/`:
-- `raji-color.jpg` — color portrait used in the About section
-- `raji-bw.jpg` — black & white portrait (alternate / hover)
+Project content lives in `src/content.ts`. Product visuals live in `src/components/ProjectVisuals.tsx`.
