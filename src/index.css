@@ -3,8 +3,6 @@
   --folder-radius: .3rem;
   --navbar-height: 0px;
   --folder-angle: -1deg;
-  --black-folder: #000;
-  --red-folder: #ff424b;
 }
 
 * { box-sizing: border-box; }
@@ -30,21 +28,27 @@ body {
 .app { width: 100%; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: var(--page); }
 .navbar { width: 100%; height: var(--navbar-height); flex: 0 0 var(--navbar-height); }
 .main-container { position: relative; width: 100%; height: calc(100% - var(--navbar-height)); min-height: 0; overflow: hidden; }
+.folder-stack { position: absolute; right: 0; bottom: 0; left: 0; width: 100%; height: 75%; }
 
+/* The stack owns placement. Each Folder only owns its own silhouette and label. */
 .folder {
   position: absolute;
   right: auto;
   bottom: 0;
   left: 50%;
   width: 110%;
+  height: 100%;
   background: var(--folder-color);
   transform-origin: bottom center;
 }
 
-.folder--back { z-index: 1; height: 75%; transform: translateX(-50%) rotate(var(--folder-angle)); }
-.folder--front { z-index: 2; bottom: -.5rem; height: calc(75% - .5rem); transform: translateX(-50%) scaleX(-1) rotate(var(--folder-angle)); }
-.folder--black { --folder-color: var(--black-folder); }
-.folder--red { --folder-color: var(--red-folder); }
+.folder:nth-child(1) { z-index: 1; bottom: 0; }
+.folder:nth-child(2) { z-index: 2; bottom: -4%; }
+.folder:nth-child(3) { z-index: 3; bottom: -8%; }
+.folder:nth-child(4) { z-index: 4; bottom: -12%; }
+
+.folder--right { transform: translateX(-50%) rotate(var(--folder-angle)); }
+.folder--left { transform: translateX(-50%) scaleX(-1) rotate(var(--folder-angle)); }
 
 .folder::before {
   position: absolute;
@@ -58,7 +62,31 @@ body {
   content: "";
 }
 
+.folder__label {
+  position: absolute;
+  z-index: 2;
+  top: -8%;
+  right: 7%;
+  width: max(12rem, 39%);
+  height: max(3rem, 16%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--folder-label-color);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: clamp(.62rem, 1.1vw, .9rem);
+  font-weight: 650;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.folder--left .folder__label { transform: scaleX(-1); }
+.folder__content { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
+.folder--left .folder__content { transform: scaleX(-1); }
+
 @media (max-width: 720px) {
+  .folder-stack { height: 65%; }
   .folder { width: 110%; }
-  .folder::before { top: -2rem; height: 2rem; }
+  .folder::before, .folder__label { top: -2rem; height: 2rem; }
 }
