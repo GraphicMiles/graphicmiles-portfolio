@@ -33,9 +33,9 @@ body {
 /* Reference proportions: full-width body, shallow in-plane angle, broad right-side tab. */
 .folder {
   position: relative;
-  width: 100%;
+  width: 110%;
   height: 75%;
-  flex: 0 0 100%;
+  flex: 0 0 110%;
   background: var(--folder);
   transform: rotate(var(--folder-angle));
   transform-origin: bottom center;
@@ -56,7 +56,7 @@ body {
 @media (max-width: 720px) {
   .folder {
     height: 65%;
-    flex-basis: 100%;
+    flex-basis: 110%;
   }
 
   .folder::before {
