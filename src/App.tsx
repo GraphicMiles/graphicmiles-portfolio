@@ -9,9 +9,9 @@ function Navbar() {
     <header className="navbar">
       <nav className="navbar__links" aria-label="Primary navigation">
         {navItems.map(({ href, label, icon }) => (
-          <a href={href} key={label}>
+          <a href={href} key={label} aria-label={label}>
             <i className={`nav-icon ${icon}`} aria-hidden="true" />
-            <span>{label}</span>
+            <span className="nav-label">{label}</span>
           </a>
         ))}
       </nav>
