@@ -3,6 +3,7 @@
   --folder-radius: .3rem;
   --navbar-height: 0px;
   --folder-angle: -1deg;
+  --folder-min-width: 64rem;
 }
 
 * { box-sizing: border-box; }
@@ -36,7 +37,7 @@ body {
   right: auto;
   bottom: 0;
   left: 50%;
-  width: 110%;
+  width: max(100%, var(--folder-min-width));
   height: 100%;
   background: var(--folder-color);
   transform-origin: bottom center;
@@ -61,7 +62,7 @@ body {
   z-index: 1;
   top: -12%;
   right: 7%;
-  width: max(6rem, 25%);
+  width: 25%;
   height: max(3rem, 16%);
   border-radius: var(--folder-radius) var(--folder-radius) 0 0;
   background: var(--folder-color);
@@ -73,7 +74,7 @@ body {
   z-index: 2;
   top: -8%;
   right: 7%;
-  width: max(6rem, 25%);
+  width: 25%;
   height: max(3rem, 16%);
   display: flex;
   align-items: center;
@@ -88,12 +89,12 @@ body {
 }
 
 .folder--left .folder__label { transform: scaleX(-1); }
-.folder__content { position: absolute; z-index: 3; inset: 0; pointer-events: none; }
+.folder__content { position: absolute; z-index: 3; inset: 0; display: flex; flex-wrap: wrap; align-content: flex-start; pointer-events: none; }
 .folder--left .folder__content { transform: scaleX(-1); }
 
 @media (max-width: 720px) {
   .folder-stack { height: 65%; }
-  .folder { width: 110%; }
+  .folder { width: max(100%, var(--folder-min-width)); }
   .folder::before, .folder__label { top: -2rem; height: 2rem; }
 }
 
