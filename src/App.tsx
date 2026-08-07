@@ -8,19 +8,6 @@ type FolderProps = {
   labelColor?: string
 }
 
-const folderCollection = [
-  { label: '2026', orientation: 'right' as const, backgroundColor: '#063f36', labelColor: '#e6f2df' },
-  { label: 'Projects', orientation: 'left' as const, backgroundColor: '#9ac8b0' },
-  { label: 'Contact', orientation: 'right' as const, backgroundColor: '#d9d2c7' },
-  { label: 'About', orientation: 'left' as const, backgroundColor: '#a7cfb9' },
-  { label: 'Branding', orientation: 'right' as const, backgroundColor: '#0b4b40', labelColor: '#e6f2df' },
-  { label: 'Packaging', orientation: 'left' as const, backgroundColor: '#b7d3c1' },
-  { label: 'Content', orientation: 'right' as const, backgroundColor: '#d9d2c7' },
-  { label: 'Illustration', orientation: 'left' as const, backgroundColor: '#9ac8b0' },
-  { label: 'Archive', orientation: 'right' as const, backgroundColor: '#0b4b40', labelColor: '#e6f2df' },
-  { label: 'Portfolio', orientation: 'left' as const, backgroundColor: '#ff424b', labelColor: '#fff' },
-]
-
 function Navbar() {
   return <header className="navbar" aria-label="Site navigation" />
 }
@@ -57,11 +44,9 @@ export default function App() {
     <div className="app">
       <Navbar />
       <MainContainer>
-        {folderCollection.map((folder, index) => (
-          <Folder key={folder.label} {...folder}>
-            {index === folderCollection.length - 1 ? <CoverContent /> : null}
-          </Folder>
-        ))}
+        <Folder orientation="left" backgroundColor="#ff424b" label="Portfolio" labelColor="#fff">
+          <CoverContent />
+        </Folder>
       </MainContainer>
     </div>
   )

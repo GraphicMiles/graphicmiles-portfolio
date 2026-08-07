@@ -43,17 +43,6 @@ body {
   transform-origin: bottom center;
 }
 
-.folder:nth-child(1) { z-index: 1; bottom: 0; }
-.folder:nth-child(2) { z-index: 2; bottom: -.2rem; }
-.folder:nth-child(3) { z-index: 3; bottom: -.4rem; }
-.folder:nth-child(4) { z-index: 4; bottom: -.6rem; }
-.folder:nth-child(5) { z-index: 5; bottom: -.8rem; }
-.folder:nth-child(6) { z-index: 6; bottom: -1rem; }
-.folder:nth-child(7) { z-index: 7; bottom: -1.2rem; }
-.folder:nth-child(8) { z-index: 8; bottom: -1.4rem; }
-.folder:nth-child(9) { z-index: 9; bottom: -1.6rem; }
-.folder:nth-child(10) { z-index: 10; bottom: -1.8rem; }
-
 .folder--right { transform: translateX(-50%) rotate(var(--folder-angle)); }
 .folder--left { transform: translateX(-50%) scaleX(-1) rotate(var(--folder-angle)); }
 
