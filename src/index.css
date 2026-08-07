@@ -42,7 +42,7 @@ body {
 }
 
 .folder--back { z-index: 1; height: 75%; transform: translateX(-50%) rotate(var(--folder-angle)); }
-.folder--front { z-index: 2; height: 62%; transform: translateX(-50%) scaleX(-1) rotate(var(--folder-angle)); }
+.folder--front { z-index: 2; bottom: -.5rem; height: calc(75% - .5rem); transform: translateX(-50%) scaleX(-1) rotate(var(--folder-angle)); }
 .folder--black { --folder-color: var(--black-folder); }
 .folder--red { --folder-color: var(--red-folder); }
 
@@ -60,6 +60,5 @@ body {
 
 @media (max-width: 720px) {
   .folder { width: 110%; }
-  .folder--front { height: 62%; }
   .folder::before { top: -2rem; height: 2rem; }
 }
