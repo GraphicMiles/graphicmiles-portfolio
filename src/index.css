@@ -1,9 +1,10 @@
 :root {
   --page: #f5f4ef;
-  --folder: #000;
   --folder-radius: .3rem;
   --navbar-height: 0px;
   --folder-angle: -1deg;
+  --black-folder: #000;
+  --red-folder: #ff424b;
 }
 
 * { box-sizing: border-box; }
@@ -21,25 +22,29 @@ body,
 body {
   min-width: 320px;
   background: var(--page);
-  color: var(--folder);
+  color: #151613;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .app { width: 100%; height: 100%; display: flex; flex-direction: column; overflow: hidden; background: var(--page); }
 .navbar { width: 100%; height: var(--navbar-height); flex: 0 0 var(--navbar-height); }
-.main-container { width: 100%; height: calc(100% - var(--navbar-height)); min-height: 0; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; }
+.main-container { position: relative; width: 100%; height: calc(100% - var(--navbar-height)); min-height: 0; overflow: hidden; }
 
-/* Reference proportions: full-width body, shallow in-plane angle, broad right-side tab. */
 .folder {
-  position: relative;
+  position: absolute;
+  right: auto;
+  bottom: 0;
+  left: 50%;
   width: 110%;
-  height: 75%;
-  flex: 0 0 110%;
-  background: var(--folder);
-  transform: rotate(var(--folder-angle));
+  background: var(--folder-color);
   transform-origin: bottom center;
 }
+
+.folder--back { z-index: 1; height: 75%; transform: translateX(-50%) rotate(var(--folder-angle)); }
+.folder--front { z-index: 2; height: 62%; transform: translateX(-50%) scaleX(-1) rotate(var(--folder-angle)); }
+.folder--black { --folder-color: var(--black-folder); }
+.folder--red { --folder-color: var(--red-folder); }
 
 .folder::before {
   position: absolute;
@@ -49,18 +54,12 @@ body {
   width: max(12rem, 39%);
   height: max(3rem, 16%);
   border-radius: var(--folder-radius) var(--folder-radius) 0 0;
-  background: var(--folder);
+  background: var(--folder-color);
   content: "";
 }
 
 @media (max-width: 720px) {
-  .folder {
-    height: 65%;
-    flex-basis: 110%;
-  }
-
-  .folder::before {
-    top: -2rem;
-    height: 2rem;
-  }
+  .folder { width: 110%; }
+  .folder--front { height: 62%; }
+  .folder::before { top: -2rem; height: 2rem; }
 }

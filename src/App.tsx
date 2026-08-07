@@ -1,11 +1,17 @@
 import type { ReactNode } from 'react'
 
+type FolderProps = {
+  tone: 'black' | 'red'
+  flipped?: boolean
+  layer: 'back' | 'front'
+}
+
 function Navbar() {
   return <header className="navbar" aria-label="Site navigation" />
 }
 
-function Folder() {
-  return <div className="folder" aria-label="Portfolio folder" role="img" />
+function Folder({ tone, flipped = false, layer }: FolderProps) {
+  return <div className={`folder folder--${tone} folder--${layer} ${flipped ? 'folder--flipped' : ''}`} aria-label={`${tone} portfolio folder`} role="img" />
 }
 
 function MainContainer({ children }: { children: ReactNode }) {
@@ -17,7 +23,8 @@ export default function App() {
     <div className="app">
       <Navbar />
       <MainContainer>
-        <Folder />
+        <Folder tone="black" layer="back" />
+        <Folder tone="red" layer="front" flipped />
       </MainContainer>
     </div>
   )
