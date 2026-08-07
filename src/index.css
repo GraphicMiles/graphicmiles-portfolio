@@ -61,7 +61,7 @@ body {
   z-index: 1;
   top: -12%;
   right: 7%;
-  width: max(12rem, 39%);
+  width: max(6rem, 25%);
   height: max(3rem, 16%);
   border-radius: var(--folder-radius) var(--folder-radius) 0 0;
   background: var(--folder-color);
@@ -73,7 +73,7 @@ body {
   z-index: 2;
   top: -8%;
   right: 7%;
-  width: max(12rem, 39%);
+  width: max(6rem, 25%);
   height: max(3rem, 16%);
   display: flex;
   align-items: center;
