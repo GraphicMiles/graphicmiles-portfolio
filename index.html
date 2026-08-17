@@ -394,26 +394,29 @@
     bottom: 0;
     left: max(var(--gutter), calc((100vw - var(--maxWidth)) / 2 + var(--gutter)));
     width: 28px;
-    z-index: 50;
+    z-index: 40;
     pointer-events: none;
     display: none;
   }
   @media (min-width: 821px) {
     .trace { display: block; }
   }
+  /* shift section heads right so numbers sit flush against the rail */
+  @media (min-width: 821px) {
+    .sectionHead { padding-left: 40px; }
+  }
   .traceTrack {
     position: absolute;
-    top: 108px;
-    bottom: 84px;
+    top: 96px;
+    bottom: 72px;
     left: 0;
     width: 100%;
-    border-left: 1px solid var(--borderColor);
   }
   .traceFill {
     position: absolute;
     top: 0;
     left: 0;
-    width: 4px;
+    width: 28px;
     height: 100%;
     background: var(--accent);
     transform: scaleY(0);
@@ -422,11 +425,11 @@
   }
   .traceTick {
     position: absolute;
-    left: -5px;
-    width: 10px;
-    height: 10px;
+    left: 22px;
+    width: 12px;
+    height: 12px;
     background: var(--bgPrimary);
-    border: 1px solid var(--borderColor);
+    border: 1px solid var(--borderStrong);
     box-sizing: border-box;
     transform: translateY(-50%);
     transition: background 0.18s linear, border-color 0.18s linear;
@@ -1014,66 +1017,79 @@
     loop();
   })();
 
-  // ---------- Scroll trace ----------
+  // ---------- Scroll trace (global progress) ----------
   (function scrollTrace() {
     const trace = document.getElementById("trace");
     const fill = document.getElementById("traceFill");
     const ticksHost = document.getElementById("traceTicks");
     if (!trace || !fill || !ticksHost) return;
 
-    if (window.matchMedia && window.matchMedia("(max-width: 820px)").matches) return;
+    const isDesktop = () =>
+      window.matchMedia && !window.matchMedia("(max-width: 820px)").matches;
 
-    const heads = Array.from(document.querySelectorAll(".sectionHead"));
-    if (!heads.length) return;
+    let heads = [];
+    let ticks = [];
 
-    heads.forEach((h, i) => {
-      const t = document.createElement("span");
-      t.className = "traceTick";
-      t.dataset.index = String(i);
-      ticksHost.appendChild(t);
-    });
-    const ticks = Array.from(ticksHost.children);
+    function build() {
+      ticksHost.innerHTML = "";
+      heads = Array.from(document.querySelectorAll(".sectionHead"));
+      ticks = heads.map((head) => {
+        const t = document.createElement("span");
+        t.className = "traceTick";
+        ticksHost.appendChild(t);
+        return t;
+      });
+    }
+    build();
 
     let ticking = false;
 
     function update() {
-      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (!isDesktop()) {
+        fill.style.transform = "scaleY(0)";
+        heads.forEach((h) => h.classList.remove("is-active"));
+        ticking = false;
+        return;
+      }
+
+      const doc = document.documentElement;
+      const max = doc.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.max(0, Math.min(1, window.scrollY / max)) : 0;
+      fill.style.transform = "scaleY(" + p.toFixed(4) + ")";
+
+      // leading edge = bottom of the currently-filled portion, in viewport space
       const track = trace.querySelector(".traceTrack");
       const trackRect = track.getBoundingClientRect();
-      const trackTop = trackRect.top;
-      const trackH = trackRect.height;
-      const edgeY = vh * 0.38;
-
-      const edgeTravel = edgeY - trackTop;
-      let p = trackH > 0 ? edgeTravel / trackH : 0;
-      p = Math.max(0, Math.min(1, p));
-      fill.style.transform = "scaleY(" + p.toFixed(4) + ")";
+      const leadingY = trackRect.top + p * trackRect.height;
 
       heads.forEach((head, i) => {
         const num = head.querySelector(".sectionNum");
         const ref = num || head;
         const r = ref.getBoundingClientRect();
         const center = r.top + r.height / 2;
-        const topPct = ((center - trackTop) / trackH) * 100;
-        ticks[i].style.top = topPct.toFixed(2) + "%";
 
-        const passed = center <= edgeY;
-        ticks[i].classList.toggle("is-passed", passed);
+        if (ticks[i]) {
+          const topPct = ((center - trackRect.top) / trackRect.height) * 100;
+          ticks[i].style.top = topPct.toFixed(2) + "%";
+        }
+
+        const passed = center <= leadingY;
         head.classList.toggle("is-active", passed);
+        if (ticks[i]) ticks[i].classList.toggle("is-passed", passed);
       });
 
       ticking = false;
     }
 
-    function onScroll() {
+    function onFrame() {
       if (!ticking) {
         ticking = true;
         requestAnimationFrame(update);
       }
     }
 
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
+    window.addEventListener("scroll", onFrame, { passive: true });
+    window.addEventListener("resize", () => { build(); onFrame(); }, { passive: true });
     update();
   })();
 </script>
