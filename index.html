@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Raji Adewunmi Farouq - software and AI engineer building agentic systems, automation and polished products from Lagos." />
 <title>Raji Adewunmi Farouq - Software &amp; AI Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 <style>
   :root {
@@ -17,13 +18,18 @@
     --textSecondary: #5c5b52;
     --textFaint: #8b8a80;
     --borderColor: #d9d7cb;
+    --borderStrong: #b8b5a7;
     --accent: #6f4fd1;
     --accentDim: #8873dd;
     --accentSoft: #efeafd;
     --tagBg: #f1edfb;
     --tagText: #6f4fd1;
     --radiusMain: 2px;
-    --maxWidth: 1080px;
+    --maxWidth: 980px;
+    --gutter: 40px;
+    --display: "Instrument Serif", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
   }
 
   [data-theme="dark"] {
@@ -34,6 +40,7 @@
     --textSecondary: #9c9a91;
     --textFaint: #706e67;
     --borderColor: #302f36;
+    --borderStrong: #44424d;
     --accent: #a68bff;
     --accentDim: #8d70f2;
     --accentSoft: #24202f;
@@ -42,526 +49,348 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
     background: var(--bgPrimary);
     color: var(--textPrimary);
-    font-family: "Inter", sans-serif;
+    font-family: var(--sans);
     line-height: 1.6;
-    transition: background 0.35s ease, color 0.35s ease;
-    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
   }
-
-  .headingFont { font-family: "Space Grotesk", sans-serif; }
-  .monoFont { font-family: "IBM Plex Mono", monospace; }
-
-  a { color: inherit; text-decoration: none; }
-  ul { list-style: none; }
-  button { font-family: inherit; cursor: pointer; }
 
   ::selection { background: var(--accent); color: #fff; }
 
-  /* ---------- Layout helpers ---------- */
-  .wrapper {
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+  /* single locked content column */
+  .col {
     max-width: var(--maxWidth);
     margin: 0 auto;
-    padding: 0 32px;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
   }
 
-  .sectionLabel {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 40px;
-  }
-
-  .sectionLabel::before {
-    content: "";
-    width: 3px;
-    height: 22px;
-    background: var(--accent);
-    display: block;
-  }
-
-  .sectionLabel h2 {
-    font-size: 1.7rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-
-  section { padding: 90px 0; }
-
-  .sectionAlt { background: var(--bgSecondary); }
-
-  hr.hairline {
-    border: none;
-    border-top: 1px solid var(--borderColor);
-  }
-
-  /* ---------- Scroll reveal ---------- */
-  .revealItem {
-    opacity: 0;
-    transform: translateY(26px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--staggerIndex, 0) * 90ms);
-  }
-
-  .revealItem.inView {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ---------- Navigation ---------- */
+  /* ---------- Nav ---------- */
   header.siteNav {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: color-mix(in srgb, var(--bgPrimary) 88%, transparent);
+    background: color-mix(in srgb, var(--bgPrimary) 86%, transparent);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--borderColor);
   }
-
   .navInner {
     max-width: var(--maxWidth);
     margin: 0 auto;
-    padding: 18px 32px;
+    padding: 16px var(--gutter);
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
-
   .navBrand {
-    font-family: "IBM Plex Mono", monospace;
+    font-family: var(--mono);
     font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: -0.02em;
+    font-size: 0.82rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
   }
-
-  .navLinks {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    font-size: 0.88rem;
-    color: var(--textSecondary);
-  }
-
-  .navLinks a {
-    position: relative;
-    padding: 4px 0;
-    transition: color 0.2s ease;
-  }
-
+  .navLinks { display: flex; gap: 26px; font-family: var(--mono); font-size: 0.78rem; color: var(--textSecondary); }
+  .navLinks a { position: relative; padding: 3px 0; transition: color 0.2s ease; }
   .navLinks a:hover { color: var(--textPrimary); }
-
-  .navLinks a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-    width: 0;
-    height: 1px;
-    background: var(--accent);
-    transition: width 0.25s ease;
-  }
-
-  .navLinks a:hover::after { width: 100%; }
-
-  .navRight { display: flex; align-items: center; gap: 18px; }
-
+  .navRight { display: flex; align-items: center; gap: 14px; }
   .themeToggle {
     display: flex;
     border: 1px solid var(--borderColor);
     border-radius: var(--radiusMain);
     overflow: hidden;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
   }
-
-  .themeToggle button {
-    padding: 6px 14px;
-    background: transparent;
-    color: var(--textSecondary);
-    border: none;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-
-  .themeToggle button.active {
-    background: var(--textPrimary);
-    color: var(--bgPrimary);
-  }
-
-  .menuToggle {
-    display: none;
-    background: none;
-    border: 1px solid var(--borderColor);
-    color: var(--textPrimary);
-    padding: 8px 10px;
-    border-radius: var(--radiusMain);
-  }
-
-  .mobileMenu {
-    display: none;
-    flex-direction: column;
-    border-top: 1px solid var(--borderColor);
-    background: var(--bgPrimary);
-  }
-
+  .themeToggle button { padding: 6px 12px; color: var(--textSecondary); transition: background 0.2s, color 0.2s; }
+  .themeToggle button.active { background: var(--textPrimary); color: var(--bgPrimary); }
+  .menuToggle { display: none; border: 1px solid var(--borderColor); padding: 8px 10px; border-radius: var(--radiusMain); }
+  .mobileMenu { display: none; flex-direction: column; border-top: 1px solid var(--borderColor); background: var(--bgPrimary); }
   .mobileMenu.open { display: flex; }
+  .mobileMenu a { padding: 14px var(--gutter); font-family: var(--mono); font-size: 0.82rem; color: var(--textSecondary); border-bottom: 1px solid var(--borderColor); }
 
-  .mobileMenu a {
-    padding: 14px 32px;
-    font-size: 0.9rem;
-    color: var(--textSecondary);
+  /* ---------- Section header (spec-sheet) ---------- */
+  section { padding: 84px 0; }
+  .sectionAlt { background: var(--bgSecondary); }
+
+  .sectionHead {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding-bottom: 16px;
+    margin-bottom: 40px;
     border-bottom: 1px solid var(--borderColor);
+  }
+  .sectionNum {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 500;
+    min-width: 34px;
+    transform: translateY(0.18em);
+  }
+  .sectionHead h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 2.35rem;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .sectionMeta {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--textFaint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
   /* ---------- Hero ---------- */
-  .heroSection {
-    padding: 110px 0 100px;
-    text-align: center;
-  }
+  .hero { padding: 104px 0 88px; }
+  .heroInner { max-width: 66ch; }
 
   .avatarShell {
-    width: 128px;
-    height: 128px;
-    margin: 0 auto 28px;
+    width: 96px; height: 96px;
     border-radius: 50%;
-    background: var(--accentSoft);
     border: 1px solid var(--borderColor);
-    padding: 4px;
+    padding: 3px;
     overflow: hidden;
+    background: var(--accentSoft);
+    margin-bottom: 28px;
   }
+  .avatarShell img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; filter: grayscale(100%); }
 
-  .avatarShell img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-
-  .eyebrow {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.82rem;
-    letter-spacing: 0.04em;
-    color: var(--accent);
+  .hero .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    color: var(--accent);
+    margin-bottom: 18px;
   }
-
-  .heroSection h1 {
-    font-size: clamp(2.4rem, 6vw, 3.6rem);
-    font-weight: 700;
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.8rem, 7vw, 4.2rem);
+    line-height: 0.98;
     letter-spacing: -0.02em;
     margin-bottom: 22px;
   }
-
-  .heroSection p.bio {
-    max-width: 600px;
-    margin: 0 auto 36px;
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero p.bio {
     color: var(--textSecondary);
-    font-size: 1.02rem;
-  }
-
-  .heroActions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-
-  .btnPrimary,
-  .btnSecondary {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.85rem;
-    padding: 13px 26px;
-    border-radius: var(--radiusMain);
-    border: 1px solid var(--textPrimary);
-    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .btnPrimary {
-    background: var(--textPrimary);
-    color: var(--bgPrimary);
-  }
-
-  .btnPrimary:hover { transform: translateY(-2px); }
-
-  .btnSecondary {
-    background: transparent;
-    color: var(--textPrimary);
-  }
-
-  .btnSecondary:hover {
-    background: var(--textPrimary);
-    color: var(--bgPrimary);
-  }
-
-  /* ---------- Achievements ---------- */
-  .achievementList { display: flex; flex-direction: column; }
-
-  .achievementItem {
-    padding: 24px 0;
-    border-bottom: 1px solid var(--borderColor);
-  }
-
-  .achievementItem:first-child { padding-top: 0; }
-
-  .achievementItem h3 {
     font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 8px;
+    max-width: 62ch;
+    margin-bottom: 18px;
   }
+  .hero p.bio + p.bio { margin-bottom: 34px; }
 
-  .achievementItem p { color: var(--textSecondary); font-size: 0.95rem; }
-
-  /* ---------- Projects ---------- */
-  .projectsSectionInner { position: relative; }
-
-  .pipelineSvg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .pipelinePath {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 1.5;
-    stroke-dasharray: 8 8;
-    opacity: 0.55;
-  }
-
-  .pipelineTrace {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 2;
-  }
-
-  .pipelineNode {
-    fill: var(--bgPrimary);
-    stroke: var(--accent);
-    stroke-width: 2;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .pipelineNode.lit { opacity: 1; }
-
-  .projectGrid {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
-
-  .projectCard {
-    background: var(--bgCard);
+  /* live ticking ticker strip */
+  .ticker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
     border: 1px solid var(--borderColor);
     border-radius: var(--radiusMain);
     overflow: hidden;
+    margin: 30px 0 0;
+    font-family: var(--mono);
+    font-size: 0.76rem;
+    background: var(--bgCard);
+  }
+  .tickerCell {
+    flex: 1 1 0;
+    min-width: 150px;
+    padding: 12px 16px;
+    border-right: 1px solid var(--borderColor);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, border-color 0.3s ease;
+    gap: 3px;
   }
+  .tickerCell:last-child { border-right: none; }
+  .tickerLabel { color: var(--textFaint); text-transform: uppercase; letter-spacing: 0.07em; font-size: 0.66rem; }
+  .tickerValue { color: var(--textPrimary); font-weight: 500; }
+  .tickerValue .liveDot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #36c08a; margin-right: 7px; vertical-align: middle; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
 
-  .projectCard:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent);
+  .heroActions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .btn {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    padding: 12px 22px;
+    border-radius: var(--radiusMain);
+    border: 1px solid var(--textPrimary);
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
   }
+  .btnPrimary { background: var(--textPrimary); color: var(--bgPrimary); }
+  .btnPrimary:hover { transform: translateY(-2px); }
+  .btnGhost { background: transparent; color: var(--textPrimary); }
+  .btnGhost:hover { background: var(--textPrimary); color: var(--bgPrimary); }
 
-  .projectPreview {
-    height: 170px;
-    background: var(--accentSoft);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    font-size: 2rem;
+  /* ---------- Achievements ---------- */
+  .entryList { display: flex; flex-direction: column; }
+  .entry {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--borderColor);
+  }
+  .entry:first-child { padding-top: 0; }
+  .entryDate { font-family: var(--mono); font-size: 0.76rem; color: var(--textFaint); padding-top: 4px; }
+  .entryBody h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .entryBody p { color: var(--textSecondary); font-size: 0.96rem; }
+  .entryLink { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.78rem; color: var(--accent); margin-top: 12px; border-bottom: 1px solid transparent; }
+  .entryLink:hover { border-bottom-color: var(--accent); }
+
+  /* ---------- Project list (spec table) ---------- */
+  .projectList { border-top: 1px solid var(--borderColor); }
+  .projectRow {
+    display: grid;
+    grid-template-columns: 42px 1.3fr 2fr auto;
+    gap: 28px;
+    align-items: start;
+    padding: 26px 8px;
     border-bottom: 1px solid var(--borderColor);
     position: relative;
+    transition: background 0.18s ease, padding 0.18s ease;
+    cursor: default;
   }
+  .projectRow:hover { background: var(--bgCard); }
+  .pIndex { font-family: var(--mono); font-size: 0.78rem; color: var(--accent); padding-top: 4px; }
+  .pTitle { font-size: 1.12rem; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .pCat { font-family: var(--mono); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--textFaint); border: 1px solid var(--borderColor); padding: 2px 7px; border-radius: var(--radiusMain); font-weight: 500; }
+  .pDesc { color: var(--textSecondary); font-size: 0.93rem; }
 
-  .projectIndex {
-    position: absolute;
-    top: 12px;
-    left: 14px;
-    font-family: "IBM Plex Mono", monospace;
+  /* monospace bracketed tags */
+  .tagRow { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 12px; }
+  .tag {
+    font-family: var(--mono);
     font-size: 0.72rem;
-    color: var(--accent);
-    letter-spacing: 0.05em;
+    color: var(--textSecondary);
+    position: relative;
+    padding: 0 2px;
   }
+  .tag::before { content: "["; color: var(--borderStrong); margin-right: 1px; }
+  .tag::after { content: "]"; color: var(--borderStrong); margin-left: 1px; }
+  .tag:hover { color: var(--accent); }
 
-  .projectBody { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .pLinks { display: flex; gap: 14px; align-items: center; padding-top: 4px; white-space: nowrap; }
+  .pLinks a { color: var(--textFaint); font-size: 0.98rem; transition: color 0.18s ease, transform 0.18s ease; display: inline-flex; }
+  .pLinks a:hover { color: var(--accent); transform: translateY(-1px); }
 
-  .projectBody h3 { font-size: 1.15rem; font-weight: 600; }
-
-  .projectBody p { color: var(--textSecondary); font-size: 0.92rem; flex: 1; }
-
-  .tagRow { display: flex; flex-wrap: wrap; gap: 8px; }
-
-  .techTag {
-    font-family: "IBM Plex Mono", monospace;
+  /* hover readout row */
+  .pReadout {
+    grid-column: 2 / -1;
+    display: none;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--borderColor);
+    font-family: var(--mono);
     font-size: 0.72rem;
-    background: var(--tagBg);
-    color: var(--tagText);
-    padding: 4px 9px;
-    border-radius: var(--radiusMain);
+    color: var(--textFaint);
+    gap: 26px;
+    flex-wrap: wrap;
   }
-
-  .projectLinks {
-    display: flex;
-    gap: 18px;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.8rem;
-    padding-top: 6px;
-    border-top: 1px solid var(--borderColor);
-  }
-
-  .projectLinks a { color: var(--textSecondary); display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s ease; }
-  .projectLinks a:hover { color: var(--accent); }
-  .projectLinks a.highlighted { color: var(--accent); border: 1px solid var(--accent); padding: 3px 9px; border-radius: var(--radiusMain); }
+  .projectRow:hover .pReadout { display: flex; }
+  .pReadout b { color: var(--textPrimary); font-weight: 500; }
+  .pReadout .ok { color: #36c08a; }
 
   /* ---------- Skills ---------- */
-  .skillsGrid {
+  .skillsGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 56px; }
+  .skillGroup { padding: 22px 0; border-bottom: 1px solid var(--borderColor); }
+  .skillGroup:nth-last-child(-n+2) { border-bottom: none; }
+  .skillGroupHead { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+  .skillGroupHead i { color: var(--accent); font-size: 0.95rem; width: 18px; text-align: center; }
+  .skillGroupHead h3 { font-size: 0.98rem; font-weight: 600; }
+
+  /* ---------- Writing (books reframed) ---------- */
+  .writingNote { color: var(--textSecondary); font-size: 0.94rem; max-width: 62ch; margin-bottom: 26px; }
+  .writingList { display: flex; flex-direction: column; }
+  .writingItem {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
+    grid-template-columns: 130px 1fr auto;
+    gap: 32px;
+    align-items: baseline;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--borderColor);
   }
-
-  .skillCard {
-    background: var(--bgCard);
-    border: 1px solid var(--borderColor);
-    border-radius: var(--radiusMain);
-    padding: 24px;
-  }
-
-  .skillCardHeader {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-    font-size: 1.02rem;
-    font-weight: 600;
-  }
-
-  .skillCardHeader i { color: var(--accent); font-size: 1.15rem; width: 22px; text-align: center; }
-
-  .skillTagRow { display: flex; flex-wrap: wrap; gap: 9px; }
-
-  /* ---------- Books ---------- */
-  .booksGroup { margin-bottom: 36px; }
-
-  .booksGroupLabel {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.78rem;
-    color: var(--textFaint);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 18px;
-  }
-
-  .bookCardFeatured {
-    display: flex;
-    gap: 24px;
-    background: var(--bgCard);
-    border: 1px solid var(--accent);
-    border-radius: var(--radiusMain);
-    padding: 24px;
-    align-items: flex-start;
-  }
-
-  .bookCover {
-    width: 96px;
-    height: 130px;
-    flex-shrink: 0;
-    background: linear-gradient(160deg, #1c1b21, #3a2f5c);
-    border-radius: var(--radiusMain);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #d8cbff;
-    font-size: 1.6rem;
-  }
-
-  .bookStatus {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 3px 10px;
-    border-radius: var(--radiusMain);
-    display: inline-block;
-  }
-
-  .bookStatus.published { background: var(--accent); color: #fff; }
-  .bookStatus.progress { background: var(--tagBg); color: var(--tagText); border: 1px solid var(--accent); }
-
-  .bookTitleRow { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-
-  .bookCardFeatured h3 { font-size: 1.15rem; margin-bottom: 4px; }
-  .bookSubtitle { color: var(--textFaint); font-size: 0.85rem; font-style: italic; margin-bottom: 10px; }
-  .bookDesc { color: var(--textSecondary); font-size: 0.92rem; margin-bottom: 12px; }
-  .bookLink { font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; color: var(--accent); }
-
-  .booksGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-
-  .bookCardMinimal {
-    background: var(--bgCard);
-    border: 1px solid var(--borderColor);
-    border-radius: var(--radiusMain);
-    padding: 22px;
-  }
-
-  .bookCardMinimal .bookTitleRow { margin-bottom: 12px; }
-  .bookCardMinimal h3 { font-size: 1.05rem; }
-  .bookCardMinimal .bookDesc { margin-bottom: 0; }
+  .writingItem:first-child { padding-top: 0; }
+  .writingStatus { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--textFaint); }
+  .writingStatus.live { color: var(--accent); }
+  .writingBody h3 { font-size: 1.08rem; font-weight: 600; margin-bottom: 4px; }
+  .writingBody p { color: var(--textSecondary); font-size: 0.92rem; }
 
   /* ---------- Contact ---------- */
-  .contactSection { text-align: center; padding: 100px 0 60px; }
-
-  .contactSection h2 { font-size: 2.1rem; margin-bottom: 14px; }
-  .contactSection p { color: var(--textSecondary); margin-bottom: 32px; }
-
-  .socialRow {
-    display: flex;
-    justify-content: center;
-    gap: 26px;
-    margin-top: 30px;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.85rem;
-    color: var(--textSecondary);
-  }
-
-  .socialRow a { display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s ease; }
-  .socialRow a:hover { color: var(--accent); }
+  .contact { text-align: center; padding: 104px 0 80px; }
+  .contact h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3rem); line-height: 1.02; margin-bottom: 14px; }
+  .contact p { color: var(--textSecondary); margin-bottom: 30px; }
+  .socialRow { display: flex; justify-content: center; gap: 24px; margin-top: 28px; font-family: var(--mono); font-size: 0.82rem; color: var(--textSecondary); }
+  .socialRow a { display: inline-flex; align-items: center; gap: 7px; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; padding-bottom: 2px; }
+  .socialRow a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
   footer.siteFooter {
-    text-align: center;
-    padding: 30px 0 40px;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.78rem;
+    border-top: 1px solid var(--borderColor);
+    padding: 26px 0 90px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
     color: var(--textFaint);
   }
+  .footerInner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+
+  /* ---------- Signature build stamp (fixed corner) ---------- */
+  .buildStamp {
+    position: fixed;
+    left: 16px;
+    bottom: 14px;
+    z-index: 90;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+    color: var(--textSecondary);
+    background: color-mix(in srgb, var(--bgPrimary) 82%, transparent);
+    backdrop-filter: blur(6px);
+    border: 1px solid var(--borderColor);
+    border-radius: var(--radiusMain);
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .buildStamp .dot { width: 6px; height: 6px; border-radius: 50%; background: #36c08a; }
+
+  /* ---------- Scroll reveal ---------- */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.in { opacity: 1; transform: none; }
 
   /* ---------- Responsive ---------- */
-  @media (max-width: 860px) {
+  @media (max-width: 820px) {
+    :root { --gutter: 22px; }
     .navLinks { display: none; }
-    .menuToggle { display: inline-flex; align-items: center; justify-content: center; }
-    .skillsGrid, .booksGrid, .projectGrid { grid-template-columns: 1fr; }
-    section { padding: 64px 0; }
-    .wrapper { padding: 0 20px; }
-    .navInner { padding: 16px 20px; }
+    .menuToggle { display: inline-flex; }
+    .skillsGrid { grid-template-columns: 1fr; }
+    .skillGroup:nth-last-child(-n+2) { border-bottom: 1px solid var(--borderColor); }
+    .skillGroup:last-child { border-bottom: none; }
+    .projectRow { grid-template-columns: 32px 1fr; gap: 16px; }
+    .pDesc { grid-column: 2; }
+    .pReadout { grid-column: 2; }
+    .pLinks { grid-column: 2; justify-content: flex-start; padding-top: 4px; }
+    .entry, .writingItem { grid-template-columns: 1fr; gap: 6px; }
+    .sectionMeta { display: none; }
+    .tickerCell { min-width: 130px; }
+    .buildStamp { font-size: 0.6rem; left: 10px; bottom: 10px; }
   }
-
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
-    .revealItem { opacity: 1; transform: none; }
+    .reveal { opacity: 1; transform: none; }
   }
 </style>
 </head>
@@ -569,10 +398,11 @@
 
 <header class="siteNav">
   <div class="navInner">
-    <div class="navBrand">RAJI ADEWUNMI FAROUQ</div>
+    <div class="navBrand">Raji A. Farouq</div>
     <nav class="navLinks">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Stack</a>
+      <a href="#writing">Writing</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="navRight">
@@ -580,584 +410,407 @@
         <button type="button" id="lightBtn" class="active">Light</button>
         <button type="button" id="darkBtn">Dark</button>
       </div>
-      <button type="button" class="menuToggle" id="menuToggle" aria-label="Toggle menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+      <button type="button" class="menuToggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
     </div>
   </div>
   <div class="mobileMenu" id="mobileMenu">
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Stack</a>
+    <a href="#writing">Writing</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
 
-<section class="heroSection">
-  <div class="wrapper">
-    <div class="avatarShell revealItem" style="--staggerIndex:0;">
-      <img src="/profile.jpg"
-           alt="Portrait of Raji Adewunmi Farouq" width="128" height="128" />
-    </div>
-    <h1 class="headingFont revealItem" style="--staggerIndex:1;">Raji Adewunmi Farouq</h1>
-    <p class="bio revealItem" style="--staggerIndex:2;">
-      I build AI agentic systems and automation that actually work in production, from
-      on-device agents running GGUF models on Android through llama.cpp and JNI, to LLM pipelines
-      that classify, retrieve and draft grounded answers, and the scripts, tests and infrastructure
-      that keep them reliable. I pair that engineering with a genuine obsession for beautiful,
-      high-quality UI/UX: I care about motion, typography, spacing and the small details that make
-      software feel polished, and I ship the whole stack end to end. I've founded and launched
-      real products including Nearspace and Legally Unbullied, and I'm comfortable across Rust,
-      C/C++, Python and TypeScript on the React, Node and Firebase stack.
-    </p>
-    <div class="heroActions revealItem" style="--staggerIndex:3;">
-      <a href="#projects" class="btnPrimary">View Projects</a>
-      <a href="#" class="btnSecondary">View Resume</a>
+<section class="hero">
+  <div class="col">
+    <div class="heroInner">
+      <div class="avatarShell reveal">
+        <img src="/profile.jpg" alt="Portrait of Raji Adewunmi Farouq" width="96" height="96" />
+      </div>
+      <p class="eyebrow reveal">Software &amp; AI Engineer / Lagos, NG</p>
+      <h1 class="reveal">I build <em>agentic systems</em><br />that ship and stay up.</h1>
+      <p class="bio reveal">
+        I design and ship AI agents, automation and full-stack products end to end. On-device agents
+        running GGUF models on Android through llama.cpp and JNI, LLM pipelines that classify, retrieve
+        and draft grounded answers, and the scripts, tests and infrastructure that keep them reliable.
+      </p>
+      <p class="bio reveal">
+        I pair that with an obsession for the craft of the surface: motion, type, spacing and the small
+        details that make software feel considered rather than generated. I have founded and launched
+        real products used by real people, and I work across Rust, C/C++, Python and TypeScript.
+      </p>
+
+      <div class="ticker reveal">
+        <div class="tickerCell">
+          <span class="tickerLabel">Status</span>
+          <span class="tickerValue"><span class="liveDot"></span>Building</span>
+        </div>
+        <div class="tickerCell">
+          <span class="tickerLabel">Shipping since</span>
+          <span class="tickerValue" id="uptime">-- days</span>
+        </div>
+        <div class="tickerCell">
+          <span class="tickerLabel">Public repos</span>
+          <span class="tickerValue" id="repoCount">9</span>
+        </div>
+        <div class="tickerCell">
+          <span class="tickerLabel">Source shipped</span>
+          <span class="tickerValue">85k+ LOC</span>
+        </div>
+      </div>
+
+      <div class="heroActions reveal">
+        <a href="#work" class="btn btnPrimary">View work</a>
+        <a href="#contact" class="btn btnGhost">Get in touch</a>
+      </div>
     </div>
   </div>
 </section>
-
-<hr class="hairline" />
 
 <section id="achievements" class="sectionAlt">
-  <div class="wrapper">
-    <div class="sectionLabel revealItem">
-      <h2 class="headingFont">Achievements / Recognition</h2>
+  <div class="col">
+    <div class="sectionHead reveal">
+      <span class="sectionNum" data-countup>01</span>
+      <h2>Shipped</h2>
+      <span class="sectionMeta">Founder / Builder</span>
     </div>
-    <div class="achievementList">
-      <div class="achievementItem revealItem" style="--staggerIndex:0;">
-        <h3 class="headingFont">Legally Unbullied</h3>
-        <p>Founder and builder of an AI-powered legal-information platform for Nigeria. A Groq-backed
-          classify, retrieve, draft agent answers questions over an indexed corpus of the ~550-Act
-          &ldquo;2004 Laws of Nigeria&rdquo; federal compendium, citing only sourced provisions and
-          escalating to the NBA Find a Lawyer directory when a matter needs a professional.
-          <a href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer"
-             style="white-space:nowrap;"><i class="fa-solid fa-arrow-up-right-from-square"></i> legally-unbullied.onrender.com</a>
-        </p>
+    <div class="entryList">
+      <div class="entry reveal">
+        <div class="entryDate">2026 &mdash; live</div>
+        <div class="entryBody">
+          <h3>Legally Unbullied</h3>
+          <p>AI-powered legal-information platform for Nigeria. A Groq-backed classify, retrieve, draft
+            agent answers questions over an indexed corpus of the ~550-Act "2004 Laws of Nigeria"
+            federal compendium, citing only sourced provisions and escalating to the NBA Find a Lawyer
+            directory when a matter needs a professional.</p>
+          <a class="entryLink" href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> legally-unbullied.onrender.com</a>
+        </div>
       </div>
-      <div class="achievementItem revealItem" style="--staggerIndex:1;">
-        <h3 class="headingFont">Nearspace</h3>
-        <p>Founder and builder of Nearspace, a proximity-first professional network for technology
-          creators in Nigeria, showing the designers, developers and founders actually near
-          you, with a live map, local feed, bounties, orbits, footprints and groups. Shipped as an
-          installable offline-first PWA on React, Vite, Firebase (Firestore, Realtime Database,
-          Auth), Leaflet with geohash proximity, and Paystack, deployed to Vercel.
-          <a href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer"
-             style="white-space:nowrap;"><i class="fa-solid fa-arrow-up-right-from-square"></i> nearspace.com.ng</a>
-        </p>
+      <div class="entry reveal">
+        <div class="entryDate">2026 &mdash; live</div>
+        <div class="entryBody">
+          <h3>Nearspace</h3>
+          <p>Proximity-first professional network for technology creators in Nigeria: a live map, local
+            feed, bounties, orbits, footprints and groups. Shipped as an installable offline-first PWA on
+            React, Vite, Firebase (Firestore, Realtime Database, Auth), Leaflet with geohash proximity
+            and Paystack, deployed to Vercel.</p>
+          <a class="entryLink" href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square"></i> nearspace.com.ng</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="projects">
-  <div class="wrapper projectsSectionInner">
-    <div class="sectionLabel revealItem">
-      <h2 class="headingFont">Projects</h2>
+<section id="work">
+  <div class="col">
+    <div class="sectionHead reveal">
+      <span class="sectionNum" data-countup>02</span>
+      <h2>Selected work</h2>
+      <span class="sectionMeta">Hover for build data</span>
     </div>
 
-    <svg class="pipelineSvg" id="pipelineSvg" preserveAspectRatio="none">
-      <path class="pipelinePath" id="pipelineGuide" />
-      <path class="pipelineTrace" id="pipelineTrace" />
-    </svg>
+    <div class="projectList" id="projectList">
 
-    <div class="projectGrid" id="projectGrid">
-
-      <article class="projectCard revealItem" style="--staggerIndex:0;" data-node="true">
-        <div class="projectPreview">
-          <span class="projectIndex">01 / MOBILE AI</span>
-          <i class="fa-solid fa-laptop-code"></i>
-        </div>
-        <div class="projectBody">
-          <h3 class="headingFont">ForgeAI</h3>
-          <p>Local-first AI coding assistant for Android. On-device GGUF inference through llama.cpp
-            bridged over JNI to Capacitor, with token streaming, a checksummed model catalog,
-            workspace file CRUD, and a 42-test agent core.</p>
+      <div class="projectRow reveal">
+        <div class="pIndex">01</div>
+        <div class="pTitle">ForgeAI <span class="pCat">Mobile AI</span></div>
+        <div class="pDesc">Local-first AI coding assistant for Android. On-device GGUF inference through
+          llama.cpp bridged over JNI to Capacitor, with token streaming, a checksummed model catalog,
+          workspace file CRUD and a 42-test agent core.
           <div class="tagRow">
-            <span class="techTag">JavaScript</span>
-            <span class="techTag">Capacitor</span>
-            <span class="techTag">llama.cpp</span>
-            <span class="techTag">JNI</span>
-            <span class="techTag">Vite</span>
+            <span class="tag">JavaScript</span><span class="tag">Capacitor</span><span class="tag">llama.cpp</span><span class="tag">JNI</span><span class="tag">Vite</span>
           </div>
-          <div class="projectLinks">
-            <a href="https://github.com/GraphicMiles/forgeai-android" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://github.com/GraphicMiles/forgeai-android#readme" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-info"></i> Details</a>
+          <div class="pReadout">
+            <span><i class="fa-solid fa-code"></i> <b>~31.1k LOC</b></span>
+            <span><i class="fa-solid fa-circle-check ok"></i> build ok</span>
+            <span>last commit <b>2026-07-31</b></span>
+            <span>repo <b>public</b></span>
           </div>
         </div>
-      </article>
+        <div class="pLinks">
+          <a href="https://github.com/GraphicMiles/forgeai-android" target="_blank" rel="noopener noreferrer" aria-label="ForgeAI on GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/GraphicMiles/forgeai-android#readme" target="_blank" rel="noopener noreferrer" aria-label="ForgeAI details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
 
-      <article class="projectCard revealItem" style="--staggerIndex:1;" data-node="true">
-        <div class="projectPreview">
-          <span class="projectIndex">02 / REALTIME</span>
-          <i class="fa-solid fa-film"></i>
-        </div>
-        <div class="projectBody">
-          <h3 class="headingFont">Chan Watchparty</h3>
-          <p>Synchronized watch-party app with its own Node sync server, Cloudflare Workers proxy
-            for O2TV streams, and a native Android build with a LibVLC fallback for MKV playback.</p>
+      <div class="projectRow reveal">
+        <div class="pIndex">02</div>
+        <div class="pTitle">Chan Watchparty <span class="pCat">Realtime</span></div>
+        <div class="pDesc">Synchronized watch-party app with its own Node sync server, Cloudflare Workers
+          proxy for O2TV streams, and a native Android build with a LibVLC fallback for MKV playback.
           <div class="tagRow">
-            <span class="techTag">Node.js</span>
-            <span class="techTag">JavaScript</span>
-            <span class="techTag">Capacitor</span>
-            <span class="techTag">LibVLC</span>
-            <span class="techTag">Vite</span>
-            <span class="techTag">Docker</span>
+            <span class="tag">Node.js</span><span class="tag">JavaScript</span><span class="tag">Capacitor</span><span class="tag">LibVLC</span><span class="tag">WebRTC/LiveKit</span><span class="tag">Docker</span>
           </div>
-          <div class="projectLinks">
-            <a href="https://github.com/GraphicMiles/chan-watchparty" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://github.com/GraphicMiles/chan-watchparty#readme" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-info"></i> Details</a>
+          <div class="pReadout">
+            <span><i class="fa-solid fa-code"></i> <b>~41.8k LOC</b></span>
+            <span><i class="fa-solid fa-star"></i> <b>1</b></span>
+            <span><i class="fa-solid fa-circle-check ok"></i> build ok</span>
+            <span>last commit <b>2026-08-14</b></span>
           </div>
         </div>
-      </article>
+        <div class="pLinks">
+          <a href="https://github.com/GraphicMiles/chan-watchparty" target="_blank" rel="noopener noreferrer" aria-label="Chan Watchparty on GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/GraphicMiles/chan-watchparty#readme" target="_blank" rel="noopener noreferrer" aria-label="Chan Watchparty details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
 
-      <article class="projectCard revealItem" style="--staggerIndex:2;" data-node="true">
-        <div class="projectPreview">
-          <span class="projectIndex">03 / COMPUTER VISION</span>
-          <i class="fa-solid fa-eye"></i>
-        </div>
-        <div class="projectBody">
-          <h3 class="headingFont">Stare</h3>
-          <p>The internet's first real-time AI staring competition. MediaPipe Face Mesh acts as an
-            impartial in-browser referee, scoring eye-aspect ratio and head pose, with WebRTC
-            matchmaking and Firebase sync.</p>
+      <div class="projectRow reveal">
+        <div class="pIndex">03</div>
+        <div class="pTitle">Stare <span class="pCat">Computer Vision</span></div>
+        <div class="pDesc">The internet's first real-time AI staring competition. MediaPipe Face Mesh
+          acts as an impartial in-browser referee, scoring eye-aspect ratio and head pose, with WebRTC
+          matchmaking and Firebase sync.
           <div class="tagRow">
-            <span class="techTag">Next.js</span>
-            <span class="techTag">TypeScript</span>
-            <span class="techTag">MediaPipe</span>
-            <span class="techTag">WebRTC</span>
-            <span class="techTag">Firebase</span>
-            <span class="techTag">Tailwind</span>
+            <span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">MediaPipe</span><span class="tag">WebRTC</span><span class="tag">Firebase</span><span class="tag">Tailwind</span>
           </div>
-          <div class="projectLinks">
-            <a href="https://github.com/GraphicMiles/stare-ai" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://github.com/GraphicMiles/stare-ai#readme" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-info"></i> Details</a>
+          <div class="pReadout">
+            <span><i class="fa-solid fa-code"></i> <b>~4.9k LOC</b></span>
+            <span><i class="fa-solid fa-circle-check ok"></i> build ok</span>
+            <span>last commit <b>2026-08-09</b></span>
+            <span>repo <b>public</b></span>
           </div>
         </div>
-      </article>
+        <div class="pLinks">
+          <a href="https://github.com/GraphicMiles/stare-ai" target="_blank" rel="noopener noreferrer" aria-label="Stare on GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/GraphicMiles/stare-ai#readme" target="_blank" rel="noopener noreferrer" aria-label="Stare details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
 
-      <article class="projectCard revealItem" style="--staggerIndex:3;" data-node="true">
-        <div class="projectPreview">
-          <span class="projectIndex">04 / RESEARCH</span>
-          <i class="fa-solid fa-microscope"></i>
-        </div>
-        <div class="projectBody">
-          <h3 class="headingFont">Photon Lab</h3>
-          <p>Research test bench for characterizing real-world screen-to-camera optical data
-            channels. Automatic marker calibration, BER/SNR/throughput dashboards, experiment
-            recording, and a Rust core bridged to Android via JNI.</p>
+      <div class="projectRow reveal">
+        <div class="pIndex">04</div>
+        <div class="pTitle">Photon Lab <span class="pCat">Research</span></div>
+        <div class="pDesc">Research test bench for characterizing real-world screen-to-camera optical
+          data channels. Automatic marker calibration, BER/SNR/throughput dashboards, experiment
+          recording, and a Rust core bridged to Android via JNI.
           <div class="tagRow">
-            <span class="techTag">JavaScript</span>
-            <span class="techTag">Computer Vision</span>
-            <span class="techTag">Rust</span>
-            <span class="techTag">JNI</span>
-            <span class="techTag">Android</span>
+            <span class="tag">JavaScript</span><span class="tag">Computer Vision</span><span class="tag">Rust</span><span class="tag">JNI</span><span class="tag">Android</span>
           </div>
-          <div class="projectLinks">
-            <a href="https://github.com/GraphicMiles/photon-lab" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://github.com/GraphicMiles/photon-lab#readme" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-info"></i> Details</a>
+          <div class="pReadout">
+            <span><i class="fa-solid fa-code"></i> <b>~5.2k LOC</b></span>
+            <span><i class="fa-solid fa-circle-check ok"></i> build ok</span>
+            <span>last commit <b>2026-08-06</b></span>
+            <span>repo <b>public</b></span>
           </div>
         </div>
-      </article>
+        <div class="pLinks">
+          <a href="https://github.com/GraphicMiles/photon-lab" target="_blank" rel="noopener noreferrer" aria-label="Photon Lab on GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/GraphicMiles/photon-lab#readme" target="_blank" rel="noopener noreferrer" aria-label="Photon Lab details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
 
-      <article class="projectCard revealItem" style="--staggerIndex:4;" data-node="true">
-        <div class="projectPreview">
-          <span class="projectIndex">05 / FINTECH</span>
-          <i class="fa-solid fa-hand-holding-dollar"></i>
-        </div>
-        <div class="projectBody">
-          <h3 class="headingFont">Patungans</h3>
-          <p>Marketing and waitlist site for Patungans, a group-savings app where friends pool
-            contributions toward a shared target. Token-driven design system, signature pool
-            visualization, and routed login/signup flows.</p>
+      <div class="projectRow reveal">
+        <div class="pIndex">05</div>
+        <div class="pTitle">Patungans <span class="pCat">Fintech</span></div>
+        <div class="pDesc">Marketing and waitlist site for a group-savings app where friends pool
+          contributions toward a shared target. Token-driven design system, signature pool
+          visualization and routed login/signup flows.
           <div class="tagRow">
-            <span class="techTag">React</span>
-            <span class="techTag">Vite</span>
-            <span class="techTag">Tailwind CSS</span>
-            <span class="techTag">TypeScript</span>
+            <span class="tag">React</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span><span class="tag">TypeScript</span>
           </div>
-          <div class="projectLinks">
-            <a href="https://github.com/GraphicMiles/patungans-landing" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://github.com/GraphicMiles/patungans-landing#readme" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-info"></i> Details</a>
+          <div class="pReadout">
+            <span><i class="fa-solid fa-code"></i> <b>~1.7k LOC</b></span>
+            <span><i class="fa-solid fa-circle-check ok"></i> build ok</span>
+            <span>last commit <b>2026-08-05</b></span>
+            <span>repo <b>public</b></span>
           </div>
         </div>
-      </article>
+        <div class="pLinks">
+          <a href="https://github.com/GraphicMiles/patungans-landing" target="_blank" rel="noopener noreferrer" aria-label="Patungans on GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/GraphicMiles/patungans-landing#readme" target="_blank" rel="noopener noreferrer" aria-label="Patungans details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
 
-      <article class="projectCard revealItem" style="--staggerIndex:5;" data-node="true">
-        <div class="projectPreview">
-          <span class="projectIndex">06 / DISTRIBUTED</span>
-          <i class="fa-solid fa-server"></i>
-        </div>
-        <div class="projectBody">
-          <h3 class="headingFont">Uptime</h3>
-          <p>Compute-rental MVP where devices register, jobs are submitted, jobs execute inside
-            Docker on remote devices, and output returns. FastAPI control plane with SQLite and
-            polling Python device agents.</p>
+      <div class="projectRow reveal">
+        <div class="pIndex">06</div>
+        <div class="pTitle">Uptime <span class="pCat">Distributed</span></div>
+        <div class="pDesc">Compute-rental MVP where devices register, jobs are submitted, jobs execute
+          inside Docker on remote devices, and output returns. FastAPI control plane with SQLite and
+          polling Python device agents.
           <div class="tagRow">
-            <span class="techTag">Python</span>
-            <span class="techTag">FastAPI</span>
-            <span class="techTag">SQLite</span>
-            <span class="techTag">Docker</span>
-            <span class="techTag">Cloudflare Tunnel</span>
+            <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">SQLite</span><span class="tag">Docker</span><span class="tag">Cloudflare Tunnel</span>
           </div>
-          <div class="projectLinks">
-            <a href="https://github.com/GraphicMiles/Uptime" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
-            <a href="https://github.com/GraphicMiles/Uptime#readme" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-circle-info"></i> Details</a>
+          <div class="pReadout">
+            <span><i class="fa-solid fa-code"></i> <b>~1.2k LOC</b></span>
+            <span><i class="fa-solid fa-circle-check ok"></i> build ok</span>
+            <span>last commit <b>2026-07-25</b></span>
+            <span>repo <b>public</b></span>
           </div>
         </div>
-      </article>
+        <div class="pLinks">
+          <a href="https://github.com/GraphicMiles/Uptime" target="_blank" rel="noopener noreferrer" aria-label="Uptime on GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://github.com/GraphicMiles/Uptime#readme" target="_blank" rel="noopener noreferrer" aria-label="Uptime details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </div>
 
     </div>
   </div>
 </section>
 
 <section id="skills" class="sectionAlt">
-  <div class="wrapper">
-    <div class="sectionLabel revealItem">
-      <h2 class="headingFont">Technical Skills</h2>
+  <div class="col">
+    <div class="sectionHead reveal">
+      <span class="sectionNum" data-countup>03</span>
+      <h2>Stack</h2>
+      <span class="sectionMeta">Audited from source</span>
     </div>
     <div class="skillsGrid">
-
-      <div class="skillCard revealItem" style="--staggerIndex:0;">
-        <div class="skillCardHeader"><i class="fa-solid fa-code"></i> Programming Languages</div>
-        <div class="skillTagRow">
-          <span class="techTag">JavaScript</span>
-          <span class="techTag">TypeScript</span>
-          <span class="techTag">Python</span>
-          <span class="techTag">Rust</span>
-          <span class="techTag">Java</span>
-          <span class="techTag">C/C++</span>
-          <span class="techTag">SQL</span>
-          <span class="techTag">HTML5</span>
-          <span class="techTag">CSS3</span>
+      <div class="skillGroup reveal">
+        <div class="skillGroupHead"><i class="fa-solid fa-code"></i> <h3>Languages</h3></div>
+        <div class="tagRow">
+          <span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">Python</span><span class="tag">Rust</span><span class="tag">Java</span><span class="tag">C/C++</span><span class="tag">SQL</span><span class="tag">HTML/CSS</span>
         </div>
       </div>
-
-      <div class="skillCard revealItem" style="--staggerIndex:1;">
-        <div class="skillCardHeader"><i class="fa-solid fa-brain"></i> AI, On-Device &amp; Native</div>
-        <div class="skillTagRow">
-          <span class="techTag">GGUF</span>
-          <span class="techTag">llama.cpp</span>
-          <span class="techTag">Token Streaming</span>
-          <span class="techTag">AI Agents</span>
-          <span class="techTag">Prompt / Skill Systems</span>
-          <span class="techTag">MediaPipe Face Mesh</span>
-          <span class="techTag">Computer Vision</span>
-          <span class="techTag">WebRTC</span>
-          <span class="techTag">JNI / NDK</span>
-          <span class="techTag">CMake</span>
+      <div class="skillGroup reveal">
+        <div class="skillGroupHead"><i class="fa-solid fa-brain"></i> <h3>AI, on-device &amp; native</h3></div>
+        <div class="tagRow">
+          <span class="tag">GGUF</span><span class="tag">llama.cpp</span><span class="tag">Token streaming</span><span class="tag">AI agents</span><span class="tag">Prompt/skill systems</span><span class="tag">MediaPipe</span><span class="tag">Computer vision</span><span class="tag">WebRTC</span><span class="tag">JNI/NDK</span><span class="tag">CMake</span>
         </div>
       </div>
-
-      <div class="skillCard revealItem" style="--staggerIndex:2;">
-        <div class="skillCardHeader"><i class="fa-solid fa-database"></i> Backend &amp; Cloud</div>
-        <div class="skillTagRow">
-          <span class="techTag">Node.js</span>
-          <span class="techTag">Express</span>
-          <span class="techTag">FastAPI</span>
-          <span class="techTag">Uvicorn</span>
-          <span class="techTag">SQLite</span>
-          <span class="techTag">SQLAlchemy</span>
-          <span class="techTag">Redis / Upstash</span>
-          <span class="techTag">Firebase</span>
-          <span class="techTag">Firestore</span>
-          <span class="techTag">Cloudflare Workers</span>
-          <span class="techTag">Docker</span>
+      <div class="skillGroup reveal">
+        <div class="skillGroupHead"><i class="fa-solid fa-database"></i> <h3>Backend &amp; cloud</h3></div>
+        <div class="tagRow">
+          <span class="tag">Node.js</span><span class="tag">Express</span><span class="tag">FastAPI</span><span class="tag">Uvicorn</span><span class="tag">SQLite</span><span class="tag">SQLAlchemy</span><span class="tag">Redis/Upstash</span><span class="tag">Firebase</span><span class="tag">Firestore</span><span class="tag">Cloudflare Workers</span><span class="tag">Docker</span>
         </div>
       </div>
-
-      <div class="skillCard revealItem" style="--staggerIndex:3;">
-        <div class="skillCardHeader"><i class="fa-solid fa-mobile-screen"></i> Mobile &amp; Cross-Platform</div>
-        <div class="skillTagRow">
-          <span class="techTag">Android</span>
-          <span class="techTag">Capacitor</span>
-          <span class="techTag">Gradle</span>
-          <span class="techTag">LibVLC</span>
-          <span class="techTag">HLS / Video Streaming</span>
-          <span class="techTag">CodeMirror Editor</span>
-          <span class="techTag">SAF / Workspace APIs</span>
+      <div class="skillGroup reveal">
+        <div class="skillGroupHead"><i class="fa-solid fa-mobile-screen"></i> <h3>Mobile &amp; cross-platform</h3></div>
+        <div class="tagRow">
+          <span class="tag">Android</span><span class="tag">Capacitor</span><span class="tag">Gradle</span><span class="tag">LibVLC</span><span class="tag">HLS/streaming</span><span class="tag">CodeMirror</span><span class="tag">SAF/workspace APIs</span>
         </div>
       </div>
-
-      <div class="skillCard revealItem" style="--staggerIndex:4;">
-        <div class="skillCardHeader"><i class="fa-brands fa-react"></i> Frontend &amp; Tooling</div>
-        <div class="skillTagRow">
-          <span class="techTag">React</span>
-          <span class="techTag">Next.js</span>
-          <span class="techTag">Vite</span>
-          <span class="techTag">React Router</span>
-          <span class="techTag">Tailwind CSS</span>
-          <span class="techTag">Sass / SCSS</span>
-          <span class="techTag">Framer Motion</span>
-          <span class="techTag">Lucide</span>
-          <span class="techTag">Prettier</span>
-          <span class="techTag">ESLint / Oxlint</span>
-          <span class="techTag">Vitest</span>
+      <div class="skillGroup reveal">
+        <div class="skillGroupHead"><i class="fa-brands fa-react"></i> <h3>Frontend &amp; tooling</h3></div>
+        <div class="tagRow">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Vite</span><span class="tag">React Router</span><span class="tag">Tailwind</span><span class="tag">Sass/SCSS</span><span class="tag">Framer Motion</span><span class="tag">Lucide</span><span class="tag">Prettier</span><span class="tag">ESLint/Oxlint</span><span class="tag">Vitest</span>
         </div>
       </div>
-
-      <div class="skillCard revealItem" style="--staggerIndex:5;">
-        <div class="skillCardHeader"><i class="fa-solid fa-diagram-project"></i> Systems &amp; Infrastructure</div>
-        <div class="skillTagRow">
-          <span class="techTag">Distributed Systems</span>
-          <span class="techTag">Realtime Sync</span>
-          <span class="techTag">LiveKit</span>
-          <span class="techTag">JWT Auth</span>
-          <span class="techTag">REST APIs</span>
-          <span class="techTag">Puppeteer</span>
-          <span class="techTag">GitHub Actions CI/CD</span>
-          <span class="techTag">Cloudflare Tunnel</span>
+      <div class="skillGroup reveal">
+        <div class="skillGroupHead"><i class="fa-solid fa-pen-ruler"></i> <h3>Design &amp; systems</h3></div>
+        <div class="tagRow">
+          <span class="tag">UI/UX design</span><span class="tag">Design systems</span><span class="tag">Design engineering</span><span class="tag">Data viz</span><span class="tag">Realtime sync</span><span class="tag">CI/CD</span><span class="tag">Technical writing</span>
         </div>
       </div>
-
-      <div class="skillCard revealItem" style="--staggerIndex:6;">
-        <div class="skillCardHeader"><i class="fa-solid fa-pen-ruler"></i> Design &amp; Research</div>
-        <div class="skillTagRow">
-          <span class="techTag">UI/UX Design</span>
-          <span class="techTag">Design Systems</span>
-          <span class="techTag">Design Engineering</span>
-          <span class="techTag">Research Tooling</span>
-          <span class="techTag">Data Visualization</span>
-          <span class="techTag">Technical Writing</span>
-          <span class="techTag">Documentation</span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<section id="books">
-  <div class="wrapper">
-    <div class="sectionLabel revealItem">
-      <h2 class="headingFont">Books</h2>
+<section id="writing">
+  <div class="col">
+    <div class="sectionHead reveal">
+      <span class="sectionNum" data-countup>04</span>
+      <h2>Writing</h2>
+      <span class="sectionMeta">Long-form</span>
     </div>
-
-    <div class="booksGroup">
-      <p class="booksGroupLabel monoFont">Published</p>
-      <div class="bookCardFeatured revealItem" style="--staggerIndex:0;">
-        <div class="bookCover"><i class="fa-solid fa-book-open"></i></div>
-        <div>
-          <div class="bookTitleRow">
-            <h3 class="headingFont">Quiet Shelf</h3>
-            <span class="bookStatus published">Published</span>
-          </div>
-          <p class="bookSubtitle">Modernization of Library and Information Science</p>
-          <p class="bookDesc">A comprehensive exploration of transforming library systems for the
-            digital age.</p>
-          <a href="#" class="bookLink"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get Copy</a>
+    <p class="writingNote reveal">Long-form work outside the codebase. Used here as evidence of technical
+      communication and the ability to hold and develop an argument across a sustained piece.</p>
+    <div class="writingList">
+      <div class="writingItem reveal">
+        <div class="writingStatus live">Published</div>
+        <div class="writingBody">
+          <h3>Quiet Shelf</h3>
+          <p>Modernization of Library and Information Science &mdash; a full-length work on transforming library systems for the digital age.</p>
         </div>
+        <a class="entryLink" href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> Get copy</a>
       </div>
-    </div>
-
-    <div class="booksGroup">
-      <p class="booksGroupLabel monoFont">In Development</p>
-      <div class="booksGrid">
-        <div class="bookCardMinimal revealItem" style="--staggerIndex:0;">
-          <div class="bookTitleRow">
-            <h3 class="headingFont">Total Reign</h3>
-            <span class="bookStatus progress">In Development</span>
-          </div>
-          <p class="bookDesc">A comprehensive book discussing that the 2000s through present
-            represents football's definitive and most dominant peak, an evolution that defines the
-            sport's greatest era to date.</p>
+      <div class="writingItem reveal">
+        <div class="writingStatus">In progress</div>
+        <div class="writingBody">
+          <h3>Total Reign</h3>
+          <p>An argument that the 2000s to the present represents football's definitive and most dominant era.</p>
         </div>
-        <div class="bookCardMinimal revealItem" style="--staggerIndex:1;">
-          <div class="bookTitleRow">
-            <h3 class="headingFont">You</h3>
-            <span class="bookStatus progress">In Development</span>
-          </div>
-          <p class="bookDesc">A psychological exploration into the architecture of genius, detailing
-            the core attributes that define high-level intelligence. This book provides a framework
-            for identifying innate potential and offers a strategic path for cultivating extreme
-            competence in those seeking to reach the threshold of mastery.</p>
+        <div class="pLinks" style="padding:0;"><span class="tag">drafting</span></div>
+      </div>
+      <div class="writingItem reveal">
+        <div class="writingStatus">In progress</div>
+        <div class="writingBody">
+          <h3>You</h3>
+          <p>A psychological exploration of the architecture of genius and a framework for cultivating extreme competence.</p>
         </div>
+        <div class="pLinks" style="padding:0;"><span class="tag">drafting</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <section id="contact" class="sectionAlt">
-  <div class="wrapper contactSection">
-    <h2 class="headingFont revealItem">Let's Connect</h2>
-    <p class="revealItem" style="--staggerIndex:1;">Open to full-time roles, contract work, and collaborations on AI, realtime, and mobile systems.</p>
-    <a href="mailto:rfarouq69@gmail.com" class="btnPrimary revealItem" style="--staggerIndex:2;">
-      <i class="fa-solid fa-envelope"></i> Email Me
-    </a>
-    <div class="socialRow revealItem" style="--staggerIndex:3;">
-      <a href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+  <div class="col contact">
+    <h2 class="reveal">Let's build something<br />that stays up.</h2>
+    <p class="reveal">Open to full-time roles, contract work and collaborations on AI, realtime and mobile systems.</p>
+    <a href="mailto:rfarouq69@gmail.com" class="btn btnPrimary reveal"><i class="fa-solid fa-envelope"></i> rfarouq69@gmail.com</a>
+    <div class="socialRow reveal">
+      <a href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> github.com/GraphicMiles</a>
+      <a href="https://x.com/DSGNBYMILES" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> x.com/DSGNBYMILES</a>
       <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-      <a href="https://x.com/DSGNBYMILES" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> X</a>
     </div>
   </div>
 </section>
 
 <footer class="siteFooter">
-  <i class="fa-solid fa-code"></i> 2026 Raji Adewunmi Farouq. All rights reserved.
+  <div class="col footerInner">
+    <span><i class="fa-solid fa-code"></i> 2026 Raji Adewunmi Farouq</span>
+    <span id="buildMeta">build ok &middot; hand-built, no templates</span>
+  </div>
 </footer>
 
+<div class="buildStamp" title="Build version">
+  <span class="dot"></span>
+  <span>v2026.08 &middot; Lagos</span>
+</div>
+
 <script>
-  // Theme toggle, in-memory only
-  const bodyElement = document.body;
+  // Theme
+  const body = document.body;
   const lightBtn = document.getElementById("lightBtn");
   const darkBtn = document.getElementById("darkBtn");
-
-  function setTheme(theme) {
-    bodyElement.setAttribute("data-theme", theme);
-    lightBtn.classList.toggle("active", theme === "light");
-    darkBtn.classList.toggle("active", theme === "dark");
+  function setTheme(t) {
+    body.setAttribute("data-theme", t);
+    lightBtn.classList.toggle("active", t === "light");
+    darkBtn.classList.toggle("active", t === "dark");
   }
-
   lightBtn.addEventListener("click", () => setTheme("light"));
   darkBtn.addEventListener("click", () => setTheme("dark"));
 
   // Mobile menu
   const menuToggle = document.getElementById("menuToggle");
   const mobileMenu = document.getElementById("mobileMenu");
-  menuToggle.addEventListener("click", () => {
-    mobileMenu.classList.toggle("open");
-  });
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => mobileMenu.classList.remove("open"));
-  });
+  menuToggle.addEventListener("click", () => mobileMenu.classList.toggle("open"));
+  mobileMenu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => mobileMenu.classList.remove("open")));
 
-  // Scroll reveal with stagger
-  const revealItems = document.querySelectorAll(".revealItem");
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("inView");
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-  );
-  revealItems.forEach((item) => revealObserver.observe(item));
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
-  // Project pipeline tracing animation
-  const pipelineSvg = document.getElementById("pipelineSvg");
-  const pipelineGuide = document.getElementById("pipelineGuide");
-  const pipelineTrace = document.getElementById("pipelineTrace");
-  const projectGrid = document.getElementById("projectGrid");
-  const projectCards = Array.from(projectGrid.querySelectorAll(".projectCard"));
-  let pipelineDot = null;
-  let pipelineDrawn = false;
-
-  function buildPipelinePath() {
-    const containerRect = projectGrid.getBoundingClientRect();
-    pipelineSvg.setAttribute("width", containerRect.width);
-    pipelineSvg.setAttribute("height", containerRect.height);
-    pipelineSvg.setAttribute("viewBox", `0 0 ${containerRect.width} ${containerRect.height}`);
-
-    const points = projectCards.map((card) => {
-      const rect = card.getBoundingClientRect();
-      const previewRect = card.querySelector(".projectPreview").getBoundingClientRect();
-      return {
-        x: rect.left - containerRect.left + rect.width / 2,
-        y: previewRect.top - containerRect.top + previewRect.height / 2,
+  // Section number count-up on scroll
+  const nums = document.querySelectorAll(".sectionNum[data-countup]");
+  const numIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.textContent.trim(), 10);
+      let cur = 0;
+      const step = Math.max(1, Math.round(target / 14));
+      const tick = () => {
+        cur = Math.min(target, cur + step);
+        el.textContent = String(cur).padStart(2, "0");
+        if (cur < target) requestAnimationFrame(tick);
       };
+      tick();
+      numIO.unobserve(el);
     });
+  }, { threshold: 0.6 });
+  nums.forEach(n => numIO.observe(n));
 
-    if (points.length === 0) return;
-
-    let d = `M ${points[0].x} ${points[0].y}`;
-    for (let i = 1; i < points.length; i++) {
-      const prev = points[i - 1];
-      const curr = points[i];
-      const midY = (prev.y + curr.y) / 2;
-      d += ` C ${prev.x} ${midY}, ${curr.x} ${midY}, ${curr.x} ${curr.y}`;
-    }
-
-    pipelineGuide.setAttribute("d", d);
-    pipelineTrace.setAttribute("d", d);
-
-    // reset drawing state
-    const length = pipelineTrace.getTotalLength();
-    pipelineTrace.style.strokeDasharray = length;
-    pipelineTrace.style.strokeDashoffset = pipelineDrawn ? 0 : length;
-    pipelineTrace.style.transition = "none";
-
-    // remove old nodes
-    pipelineSvg.querySelectorAll(".pipelineNode").forEach((node) => node.remove());
-    points.forEach((point, index) => {
-      const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      circle.setAttribute("cx", point.x);
-      circle.setAttribute("cy", point.y);
-      circle.setAttribute("r", 5);
-      circle.classList.add("pipelineNode");
-      circle.dataset.nodeIndex = index;
-      if (pipelineDrawn) circle.classList.add("lit");
-      pipelineSvg.appendChild(circle);
-    });
-
-    if (!pipelineDot) {
-      pipelineDot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-      pipelineDot.setAttribute("r", 4.5);
-      pipelineDot.setAttribute("fill", "var(--accent)");
-      pipelineSvg.appendChild(pipelineDot);
-    } else {
-      pipelineSvg.appendChild(pipelineDot);
-    }
+  // Live "shipping since" days since first repo (forgeai-android created 2026-07-16)
+  const start = new Date("2026-07-16T00:00:00Z");
+  const uptimeEl = document.getElementById("uptime");
+  function tickUptime() {
+    const days = Math.floor((Date.now() - start.getTime()) / 86400000);
+    if (uptimeEl) uptimeEl.textContent = days + " days";
   }
-
-  function animateDotAlongPath() {
-    const length = pipelineTrace.getTotalLength();
-    const duration = 5200;
-    let startTime = null;
-
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      const elapsed = (timestamp - startTime) % duration;
-      const progress = elapsed / duration;
-      const point = pipelineTrace.getPointAtLength(progress * length);
-      pipelineDot.setAttribute("cx", point.x);
-      pipelineDot.setAttribute("cy", point.y);
-      requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
-  function drawPipeline() {
-    if (pipelineDrawn) return;
-    pipelineDrawn = true;
-    const length = pipelineTrace.getTotalLength();
-    pipelineTrace.style.strokeDasharray = length;
-    pipelineTrace.style.strokeDashoffset = length;
-    pipelineTrace.getBoundingClientRect(); // force reflow
-    pipelineTrace.style.transition = "stroke-dashoffset 2.1s cubic-bezier(0.65, 0, 0.35, 1)";
-    pipelineTrace.style.strokeDashoffset = 0;
-
-    const nodes = Array.from(pipelineSvg.querySelectorAll(".pipelineNode"));
-    nodes.forEach((node, index) => {
-      const delay = (index / Math.max(nodes.length - 1, 1)) * 1900;
-      setTimeout(() => node.classList.add("lit"), delay);
-    });
-
-    setTimeout(animateDotAlongPath, 2100);
-  }
-
-  buildPipelinePath();
-
-  const pipelineObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          buildPipelinePath();
-          drawPipeline();
-          pipelineObserver.disconnect();
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-  pipelineObserver.observe(projectGrid);
-
-  let resizeTimer = null;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(buildPipelinePath, 200);
-  });
+  tickUptime();
+  setInterval(tickUptime, 60000);
 </script>
 
 </body>
