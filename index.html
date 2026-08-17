@@ -387,6 +387,55 @@
   }
   .footerInner { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; text-align: center; }
 
+  /* ---------- Scroll trace (segmented build log) ---------- */
+  .trace {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: max(var(--gutter), calc((100vw - var(--maxWidth)) / 2 + var(--gutter)));
+    width: 28px;
+    z-index: 50;
+    pointer-events: none;
+    display: none;
+  }
+  @media (min-width: 821px) {
+    .trace { display: block; }
+  }
+  .traceTrack {
+    position: absolute;
+    top: 108px;
+    bottom: 84px;
+    left: 0;
+    width: 100%;
+    border-left: 1px solid var(--borderColor);
+  }
+  .traceFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: top center;
+    will-change: transform;
+  }
+  .traceTick {
+    position: absolute;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+    background: var(--bgPrimary);
+    border: 1px solid var(--borderColor);
+    box-sizing: border-box;
+    transform: translateY(-50%);
+    transition: background 0.18s linear, border-color 0.18s linear;
+  }
+  .traceTick.is-passed {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
   /* ---------- Scroll reveal ---------- */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
   .reveal.in { opacity: 1; transform: none; }
@@ -410,7 +459,7 @@
     .socialRow a { width: 38px; height: 38px; font-size: 1rem; }
     .sectionHead { gap: 12px; }
     .sectionHead h2 { font-size: 2.2rem; }
-    .sectionNum { font-size: 0.86rem; min-width: 36px; }
+    .sectionNum { width: 36px; height: 36px; font-size: 0.82rem; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -419,6 +468,13 @@
 </style>
 </head>
 <body data-theme="light">
+
+<div class="trace" id="trace" aria-hidden="true">
+  <div class="traceTrack">
+    <div class="traceFill" id="traceFill"></div>
+    <div class="traceTicks" id="traceTicks"></div>
+  </div>
+</div>
 
 <header class="siteNav">
   <div class="navInner">
@@ -956,6 +1012,69 @@
     }
 
     loop();
+  })();
+
+  // ---------- Scroll trace ----------
+  (function scrollTrace() {
+    const trace = document.getElementById("trace");
+    const fill = document.getElementById("traceFill");
+    const ticksHost = document.getElementById("traceTicks");
+    if (!trace || !fill || !ticksHost) return;
+
+    if (window.matchMedia && window.matchMedia("(max-width: 820px)").matches) return;
+
+    const heads = Array.from(document.querySelectorAll(".sectionHead"));
+    if (!heads.length) return;
+
+    heads.forEach((h, i) => {
+      const t = document.createElement("span");
+      t.className = "traceTick";
+      t.dataset.index = String(i);
+      ticksHost.appendChild(t);
+    });
+    const ticks = Array.from(ticksHost.children);
+
+    let ticking = false;
+
+    function update() {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const track = trace.querySelector(".traceTrack");
+      const trackRect = track.getBoundingClientRect();
+      const trackTop = trackRect.top;
+      const trackH = trackRect.height;
+      const edgeY = vh * 0.38;
+
+      const edgeTravel = edgeY - trackTop;
+      let p = trackH > 0 ? edgeTravel / trackH : 0;
+      p = Math.max(0, Math.min(1, p));
+      fill.style.transform = "scaleY(" + p.toFixed(4) + ")";
+
+      heads.forEach((head, i) => {
+        const num = head.querySelector(".sectionNum");
+        const ref = num || head;
+        const r = ref.getBoundingClientRect();
+        const center = r.top + r.height / 2;
+        const topPct = ((center - trackTop) / trackH) * 100;
+        ticks[i].style.top = topPct.toFixed(2) + "%";
+
+        const passed = center <= edgeY;
+        ticks[i].classList.toggle("is-passed", passed);
+        head.classList.toggle("is-active", passed);
+      });
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
   })();
 </script>
 
