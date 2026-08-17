@@ -188,7 +188,19 @@
     letter-spacing: -0.035em;
     margin-bottom: 22px;
   }
-  .hero h1 .accent { color: var(--accent); }
+  .hero h1 .tw-accent { color: var(--accent); }
+  .hero h1 .tw-line2 { color: var(--textPrimary); }
+  .hero h1 { min-height: 2.1em; }
+  .cursor {
+    display: inline-block;
+    width: 0.08em;
+    height: 0.92em;
+    background: currentColor;
+    vertical-align: -0.06em;
+    margin-left: 0.06em;
+    animation: twBlink 1.05s steps(1) infinite;
+  }
+  @keyframes twBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
   .hero p.bio {
     color: var(--textSecondary);
     font-size: 1.05rem;
@@ -340,8 +352,8 @@
   .contact { text-align: center; padding: 104px 0 80px; }
   .contact h2 { font-family: var(--display); font-weight: 600; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 14px; }
   .contact p { color: var(--textSecondary); margin-bottom: 30px; }
-  .socialRow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px 22px; margin-top: 28px; font-family: var(--mono); font-size: 0.82rem; color: var(--textSecondary); }
-  .socialRow a { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--borderColor); border-radius: var(--radiusMain); padding: 9px 14px; background: var(--bgCard); transition: color 0.2s, border-color 0.2s, transform 0.18s ease; white-space: nowrap; }
+  .socialRow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 28px; font-family: var(--mono); font-size: 0.82rem; color: var(--textSecondary); }
+  .socialRow a { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid var(--borderColor); border-radius: var(--radiusMain); background: var(--bgCard); font-size: 1.05rem; transition: color 0.2s, border-color 0.2s, transform 0.18s ease; }
   .socialRow a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 
   footer.siteFooter {
@@ -372,9 +384,8 @@
     .entry, .writingItem { grid-template-columns: 1fr; gap: 6px; }
     .sectionMeta { display: none; }
     .tickerCell { min-width: 130px; }
-    .socialRow { font-size: 0.78rem; gap: 8px; }
-    .socialRow a { padding: 8px 11px; }
-    .btn { width: 100%; justify-content: center; }
+    .socialRow { gap: 10px; }
+    .socialRow a { width: 38px; height: 38px; font-size: 1rem; }
     .sectionHead { gap: 12px; }
     .sectionHead h2 { font-size: 2.2rem; }
     .sectionNum { font-size: 0.86rem; min-width: 36px; }
@@ -419,16 +430,24 @@
         <img src="/profile.jpg" alt="Portrait of Raji Adewunmi Farouq" width="96" height="96" />
       </div>
       <p class="eyebrow reveal">Software &amp; AI Engineer / Lagos, NG</p>
-      <h1 class="reveal">I build <span class="accent">agentic systems</span><br />that ship and stay up.</h1>
+      <h1 class="reveal" aria-label="I build agentic systems that ship and stay up.">
+        I build
+        <span class="tw-accent" id="twA" aria-hidden="true"></span><br />
+        <span class="tw-line2" id="twB" aria-hidden="true"></span>
+        <span class="cursor" id="cur" aria-hidden="true" style="display:none;"></span>
+      </h1>
       <p class="bio reveal">
-        I design and ship AI agents, automation and full-stack products end to end. On-device agents
-        running GGUF models on Android through llama.cpp and JNI, LLM pipelines that classify, retrieve
-        and draft grounded answers, and the scripts, tests and infrastructure that keep them reliable.
+        I build software that does real work and ships to real people. I make AI assistants that run
+        entirely on a phone (no cloud required), systems that answer questions by reading actual
+        documents instead of guessing, and the apps, servers and automations behind them. In plain
+        terms: I teach machines to do useful tasks, then make the whole thing fast, reliable and
+        pleasant to use.
       </p>
       <p class="bio reveal">
-        I pair that with an obsession for the craft of the surface: motion, type, spacing and the small
-        details that make software feel considered rather than generated. I have founded and launched
-        real products used by real people, and I work across Rust, C/C++, Python and TypeScript.
+        I care just as much about how it looks and feels as how it runs. The spacing, the typography,
+        the animations, the small details that make an app feel made by a person and not stamped out
+        by a template. I have founded and launched products people actually use, and I work across
+        Rust, C/C++, Python and TypeScript, from low-level native code up to the interface.
       </p>
 
       <div class="ticker reveal">
@@ -729,9 +748,9 @@
     <p class="reveal">Open to full-time roles, contract work and collaborations on AI, realtime and mobile systems.</p>
     <a href="mailto:rfarouq69@gmail.com" class="btn btnPrimary reveal"><i class="fa-solid fa-envelope"></i> rfarouq69@gmail.com</a>
     <div class="socialRow reveal">
-      <a href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> github.com/GraphicMiles</a>
-      <a href="https://x.com/DSGNBYMILES" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i> x.com/DSGNBYMILES</a>
-      <a href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+      <a href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://x.com/DSGNBYMILES" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
     </div>
   </div>
 </section>
@@ -796,6 +815,69 @@
   }
   tickUptime();
   setInterval(tickUptime, 60000);
+
+  // Hero typewriter: types then deletes "agentic systems" (accent) and
+  // "that ship and stay up." (line 2), letter by letter, looping.
+  (function typewriter() {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const a = document.getElementById("twA");
+    const b = document.getElementById("twB");
+    const cur = document.getElementById("cur");
+    if (!a || !b || !cur) return;
+
+    const PHRASE_A = "agentic systems";
+    const PHRASE_B = "that ship and stay up.";
+    const TYPE = 85, DELETE = 40, HOLD_FULL = 1900, HOLD_EMPTY = 500;
+
+    function placeCursor() {
+      if (b.textContent.length > 0) {
+        b.appendChild(cur);
+      } else {
+        a.appendChild(cur);
+      }
+      cur.style.display = "inline-block";
+    }
+
+    if (reduce) {
+      a.textContent = PHRASE_A;
+      b.textContent = PHRASE_B;
+      cur.style.display = "none";
+      return;
+    }
+
+    let i = 0;
+    let phase = "typeA";
+
+    function step() {
+      if (phase === "typeA") {
+        a.textContent = PHRASE_A.slice(0, ++i);
+        a.appendChild(cur);
+        cur.style.display = "inline-block";
+        if (i === PHRASE_A.length) { i = 0; phase = "typeB"; setTimeout(step, 320); return; }
+        setTimeout(step, TYPE);
+      } else if (phase === "typeB") {
+        b.textContent = PHRASE_B.slice(0, ++i);
+        b.appendChild(cur);
+        if (i === PHRASE_B.length) { phase = "hold"; setTimeout(step, HOLD_FULL); return; }
+        setTimeout(step, TYPE);
+      } else if (phase === "hold") {
+        phase = "delB"; i = PHRASE_B.length; step();
+      } else if (phase === "delB") {
+        b.textContent = PHRASE_B.slice(0, --i);
+        b.appendChild(cur);
+        if (i === 0) { phase = "delA"; i = PHRASE_A.length; setTimeout(step, 200); return; }
+        setTimeout(step, DELETE);
+      } else if (phase === "delA") {
+        a.textContent = PHRASE_A.slice(0, --i);
+        a.appendChild(cur);
+        if (i === 0) { cur.style.display = "none"; phase = "gap"; setTimeout(step, HOLD_EMPTY); return; }
+        setTimeout(step, DELETE);
+      } else if (phase === "gap") {
+        i = 0; phase = "typeA"; step();
+      }
+    }
+    step();
+  })();
 </script>
 
 </body>
