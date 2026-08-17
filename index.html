@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Raji Adewunmi Farouq — Software &amp; AI Engineer</title>
+<title>Raji Adewunmi Farouq - Software &amp; AI Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -22,7 +22,6 @@
     --accentSoft: #efeafd;
     --tagBg: #f1edfb;
     --tagText: #6f4fd1;
-    --shadowColor: rgba(20, 18, 12, 0.06);
     --radiusMain: 2px;
     --maxWidth: 1080px;
   }
@@ -40,7 +39,6 @@
     --accentSoft: #24202f;
     --tagBg: #241f30;
     --tagText: #b6a2ff;
-    --shadowColor: rgba(0, 0, 0, 0.35);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -226,17 +224,23 @@
   }
 
   .avatarShell {
-    width: 108px;
-    height: 108px;
+    width: 128px;
+    height: 128px;
     margin: 0 auto 28px;
     border-radius: 50%;
     background: var(--accentSoft);
     border: 1px solid var(--borderColor);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent);
-    font-size: 2.2rem;
+    padding: 4px;
+    overflow: hidden;
+  }
+
+  .avatarShell img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
 
   .eyebrow {
@@ -293,59 +297,6 @@
     background: var(--textPrimary);
     color: var(--bgPrimary);
   }
-
-  /* ---------- Research ---------- */
-  .researchList { display: flex; flex-direction: column; }
-
-  .researchItem {
-    padding: 26px 0;
-    border-bottom: 1px solid var(--borderColor);
-    display: flex;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-
-  .researchItem:first-child { padding-top: 0; }
-
-  .researchBody { flex: 1; min-width: 260px; }
-
-  .tagPill {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 2px 8px;
-    border-radius: var(--radiusMain);
-    margin-right: 10px;
-  }
-
-  .researchTitle {
-    font-size: 1.12rem;
-    font-weight: 600;
-    display: inline;
-  }
-
-  .researchDesc {
-    color: var(--textSecondary);
-    margin-top: 10px;
-    font-size: 0.95rem;
-    max-width: 620px;
-  }
-
-  .researchLinks {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
-    white-space: nowrap;
-  }
-
-  .researchLinks a:hover { text-decoration: underline; }
 
   /* ---------- Achievements ---------- */
   .achievementList { display: flex; flex-direction: column; }
@@ -415,15 +366,13 @@
     border: 1px solid var(--borderColor);
     border-radius: var(--radiusMain);
     overflow: hidden;
-    box-shadow: 0 2px 10px var(--shadowColor);
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
 
   .projectCard:hover {
     transform: translateY(-4px);
-    box-shadow: 0 14px 28px var(--shadowColor);
     border-color: var(--accent);
   }
 
@@ -609,7 +558,6 @@
     section { padding: 64px 0; }
     .wrapper { padding: 0 20px; }
     .navInner { padding: 16px 20px; }
-    .researchItem { flex-direction: column; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -624,11 +572,8 @@
   <div class="navInner">
     <div class="navBrand">RAJI ADEWUNMI FAROUQ</div>
     <nav class="navLinks">
-      <a href="#research">Research</a>
-      <a href="#achievements">Achievements</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
-      <a href="#books">Books</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="navRight">
@@ -642,11 +587,8 @@
     </div>
   </div>
   <div class="mobileMenu" id="mobileMenu">
-    <a href="#research">Research</a>
-    <a href="#achievements">Achievements</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
-    <a href="#books">Books</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
@@ -654,12 +596,13 @@
 <section class="heroSection">
   <div class="wrapper">
     <div class="avatarShell revealItem" style="--staggerIndex:0;">
-      <i class="fa-solid fa-user"></i>
+      <img src="/profile.jpg"
+           alt="Portrait of Raji Adewunmi Farouq" width="128" height="128" />
     </div>
     <p class="eyebrow monoFont revealItem" style="--staggerIndex:1;">AI Agents · Automation · Design-Engineering</p>
     <h1 class="headingFont revealItem" style="--staggerIndex:2;">Raji Adewunmi Farouq</h1>
     <p class="bio revealItem" style="--staggerIndex:3;">
-      I build AI agentic systems and automation that actually work in production &mdash; from
+      I build AI agentic systems and automation that actually work in production, from
       on-device agents running GGUF models on Android through llama.cpp and JNI, to LLM pipelines
       that classify, retrieve and draft grounded answers, and the scripts, tests and infrastructure
       that keep them reliable. I pair that engineering with a genuine obsession for beautiful,
@@ -677,57 +620,6 @@
 
 <hr class="hairline" />
 
-<section id="research">
-  <div class="wrapper">
-    <div class="sectionLabel revealItem">
-      <h2 class="headingFont">Research</h2>
-    </div>
-    <div class="researchList">
-      <div class="researchItem revealItem" style="--staggerIndex:0;">
-        <div class="researchBody">
-          <span class="tagPill">Page</span>
-          <span class="researchTitle headingFont">Programming AI-Guided Language</span>
-          <p class="researchDesc">
-            A proposed reasoning architecture designed to map human cognition to machine-executable
-            logic. This project provides a deterministic, human-readable interaction layer for the
-            next generation of neuro-symbolic AI systems.
-          </p>
-        </div>
-        <div class="researchLinks">
-          <a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Page</a>
-        </div>
-      </div>
-
-      <div class="researchItem revealItem" style="--staggerIndex:1;">
-        <div class="researchBody">
-          <span class="researchTitle headingFont">Toward a Memory That Does Not Burn</span>
-          <p class="researchDesc">
-            AI-Driven Federated Framework for Knowledge Recovery and Preservation, with over 100
-            downloads globally.
-          </p>
-        </div>
-        <div class="researchLinks">
-          <a href="#">DOI</a>
-          <a href="#">Zenodo</a>
-        </div>
-      </div>
-
-      <div class="researchItem revealItem" style="--staggerIndex:2;">
-        <div class="researchBody">
-          <span class="researchTitle headingFont">Urban Snake Displacement Risk Index (USDRI)</span>
-          <p class="researchDesc">
-            A quantitative framework for measuring displacement pressure in urbanizing regions.
-          </p>
-        </div>
-        <div class="researchLinks">
-          <a href="#">DOI</a>
-          <a href="#">Zenodo</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="achievements" class="sectionAlt">
   <div class="wrapper">
     <div class="sectionLabel revealItem">
@@ -737,7 +629,7 @@
       <div class="achievementItem revealItem" style="--staggerIndex:0;">
         <h3 class="headingFont">Legally Unbullied</h3>
         <p>Founder and builder of an AI-powered legal-information platform for Nigeria. A Groq-backed
-          classify→retrieve→draft agent answers questions over an indexed corpus of the ~550-Act
+          classify, retrieve, draft agent answers questions over an indexed corpus of the ~550-Act
           &ldquo;2004 Laws of Nigeria&rdquo; federal compendium, citing only sourced provisions and
           escalating to the NBA Find a Lawyer directory when a matter needs a professional.
           <a href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer"
@@ -747,7 +639,7 @@
       <div class="achievementItem revealItem" style="--staggerIndex:1;">
         <h3 class="headingFont">Nearspace</h3>
         <p>Founder and builder of Nearspace, a proximity-first professional network for technology
-          creators in Nigeria &mdash; showing the designers, developers and founders actually near
+          creators in Nigeria, showing the designers, developers and founders actually near
           you, with a live map, local feed, bounties, orbits, footprints and groups. Shipped as an
           installable offline-first PWA on React, Vite, Firebase (Firestore, Realtime Database,
           Auth), Leaflet with geohash proximity, and Paystack, deployed to Vercel.
