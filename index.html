@@ -7,7 +7,7 @@
 <title>Raji Adewunmi Farouq - Software &amp; AI Engineer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 <style>
   :root {
@@ -27,9 +27,11 @@
     --radiusMain: 2px;
     --maxWidth: 980px;
     --gutter: 40px;
-    --display: "Instrument Serif", Georgia, serif;
+    --display: "Space Grotesk", system-ui, sans-serif;
     --sans: "Inter", system-ui, sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --tagInkBg: #17161d;
+    --tagInkFg: #eeece4;
   }
 
   [data-theme="dark"] {
@@ -46,6 +48,8 @@
     --accentSoft: #24202f;
     --tagBg: #241f30;
     --tagText: #b6a2ff;
+    --tagInkBg: #f1efe8;
+    --tagInkFg: #121115;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -138,10 +142,10 @@
   }
   .sectionHead h2 {
     font-family: var(--display);
-    font-weight: 400;
-    font-size: 2.35rem;
+    font-weight: 600;
+    font-size: 2.2rem;
     line-height: 1;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.025em;
   }
   .sectionMeta {
     margin-left: auto;
@@ -177,13 +181,13 @@
   }
   .hero h1 {
     font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(2.8rem, 7vw, 4.2rem);
-    line-height: 0.98;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    font-size: clamp(2.6rem, 7vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
     margin-bottom: 22px;
   }
-  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero h1 .accent { color: var(--accent); }
   .hero p.bio {
     color: var(--textSecondary);
     font-size: 1.05rem;
@@ -270,18 +274,20 @@
   .pCat { font-family: var(--mono); font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--textFaint); border: 1px solid var(--borderColor); padding: 2px 7px; border-radius: var(--radiusMain); font-weight: 500; }
   .pDesc { color: var(--textSecondary); font-size: 0.93rem; }
 
-  /* monospace bracketed tags */
-  .tagRow { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 12px; }
+  /* mono tag chips: black background, cream site text */
+  .tagRow { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
   .tag {
     font-family: var(--mono);
     font-size: 0.72rem;
-    color: var(--textSecondary);
-    position: relative;
-    padding: 0 2px;
+    line-height: 1;
+    color: var(--tagInkFg);
+    background: var(--tagInkBg);
+    padding: 5px 8px;
+    border-radius: var(--radiusMain);
+    white-space: nowrap;
+    transition: opacity 0.18s ease;
   }
-  .tag::before { content: "["; color: var(--borderStrong); margin-right: 1px; }
-  .tag::after { content: "]"; color: var(--borderStrong); margin-left: 1px; }
-  .tag:hover { color: var(--accent); }
+  .tag:hover { opacity: 0.82; }
 
   .pLinks { display: flex; gap: 14px; align-items: center; padding-top: 4px; white-space: nowrap; }
   .pLinks a { color: var(--textFaint); font-size: 0.98rem; transition: color 0.18s ease, transform 0.18s ease; display: inline-flex; }
@@ -331,11 +337,11 @@
 
   /* ---------- Contact ---------- */
   .contact { text-align: center; padding: 104px 0 80px; }
-  .contact h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2.2rem, 5vw, 3rem); line-height: 1.02; margin-bottom: 14px; }
+  .contact h2 { font-family: var(--display); font-weight: 600; font-size: clamp(2.1rem, 5vw, 3rem); line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 14px; }
   .contact p { color: var(--textSecondary); margin-bottom: 30px; }
-  .socialRow { display: flex; justify-content: center; gap: 24px; margin-top: 28px; font-family: var(--mono); font-size: 0.82rem; color: var(--textSecondary); }
-  .socialRow a { display: inline-flex; align-items: center; gap: 7px; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; padding-bottom: 2px; }
-  .socialRow a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .socialRow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px 22px; margin-top: 28px; font-family: var(--mono); font-size: 0.82rem; color: var(--textSecondary); }
+  .socialRow a { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--borderColor); border-radius: var(--radiusMain); padding: 9px 14px; background: var(--bgCard); transition: color 0.2s, border-color 0.2s, transform 0.18s ease; white-space: nowrap; }
+  .socialRow a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
 
   footer.siteFooter {
     border-top: 1px solid var(--borderColor);
@@ -386,7 +392,14 @@
     .entry, .writingItem { grid-template-columns: 1fr; gap: 6px; }
     .sectionMeta { display: none; }
     .tickerCell { min-width: 130px; }
+    .socialRow { font-size: 0.78rem; gap: 8px; }
+    .socialRow a { padding: 8px 11px; width: calc(50% - 4px); justify-content: center; }
+    .socialRow a:last-child:nth-child(odd) { width: 100%; }
+    .btn { width: 100%; justify-content: center; }
     .buildStamp { font-size: 0.6rem; left: 10px; bottom: 10px; }
+  }
+  @media (max-width: 420px) {
+    .socialRow a { width: 100%; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -428,7 +441,7 @@
         <img src="/profile.jpg" alt="Portrait of Raji Adewunmi Farouq" width="96" height="96" />
       </div>
       <p class="eyebrow reveal">Software &amp; AI Engineer / Lagos, NG</p>
-      <h1 class="reveal">I build <em>agentic systems</em><br />that ship and stay up.</h1>
+      <h1 class="reveal">I build <span class="accent">agentic systems</span><br />that ship and stay up.</h1>
       <p class="bio reveal">
         I design and ship AI agents, automation and full-stack products end to end. On-device agents
         running GGUF models on Android through llama.cpp and JNI, LLM pipelines that classify, retrieve
