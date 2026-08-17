@@ -599,9 +599,8 @@
       <img src="/profile.jpg"
            alt="Portrait of Raji Adewunmi Farouq" width="128" height="128" />
     </div>
-    <p class="eyebrow monoFont revealItem" style="--staggerIndex:1;">AI Agents · Automation · Design-Engineering</p>
-    <h1 class="headingFont revealItem" style="--staggerIndex:2;">Raji Adewunmi Farouq</h1>
-    <p class="bio revealItem" style="--staggerIndex:3;">
+    <h1 class="headingFont revealItem" style="--staggerIndex:1;">Raji Adewunmi Farouq</h1>
+    <p class="bio revealItem" style="--staggerIndex:2;">
       I build AI agentic systems and automation that actually work in production, from
       on-device agents running GGUF models on Android through llama.cpp and JNI, to LLM pipelines
       that classify, retrieve and draft grounded answers, and the scripts, tests and infrastructure
@@ -611,7 +610,7 @@
       real products including Nearspace and Legally Unbullied, and I'm comfortable across Rust,
       C/C++, Python and TypeScript on the React, Node and Firebase stack.
     </p>
-    <div class="heroActions revealItem" style="--staggerIndex:4;">
+    <div class="heroActions revealItem" style="--staggerIndex:3;">
       <a href="#projects" class="btnPrimary">View Projects</a>
       <a href="#" class="btnSecondary">View Resume</a>
     </div>
@@ -1159,6 +1158,13 @@
   let resizeTimer = null;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildPipelinePath, 200);
+  });
+</script>
+
+</body>
+</html>
+Timeout(resizeTimer);
     resizeTimer = setTimeout(buildPipelinePath, 200);
   });
 </script>
