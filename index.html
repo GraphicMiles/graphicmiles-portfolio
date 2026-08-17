@@ -256,6 +256,7 @@
   .tickerCell:last-child { border-right: none; }
   .tickerLabel { color: var(--textFaint); text-transform: uppercase; letter-spacing: 0.07em; font-size: 0.66rem; }
   .tickerValue { color: var(--textPrimary); font-weight: 500; }
+  .tickerValue.isLoading { color: var(--textFaint); }
   .tickerValue .liveDot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #36c08a; margin-right: 7px; vertical-align: middle; animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
 
@@ -543,6 +544,10 @@
         <div class="tickerCell">
           <span class="tickerLabel">Public repos</span>
           <span class="tickerValue" id="repoCount">9</span>
+        </div>
+        <div class="tickerCell">
+          <span class="tickerLabel">Unique visitors</span>
+          <span class="tickerValue isLoading" id="visitorCount" aria-live="polite">Loading...</span>
         </div>
         <div class="tickerCell">
           <span class="tickerLabel">Source shipped</span>
@@ -896,6 +901,39 @@
   }
   tickUptime();
   setInterval(tickUptime, 60000);
+
+  // Persistent unique visitor count. Every page load asks the server to record
+  // the visit; the API atomically ignores IPs that are already in its Redis set.
+  (async function updateVisitorCount() {
+    const visitorEl = document.getElementById("visitorCount");
+    if (!visitorEl) return;
+
+    try {
+      const response = await fetch("/api/visitors", {
+        method: "POST",
+        credentials: "same-origin",
+        keepalive: true,
+        headers: { "Accept": "application/json" }
+      });
+      if (!response.ok) throw new Error("Visitor API unavailable");
+
+      const data = await response.json();
+      if (!Number.isSafeInteger(data.count) || data.count < 0) {
+        throw new Error("Invalid visitor count");
+      }
+
+      visitorEl.textContent = data.count.toLocaleString();
+      visitorEl.classList.remove("isLoading");
+      visitorEl.title = data.counted
+        ? "Thanks for visiting — you are included once."
+        : "Returning visits from the same IP are not counted twice.";
+    } catch (error) {
+      visitorEl.textContent = "Unavailable";
+      visitorEl.classList.add("isLoading");
+      visitorEl.title = "The visitor counter could not be reached.";
+      console.warn("Could not load unique visitor count", error);
+    }
+  })();
 
   // Hero typewriter - streamed AI-response feel:
   // variable cadence, word-boundary pauses, blurred "next word"
