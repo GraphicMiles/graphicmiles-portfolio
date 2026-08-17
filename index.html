@@ -191,16 +191,38 @@
   .hero h1 .tw-accent { color: var(--accent); }
   .hero h1 .tw-line2 { color: var(--textPrimary); }
   .hero h1 { min-height: 2.1em; }
+  .hero h1 .tw-upcoming {
+    color: var(--textFaint);
+    filter: blur(3.5px);
+    opacity: 0.55;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: filter 0.25s ease, opacity 0.25s ease;
+  }
+  .hero h1 .tw-rest { color: var(--textFaint); opacity: 0.35; }
+  /* soft streaming beam caret */
   .cursor {
     display: inline-block;
-    width: 0.08em;
-    height: 0.92em;
-    background: currentColor;
-    vertical-align: -0.06em;
-    margin-left: 0.06em;
-    animation: twBlink 1.05s steps(1) infinite;
+    width: 2px;
+    height: 1.02em;
+    background: var(--accent);
+    border-radius: 1px;
+    vertical-align: -0.1em;
+    margin-left: 2px;
+    box-shadow: 0 0 8px var(--accentDim), 0 0 2px var(--accent);
+    animation: twPulse 1.1s ease-in-out infinite;
   }
-  @keyframes twBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+  @keyframes twPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.45; } }
+  /* "thinking" dots shown before each stream starts */
+  .tw-think { display: inline-flex; gap: 5px; align-items: center; margin-left: 4px; vertical-align: 0.05em; }
+  .tw-think i {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); opacity: 0.4;
+    animation: twDot 1.2s ease-in-out infinite;
+  }
+  .tw-think i:nth-child(2) { animation-delay: 0.18s; }
+  .tw-think i:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes twDot { 0%,100% { opacity: 0.25; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-2px); } }
   .hero p.bio {
     color: var(--textSecondary);
     font-size: 1.05rem;
@@ -816,8 +838,9 @@
   tickUptime();
   setInterval(tickUptime, 60000);
 
-  // Hero typewriter: types then deletes "agentic systems" (accent) and
-  // "that ship and stay up." (line 2), letter by letter, looping.
+  // Hero typewriter - streamed AI-response feel:
+  // variable cadence, word-boundary pauses, blurred "next word"
+  // streaming ahead, and a soft beam caret. Loops.
   (function typewriter() {
     const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const a = document.getElementById("twA");
@@ -827,16 +850,6 @@
 
     const PHRASE_A = "agentic systems";
     const PHRASE_B = "that ship and stay up.";
-    const TYPE = 85, DELETE = 40, HOLD_FULL = 1900, HOLD_EMPTY = 500;
-
-    function placeCursor() {
-      if (b.textContent.length > 0) {
-        b.appendChild(cur);
-      } else {
-        a.appendChild(cur);
-      }
-      cur.style.display = "inline-block";
-    }
 
     if (reduce) {
       a.textContent = PHRASE_A;
@@ -845,38 +858,104 @@
       return;
     }
 
-    let i = 0;
-    let phase = "typeA";
+    // streaming cadence (ms) - slower, human/LLM-like
+    const CHAR_MIN = 55, CHAR_MAX = 130;
+    const WORD_PAUSE = 280;
+    const THINK = 620;
+    const HOLD_FULL = 2600;
+    const HOLD_EMPTY = 700;
+    const DELETE = 22;
 
-    function step() {
-      if (phase === "typeA") {
-        a.textContent = PHRASE_A.slice(0, ++i);
-        a.appendChild(cur);
-        cur.style.display = "inline-block";
-        if (i === PHRASE_A.length) { i = 0; phase = "typeB"; setTimeout(step, 320); return; }
-        setTimeout(step, TYPE);
-      } else if (phase === "typeB") {
-        b.textContent = PHRASE_B.slice(0, ++i);
-        b.appendChild(cur);
-        if (i === PHRASE_B.length) { phase = "hold"; setTimeout(step, HOLD_FULL); return; }
-        setTimeout(step, TYPE);
-      } else if (phase === "hold") {
-        phase = "delB"; i = PHRASE_B.length; step();
-      } else if (phase === "delB") {
-        b.textContent = PHRASE_B.slice(0, --i);
-        b.appendChild(cur);
-        if (i === 0) { phase = "delA"; i = PHRASE_A.length; setTimeout(step, 200); return; }
-        setTimeout(step, DELETE);
-      } else if (phase === "delA") {
-        a.textContent = PHRASE_A.slice(0, --i);
-        a.appendChild(cur);
-        if (i === 0) { cur.style.display = "none"; phase = "gap"; setTimeout(step, HOLD_EMPTY); return; }
-        setTimeout(step, DELETE);
-      } else if (phase === "gap") {
-        i = 0; phase = "typeA"; step();
-      }
+    const thinkHTML = '<span class="tw-think" aria-hidden="true"><i></i><i></i><i></i></span>';
+
+    function think(el) {
+      el.innerHTML = thinkHTML;
     }
-    step();
+
+    function charDelay(ch, i, len) {
+      let d = CHAR_MIN + Math.random() * (CHAR_MAX - CHAR_MIN);
+      if (ch === " ") d += WORD_PAUSE;       // breathe between words
+      if (ch === "," || ch === ".") d += 120;
+      if (i === len - 1) d += 80;
+      return d;
+    }
+
+    // Render a phrase with `done` chars typed, the currently-streaming
+    // word sharp, and the remainder (future words) blurred.
+    function render(el, phrase, done, streaming) {
+      const typed = phrase.slice(0, done);
+      const rest = phrase.slice(done);
+      // find next word boundary in the remainder
+      const m = rest.match(/^\S*/);
+      const curWord = m ? m[0] : "";
+      const after = rest.slice(curWord.length);
+      const curClass = el === a ? "tw-accent" : "tw-line2";
+      el.innerHTML =
+        '<span class="' + curClass + '">' + escapeHTML(typed) + "</span>" +
+        (streaming && curWord
+          ? '<span class="tw-accent tw-upcoming">' + escapeHTML(curWord) + "</span>"
+          : "") +
+        (after ? '<span class="tw-rest">' + escapeHTML(after) + "</span>" : "");
+      el.appendChild(cur);
+    }
+
+    function escapeHTML(s) {
+      return s.replace(/[&<>"']/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+      });
+    }
+
+    function typeInto(el, phrase, onDone) {
+      let i = 0;
+      cur.style.display = "inline-block";
+      (function tick() {
+        if (i >= phrase.length) { onDone(); return; }
+        i++;
+        render(el, phrase, i, true);
+        const ch = phrase[i - 1];
+        setTimeout(tick, charDelay(ch, i, phrase.length));
+      })();
+    }
+
+    function deleteFrom(el, phrase, onDone) {
+      let i = phrase.length;
+      (function tick() {
+        if (i <= 0) { onDone(); return; }
+        i--;
+        el.innerHTML = phrase.slice(0, i);
+        el.appendChild(cur);
+        setTimeout(tick, DELETE + Math.random() * 25);
+      })();
+    }
+
+    function clearBoth() { a.innerHTML = ""; b.innerHTML = ""; }
+
+    function loop() {
+      clearBoth();
+      cur.style.display = "none";
+      think(a);
+      setTimeout(function () {
+        typeInto(a, PHRASE_A, function () {
+          setTimeout(function () {
+            typeInto(b, PHRASE_B, function () {
+              setTimeout(function () {
+                deleteFrom(b, PHRASE_B, function () {
+                  b.innerHTML = "";
+                  setTimeout(function () {
+                    deleteFrom(a, PHRASE_A, function () {
+                      a.innerHTML = "";
+                      setTimeout(loop, HOLD_EMPTY);
+                    });
+                  }, 180);
+                });
+              }, HOLD_FULL);
+            });
+          }, 220);
+        });
+      }, THINK);
+    }
+
+    loop();
   })();
 </script>
 
