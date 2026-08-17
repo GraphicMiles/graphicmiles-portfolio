@@ -134,18 +134,19 @@
   }
   .sectionNum {
     font-family: var(--mono);
-    font-size: 0.78rem;
+    font-size: 1rem;
     color: var(--accent);
-    font-weight: 500;
-    min-width: 34px;
-    transform: translateY(0.18em);
+    font-weight: 700;
+    min-width: 44px;
+    transform: translateY(0.12em);
+    letter-spacing: -0.01em;
   }
   .sectionHead h2 {
     font-family: var(--display);
-    font-weight: 600;
-    font-size: 2.2rem;
-    line-height: 1;
-    letter-spacing: -0.025em;
+    font-weight: 700;
+    font-size: 2.8rem;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
   }
   .sectionMeta {
     margin-left: auto;
@@ -350,28 +351,7 @@
     font-size: 0.72rem;
     color: var(--textFaint);
   }
-  .footerInner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
-
-  /* ---------- Signature build stamp (fixed corner) ---------- */
-  .buildStamp {
-    position: fixed;
-    left: 16px;
-    bottom: 14px;
-    z-index: 90;
-    font-family: var(--mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.04em;
-    color: var(--textSecondary);
-    background: color-mix(in srgb, var(--bgPrimary) 82%, transparent);
-    backdrop-filter: blur(6px);
-    border: 1px solid var(--borderColor);
-    border-radius: var(--radiusMain);
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .buildStamp .dot { width: 6px; height: 6px; border-radius: 50%; background: #36c08a; }
+  .footerInner { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; text-align: center; }
 
   /* ---------- Scroll reveal ---------- */
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1); }
@@ -393,13 +373,11 @@
     .sectionMeta { display: none; }
     .tickerCell { min-width: 130px; }
     .socialRow { font-size: 0.78rem; gap: 8px; }
-    .socialRow a { padding: 8px 11px; width: calc(50% - 4px); justify-content: center; }
-    .socialRow a:last-child:nth-child(odd) { width: 100%; }
+    .socialRow a { padding: 8px 11px; }
     .btn { width: 100%; justify-content: center; }
-    .buildStamp { font-size: 0.6rem; left: 10px; bottom: 10px; }
-  }
-  @media (max-width: 420px) {
-    .socialRow a { width: 100%; }
+    .sectionHead { gap: 12px; }
+    .sectionHead h2 { font-size: 2.2rem; }
+    .sectionNum { font-size: 0.86rem; min-width: 36px; }
   }
   @media (prefers-reduced-motion: reduce) {
     * { animation: none !important; transition: none !important; }
@@ -761,14 +739,8 @@
 <footer class="siteFooter">
   <div class="col footerInner">
     <span><i class="fa-solid fa-code"></i> 2026 Raji Adewunmi Farouq</span>
-    <span id="buildMeta">build ok &middot; hand-built, no templates</span>
   </div>
 </footer>
-
-<div class="buildStamp" title="Build version">
-  <span class="dot"></span>
-  <span>v2026.08 &middot; Lagos</span>
-</div>
 
 <script>
   // Theme
