@@ -340,7 +340,6 @@
     fill: none;
     stroke: var(--accent);
     stroke-width: 2;
-    filter: drop-shadow(0 0 4px var(--accentDim));
   }
 
   .pipelineNode {
@@ -1096,7 +1095,6 @@
       pipelineDot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
       pipelineDot.setAttribute("r", 4.5);
       pipelineDot.setAttribute("fill", "var(--accent)");
-      pipelineDot.style.filter = "drop-shadow(0 0 6px var(--accent))";
       pipelineSvg.appendChild(pipelineDot);
     } else {
       pipelineSvg.appendChild(pipelineDot);
@@ -1158,13 +1156,6 @@
   let resizeTimer = null;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(buildPipelinePath, 200);
-  });
-</script>
-
-</body>
-</html>
-Timeout(resizeTimer);
     resizeTimer = setTimeout(buildPipelinePath, 200);
   });
 </script>
