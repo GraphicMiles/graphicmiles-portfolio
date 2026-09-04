@@ -2,7 +2,7 @@
     --ink: #12151d;
     --muted: #777e8c;
     --line: #e7e9ee;
-    --soft: #f5f6f8;
+    --soft: #ffffff;
     --white: #ffffff;
     --black: #050609;
     --blue: #06142b;
@@ -24,7 +24,7 @@ html {
 
 body {
     margin: 0;
-    background: #f7f8fa;
+    background: var(--white);
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 16px;
@@ -570,7 +570,7 @@ img {
     width: .45rem;
     height: .45rem;
     border-radius: 999px;
-    background: #c8ced8;
+    background: var(--white);
 }
 
 .query-card {
@@ -639,7 +639,7 @@ img {
 .feed-panel {
     position: relative;
     display: flex;
-    background: rgba(255, 255, 255, .04);
+    background: transparent;
 }
 
 .map-panel {
@@ -661,7 +661,7 @@ img {
     right: 12%;
     top: 50%;
     height: 1px;
-    background: #d8dde6;
+    background: transparent;
 }
 
 .map-card {
@@ -703,7 +703,7 @@ img {
 .signal-panel span {
     display: block;
     height: 1px;
-    background: #d8dde6;
+    background: transparent;
 }
 
 .feed-panel span:nth-child(2) {
