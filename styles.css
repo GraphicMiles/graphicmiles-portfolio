@@ -831,14 +831,14 @@ img {
 
 .section-heading-split {
     align-items: flex-start;
-    flex-direction: row;
-    gap: 1.25rem;
+    flex-direction: column;
+    gap: .45rem;
     max-width: none;
     padding-top: 1rem;
 }
 
 .section-heading-split > .section-label {
-    flex: 0 0 7rem;
+    flex: 0 0 auto;
 }
 
 .section-heading-split > div {
@@ -847,6 +847,21 @@ img {
     flex-direction: column;
     gap: .35rem;
     max-width: 43rem;
+}
+
+.services-panel > .section-heading,
+.services-panel > .service-list {
+    width: min(90%, 58rem);
+    max-width: 58rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-panel > .about-layout {
+    width: min(90%, 64rem);
+    max-width: 64rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .section-heading h2,
@@ -863,6 +878,7 @@ img {
 .service-list {
     display: flex;
     flex-direction: column;
+    gap: .65rem;
     width: 100%;
 }
 
@@ -871,13 +887,13 @@ img {
     gap: .85rem;
     width: 100%;
     border: 0;
-    border-radius: 0;
-    background: var(--white);
-    padding: 1.05rem 0;
+    border-radius: .85rem;
+    background: var(--soft);
+    padding: 1rem;
 }
 
 .service-card:first-child {
-    padding-top: 1.15rem;
+    padding-top: 1rem;
 }
 
 .service-index {
@@ -893,7 +909,8 @@ img {
     align-items: flex-start;
     flex: 1 1 auto;
     gap: .55rem;
-    max-width: 42rem;
+    max-width: 38rem;
+    min-width: 0;
 }
 
 .service-card h3 {
@@ -923,7 +940,7 @@ img {
 
 .service-link {
     flex: 0 0 auto;
-    margin-top: .1rem;
+    margin-top: .05rem;
 }
 
 
@@ -975,22 +992,28 @@ img {
     display: flex;
     flex: 1 1 24rem;
     flex-direction: column;
+    gap: .65rem;
 }
 
 .about-row {
     display: flex;
     align-items: flex-start;
-    gap: .75rem;
+    flex-direction: column;
+    gap: .35rem;
     width: 100%;
-    padding: .85rem 0;
+    border: 0;
+    border-radius: .85rem;
+    background: var(--soft);
+    padding: .95rem 1rem;
 }
 
 .about-row > span {
-    flex: 0 0 7rem;
+    flex: 0 0 auto;
 }
 
 .about-row p {
     flex: 1 1 auto;
+    max-width: 35rem;
 }
 
 .about-row.vertical {
@@ -1017,6 +1040,11 @@ img {
     font-size: .88rem;
     line-height: 1;
     padding: .45rem .65rem;
+}
+
+.service-card .tags span,
+.about-row .tags span {
+    background: var(--white);
 }
 
 .footer {
@@ -1373,8 +1401,8 @@ img {
     }
 
     .about-row {
-        gap: .45rem;
-        padding: .7rem 0;
+        gap: .35rem;
+        padding: .85rem;
     }
 
     .about-row > span {
@@ -1391,7 +1419,7 @@ img {
 
     .service-card {
         gap: .75rem;
-        padding: .95rem 0;
+        padding: .85rem;
     }
 
     .service-index {
@@ -1540,16 +1568,16 @@ img {
     .service-card {
         flex-direction: row;
         gap: 1rem;
-        padding: 1.15rem 0;
+        padding: 1rem;
     }
 
     .service-copy {
-        max-width: 48rem;
+        max-width: 38rem;
     }
 
     .service-link {
         align-self: flex-start;
-        margin-left: auto;
+        margin-left: 0;
     }
 
     .about-layout {
