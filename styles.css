@@ -292,6 +292,7 @@ img {
 .avatar {
     width: 4.75rem;
     height: 4.75rem;
+    border: .32rem solid var(--white);
     cursor: pointer;
     font-size: 1rem;
     letter-spacing: -.03em;
