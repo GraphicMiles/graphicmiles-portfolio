@@ -38,6 +38,8 @@ a {
 }
 
 button {
+    border: 0;
+    background: transparent;
     color: inherit;
     font: inherit;
 }
@@ -45,6 +47,11 @@ button {
 button,
 a {
     -webkit-tap-highlight-color: transparent;
+}
+
+:focus,
+:focus-visible {
+    outline: 0;
 }
 
 img {
@@ -61,7 +68,6 @@ img {
     justify-content: center;
     height: 4.25rem;
     padding: 0;
-    border-bottom: 1px solid var(--line);
     background: var(--white);
     position: sticky;
     top: 0;
@@ -143,7 +149,6 @@ img {
     justify-content: center;
     width: 1.9rem;
     height: 1.9rem;
-    border: 2px solid var(--ink);
     border-radius: .4rem;
     font-family: var(--font-display);
     font-size: .95rem;
@@ -187,7 +192,6 @@ img {
 .button {
     width: auto;
     gap: .45rem;
-    border: 1px solid var(--line);
     border-radius: 999px;
     padding: .55rem .95rem;
     font-weight: 600;
@@ -196,12 +200,11 @@ img {
 
 .button-dark {
     background: #1b202a;
-    border-color: #1b202a;
     color: var(--white);
 }
 
 .button-light {
-    background: var(--white);
+    background: var(--soft);
     color: var(--ink);
 }
 
@@ -220,7 +223,6 @@ img {
     flex-direction: column;
     width: 100%;
     padding: .5rem 0;
-    border-bottom: 1px solid var(--line);
     background: var(--white);
     position: sticky;
     top: 4rem;
@@ -231,13 +233,9 @@ img {
     width: calc(100% - (var(--page-gutter) * 2));
     max-width: var(--page-width);
     padding: .75rem 0;
-    border-bottom: 1px solid var(--line);
     font-weight: 700;
 }
 
-.mobile-menu a:last-child {
-    border-bottom: 0;
-}
 
 .mobile-menu[hidden] {
     display: none;
@@ -294,7 +292,6 @@ img {
 .avatar {
     width: 4.75rem;
     height: 4.75rem;
-    border: .32rem solid var(--white);
     cursor: pointer;
     font-size: 1rem;
     letter-spacing: -.03em;
@@ -363,9 +360,8 @@ img {
     align-items: center;
     flex: 1 1 22rem;
     gap: .85rem;
-    border: 1px solid var(--line);
     border-radius: .85rem;
-    background: var(--white);
+    background: var(--soft);
     padding: .75rem;
 }
 
@@ -412,16 +408,14 @@ img {
 .profile-meta a {
     width: 2.35rem;
     height: 2.35rem;
-    border: 1px solid var(--line);
     border-radius: 999px;
+    background: var(--soft);
     font-size: 1rem;
 }
 
 .tabs {
     justify-content: center;
     padding: 0;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
     overflow: hidden;
 }
 
@@ -488,10 +482,6 @@ img {
     cursor: pointer;
 }
 
-.work-card:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: -4px;
-}
 
 .work-overlay {
     position: absolute;
@@ -547,7 +537,6 @@ img {
 .watch-board,
 .stare-board,
 .photon-board {
-    border: 1px solid #30333b;
 }
 
 .legal-board,
@@ -585,7 +574,6 @@ img {
 
 .query-card {
     width: 100%;
-    border: 1px solid #30333b;
     color: var(--white);
     font-size: clamp(1.05rem, 2.4vw, 1.55rem);
     font-weight: 600;
@@ -613,7 +601,6 @@ img {
     flex-direction: column;
     justify-content: center;
     gap: .25rem;
-    border: 1px solid #30333b;
     padding: .65rem;
 }
 
@@ -651,7 +638,6 @@ img {
 .feed-panel {
     position: relative;
     display: flex;
-    border: 1px solid #d8dde6;
     background: rgba(255, 255, 255, .04);
 }
 
@@ -683,7 +669,6 @@ img {
     align-items: center;
     justify-content: center;
     min-width: 5.5rem;
-    border: 1px solid #d8dde6;
     background: var(--blue);
     color: var(--white);
     font-size: .78rem;
@@ -744,7 +729,6 @@ img {
     justify-content: center;
     flex: 2 1 0;
     gap: .55rem;
-    border: 1px solid #30333b;
     padding: 1rem;
 }
 
@@ -769,7 +753,6 @@ img {
     justify-content: center;
     flex: 2 1 0;
     gap: 1rem;
-    border: 1px solid #30333b;
     padding: 1rem;
 }
 
@@ -819,7 +802,6 @@ img {
     justify-content: center;
     flex: 2 1 0;
     gap: 1rem;
-    border: 1px solid #30333b;
     padding: 1rem;
 }
 
@@ -851,7 +833,6 @@ img {
     flex-direction: row;
     gap: 1.25rem;
     max-width: none;
-    border-top: 1px solid var(--ink);
     padding-top: 1rem;
 }
 
@@ -882,7 +863,6 @@ img {
     display: flex;
     flex-direction: column;
     width: 100%;
-    border-top: 1px solid var(--line);
 }
 
 .service-card {
@@ -890,7 +870,6 @@ img {
     gap: .85rem;
     width: 100%;
     border: 0;
-    border-bottom: 1px solid var(--line);
     border-radius: 0;
     background: var(--white);
     padding: 1.05rem 0;
@@ -933,13 +912,12 @@ img {
     gap: .4rem;
     align-self: flex-start;
     border: 0;
-    border-bottom: 1px solid var(--ink);
     background: transparent;
     color: var(--ink);
     cursor: pointer;
     font-weight: 600;
     line-height: 1.2;
-    padding: 0 0 .15rem;
+    padding: 0;
 }
 
 .service-link {
@@ -979,7 +957,6 @@ img {
 
 .about-summary .text-button {
     color: var(--white);
-    border-bottom-color: var(--white);
 }
 
 .section-label,
@@ -997,7 +974,6 @@ img {
     display: flex;
     flex: 1 1 24rem;
     flex-direction: column;
-    border-top: 1px solid var(--ink);
 }
 
 .about-row {
@@ -1005,7 +981,6 @@ img {
     align-items: flex-start;
     gap: .75rem;
     width: 100%;
-    border-bottom: 1px solid var(--line);
     padding: .85rem 0;
 }
 
@@ -1055,7 +1030,6 @@ img {
     align-items: stretch;
     flex-direction: column;
     gap: 1.1rem;
-    border-top: 1px solid var(--ink);
     padding: 1.25rem 0;
 }
 
@@ -1095,7 +1069,6 @@ img {
     justify-content: flex-start;
     gap: .6rem;
     width: 100%;
-    border-top: 1px solid var(--line);
     padding-top: .85rem;
 }
 
@@ -1147,7 +1120,6 @@ img {
 
 .modal {
     width: min(92vw, 32rem);
-    border: 1px solid var(--line);
     border-radius: .9rem;
     color: var(--ink);
     padding: 0;
@@ -1166,7 +1138,6 @@ img {
     align-self: flex-end;
     width: 2rem;
     height: 2rem;
-    border: 1px solid var(--line);
     border-radius: 999px;
     background: var(--white);
     cursor: pointer;
@@ -1203,10 +1174,6 @@ img {
     gap: .6rem;
 }
 
-:focus-visible {
-    outline: 2px solid var(--ink);
-    outline-offset: 3px;
-}
 
 @media (max-width: 760px) {
     html {
@@ -1491,8 +1458,7 @@ img {
 
     .nav-actions .button-dark,
     .footer-intro .button-dark {
-        background: var(--white);
-        border-color: var(--line);
+        background: var(--soft);
         color: var(--ink);
     }
 }
