@@ -57,6 +57,24 @@ if (menuButton && mobileMenu) {
     });
 }
 
+
+const avatarButton = document.querySelector('[data-avatar-open]');
+const avatarLightbox = document.querySelector('[data-avatar-lightbox]');
+
+if (avatarButton && avatarLightbox) {
+    avatarButton.addEventListener('click', () => avatarLightbox.showModal());
+
+    avatarLightbox.addEventListener('click', (event) => {
+        if (event.target === avatarLightbox) {
+            avatarLightbox.close();
+        }
+    });
+
+    document.querySelectorAll('[data-avatar-close]').forEach((button) => {
+        button.addEventListener('click', () => avatarLightbox.close());
+    });
+}
+
 function updateBackToTop() {
     if (!backToTop) return;
 

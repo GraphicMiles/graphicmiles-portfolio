@@ -44,6 +44,11 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+}
+
 .section {
     display: flex;
     width: 100%;
@@ -149,6 +154,7 @@ a {
 .menu-button,
 .profile-meta a,
 .modal-close,
+.lightbox-close,
 .back-to-top {
     display: inline-flex;
     align-items: center;
@@ -263,10 +269,21 @@ a {
     width: 4.75rem;
     height: 4.75rem;
     border: .32rem solid var(--white);
+    cursor: pointer;
     font-size: 1rem;
     letter-spacing: -.03em;
     margin-top: -2.1rem;
+    overflow: hidden;
+    padding: 0;
     z-index: 1;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    filter: grayscale(100%);
+    object-fit: cover;
 }
 
 .profile-copy {
@@ -983,6 +1000,48 @@ a {
 
 .back-to-top {
     display: none;
+}
+
+.avatar-lightbox {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    max-height: none;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    padding: 0;
+}
+
+.avatar-lightbox[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-lightbox::backdrop {
+    background: rgba(5, 6, 9, .88);
+}
+
+.avatar-lightbox img {
+    width: min(82vw, 27rem);
+    height: min(82vw, 27rem);
+    border-radius: 999px;
+    background: var(--soft);
+    object-fit: cover;
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    background: transparent;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 1.8rem;
 }
 
 .modal {
