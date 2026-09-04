@@ -1358,6 +1358,15 @@ img {
         padding-top: .85rem;
     }
 
+    .services-panel > .section-heading {
+        align-items: center;
+        text-align: center;
+    }
+
+    .services-panel > .section-heading > div {
+        align-items: center;
+    }
+
     .section-heading-split > .section-label {
         flex: 0 0 auto;
     }
