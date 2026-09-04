@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Graphic Miles — portfolio of Raji Adewunmi Farouq, a software and AI engineer building agentic systems, mobile tools, automation, and polished web products.">
     <title>Graphic Miles — Raji Adewunmi Farouq</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -204,84 +207,107 @@
             </article>
         </section>
 
-        <section class="section panel" id="services-panel" aria-labelledby="services-tab" hidden>
+        <section class="section panel services-panel" id="services-panel" aria-labelledby="services-tab" hidden>
             <div class="section-heading">
                 <h2>Services</h2>
                 <p>Focused engineering support for founders, creators, and teams shipping practical software products.</p>
             </div>
 
-            <article class="service-card">
-                <div>
-                    <h3>AI product engineering</h3>
-                    <p>Agent workflows, retrieval systems, model integrations, and AI product prototypes.</p>
-                </div>
-                <div class="service-side">
-                    <span>Custom</span>
-                    <a class="text-button" href="mailto:rfarouq69@gmail.com?subject=AI%20product%20engineering">Request service</a>
-                </div>
-            </article>
+            <div class="service-list">
+                <article class="service-card">
+                    <span class="service-index">01</span>
+                    <div class="service-copy">
+                        <h3>AI product engineering</h3>
+                        <p>Agent workflows, retrieval systems, model integrations, and AI product prototypes.</p>
+                        <div class="tags">
+                            <span>Agents</span>
+                            <span>RAG</span>
+                            <span>Automation</span>
+                        </div>
+                    </div>
+                    <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=AI%20product%20engineering">Request <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
 
-            <article class="service-card">
-                <div>
-                    <h3>Frontend web build</h3>
-                    <p>Responsive landing pages, portfolios, product dashboards, and clean web interfaces.</p>
-                </div>
-                <div class="service-side">
-                    <span>Custom</span>
-                    <a class="text-button" href="mailto:rfarouq69@gmail.com?subject=Frontend%20web%20build">Request service</a>
-                </div>
-            </article>
+                <article class="service-card">
+                    <span class="service-index">02</span>
+                    <div class="service-copy">
+                        <h3>Frontend web build</h3>
+                        <p>Responsive landing pages, portfolios, product dashboards, and clean web interfaces.</p>
+                        <div class="tags">
+                            <span>HTML/CSS</span>
+                            <span>React</span>
+                            <span>Vite</span>
+                        </div>
+                    </div>
+                    <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=Frontend%20web%20build">Request <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
 
-            <article class="service-card">
-                <div>
-                    <h3>Mobile and PWA MVP</h3>
-                    <p>Installable web apps, Android wrappers, realtime features, and mobile-first product flows.</p>
-                </div>
-                <div class="service-side">
-                    <span>Custom</span>
-                    <a class="text-button" href="mailto:rfarouq69@gmail.com?subject=Mobile%20PWA%20MVP">Request service</a>
-                </div>
-            </article>
+                <article class="service-card">
+                    <span class="service-index">03</span>
+                    <div class="service-copy">
+                        <h3>Mobile and PWA MVP</h3>
+                        <p>Installable web apps, Android wrappers, realtime features, and mobile-first product flows.</p>
+                        <div class="tags">
+                            <span>PWA</span>
+                            <span>Android</span>
+                            <span>Realtime</span>
+                        </div>
+                    </div>
+                    <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=Mobile%20PWA%20MVP">Request <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
 
-            <article class="service-card">
-                <div>
-                    <h3>Automation and backend</h3>
-                    <p>APIs, data flows, backend integrations, and internal tools that remove repetitive work.</p>
-                </div>
-                <div class="service-side">
-                    <span>Custom</span>
-                    <a class="text-button" href="mailto:rfarouq69@gmail.com?subject=Automation%20and%20backend">Request service</a>
-                </div>
-            </article>
-        </section>
-
-        <section class="section panel" id="about-panel" aria-labelledby="about-tab" hidden>
-            <div class="about-summary">
-                <h2>About Graphic Miles</h2>
-                <p>Graphic Miles is the portfolio of Raji Adewunmi Farouq: a builder focused on AI systems, realtime products, mobile tooling, and useful frontend experiences.</p>
-            </div>
-
-            <div class="about-row vertical">
-                <span>Skills and tools</span>
-                <div class="tags">
-                    <span>JavaScript</span>
-                    <span>TypeScript</span>
-                    <span>Python</span>
-                    <span>React</span>
-                    <span>Vite</span>
-                    <span>Firebase</span>
-                    <span>FastAPI</span>
-                    <span>Docker</span>
-                    <span>AI Agents</span>
-                    <span>Computer Vision</span>
-                </div>
-            </div>
-
-            <div class="about-row vertical">
-                <span>Availability</span>
-                <p>Available for remote projects, contract work, technical collaboration, and focused product builds.</p>
+                <article class="service-card">
+                    <span class="service-index">04</span>
+                    <div class="service-copy">
+                        <h3>Automation and backend</h3>
+                        <p>APIs, data flows, backend integrations, and internal tools that remove repetitive work.</p>
+                        <div class="tags">
+                            <span>APIs</span>
+                            <span>Python</span>
+                            <span>Docker</span>
+                        </div>
+                    </div>
+                    <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=Automation%20and%20backend">Request <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
             </div>
         </section>
+
+        <section class="section panel about-panel" id="about-panel" aria-labelledby="about-tab" hidden>
+            <div class="about-layout">
+                <div class="about-summary">
+                    <span class="section-label">About</span>
+                    <h2>Graphic Miles is a product engineering portfolio.</h2>
+                    <p>Raji Adewunmi Farouq builds useful systems across AI, realtime software, mobile tooling, backend automation, and polished frontend interfaces.</p>
+                </div>
+
+                <div class="about-details">
+                    <div class="about-row">
+                        <span>Focus</span>
+                        <p>AI products, automation systems, mobile MVPs, realtime apps, and interface engineering.</p>
+                    </div>
+                    <div class="about-row">
+                        <span>Location</span>
+                        <p>Lagos, Nigeria. Available for remote projects and technical collaboration.</p>
+                    </div>
+                    <div class="about-row vertical">
+                        <span>Skills and tools</span>
+                        <div class="tags">
+                            <span>JavaScript</span>
+                            <span>TypeScript</span>
+                            <span>Python</span>
+                            <span>React</span>
+                            <span>Vite</span>
+                            <span>Firebase</span>
+                            <span>FastAPI</span>
+                            <span>Docker</span>
+                            <span>AI Agents</span>
+                            <span>Computer Vision</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="section footer">
