@@ -159,6 +159,7 @@ a {
 }
 
 .menu-button {
+    display: none;
     width: 2.35rem;
     height: 2.35rem;
     border: 0;
@@ -769,6 +770,10 @@ a {
         padding: 0 1rem;
     }
 
+    .menu-button {
+        display: inline-flex;
+    }
+
     .brand,
     .footer-brand {
         font-size: 1.4rem;
@@ -940,6 +945,7 @@ a {
         right: 1rem;
         bottom: 1rem;
         z-index: 30;
+        display: inline-flex;
         width: 2.75rem;
         height: 2.75rem;
         border-radius: 999px;
@@ -957,8 +963,87 @@ a {
     }
 }
 
+@media (min-width: 761px) {
+    .navbar {
+        padding-inline: max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem));
+    }
+
+    .mobile-menu {
+        display: none;
+    }
+}
+
 @media (min-width: 900px) {
+    .profile {
+        padding-top: 1.25rem;
+    }
+
+    .cover {
+        min-height: 14rem;
+    }
+
+    .profile-body {
+        margin-top: -2.4rem;
+    }
+
+    .avatar {
+        width: 5.35rem;
+        height: 5.35rem;
+    }
+
+    .notice-card {
+        max-width: 32rem;
+    }
+
+    #work-panel {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 1.25rem;
+    }
+
     .work-card {
-        min-height: 31rem;
+        flex: 1 1 calc(50% - .5rem);
+        min-height: 26rem;
+        border-radius: .95rem;
+    }
+
+    .work-card:first-child {
+        flex-basis: 100%;
+        min-height: 32rem;
+    }
+
+    .work-overlay {
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        max-width: 32rem;
+    }
+
+    .legal-preview,
+    .terminal-preview,
+    .video-preview,
+    .signal-preview,
+    .network-preview {
+        width: min(72%, 30rem);
+    }
+
+    .footer {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 1.5rem 2.5rem;
+    }
+
+    .footer-intro {
+        flex: 1 1 22rem;
+    }
+
+    .footer-groups {
+        flex: 2 1 32rem;
+    }
+
+    .footer-bottom {
+        flex: 1 1 100%;
     }
 }
