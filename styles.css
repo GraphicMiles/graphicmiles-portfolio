@@ -895,16 +895,6 @@ img {
 .service-card:first-child {
     padding-top: 1rem;
 }
-
-.service-index {
-    flex: 0 0 2.25rem;
-    color: var(--muted);
-    font-family: var(--font-display);
-    font-size: .88rem;
-    font-weight: 600;
-    padding-top: .15rem;
-}
-
 .service-copy {
     align-items: flex-start;
     flex: 1 1 auto;
@@ -1421,13 +1411,6 @@ img {
         gap: .75rem;
         padding: .85rem;
     }
-
-    .service-index {
-        flex: 0 0 auto;
-        width: 2rem;
-        padding-top: .1rem;
-    }
-
     .service-copy {
         flex: 1 1 0;
         gap: .5rem;
@@ -1565,14 +1548,21 @@ img {
         padding-bottom: 1.5rem;
     }
 
-    .service-card {
+    .service-list {
         flex-direction: row;
-        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: .75rem;
+    }
+
+    .service-card {
+        flex: 1 1 calc(50% - .375rem);
+        min-width: 22rem;
         padding: 1rem;
     }
 
     .service-copy {
-        max-width: 38rem;
+        max-width: 100%;
     }
 
     .service-link {
