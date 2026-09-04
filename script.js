@@ -87,70 +87,64 @@ window.addEventListener('resize', updateBackToTop);
 updateBackToTop();
 
 const projectData = {
-    legally: {
-        title: 'Legally Unbullied',
-        category: 'AI platform',
-        link: 'https://legally-unbullied.onrender.com',
-        description: 'AI-powered legal-information platform for Nigeria with classify, retrieve, and draft flows over an indexed legal corpus.',
-        points: [
-            'Routes questions through a legal-information workflow.',
-            'Retrieves sourced provisions before drafting responses.',
-            'Escalates professional matters instead of pretending to replace a lawyer.'
-        ]
-    },
-    nearspace: {
-        title: 'Nearspace',
-        category: 'Realtime PWA',
-        link: 'https://nearspace.com.ng',
-        description: 'A proximity-first professional network for technology creators in Nigeria with map, feed, bounties, groups, and offline-first behavior.',
-        points: [
-            'Built around local discovery and professional proximity.',
-            'Uses realtime data flows for feed, groups, and activity.',
-            'Shipped as an installable PWA.'
-        ]
-    },
     forge: {
         title: 'ForgeAI',
-        category: 'Mobile AI',
-        link: 'https://github.com/GraphicMiles/forgeai-android',
-        description: 'Local-first AI coding assistant for Android with on-device inference, model cataloging, token streaming, and workspace file tools.',
+        category: 'Android AI utility',
+        link: 'https://toddler-kappa.vercel.app',
+        repo: 'https://github.com/GraphicMiles/forgeai-android',
+        description: 'An Android project exploring a local-first AI coding assistant with a controlled workspace and user-approved file actions.',
         points: [
-            'Runs GGUF inference through a native Android bridge.',
-            'Streams model output into a mobile coding workflow.',
-            'Includes workspace file actions and an agent core.'
+            'Uses Java and Capacitor around a native Android workflow.',
+            'Explores on-device model use and token streaming for mobile AI tools.',
+            'Shows practical thinking around safe file access, tool actions, and approval steps.'
         ]
     },
-    watchparty: {
-        title: 'Chan Watchparty',
-        category: 'Realtime video',
-        link: 'https://github.com/GraphicMiles/chan-watchparty',
-        description: 'Synchronized watch-party app with a Node sync server, stream proxy, and Android playback fallback.',
+    turf: {
+        title: 'Turf',
+        category: 'JavaScript web app',
+        link: 'https://turf-pi-six.vercel.app',
+        repo: 'https://github.com/GraphicMiles/Turf',
+        description: 'A web app prototype for a paid ranking ladder where positions are determined by contribution amount and clear rules.',
         points: [
-            'Keeps viewers synchronized across sessions.',
-            'Combines web playback with native Android fallback support.',
-            'Uses a dedicated sync layer for realtime room state.'
+            'Builds a direct interaction model around ranking, payment amount, and ordering.',
+            'Uses plain web UI patterns that make the product rule easy to understand.',
+            'Good example of turning a simple product mechanic into a working web experience.'
         ]
     },
     stare: {
         title: 'Stare',
-        category: 'Computer vision',
-        link: 'https://github.com/GraphicMiles/stare-ai',
-        description: 'Real-time AI staring competition using in-browser face tracking to judge eye and head movement.',
+        category: 'AI browser game',
+        link: 'https://peekaboo-beige.vercel.app',
+        repo: 'https://github.com/GraphicMiles/stare-ai',
+        description: 'A browser game prototype that uses face tracking to judge eye and head movement during a staring competition.',
         points: [
-            'Uses computer vision as an impartial game referee.',
-            'Scores eye state and head pose in the browser.',
-            'Combines live interaction with realtime matchmaking.'
+            'Uses computer vision in the browser for a clear game mechanic.',
+            'Tracks eye state and head position instead of relying on manual judging.',
+            'Shows comfort connecting frontend interaction with AI-assisted logic.'
+        ]
+    },
+    patungans: {
+        title: 'Patungans',
+        category: 'Landing page',
+        link: 'https://milesdemo1.vercel.app',
+        repo: 'https://github.com/GraphicMiles/patungans-landing',
+        description: 'A responsive marketing page for a group-savings product concept, focused on clear messaging and clean frontend execution.',
+        points: [
+            'Communicates the product idea quickly with a focused landing-page structure.',
+            'Uses responsive sections, calls to action, and product explanation blocks.',
+            'Shows frontend delivery for a consumer finance-style product concept.'
         ]
     },
     photon: {
         title: 'Photon Lab',
-        category: 'Research',
-        link: 'https://github.com/GraphicMiles/photon-lab',
-        description: 'Research bench for screen-to-camera optical data channels with calibration, measurement, and experiment recording.',
+        category: 'Browser research tool',
+        link: 'https://steinberg-zeta.vercel.app',
+        repo: 'https://github.com/GraphicMiles/photon-lab',
+        description: 'A browser-based test bench for experimenting with screen-to-camera optical data transfer and measurement workflows.',
         points: [
-            'Measures real-world optical data transfer behavior.',
-            'Tracks experiment data for BER, SNR, and throughput.',
-            'Bridges research code into Android workflows.'
+            'Includes transmit and receive flows for browser-based experiments.',
+            'Provides calibration and measurement UI for testing signal behavior.',
+            'Shows ability to build technical interfaces around non-trivial workflows.'
         ]
     }
 };
@@ -161,6 +155,7 @@ const projectCategory = document.querySelector('[data-project-category]');
 const projectDescription = document.querySelector('[data-project-description]');
 const projectPoints = document.querySelector('[data-project-points]');
 const projectLink = document.querySelector('[data-project-link]');
+const projectRepo = document.querySelector('[data-project-repo]');
 
 function openProject(key) {
     const project = projectData[key];
@@ -175,6 +170,12 @@ function openProject(key) {
 
     projectLink.href = project.link;
     projectLink.hidden = !project.link;
+
+    if (projectRepo) {
+        projectRepo.href = project.repo;
+        projectRepo.hidden = !project.repo;
+    }
+
     projectDialog.showModal();
 }
 
