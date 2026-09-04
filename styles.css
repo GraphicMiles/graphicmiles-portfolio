@@ -444,15 +444,6 @@ img {
     color: var(--ink);
 }
 
-.tab.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    background: var(--ink);
-}
 
 .panel {
     flex-direction: column;
@@ -887,7 +878,7 @@ img {
     gap: .85rem;
     width: 100%;
     border: 0;
-    border-radius: .85rem;
+    border-radius: 0;
     background: var(--soft);
     padding: 1rem;
 }
