@@ -341,7 +341,7 @@ a {
 .notice-card div,
 .profile-summary,
 .section-heading,
-.service-card div,
+.service-copy,
 .about-summary,
 .footer,
 .footer-intro,
@@ -915,6 +915,8 @@ a {
 }
 
 .tags {
+    align-items: center;
+    flex-direction: row;
     flex-wrap: wrap;
     gap: .45rem;
 }
