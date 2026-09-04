@@ -87,11 +87,25 @@
 
         <section class="section panel active" id="work-panel" aria-labelledby="work-tab">
             <article class="work-card media-legal" data-project="legally" tabindex="0" role="button" aria-label="Open Legally Unbullied case study">
-                <div class="legal-preview" aria-hidden="true">
-                    <span>LEGAL AI</span>
-                    <p>Classify</p>
-                    <p>Retrieve</p>
-                    <p>Draft</p>
+                <div class="showcase-board legal-board" aria-hidden="true">
+                    <div class="board-header">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="query-card">Can my landlord evict me without proper notice?</div>
+                    <div class="process-row">
+                        <div>
+                            <span>Classify</span>
+                            <strong>Tenancy rights</strong>
+                        </div>
+                        <div>
+                            <span>Retrieve</span>
+                            <strong>3 cited provisions</strong>
+                        </div>
+                        <div>
+                            <span>Draft</span>
+                            <strong>Plain-language answer</strong>
+                        </div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <span>AI platform</span>
@@ -100,8 +114,17 @@
             </article>
 
             <article class="work-card media-nearspace" data-project="nearspace" tabindex="0" role="button" aria-label="Open Nearspace case study">
-                <div class="network-preview" aria-hidden="true">
-                    <span></span><span></span><span></span><span></span>
+                <div class="showcase-board nearspace-board" aria-hidden="true">
+                    <div class="map-panel">
+                        <span class="route-line"></span>
+                        <span class="map-card one">Lagos</span>
+                        <span class="map-card two">Builders</span>
+                        <span class="map-card three">Bounties</span>
+                    </div>
+                    <div class="feed-panel">
+                        <p>Nearby makers</p>
+                        <span></span><span></span><span></span>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <span>Realtime PWA</span>
@@ -110,11 +133,18 @@
             </article>
 
             <article class="work-card media-forge" data-project="forge" tabindex="0" role="button" aria-label="Open ForgeAI case study">
-                <div class="terminal-preview" aria-hidden="true">
-                    <span>forgeai.android</span>
-                    <p>model.load()</p>
-                    <p>agent.stream()</p>
-                    <p>workspace.write()</p>
+                <div class="showcase-board forge-board" aria-hidden="true">
+                    <div class="code-panel">
+                        <span>forgeai.android</span>
+                        <p>model.load()</p>
+                        <p>agent.stream()</p>
+                        <p>workspace.write()</p>
+                    </div>
+                    <div class="model-panel">
+                        <span>GGUF</span>
+                        <strong>on-device</strong>
+                        <small>42 tests</small>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <span>Mobile AI</span>
@@ -123,9 +153,15 @@
             </article>
 
             <article class="work-card media-watch" data-project="watchparty" tabindex="0" role="button" aria-label="Open Chan Watchparty case study">
-                <div class="video-preview" aria-hidden="true">
-                    <i class="fa-solid fa-play"></i>
-                    <span></span>
+                <div class="showcase-board watch-board" aria-hidden="true">
+                    <div class="video-panel">
+                        <i class="fa-solid fa-play"></i>
+                        <span></span>
+                    </div>
+                    <div class="chat-panel">
+                        <p>Room sync</p>
+                        <span></span><span></span><span></span>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <span>Realtime video</span>
@@ -134,8 +170,15 @@
             </article>
 
             <article class="work-card media-stare" data-project="stare" tabindex="0" role="button" aria-label="Open Stare case study">
-                <div class="stare-preview" aria-hidden="true">
-                    <span></span><span></span>
+                <div class="showcase-board stare-board" aria-hidden="true">
+                    <div class="camera-row">
+                        <div><span>EAR</span><strong>0.31</strong></div>
+                        <div><span>Pose</span><strong>Stable</strong></div>
+                    </div>
+                    <div class="score-panel">
+                        <span>Referee</span>
+                        <strong>Computer vision</strong>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <span>Computer vision</span>
@@ -144,8 +187,15 @@
             </article>
 
             <article class="work-card media-photon" data-project="photon" tabindex="0" role="button" aria-label="Open Photon Lab case study">
-                <div class="signal-preview" aria-hidden="true">
-                    <span></span><span></span><span></span>
+                <div class="showcase-board photon-board" aria-hidden="true">
+                    <div class="signal-panel">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="metric-row">
+                        <div><span>BER</span><strong>0.04</strong></div>
+                        <div><span>SNR</span><strong>18.7</strong></div>
+                        <div><span>Rate</span><strong>2.4kb/s</strong></div>
+                    </div>
                 </div>
                 <div class="work-overlay">
                     <span>Research</span>
