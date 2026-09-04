@@ -1,12 +1,14 @@
 :root {
-    --ink: #12151d;
-    --muted: #777e8c;
-    --line: #e7e9ee;
+    --ink: #202124;
+    --muted: #202124;
+    --line: transparent;
     --soft: #ffffff;
     --white: #ffffff;
-    --black: #050609;
-    --blue: #06142b;
-    --brown: #2b1b05;
+    --yellow: #f8ea6f;
+    --green: #0e6241;
+    --black: #202124;
+    --blue: #0e6241;
+    --brown: #202124;
     --page-width: 72rem;
     --page-gutter: clamp(1rem, 3vw, 1.5rem);
     --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -161,7 +163,7 @@ img {
     justify-content: center;
     flex: 1 1 0;
     gap: 1.4rem;
-    color: var(--muted);
+    color: var(--ink);
     font-weight: 600;
 }
 
@@ -199,8 +201,8 @@ img {
 }
 
 .button-dark {
-    background: #1b202a;
-    color: var(--white);
+    background: var(--yellow);
+    color: var(--ink);
 }
 
 .button-light {
@@ -262,7 +264,7 @@ img {
     width: 100%;
     min-height: 11rem;
     border-radius: .35rem;
-    background: var(--black);
+    background: var(--green);
     color: var(--white);
     font-family: var(--font-display);
     font-weight: 600;
@@ -341,7 +343,7 @@ img {
 .footer p,
 .footer-bottom span {
     margin: 0;
-    color: var(--muted);
+    color: var(--ink);
 }
 
 .profile-actions {
@@ -431,7 +433,7 @@ img {
     position: relative;
     border: 0;
     background: transparent;
-    color: #9aa0aa;
+    color: var(--ink);
     cursor: pointer;
     font-family: var(--font-display);
     font-size: clamp(1.1rem, 3vw, 1.7rem);
@@ -604,7 +606,7 @@ img {
 .score-panel span,
 .code-panel span {
     margin: 0;
-    color: #c8ced8;
+    color: var(--white);
     font-size: .72rem;
     font-weight: 600;
     letter-spacing: .12em;
@@ -737,7 +739,7 @@ img {
 }
 
 .model-panel small {
-    color: #c8ced8;
+    color: var(--white);
 }
 
 .video-panel {
@@ -925,6 +927,10 @@ img {
 }
 
 
+.about-panel {
+    background: var(--yellow);
+}
+
 .about-layout {
     display: flex;
     align-items: stretch;
@@ -936,33 +942,29 @@ img {
     flex: 1 1 20rem;
     gap: .55rem;
     max-width: 34rem;
-    background: var(--ink);
-    color: var(--white);
+    background: var(--yellow);
+    color: var(--ink);
     padding: 1rem;
 }
 
 .about-summary h2,
 .about-summary p {
-    color: var(--white);
-}
-
-.about-summary p {
-    color: #d3d7df;
+    color: var(--ink);
 }
 
 .about-summary .section-label {
-    color: #aeb5c0;
+    color: var(--ink);
 }
 
 .about-summary .text-button {
-    color: var(--white);
+    color: var(--ink);
 }
 
 .section-label,
 .about-row > span,
 .footer-group h3,
 .modal-label {
-    color: var(--muted);
+    color: var(--ink);
     font-size: .78rem;
     font-weight: 600;
     letter-spacing: .12em;
@@ -984,7 +986,8 @@ img {
     width: 100%;
     border: 0;
     border-radius: .85rem;
-    background: var(--soft);
+    background: var(--white);
+    color: var(--ink);
     padding: .95rem 1rem;
 }
 
@@ -1162,7 +1165,7 @@ img {
 
 .modal p {
     margin: 0;
-    color: var(--muted);
+    color: var(--ink);
 }
 
 .modal-list {
@@ -1461,7 +1464,7 @@ img {
 
     .nav-actions .button-dark,
     .footer-intro .button-dark {
-        background: var(--soft);
+        background: var(--yellow);
         color: var(--ink);
     }
 }
