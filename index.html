@@ -46,7 +46,9 @@
             </div>
 
             <div class="profile-body">
-                <div class="avatar" aria-label="Graphic Miles avatar">GM</div>
+                <button class="avatar" type="button" aria-label="Open profile photo" data-avatar-open>
+                    <img src="assets/profile.jpg" alt="Raji Adewunmi Farouq">
+                </button>
 
                 <div class="profile-copy">
                     <h1>Raji Adewunmi Farouq</h1>
@@ -346,6 +348,13 @@
             <span>© 2026 Raji Adewunmi Farouq</span>
         </div>
     </footer>
+
+    <dialog class="avatar-lightbox" aria-label="Profile photo" data-avatar-lightbox>
+        <button class="lightbox-close" type="button" aria-label="Close profile photo" data-avatar-close>
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="assets/profile.jpg" alt="Raji Adewunmi Farouq profile photo">
+    </dialog>
 
     <dialog class="modal" data-project-dialog>
         <div class="modal-card">
