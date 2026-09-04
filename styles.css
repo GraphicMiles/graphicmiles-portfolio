@@ -1329,6 +1329,15 @@ img {
         padding-bottom: .8rem;
     }
 
+    .services-panel > .section-heading,
+    .services-panel > .service-list,
+    .about-panel > .about-layout {
+        width: 90%;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     #work-panel {
         gap: .2rem;
         padding: 0;
