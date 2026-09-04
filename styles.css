@@ -51,6 +51,12 @@ a {
     -webkit-tap-highlight-color: transparent;
 }
 
+a[href],
+button,
+[role="button"] {
+    cursor: pointer;
+}
+
 :focus,
 :focus-visible {
     outline: 0;
@@ -168,10 +174,13 @@ img {
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible,
+.nav-links a:focus-visible {
+    color: var(--ink);
+}
+
 .footer-group a:hover,
 .footer-group a:focus-visible {
-    color: var(--ink);
+    color: var(--green);
 }
 
 .nav-actions {
@@ -476,6 +485,21 @@ img {
     cursor: pointer;
 }
 
+.work-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--black);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .18s ease;
+    z-index: 1;
+}
+
+.work-card:hover::after,
+.work-card:focus-visible::after {
+    opacity: .22;
+}
 
 .work-overlay {
     position: absolute;
@@ -488,6 +512,7 @@ img {
     width: auto;
     color: var(--white);
     padding: 0;
+    z-index: 2;
 }
 
 .work-overlay span {
