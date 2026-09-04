@@ -87,64 +87,64 @@ window.addEventListener('resize', updateBackToTop);
 updateBackToTop();
 
 const projectData = {
-    forge: {
-        title: 'ForgeAI',
-        category: 'Android AI utility',
-        link: 'https://toddler-kappa.vercel.app',
-        repo: 'https://github.com/GraphicMiles/forgeai-android',
-        description: 'An Android project exploring a local-first AI coding assistant with a controlled workspace and user-approved file actions.',
+    nearspace: {
+        title: 'Nearspace',
+        category: 'Realtime web app',
+        link: 'https://nearspace.com.ng',
+        repo: '',
+        description: 'A web product for discovering nearby creators, builders, and professionals. It shows frontend product thinking around discovery, profiles, and location-aware experiences.',
         points: [
-            'Uses Java and Capacitor around a native Android workflow.',
-            'Explores on-device model use and token streaming for mobile AI tools.',
-            'Shows practical thinking around safe file access, tool actions, and approval steps.'
+            'Built as a responsive product-facing web experience.',
+            'Focuses on creator discovery, profiles, and practical user flows.',
+            'Shows comfort turning a product idea into a polished interface.'
         ]
     },
-    turf: {
-        title: 'Turf',
-        category: 'JavaScript web app',
-        link: 'https://turf-pi-six.vercel.app',
-        repo: 'https://github.com/GraphicMiles/Turf',
-        description: 'A web app prototype for a paid ranking ladder where positions are determined by contribution amount and clear rules.',
+    legally: {
+        title: 'Legally Unbullied',
+        category: 'AI-assisted web app',
+        link: 'https://legally-unbullied.onrender.com',
+        repo: 'https://github.com/GraphicMiles/Legallyunbullied',
+        description: 'A Nigerian legal-information assistant that combines a web interface with retrieval and AI-assisted answer drafting. The goal is helpful guidance, not replacing a lawyer.',
         points: [
-            'Builds a direct interaction model around ranking, payment amount, and ordering.',
-            'Uses plain web UI patterns that make the product rule easy to understand.',
-            'Good example of turning a simple product mechanic into a working web experience.'
+            'Uses a clear question-and-answer workflow for legal information.',
+            'Connects frontend UI to AI/retrieval-style product logic.',
+            'Shows practical knowledge of automation without overstating the role of AI.'
         ]
     },
-    stare: {
-        title: 'Stare',
-        category: 'AI browser game',
-        link: 'https://peekaboo-beige.vercel.app',
-        repo: 'https://github.com/GraphicMiles/stare-ai',
-        description: 'A browser game prototype that uses face tracking to judge eye and head movement during a staring competition.',
+    mrnobody: {
+        title: 'Mr Nobody',
+        category: 'Android privacy browser',
+        link: '',
+        repo: 'https://github.com/GraphicMiles/Mr-Nobody',
+        description: 'An Android privacy browser project with a companion website and a bounded task-assistant concept for safer browsing workflows.',
         points: [
-            'Uses computer vision in the browser for a clear game mechanic.',
-            'Tracks eye state and head position instead of relying on manual judging.',
-            'Shows comfort connecting frontend interaction with AI-assisted logic.'
+            'Includes an Android app codebase plus a focused project website.',
+            'Explores privacy controls, browsing flows, and task assistance.',
+            'Shows ability to work across web presentation and mobile product ideas.'
         ]
     },
-    patungans: {
-        title: 'Patungans',
-        category: 'Landing page',
-        link: 'https://milesdemo1.vercel.app',
-        repo: 'https://github.com/GraphicMiles/patungans-landing',
-        description: 'A responsive marketing page for a group-savings product concept, focused on clear messaging and clean frontend execution.',
+    touchline: {
+        title: 'The Touchline',
+        category: 'News blog landing page',
+        link: '',
+        repo: 'https://github.com/GraphicMiles/demos',
+        description: 'A desktop news/blog landing page from the demos collection, built around editorial hierarchy, navigation, story cards, and readable content structure.',
         points: [
-            'Communicates the product idea quickly with a focused landing-page structure.',
-            'Uses responsive sections, calls to action, and product explanation blocks.',
-            'Shows frontend delivery for a consumer finance-style product concept.'
+            'Demonstrates layout control for a content-heavy homepage.',
+            'Uses clear editorial sections for lead stories and secondary links.',
+            'Good example of frontend structure for media or publishing products.'
         ]
     },
-    photon: {
-        title: 'Photon Lab',
-        category: 'Browser research tool',
-        link: 'https://steinberg-zeta.vercel.app',
-        repo: 'https://github.com/GraphicMiles/photon-lab',
-        description: 'A browser-based test bench for experimenting with screen-to-camera optical data transfer and measurement workflows.',
+    metrix: {
+        title: 'Metrix',
+        category: 'SaaS landing page',
+        link: '',
+        repo: 'https://github.com/GraphicMiles/demos',
+        description: 'A SaaS analytics landing page from the demos collection, focused on product messaging, dashboard presentation, and conversion-oriented sections.',
         points: [
-            'Includes transmit and receive flows for browser-based experiments.',
-            'Provides calibration and measurement UI for testing signal behavior.',
-            'Shows ability to build technical interfaces around non-trivial workflows.'
+            'Shows a clean SaaS hero, feature framing, and dashboard preview.',
+            'Uses responsive landing-page structure and product-focused copy.',
+            'Demonstrates frontend execution for a software product website.'
         ]
     }
 };
