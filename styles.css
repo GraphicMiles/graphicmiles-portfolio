@@ -7,6 +7,8 @@
     --black: #050609;
     --blue: #06142b;
     --brown: #2b1b05;
+    --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    --font-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 }
 
 * {
@@ -21,7 +23,7 @@ body {
     margin: 0;
     background: var(--white);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 16px;
     line-height: 1.5;
     text-rendering: optimizeLegibility;
@@ -51,7 +53,7 @@ a {
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    height: 4rem;
+    height: 4.25rem;
     padding: 0 1.25rem;
     border-bottom: 1px solid var(--line);
     background: var(--white);
@@ -73,7 +75,6 @@ a {
 .project-head,
 .tags,
 .service-card,
-.service-side,
 .footer,
 .footer-brand,
 .footer-groups,
@@ -94,9 +95,18 @@ a {
 .brand,
 .footer-brand {
     gap: .55rem;
-    font-size: 1.55rem;
-    font-weight: 800;
-    letter-spacing: -.04em;
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: -.035em;
+}
+
+.brand {
+    flex: 1 1 0;
+}
+
+.footer-brand {
+    flex: 0 1 auto;
 }
 
 .brand-mark {
@@ -107,15 +117,19 @@ a {
     height: 1.9rem;
     border: 2px solid var(--ink);
     border-radius: .4rem;
-    font-size: 1rem;
+    font-family: var(--font-display);
+    font-size: .95rem;
+    font-weight: 600;
     line-height: 1;
     letter-spacing: 0;
 }
 
 .nav-links {
+    justify-content: center;
+    flex: 1 1 0;
     gap: 1.4rem;
     color: var(--muted);
-    font-weight: 650;
+    font-weight: 600;
 }
 
 .nav-links a:hover,
@@ -126,6 +140,8 @@ a {
 }
 
 .nav-actions {
+    justify-content: flex-end;
+    flex: 1 1 0;
     gap: .55rem;
 }
 
@@ -144,14 +160,14 @@ a {
     gap: .45rem;
     border: 1px solid var(--line);
     border-radius: 999px;
-    padding: .6rem 1.05rem;
-    font-weight: 750;
+    padding: .55rem .95rem;
+    font-weight: 600;
     line-height: 1;
 }
 
 .button-dark {
-    background: var(--ink);
-    border-color: var(--ink);
+    background: #1b202a;
+    border-color: #1b202a;
     color: var(--white);
 }
 
@@ -218,8 +234,9 @@ a {
     border-radius: .35rem;
     background: var(--black);
     color: var(--white);
-    font-weight: 750;
-    letter-spacing: .16em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: .14em;
     text-transform: uppercase;
 }
 
@@ -238,15 +255,16 @@ a {
     border-radius: 999px;
     background: var(--soft);
     color: var(--ink);
-    font-weight: 800;
+    font-family: var(--font-display);
+    font-weight: 600;
 }
 
 .avatar {
     width: 4.75rem;
     height: 4.75rem;
     border: .32rem solid var(--white);
-    font-size: 1.05rem;
-    letter-spacing: -.04em;
+    font-size: 1rem;
+    letter-spacing: -.03em;
     margin-top: -2.1rem;
     z-index: 1;
 }
@@ -263,12 +281,14 @@ a {
 .about-summary h2 {
     margin: 0;
     color: var(--ink);
-    line-height: 1.1;
-    letter-spacing: -.04em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -.035em;
 }
 
 .profile-copy h1 {
-    font-size: clamp(1.8rem, 4.2vw, 2.6rem);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
 }
 
 .profile-copy p,
@@ -368,7 +388,7 @@ a {
     color: #9aa0aa;
     cursor: pointer;
     font-size: clamp(1.1rem, 3vw, 1.7rem);
-    font-weight: 780;
+    font-weight: 600;
     line-height: 1;
     padding: .85rem 0;
 }
@@ -425,7 +445,7 @@ a {
 
 .work-overlay span {
     font-size: .78rem;
-    font-weight: 750;
+    font-weight: 600;
     letter-spacing: .12em;
     text-transform: uppercase;
 }
@@ -505,7 +525,7 @@ a {
     border: 1px solid #30333b;
     color: var(--white);
     font-size: clamp(1.05rem, 2.4vw, 1.55rem);
-    font-weight: 750;
+    font-weight: 600;
     line-height: 1.2;
     padding: .8rem;
 }
@@ -544,7 +564,7 @@ a {
     margin: 0;
     color: #c8ced8;
     font-size: .72rem;
-    font-weight: 800;
+    font-weight: 600;
     letter-spacing: .12em;
     text-transform: uppercase;
 }
@@ -604,7 +624,7 @@ a {
     background: var(--blue);
     color: var(--white);
     font-size: .78rem;
-    font-weight: 750;
+    font-weight: 600;
     padding: .45rem .6rem;
 }
 
@@ -626,7 +646,7 @@ a {
 .feed-panel p {
     margin: 0;
     color: var(--white);
-    font-weight: 750;
+    font-weight: 600;
 }
 
 .feed-panel span,
@@ -669,7 +689,7 @@ a {
     margin: 0;
     color: var(--white);
     font-size: clamp(1rem, 2.6vw, 1.6rem);
-    font-weight: 750;
+    font-weight: 600;
     line-height: 1.1;
 }
 
@@ -765,62 +785,108 @@ a {
 
 .section-heading h2,
 .about-summary h2 {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-display);
     font-size: clamp(1.45rem, 3vw, 2rem);
+    font-weight: 600;
+    letter-spacing: -.035em;
+    line-height: 1.08;
+}
+
+.service-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid var(--line);
 }
 
 .service-card {
-    justify-content: space-between;
     align-items: flex-start;
     gap: 1rem;
     width: 100%;
-    border: 1px solid var(--line);
-    border-radius: .95rem;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
     background: var(--white);
-    padding: .85rem;
+    padding: 1rem 0;
 }
 
-.service-card div {
+.service-index {
+    flex: 0 0 2.2rem;
+    color: var(--muted);
+    font-family: var(--font-display);
+    font-size: .85rem;
+    font-weight: 600;
+}
+
+.service-copy {
     align-items: flex-start;
-    gap: .4rem;
+    flex: 1 1 auto;
+    gap: .55rem;
 }
 
 .service-card h3 {
     margin: 0;
     color: var(--ink);
-    font-size: 1.25rem;
-    line-height: 1.15;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    font-weight: 600;
     letter-spacing: -.035em;
+    line-height: 1.1;
 }
 
-.service-side {
-    align-items: flex-end;
-    flex: 0 0 auto;
-    flex-direction: column;
-    gap: .55rem;
-}
-
-.service-side span {
-    border-radius: 999px;
-    background: var(--soft);
-    padding: .45rem .7rem;
-    font-weight: 750;
-}
-
+.service-link,
 .text-button {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
     align-self: flex-start;
     border: 0;
     border-bottom: 1px solid var(--ink);
     background: transparent;
     color: var(--ink);
     cursor: pointer;
-    font-weight: 750;
+    font-weight: 600;
     line-height: 1.2;
     padding: 0 0 .15rem;
 }
 
+.service-link {
+    flex: 0 0 auto;
+    margin-top: .2rem;
+}
+
+
+.about-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: 100%;
+}
+
 .about-summary {
-    gap: .55rem;
-    max-width: 42rem;
+    flex: 1 1 22rem;
+    gap: .65rem;
+    max-width: 34rem;
+}
+
+.section-label,
+.about-row span,
+.footer-group h3,
+.modal-label {
+    color: var(--muted);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.about-details {
+    display: flex;
+    flex: 1 1 24rem;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
 }
 
 .about-row {
@@ -828,22 +894,24 @@ a {
     align-items: flex-start;
     gap: 1rem;
     width: 100%;
-    border-top: 1px solid var(--line);
-    padding-top: 1rem;
+    border-bottom: 1px solid var(--line);
+    padding: 1rem 0;
+}
+
+.about-row span {
+    flex: 0 0 7rem;
+}
+
+.about-row p {
+    flex: 1 1 auto;
 }
 
 .about-row.vertical {
     flex-direction: column;
 }
 
-.about-row span,
-.footer-group h3,
-.modal-label {
-    color: var(--muted);
-    font-size: .78rem;
-    font-weight: 750;
-    letter-spacing: .12em;
-    text-transform: uppercase;
+.about-row.vertical span {
+    flex: 0 0 auto;
 }
 
 .tags {
@@ -857,9 +925,9 @@ a {
     border-radius: 999px;
     background: var(--soft);
     color: var(--ink);
-    font-size: .92rem;
+    font-size: .88rem;
     line-height: 1;
-    padding: .5rem .75rem;
+    padding: .45rem .65rem;
 }
 
 .footer {
@@ -990,7 +1058,12 @@ a {
 
     .brand,
     .footer-brand {
-        font-size: 1.4rem;
+        flex: 0 1 auto;
+        font-size: 1.35rem;
+    }
+
+    .nav-actions {
+        flex: 0 1 auto;
     }
 
     .brand-mark {
@@ -1134,14 +1207,16 @@ a {
 
 
     .service-card,
+    .about-layout,
+    .about-row,
     .footer,
     .footer-bottom {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .service-side {
-        align-items: flex-start;
+    .service-link {
+        margin-top: .1rem;
     }
 
     .footer {
@@ -1190,6 +1265,13 @@ a {
 
     .mobile-menu {
         display: none;
+    }
+
+    .nav-actions .button-dark,
+    .footer-intro .button-dark {
+        background: var(--white);
+        border-color: var(--line);
+        color: var(--ink);
     }
 }
 
@@ -1257,6 +1339,26 @@ a {
 
     .showcase-board {
         width: min(76%, 34rem);
+    }
+
+
+    .services-panel,
+    .about-panel {
+        padding-top: 1.35rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .service-card {
+        flex-direction: row;
+    }
+
+    .service-link {
+        align-self: flex-start;
+        margin-left: auto;
+    }
+
+    .about-layout {
+        flex-direction: row;
     }
 
     .footer {
