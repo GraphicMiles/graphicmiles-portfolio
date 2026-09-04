@@ -878,13 +878,13 @@ img {
 .about-layout {
     display: flex;
     align-items: flex-start;
-    gap: 1.5rem;
+    gap: 1rem;
     width: 100%;
 }
 
 .about-summary {
-    flex: 1 1 22rem;
-    gap: .65rem;
+    flex: 1 1 20rem;
+    gap: .45rem;
     max-width: 34rem;
 }
 
@@ -909,10 +909,10 @@ img {
 .about-row {
     display: flex;
     align-items: flex-start;
-    gap: 1rem;
+    gap: .75rem;
     width: 100%;
     border-bottom: 1px solid var(--line);
-    padding: 1rem 0;
+    padding: .8rem 0;
 }
 
 .about-row span {
@@ -1266,6 +1266,29 @@ img {
         min-height: 10rem;
     }
 
+
+    .about-panel {
+        gap: .6rem;
+    }
+
+    .about-layout {
+        gap: .75rem;
+    }
+
+    .about-summary,
+    .about-details {
+        flex: 0 1 auto;
+        width: 100%;
+    }
+
+    .about-row {
+        gap: .45rem;
+        padding: .7rem 0;
+    }
+
+    .about-row span {
+        flex: 0 0 auto;
+    }
 
     .service-card,
     .about-layout,
