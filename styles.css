@@ -223,10 +223,10 @@ a {
 }
 
 .profile-body {
-    align-items: flex-end;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: .75rem;
-    margin-top: -2.1rem;
+    margin-top: 0;
 }
 
 .avatar,
@@ -246,6 +246,8 @@ a {
     border: .32rem solid var(--white);
     font-size: 1.05rem;
     letter-spacing: -.04em;
+    margin-top: -2.1rem;
+    z-index: 1;
 }
 
 .profile-copy {
@@ -281,6 +283,7 @@ a {
 }
 
 .profile-actions {
+    align-self: flex-end;
     gap: .55rem;
 }
 
@@ -830,13 +833,14 @@ a {
         align-items: flex-start;
         flex-direction: column;
         gap: .55rem;
-        margin-top: -1.8rem;
+        margin-top: 0;
     }
 
     .avatar {
         width: 4.25rem;
         height: 4.25rem;
         font-size: .95rem;
+        margin-top: -1.8rem;
     }
 
     .profile-copy {
@@ -857,6 +861,10 @@ a {
     .profile-summary,
     .footer-bottom {
         width: 100%;
+    }
+
+    .profile-actions {
+        align-self: stretch;
     }
 
     .profile-actions .button {
@@ -986,13 +994,10 @@ a {
         min-height: 14rem;
     }
 
-    .profile-body {
-        margin-top: -2.4rem;
-    }
-
     .avatar {
         width: 5.35rem;
         height: 5.35rem;
+        margin-top: -2.4rem;
     }
 
     .notice-card {
