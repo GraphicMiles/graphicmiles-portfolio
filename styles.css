@@ -17,11 +17,12 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
 }
 
 body {
     margin: 0;
-    background: var(--white);
+    background: #f7f8fa;
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 16px;
@@ -222,6 +223,7 @@ img {
     width: 100%;
     max-width: 72rem;
     margin: 0 auto;
+    background: var(--white);
 }
 
 .profile {
@@ -315,7 +317,7 @@ img {
 .about-row p,
 .notice-card span,
 .footer p,
-.footer span {
+.footer-bottom span {
     margin: 0;
     color: var(--muted);
 }
@@ -400,10 +402,12 @@ img {
 }
 
 .tab {
+    position: relative;
     border: 0;
     background: transparent;
     color: #9aa0aa;
     cursor: pointer;
+    font-family: var(--font-display);
     font-size: clamp(1.1rem, 3vw, 1.7rem);
     font-weight: 600;
     line-height: 1;
@@ -414,10 +418,21 @@ img {
     color: var(--ink);
 }
 
+.tab.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--ink);
+}
+
 .panel {
     flex-direction: column;
     gap: 1rem;
     padding: 1rem 1.25rem;
+    scroll-margin-top: 4.5rem;
 }
 
 .panel[hidden] {
@@ -796,8 +811,30 @@ img {
 }
 
 .section-heading {
+    gap: .4rem;
+    max-width: 43rem;
+    padding-bottom: .4rem;
+}
+
+.section-heading-split {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 1.25rem;
+    max-width: none;
+    border-top: 1px solid var(--ink);
+    padding-top: 1rem;
+}
+
+.section-heading-split > .section-label {
+    flex: 0 0 7rem;
+}
+
+.section-heading-split > div {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
     gap: .35rem;
-    max-width: 42rem;
+    max-width: 43rem;
 }
 
 .section-heading h2,
@@ -820,27 +857,33 @@ img {
 
 .service-card {
     align-items: flex-start;
-    gap: 1rem;
+    gap: .85rem;
     width: 100%;
     border: 0;
     border-bottom: 1px solid var(--line);
     border-radius: 0;
     background: var(--white);
-    padding: 1rem 0;
+    padding: 1.05rem 0;
+}
+
+.service-card:first-child {
+    padding-top: 1.15rem;
 }
 
 .service-index {
-    flex: 0 0 2.2rem;
+    flex: 0 0 2.25rem;
     color: var(--muted);
     font-family: var(--font-display);
-    font-size: .85rem;
+    font-size: .88rem;
     font-weight: 600;
+    padding-top: .15rem;
 }
 
 .service-copy {
     align-items: flex-start;
     flex: 1 1 auto;
     gap: .55rem;
+    max-width: 42rem;
 }
 
 .service-card h3 {
@@ -871,25 +914,46 @@ img {
 
 .service-link {
     flex: 0 0 auto;
-    margin-top: .2rem;
+    margin-top: .1rem;
 }
 
 
 .about-layout {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 1rem;
     width: 100%;
 }
 
 .about-summary {
     flex: 1 1 20rem;
-    gap: .45rem;
+    gap: .55rem;
     max-width: 34rem;
+    background: var(--ink);
+    color: var(--white);
+    padding: 1rem;
+}
+
+.about-summary h2,
+.about-summary p {
+    color: var(--white);
+}
+
+.about-summary p {
+    color: #d3d7df;
+}
+
+.about-summary .section-label {
+    color: #aeb5c0;
+}
+
+.about-summary .text-button {
+    color: var(--white);
+    border-bottom-color: var(--white);
 }
 
 .section-label,
-.about-row span,
+.about-row > span,
 .footer-group h3,
 .modal-label {
     color: var(--muted);
@@ -903,7 +967,7 @@ img {
     display: flex;
     flex: 1 1 24rem;
     flex-direction: column;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--ink);
 }
 
 .about-row {
@@ -912,10 +976,10 @@ img {
     gap: .75rem;
     width: 100%;
     border-bottom: 1px solid var(--line);
-    padding: .8rem 0;
+    padding: .85rem 0;
 }
 
-.about-row span {
+.about-row > span {
     flex: 0 0 7rem;
 }
 
@@ -927,7 +991,7 @@ img {
     flex-direction: column;
 }
 
-.about-row.vertical span {
+.about-row.vertical > span {
     flex: 0 0 auto;
 }
 
@@ -955,7 +1019,8 @@ img {
     max-width: 72rem;
     margin: 1.5rem auto 0;
     padding: 1.25rem;
-    border-top: 1px solid var(--line);
+    border-top: 1px solid var(--ink);
+    background: var(--white);
 }
 
 .footer-intro {
@@ -1108,6 +1173,10 @@ img {
 }
 
 @media (max-width: 760px) {
+    html {
+        scroll-padding-top: 4rem;
+    }
+
     .navbar {
         height: 3.8rem;
         padding: 0 1rem;
@@ -1267,12 +1336,30 @@ img {
     }
 
 
+    .section-heading-split {
+        flex-direction: column;
+        gap: .45rem;
+        padding-top: .85rem;
+    }
+
+    .section-heading-split > .section-label {
+        flex: 0 0 auto;
+    }
+
+    .section-heading-split > div {
+        gap: .3rem;
+    }
+
     .about-panel {
         gap: .6rem;
     }
 
     .about-layout {
         gap: .75rem;
+    }
+
+    .about-summary {
+        padding: .85rem;
     }
 
     .about-summary,
@@ -1286,11 +1373,10 @@ img {
         padding: .7rem 0;
     }
 
-    .about-row span {
+    .about-row > span {
         flex: 0 0 auto;
     }
 
-    .service-card,
     .about-layout,
     .about-row,
     .footer,
@@ -1299,8 +1385,25 @@ img {
         align-items: flex-start;
     }
 
+    .service-card {
+        gap: .75rem;
+        padding: .95rem 0;
+    }
+
+    .service-index {
+        flex: 0 0 auto;
+        width: 2rem;
+        padding-top: .1rem;
+    }
+
+    .service-copy {
+        flex: 1 1 0;
+        gap: .5rem;
+        min-width: 0;
+    }
+
     .service-link {
-        margin-top: .1rem;
+        margin-top: .05rem;
     }
 
     .footer {
@@ -1434,6 +1537,12 @@ img {
 
     .service-card {
         flex-direction: row;
+        gap: 1rem;
+        padding: 1.15rem 0;
+    }
+
+    .service-copy {
+        max-width: 48rem;
     }
 
     .service-link {
