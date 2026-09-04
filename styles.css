@@ -1411,16 +1411,27 @@ img {
     }
 
     .service-card {
+        align-items: center;
+        justify-content: center;
         gap: .75rem;
         padding: .85rem;
+        text-align: center;
     }
+
     .service-copy {
+        align-items: center;
         flex: 1 1 0;
         gap: .5rem;
         min-width: 0;
+        text-align: center;
+    }
+
+    .service-card .tags {
+        justify-content: center;
     }
 
     .service-link {
+        align-self: center;
         margin-top: .05rem;
     }
 
