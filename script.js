@@ -175,6 +175,14 @@ document.querySelectorAll('[data-close-project]').forEach((button) => {
     button.addEventListener('click', () => projectDialog.close());
 });
 
+if (projectDialog) {
+    projectDialog.addEventListener('click', (event) => {
+        if (event.target === projectDialog) {
+            projectDialog.close();
+        }
+    });
+}
+
 const initialPanel = window.location.hash.replace('#', '').replace('-panel', '');
 if (initialPanel && document.querySelector(`[data-tab="${initialPanel}"]`)) {
     showPanel(initialPanel);

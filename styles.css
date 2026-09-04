@@ -24,6 +24,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     font-size: 16px;
     line-height: 1.5;
+    text-rendering: optimizeLegibility;
 }
 
 a {
@@ -393,7 +394,7 @@ a {
     align-items: center;
     justify-content: center;
     width: 100%;
-    min-height: 24rem;
+    min-height: 23rem;
     overflow: hidden;
     border: 0;
     border-radius: 0;
@@ -414,8 +415,9 @@ a {
     flex-direction: column;
     gap: .25rem;
     width: auto;
-    background: rgba(5, 6, 9, .82);
+    background: rgba(5, 6, 9, .84);
     color: var(--white);
+    border-radius: .65rem;
     padding: .75rem;
 }
 
@@ -452,7 +454,9 @@ a {
     align-items: flex-start;
     flex-direction: column;
     gap: .5rem;
-    width: min(70%, 28rem);
+    justify-content: center;
+    width: min(72%, 30rem);
+    min-height: 13rem;
     border: 1px solid #30333b;
     padding: 1rem;
 }
@@ -469,7 +473,7 @@ a {
 .terminal-preview p {
     margin: 0;
     color: var(--white);
-    font-size: clamp(1.3rem, 5vw, 2.4rem);
+    font-size: clamp(1.25rem, 4vw, 2.2rem);
     font-weight: 750;
     line-height: 1.05;
 }
@@ -478,7 +482,7 @@ a {
     justify-content: center;
     flex-wrap: wrap;
     gap: .75rem;
-    width: min(70%, 24rem);
+    width: min(72%, 25rem);
 }
 
 .network-preview span {
@@ -493,7 +497,7 @@ a {
     flex-direction: column;
     justify-content: center;
     gap: 1rem;
-    width: min(70%, 30rem);
+    width: min(72%, 30rem);
 }
 
 .video-preview i {
@@ -514,8 +518,8 @@ a {
 }
 
 .stare-preview span {
-    width: 7rem;
-    height: 7rem;
+    width: 6.5rem;
+    height: 6.5rem;
     border: .65rem solid var(--white);
     border-radius: 999px;
 }
@@ -524,7 +528,7 @@ a {
     flex-direction: column;
     justify-content: center;
     gap: 1.1rem;
-    width: 80%;
+    width: min(80%, 34rem);
 }
 
 .signal-preview span {
@@ -652,7 +656,7 @@ a {
     align-items: stretch;
     gap: 1.1rem;
     max-width: 72rem;
-    margin: 1.25rem auto 0;
+    margin: 1.5rem auto 0;
     padding: 1.25rem;
     border-top: 1px solid var(--line);
 }
@@ -995,6 +999,28 @@ a {
         max-width: 32rem;
     }
 
+    .profile-details {
+        align-items: center;
+    }
+
+    .profile-summary {
+        margin-left: auto;
+    }
+
+    .legal-preview,
+    .terminal-preview {
+        min-height: 15rem;
+    }
+
+    .network-preview span {
+        width: 9rem;
+        height: 5.4rem;
+    }
+
+    .video-preview span {
+        height: .35rem;
+    }
+
     #work-panel {
         flex-direction: row;
         flex-wrap: wrap;
@@ -1004,20 +1030,21 @@ a {
 
     .work-card {
         flex: 1 1 calc(50% - .5rem);
-        min-height: 26rem;
+        min-height: 22rem;
         border-radius: .95rem;
     }
 
     .work-card:first-child {
         flex-basis: 100%;
-        min-height: 32rem;
+        min-height: 28rem;
     }
 
     .work-overlay {
         left: 1.25rem;
-        right: 1.25rem;
+        right: auto;
         bottom: 1.25rem;
-        max-width: 32rem;
+        max-width: 30rem;
+        min-width: 18rem;
     }
 
     .legal-preview,
@@ -1033,6 +1060,7 @@ a {
         flex-wrap: wrap;
         align-items: flex-start;
         gap: 1.5rem 2.5rem;
+        padding-top: 1.5rem;
     }
 
     .footer-intro {
