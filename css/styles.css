@@ -13,12 +13,13 @@
 }
 
 :root {
-    --linen: #f1e9db;
-    --gunmetal: #3c3c3c;
-    --khaki: #a39b8b;
-    --sky: #5db7de;
-    --black: #000;
-    --white: #fff;
+    --linen: #f4f3ee;
+    --gunmetal: #151411;
+    --khaki: #8c8b86;
+    --sky: #151411;
+    --red: #d61213;
+    --black: #151411;
+    --white: #f4f3ee;
     --font: googleSans, system-ui, sans-serif;
     --serif: Fraunces, "Times New Roman", serif;
 }
@@ -60,7 +61,7 @@ button {
 }
 
 ::selection {
-    background: color-mix(in srgb, var(--sky) 40%, transparent);
+    background: color-mix(in srgb, var(--gunmetal) 18%, transparent);
 }
 
 .wrap {
@@ -105,7 +106,7 @@ button {
     background: color-mix(in srgb, var(--linen) 72%, rgba(255,255,255,0.55));
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 8px 30px rgba(60, 60, 60, 0.08);
+    box-shadow: 0 8px 30px rgba(21, 20, 17, 0.08);
 }
 
 .dock-item {
@@ -261,8 +262,8 @@ button {
     gap: 0.75rem;
     width: auto;
     padding: 0.75rem 1.5rem;
-    background: var(--black);
-    color: var(--white);
+    background: var(--red);
+    color: var(--linen);
     border-radius: 999px;
     font-size: 1.25rem;
     font-weight: 500;
@@ -270,14 +271,14 @@ button {
 }
 
 .btn-pill:hover {
-    box-shadow: 0 0 20px rgba(93, 183, 222, 0.4);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--red) 45%, transparent);
 }
 
 .btn-pill .ripple {
     position: absolute;
     width: 250%;
     aspect-ratio: 1;
-    background: var(--sky);
+    background: color-mix(in srgb, var(--red) 72%, var(--black));
     border-radius: 999px;
     left: 0;
     top: 0;
@@ -295,12 +296,12 @@ button {
 
 .btn-pill:hover .btn-label,
 .btn-pill:hover .btn-icon {
-    color: var(--black);
+    color: var(--linen);
 }
 
 .btn-pill:hover .btn-icon {
-    background: var(--black);
-    color: var(--white);
+    background: var(--linen);
+    color: var(--red);
 }
 
 .btn-label,
@@ -317,8 +318,8 @@ button {
     width: 2rem;
     height: 2rem;
     border-radius: 999px;
-    background: var(--white);
-    color: var(--black);
+    background: var(--linen);
+    color: var(--red);
     flex-shrink: 0;
 }
 
@@ -338,7 +339,7 @@ button {
 }
 
 .link-work:hover {
-    color: var(--sky);
+    color: var(--black);
 }
 
 .link-work svg {
@@ -376,7 +377,7 @@ button {
 .rule {
     width: 2.5rem;
     height: 0.125rem;
-    background: color-mix(in srgb, var(--sky) 60%, transparent);
+    background: var(--gunmetal);
     border-radius: 999px;
     margin-top: 1.5rem;
 }
@@ -546,7 +547,7 @@ button {
 .project-tags {
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--sky);
+    color: var(--khaki);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -621,8 +622,8 @@ button {
 }
 
 .link-view:hover {
-    color: var(--sky);
-    border-color: var(--sky);
+    color: var(--black);
+    border-color: var(--black);
 }
 
 .link-view svg {
@@ -653,7 +654,7 @@ button {
     font-size: clamp(3.75rem, 12vw, 8.75rem);
     font-weight: 300;
     line-height: 1.1;
-    color: #222b38;
+    color: var(--gunmetal);
 }
 
 .wordmark-letters {
@@ -710,7 +711,7 @@ button {
 }
 
 .contact .rule {
-    background: var(--sky);
+    background: var(--linen);
 }
 
 .contact-lead {
@@ -743,7 +744,7 @@ button {
 .btn-copy .fill {
     position: absolute;
     inset: 0;
-    background: color-mix(in srgb, var(--sky) 20%, transparent);
+    background: color-mix(in srgb, var(--gunmetal) 12%, transparent);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease-out;
@@ -794,7 +795,7 @@ button {
 }
 
 .socials a:hover {
-    color: color-mix(in srgb, var(--sky) 80%, transparent);
+    color: var(--linen);
 }
 
 .socials svg {
@@ -1051,7 +1052,7 @@ button {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    color: var(--sky);
+    color: var(--gunmetal);
     font-size: 0.875rem;
     font-weight: 700;
 }
@@ -1217,7 +1218,7 @@ button {
 }
 
 .pager a:hover .name {
-    color: var(--sky);
+    color: var(--black);
 }
 
 /* ---------- Lightbox ---------- */
@@ -1402,3 +1403,4 @@ button {
         font-size: 1.05rem;
     }
 }
+
