@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm install --ignore-scripts && mkdir -p node_modules/.bin && printf '%s\\n' '#!/usr/bin/env node' 'require(require(\"path\").join(process.cwd(), \"static-build.js\"));' > node_modules/.bin/vite && chmod +x node_modules/.bin/vite",
+  "buildCommand": "node static-build.js",
+  "outputDirectory": "dist"
+}
