@@ -112,11 +112,22 @@ button {
 .dock-item {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    min-width: 2.6rem;
+    min-height: 2.6rem;
     padding: 0.4rem 0.7rem;
     border-radius: 999px;
     color: var(--gunmetal);
     transition: background 0.3s, color 0.3s;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+.dock-item svg,
+.dock-item span {
+    pointer-events: none;
 }
 
 .dock-item svg {
@@ -172,9 +183,9 @@ button {
 .hero {
     flex-direction: column;
     align-items: flex-start;
-    padding-top: 5rem;
-    padding-bottom: 8rem;
-    min-height: 85vh;
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+    min-height: 0;
 }
 
 .hero-photo {
@@ -352,7 +363,7 @@ button {
     flex-direction: row;
     align-items: flex-start;
     gap: 2rem;
-    margin: 10rem 0;
+    margin: 3.5rem 0 4.5rem;
 }
 
 .about-title {
@@ -391,7 +402,7 @@ button {
 .about-text {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.25rem;
     max-width: 42rem;
     font-size: 1.125rem;
     line-height: 1.8;
@@ -475,7 +486,7 @@ button {
 /* ---------- Projects ---------- */
 .projects {
     flex-direction: column;
-    margin-bottom: 7.5rem;
+    margin-bottom: 4.5rem;
 }
 
 .projects-head {
@@ -485,7 +496,7 @@ button {
 .project-list {
     display: flex;
     flex-direction: column;
-    gap: 8rem;
+    gap: 4.5rem;
 }
 
 .project {
@@ -634,7 +645,7 @@ button {
 .projects-more {
     display: flex;
     justify-content: center;
-    margin-top: 8rem;
+    margin-top: 4rem;
 }
 
 /* ---------- Wordmark ---------- */
@@ -643,7 +654,7 @@ button {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin: 0 0 7.5rem;
+    margin: 0 0 3.5rem;
     cursor: pointer;
 }
 
@@ -688,7 +699,7 @@ button {
     border-radius: 1.5rem;
     overflow: hidden;
     padding: 2.5rem;
-    margin: 5rem 0 7rem;
+    margin: 3rem 0 5.5rem;
     min-height: 36rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
@@ -1310,9 +1321,9 @@ button {
 
 @media (max-width: 900px) {
     .hero {
-        min-height: 100vh;
-        padding-top: 3.5rem;
-        padding-bottom: 7rem;
+        min-height: 0;
+        padding-top: 2.25rem;
+        padding-bottom: 1.25rem;
     }
 
     .about,
@@ -1362,12 +1373,12 @@ button {
 
     .about,
     .projects {
-        margin-top: 5rem;
-        margin-bottom: 5rem;
+        margin-top: 2.25rem;
+        margin-bottom: 2.75rem;
     }
 
     .project-list {
-        gap: 4.5rem;
+        gap: 3rem;
     }
 
     .shot-card {
