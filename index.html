@@ -2,217 +2,300 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Graphic Miles — portfolio of Raji Adewunmi Farouq, a developer building web products, AI tools, and responsive interfaces from Lagos.">
-    <title>Graphic Miles — Raji Adewunmi Farouq</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Graphic Miles</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Navigation -->
-    <div class="nav">
-        <div class="container nav-inner">
-            <a class="logo" href="#">graphicmiles</a>
-            <div class="menu">
-                <a href="#work">Work</a>
-                <a href="#about">About</a>
-                <a href="mailto:rfarouq69@gmail.com">Contact</a>
+    <!-- Mobile: Card Deck -->
+    <div class="deck" id="deck">
+        
+        <!-- Card 1: Identity -->
+        <div class="card card-1" data-index="0">
+            <div class="card-content">
+                <div class="card-top">
+                    <span class="card-number">01</span>
+                    <span class="card-tag">IDENTITY</span>
+                </div>
+                <div class="card-main">
+                    <h1 class="hero-name">
+                        <span class="name-line">Raji</span>
+                        <span class="name-line name-line--indent">Adewunmi</span>
+                        <span class="name-line">Farouq</span>
+                    </h1>
+                </div>
+                <div class="card-bottom">
+                    <p class="card-desc">Developer & builder from Lagos, Nigeria</p>
+                    <div class="card-meta">
+                        <span>Web</span>
+                        <span class="meta-sep">/</span>
+                        <span>AI</span>
+                        <span class="meta-sep">/</span>
+                        <span>Product</span>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <!-- Card 2: Work -->
+        <div class="card card-2" data-index="1">
+            <div class="card-content">
+                <div class="card-top">
+                    <span class="card-number">02</span>
+                    <span class="card-tag">SELECTED WORK</span>
+                </div>
+                <div class="card-main">
+                    <div class="work-grid">
+                        <div class="work-item" data-project="nearspace">
+                            <div class="work-img">
+                                <img src="assets/projects/nearspace.jpg" alt="Nearspace">
+                            </div>
+                            <div class="work-info">
+                                <h3>Nearspace</h3>
+                                <span class="work-type">Creator Discovery Platform</span>
+                            </div>
+                        </div>
+                        <div class="work-item" data-project="legally">
+                            <div class="work-img">
+                                <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied">
+                            </div>
+                            <div class="work-info">
+                                <h3>Legally Unbullied</h3>
+                                <span class="work-type">AI Legal Assistant</span>
+                            </div>
+                        </div>
+                        <div class="work-item" data-project="mrnobody">
+                            <div class="work-img">
+                                <img src="assets/projects/mr-nobody.jpg" alt="Mr Nobody">
+                            </div>
+                            <div class="work-info">
+                                <h3>Mr Nobody</h3>
+                                <span class="work-type">Privacy Browser</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-bottom">
+                    <span class="card-count">+2 more projects</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Building -->
+        <div class="card card-3" data-index="2">
+            <div class="card-content">
+                <div class="card-top">
+                    <span class="card-number">03</span>
+                    <span class="card-tag">CURRENTLY</span>
+                </div>
+                <div class="card-main">
+                    <h2 class="section-title">Building</h2>
+                    <div class="building-list">
+                        <div class="building-item">
+                            <div class="building-status">
+                                <span class="status-dot status-dot--live"></span>
+                                <span>Shipping</span>
+                            </div>
+                            <p>Nearspace — creator discovery with location-aware browsing</p>
+                        </div>
+                        <div class="building-item">
+                            <div class="building-status">
+                                <span class="status-dot status-dot--iter"></span>
+                                <span>Iterating</span>
+                            </div>
+                            <p>Legally Unbullied — RAG-powered legal information system</p>
+                        </div>
+                        <div class="building-item">
+                            <div class="building-status">
+                                <span class="status-dot status-dot--explore"></span>
+                                <span>Exploring</span>
+                            </div>
+                            <p>AI automation — agent workflows connecting prompts, tools & APIs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: About -->
+        <div class="card card-4" data-index="3">
+            <div class="card-content">
+                <div class="card-top">
+                    <span class="card-number">04</span>
+                    <span class="card-tag">ABOUT</span>
+                </div>
+                <div class="card-main">
+                    <h2 class="section-title">How I<br>Work</h2>
+                    <p class="about-text">I build at the intersection of frontend engineering and AI — where clean interfaces meet useful backends. Every project starts with understanding what needs to exist and why.</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="about-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Location</span>
+                            <span class="detail-value">Lagos, Nigeria</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Available</span>
+                            <span class="detail-value">Remote projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Capabilities -->
+        <div class="card card-5" data-index="4">
+            <div class="card-content">
+                <div class="card-top">
+                    <span class="card-number">05</span>
+                    <span class="card-tag">CAPABILITIES</span>
+                </div>
+                <div class="card-main">
+                    <div class="capabilities-grid">
+                        <div class="cap-column">
+                            <h4 class="cap-title">Frontend</h4>
+                            <ul class="cap-list">
+                                <li>JavaScript</li>
+                                <li>TypeScript</li>
+                                <li>React</li>
+                                <li>Vite</li>
+                                <li>HTML/CSS</li>
+                            </ul>
+                        </div>
+                        <div class="cap-column">
+                            <h4 class="cap-title">Backend</h4>
+                            <ul class="cap-list">
+                                <li>Python</li>
+                                <li>FastAPI</li>
+                                <li>Firebase</li>
+                                <li>Node.js</li>
+                                <li>REST APIs</li>
+                            </ul>
+                        </div>
+                        <div class="cap-column">
+                            <h4 class="cap-title">AI & Automation</h4>
+                            <ul class="cap-list">
+                                <li>RAG</li>
+                                <li>Retrieval Pipelines</li>
+                                <li>AI Workflows</li>
+                                <li>Computer Vision</li>
+                                <li>Agentic Systems</li>
+                            </ul>
+                        </div>
+                        <div class="cap-column">
+                            <h4 class="cap-title">Mobile</h4>
+                            <ul class="cap-list">
+                                <li>Java</li>
+                                <li>Android</li>
+                                <li>Capacitor</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6: Contact -->
+        <div class="card card-6" data-index="5">
+            <div class="card-content">
+                <div class="card-top">
+                    <span class="card-number">06</span>
+                    <span class="card-tag">CONTACT</span>
+                </div>
+                <div class="card-main">
+                    <h2 class="section-title">Let's Build<br>Something</h2>
+                    <p class="contact-text">Available for frontend builds, product interfaces, AI automation, and backend integrations.</p>
+                </div>
+                <div class="card-bottom">
+                    <div class="contact-links">
+                        <a href="mailto:rfarouq69@gmail.com" class="contact-link">rfarouq69@gmail.com</a>
+                        <a href="https://github.com/GraphicMiles" target="_blank" class="contact-link">GitHub</a>
+                        <a href="https://x.com/DSGNBYMILES" target="_blank" class="contact-link">X / Twitter</a>
+                        <a href="https://www.linkedin.com/search/results/all/?keywords=Raji%20Adewunmi%20Farouq" target="_blank" class="contact-link">LinkedIn</a>
+                    </div>
+                    <div class="contact-footer">
+                        <span>© 2026 Raji Adewunmi Farouq</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Desktop: Bento Grid -->
+    <div class="bento" id="bento">
+        <div class="bento-grid">
+            
+            <!-- Portal 1: Identity (Large) -->
+            <div class="portal portal-identity" data-portal="identity">
+                <div class="portal-inner">
+                    <span class="portal-number">01</span>
+                    <h1 class="portal-name">Raji<br>Adewunmi<br>Farouq</h1>
+                    <p class="portal-subtitle">Developer & builder from Lagos</p>
+                </div>
+            </div>
+
+            <!-- Portal 2: Work -->
+            <div class="portal portal-work" data-portal="work">
+                <div class="portal-inner">
+                    <span class="portal-number">02</span>
+                    <h2 class="portal-title">Selected<br>Work</h2>
+                    <div class="portal-preview">
+                        <img src="assets/projects/nearspace.jpg" alt="Nearspace">
+                        <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied">
+                    </div>
+                    <span class="portal-count">5 projects</span>
+                </div>
+            </div>
+
+            <!-- Portal 3: Building -->
+            <div class="portal portal-building" data-portal="building">
+                <div class="portal-inner">
+                    <span class="portal-number">03</span>
+                    <h2 class="portal-title">Currently<br>Building</h2>
+                    <div class="portal-status">
+                        <span class="status-indicator"></span>
+                        <span>Shipping, iterating, exploring</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Portal 4: About -->
+            <div class="portal portal-about" data-portal="about">
+                <div class="portal-inner">
+                    <span class="portal-number">04</span>
+                    <h2 class="portal-title">How I<br>Work</h2>
+                </div>
+            </div>
+
+            <!-- Portal 5: Capabilities -->
+            <div class="portal portal-capabilities" data-portal="capabilities">
+                <div class="portal-inner">
+                    <span class="portal-number">05</span>
+                    <h2 class="portal-title">What I<br>Build With</h2>
+                </div>
+            </div>
+
+            <!-- Portal 6: Contact -->
+            <div class="portal portal-contact" data-portal="contact">
+                <div class="portal-inner">
+                    <span class="portal-number">06</span>
+                    <h2 class="portal-title">Let's<br>Talk</h2>
+                    <a href="mailto:rfarouq69@gmail.com" class="portal-email">rfarouq69@gmail.com</a>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <div class="container">
-
-        <!-- Hero -->
-        <section class="hero">
-            <div class="hero-overline">Portfolio · 2024–2025</div>
-            <h1>Building <span class="highlight">web products</span> that work</h1>
-            <div class="hero-intro">
-                <p class="text">I'm Raji Adewunmi Farouq — a developer and builder from Lagos. I ship responsive interfaces, product prototypes, and practical AI systems that solve real problems.</p>
-                <div class="actions">
-                    <a href="#work" class="btn btn-primary">View my work</a>
-                    <a href="mailto:rfarouq69@gmail.com" class="btn btn-secondary">Get in touch</a>
-                    <a href="https://github.com/GraphicMiles" target="_blank" class="btn btn-ghost">GitHub →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects -->
-        <section class="projects" id="work">
-            <div class="section-header">
-                <div class="label">Selected work</div>
-                <h2>Projects I've built</h2>
-            </div>
-
-            <!-- Nearspace -->
-            <article class="project-card">
-                <div class="card-header">
-                    <div class="card-visual">
-                        <img src="assets/projects/nearspace.jpg" alt="Nearspace — creator-discovery platform">
-                    </div>
-                    <div class="card-intro">
-                        <div class="tag"><span class="dot"></span> Live · 2025</div>
-                        <h3>Nearspace</h3>
-                        <p>Creator-discovery platform for finding nearby builders and professionals. A real shipped product with live user flows for discovery, profiles, and location-aware browsing.</p>
-                    </div>
-                </div>
-                <div class="card-details">
-                    <div class="detail">
-                        <h4>What I built</h4>
-                        <ul>
-                            <li>Full frontend interface from scratch</li>
-                            <li>Location-aware discovery and filtering</li>
-                            <li>Profile pages with project showcases</li>
-                            <li>Mobile-first responsive design</li>
-                        </ul>
-                    </div>
-                    <div class="detail">
-                        <h4>Technologies</h4>
-                        <p>JavaScript, HTML/CSS, Responsive UI, Product Design</p>
-                    </div>
-                    <div class="detail">
-                        <h4>Status</h4>
-                        <p>Live and deployed at nearspace.com.ng</p>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="tech-tags">
-                        <span>JavaScript</span>
-                        <span>HTML/CSS</span>
-                        <span>Responsive</span>
-                    </div>
-                    <div class="links">
-                        <a href="https://nearspace.com.ng" target="_blank">Live site</a>
-                        <a href="https://github.com/GraphicMiles" target="_blank">GitHub</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Legally Unbullied -->
-            <article class="project-card">
-                <div class="card-header">
-                    <div class="card-visual">
-                        <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied — AI legal assistant">
-                    </div>
-                    <div class="card-intro">
-                        <div class="tag"><span class="dot"></span> Live · 2025</div>
-                        <h3>Legally Unbullied</h3>
-                        <p>Nigerian legal-information assistant combining web interface with retrieval-augmented AI. Users ask questions and receive source-backed answers from legal documents.</p>
-                    </div>
-                </div>
-                <div class="card-details">
-                    <div class="detail">
-                        <h4>What I built</h4>
-                        <ul>
-                            <li>Q&A interface with source attribution</li>
-                            <li>Retrieval and AI answer pipeline</li>
-                            <li>Document search and passage ranking</li>
-                            <li>Trust-building UI for legal content</li>
-                        </ul>
-                    </div>
-                    <div class="detail">
-                        <h4>Technologies</h4>
-                        <p>JavaScript, Python, FastAPI, AI/ML, RAG</p>
-                    </div>
-                    <div class="detail">
-                        <h4>Status</h4>
-                        <p>Live and deployed on Render</p>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="tech-tags">
-                        <span>JavaScript</span>
-                        <span>Python</span>
-                        <span>FastAPI</span>
-                        <span>AI/ML</span>
-                    </div>
-                    <div class="links">
-                        <a href="https://legally-unbullied.onrender.com" target="_blank">Live site</a>
-                        <a href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank">GitHub</a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Smaller Projects -->
-            <div class="project-small-grid">
-                <article class="project-small">
-                    <div class="tag">Android + Web · 2024</div>
-                    <h3>Mr Nobody</h3>
-                    <p>Privacy-focused browser spanning Android and web with privacy controls and task assistant concept.</p>
-                    <div class="meta">
-                        <span class="tech">Java · Android · Capacitor</span>
-                        <span class="year">2024</span>
-                    </div>
-                </article>
-
-                <article class="project-small">
-                    <div class="tag">Landing Page · 2024</div>
-                    <h3>The Touchline</h3>
-                    <p>Editorial football news layout with lead stories, navigation, and readable content structure.</p>
-                    <div class="meta">
-                        <span class="tech">HTML/CSS · JavaScript</span>
-                        <span class="year">2024</span>
-                    </div>
-                </article>
-
-                <article class="project-small">
-                    <div class="tag">Landing Page · 2024</div>
-                    <h3>Metrix</h3>
-                    <p>SaaS analytics landing page with product messaging, dashboard preview, and conversion structure.</p>
-                    <div class="meta">
-                        <span class="tech">HTML/CSS · JavaScript</span>
-                        <span class="year">2024</span>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section class="about" id="about">
-            <div class="about-text">
-                <h2>About me</h2>
-                <p>I build responsive web experiences and practical product interfaces, with working knowledge of AI automation and retrieval-based systems.</p>
-                <p>I'm interested in the intersection of frontend engineering and AI — where a clean interface meets a useful backend. My projects range from product-facing web apps to AI-assisted tools.</p>
-                <p>Based in Lagos, Nigeria. Available for remote projects and technical collaboration.</p>
-            </div>
-            <div class="about-cards">
-                <div class="about-card">
-                    <h4>Focus</h4>
-                    <p>Frontend engineering, product UI, AI automation, backend integrations</p>
-                </div>
-                <div class="about-card">
-                    <h4>Technologies</h4>
-                    <p>JavaScript, TypeScript, Python, React, Vite, Firebase, FastAPI, Java, Capacitor, AI Automation, Computer Vision</p>
-                </div>
-                <div class="about-card">
-                    <h4>Location</h4>
-                    <p>Lagos, Nigeria</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section class="contact">
-            <div class="contact-inner">
-                <h2>Let's build something together</h2>
-                <p>Available for frontend builds, product interfaces, AI automation, and backend integrations.</p>
-                <div class="contact-links">
-                    <a href="mailto:rfarouq69@gmail.com" class="email">rfarouq69@gmail.com</a>
-                    <a href="https://github.com/GraphicMiles" target="_blank" class="social">GitHub</a>
-                    <a href="https://x.com/DSGNBYMILES" target="_blank" class="social">X</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer>
-            <span>© 2026 Raji Adewunmi Farouq</span>
-            <a href="mailto:rfarouq69@gmail.com">rfarouq69@gmail.com</a>
-        </footer>
-
+    <!-- Project Detail Overlay -->
+    <div class="overlay" id="projectOverlay" hidden>
+        <button class="overlay-close" id="closeOverlay">× Close</button>
+        <div class="overlay-content" id="overlayContent"></div>
     </div>
 
     <script src="script.js"></script>
