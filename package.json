@@ -1,0 +1,9 @@
+{
+  "name": "graphicmiles-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node static-build.js",
+    "postinstall": "mkdir -p node_modules/.bin && printf '%s\\n' '#!/usr/bin/env node' 'require(\"../../static-build.js\");' > node_modules/.bin/vite && chmod +x node_modules/.bin/vite"
+  }
+}
