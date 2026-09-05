@@ -1,5 +1,5 @@
 (function () {
-    const EMAIL = "munaonye4@gmail.com";
+    const EMAIL = "rfarouq69@gmail.com";
     const root = document.documentElement.getAttribute("data-root") || "";
 
     const dockIcons = {
@@ -17,14 +17,14 @@
         const homeHref = root + "index.html";
         const projectsHref = page === "case" ? "index.html" : root + "projects/index.html";
         const contactHref = page === "home" ? "#contact" : root + "index.html#contact";
-        const resumeHref = root + "Munachi_Onyebuchi_Bright_Resume.pdf";
+        const resumeHref = "https://x.com/DSGNBYMILES";
 
         const items = [
             { key: "Home", href: homeHref, label: "Home" },
             { key: "Projects", href: projectsHref, label: "Projects" },
-            { key: "Github", href: "https://github.com/munachi821", label: "Github", external: true },
+            { key: "Github", href: "https://github.com/GraphicMiles", label: "Github", external: true },
             { key: "Contact", href: contactHref, label: "Contact" },
-            { key: "Resume", href: resumeHref, label: "Resume", divider: true, external: true }
+            { key: "Resume", href: resumeHref, label: "X", divider: true, external: true }
         ];
 
         const wrap = document.createElement("div");
