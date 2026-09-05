@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept 01 — Graphic Miles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #f8f7f4;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        
+        header {
+            padding: 2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e0deda;
+        }
+        
+        .logo { font-weight: 700; font-size: 1.1rem; }
+        
+        nav a {
+            margin-left: 2rem;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        nav a:hover { color: #1a1a1a; }
+        
+        .hero {
+            padding: 8rem 3rem 6rem;
+            max-width: 900px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero p {
+            font-size: 1.15rem;
+            color: #555;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+        
+        .work-section {
+            padding: 4rem 3rem;
+            border-top: 1px solid #e0deda;
+        }
+        
+        .work-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+            align-items: start;
+        }
+        
+        .project:nth-child(even) { direction: rtl; }
+        .project:nth-child(even) > * { direction: ltr; }
+        
+        .project-img {
+            aspect-ratio: 4/3;
+            background: #e8e6e1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-info .tag {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        
+        .project-info p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .project-info .tech {
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .project-info a {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .about-section {
+            padding: 4rem 3rem;
+            border-top: 1px solid #e0deda;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-section p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+        
+        .about-details h4 {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .about-details p {
+            font-size: 0.95rem;
+        }
+        
+        footer {
+            padding: 3rem;
+            border-top: 1px solid #e0deda;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        footer span { color: #999; font-size: 0.85rem; }
+        
+        @media (max-width: 768px) {
+            header, .hero, .work-section, .about-section, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .project { grid-template-columns: 1fr; gap: 1.5rem; }
+            .project:nth-child(even) { direction: ltr; }
+            .about-section { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">graphicmiles</div>
+        <nav>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="mailto:rfarouq69@gmail.com">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>I build web products and AI-powered tools.</h1>
+        <p>Raji Adewunmi Farouq. Developer from Lagos building responsive interfaces, product prototypes, and practical AI systems.</p>
+        <div class="hero-links">
+            <a href="#work">View work</a>
+            <a href="mailto:rfarouq69@gmail.com">Get in touch</a>
+        </div>
+    </section>
+
+    <section class="work-section" id="work">
+        <div class="section-label">Selected work</div>
+        <h2>Products and projects</h2>
+
+        <div class="project">
+            <div class="project-img">
+                <img src="assets/projects/nearspace.jpg" alt="Nearspace">
+            </div>
+            <div class="project-info">
+                <div class="tag">Web app · 2025</div>
+                <h3>Nearspace</h3>
+                <p>Creator-discovery platform for finding nearby builders and professionals. A real shipped product with live user flows for discovery, profiles, and location-aware browsing.</p>
+                <div class="tech">JavaScript · HTML/CSS · Responsive UI</div>
+                <a href="https://nearspace.com.ng" target="_blank">View live site →</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-img">
+                <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied">
+            </div>
+            <div class="project-info">
+                <div class="tag">AI web app · 2025</div>
+                <h3>Legally Unbullied</h3>
+                <p>Nigerian legal-information assistant combining web interface with retrieval-augmented AI. Users ask questions and receive source-backed answers from legal documents.</p>
+                <div class="tech">JavaScript · Python · FastAPI · AI/ML</div>
+                <a href="https://legally-unbullied.onrender.com" target="_blank">View live site →</a>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-img">
+                <img src="assets/projects/mr-nobody.jpg" alt="Mr Nobody">
+            </div>
+            <div class="project-info">
+                <div class="tag">Android + web · 2024</div>
+                <h3>Mr Nobody</h3>
+                <p>Privacy-focused browser spanning Android and web. Includes privacy controls, browsing workflows, and a bounded task assistant concept for safer browsing.</p>
+                <div class="tech">Java · Android · Capacitor · HTML/CSS</div>
+                <a href="https://github.com/GraphicMiles/Mr-Nobody" target="_blank">View on GitHub →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div>
+            <h2>About</h2>
+            <p>I design and ship responsive web interfaces, product prototypes, and practical AI automation systems. My work spans frontend engineering, backend integrations, and retrieval-augmented AI applications.</p>
+            <p>Based in Lagos, Nigeria. Available for remote projects and technical collaboration.</p>
+        </div>
+        <div class="about-details">
+            <h4>Focus</h4>
+            <p>Frontend engineering, product UI, AI automation, backend integrations</p>
+            <h4>Technologies</h4>
+            <p>JavaScript, TypeScript, Python, React, Vite, Firebase, FastAPI, Java, Capacitor, AI Automation, Computer Vision</p>
+            <h4>Location</h4>
+            <p>Lagos, Nigeria</p>
+        </div>
+    </section>
+
+    <footer>
+        <span>© 2026 Raji Adewunmi Farouq</span>
+        <span>rfarouq69@gmail.com</span>
+    </footer>
+</body>
+</html>

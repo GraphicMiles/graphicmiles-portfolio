@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept 03 — Graphic Miles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=DM+Sans:wght@400;500;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #fff;
+            color: #111;
+            line-height: 1.7;
+        }
+        
+        a { color: #111; text-decoration: none; }
+        
+        .masthead {
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #111;
+        }
+        
+        .masthead .logo {
+            font-family: 'Newsreader', serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .masthead nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-left: 2rem;
+            color: #666;
+        }
+        
+        .masthead nav a:hover { color: #111; }
+        
+        .headline-section {
+            padding: 6rem 4rem 4rem;
+            max-width: 1000px;
+        }
+        
+        .headline-section .overline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 1.5rem;
+        }
+        
+        .headline-section h1 {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(2.8rem, 5vw, 4.2rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 2rem;
+            max-width: 14ch;
+        }
+        
+        .headline-section .deck {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        
+        .headline-section .byline {
+            font-size: 0.85rem;
+            color: #999;
+        }
+        
+        .headline-section .byline a { color: #111; border-bottom: 1px solid #111; }
+        
+        .thick-rule { border: 0; border-top: 2px solid #111; margin: 0 4rem; }
+        .thin-rule { border: 0; border-top: 1px solid #ddd; margin: 0 4rem; }
+        
+        .project-feature {
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .project-feature.reverse { direction: rtl; }
+        .project-feature.reverse > * { direction: ltr; }
+        
+        .project-feature .visual {
+            aspect-ratio: 4/3;
+            background: #f5f5f0;
+            overflow: hidden;
+        }
+        
+        .project-feature .visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-feature:hover .visual img {
+            transform: scale(1.03);
+        }
+        
+        .project-feature .content .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.75rem;
+        }
+        
+        .project-feature .content h2 {
+            font-family: 'Newsreader', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        .project-feature .content p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .project-feature .content .meta-line {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-feature .content .project-link {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #111;
+            border-bottom: 1px solid #111;
+            padding-bottom: 0.1rem;
+        }
+        
+        .project-feature .content .project-link:hover {
+            border-color: #999;
+            color: #999;
+        }
+        
+        .project-list-item {
+            padding: 2rem 4rem;
+            display: grid;
+            grid-template-columns: 200px 1fr 150px;
+            gap: 2rem;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .project-list-item .num {
+            font-family: 'Newsreader', serif;
+            font-size: 2rem;
+            color: #ccc;
+        }
+        
+        .project-list-item h3 {
+            font-family: 'Newsreader', serif;
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+        
+        .project-list-item .desc {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .project-list-item .year {
+            font-size: 0.8rem;
+            color: #aaa;
+            text-align: right;
+        }
+        
+        .editorial-section {
+            padding: 5rem 4rem;
+            max-width: 700px;
+        }
+        
+        .editorial-section h2 {
+            font-family: 'Newsreader', serif;
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+        
+        .editorial-section p {
+            color: #555;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 3rem 4rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .info-grid .col h4 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.75rem;
+        }
+        
+        .info-grid .col p {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        footer {
+            padding: 2rem 4rem;
+            border-top: 2px solid #111;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        footer span { font-size: 0.8rem; color: #999; }
+        footer a { font-size: 0.8rem; color: #666; border-bottom: 1px solid #ccc; }
+        footer a:hover { color: #111; border-color: #111; }
+        
+        @media (max-width: 768px) {
+            .masthead, .headline-section, .project-feature, .editorial-section, .info-grid, footer, .project-list-item { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .thick-rule, .thin-rule { margin: 0 1.5rem; }
+            .headline-section h1 { font-size: 2.2rem; }
+            .project-feature { grid-template-columns: 1fr; gap: 1.5rem; }
+            .project-feature.reverse { direction: ltr; }
+            .project-list-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .project-list-item .num { display: none; }
+            .project-list-item .year { text-align: left; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="masthead">
+        <div class="logo">Graphic Miles</div>
+        <nav>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="mailto:rfarouq69@gmail.com">Contact</a>
+        </nav>
+    </header>
+
+    <section class="headline-section">
+        <div class="overline">Portfolio</div>
+        <h1>Building products that work</h1>
+        <p class="deck">Raji Adewunmi Farouq is a developer from Lagos who builds web products, AI-powered tools, and responsive interfaces — from concept to deployment.</p>
+        <p class="byline">Contact: <a href="mailto:rfarouq69@gmail.com">rfarouq69@gmail.com</a> · <a href="https://github.com/GraphicMiles" target="_blank">GitHub</a></p>
+    </section>
+
+    <hr class="thick-rule">
+
+    <section id="work">
+        <article class="project-feature">
+            <div class="visual">
+                <img src="assets/projects/nearspace.jpg" alt="Nearspace">
+            </div>
+            <div class="content">
+                <div class="tag">Featured · Realtime web app</div>
+                <h2>Nearspace</h2>
+                <p>Creator-discovery platform for finding nearby builders and professionals. A real shipped product with live user flows for discovery, profiles, and location-aware browsing.</p>
+                <div class="meta-line">JavaScript · HTML/CSS · Responsive UI · 2025</div>
+                <a class="project-link" href="https://nearspace.com.ng" target="_blank">View live site</a>
+            </div>
+        </article>
+
+        <hr class="thin-rule">
+
+        <article class="project-feature reverse">
+            <div class="visual">
+                <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied">
+            </div>
+            <div class="content">
+                <div class="tag">Featured · AI web app</div>
+                <h2>Legally Unbullied</h2>
+                <p>Nigerian legal-information assistant combining web interface with retrieval-augmented AI. Users ask questions and receive source-backed answers from legal documents.</p>
+                <div class="meta-line">JavaScript · Python · FastAPI · AI/ML · 2025</div>
+                <a class="project-link" href="https://legally-unbullied.onrender.com" target="_blank">View live site</a>
+            </div>
+        </article>
+
+        <hr class="thick-rule">
+
+        <div class="project-list-item">
+            <div class="num">03</div>
+            <div>
+                <h3>Mr Nobody</h3>
+                <div class="desc">Privacy browser for Android with task assistant concept</div>
+            </div>
+            <div class="year">2024</div>
+        </div>
+
+        <div class="project-list-item">
+            <div class="num">04</div>
+            <div>
+                <h3>The Touchline</h3>
+                <div class="desc">Editorial football news layout</div>
+            </div>
+            <div class="year">2024</div>
+        </div>
+
+        <div class="project-list-item">
+            <div class="num">05</div>
+            <div>
+                <h3>Metrix</h3>
+                <div class="desc">SaaS analytics landing page</div>
+            </div>
+            <div class="year">2024</div>
+        </div>
+    </section>
+
+    <hr class="thick-rule">
+
+    <section class="editorial-section" id="about">
+        <h2>About</h2>
+        <p>Graphic Miles is the portfolio of Raji Adewunmi Farouq. I build responsive web experiences and practical product interfaces, with working knowledge of AI automation and retrieval-based systems.</p>
+        <p>I'm interested in the intersection of frontend engineering and AI — where a clean interface meets a useful backend. My projects range from product-facing web apps to AI-assisted tools.</p>
+    </section>
+
+    <div class="info-grid">
+        <div class="col">
+            <h4>Focus</h4>
+            <p>Frontend engineering, product UI, AI automation, backend integrations</p>
+        </div>
+        <div class="col">
+            <h4>Technologies</h4>
+            <p>JavaScript, TypeScript, Python, React, Vite, Firebase, FastAPI, Java, Capacitor, AI Automation, Computer Vision</p>
+        </div>
+        <div class="col">
+            <h4>Location</h4>
+            <p>Lagos, Nigeria. Available for remote projects and technical collaboration.</p>
+        </div>
+    </div>
+
+    <footer>
+        <span>© 2026 Raji Adewunmi Farouq</span>
+        <a href="mailto:rfarouq69@gmail.com">rfarouq69@gmail.com</a>
+    </footer>
+</body>
+</html>

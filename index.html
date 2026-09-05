@@ -3,326 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Graphic Miles — portfolio of Raji Adewunmi Farouq, a web developer building responsive sites, product interfaces, and practical AI automation workflows.">
+    <meta name="description" content="Graphic Miles — portfolio of Raji Adewunmi Farouq, a developer building web products, AI tools, and responsive interfaces from Lagos.">
     <title>Graphic Miles — Raji Adewunmi Farouq</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="section navbar">
-        <div class="nav-inner">
-            <a class="brand" href="#top" aria-label="Graphic Miles portfolio home">
-                <span class="brand-mark">G</span>
-                <span class="brand-name">graphicmiles</span>
-            </a>
 
-            <nav class="nav-links" aria-label="Main navigation">
-                <a href="#work-panel">Work</a>
-                <a href="#services-panel">Services</a>
-                <a href="#about-panel">About</a>
-            </nav>
-
-            <div class="nav-actions">
-                <a class="button button-dark" href="mailto:rfarouq69@gmail.com?subject=Project%20inquiry">Hire me</a>
-                <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" data-menu-button>
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+    <!-- Navigation -->
+    <div class="nav">
+        <div class="container nav-inner">
+            <a class="logo" href="#">graphicmiles</a>
+            <div class="menu">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="mailto:rfarouq69@gmail.com">Contact</a>
             </div>
         </div>
-    </header>
+    </div>
 
-    <nav class="mobile-menu" aria-label="Mobile navigation" hidden data-mobile-menu>
-        <a href="#work-panel">Work</a>
-        <a href="#services-panel">Services</a>
-        <a href="#about-panel">About</a>
-    </nav>
+    <div class="container">
 
-    <main id="top" class="page">
-        <section class="section profile">
-            <div class="cover" aria-label="Portfolio cover">
-                <span>Web development</span>
-                <span>AI automation</span>
-            </div>
-
-            <div class="profile-body">
-                <button class="avatar" type="button" aria-label="Open profile photo" data-avatar-open>
-                    <img src="assets/profile.jpg" alt="Raji Adewunmi Farouq">
-                </button>
-
-                <div class="profile-copy">
-                    <h1>Raji Adewunmi Farouq</h1>
-                    <p>Web developer building responsive websites, product interfaces, and practical automation workflows, with hands-on experience connecting AI tools to real product tasks.</p>
-                </div>
-
-                <div class="profile-actions" aria-label="Profile actions">
-                    <a class="button button-dark" href="mailto:rfarouq69@gmail.com?subject=Project%20inquiry">
-                        <i class="fa-regular fa-message"></i>
-                        Message
-                    </a>
-                    <a class="button button-light" href="#work-panel">View work</a>
-                </div>
-            </div>
-
-            <div class="profile-details">
-                <article class="notice-card">
-                    <i class="fa-solid fa-pen"></i>
-                    <div>
-                        <strong>Ready for work</strong>
-                        <span>Available for frontend builds, landing pages, product UI, and practical AI automation work.</span>
-                    </div>
-                </article>
-
-                <div class="profile-summary">
-                    <div class="profile-meta" aria-label="Social links">
-                        <a href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer" aria-label="Graphic Miles on GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://x.com/DSGNBYMILES" target="_blank" rel="noopener noreferrer" aria-label="Graphic Miles on X"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="https://www.linkedin.com/search/results/all/?keywords=Raji%20Adewunmi%20Farouq" target="_blank" rel="noopener noreferrer" aria-label="Find Raji on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="mailto:rfarouq69@gmail.com?subject=Project%20inquiry" aria-label="Email Raji"><i class="fa-solid fa-envelope"></i></a>
-                    </div>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-overline">Portfolio · 2024–2025</div>
+            <h1>Building <span class="highlight">web products</span> that work</h1>
+            <div class="hero-intro">
+                <p class="text">I'm Raji Adewunmi Farouq — a developer and builder from Lagos. I ship responsive interfaces, product prototypes, and practical AI systems that solve real problems.</p>
+                <div class="actions">
+                    <a href="#work" class="btn btn-primary">View my work</a>
+                    <a href="mailto:rfarouq69@gmail.com" class="btn btn-secondary">Get in touch</a>
+                    <a href="https://github.com/GraphicMiles" target="_blank" class="btn btn-ghost">GitHub →</a>
                 </div>
             </div>
         </section>
 
-        <section class="section tabs" aria-label="Portfolio sections">
-            <div class="tabs-inner">
-                <button class="tab active" type="button" id="work-tab" data-tab="work" aria-controls="work-panel" aria-selected="true">Work</button>
-                <button class="tab" type="button" id="services-tab" data-tab="services" aria-controls="services-panel" aria-selected="false">Services</button>
-                <button class="tab" type="button" id="about-tab" data-tab="about" aria-controls="about-panel" aria-selected="false">About</button>
-            </div>
-        </section>
-
-        <section class="section panel active" id="work-panel" aria-labelledby="work-tab">
-            <article class="work-card" data-project="nearspace" tabindex="0" role="button" aria-label="Open Nearspace project details">
-                <img class="project-shot" src="assets/projects/nearspace.jpg" alt="Desktop screenshot of the Nearspace landing page" loading="lazy">
-                <div class="work-overlay">
-                    <div class="work-copy">
-                        <span>Realtime web app</span>
-                        <h2>Nearspace</h2>
-                        <p>Creator-discovery product for finding nearby builders and professionals.</p>
-                    </div>
-                </div>
-            </article>
-
-            <article class="work-card" data-project="legally" tabindex="0" role="button" aria-label="Open Legally Unbullied project details">
-                <img class="project-shot" src="assets/projects/legally-unbullied.jpg" alt="Desktop screenshot of the Legally Unbullied legal assistant interface" loading="lazy">
-                <div class="work-overlay">
-                    <div class="work-copy">
-                        <span>AI-assisted web app</span>
-                        <h2>Legally Unbullied</h2>
-                        <p>Legal-information assistant for asking questions and reviewing source-backed answers.</p>
-                    </div>
-                </div>
-            </article>
-
-            <article class="work-card" data-project="mrnobody" tabindex="0" role="button" aria-label="Open Mr Nobody project details">
-                <img class="project-shot" src="assets/projects/mr-nobody.jpg" alt="Desktop screenshot of the Mr Nobody website" loading="lazy">
-                <div class="work-overlay">
-                    <div class="work-copy">
-                        <span>Android privacy browser</span>
-                        <h2>Mr Nobody</h2>
-                        <p>Privacy-focused browser project with a bounded task assistant concept.</p>
-                    </div>
-                </div>
-            </article>
-
-            <article class="work-card" data-project="touchline" tabindex="0" role="button" aria-label="Open Touchline project details">
-                <img class="project-shot" src="assets/projects/touchline.jpg" alt="Desktop screenshot of The Touchline news blog landing page" loading="lazy">
-                <div class="work-overlay">
-                    <div class="work-copy">
-                        <span>News blog landing page</span>
-                        <h2>The Touchline</h2>
-                        <p>Editorial football news layout from the demos landing-page collection.</p>
-                    </div>
-                </div>
-            </article>
-
-            <article class="work-card" data-project="metrix" tabindex="0" role="button" aria-label="Open Metrix project details">
-                <img class="project-shot" src="assets/projects/metrix.jpg" alt="Desktop screenshot of the Metrix SaaS landing page" loading="lazy">
-                <div class="work-overlay">
-                    <div class="work-copy">
-                        <span>SaaS landing page</span>
-                        <h2>Metrix</h2>
-                        <p>Analytics landing page from the demos collection with dashboard-focused messaging.</p>
-                    </div>
-                </div>
-            </article>
-        </section>
-
-        <section class="section panel services-panel" id="services-panel" aria-labelledby="services-tab" hidden>
-            <div class="section-heading section-heading-split">
-                <span class="section-label">Services</span>
-                <div>
-                    <h2>Web development with practical automation support.</h2>
-                    <p>I build responsive websites and product interfaces, then add automation or AI workflows where they genuinely help the product.</p>
-                </div>
+        <!-- Projects -->
+        <section class="projects" id="work">
+            <div class="section-header">
+                <div class="label">Selected work</div>
+                <h2>Projects I've built</h2>
             </div>
 
-            <div class="service-list">
-                <article class="service-card">
-                    <div class="service-copy">
-                        <h3>Frontend websites</h3>
-                        <p>Responsive marketing sites, portfolios, and product pages built with clean structure and maintainable CSS/JavaScript.</p>
-                        <div class="tags">
-                            <span>HTML/CSS</span>
-                            <span>JavaScript</span>
-                            <span>Responsive UI</span>
-                        </div>
-                        <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=Frontend%20website%20build">Request <i class="fa-solid fa-arrow-right"></i></a>
+            <!-- Nearspace -->
+            <article class="project-card">
+                <div class="card-header">
+                    <div class="card-visual">
+                        <img src="assets/projects/nearspace.jpg" alt="Nearspace — creator-discovery platform">
+                    </div>
+                    <div class="card-intro">
+                        <div class="tag"><span class="dot"></span> Live · 2025</div>
+                        <h3>Nearspace</h3>
+                        <p>Creator-discovery platform for finding nearby builders and professionals. A real shipped product with live user flows for discovery, profiles, and location-aware browsing.</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail">
+                        <h4>What I built</h4>
+                        <ul>
+                            <li>Full frontend interface from scratch</li>
+                            <li>Location-aware discovery and filtering</li>
+                            <li>Profile pages with project showcases</li>
+                            <li>Mobile-first responsive design</li>
+                        </ul>
+                    </div>
+                    <div class="detail">
+                        <h4>Technologies</h4>
+                        <p>JavaScript, HTML/CSS, Responsive UI, Product Design</p>
+                    </div>
+                    <div class="detail">
+                        <h4>Status</h4>
+                        <p>Live and deployed at nearspace.com.ng</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="tech-tags">
+                        <span>JavaScript</span>
+                        <span>HTML/CSS</span>
+                        <span>Responsive</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://nearspace.com.ng" target="_blank">Live site</a>
+                        <a href="https://github.com/GraphicMiles" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Legally Unbullied -->
+            <article class="project-card">
+                <div class="card-header">
+                    <div class="card-visual">
+                        <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied — AI legal assistant">
+                    </div>
+                    <div class="card-intro">
+                        <div class="tag"><span class="dot"></span> Live · 2025</div>
+                        <h3>Legally Unbullied</h3>
+                        <p>Nigerian legal-information assistant combining web interface with retrieval-augmented AI. Users ask questions and receive source-backed answers from legal documents.</p>
+                    </div>
+                </div>
+                <div class="card-details">
+                    <div class="detail">
+                        <h4>What I built</h4>
+                        <ul>
+                            <li>Q&A interface with source attribution</li>
+                            <li>Retrieval and AI answer pipeline</li>
+                            <li>Document search and passage ranking</li>
+                            <li>Trust-building UI for legal content</li>
+                        </ul>
+                    </div>
+                    <div class="detail">
+                        <h4>Technologies</h4>
+                        <p>JavaScript, Python, FastAPI, AI/ML, RAG</p>
+                    </div>
+                    <div class="detail">
+                        <h4>Status</h4>
+                        <p>Live and deployed on Render</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="tech-tags">
+                        <span>JavaScript</span>
+                        <span>Python</span>
+                        <span>FastAPI</span>
+                        <span>AI/ML</span>
+                    </div>
+                    <div class="links">
+                        <a href="https://legally-unbullied.onrender.com" target="_blank">Live site</a>
+                        <a href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Smaller Projects -->
+            <div class="project-small-grid">
+                <article class="project-small">
+                    <div class="tag">Android + Web · 2024</div>
+                    <h3>Mr Nobody</h3>
+                    <p>Privacy-focused browser spanning Android and web with privacy controls and task assistant concept.</p>
+                    <div class="meta">
+                        <span class="tech">Java · Android · Capacitor</span>
+                        <span class="year">2024</span>
                     </div>
                 </article>
 
-                <article class="service-card">
-                    <div class="service-copy">
-                        <h3>React product interfaces</h3>
-                        <p>Dashboards, app screens, and interactive flows using React, Vite, and component-first frontend patterns.</p>
-                        <div class="tags">
-                            <span>React</span>
-                            <span>Vite</span>
-                            <span>UI Engineering</span>
-                        </div>
-                        <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=React%20product%20interface">Request <i class="fa-solid fa-arrow-right"></i></a>
+                <article class="project-small">
+                    <div class="tag">Landing Page · 2024</div>
+                    <h3>The Touchline</h3>
+                    <p>Editorial football news layout with lead stories, navigation, and readable content structure.</p>
+                    <div class="meta">
+                        <span class="tech">HTML/CSS · JavaScript</span>
+                        <span class="year">2024</span>
                     </div>
                 </article>
 
-                <article class="service-card">
-                    <div class="service-copy">
-                        <h3>AI automation workflows</h3>
-                        <p>Practical workflows that connect prompts, tools, APIs, and data so repeated tasks can run with less manual effort.</p>
-                        <div class="tags">
-                            <span>Agentic flows</span>
-                            <span>APIs</span>
-                            <span>Automation</span>
-                        </div>
-                        <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=AI%20automation%20workflow">Request <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </article>
-
-                <article class="service-card">
-                    <div class="service-copy">
-                        <h3>Backend integrations</h3>
-                        <p>Small APIs, Firebase/FastAPI integrations, and data flows that support frontend apps and internal tools.</p>
-                        <div class="tags">
-                            <span>Firebase</span>
-                            <span>FastAPI</span>
-                            <span>Python</span>
-                        </div>
-                        <a class="service-link" href="mailto:rfarouq69@gmail.com?subject=Backend%20integration">Request <i class="fa-solid fa-arrow-right"></i></a>
+                <article class="project-small">
+                    <div class="tag">Landing Page · 2024</div>
+                    <h3>Metrix</h3>
+                    <p>SaaS analytics landing page with product messaging, dashboard preview, and conversion structure.</p>
+                    <div class="meta">
+                        <span class="tech">HTML/CSS · JavaScript</span>
+                        <span class="year">2024</span>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section class="section panel about-panel" id="about-panel" aria-labelledby="about-tab" hidden>
-            <div class="about-layout">
-                <div class="about-summary">
-                    <span class="section-label">About</span>
-                    <h2>A web developer who can connect interfaces to useful automation.</h2>
-                    <p>Graphic Miles is the portfolio of Raji Adewunmi Farouq. I build clean, responsive web experiences and practical product prototypes, with working knowledge of AI automation and agent-style workflows.</p>
-                    <a class="text-button" href="mailto:rfarouq69@gmail.com?subject=Project%20inquiry">Start a conversation <i class="fa-solid fa-arrow-right"></i></a>
+        <!-- About -->
+        <section class="about" id="about">
+            <div class="about-text">
+                <h2>About me</h2>
+                <p>I build responsive web experiences and practical product interfaces, with working knowledge of AI automation and retrieval-based systems.</p>
+                <p>I'm interested in the intersection of frontend engineering and AI — where a clean interface meets a useful backend. My projects range from product-facing web apps to AI-assisted tools.</p>
+                <p>Based in Lagos, Nigeria. Available for remote projects and technical collaboration.</p>
+            </div>
+            <div class="about-cards">
+                <div class="about-card">
+                    <h4>Focus</h4>
+                    <p>Frontend engineering, product UI, AI automation, backend integrations</p>
                 </div>
-
-                <div class="about-details">
-                    <div class="about-row">
-                        <span>Focus</span>
-                        <p>Responsive websites, frontend product UI, landing pages, small web apps, and automation-assisted workflows.</p>
-                    </div>
-                    <div class="about-row">
-                        <span>Location</span>
-                        <p>Lagos, Nigeria. Available for remote projects and technical collaboration.</p>
-                    </div>
-                    <div class="about-row vertical">
-                        <span>Skills and tools</span>
-                        <div class="tags">
-                            <span>JavaScript</span>
-                            <span>TypeScript</span>
-                            <span>Python</span>
-                            <span>React</span>
-                            <span>Vite</span>
-                            <span>Firebase</span>
-                            <span>FastAPI</span>
-                            <span>Java</span>
-                            <span>Capacitor</span>
-                            <span>AI Automation</span>
-                            <span>Computer Vision</span>
-                        </div>
-                    </div>
+                <div class="about-card">
+                    <h4>Technologies</h4>
+                    <p>JavaScript, TypeScript, Python, React, Vite, Firebase, FastAPI, Java, Capacitor, AI Automation, Computer Vision</p>
+                </div>
+                <div class="about-card">
+                    <h4>Location</h4>
+                    <p>Lagos, Nigeria</p>
                 </div>
             </div>
         </section>
 
-    </main>
-
-    <footer class="section footer">
-        <div class="footer-inner">
-            <div class="footer-intro">
-                <div class="footer-brand">
-                    <span class="brand-mark">G</span>
-                    <strong>graphicmiles</strong>
-                </div>
-                <p>Web development, product interfaces, and practical AI automation workflows.</p>
-                <a class="button button-dark" href="mailto:rfarouq69@gmail.com?subject=Project%20inquiry">Start a project</a>
-            </div>
-
-            <div class="footer-groups">
-                <div class="footer-group">
-                    <h3>Portfolio</h3>
-                    <a href="#work-panel">Selected work</a>
-                    <a href="#services-panel">Services</a>
-                    <a href="#about-panel">About</a>
-                </div>
-
-                <div class="footer-group">
-                    <h3>Projects</h3>
-                    <a href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer">Nearspace</a>
-                    <a href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank" rel="noopener noreferrer">Legally Unbullied</a>
-                    <a href="https://github.com/GraphicMiles/Mr-Nobody" target="_blank" rel="noopener noreferrer">Mr Nobody</a>
-                    <a href="https://github.com/GraphicMiles/demos" target="_blank" rel="noopener noreferrer">Touchline</a>
-                    <a href="https://github.com/GraphicMiles/demos" target="_blank" rel="noopener noreferrer">Metrix</a>
-                </div>
-
-                <div class="footer-group">
-                    <h3>Contact</h3>
-                    <a href="mailto:rfarouq69@gmail.com?subject=Project%20inquiry">rfarouq69@gmail.com</a>
+        <!-- Contact -->
+        <section class="contact">
+            <div class="contact-inner">
+                <h2>Let's build something together</h2>
+                <p>Available for frontend builds, product interfaces, AI automation, and backend integrations.</p>
+                <div class="contact-links">
+                    <a href="mailto:rfarouq69@gmail.com" class="email">rfarouq69@gmail.com</a>
+                    <a href="https://github.com/GraphicMiles" target="_blank" class="social">GitHub</a>
+                    <a href="https://x.com/DSGNBYMILES" target="_blank" class="social">X</a>
                 </div>
             </div>
+        </section>
 
-            <div class="footer-bottom">
-                <span>© 2026 Raji Adewunmi Farouq</span>
-            </div>
-        </div>
-    </footer>
+        <!-- Footer -->
+        <footer>
+            <span>© 2026 Raji Adewunmi Farouq</span>
+            <a href="mailto:rfarouq69@gmail.com">rfarouq69@gmail.com</a>
+        </footer>
 
-    <dialog class="avatar-lightbox" aria-label="Profile photo" data-avatar-lightbox>
-        <button class="lightbox-close" type="button" aria-label="Close profile photo" data-avatar-close>
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img src="assets/profile.jpg" alt="Raji Adewunmi Farouq profile photo">
-    </dialog>
+    </div>
 
-    <dialog class="modal" data-project-dialog>
-        <div class="modal-card">
-            <button class="modal-close" type="button" aria-label="Close case study" data-close-project>
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <span class="modal-label" data-project-category></span>
-            <h2 data-project-title></h2>
-            <p data-project-description></p>
-            <div class="modal-list" data-project-points></div>
-            <div class="modal-actions">
-                <a class="button button-dark" href="mailto:rfarouq69@gmail.com?subject=Project%20inquiry">Discuss a similar project</a>
-                <a class="button button-light" href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer" data-project-link>Open live project</a>
-                <a class="button button-light" href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer" data-project-repo>View GitHub</a>
-            </div>
-        </div>
-    </dialog>
-
-    <a class="back-to-top" href="#top" aria-label="Back to top" data-back-to-top>
-        <i class="fa-solid fa-arrow-up"></i>
-    </a>
-
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

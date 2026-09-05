@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept 02 — Graphic Miles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e8e8e8;
+            line-height: 1.6;
+        }
+        
+        a { color: #e8e8e8; text-decoration: none; }
+        
+        .top-bar {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+        
+        .top-bar .name {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .top-bar nav a {
+            font-size: 0.85rem;
+            color: #888;
+            margin-left: 1.5rem;
+        }
+        
+        .top-bar nav a:hover { color: #fff; }
+        
+        .intro {
+            padding: 10rem 2rem 8rem;
+            max-width: 1000px;
+        }
+        
+        .intro h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+        }
+        
+        .intro h1 span { color: #555; }
+        
+        .intro .bio {
+            font-size: 1.1rem;
+            color: #999;
+            max-width: 550px;
+            line-height: 1.7;
+        }
+        
+        .divider {
+            height: 1px;
+            background: #222;
+            margin: 0 2rem;
+        }
+        
+        .projects {
+            padding: 0 2rem;
+        }
+        
+        .project-row {
+            display: grid;
+            grid-template-columns: 120px 1fr 200px;
+            align-items: center;
+            padding: 3rem 0;
+            border-bottom: 1px solid #1a1a1a;
+            gap: 2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .project-row:hover {
+            background: #111;
+        }
+        
+        .project-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        
+        .project-main h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        
+        .project-main .desc {
+            font-size: 0.9rem;
+            color: #777;
+            max-width: 500px;
+        }
+        
+        .project-meta {
+            text-align: right;
+        }
+        
+        .project-meta .year {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: #555;
+        }
+        
+        .project-meta .type {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+        
+        .project-detail {
+            display: none;
+            padding: 2rem 0 3rem 120px;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        .project-detail.active { display: block; }
+        
+        .project-detail .detail-img {
+            width: 100%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            background: #1a1a1a;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-detail .detail-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .project-detail p {
+            color: #888;
+            max-width: 600px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+        
+        .project-detail .tech-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .project-detail .tech-tags span {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.3rem 0.6rem;
+            background: #1a1a1a;
+            border-radius: 3px;
+        }
+        
+        .project-detail .links {
+            margin-top: 1.5rem;
+        }
+        
+        .project-detail .links a {
+            font-size: 0.9rem;
+            color: #888;
+            margin-right: 1.5rem;
+        }
+        
+        .project-detail .links a:hover { color: #fff; }
+        
+        .about {
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .about h2 {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about p {
+            color: #888;
+            margin-bottom: 1rem;
+        }
+        
+        .about-info { margin-top: 2rem; }
+        
+        .about-info .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        
+        .about-info .label {
+            font-size: 0.8rem;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .about-info .value {
+            font-size: 0.9rem;
+            color: #999;
+            text-align: right;
+        }
+        
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        footer span { color: #555; font-size: 0.8rem; }
+        
+        footer a { color: #888; font-size: 0.8rem; }
+        footer a:hover { color: #fff; }
+        
+        @media (max-width: 768px) {
+            .intro { padding: 6rem 1.5rem 5rem; }
+            .intro h1 { font-size: 2.2rem; }
+            .projects { padding: 0 1.5rem; }
+            .project-row { grid-template-columns: 1fr; gap: 0.5rem; }
+            .project-num { display: none; }
+            .project-meta { text-align: left; }
+            .project-detail { padding-left: 0; }
+            .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+            .top-bar, footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="name">graphicmiles</div>
+        <nav>
+            <a href="#work">Work</a>
+            <a href="#about">About</a>
+            <a href="mailto:rfarouq69@gmail.com">Contact</a>
+        </nav>
+    </div>
+
+    <section class="intro">
+        <h1>Raji Adewunmi<br>Farouq <span>—</span><br>Developer <span>&</span> Builder</h1>
+        <p class="bio">I build web products, AI-powered tools, and responsive interfaces. From Lagos, working on things that matter.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="projects" id="work">
+        <div class="project-row" onclick="toggleDetail('nearspace')">
+            <div class="project-num">01</div>
+            <div class="project-main">
+                <h3>Nearspace</h3>
+                <div class="desc">Creator-discovery platform for finding nearby builders</div>
+            </div>
+            <div class="project-meta">
+                <div class="year">2025</div>
+                <div class="type">Web app</div>
+            </div>
+        </div>
+        <div class="project-detail" id="detail-nearspace">
+            <div class="detail-img">
+                <img src="assets/projects/nearspace.jpg" alt="Nearspace">
+            </div>
+            <p>A real shipped product with live user flows for discovery, profiles, and location-aware browsing. The interface prioritizes proximity and relevance with profile cards that surface the most important information first.</p>
+            <div class="tech-tags">
+                <span>JavaScript</span>
+                <span>HTML/CSS</span>
+                <span>Responsive UI</span>
+            </div>
+            <div class="links">
+                <a href="https://nearspace.com.ng" target="_blank">Live site</a>
+                <a href="#">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-row" onclick="toggleDetail('legally')">
+            <div class="project-num">02</div>
+            <div class="project-main">
+                <h3>Legally Unbullied</h3>
+                <div class="desc">AI legal-information assistant with retrieval pipeline</div>
+            </div>
+            <div class="project-meta">
+                <div class="year">2025</div>
+                <div class="type">AI web app</div>
+            </div>
+        </div>
+        <div class="project-detail" id="detail-legally">
+            <div class="detail-img">
+                <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied">
+            </div>
+            <p>Nigerian legal-information assistant combining web interface with retrieval-augmented AI. Users ask legal questions and receive source-backed answers drawn from legal documents.</p>
+            <div class="tech-tags">
+                <span>JavaScript</span>
+                <span>Python</span>
+                <span>FastAPI</span>
+                <span>AI/ML</span>
+            </div>
+            <div class="links">
+                <a href="https://legally-unbullied.onrender.com" target="_blank">Live site</a>
+                <a href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-row" onclick="toggleDetail('mrnobody')">
+            <div class="project-num">03</div>
+            <div class="project-main">
+                <h3>Mr Nobody</h3>
+                <div class="desc">Privacy browser for Android with task assistant</div>
+            </div>
+            <div class="project-meta">
+                <div class="year">2024</div>
+                <div class="type">Android + web</div>
+            </div>
+        </div>
+        <div class="project-detail" id="detail-mrnobody">
+            <div class="detail-img">
+                <img src="assets/projects/mr-nobody.jpg" alt="Mr Nobody">
+            </div>
+            <p>Privacy-focused browser spanning Android and web. Includes privacy controls, browsing workflows, and a bounded task assistant concept for safer browsing.</p>
+            <div class="tech-tags">
+                <span>Java</span>
+                <span>Android</span>
+                <span>Capacitor</span>
+            </div>
+            <div class="links">
+                <a href="https://github.com/GraphicMiles/Mr-Nobody" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-row" onclick="toggleDetail('touchline')">
+            <div class="project-num">04</div>
+            <div class="project-main">
+                <h3>The Touchline</h3>
+                <div class="desc">Editorial football news layout</div>
+            </div>
+            <div class="project-meta">
+                <div class="year">2024</div>
+                <div class="type">Landing page</div>
+            </div>
+        </div>
+        <div class="project-detail" id="detail-touchline">
+            <div class="detail-img">
+                <img src="assets/projects/touchline.jpg" alt="The Touchline">
+            </div>
+            <p>Desktop-first editorial layout for a football news site with lead stories, secondary links, and readable article structure.</p>
+            <div class="tech-tags">
+                <span>HTML/CSS</span>
+                <span>JavaScript</span>
+            </div>
+            <div class="links">
+                <a href="https://github.com/GraphicMiles/demos" target="_blank">GitHub</a>
+            </div>
+        </div>
+
+        <div class="project-row" onclick="toggleDetail('metrix')">
+            <div class="project-num">05</div>
+            <div class="project-main">
+                <h3>Metrix</h3>
+                <div class="desc">SaaS analytics landing page</div>
+            </div>
+            <div class="project-meta">
+                <div class="year">2024</div>
+                <div class="type">Landing page</div>
+            </div>
+        </div>
+        <div class="project-detail" id="detail-metrix">
+            <div class="detail-img">
+                <img src="assets/projects/metrix.jpg" alt="Metrix">
+            </div>
+            <p>SaaS analytics landing page focused on product messaging, dashboard presentation, and conversion-oriented structure.</p>
+            <div class="tech-tags">
+                <span>HTML/CSS</span>
+                <span>JavaScript</span>
+            </div>
+            <div class="links">
+                <a href="https://github.com/GraphicMiles/demos" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div>
+            <h2>About</h2>
+            <p>I build responsive web experiences and practical product interfaces, with working knowledge of AI automation and retrieval-based systems.</p>
+            <p>My work spans frontend engineering, backend integrations, and retrieval-augmented AI applications. I'm interested in the intersection of frontend engineering and AI.</p>
+        </div>
+        <div class="about-info">
+            <div class="row">
+                <span class="label">Focus</span>
+                <span class="value">Frontend · Product UI · AI · Backend</span>
+            </div>
+            <div class="row">
+                <span class="label">Location</span>
+                <span class="value">Lagos, Nigeria</span>
+            </div>
+            <div class="row">
+                <span class="label">Stack</span>
+                <span class="value">JS · TS · Python · React · FastAPI</span>
+            </div>
+            <div class="row">
+                <span class="label">Contact</span>
+                <span class="value">rfarouq69@gmail.com</span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span>© 2026 Raji Adewunmi Farouq</span>
+        <a href="mailto:rfarouq69@gmail.com">rfarouq69@gmail.com</a>
+    </footer>
+
+    <script>
+        function toggleDetail(id) {
+            const detail = document.getElementById('detail-' + id);
+            const isActive = detail.classList.contains('active');
+            document.querySelectorAll('.project-detail').forEach(d => d.classList.remove('active'));
+            if (!isActive) detail.classList.add('active');
+        }
+    </script>
+</body>
+</html>

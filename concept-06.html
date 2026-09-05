@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept 06 — Graphic Miles</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Satoshi', 'Inter', -apple-system, sans-serif;
+            background: #fff;
+            color: #111;
+            line-height: 1.6;
+        }
+        
+        a { color: #111; text-decoration: none; }
+        
+        .wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 3rem;
+        }
+        
+        /* Navigation */
+        .nav {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav .logo {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        
+        .nav .menu a {
+            font-size: 0.85rem;
+            color: #666;
+            margin-left: 2rem;
+            transition: color 0.2s;
+        }
+        
+        .nav .menu a:hover { color: #111; }
+        
+        /* Hero */
+        .hero {
+            padding: 10rem 0 8rem;
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #eee;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 2rem;
+            max-width: 12ch;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+        
+        .hero .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.8rem 1.8rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .btn-dark {
+            background: #111;
+            color: #fff;
+        }
+        
+        .btn-dark:hover { background: #333; }
+        
+        .btn-ghost {
+            border: 1.5px solid #ddd;
+            color: #111;
+        }
+        
+        .btn-ghost:hover { border-color: #111; }
+        
+        /* Projects Grid */
+        .projects-section {
+            padding: 6rem 0;
+        }
+        
+        .projects-section .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 3rem;
+        }
+        
+        .projects-section .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .projects-section .section-header .count {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background: #fafafa;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        
+        .project-card.featured {
+            grid-column: span 2;
+        }
+        
+        .project-card .card-image {
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+        
+        .project-card.featured .card-image {
+            aspect-ratio: 21/9;
+        }
+        
+        .project-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-card .card-content {
+            padding: 1.5rem;
+        }
+        
+        .project-card .card-content .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card .card-content h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-card .card-content p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .project-card .card-content .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-card .card-content .tech-stack span {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+            background: #fff;
+            border-radius: 4px;
+            color: #666;
+        }
+        
+        .project-card .card-content .card-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-card .card-content .card-links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #111;
+            border-bottom: 1px solid #111;
+            padding-bottom: 0.1rem;
+            transition: opacity 0.2s;
+        }
+        
+        .project-card .card-content .card-links a:hover { opacity: 0.7; }
+        
+        /* About Section */
+        .about-section {
+            padding: 6rem 0;
+            border-top: 1px solid #eee;
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .about-grid h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .about-grid p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .about-details .detail {
+            margin-bottom: 2rem;
+        }
+        
+        .about-details .detail h4 {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-details .detail p {
+            font-size: 0.95rem;
+            color: #444;
+        }
+        
+        /* Contact */
+        .contact-section {
+            padding: 5rem 0;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        
+        .contact-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section p {
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 0.1rem;
+        }
+        
+        .contact-links a:hover { color: #111; border-color: #111; }
+        
+        /* Footer */
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        footer span { font-size: 0.8rem; color: #bbb; }
+        footer a { font-size: 0.8rem; color: #999; }
+        footer a:hover { color: #111; }
+        
+        @media (max-width: 768px) {
+            .wrapper { padding: 0 1.5rem; }
+            .hero { padding: 6rem 0 5rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-card.featured { grid-column: span 1; }
+            .project-card.featured .card-image { aspect-ratio: 16/9; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="nav">
+            <span class="logo">graphicmiles</span>
+            <div class="menu">
+                <a href="#work">Work</a>
+                <a href="#about">About</a>
+                <a href="mailto:rfarouq69@gmail.com">Contact</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1>Building the web, one product at a time</h1>
+            <p class="subtitle">I'm Raji Adewunmi Farouq — a developer from Lagos who builds web products, AI tools, and responsive interfaces that solve real problems.</p>
+            <div class="cta-group">
+                <a href="#work" class="btn btn-dark">View my work</a>
+                <a href="mailto:rfarouq69@gmail.com" class="btn btn-ghost">Get in touch</a>
+            </div>
+        </section>
+
+        <section class="projects-section" id="work">
+            <div class="section-header">
+                <h2>Selected projects</h2>
+                <span class="count">5 projects</span>
+            </div>
+            
+            <div class="projects-grid">
+                <article class="project-card featured">
+                    <div class="card-image">
+                        <img src="assets/projects/nearspace.jpg" alt="Nearspace">
+                    </div>
+                    <div class="card-content">
+                        <div class="tag">Featured · Web App · 2025</div>
+                        <h3>Nearspace</h3>
+                        <p>Creator-discovery platform for finding nearby builders and professionals. A real shipped product with live user flows for discovery, profiles, and location-aware browsing.</p>
+                        <div class="tech-stack">
+                            <span>JavaScript</span>
+                            <span>HTML/CSS</span>
+                            <span>Responsive UI</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://nearspace.com.ng" target="_blank">Live site</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card featured">
+                    <div class="card-image">
+                        <img src="assets/projects/legally-unbullied.jpg" alt="Legally Unbullied">
+                    </div>
+                    <div class="card-content">
+                        <div class="tag">Featured · AI Web App · 2025</div>
+                        <h3>Legally Unbullied</h3>
+                        <p>Nigerian legal-information assistant combining web interface with retrieval-augmented AI. Users ask questions and receive source-backed answers from legal documents.</p>
+                        <div class="tech-stack">
+                            <span>JavaScript</span>
+                            <span>Python</span>
+                            <span>FastAPI</span>
+                            <span>AI/ML</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://legally-unbullied.onrender.com" target="_blank">Live site</a>
+                            <a href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-image">
+                        <img src="assets/projects/mr-nobody.jpg" alt="Mr Nobody">
+                    </div>
+                    <div class="card-content">
+                        <div class="tag">Android + Web · 2024</div>
+                        <h3>Mr Nobody</h3>
+                        <p>Privacy-focused browser spanning Android and web with privacy controls and task assistant concept.</p>
+                        <div class="tech-stack">
+                            <span>Java</span>
+                            <span>Android</span>
+                            <span>Capacitor</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/GraphicMiles/Mr-Nobody" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-image">
+                        <img src="assets/projects/touchline.jpg" alt="The Touchline">
+                    </div>
+                    <div class="card-content">
+                        <div class="tag">Landing Page · 2024</div>
+                        <h3>The Touchline</h3>
+                        <p>Editorial football news layout with lead stories, navigation, and readable content structure.</p>
+                        <div class="tech-stack">
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/GraphicMiles/demos" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card">
+                    <div class="card-image">
+                        <img src="assets/projects/metrix.jpg" alt="Metrix">
+                    </div>
+                    <div class="card-content">
+                        <div class="tag">Landing Page · 2024</div>
+                        <h3>Metrix</h3>
+                        <p>SaaS analytics landing page with product messaging, dashboard preview, and conversion structure.</p>
+                        <div class="tech-stack">
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="card-links">
+                            <a href="https://github.com/GraphicMiles/demos" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <div class="about-grid">
+                <div>
+                    <h2>About me</h2>
+                    <p>I build responsive web experiences and practical product interfaces, with working knowledge of AI automation and retrieval-based systems.</p>
+                    <p>I'm interested in the intersection of frontend engineering and AI — where a clean interface meets a useful backend.</p>
+                    <p>Based in Lagos, Nigeria. Available for remote projects.</p>
+                </div>
+                <div class="about-details">
+                    <div class="detail">
+                        <h4>Focus</h4>
+                        <p>Frontend engineering, product UI, AI automation, backend integrations</p>
+                    </div>
+                    <div class="detail">
+                        <h4>Technologies</h4>
+                        <p>JavaScript, TypeScript, Python, React, Vite, Firebase, FastAPI, Java, Capacitor, AI Automation, Computer Vision</p>
+                    </div>
+                    <div class="detail">
+                        <h4>Location</h4>
+                        <p>Lagos, Nigeria</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Let's build something</h2>
+            <p>Available for frontend builds, product interfaces, AI automation, and backend integrations.</p>
+            <div class="contact-links">
+                <a href="mailto:rfarouq69@gmail.com">rfarouq69@gmail.com</a>
+                <a href="https://github.com/GraphicMiles" target="_blank">GitHub</a>
+                <a href="https://x.com/DSGNBYMILES" target="_blank">X</a>
+            </div>
+        </section>
+
+        <footer>
+            <span>© 2026 Raji Adewunmi Farouq</span>
+            <a href="mailto:rfarouq69@gmail.com">rfarouq69@gmail.com</a>
+        </footer>
+    </div>
+</body>
+</html>
