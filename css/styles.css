@@ -574,8 +574,8 @@ button {
 }
 
 .project-name img {
-    height: 3rem;
-    width: auto;
+    height: 2.5rem;
+    width: 2.5rem;
     object-fit: contain;
     flex-shrink: 0;
 }
