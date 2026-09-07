@@ -281,31 +281,6 @@ button {
     border-radius: 999px;
     font-size: 1.25rem;
     font-weight: 500;
-    transition: box-shadow 0.3s;
-}
-
-.btn-pill:hover {
-    box-shadow: 0 0 20px color-mix(in srgb, var(--red) 45%, transparent);
-}
-
-.btn-pill .ripple {
-    position: absolute;
-    width: 250%;
-    aspect-ratio: 1;
-    background: color-mix(in srgb, var(--red) 72%, var(--black));
-    border-radius: 999px;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
-    pointer-events: none;
-    z-index: 0;
-    transition: transform 0.45s ease, opacity 0.3s;
-}
-
-.btn-pill:hover .ripple {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
 }
 
 .btn-pill:hover .btn-label,
@@ -754,20 +729,11 @@ button {
     letter-spacing: 0.15em;
     text-transform: uppercase;
     border-radius: 999px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: background 0.25s ease;
 }
 
-.btn-copy .fill {
-    position: absolute;
-    inset: 0;
-    background: color-mix(in srgb, var(--gunmetal) 12%, transparent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease-out;
-}
-
-.btn-copy:hover .fill {
-    transform: scaleX(1);
+.btn-copy:hover {
+    background: color-mix(in srgb, var(--gunmetal) 10%, var(--linen));
 }
 
 .btn-copy span,
