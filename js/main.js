@@ -169,18 +169,6 @@
         });
     }
 
-    function bindRipple() {
-        document.querySelectorAll(".btn-pill").forEach((btn) => {
-            const ripple = btn.querySelector(".ripple");
-            if (!ripple) return;
-            btn.addEventListener("mousemove", (e) => {
-                const r = btn.getBoundingClientRect();
-                ripple.style.left = e.clientX - r.left + "px";
-                ripple.style.top = e.clientY - r.top + "px";
-            });
-        });
-    }
-
     function mountLightbox() {
         if (document.querySelector(".lightbox")) return;
         const box = document.createElement("div");
@@ -328,8 +316,7 @@
     mountDock();
     mountToast();
     bindCopy();
-    bindRipple();
-    mountLightbox();
+        mountLightbox();
     bindShotsNav();
     bindWordmark();
     bindGreeting();
