@@ -26,7 +26,6 @@ const skip = new Set([
     "node_modules",
     ".git",
     ".vercel",
-    "generate.py",
     "static-build.js",
     "package.json",
     "package-lock.json",
