@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Projects Graphic Miles</title>
+ <title>Projects | Graphic Miles</title>
  <meta name="description" content="A collection of products I've designed and built.">
  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
  <link rel="canonical" href="https://designedbymiles.vercel.app/projects/index.html">
@@ -26,19 +26,20 @@
  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
  <link rel="icon" href="../favicon.ico" sizes="any">
  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&display=swap">
+ <link rel="preload" href="../fonts/GoogleSans.woff2" as="font" type="font/woff2" crossorigin>
+ <link rel="preload" href="../fonts/Fraunces.woff2" as="font" type="font/woff2" crossorigin>
  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body data-page="projects">
-<div class="wrap">
+<a class="skip-link" href="#main">Skip to content</a>
+<main class="wrap" id="main">
 
 <div class="page-top">
  <a class="back" href="../index.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.5303 5.46967C10.8232 5.76256 10.8232 6.23744 10.5303 6.53033L5.81066 11.25H20C20.4142 11.25 20.75 11.5858 20.75 12C20.75 12.4142 20.4142 12.75 20 12.75H5.81066L10.5303 17.4697C10.8232 17.7626 10.8232 18.2374 10.5303 18.5303C10.2374 18.8232 9.76256 18.8232 9.46967 18.5303L3.46967 12.5303C3.17678 12.2374 3.17678 11.7626 3.46967 11.4697L9.46967 5.46967C9.76256 5.17678 10.2374 5.17678 10.5303 5.46967Z" fill="currentColor"></path></svg> Back home</a>
  <div>
  <h2 class="projects-head" style="margin:0">Things I've shipped</h2>
  <div class="rule"></div>
- <p class="page-intro">A collection of products I've designed and built. Nearspace, Legally Unbullied, Mr Nobody, and The Touchline.</p>
+ <p class="page-intro">A collection of products I've designed and built: Nearspace, ODG Deliveries, Legally Unbullied, Metrix and The Touchline.</p>
  </div>
 </div>
 <div class="section projects" id="projects">
@@ -46,12 +47,12 @@
 <article class="project">
 <div class="window">
  <div class="window-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
- <div class="window-body"><img src="../images/nearspace.jpg" alt="Nearspace"></div>
+ <div class="window-body"><img src="../images/nearspace.jpg" width="1440" height="1000" loading="lazy" decoding="async" alt="Nearspace"></div>
 </div>
  <div class="project-meta">
  <div class="project-id">
  <p class="project-tags">Web App · Proximity Network</p>
- <div class="project-name"><img src="../images/logos/nearspace.png" alt=""><h3>Nearspace</h3></div>
+ <div class="project-name"><img src="../images/logos/nearspace.png" width="112" height="112" loading="lazy" decoding="async" alt=""><h3>Nearspace</h3></div>
  </div>
  <div class="project-copy">
  <p>Proximity-first professional network for Nigeria&#8217;s tech creators. A live map, nearby discovery and a builder feed that turn online connections into real-world collaboration.</p>
@@ -65,12 +66,12 @@
 <article class="project">
 <div class="window">
  <div class="window-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
- <div class="window-body"><img src="../images/logos/odg-card.png" alt="ODG Deliveries"></div>
+ <div class="window-body"><img src="../images/logos/odg-card.png" width="1200" height="750" loading="lazy" decoding="async" alt="ODG Deliveries"></div>
 </div>
  <div class="project-meta">
  <div class="project-id">
  <p class="project-tags">Marketplace · Logistics</p>
- <div class="project-name"><img src="../images/logos/odg.png" alt=""><h3>ODG Deliveries</h3></div>
+ <div class="project-name"><img src="../images/logos/odg.png" width="112" height="112" loading="lazy" decoding="async" alt=""><h3>ODG Deliveries</h3></div>
  </div>
  <div class="project-copy">
  <p>Food delivery for Ibadan, built around reviewed kitchens. One platform with four roles: customers, kitchens, riders and admin, all on a single Postgres database and Express API.</p>
@@ -84,12 +85,12 @@
 <article class="project">
 <div class="window">
  <div class="window-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
- <div class="window-body"><img src="../images/legally-unbullied.jpg" alt="Legally Unbullied"></div>
+ <div class="window-body"><img src="../images/legally-unbullied.jpg" width="1440" height="1000" loading="lazy" decoding="async" alt="Legally Unbullied"></div>
 </div>
  <div class="project-meta">
  <div class="project-id">
  <p class="project-tags">AI Agent · Legal Tech</p>
- <div class="project-name"><img src="../images/logos/legally-unbullied.png" alt=""><h3>Legally Unbullied</h3></div>
+ <div class="project-name"><img src="../images/logos/legally-unbullied.png" width="112" height="112" loading="lazy" decoding="async" alt=""><h3>Legally Unbullied</h3></div>
  </div>
  <div class="project-copy">
  <p>An evidence-grounded AI agent for Nigerian law. It retrieves real statutes and regulations, then answers with cited, plain-language guidance people can act on.</p>
@@ -103,12 +104,12 @@
 <article class="project">
 <div class="window">
  <div class="window-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
- <div class="window-body"><img src="../images/metrix.jpg" alt="Metrix dashboard concept"></div>
+ <div class="window-body"><img src="../images/metrix.jpg" width="1440" height="1000" loading="lazy" decoding="async" alt="Metrix dashboard concept"></div>
 </div>
  <div class="project-meta">
  <div class="project-id">
  <p class="project-tags">SaaS · Analytics Dashboard</p>
- <div class="project-name"><img src="../images/logos/metrix.png" alt=""><h3>Metrix</h3></div>
+ <div class="project-name"><img src="../images/logos/metrix.png" width="112" height="112" loading="lazy" decoding="async" alt=""><h3>Metrix</h3></div>
  </div>
  <div class="project-copy">
  <p>Product analytics without the wait. A dashboard concept unifying product, revenue and lifecycle metrics into one live, shared view, set in a dark, gradient-driven design system.</p>
@@ -122,12 +123,12 @@
 <article class="project">
 <div class="window">
  <div class="window-bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
- <div class="window-body"><img src="../images/touchline.jpg" alt="The Touchline"></div>
+ <div class="window-body"><img src="../images/touchline.jpg" width="1440" height="1000" loading="lazy" decoding="async" alt="The Touchline"></div>
 </div>
  <div class="project-meta">
  <div class="project-id">
  <p class="project-tags">Editorial · Design Showcase</p>
- <div class="project-name"><img src="../images/logos/touchline.png" alt=""><h3>The Touchline</h3></div>
+ <div class="project-name"><img src="../images/logos/touchline.png" width="112" height="112" loading="lazy" decoding="async" alt=""><h3>The Touchline</h3></div>
  </div>
  <div class="project-copy">
  <p>An independent football publication designed end to end: display serif headlines, breaking-news rhythm and a match-day layout system. Typography doing the heavy lifting.</p>
@@ -171,8 +172,8 @@
 </div>
 
 
-</div>
-<div id="toast"></div>
-<script src="../js/main.js"></script>
+</main>
+
+<script src="../js/main.js" defer></script>
 </body>
 </html>
