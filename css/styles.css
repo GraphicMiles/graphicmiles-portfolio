@@ -17,23 +17,29 @@
 }
 
 :root {
-    --linen: #f4f3ee;
-    --gunmetal: #151411;
-    /* --khaki is used for text; 4.6:1 on --linen (WCAG AA at normal size). */
-    --khaki: #6f6e69;
+    /* Apple design-system tokens (apple.com / HIG values). */
+    --linen: #f5f5f7;
+    --gunmetal: #1d1d1f;
+    /* --khaki is used for text; Apple secondary grey, ~4.9:1 on --linen (WCAG AA). */
+    --khaki: #6e6e73;
     /* --line is the decorative hairline tint (kept soft; never used for text). */
-    --line: #8c8b86;
-    --sky: #151411;
-    --red: #d61213;
-    --black: #151411;
-    --white: #f4f3ee;
-    --font: googleSans, system-ui, sans-serif;
+    --line: #d2d2d7;
+    --sky: #1d1d1f;
+    --blue: #0071e3;
+    --blue-hover: #0077ed;
+    --link: #0066cc;
+    --new: #b64400;
+    /* Legacy name kept so existing rules re-point to Apple blue in one place. */
+    --red: #0071e3;
+    --black: #1d1d1f;
+    --white: #fbfbfd;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", googleSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
     --serif: Fraunces, "Times New Roman", serif;
     /* Radius system: 999px for interactive pills, --r-frame for windows/cards,
        --r-inner for media inside frames, --r-avatar for the portrait. */
-    --r-frame: 0.75rem;
-    --r-inner: 0.5rem;
-    --r-avatar: 1.25rem;
+    --r-frame: 1.125rem;
+    --r-inner: 0.75rem;
+    --r-avatar: 1.75rem;
 }
 
 * {
@@ -50,8 +56,11 @@ body {
     background: var(--linen);
     color: var(--gunmetal);
     font-family: var(--font);
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1.0625rem;
+    line-height: 1.47;
+    letter-spacing: -0.022em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     overflow-x: hidden;
 }
 
@@ -73,12 +82,12 @@ button {
 }
 
 ::selection {
-    background: color-mix(in srgb, var(--gunmetal) 18%, transparent);
+    background: rgba(0, 113, 227, 0.18);
 }
 
 .wrap {
     width: 100%;
-    max-width: 64rem;
+    max-width: 61.25rem;
     margin: 0 auto;
     padding: 0 1.25rem;
 }
@@ -114,11 +123,11 @@ button {
     gap: 0.5rem;
     padding: 0.45rem 1rem;
     border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--line) 50%, transparent);
-    background: color-mix(in srgb, var(--linen) 72%, rgba(255,255,255,0.55));
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 8px 30px rgba(21, 20, 17, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(251, 251, 253, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 .dock-item {
@@ -173,8 +182,8 @@ button {
 }
 
 .dock.on-dark {
-    border-color: color-mix(in srgb, var(--linen) 18%, transparent);
-    background: color-mix(in srgb, var(--gunmetal) 72%, rgba(0, 0, 0, 0.25));
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(22, 22, 23, 0.8);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
@@ -220,9 +229,10 @@ button {
 
 .hero h1 {
     color: var(--black);
-    font-size: 2.25rem;
-    font-weight: 700;
-    line-height: 1.2;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 600;
+    line-height: 1.07;
+    letter-spacing: -0.02em;
 }
 
 .greet-line {
@@ -243,7 +253,7 @@ button {
 .greet-word {
     display: inline-block;
     line-height: 1.35;
-    font-family: googleSans, "Segoe UI", "PingFang SC", "Hiragino Sans", "Noto Sans", "Noto Sans CJK JP", "Apple SD Gothic Neo", "Nirmala UI", system-ui, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", googleSans, "Segoe UI", "PingFang SC", "Hiragino Sans", "Noto Sans", "Noto Sans CJK JP", "Apple SD Gothic Neo", "Nirmala UI", system-ui, sans-serif;
 }
 
 .greet-word.out {
@@ -287,22 +297,27 @@ button {
     align-items: center;
     gap: 0.75rem;
     width: auto;
-    padding: 0.75rem 1.5rem;
-    background: var(--red);
-    color: var(--linen);
-    border-radius: 999px;
-    font-size: 1.25rem;
-    font-weight: 500;
+    padding: 0.75rem 1.375rem;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 980px;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    transition: background 0.25s ease;
+}
+
+.btn-pill:hover {
+    background: var(--blue-hover);
 }
 
 .btn-pill:hover .btn-label,
 .btn-pill:hover .btn-icon {
-    color: var(--linen);
+    color: #fff;
 }
 
 .btn-pill:hover .btn-icon {
-    background: var(--linen);
-    color: var(--red);
+    background: #fff;
+    color: var(--blue-hover);
 }
 
 .btn-label,
@@ -319,8 +334,8 @@ button {
     width: 2rem;
     height: 2rem;
     border-radius: 999px;
-    background: var(--linen);
-    color: var(--red);
+    background: #fff;
+    color: var(--blue);
     flex-shrink: 0;
 }
 
@@ -334,13 +349,14 @@ button {
     align-items: center;
     gap: 0.5rem;
     font-size: 1.25rem;
-    font-weight: 500;
-    color: var(--gunmetal);
+    font-weight: 400;
+    color: var(--link);
     transition: color 0.2s;
 }
 
 .link-work:hover {
-    color: var(--black);
+    color: var(--link);
+    text-decoration: underline;
 }
 
 .link-work svg {
@@ -364,13 +380,14 @@ button {
 }
 
 .about h2,
-.projects-head h2 {
-    font-family: var(--serif);
-    font-size: 2.25rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
+.projects-head h2,
+h2.projects-head {
+    font-family: var(--font);
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     color: var(--gunmetal);
-    line-height: 1.15;
+    line-height: 1.1;
 }
 
 .rule {
@@ -411,9 +428,9 @@ button {
 
 .toolkit-label {
     font-size: 0.8125rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--khaki);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 1.5rem;
 }
@@ -484,27 +501,32 @@ button {
     border-radius: var(--r-frame);
     overflow: hidden;
     transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
-}
-    border: 1px solid color-mix(in srgb, var(--line) 40%, transparent);
-    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.05);
-    background: color-mix(in srgb, var(--white) 50%, transparent);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+    background: var(--white);
 }
 
 .window-bar {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--line) 20%, transparent);
-    background: color-mix(in srgb, var(--linen) 30%, transparent);
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: rgba(251, 251, 253, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 
 .dot {
-    width: 0.625rem;
-    height: 0.625rem;
+    width: 0.75rem;
+    height: 0.75rem;
     border-radius: 999px;
     background: color-mix(in srgb, var(--gunmetal) 15%, transparent);
 }
+
+.window-bar .dot:nth-child(1) { background: #ff5f57; }
+.window-bar .dot:nth-child(2) { background: #febc2e; }
+.window-bar .dot:nth-child(3) { background: #28c840; }
 
 .window-body {
     padding: 0.25rem;
@@ -533,11 +555,15 @@ button {
 
 .project-tags {
     font-size: 0.75rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--khaki);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     margin-bottom: 1rem;
+}
+
+.badge-new {
+    color: var(--new);
 }
 
 .project-name {
@@ -554,10 +580,11 @@ button {
 }
 
 .project-name h3 {
-    font-family: var(--serif);
-    font-size: 2.75rem;
-    font-weight: 700;
-    line-height: 1.15;
+    font-family: var(--font);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.02em;
     color: var(--gunmetal);
 }
 
@@ -579,6 +606,7 @@ button {
     display: flex;
     align-items: center;
     gap: 1.25rem;
+    flex-wrap: wrap;
 }
 
 .tech-row {
@@ -597,20 +625,17 @@ button {
 .link-view {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.8125rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gunmetal);
-    padding-bottom: 0.25rem;
-    border-bottom: 1px solid color-mix(in srgb, var(--gunmetal) 30%, transparent);
-    transition: color 0.3s, border-color 0.3s;
+    gap: 0.35rem;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    color: var(--link);
+    transition: color 0.3s;
 }
 
 .link-view:hover {
-    color: var(--black);
-    border-color: var(--black);
+    color: var(--link);
+    text-decoration: underline;
 }
 
 .link-view svg {
@@ -670,31 +695,32 @@ button {
 .contact {
     flex-direction: column;
     justify-content: space-between;
-    background: var(--gunmetal);
+    background: #161617;
     border-radius: 0;
     overflow: hidden;
     width: 100vw;
     max-width: 100vw;
     margin: 0 0 0 calc(50% - 50vw);
-    padding: 2.5rem max(1.25rem, calc(50vw - 32rem)) 7.5rem;
+    padding: 2.5rem max(1.25rem, calc(50vw - 30.625rem)) 7.5rem;
     min-height: 36rem;
     box-shadow: none;
 }
 
 .eyebrow {
     font-size: 0.8125rem;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--khaki);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
 .contact h2 {
     margin-top: 1.5rem;
-    font-family: var(--serif);
+    font-family: var(--font);
     font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: -0.025em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.07;
     color: var(--linen);
 }
 
@@ -724,18 +750,17 @@ button {
     width: auto;
     margin-top: 3rem;
     padding: 1rem 2rem;
-    background: var(--linen);
-    color: var(--gunmetal);
-    font-weight: 700;
-    font-size: 0.8125rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-radius: 999px;
+    background: var(--blue);
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.0625rem;
+    letter-spacing: -0.022em;
+    border-radius: 980px;
     transition: background 0.25s ease;
 }
 
 .btn-copy:hover {
-    background: color-mix(in srgb, var(--gunmetal) 10%, var(--linen));
+    background: var(--blue-hover);
 }
 
 .btn-copy span,
@@ -1007,7 +1032,7 @@ button:focus-visible {
     .contact {
         min-height: auto;
         border-radius: 0;
-        padding: 1.5rem max(1.25rem, calc(50vw - 32rem)) 7.5rem;
+        padding: 1.5rem max(1.25rem, calc(50vw - 30.625rem)) 7.5rem;
         margin: 0 0 0 calc(50% - 50vw);
     }
 
@@ -1017,7 +1042,13 @@ button:focus-visible {
     }
 
     .hero h1 {
-        font-size: 1.875rem;
+        font-size: 2rem;
+    }
+
+    .about h2,
+    .projects-head h2,
+    h2.projects-head {
+        font-size: 1.75rem;
     }
 
     .about,
