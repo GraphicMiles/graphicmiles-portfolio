@@ -32,6 +32,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -70,6 +71,12 @@ button {
     border: none;
     background: none;
     color: inherit;
+}
+
+a,
+button {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 ::selection {
@@ -932,6 +939,535 @@ body.nav-open .side-nav {
     }
 }
 
+/* ---------- Playful motion system ---------- */
+.btn,
+.link-card,
+.acc-head,
+.socials a,
+.menu-btn,
+.side-close {
+    position: relative;
+}
+
+.btn,
+.link-card,
+.socials a,
+.menu-btn,
+.side-close {
+    overflow: hidden;
+}
+
+.btn {
+    isolation: isolate;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.2, 0.85, 0.3, 1.35), background-color 0.2s ease;
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: -20% -35%;
+    background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, 0.38) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.btn:hover::after,
+.btn:focus-visible::after,
+.btn:active::after {
+    transform: translateX(120%);
+}
+
+.btn:active {
+    transform: translateY(2px) scale(0.94) rotate(-0.6deg);
+}
+
+.btn-card:active {
+    transform: translateY(2px) scale(0.975) rotate(0deg);
+}
+
+.tap-ripple {
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.18;
+    pointer-events: none;
+    transform: scale(0);
+    animation: tapRipple 0.6s ease-out forwards;
+}
+
+.logo {
+    display: inline-block;
+    transform-origin: left center;
+    transition: transform 0.2s ease;
+}
+
+.logo:active {
+    transform: scale(0.96) rotate(-1deg);
+}
+
+.announcement a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: letter-spacing 0.25s ease, transform 0.2s ease;
+}
+
+.announcement a:active {
+    transform: scale(0.96);
+}
+
+.motion-on .announcement a::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--ink);
+    animation: pulseDot 1.8s ease-in-out infinite;
+}
+
+.motion-on .site-header {
+    animation: headerDrop 0.6s cubic-bezier(0.2, 0.85, 0.3, 1.1) backwards;
+}
+
+.menu-btn,
+.side-close {
+    transition: transform 0.25s cubic-bezier(0.2, 0.85, 0.3, 1.3), background-color 0.2s ease;
+}
+
+.side-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+}
+
+.menu-btn:hover {
+    transform: rotate(-6deg) scale(1.08);
+}
+
+.menu-btn:active {
+    transform: rotate(90deg) scale(0.86);
+}
+
+.side-close:hover {
+    transform: rotate(90deg) scale(1.08);
+}
+
+.side-close:active {
+    transform: rotate(90deg) scale(0.86);
+}
+
+.side-nav {
+    transition: transform 0.52s cubic-bezier(0.2, 0.88, 0.28, 1.08);
+}
+
+body.nav-open .side-body > * {
+    animation: sideIn 0.5s cubic-bezier(0.2, 0.85, 0.3, 1.12) both;
+}
+
+body.nav-open .side-body > *:nth-child(2) { animation-delay: 0.06s; }
+body.nav-open .side-body > *:nth-child(3) { animation-delay: 0.12s; }
+body.nav-open .side-body > *:nth-child(4) { animation-delay: 0.18s; }
+
+body.nav-open .side-links a {
+    animation: sideIn 0.45s cubic-bezier(0.2, 0.85, 0.3, 1.12) both;
+}
+
+body.nav-open .side-links a:nth-child(1) { animation-delay: 0.2s; }
+body.nav-open .side-links a:nth-child(2) { animation-delay: 0.26s; }
+body.nav-open .side-links a:nth-child(3) { animation-delay: 0.32s; }
+body.nav-open .side-links a:nth-child(4) { animation-delay: 0.38s; }
+body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
+
+.side-links a {
+    transition: padding-left 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.side-links a:active {
+    transform: translateX(5px) scale(0.99);
+}
+
+/* Hero entrance and rotating word */
+.motion-on .hero-photo {
+    animation: heroPhotoIn 0.9s cubic-bezier(0.2, 0.85, 0.28, 1.12) backwards;
+}
+
+.motion-on .hero-photo img {
+    animation: heroDrift 10s ease-in-out 1s infinite alternate;
+}
+
+.hero-word {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+.motion-on .hero-word {
+    animation: heroWord 0.68s cubic-bezier(0.2, 0.85, 0.3, 1.25) backwards;
+    animation-delay: calc(120ms + (var(--wi, 0) * 75ms));
+}
+
+.hero-role {
+    transform-origin: 50% 85%;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.hero-role.is-flipping {
+    opacity: 0;
+    transform: translateY(0.32em) rotate(2.5deg) scale(0.92);
+}
+
+.motion-on .hero-lead {
+    animation: riseIn 0.7s cubic-bezier(0.2, 0.85, 0.3, 1.08) 0.52s backwards;
+}
+
+.motion-on .hero-actions .btn {
+    animation: riseIn 0.65s cubic-bezier(0.2, 0.85, 0.3, 1.18) backwards;
+}
+
+.motion-on .hero-actions .btn:nth-child(1) { animation-delay: 0.66s; }
+.motion-on .hero-actions .btn:nth-child(2) { animation-delay: 0.76s; }
+
+/* Scroll reveal */
+.motion-on .rv {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.motion-on .rv.is-in {
+    opacity: 1;
+    animation-duration: 0.78s;
+    animation-delay: var(--d, 0ms);
+    animation-timing-function: cubic-bezier(0.2, 0.85, 0.28, 1.18);
+    animation-fill-mode: backwards;
+}
+
+.motion-on .rv-up.is-in { animation-name: rvUp; }
+.motion-on .rv-left.is-in { animation-name: rvLeft; }
+.motion-on .rv-right.is-in { animation-name: rvRight; }
+.motion-on .rv-pop.is-in { animation-name: rvPop; }
+.motion-on .rv-zoom.is-in { animation-name: rvPop; }
+
+.eyebrow {
+    transform-origin: left center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Accordion spring and staggered contents */
+.acc-item {
+    transition: background-color 0.25s ease, transform 0.25s cubic-bezier(0.2, 0.85, 0.3, 1.15);
+}
+
+.acc-item.open {
+    background: #e6e6e6;
+}
+
+.acc-head {
+    transition: transform 0.18s ease;
+}
+
+.acc-head:active {
+    transform: scale(0.99);
+}
+
+.acc-head > span:first-child {
+    transition: transform 0.25s ease;
+}
+
+.acc-item.open .acc-head > span:first-child {
+    transform: translateX(4px);
+}
+
+.acc-icon {
+    transition: transform 0.3s cubic-bezier(0.2, 0.85, 0.3, 1.35);
+}
+
+.acc-item.open .acc-icon {
+    animation: iconPop 0.38s ease;
+}
+
+.acc-head:active .acc-icon {
+    transform: scale(0.75) rotate(90deg);
+}
+
+.acc-panel {
+    transition: grid-template-rows 0.55s cubic-bezier(0.22, 0.88, 0.28, 1.08);
+}
+
+.motion-on .acc-item.open .acc-body > p,
+.motion-on .acc-item.open .acc-body li {
+    animation: accIn 0.48s cubic-bezier(0.2, 0.85, 0.3, 1.08) both;
+}
+
+.motion-on .acc-item.open .acc-body > p:nth-of-type(1) { animation-delay: 0.05s; }
+.motion-on .acc-item.open .acc-body > p:nth-of-type(2) { animation-delay: 0.13s; }
+.motion-on .acc-item.open .acc-body li:nth-child(1) { animation-delay: 0.2s; }
+.motion-on .acc-item.open .acc-body li:nth-child(2) { animation-delay: 0.27s; }
+.motion-on .acc-item.open .acc-body li:nth-child(3) { animation-delay: 0.34s; }
+.motion-on .acc-item.open .acc-body li:nth-child(4) { animation-delay: 0.41s; }
+
+/* Cards, tilt, images and icons */
+.list-card,
+.project-card,
+.link-card {
+    transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1.15), background-color 0.22s ease, box-shadow 0.28s ease;
+    will-change: transform;
+}
+
+.list-card:active,
+.project-card:active,
+.link-card:active {
+    transform: scale(0.975) rotate(-0.25deg);
+    background: #e2e2e2;
+}
+
+.list-icon,
+.link-icon {
+    transition: transform 0.28s cubic-bezier(0.2, 0.85, 0.3, 1.3), background-color 0.2s ease;
+}
+
+.list-icon svg,
+.link-icon svg {
+    transition: transform 0.25s ease;
+}
+
+.list-card:active .list-icon,
+.list-card.tap-pop .list-icon {
+    animation: iconWiggle 0.45s ease;
+}
+
+.link-card:active .link-icon {
+    transform: scale(0.9) rotate(-8deg);
+}
+
+.project-media {
+    position: relative;
+    height: 300px;
+    overflow: hidden;
+    background: #dddddd;
+}
+
+.project-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.28) 48%, transparent 66%);
+    transform: translateX(-130%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+}
+
+.project-media img {
+    height: 100%;
+    transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.25, 1.08);
+}
+
+.project-card:hover .project-media::after,
+.project-card.tap-pop .project-media::after {
+    transform: translateX(130%);
+}
+
+.project-card:hover .project-media img,
+.project-card.tap-pop .project-media img {
+    transform: scale(1.06) rotate(0.5deg);
+}
+
+.project-card h3,
+.list-card h3,
+.link-card h3 {
+    transition: transform 0.25s ease;
+}
+
+.project-card:hover h3,
+.list-card:hover h3,
+.link-card:hover h3 {
+    transform: translateX(3px);
+}
+
+.philosophy-photo img {
+    transition: transform 0.55s cubic-bezier(0.2, 0.8, 0.25, 1.08);
+}
+
+.socials a {
+    transition: background-color 0.2s ease, transform 0.22s cubic-bezier(0.2, 0.85, 0.3, 1.35);
+}
+
+.socials a:active {
+    transform: scale(0.88) rotate(-6deg);
+    background: #dedede;
+}
+
+.socials svg,
+.social-at {
+    transition: transform 0.2s ease;
+}
+
+.motion-on .tap-pop {
+    animation: tapPop 0.42s cubic-bezier(0.2, 0.8, 0.3, 1.2);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .logo:hover {
+        animation: iconWiggle 0.4s ease;
+    }
+
+    .announcement a:hover {
+        letter-spacing: 0.08em;
+    }
+
+    .eyebrow:hover {
+        animation: iconWiggle 0.4s ease;
+    }
+
+    .acc-item:hover .acc-head > span:first-child {
+        transform: translateX(4px);
+    }
+
+    .list-card:hover,
+    .project-card:hover,
+    .link-card:hover {
+        transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-5px);
+        background: #e4e4e4;
+        box-shadow: 0 14px 30px rgba(18, 18, 18, 0.08);
+    }
+
+    .list-card:hover .list-icon {
+        animation: iconWiggle 0.45s ease;
+    }
+
+    .list-card:hover .list-icon svg {
+        transform: scale(1.08) rotate(-3deg);
+    }
+
+    .link-card:hover .link-icon {
+        transform: rotate(-6deg) scale(1.07);
+    }
+
+    .links-grid .link-card:hover .link-icon svg {
+        transform: translateX(4px);
+    }
+
+    .philosophy-photo:hover img {
+        transform: scale(1.025) rotate(-0.4deg);
+    }
+
+    .socials a:hover {
+        transform: translateY(-3px) rotate(-3deg);
+    }
+
+    .socials a:hover svg,
+    .socials a:hover .social-at {
+        animation: iconWiggle 0.4s ease;
+    }
+}
+
+@media (max-width: 900px) {
+    .project-media {
+        height: 250px;
+    }
+}
+
+@media print {
+    .motion-on .rv {
+        opacity: 1 !important;
+    }
+}
+
+@keyframes headerDrop {
+    from { opacity: 0; transform: translateY(-18px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseDot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.55); opacity: 0.45; }
+}
+
+@keyframes heroPhotoIn {
+    0% { opacity: 0; transform: translateX(-42px) rotate(-2.5deg) scale(0.96); }
+    62% { opacity: 1; transform: translateX(5px) rotate(0.6deg) scale(1.01); }
+    100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+}
+
+@keyframes heroDrift {
+    from { transform: scale(1.01); }
+    to { transform: scale(1.065); }
+}
+
+@keyframes heroWord {
+    0% { opacity: 0; transform: translateY(0.45em) rotate(3deg) scale(0.85); }
+    62% { opacity: 1; transform: translateY(-0.06em) rotate(-1deg) scale(1.04); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes riseIn {
+    from { opacity: 0; transform: translateY(22px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes rvUp {
+    0% { opacity: 0; transform: translateY(30px) rotate(var(--r, 0deg)) scale(0.965); }
+    58% { opacity: 1; transform: translateY(-5px) rotate(0deg) scale(1.012); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes rvLeft {
+    0% { opacity: 0; transform: translateX(-38px) rotate(-1.2deg) scale(0.97); }
+    62% { opacity: 1; transform: translateX(5px) rotate(0.3deg) scale(1.008); }
+    100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+}
+
+@keyframes rvRight {
+    0% { opacity: 0; transform: translateX(38px) rotate(1.2deg) scale(0.97); }
+    62% { opacity: 1; transform: translateX(-5px) rotate(-0.3deg) scale(1.008); }
+    100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
+}
+
+@keyframes rvPop {
+    0% { opacity: 0; transform: translateY(22px) rotate(var(--r, 0deg)) scale(0.9); }
+    58% { opacity: 1; transform: translateY(-4px) rotate(0deg) scale(1.025); }
+    100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+}
+
+@keyframes accIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sideIn {
+    from { opacity: 0; transform: translateX(24px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes tapPop {
+    0% { transform: scale(1, 1) rotate(0deg); }
+    35% { transform: scale(0.965, 0.985) rotate(-0.5deg); }
+    65% { transform: scale(1.015, 0.995) rotate(0.4deg); }
+    100% { transform: scale(1, 1) rotate(0deg); }
+}
+
+@keyframes tapRipple {
+    from { opacity: 0.2; transform: scale(0); }
+    to { opacity: 0; transform: scale(1); }
+}
+
+@keyframes iconWiggle {
+    0% { transform: rotate(0deg) scale(1); }
+    25% { transform: rotate(-8deg) scale(1.08); }
+    55% { transform: rotate(7deg) scale(1.05); }
+    80% { transform: rotate(-3deg) scale(1.02); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+@keyframes iconPop {
+    0% { transform: scale(0.6) rotate(-25deg); }
+    60% { transform: scale(1.25) rotate(8deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
 @media (prefers-reduced-transparency: reduce) {
     .site-header,
     .side-backdrop {
@@ -946,16 +1482,15 @@ body.nav-open .side-nav {
         scroll-behavior: auto;
     }
 
-    .side-nav,
-    .side-backdrop,
-    .acc-panel,
-    .acc-icon::after,
-    .btn,
-    .acc-item,
-    .link-card,
-    .link-icon svg,
-    .side-links a,
-    .socials a {
-        transition: none;
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .motion-on .rv {
+        opacity: 1 !important;
     }
 }
