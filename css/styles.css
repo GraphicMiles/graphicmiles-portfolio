@@ -273,6 +273,10 @@ body.nav-open .side-nav {
     transform: translateX(0);
 }
 
+body.nav-open {
+    overflow: hidden;
+}
+
 .side-top {
     height: 60px;
     flex-shrink: 0;
@@ -702,7 +706,7 @@ body.nav-open .side-nav {
         background: #e4e4e4;
     }
 
-    .links-grid .link-card:hover .link-icon svg {
+    .links-grid .link-card:not(.rv):hover .link-icon svg {
         transform: translateX(2px);
     }
 
@@ -1094,10 +1098,11 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
 /* Hero entrance and rotating word */
 .motion-on .hero-photo {
     animation: heroPhotoIn 0.9s cubic-bezier(0.2, 0.85, 0.28, 1.12) backwards;
+    animation-iteration-count: 1;
 }
 
-.motion-on .hero-photo img {
-    animation: heroDrift 10s ease-in-out 1s infinite alternate;
+.motion-on .hero-photo.is-entered {
+    animation: none;
 }
 
 .hero-word {
@@ -1214,13 +1219,11 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
 .project-card,
 .link-card {
     transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.3, 1.15), background-color 0.22s ease, box-shadow 0.28s ease;
-    will-change: transform;
 }
 
 .list-card:active,
 .project-card:active,
 .link-card:active {
-    transform: scale(0.975) rotate(-0.25deg);
     background: #e2e2e2;
 }
 
@@ -1234,12 +1237,11 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
     transition: transform 0.25s ease;
 }
 
-.list-card:active .list-icon,
 .list-card.tap-pop .list-icon {
     animation: iconWiggle 0.45s ease;
 }
 
-.link-card:active .link-icon {
+.link-card.tap-pop .link-icon {
     transform: scale(0.9) rotate(-8deg);
 }
 
@@ -1265,12 +1267,12 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
     transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.25, 1.08);
 }
 
-.project-card:hover .project-media::after,
+.project-card:not(.rv):hover .project-media::after,
 .project-card.tap-pop .project-media::after {
     transform: translateX(130%);
 }
 
-.project-card:hover .project-media img,
+.project-card:not(.rv):hover .project-media img,
 .project-card.tap-pop .project-media img {
     transform: scale(1.06) rotate(0.5deg);
 }
@@ -1281,9 +1283,9 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
     transition: transform 0.25s ease;
 }
 
-.project-card:hover h3,
-.list-card:hover h3,
-.link-card:hover h3 {
+.project-card:not(.rv):hover h3,
+.list-card:not(.rv):hover h3,
+.link-card:not(.rv):hover h3 {
     transform: translateX(3px);
 }
 
@@ -1322,35 +1324,35 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
         animation: iconWiggle 0.4s ease;
     }
 
-    .acc-item:hover .acc-head > span:first-child {
+    .acc-item:not(.rv):hover .acc-head > span:first-child {
         transform: translateX(4px);
     }
 
-    .list-card:hover,
-    .project-card:hover,
-    .link-card:hover {
+    .list-card:not(.rv):not(.tap-pop):hover,
+    .project-card:not(.rv):not(.tap-pop):hover,
+    .link-card:not(.rv):not(.tap-pop):hover {
         transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-5px);
         background: #e4e4e4;
         box-shadow: 0 14px 30px rgba(18, 18, 18, 0.08);
     }
 
-    .list-card:hover .list-icon {
+    .list-card:not(.rv):hover .list-icon {
         animation: iconWiggle 0.45s ease;
     }
 
-    .list-card:hover .list-icon svg {
+    .list-card:not(.rv):hover .list-icon svg {
         transform: scale(1.08) rotate(-3deg);
     }
 
-    .link-card:hover .link-icon {
+    .link-card:not(.rv):hover .link-icon {
         transform: rotate(-6deg) scale(1.07);
     }
 
-    .links-grid .link-card:hover .link-icon svg {
+    .links-grid .link-card:not(.rv):hover .link-icon svg {
         transform: translateX(4px);
     }
 
-    .philosophy-photo:hover img {
+    .philosophy-photo:not(.rv):hover img {
         transform: scale(1.025) rotate(-0.4deg);
     }
 
@@ -1361,6 +1363,42 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
     .socials a:hover svg,
     .socials a:hover .social-at {
         animation: iconWiggle 0.4s ease;
+    }
+
+    html.is-scrolling .btn:hover::after {
+        transform: translateX(-120%);
+    }
+
+    html.is-scrolling .logo:hover,
+    html.is-scrolling .eyebrow:hover,
+    html.is-scrolling .list-card:hover .list-icon,
+    html.is-scrolling .socials a:hover svg,
+    html.is-scrolling .socials a:hover .social-at {
+        animation: none;
+    }
+
+    html.is-scrolling .list-card:not(.rv):not(.tap-pop):hover,
+    html.is-scrolling .project-card:not(.rv):not(.tap-pop):hover,
+    html.is-scrolling .link-card:not(.rv):not(.tap-pop):hover,
+    html.is-scrolling .socials a:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    html.is-scrolling .acc-item:hover .acc-head > span:first-child,
+    html.is-scrolling .project-card:hover h3,
+    html.is-scrolling .list-card:hover h3,
+    html.is-scrolling .link-card:hover h3,
+    html.is-scrolling .list-card:hover .list-icon svg,
+    html.is-scrolling .link-card:hover .link-icon,
+    html.is-scrolling .links-grid .link-card:hover .link-icon svg,
+    html.is-scrolling .project-card:hover .project-media img,
+    html.is-scrolling .philosophy-photo:hover img {
+        transform: none;
+    }
+
+    html.is-scrolling .project-card:hover .project-media::after {
+        transform: translateX(-130%);
     }
 }
 
@@ -1390,11 +1428,6 @@ body.nav-open .side-links a:nth-child(5) { animation-delay: 0.44s; }
     0% { opacity: 0; transform: translateX(-42px) rotate(-2.5deg) scale(0.96); }
     62% { opacity: 1; transform: translateX(5px) rotate(0.6deg) scale(1.01); }
     100% { opacity: 1; transform: translateX(0) rotate(0deg) scale(1); }
-}
-
-@keyframes heroDrift {
-    from { transform: scale(1.01); }
-    to { transform: scale(1.065); }
 }
 
 @keyframes heroWord {
