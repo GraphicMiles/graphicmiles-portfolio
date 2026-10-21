@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183c2b">
+  <meta name="description" content="Check the status of an ilee rental application with the reference the desk gave you.">
+  <meta property="og:title" content="Application status | ilee">
+  <meta property="og:description" content="Check the status of an ilee rental application with the reference the desk gave you.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/brand/documents.jpg">
+  <title>Application status | ilee</title>
+  <link rel="icon" href="/ilee/assets/img/logo-green.png">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="/ilee/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/ilee/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/ilee/css/fonts.css">
+  <link rel="stylesheet" href="/ilee/css/icons.css">
+  <link rel="stylesheet" href="/ilee/css/site.css">
+  <link rel="stylesheet" href="/ilee/css/custom-select.css">
+  <link rel="stylesheet" href="/ilee/css/surfaces.css">
+</head>
+<body>
+  <span id="bar-sentinel" aria-hidden="true"></span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="/ilee/index.html#home" aria-label="ilee home">
+        <img src="/ilee/assets/img/logo-green.png" alt="ilee" width="960" height="285">
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/ilee/listings.html">Browse homes</a>
+        <a href="/ilee/index.html#how-it-works">How it works</a>
+        <a href="/ilee/list-your-home.html">List your home</a>
+        <a href="/ilee/status.html">Track status</a>
+      </nav>
+
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a class="button button--primary button--compact" href="/ilee/contact.html#contact-form">Start an enquiry</a>
+
+      <button class="menu-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu" data-menu-toggle>
+        <i class="ph ph-list menu-toggle__bar" aria-hidden="true"></i><i class="ph ph-x menu-toggle__close" aria-hidden="true"></i>
+      </button>
+    </div>
+
+        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <p class="mobile-menu__label">Explore</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/index.html#home">Home</a></li>
+          <li><a href="/ilee/listings.html">Browse homes</a></li>
+          <li><a href="/ilee/index.html#how-it-works">How it works</a></li>
+          <li><a href="/ilee/index.html#agents">For owners</a></li>
+          <li><a href="/ilee/list-your-home.html">List your home</a></li>
+          <li><a href="/ilee/status.html">Track status</a></li>
+          <li><a href="/ilee/index.html#faq">FAQ</a></li>
+        </ul>
+        <p class="mobile-menu__label">Learn</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/about.html">About ilee</a></li>
+          <li><a href="/ilee/contact.html">Contact the desk</a></li>
+          <li><a href="/ilee/guides/verify-land-ownership.html">Verify ownership</a></li>
+          <li><a href="/ilee/guides/c-of-o-vs-governors-consent.html">C of O and Governor's Consent</a></li>
+          <li><a href="/ilee/guides/evaluate-a-rental-listing.html">Evaluate a listing</a></li>
+          <li><a href="/ilee/guides/rent-in-installments.html">Rent in installments</a></li>
+          <li><a href="/ilee/guides/true-cost-of-renting-in-lagos.html">True cost of renting</a></li>
+          <li><a href="/ilee/privacy.html">Privacy</a></li>
+          <li><a href="/ilee/terms.html">Terms</a></li>
+        </ul>
+        <p class="mobile-menu__label">For the desk</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/contact.html#contact-form">Start an enquiry</a></li>
+          <li><a href="/ilee/list-your-home.html">List your home</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="shell">
+        <p class="eyebrow">Application status</p>
+        <h1>See where your application stands.</h1>
+        <p class="page-lede">Enter the reference the desk gave you and the same email address or phone number you applied with. Both have to match.</p>
+      </div>
+    </section>
+
+    <section class="page-section tone-canvas">
+      <div class="shell">
+        <div class="status-layout">
+          <form class="status-form-card" data-status-form novalidate>
+            <label class="form-field form-field--full" for="status-reference">
+              <span>Your reference</span>
+              <input id="status-reference" name="reference" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="00000000-0000-0000-0000-000000000000" aria-describedby="status-reference-note">
+              <span class="form-error" data-error-for="status-reference" aria-live="polite"></span>
+              <span class="form-hint" id="status-reference-note">It sits in the message the desk sent you, in five groups of letters and numbers.</span>
+            </label>
+
+            <label class="form-field form-field--full" for="status-contact">
+              <span>Email or phone you applied with</span>
+              <input id="status-contact" name="contact" type="text" autocomplete="email" placeholder="you@example.com or 0800 000 0000" aria-describedby="status-contact-note">
+              <span class="form-error" data-error-for="status-contact" aria-live="polite"></span>
+              <span class="form-hint" id="status-contact-note">This is the second check. Without it, anyone holding a reference could read your file.</span>
+            </label>
+
+            <span class="form-error" data-error-for="status-form" aria-live="polite"></span>
+            <button class="button button--primary form-submit" type="submit"><span class="button__label">Check status</span> <i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <p class="form-note">This page reads your application. It does not store anything you type here, and it never shows your name, contact details or the exact address.</p>
+          </form>
+
+          <div class="status-aside">
+            <div data-status-result aria-live="polite"></div>
+
+            <!-- The same card the guides use, same shape: heading, then the
+                 list inside it. -->
+            <div class="keypoints" data-reveal>
+              <h2>What the states mean</h2>
+              <ul>
+                <li><i class="ph ph-file-text" aria-hidden="true"></i><span><strong>Application received.</strong> The desk has your details and the home you applied for.</span></li>
+                <li><i class="ph ph-clock" aria-hidden="true"></i><span><strong>Under review.</strong> A person checks the application and the terms against the landlord's agreement. This is not automated.</span></li>
+                <li><i class="ph ph-seal-check" aria-hidden="true"></i><span><strong>Decision.</strong> Approved, approved with conditions, or not approved with a reason category and a route to an alternative.</span></li>
+              </ul>
+            </div>
+            <p class="listings-note">If a lookup fails, nothing about your application has changed. The desk can read the same status directly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <noscript>
+      <section class="page-section tone-sage">
+        <div class="shell">
+          <div class="homes-state">
+            <i class="ph ph-info homes-state__icon" aria-hidden="true"></i>
+            <h3>This lookup needs JavaScript.</h3>
+            <p>Call the desk on  or use the web form with your reference and the desk will read your status for you.</p>
+          </div>
+        </div>
+      </section>
+    </noscript>
+  </main>
+
+      <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand-col">
+        <a class="footer-brand" href="/ilee/index.html#home" aria-label="ilee home"><img src="/ilee/assets/img/logo-green.png" alt="ilee" width="960" height="285"></a>
+        <p class="footer-blurb">Verified homes to rent and to buy in Lagos, starting with Lekki and Ikeja. Clear costs, practical verification and a clear next step.</p>
+        <p class="footer-address">Lagos pilot,<br>Starting with Lekki and Ikeja</p>
+      </div>
+      <nav class="footer-col" aria-label="Explore">
+        <h3 class="footer-heading">Explore</h3>
+        <a href="/ilee/listings.html">Browse homes</a>
+        <a href="/ilee/index.html#about">For tenants</a>
+        <a href="/ilee/index.html#how-it-works">How it works</a>
+        <a href="/ilee/index.html#agents">For owners</a>
+        <a href="/ilee/list-your-home.html">List your home</a>
+        <a href="/ilee/status.html">Track status</a>
+        <a href="/ilee/index.html#faq">FAQ</a>
+      </nav>
+      <nav class="footer-col" aria-label="Company">
+        <h3 class="footer-heading">Company</h3>
+        <a href="/ilee/about.html">About ilee</a>
+        <a href="/ilee/contact.html">Contact</a>
+        <a href="/ilee/privacy.html">Privacy</a>
+        <a href="/ilee/terms.html">Terms</a>
+      </nav>
+      <nav class="footer-col" aria-label="Guides">
+        <h3 class="footer-heading">Guides</h3>
+        <a href="/ilee/guides/verify-land-ownership.html">Verify who owns a home</a>
+        <a href="/ilee/guides/c-of-o-vs-governors-consent.html">C of O and Governor's Consent</a>
+        <a href="/ilee/guides/evaluate-a-rental-listing.html">Evaluate a rental listing</a>
+        <a href="/ilee/guides/rent-in-installments.html">Rent in installments, plainly</a>
+        <a href="/ilee/guides/true-cost-of-renting-in-lagos.html">The true cost of renting</a>
+      </nav>
+      <div class="footer-col footer-desk">
+        <h3 class="footer-heading">The desk</h3>
+        hello@ilee.ng
+        
+        <p class="footer-hours">Weekdays 9 to 5.<br>WhatsApp support during pilot hours.</p>
+      </div>
+    </div>
+    <div class="shell footer-legal">
+      <p>&copy; <span id="year">2026</span> ilee Nigeria Ltd. Verified homes to rent and to buy, Lagos.</p>
+      <p class="footer-legal-links"><a href="/ilee/privacy.html">Privacy</a><a href="/ilee/terms.html">Terms</a></p>
+    </div>
+    <div class="footer-engraving" aria-hidden="true">
+      <svg viewBox="0 0 26 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1.07" y="0.07" width="0.86" height="0.86"/><rect x="2.07" y="0.07" width="0.86" height="0.86"/><rect x="7.07" y="0.07" width="0.86" height="0.86"/><rect x="8.07" y="0.07" width="0.86" height="0.86"/><rect x="1.07" y="1.07" width="0.86" height="0.86"/><rect x="2.07" y="1.07" width="0.86" height="0.86"/><rect x="7.07" y="1.07" width="0.86" height="0.86"/><rect x="8.07" y="1.07" width="0.86" height="0.86"/><rect x="7.07" y="2.07" width="0.86" height="0.86"/><rect x="8.07" y="2.07" width="0.86" height="0.86"/><rect x="13.07" y="2.07" width="0.86" height="0.86"/><rect x="14.07" y="2.07" width="0.86" height="0.86"/><rect x="15.07" y="2.07" width="0.86" height="0.86"/><rect x="16.07" y="2.07" width="0.86" height="0.86"/><rect x="21.07" y="2.07" width="0.86" height="0.86"/><rect x="22.07" y="2.07" width="0.86" height="0.86"/><rect x="23.07" y="2.07" width="0.86" height="0.86"/><rect x="24.07" y="2.07" width="0.86" height="0.86"/><rect x="1.07" y="3.07" width="0.86" height="0.86"/><rect x="2.07" y="3.07" width="0.86" height="0.86"/><rect x="7.07" y="3.07" width="0.86" height="0.86"/><rect x="8.07" y="3.07" width="0.86" height="0.86"/><rect x="12.07" y="3.07" width="0.86" height="0.86"/><rect x="13.07" y="3.07" width="0.86" height="0.86"/><rect x="16.07" y="3.07" width="0.86" height="0.86"/><rect x="17.07" y="3.07" width="0.86" height="0.86"/><rect x="20.07" y="3.07" width="0.86" height="0.86"/><rect x="21.07" y="3.07" width="0.86" height="0.86"/><rect x="24.07" y="3.07" width="0.86" height="0.86"/><rect x="25.07" y="3.07" width="0.86" height="0.86"/><rect x="1.07" y="4.07" width="0.86" height="0.86"/><rect x="2.07" y="4.07" width="0.86" height="0.86"/><rect x="7.07" y="4.07" width="0.86" height="0.86"/><rect x="8.07" y="4.07" width="0.86" height="0.86"/><rect x="12.07" y="4.07" width="0.86" height="0.86"/><rect x="13.07" y="4.07" width="0.86" height="0.86"/><rect x="16.07" y="4.07" width="0.86" height="0.86"/><rect x="17.07" y="4.07" width="0.86" height="0.86"/><rect x="20.07" y="4.07" width="0.86" height="0.86"/><rect x="21.07" y="4.07" width="0.86" height="0.86"/><rect x="24.07" y="4.07" width="0.86" height="0.86"/><rect x="25.07" y="4.07" width="0.86" height="0.86"/><rect x="1.07" y="5.07" width="0.86" height="0.86"/><rect x="2.07" y="5.07" width="0.86" height="0.86"/><rect x="7.07" y="5.07" width="0.86" height="0.86"/><rect x="8.07" y="5.07" width="0.86" height="0.86"/><rect x="12.07" y="5.07" width="0.86" height="0.86"/><rect x="13.07" y="5.07" width="0.86" height="0.86"/><rect x="14.07" y="5.07" width="0.86" height="0.86"/><rect x="15.07" y="5.07" width="0.86" height="0.86"/><rect x="16.07" y="5.07" width="0.86" height="0.86"/><rect x="17.07" y="5.07" width="0.86" height="0.86"/><rect x="20.07" y="5.07" width="0.86" height="0.86"/><rect x="21.07" y="5.07" width="0.86" height="0.86"/><rect x="22.07" y="5.07" width="0.86" height="0.86"/><rect x="23.07" y="5.07" width="0.86" height="0.86"/><rect x="24.07" y="5.07" width="0.86" height="0.86"/><rect x="25.07" y="5.07" width="0.86" height="0.86"/><rect x="1.07" y="6.07" width="0.86" height="0.86"/><rect x="2.07" y="6.07" width="0.86" height="0.86"/><rect x="7.07" y="6.07" width="0.86" height="0.86"/><rect x="8.07" y="6.07" width="0.86" height="0.86"/><rect x="12.07" y="6.07" width="0.86" height="0.86"/><rect x="13.07" y="6.07" width="0.86" height="0.86"/><rect x="20.07" y="6.07" width="0.86" height="0.86"/><rect x="21.07" y="6.07" width="0.86" height="0.86"/><rect x="1.07" y="7.07" width="0.86" height="0.86"/><rect x="2.07" y="7.07" width="0.86" height="0.86"/><rect x="7.07" y="7.07" width="0.86" height="0.86"/><rect x="8.07" y="7.07" width="0.86" height="0.86"/><rect x="12.07" y="7.07" width="0.86" height="0.86"/><rect x="13.07" y="7.07" width="0.86" height="0.86"/><rect x="16.07" y="7.07" width="0.86" height="0.86"/><rect x="17.07" y="7.07" width="0.86" height="0.86"/><rect x="20.07" y="7.07" width="0.86" height="0.86"/><rect x="21.07" y="7.07" width="0.86" height="0.86"/><rect x="24.07" y="7.07" width="0.86" height="0.86"/><rect x="25.07" y="7.07" width="0.86" height="0.86"/><rect x="1.07" y="8.07" width="0.86" height="0.86"/><rect x="2.07" y="8.07" width="0.86" height="0.86"/><rect x="7.07" y="8.07" width="0.86" height="0.86"/><rect x="8.07" y="8.07" width="0.86" height="0.86"/><rect x="13.07" y="8.07" width="0.86" height="0.86"/><rect x="14.07" y="8.07" width="0.86" height="0.86"/><rect x="15.07" y="8.07" width="0.86" height="0.86"/><rect x="16.07" y="8.07" width="0.86" height="0.86"/><rect x="21.07" y="8.07" width="0.86" height="0.86"/><rect x="22.07" y="8.07" width="0.86" height="0.86"/><rect x="23.07" y="8.07" width="0.86" height="0.86"/><rect x="24.07" y="8.07" width="0.86" height="0.86"/></svg>
+    </div>
+  </footer>
+
+  <script src="/ilee/js/debug.js"></script>
+  <script src="/ilee/js/site.js"></script>
+  <script src="/ilee/js/custom-select.js"></script>
+  <script src="/ilee/js/status.js"></script>
+</body>
+</html>

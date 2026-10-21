@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183c2b">
+  <meta name="description" content="ilee brings verified homes to rent or buy, visible costs and clearer next steps to Lagos tenants, landlords and agents.">
+  <meta property="og:title" content="ilee | Verified long-term rentals in Lagos">
+  <meta property="og:description" content="Find a verified home to rent or buy in Lagos, or bring a property to a clearer rental process.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/brand/network-site.webp">
+  <title>ilee | Verified long-term rentals in Lagos</title>
+  <link rel="icon" href="/ilee/assets/img/logo-green.png">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="/ilee/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/ilee/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/ilee/assets/img/hero-engraving.webp" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="/ilee/css/fonts.css">
+  <link rel="stylesheet" href="/ilee/css/icons.css">
+  <link rel="stylesheet" href="/ilee/css/site.css">
+  <link rel="stylesheet" href="/ilee/css/custom-select.css">
+  <link rel="stylesheet" href="/ilee/css/surfaces.css">
+</head>
+<body>
+  <span id="bar-sentinel" aria-hidden="true"></span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="#home" aria-label="ilee home">
+        <img src="/ilee/assets/img/logo-green.png" alt="ilee" width="960" height="285">
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/ilee/listings.html">Browse homes</a>
+        <a href="/ilee/index.html#how-it-works">How it works</a>
+        <a href="/ilee/list-your-home.html">List your home</a>
+        <a href="/ilee/status.html">Track status</a>
+      </nav>
+
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a class="button button--primary button--compact" href="/ilee/contact.html#contact-form">Start an enquiry</a>
+
+      <button class="menu-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu" data-menu-toggle>
+        <i class="ph ph-list menu-toggle__bar" aria-hidden="true"></i><i class="ph ph-x menu-toggle__close" aria-hidden="true"></i>
+      </button>
+    </div>
+
+        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <p class="mobile-menu__label">Explore</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/index.html#home">Home</a></li>
+          <li><a href="/ilee/listings.html">Browse homes</a></li>
+          <li><a href="/ilee/index.html#how-it-works">How it works</a></li>
+          <li><a href="/ilee/index.html#agents">For owners</a></li>
+          <li><a href="/ilee/list-your-home.html">List your home</a></li>
+          <li><a href="/ilee/status.html">Track status</a></li>
+          <li><a href="/ilee/index.html#faq">FAQ</a></li>
+        </ul>
+        <p class="mobile-menu__label">Learn</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/about.html">About ilee</a></li>
+          <li><a href="/ilee/contact.html">Contact the desk</a></li>
+          <li><a href="/ilee/guides/verify-land-ownership.html">Verify ownership</a></li>
+          <li><a href="/ilee/guides/c-of-o-vs-governors-consent.html">C of O and Governor's Consent</a></li>
+          <li><a href="/ilee/guides/evaluate-a-rental-listing.html">Evaluate a listing</a></li>
+          <li><a href="/ilee/guides/rent-in-installments.html">Rent in installments</a></li>
+          <li><a href="/ilee/guides/true-cost-of-renting-in-lagos.html">True cost of renting</a></li>
+          <li><a href="/ilee/privacy.html">Privacy</a></li>
+          <li><a href="/ilee/terms.html">Terms</a></li>
+        </ul>
+        <p class="mobile-menu__label">For the desk</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/contact.html#contact-form">Start an enquiry</a></li>
+          <li><a href="/ilee/list-your-home.html">List your home</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero: centred copy on a parchment field; the engraved plate anchors
+         the bottom and lags the copy on scroll (Monarch-style parallax). -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-plate" aria-hidden="true">
+        <img src="/ilee/assets/img/hero-engraving.webp" alt="" width="1536" height="955" fetchpriority="high" decoding="async">
+      </div>
+      <div class="shell hero-copy">
+        <p class="eyebrow">Lekki &amp; Ikeja, Lagos</p>
+        <h1 id="hero-title"><span class="hero-line"><span>Verified homes,</span></span><span class="hero-line"><span>made clearer.</span></span></h1>
+        <p class="hero-lede">Find a verified home to rent or to buy, with a clear schedule, visible costs and a next step you understand.</p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="/ilee/listings.html"><span class="button__wash" aria-hidden="true"></span><span class="button__label">Explore homes</span> <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+          <!-- Track status moved out of the hero, not out of the site: it stays in the
+         nav, the mobile menu and the footer on every page, so it is still one
+         click away for someone holding a reference. The hero has two slots and
+         two audiences to route - a person looking for a home, and a person with
+         a home to list. The pilot has one listing, so supply is the side that
+         needs the door. -->
+          <a class="button button--glass button--glass-tint" href="/ilee/list-your-home.html"><span class="button__label">List your home</span> <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- For tenants: the brand line as a compact typographic beat -->
+    <section class="statement-section" id="about" aria-labelledby="statement-title">
+      <div class="shell">
+        <div data-reveal>
+          <h2 id="statement-title">Rent with context.<br>Move in with confidence.</h2>
+          <p>From the first brief through a viewing and assisted application, ilee keeps the listing, the schedule and the next step visible at the same time &mdash; whether you are renting for a year or buying outright.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The one workflow: image left, four concrete steps right -->
+    <section class="workflow-section" id="how-it-works" aria-labelledby="workflow-title">
+      <div class="shell">
+        <div class="workflow-head" data-reveal>
+          <h2 id="workflow-title">How a rental decision moves.</h2>
+          <p>Browse a published home or tell the desk what you need. The desk confirms availability, arranges a viewing and only then starts an application.</p>
+        </div>
+
+        <div class="workflow-layout">
+          <figure class="workflow-figure" data-reveal>
+            <img src="/ilee/assets/img/brand/workflow-review.webp" alt="An ilee team member reviewing a rental home checklist with two clients in Lagos" width="1264" height="848" loading="lazy" decoding="async">
+          </figure>
+
+          <ol class="workflow-list">
+            <li data-reveal>
+              <span class="step-number" aria-hidden="true">1</span>
+              <div>
+                <h3>Browse the published homes</h3>
+                <p>See the homes that have cleared the pilot verification bar, or use the enquiry form when the list is empty.</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <span class="step-number" aria-hidden="true">2</span>
+              <div>
+                <h3>Ask the desk</h3>
+                <p>Use the web form to ask about a home or share your search. The desk confirms availability and books a viewing.</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <span class="step-number" aria-hidden="true">3</span>
+              <div>
+                <h3>Apply after a viewing</h3>
+                <p>If the home fits, the desk creates the application and explains the consent and review steps before collecting anything else.</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <span class="step-number" aria-hidden="true">4</span>
+              <div>
+                <h3>Track the next step</h3>
+                <p>Keep the reference the desk gives you. Check progress on the status page with that reference and the same contact detail.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- The viewing: the first Lagos rental areas on a swipeable rail -->
+    <section class="ground-section" id="ground" aria-labelledby="ground-title">
+      <div class="shell">
+        <div class="ground-head" data-reveal>
+          <h2 id="ground-title">Where the pilot starts.</h2>
+          <p>Phase 1 starts with long-term rentals in Lekki and Ikeja. Public homes appear only after the desk has verified them; use the enquiry form when supply is still being recruited.</p>
+        </div>
+      </div>
+      <div class="ground-rail" tabindex="0" role="region" aria-label="Lagos rental areas, scrollable list">
+        <ul class="ground-list">
+          <li class="ground-card" data-reveal>
+            <figure>
+              <img src="/ilee/assets/img/feat-bodija.jpg" alt="A residential home behind a green gate in Lekki, Lagos" width="1408" height="768" loading="lazy" decoding="async">
+            </figure>
+            <h3>Lekki</h3>
+            <p>Long-term homes close to work, schools and everyday services. Listing details and availability are checked before viewing.</p>
+          </li>
+          <li class="ground-card" data-reveal>
+            <figure>
+              <img src="/ilee/assets/img/feat-jericho.jpg" alt="A family home at dusk in Ikeja, Lagos" width="1408" height="768" loading="lazy" decoding="async">
+            </figure>
+            <h3>Ikeja</h3>
+            <p>Connected rental corridors with practical commute questions. Ask the desk before deciding.</p>
+          </li>
+          <li class="ground-card" data-reveal>
+            <figure>
+              <img src="/ilee/assets/img/ringroad-street.webp" alt="A Lagos residential street representing a future pilot area" width="1200" height="896" loading="lazy" decoding="async">
+            </figure>
+            <h3>Future areas</h3>
+            <p>We expand only after the first pilot shows that verification, support and payment schedules work.</p>
+          </li>
+        </ul>
+      </div>
+      <div class="corridor-marquee" aria-hidden="true">
+        <div class="corridor-marquee__track">
+          <p>Lekki&ensp;<span class="sep" aria-hidden="true"></span>&ensp;Ikeja&ensp;<span class="sep" aria-hidden="true"></span>&ensp;Future areas&ensp;<span class="sep" aria-hidden="true"></span>&ensp;</p>
+          <p>Lekki&ensp;<span class="sep" aria-hidden="true"></span>&ensp;Ikeja&ensp;<span class="sep" aria-hidden="true"></span>&ensp;Future areas&ensp;<span class="sep" aria-hidden="true"></span>&ensp;</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- The file: the four listing questions every home has to answer -->
+    <section class="file-section" id="file" aria-labelledby="file-title">
+      <div class="shell">
+        <div class="file-head" data-reveal>
+          <h2 id="file-title">The listing file before the money.</h2>
+          <p>Every home arrives with information, complete or not. These four parts decide how clear the rental conversation can be.</p>
+        </div>
+
+        <div class="file-grid">
+          <article class="file-cell file-cell--title" data-reveal>
+            <h3>Owner and agent identity</h3>
+            <p>Who is listing the home, who owns it and what authority the agent has to represent the property.</p>
+          </article>
+          <figure class="file-cell file-cell--media" data-reveal>
+            <img src="/ilee/assets/img/file-papers.webp" alt="A survey plan, a certificate booklet and a deed laid out on a desk" width="1200" height="896" loading="lazy" decoding="async">
+          </figure>
+          <article class="file-cell file-cell--survey" data-reveal>
+            <h3>Inspection proof</h3>
+            <p>Photos, checklist and property details captured during an assigned inspection.</p>
+          </article>
+          <article class="file-cell file-cell--history" data-reveal>
+            <h3>Availability and terms</h3>
+            <p>When the home is available, what the landlord accepts and which terms must be agreed before signing.</p>
+          </article>
+          <article class="file-cell file-cell--payments" data-reveal>
+            <h3>Total move-in cost</h3>
+            <p>Rent, service fees, deposit and schedule shown before any payment is requested.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pathways: who the desk works with, one action each -->
+    <section class="paths-section" id="paths" aria-labelledby="paths-title">
+      <div class="shell">
+        <div class="paths-head" data-reveal>
+          <h2 id="paths-title">Choose your path.</h2>
+          <p>Ilee works with tenants, landlords, agents and caretakers across the first Lagos pilot areas. The first conversation is shaped by which of these you are.</p>
+        </div>
+
+        <div class="paths-list">
+          <article class="path" data-reveal>
+            <h3>Looking for a home</h3>
+            <p>You are looking for a home in Lagos to rent for a year or more, or to buy. Tell us your area, budget and preferred schedule so we can learn what supply to recruit.</p>
+            <a class="contextual-link" href="/ilee/contact.html?context=Looking%20for%20a%20home%20to%20rent%20or%20buy%20in%20Lekki%20or%20Ikeja.#contact-form">Open the enquiry form <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="path" data-reveal>
+            <h3>Listing a home</h3>
+            <p>You own a home and want serious enquiries from people who have been vetted. Send the details and the desk arranges the authority check and the inspection.</p>
+            <a class="contextual-link" href="/ilee/list-your-home.html">List your home <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="path" data-reveal>
+            <h3>Agents and caretakers</h3>
+            <p>You manage homes or guide tenants. Join the pilot with authority from the owner and a clear way to keep everyone aligned.</p>
+            <a class="contextual-link" href="#agents">Register supply interest <i class="ph ph-arrow-down-right" aria-hidden="true"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- From another city: the desk as eyes and file-keeper until you can visit -->
+    <section class="abroad-section" id="abroad" aria-labelledby="abroad-title">
+      <div class="shell abroad-layout">
+        <figure class="abroad-figure" data-reveal>
+          <img src="/ilee/assets/img/abroad-desk.webp" alt="A tenant living outside Lagos joins a rental viewing by video call" width="928" height="1152" loading="lazy" decoding="async">
+        </figure>
+        <div class="abroad-copy">
+          <div data-reveal>
+            <p class="eyebrow">From another city</p>
+            <h2 id="abroad-title">Distance should not mean guessing.</h2>
+            <p>A home found from another city still needs a clear brief, a reliable viewing path and terms you can review before you commit.</p>
+          </div>
+          <ol class="abroad-beats">
+            <li data-reveal>
+              <h3>Start with the home brief</h3>
+              <p>Share your preferred area, budget, move-in timing and the people who need to be involved.</p>
+            </li>
+            <li data-reveal>
+              <h3>Book a viewing</h3>
+              <p>A viewing answers the practical questions about the home, access, availability and next steps.</p>
+            </li>
+            <li data-reveal>
+              <h3>Review before you commit</h3>
+              <p>Review the proposed schedule and total cost with the desk before commitment. Payment methods are not activated in this Phase 1 build.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- The ledger: our limits, stated before you have to ask -->
+    <section class="ledger-section" id="ledger" aria-labelledby="ledger-title">
+      <div class="shell">
+        <div class="ledger-head" data-reveal>
+          <h2 id="ledger-title">What we will not promise.</h2>
+          <p>Trust starts with the limits. These are ours, in plain language.</p>
+        </div>
+
+        <div class="ledger-columns">
+          <div class="ledger-col ledger-col--will" data-reveal>
+            <h3>What the desk will do</h3>
+            <ul>
+              <li><i class="ph ph-check" aria-hidden="true"></i><span>Show which listing checks are complete, and what they do not cover.</span></li>
+              <li><i class="ph ph-check" aria-hidden="true"></i><span>Name who is responsible for the property, terms and next step.</span></li>
+              <li><i class="ph ph-check" aria-hidden="true"></i><span>Keep the listing, schedule and next steps visible.</span></li>
+              <li><i class="ph ph-check" aria-hidden="true"></i><span>Flag missing information before it becomes a payment surprise.</span></li>
+            </ul>
+          </div>
+          <div class="ledger-col ledger-col--wont" data-reveal>
+            <h3>What the desk will not do</h3>
+            <ul>
+              <li><i class="ph ph-x" aria-hidden="true"></i><span>Guarantee approval, availability or a landlord decision.</span></li>
+              <li><i class="ph ph-x" aria-hidden="true"></i><span>Hide fees or pressure you toward a payment schedule.</span></li>
+              <li><i class="ph ph-x" aria-hidden="true"></i><span>Replace independent legal, financial or property advice.</span></li>
+              <li><i class="ph ph-x" aria-hidden="true"></i><span>Hold customer money in an ilee wallet or promise a payout structure before it is approved.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- For owners: the form over the field image -->
+    <section class="network-section" id="agents" aria-labelledby="agents-title">
+      <div class="network-media" aria-hidden="true">
+        <img src="/ilee/assets/img/brand/network-site.webp" alt="" width="1376" height="768" loading="lazy" decoding="async">
+        <div class="network-media__veil"></div>
+      </div>
+      <div class="shell network-content">
+        <div class="network-copy" data-reveal>
+          <h2 id="agents-title">Bring a home to the ilee pilot.</h2>
+          <p>Landlords, agents and caretakers can leave details for the first verified supply conversations.</p>
+        </div>
+
+        <form class="agent-form" data-agent-form novalidate>
+          <noscript><p class="form-note form-note--error">This form needs JavaScript to send securely. Please call the desk on .</p></noscript>
+
+          <label class="form-field form-field--full" for="agent-name">
+            <span>Full name</span>
+            <input id="agent-name" name="Full name" type="text" autocomplete="name" placeholder="Your name" required>
+            <span class="form-error" data-error-for="agent-name" aria-live="polite"></span>
+          </label>
+          <div class="form-row">
+            <label class="form-field" for="agent-phone">
+              <span>Phone <em>(optional)</em></span>
+              <input id="agent-phone" name="Phone" type="tel" autocomplete="tel" placeholder="0800 000 0000">
+              <span class="form-error" data-error-for="agent-phone" aria-live="polite"></span>
+            </label>
+            <label class="form-field" for="agent-email">
+              <span>Email <em>(optional)</em></span>
+              <input id="agent-email" name="Email" type="email" autocomplete="email" placeholder="you@example.com">
+              <span class="form-error" data-error-for="agent-email" aria-live="polite"></span>
+            </label>
+          </div>
+          <div class="form-row">
+            <label class="form-field" for="agent-area">
+              <span>Which area?</span>
+              <input id="agent-area" name="Area" type="text" maxlength="80" list="agent-areas" placeholder="Lekki" required>
+              <datalist id="agent-areas">
+                <option value="Lekki"></option>
+                <option value="Ikeja"></option>
+                <option value="Other Lagos area"></option>
+              </datalist>
+              <span class="form-error" data-error-for="agent-area" aria-live="polite"></span>
+            </label>
+            <label class="form-field" for="agent-hometype">
+              <span>Type of home</span>
+              <input id="agent-hometype" name="Home type" type="text" maxlength="80" placeholder="Three bedroom flat">
+            </label>
+          </div>
+          <label class="form-field form-field--full" for="agent-market">
+            <span>Anything else about the home? <em>(optional)</em></span>
+            <textarea id="agent-market" name="Details" rows="3" placeholder="Availability, terms and what you want tenants to know"></textarea>
+          </label>
+          <div class="form-consent">
+            <input id="agent-consent" name="Consent" type="checkbox" value="yes" required aria-describedby="agent-consent-note">
+            <div>
+              <label for="agent-consent">I agree that ilee may store these details and contact me about the Lagos pilot.</label>
+              <p id="agent-consent-note">Need to withdraw consent? Use the web form or email hello@ilee.ng. Read the <a href="/ilee/privacy.html">privacy notice</a>.</p>
+            </div>
+          </div>
+          <span class="form-error" data-error-for="agent-consent" aria-live="polite"></span>
+          <button class="button button--primary form-submit" type="submit">Register supply interest <i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+          <p class="form-note">We will use your details only for this conversation. We will not ask for BVN, NIN or bank statements in this form.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- FAQ: answers collapse by default and open with a smooth accordion transition -->
+    <section class="faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="shell faq-layout">
+        <div class="faq-intro">
+          <h2 id="faq-title">Questions worth answering early.</h2>
+          <p>Still deciding where to start? Tell the desk your area, budget or property details and we will help you frame the next step.</p>
+          <a class="text-link" href="/ilee/contact.html#contact-form">Open the enquiry form <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-1">What is ilee building?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-1" aria-labelledby="faq-question-1"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-question-1" aria-hidden="true"><div class="faq-answer__inner"><p>ilee is building a trust-first property service for Lagos: verified homes to rent or buy, clear schedules and human support from viewing to handover.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-2">What is live in Phase 1?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-2" aria-labelledby="faq-question-2"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-question-2" aria-hidden="true"><div class="faq-answer__inner"><p>The live pilot covers web discovery, enquiries, staff-led listing checks, assisted applications and reference-based status lookup in Lekki and Ikeja. Homes for sale can be browsed and enquired about, and the desk checks the title before one is published. What is not live is completing a purchase or a payment: accounts, KYC, automated affordability, payment mandates, wallets, payouts, short-lets, commercial leasing and mobile apps are all still ahead of us.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-3">How do I see homes and speak with the desk?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-3" aria-labelledby="faq-question-3"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-question-3" aria-hidden="true"><div class="faq-answer__inner"><p>Open Homes to see published pilot homes. If none are live, use the web form with your area, budget and timing. When a home fits, the desk confirms availability and arranges a viewing; there is no live chat or public agent directory in this phase.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-4">Can landlords and agents list?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-4" aria-labelledby="faq-question-4"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-question-4" aria-hidden="true"><div class="faq-answer__inner"><p>Yes. <a href="/ilee/list-your-home.html">List your home</a> takes the details in one form &mdash; no account, no login. An agent or caretaker submits with the owner's authority, and a person at the desk confirms that authority and inspects the home before it is visible to anyone.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-5">What is Pay Small Small?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-5" aria-labelledby="faq-question-5"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-question-5" aria-hidden="true"><div class="faq-answer__inner"><p>Pay Small Small is what ilee calls renting in agreed installments. Where a landlord accepts a schedule, the desk records that agreement and explains the proposed schedule and the total cost before you commit. This Phase 1 build does not collect rent or activate live payments; it is not an in-house ilee wallet.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-6">Does ilee hold rent or deposits?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-6" aria-labelledby="faq-question-6"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-question-6" aria-hidden="true"><div class="faq-answer__inner"><p>No. ilee will not present an in-house wallet or hold customer money directly. Any live payment flow will use a licensed provider and a verified landlord account, subject to final review.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-7">Which areas come first?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-7" aria-labelledby="faq-question-7"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-7" role="region" aria-labelledby="faq-question-7" aria-hidden="true"><div class="faq-answer__inner"><p>The first supply focus is Lekki and Ikeja, to rent or to buy. Tell the desk about another Lagos area through the enquiry form so we can record demand.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-8">How do I join the pilot?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-8" aria-labelledby="faq-question-8"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-8" role="region" aria-labelledby="faq-question-8" aria-hidden="true"><div class="faq-answer__inner"><p>Send an enquiry with your role, area and budget. The desk will contact you when a supported home or supply conversation has a clear next step.</p></div></div>
+          </div>
+          <div class="faq-item">
+            <h3><span class="faq-question" id="faq-question-9">What should I include in an enquiry?</span><button class="faq-trigger" type="button" data-faq-trigger aria-expanded="false" aria-controls="faq-answer-9" aria-labelledby="faq-question-9"><span class="faq-trigger__icon" aria-hidden="true"><i class="ph ph-x"></i><i class="ph ph-minus"></i></span></button></h3>
+            <div class="faq-answer" id="faq-answer-9" role="region" aria-labelledby="faq-question-9" aria-hidden="true"><div class="faq-answer__inner"><p>Tenants can include an area, annual rent range and timing. Landlords and agents can include the area, home type, availability and authority to list.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA: one statement, one action -->
+    <section class="cta-final" id="start" aria-labelledby="cta-title">
+      <div class="shell" data-reveal>
+        <h2 id="cta-title">Start with the enquiry form.</h2>
+        <p>No email app is needed. Tell us your area, budget or property details in the web form and the desk will direct the next step.</p>
+        <a class="button button--glass" href="/ilee/contact.html#contact-form"><span class="button__label">Open the enquiry form</span> <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </section>
+  </main>
+
+      <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand-col">
+        <a class="footer-brand" href="/ilee/index.html#home" aria-label="ilee home"><img src="/ilee/assets/img/logo-green.png" alt="ilee" width="960" height="285"></a>
+        <p class="footer-blurb">Verified homes to rent and to buy in Lagos, starting with Lekki and Ikeja. Clear costs, practical verification and a clear next step.</p>
+        <p class="footer-address">Lagos pilot,<br>Starting with Lekki and Ikeja</p>
+      </div>
+      <nav class="footer-col" aria-label="Explore">
+        <h3 class="footer-heading">Explore</h3>
+        <a href="/ilee/listings.html">Browse homes</a>
+        <a href="/ilee/index.html#about">For tenants</a>
+        <a href="/ilee/index.html#how-it-works">How it works</a>
+        <a href="/ilee/index.html#agents">For owners</a>
+        <a href="/ilee/list-your-home.html">List your home</a>
+        <a href="/ilee/status.html">Track status</a>
+        <a href="/ilee/index.html#faq">FAQ</a>
+      </nav>
+      <nav class="footer-col" aria-label="Company">
+        <h3 class="footer-heading">Company</h3>
+        <a href="/ilee/about.html">About ilee</a>
+        <a href="/ilee/contact.html">Contact</a>
+        <a href="/ilee/privacy.html">Privacy</a>
+        <a href="/ilee/terms.html">Terms</a>
+      </nav>
+      <nav class="footer-col" aria-label="Guides">
+        <h3 class="footer-heading">Guides</h3>
+        <a href="/ilee/guides/verify-land-ownership.html">Verify who owns a home</a>
+        <a href="/ilee/guides/c-of-o-vs-governors-consent.html">C of O and Governor's Consent</a>
+        <a href="/ilee/guides/evaluate-a-rental-listing.html">Evaluate a rental listing</a>
+        <a href="/ilee/guides/rent-in-installments.html">Rent in installments, plainly</a>
+        <a href="/ilee/guides/true-cost-of-renting-in-lagos.html">The true cost of renting</a>
+      </nav>
+      <div class="footer-col footer-desk">
+        <h3 class="footer-heading">The desk</h3>
+        hello@ilee.ng
+        
+        <p class="footer-hours">Weekdays 9 to 5.<br>WhatsApp support during pilot hours.</p>
+      </div>
+    </div>
+    <div class="shell footer-legal">
+      <p>&copy; <span id="year">2026</span> ilee Nigeria Ltd. Verified homes to rent and to buy, Lagos.</p>
+      <p class="footer-legal-links"><a href="/ilee/privacy.html">Privacy</a><a href="/ilee/terms.html">Terms</a></p>
+    </div>
+    <div class="footer-engraving" aria-hidden="true">
+      <svg viewBox="0 0 26 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1.07" y="0.07" width="0.86" height="0.86"/><rect x="2.07" y="0.07" width="0.86" height="0.86"/><rect x="7.07" y="0.07" width="0.86" height="0.86"/><rect x="8.07" y="0.07" width="0.86" height="0.86"/><rect x="1.07" y="1.07" width="0.86" height="0.86"/><rect x="2.07" y="1.07" width="0.86" height="0.86"/><rect x="7.07" y="1.07" width="0.86" height="0.86"/><rect x="8.07" y="1.07" width="0.86" height="0.86"/><rect x="7.07" y="2.07" width="0.86" height="0.86"/><rect x="8.07" y="2.07" width="0.86" height="0.86"/><rect x="13.07" y="2.07" width="0.86" height="0.86"/><rect x="14.07" y="2.07" width="0.86" height="0.86"/><rect x="15.07" y="2.07" width="0.86" height="0.86"/><rect x="16.07" y="2.07" width="0.86" height="0.86"/><rect x="21.07" y="2.07" width="0.86" height="0.86"/><rect x="22.07" y="2.07" width="0.86" height="0.86"/><rect x="23.07" y="2.07" width="0.86" height="0.86"/><rect x="24.07" y="2.07" width="0.86" height="0.86"/><rect x="1.07" y="3.07" width="0.86" height="0.86"/><rect x="2.07" y="3.07" width="0.86" height="0.86"/><rect x="7.07" y="3.07" width="0.86" height="0.86"/><rect x="8.07" y="3.07" width="0.86" height="0.86"/><rect x="12.07" y="3.07" width="0.86" height="0.86"/><rect x="13.07" y="3.07" width="0.86" height="0.86"/><rect x="16.07" y="3.07" width="0.86" height="0.86"/><rect x="17.07" y="3.07" width="0.86" height="0.86"/><rect x="20.07" y="3.07" width="0.86" height="0.86"/><rect x="21.07" y="3.07" width="0.86" height="0.86"/><rect x="24.07" y="3.07" width="0.86" height="0.86"/><rect x="25.07" y="3.07" width="0.86" height="0.86"/><rect x="1.07" y="4.07" width="0.86" height="0.86"/><rect x="2.07" y="4.07" width="0.86" height="0.86"/><rect x="7.07" y="4.07" width="0.86" height="0.86"/><rect x="8.07" y="4.07" width="0.86" height="0.86"/><rect x="12.07" y="4.07" width="0.86" height="0.86"/><rect x="13.07" y="4.07" width="0.86" height="0.86"/><rect x="16.07" y="4.07" width="0.86" height="0.86"/><rect x="17.07" y="4.07" width="0.86" height="0.86"/><rect x="20.07" y="4.07" width="0.86" height="0.86"/><rect x="21.07" y="4.07" width="0.86" height="0.86"/><rect x="24.07" y="4.07" width="0.86" height="0.86"/><rect x="25.07" y="4.07" width="0.86" height="0.86"/><rect x="1.07" y="5.07" width="0.86" height="0.86"/><rect x="2.07" y="5.07" width="0.86" height="0.86"/><rect x="7.07" y="5.07" width="0.86" height="0.86"/><rect x="8.07" y="5.07" width="0.86" height="0.86"/><rect x="12.07" y="5.07" width="0.86" height="0.86"/><rect x="13.07" y="5.07" width="0.86" height="0.86"/><rect x="14.07" y="5.07" width="0.86" height="0.86"/><rect x="15.07" y="5.07" width="0.86" height="0.86"/><rect x="16.07" y="5.07" width="0.86" height="0.86"/><rect x="17.07" y="5.07" width="0.86" height="0.86"/><rect x="20.07" y="5.07" width="0.86" height="0.86"/><rect x="21.07" y="5.07" width="0.86" height="0.86"/><rect x="22.07" y="5.07" width="0.86" height="0.86"/><rect x="23.07" y="5.07" width="0.86" height="0.86"/><rect x="24.07" y="5.07" width="0.86" height="0.86"/><rect x="25.07" y="5.07" width="0.86" height="0.86"/><rect x="1.07" y="6.07" width="0.86" height="0.86"/><rect x="2.07" y="6.07" width="0.86" height="0.86"/><rect x="7.07" y="6.07" width="0.86" height="0.86"/><rect x="8.07" y="6.07" width="0.86" height="0.86"/><rect x="12.07" y="6.07" width="0.86" height="0.86"/><rect x="13.07" y="6.07" width="0.86" height="0.86"/><rect x="20.07" y="6.07" width="0.86" height="0.86"/><rect x="21.07" y="6.07" width="0.86" height="0.86"/><rect x="1.07" y="7.07" width="0.86" height="0.86"/><rect x="2.07" y="7.07" width="0.86" height="0.86"/><rect x="7.07" y="7.07" width="0.86" height="0.86"/><rect x="8.07" y="7.07" width="0.86" height="0.86"/><rect x="12.07" y="7.07" width="0.86" height="0.86"/><rect x="13.07" y="7.07" width="0.86" height="0.86"/><rect x="16.07" y="7.07" width="0.86" height="0.86"/><rect x="17.07" y="7.07" width="0.86" height="0.86"/><rect x="20.07" y="7.07" width="0.86" height="0.86"/><rect x="21.07" y="7.07" width="0.86" height="0.86"/><rect x="24.07" y="7.07" width="0.86" height="0.86"/><rect x="25.07" y="7.07" width="0.86" height="0.86"/><rect x="1.07" y="8.07" width="0.86" height="0.86"/><rect x="2.07" y="8.07" width="0.86" height="0.86"/><rect x="7.07" y="8.07" width="0.86" height="0.86"/><rect x="8.07" y="8.07" width="0.86" height="0.86"/><rect x="13.07" y="8.07" width="0.86" height="0.86"/><rect x="14.07" y="8.07" width="0.86" height="0.86"/><rect x="15.07" y="8.07" width="0.86" height="0.86"/><rect x="16.07" y="8.07" width="0.86" height="0.86"/><rect x="21.07" y="8.07" width="0.86" height="0.86"/><rect x="22.07" y="8.07" width="0.86" height="0.86"/><rect x="23.07" y="8.07" width="0.86" height="0.86"/><rect x="24.07" y="8.07" width="0.86" height="0.86"/></svg>
+    </div>
+  </footer>
+
+  <script src="/ilee/js/debug.js"></script>
+  <script src="/ilee/js/site.js"></script>
+  <script src="/ilee/js/vendor/gsap.min.js"></script>
+  <script src="/ilee/js/vendor/ScrollTrigger.min.js"></script>
+  <script src="/ilee/js/vendor/SplitText.min.js"></script>
+  <script src="/ilee/js/vendor/anime.min.js"></script>
+  <script src="/ilee/js/motion.js"></script>
+</body>
+</html>

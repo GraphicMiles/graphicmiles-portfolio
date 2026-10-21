@@ -23,6 +23,7 @@ function copy(src, dest) {
 
 const skip = new Set([
     "dist",
+    "works",
     "node_modules",
     ".git",
     ".vercel",
@@ -38,6 +39,14 @@ fs.mkdirSync(dist, { recursive: true });
 for (const name of fs.readdirSync(root)) {
     if (skip.has(name) || name.startsWith(".")) continue;
     copy(path.join(root, name), path.join(dist, name));
+}
+
+// Portfolio works (self-contained static apps) live under dist/<slug>/ so they
+// serve at /<slug>. index.html is their entry point, not a directory index.
+for (const slug of fs.existsSync(path.join(root, "works")) ? fs.readdirSync(path.join(root, "works")) : []) {
+    const src = path.join(root, "works", slug);
+    if (!fs.statSync(src).isDirectory() || !fs.existsSync(path.join(src, "index.html"))) continue;
+    copy(src, path.join(dist, slug));
 }
 
 console.log("Static build complete -> dist/");

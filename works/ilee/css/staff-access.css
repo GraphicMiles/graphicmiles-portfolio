@@ -1,0 +1,156 @@
+/* Shared staff entry surface. Scoped so an authenticated Ops Desk is unchanged.
+ * Palette, typography, shapes and controls match ops/ops.css. White is used
+ * outside the dashboard; the warm canvas remains reserved for desk content.
+ */
+.staff-access {
+  --paper: #ffffff;
+  --tile: #f7f7f7;
+  --tile-hover: #eeeeee;
+  --ink: #161d18;
+  --ink-soft: #38423b;
+  --muted: #687168;
+  --line: #e3e3e3;
+  --green: #176b46;
+  --green-bright: #1c7e54;
+  --green-dark: #114d33;
+  --green-tint: #e7f0ea;
+  --green-deep: #dfeae2;
+  --error: #a64135;
+  --error-soft: #f8e9e5;
+  box-sizing: border-box;
+  min-height: 100dvh;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 15px/1.5 'Outfit', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 clamp(20px, 4vw, 64px);
+}
+body.staff-access-page { margin: 0; background: #fff; }
+.staff-access *, .staff-access *::before, .staff-access *::after { box-sizing: border-box; }
+.staff-access [hidden] { display: none !important; }
+.staff-access h1, .staff-access h2, .staff-access h3, .staff-access p { margin: 0; }
+.staff-access button, .staff-access input, .staff-access textarea, .staff-access select { font: inherit; }
+.staff-access a { color: inherit; text-decoration: none; }
+.staff-access .ph { display: inline-block; font-size: 20px; flex-shrink: 0; }
+.staff-access :is(a, button, input, textarea, select, summary):focus-visible { outline: 2px solid var(--green); outline-offset: 4px; filter: none; }
+.staff-access .access-header { max-width: 1320px; margin: auto; min-height: 104px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.staff-access .access-logo { display: inline-flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 550; line-height: 1.3; }
+.staff-access .access-logo small { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; font-weight: 400; }
+.staff-access .access-mark { display: grid; place-items: center; width: 44px; height: 44px; background: var(--green); color: var(--paper); border-radius: 14px; font-size: 21px; letter-spacing: -1px; }
+.staff-access .access-header nav { display: flex; align-items: center; gap: 6px; }
+.staff-access .access-header nav a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 8px 18px; font-size: 13px; color: var(--muted); border-radius: 999px; }
+.staff-access .access-header nav a[aria-current] { color: var(--green-dark); background: var(--green-tint); }
+.staff-access .access-header nav a:hover { color: var(--green); background: var(--tile); }
+.staff-access .access-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); max-width: 1320px; margin: 8px auto 0; min-height: min(720px, calc(100dvh - 190px)); gap: clamp(24px, 5vw, 80px); }
+.staff-access .access-story { border-radius: 28px; background: var(--green-dark); color: var(--paper); display: flex; flex-direction: column; justify-content: space-between; gap: 44px; padding: clamp(30px, 4vw, 56px); }
+.staff-access .access-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.staff-access .access-story .access-eyebrow { color: var(--green-deep); }
+.staff-access .access-story h2 { font-size: clamp(34px, 3.7vw, 52px); font-weight: 450; letter-spacing: -1.7px; line-height: 1.13; margin-top: 26px; }
+.staff-access .access-story-intro { color: var(--green-deep); font-size: 15px; line-height: 1.75; margin-top: 22px; max-width: 36ch; }
+.staff-access .access-story-list { display: grid; gap: 25px; padding: 0; margin: 0; list-style: none; }
+.staff-access .access-story-list li { display: flex; align-items: flex-start; gap: 15px; }
+.staff-access .access-story-icon { width: 38px; height: 38px; border-radius: 12px; background: var(--green); display: grid; place-items: center; flex-shrink: 0; color: var(--paper); font-size: 12px; }
+.staff-access .access-story h3 { font-size: 15px; font-weight: 450; line-height: 1.4; margin-bottom: 5px; }
+.staff-access .access-story-list p { color: var(--green-deep); font-size: 12px; line-height: 1.65; max-width: 34ch; }
+.staff-access .access-story-foot { display: flex; align-items: center; gap: 9px; font-size: 11px; color: var(--green-deep); }
+.staff-access .access-dot { width: 6px; height: 6px; background: var(--green-deep); border-radius: 50%; }
+.staff-access .access-form-panel { min-width: 0; display: flex; align-items: center; justify-content: center; padding: 30px 0; }
+.staff-access .access-form-content { width: 100%; max-width: 440px; margin: auto; }
+.staff-access .access-symbol { width: 48px; height: 48px; background: var(--green-tint); color: var(--green); display: grid; place-items: center; border-radius: 16px; margin-bottom: 28px; }
+.staff-access h1 { font: 450 clamp(28px, 2.8vw, 38px)/1.16 'Outfit', system-ui, sans-serif; letter-spacing: -1.2px; text-align: left; }
+.staff-access .access-intro { margin: 14px 0 30px; font-size: 14px; line-height: 1.7; color: var(--muted); max-width: 41ch; text-align: left; }
+.staff-access .gate-form { display: block; }
+.staff-access .gate-field, .staff-access .access-field { display: block; margin: 0 0 20px; color: var(--ink-soft); font-size: 13px; font-weight: 450; text-align: left; }
+.staff-access .gate-field__head { display: flex; align-items: center; margin: 0; }
+.staff-access .gate-field__label { display: block; margin: 0; font-size: 13px; font-weight: 450; color: var(--ink-soft); }
+.staff-access .gate-field__input, .staff-access .access-field input, .staff-access .access-field select, .staff-access .access-field textarea {
+  display: block; width: 100%; min-width: 0; min-height: 48px; margin: 8px 0 0; padding: 12px 14px;
+  background: var(--tile); border: 1px solid var(--line); border-radius: 12px; color: var(--ink);
+  font: 400 15px/1.5 'Outfit', system-ui, sans-serif; box-shadow: none;
+}
+.staff-access input::placeholder, .staff-access textarea::placeholder { color: var(--muted); opacity: 1; }
+.staff-access input:focus, .staff-access textarea:focus { background: var(--paper); }
+.staff-access input[aria-invalid="true"] { border-color: var(--error); }
+.staff-access textarea { resize: vertical; }
+.staff-access .gate-field__input-wrap { position: relative; }
+.staff-access .gate-field__input-wrap input { padding-right: 54px; }
+.staff-access .gate-pw-toggle { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; padding: 8px; border: 0; border-radius: 50%; display: grid; place-items: center; color: var(--muted); background: transparent; cursor: pointer; }
+.staff-access .gate-pw-toggle:hover { color: var(--green); background: var(--tile-hover); }
+.staff-access .field-note { display: block; margin: 7px 0 0; font-size: 11px; line-height: 1.5; color: var(--muted); font-weight: 400; }
+.staff-access .field-note.is-ok { color: var(--green); }
+.staff-access .field-note.is-error, .staff-access .field-error { color: var(--error); }
+.staff-access .field-error { margin: 6px 0 0; min-height: 0; font-size: 12px; line-height: 1.6; }
+.staff-access .field-error:empty { display: none; }
+.staff-access .gate-submit-btn, .staff-access .access-button { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; padding: 12px 18px; margin: 26px 0 0; border: 0; border-radius: 999px; background: var(--green); color: var(--paper); font-size: 14px; font-weight: 500; cursor: pointer; box-shadow: none; }
+.staff-access .gate-submit-btn:hover, .staff-access .access-button:hover { background: var(--green-bright); }
+.staff-access button:disabled { opacity: .55; cursor: wait; }
+.staff-access .gate-apply, .staff-access .access-return { margin: 20px 0 0; text-align: center; font-size: 13px; color: var(--muted); line-height: 1.7; }
+.staff-access .gate-apply a, .staff-access .access-return a { color: var(--green); font-weight: 500; text-underline-offset: 4px; }
+.staff-access .gate-apply a:hover, .staff-access .access-return a:hover { text-decoration: underline; }
+.staff-access .access-help { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 18px; }
+.staff-access .access-help summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: var(--ink-soft); font-size: 12px; min-height: 36px; cursor: pointer; list-style: none; }
+.staff-access .access-help summary::-webkit-details-marker { display: none; }
+.staff-access .access-help p { margin-top: 10px; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.staff-access .access-assurance { display: flex; align-items: center; gap: 9px; margin-top: 22px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.staff-access .access-assurance .ph { font-size: 17px; color: var(--green); }
+.staff-access .access-note { display: flex; gap: 10px; padding: 15px; background: var(--tile); border-radius: 16px; font-size: 11px; color: var(--muted); line-height: 1.7; margin-top: 20px; }
+.staff-access .access-note .ph { font-size: 17px; color: var(--green); margin-top: 2px; }
+.staff-access .access-feedback { font-size: 13px; line-height: 1.65; margin-top: 16px; padding: 12px 14px; border-radius: 12px; color: var(--ink-soft); background: var(--tile); overflow-wrap: anywhere; }
+.staff-access .access-feedback:empty { display: none; }
+.staff-access .access-feedback.is-error { color: var(--error); background: var(--error-soft); }
+.staff-access .access-feedback.is-ok { color: var(--green-dark); background: var(--green-tint); }
+.staff-access .access-trap { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.staff-access .custom-select { margin-top: 8px; width: 100%; }
+.staff-access .custom-select__trigger { min-height: 48px; border: 1px solid var(--line); border-radius: 12px; background: var(--tile); color: var(--ink); padding: 12px 14px; font: 400 15px 'Outfit', system-ui, sans-serif; box-shadow: none !important; }
+.staff-access .custom-select__trigger:focus-visible { outline: 2px solid var(--green) !important; outline-offset: 4px !important; }
+.staff-access .custom-select__menu { border: 1px solid var(--line); border-radius: 12px; background: var(--paper); box-shadow: none !important; }
+.staff-access .custom-select__option { font-family: 'Outfit', system-ui, sans-serif; }
+.staff-access .custom-select__option[aria-selected="true"] { background: var(--green-tint); color: var(--green-dark); }
+.staff-access .access-footer { max-width: 1320px; margin: auto; padding: 26px 0; display: flex; align-items: center; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 11px; }
+.staff-access .access-footer a { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; }
+.staff-access .access-footer .ph { font-size: 14px; }
+.staff-access .access-footer a:hover { color: var(--green); }
+@media (max-width: 1000px) {
+  .staff-access .access-layout { gap: 36px; }
+  .staff-access .access-story { padding: 30px; }
+  .staff-access .access-story h2 { font-size: 37px; }
+}
+@media (max-width: 800px) {
+  .staff-access { padding: 0 24px; }
+  .staff-access .access-header { min-height: 86px; }
+  .staff-access .access-layout { display: block; min-height: 0; margin: 0 auto; }
+  .staff-access .access-story { display: none; }
+  .staff-access .access-form-panel { padding: 42px 0 28px; }
+  .staff-access .access-form-content { max-width: 460px; }
+  .staff-access .access-footer { max-width: 460px; margin-top: 12px; }
+  .staff-access .access-symbol { margin-bottom: 24px; }
+  .staff-access h1 { font-size: 34px; }
+  .staff-access input, .staff-access textarea { font-size: 16px !important; }
+}
+@media (max-width: 480px) {
+  .staff-access { padding: 0 20px; }
+  .staff-access .access-header { min-height: 78px; border-bottom: 1px solid var(--line); gap: 10px; }
+  .staff-access .access-logo { gap: 8px; font-size: 13px; }
+  .staff-access .access-logo small { display: none; }
+  .staff-access .access-mark { width: 34px; height: 34px; border-radius: 11px; font-size: 18px; }
+  .staff-access .access-header nav { gap: 0; }
+  .staff-access .access-header nav a { min-height: 40px; font-size: 11px; padding: 8px 10px; }
+  .staff-access .access-header nav a[aria-current] { display: none; }
+  .staff-access .access-form-panel { padding: 32px 0 20px; }
+  .staff-access .access-symbol { width: 42px; height: 42px; border-radius: 14px; margin-bottom: 22px; }
+  .staff-access h1 { font-size: 31px; letter-spacing: -1px; }
+  .staff-access .access-intro { font-size: 13px; margin: 12px 0 26px; }
+  .staff-access .access-field, .staff-access .gate-field { margin-bottom: 20px; }
+  .staff-access .access-note { padding: 14px; }
+  .staff-access .access-footer { font-size: 10px; padding: 20px 0; margin-top: 0; }
+}
+/* Override legacy gate wrappers without changing the authenticated dashboard. */
+.staff-access .gate-field__input-wrap,
+.staff-access .gate-field__input-wrap:focus-within,
+.staff-access .gate-field__input-wrap:has([aria-invalid]) { display: block; margin-top: 8px; padding: 0; background: transparent; }
+.staff-access .gate-field__input-wrap input { margin-top: 0; }
+.staff-access :is(a, button, input, textarea, select, summary):focus-visible { outline: 2px solid var(--green) !important; outline-offset: 4px !important; }
+.staff-access .custom-select__trigger:hover { background: var(--tile-hover); }
+.staff-access .custom-select__option { min-height: 44px; }
+.staff-access .access-skip { position: fixed; top: -100px; left: 20px; z-index: 200; padding: 8px 14px; background: var(--paper); color: var(--green); border: 1px solid var(--green); border-radius: 999px; }
+.staff-access .access-skip:focus { top: 12px; }

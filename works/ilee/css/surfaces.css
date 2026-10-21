@@ -1,0 +1,391 @@
+/* App-wide surface contract. Loaded last on every authored page.
+ * Separation comes from canvas / paper / control fills and spacing, never
+ * hairline frames, divider rules or shadows. Icons keep their strokes.
+ * Keyboard focus uses a distinct fill and text treatment, not another frame.
+ */
+:root {
+  --surface-canvas: #f4f5f2;
+  --surface-paper: #ffffff;
+  --surface-control: #f0f2ef;
+  --surface-hover: #e7ece7;
+  --surface-green: #176b46;
+  --surface-green-dark: #114d33;
+  --surface-selected: #e7f0ea;
+  --surface-error: #f8e9e5;
+}
+@layer borderless-policy {
+  html body,
+  html body *,
+  html body *::before,
+  html body *::after {
+    border: 0 !important;
+    border-image: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+:root,
+body,
+.staff-access {
+  --line: transparent !important;
+  --line-strong: transparent !important;
+}
+hr,
+.nav-divider,
+.gate-divider::before {
+  display: none !important;
+}
+
+/* Shared backgrounds: paper surfaces remain clearly separate from the page. */
+body,
+body.public-design,
+body.staff-access-page,
+.access-shell,
+.staff-access {
+  background: var(--surface-canvas);
+}
+body.public-design {
+  --canvas: var(--surface-canvas);
+}
+.public-design .homes-hero,
+.public-design .homes-browse,
+.public-design .homes-verification {
+  background: var(--surface-canvas);
+}
+:is(
+  .site-header,
+  .site-header.is-scrolled,
+  .site-header.menu-open,
+  .mobile-menu,
+  .site-footer
+) {
+  background: var(--surface-paper);
+  backdrop-filter: none;
+}
+.public-design :is(.discovery-tools, .home-card, .map-layout, .tour-layout) {
+  background: var(--surface-paper);
+}
+.public-design .listing-cta,
+.public-design .workflow-list li {
+  background: var(--surface-paper);
+}
+.public-design .choice-chip span {
+  background: var(--surface-control);
+}
+.public-design .choice-chip input:checked + span {
+  background: var(--surface-green-dark);
+  color: white;
+}
+.public-design
+  :is(.discovery-tabs, .home-card__no-photo, .tour-stage, .map-canvas) {
+  background: var(--surface-control);
+}
+.public-design .discovery-tab.is-active {
+  background: var(--surface-selected);
+}
+.public-design .home-card__save-btn {
+  background: var(--surface-paper);
+}
+.public-design .home-card__save-btn[aria-pressed="true"] {
+  background: var(--surface-green-dark);
+}
+.public-design .home-card__terms {
+  background: var(--surface-control);
+  padding: 10px 12px;
+  border-radius: 12px;
+}
+
+/* Forms and setup surfaces on the other public routes. */
+body
+  :is(
+    .contact-form,
+    .agent-form,
+    .status-form-card,
+    .status-result,
+    .access-card,
+    .account-panel
+  ) {
+  background: var(--surface-paper);
+  border-radius: 24px;
+}
+body :is(.contact-form, .agent-form, .status-form-card, .access-card) {
+  padding: 28px;
+}
+body .access-card {
+  width: min(calc(100% - 36px), 480px);
+  margin-bottom: 32px;
+}
+.staff-access .access-form-panel {
+  background: var(--surface-paper);
+  padding: 32px;
+  border-radius: 28px;
+}
+.staff-access .access-note,
+.staff-access .access-help {
+  background: var(--surface-control);
+  border-radius: 16px;
+  padding: 16px;
+}
+.staff-access .access-help {
+  margin-top: 24px;
+}
+.staff-access .access-header {
+  background: transparent;
+}
+body .faq-item {
+  background: var(--surface-paper);
+  border-radius: 20px;
+  padding: 22px;
+  margin-bottom: 12px;
+}
+body .faq-item:first-child {
+  padding-top: 22px;
+}
+body .path {
+  background: var(--surface-paper);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+body .workflow-list li {
+  margin-bottom: 12px;
+}
+body:not(.public-design) .workflow-list li {
+  background: var(--surface-control);
+  border-radius: 20px;
+  padding: 22px;
+}
+
+/* The same fill-based affordance for every editable field. Native check and
+ * radio controls are styled below so their browser-drawn borders also disappear. */
+html
+  body
+  :is(input, textarea, select, .custom-select__trigger, .otp-cell):where(
+    :not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not(
+        [type="submit"]
+      ):not([type="button"]):not([type="range"])
+  ) {
+  background-color: var(--surface-control) !important;
+  border-radius: 12px;
+}
+html body :is(input, textarea)::placeholder {
+  background: transparent;
+}
+html body :is(input, textarea)[aria-invalid="true"] {
+  background-color: var(--surface-error) !important;
+}
+html body .custom-select__menu {
+  background: var(--surface-control);
+  padding: 8px;
+  border-radius: 14px;
+}
+html body .custom-select__option {
+  background: var(--surface-paper);
+  border-radius: 10px;
+  min-height: 44px;
+}
+html body .custom-select__option:is(.is-selected, [aria-selected="true"]) {
+  background: var(--surface-selected);
+  color: var(--surface-green-dark);
+}
+html body :is(input, textarea, select, .custom-select__trigger):focus-visible {
+  background-color: var(--surface-selected) !important;
+  caret-color: var(--surface-green-dark);
+}
+html body :is(a, button, summary, [role="option"]):focus-visible {
+  background-color: var(--surface-green-dark) !important;
+  color: var(--surface-paper) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+  border-radius: 10px;
+}
+html body .choice-chip:has(input:focus-visible) span {
+  background: var(--surface-green) !important;
+  color: var(--surface-paper) !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+html body input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  padding: 0;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: var(--surface-hover) !important;
+  cursor: pointer;
+  vertical-align: middle;
+}
+html body input[type="checkbox"]:checked {
+  background-color: var(--surface-green) !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='m5 10 3 3 7-7' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+  background-size: 20px 20px !important;
+}
+html body input[type="checkbox"]:focus-visible {
+  background-color: var(--surface-green-dark) !important;
+}
+html body input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--surface-hover);
+  border-radius: 50%;
+}
+html body input[type="radio"]:checked {
+  background: radial-gradient(
+    circle,
+    white 0 22%,
+    var(--surface-green) 25% 100%
+  );
+}
+
+/* Operations: retain the canvas and raised paper cards; replace row rules
+ * with quiet tiles and space. Hidden action forms keep their original logic. */
+#app :is(.card, .metric, .account-menu, .banner, .desk-notice),
+#desk-dialog {
+  background: var(--surface-paper);
+}
+#app .record-table {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+#app .record-table tbody tr {
+  background: var(--surface-control);
+}
+#app .record-table td:first-child {
+  border-radius: 12px 0 0 12px;
+}
+#app .record-table td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+#app .record-table td {
+  padding: 12px 8px;
+}
+#app :is(.queue-row, .activity-row, .attention-item) {
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 8px;
+  background: var(--surface-control);
+}
+#app .tool {
+  background: var(--surface-control);
+  border-radius: 12px;
+  padding: 12px;
+}
+#app .filter-tab:not(.active),
+#app .scope-bar .btn:not([aria-pressed="true"]) {
+  background: var(--surface-paper);
+}
+#app .iconbtn,
+#app .row-open {
+  background: var(--surface-control);
+}
+#app .sidebar-search {
+  background: var(--surface-paper);
+}
+html body #app .sidebar-search input {
+  background: transparent !important;
+}
+#app .search {
+  background: var(--surface-paper);
+}
+html body #app .search input {
+  background: transparent !important;
+}
+#app .custom-select__trigger {
+  background: var(--surface-control) !important;
+}
+#app .rail .navbtn:focus-visible {
+  background: var(--surface-selected) !important;
+  color: var(--surface-green-dark) !important;
+}
+#desk-dialog .drawerhead {
+  background: var(--surface-control);
+}
+#desk-dialog .detailgrid > div {
+  background: var(--surface-control);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+@media (max-width: 700px) {
+  .staff-access .access-form-panel {
+    padding: 26px 18px;
+    border-radius: 22px;
+    margin-top: 20px;
+  }
+  body :is(.contact-form, .agent-form, .status-form-card, .access-card) {
+    padding: 20px;
+  }
+  #app .record-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+  #app .record-table tr {
+    border-radius: 16px;
+    padding: 14px !important;
+  }
+  #app .record-table td {
+    background: transparent;
+  }
+  #app :is(.queue-row, .activity-row, .attention-item) {
+    padding: 12px 8px;
+  }
+}
+/* Browser-generated upload buttons are surfaces too, not outlined widgets. */
+html body input::file-selector-button {
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: var(--surface-selected);
+  color: var(--surface-green-dark);
+  border-radius: 999px;
+  padding: 8px 12px;
+  margin-right: 10px;
+  font: inherit;
+  cursor: pointer;
+}
+.sep {
+  display: none !important;
+}
+
+/* Compact disclosure; 44px target without stacked container + row padding. */
+.public-design .home-card__terms {
+  padding: 0 12px;
+}
+.public-design .home-card__terms summary {
+  min-height: 44px;
+  padding-block: 12px;
+  line-height: 20px;
+}
+.public-design .home-card__terms p {
+  margin: 0;
+  padding-bottom: 12px;
+}
+
+/* Suppress browser-native search/text input chrome as well as authored rings.
+   Focus remains a filled green state; tap does not draw a black frame. */
+html body input:not([type]),
+html
+  body
+  input:is(
+    [type="search"],
+    [type="text"],
+    [type="email"],
+    [type="password"],
+    [type="tel"],
+    [type="url"],
+    [type="number"]
+  ),
+html body textarea {
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+html body :is(input, textarea, select, .custom-select__trigger):focus,
+html body :is(input, textarea, select, .custom-select__trigger):focus-visible {
+  outline: 0 !important;
+  box-shadow: none !important;
+}

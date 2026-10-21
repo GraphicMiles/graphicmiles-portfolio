@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183c2b">
+  <meta name="description" content="Offer a home to ilee in Lekki or Ikeja. No account, no self-publishing: a person confirms your authority to list and inspects the home before anyone sees it.">
+  <meta property="og:title" content="List your home | ilee">
+  <meta property="og:description" content="Offer a home to ilee in Lekki or Ikeja. A person confirms your authority to list and inspects the home before anyone sees it.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/brand/beacon-walk.webp">
+  <title>List your home | ilee</title>
+  <link rel="icon" href="/ilee/assets/img/logo-green.png">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preload" href="/ilee/assets/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/ilee/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/ilee/css/fonts.css">
+  <link rel="stylesheet" href="/ilee/css/icons.css">
+  <link rel="stylesheet" href="/ilee/css/site.css">
+  <link rel="stylesheet" href="/ilee/css/custom-select.css">
+  <link rel="stylesheet" href="/ilee/css/surfaces.css">
+</head>
+<body>
+  <span id="bar-sentinel" aria-hidden="true"></span>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="/ilee/index.html#home" aria-label="ilee home">
+        <img src="/ilee/assets/img/logo-green.png" alt="ilee" width="960" height="285">
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/ilee/listings.html">Browse homes</a>
+        <a href="/ilee/index.html#how-it-works">How it works</a>
+        <a href="/ilee/list-your-home.html">List your home</a>
+        <a href="/ilee/status.html">Track status</a>
+      </nav>
+
+      <span class="nav-divider" aria-hidden="true"></span>
+      <a class="button button--primary button--compact" href="/ilee/contact.html#contact-form">Start an enquiry</a>
+
+      <button class="menu-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu" data-menu-toggle>
+        <i class="ph ph-list menu-toggle__bar" aria-hidden="true"></i><i class="ph ph-x menu-toggle__close" aria-hidden="true"></i>
+      </button>
+    </div>
+
+        <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <nav aria-label="Mobile navigation">
+        <p class="mobile-menu__label">Explore</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/index.html#home">Home</a></li>
+          <li><a href="/ilee/listings.html">Browse homes</a></li>
+          <li><a href="/ilee/index.html#how-it-works">How it works</a></li>
+          <li><a href="/ilee/index.html#agents">For owners</a></li>
+          <li><a href="/ilee/list-your-home.html">List your home</a></li>
+          <li><a href="/ilee/status.html">Track status</a></li>
+          <li><a href="/ilee/index.html#faq">FAQ</a></li>
+        </ul>
+        <p class="mobile-menu__label">Learn</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/about.html">About ilee</a></li>
+          <li><a href="/ilee/contact.html">Contact the desk</a></li>
+          <li><a href="/ilee/guides/verify-land-ownership.html">Verify ownership</a></li>
+          <li><a href="/ilee/guides/c-of-o-vs-governors-consent.html">C of O and Governor's Consent</a></li>
+          <li><a href="/ilee/guides/evaluate-a-rental-listing.html">Evaluate a listing</a></li>
+          <li><a href="/ilee/guides/rent-in-installments.html">Rent in installments</a></li>
+          <li><a href="/ilee/guides/true-cost-of-renting-in-lagos.html">True cost of renting</a></li>
+          <li><a href="/ilee/privacy.html">Privacy</a></li>
+          <li><a href="/ilee/terms.html">Terms</a></li>
+        </ul>
+        <p class="mobile-menu__label">For the desk</p>
+        <ul class="mobile-menu__list">
+          <li><a href="/ilee/contact.html#contact-form">Start an enquiry</a></li>
+          <li><a href="/ilee/list-your-home.html">List your home</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <!-- SRS Phase 1: "landlord listing submission and basic verification".
+         Account-less by design. D-001 survives the addition: this form writes a
+         lead, a property and a tier-0 listing, and a human verifies the rest.
+         Nothing submitted here can reach a tenant until a physical inspection
+         has passed, which db/001 listings_live_requires_tier2 enforces. -->
+    <section class="page-head">
+      <div class="shell">
+        <p class="eyebrow">For owners and their agents</p>
+        <h1>Offer a home to ilee.</h1>
+        <p class="page-lede">Tell us about a home in Lekki or Ikeja. A person at the desk confirms you have the authority to offer it and inspects it in person before any tenant or buyer sees it.</p>
+        <p class="page-note">There is no account to create and nothing to log into. You submit once, we take it from there, and a named person calls you back.</p>
+      </div>
+    </section>
+
+    <!-- The ladder a submission has to climb. Reusing .workflow-list so the
+         numbering and rhythm match "How it works" on the landing page: a visitor
+         who has read one recognises the other. -->
+    <section class="page-section listing-ladder">
+      <div class="shell">
+        <div class="workflow-head" data-reveal>
+          <h2 id="listing-ladder-title">What happens after you submit.</h2>
+          <p>Four steps, and only the last one is visible to the public. Nothing you send is published by this form.</p>
+        </div>
+        <ol class="workflow-list" aria-labelledby="listing-ladder-title">
+          <li data-reveal>
+            <span class="step-number" aria-hidden="true">1</span>
+            <div>
+              <h3>Submitted</h3>
+              <p>Your details reach the desk as a listing in the queue. It is not on the homes page, and you cannot put it there yourself.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="step-number" aria-hidden="true">2</span>
+            <div>
+              <h3>Authority confirmed</h3>
+              <p>A person checks that you can offer this home and who owns it. We do not ask for a BVN, NIN, selfie or bank statement to do it.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="step-number" aria-hidden="true">3</span>
+            <div>
+              <h3>Inspected in person</h3>
+              <p>An ilee inspector walks the home and photographs it. Those photographs are the only images that can ever appear on the listing.</p>
+            </div>
+          </li>
+          <li data-reveal>
+            <span class="step-number" aria-hidden="true">4</span>
+            <div>
+              <h3>Live</h3>
+              <p>Only now does the home appear to tenants and buyers, with the area shown and the exact address held until a viewing is arranged.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="page-section tone-canvas">
+      <div class="shell">
+        <div class="contact-grid">
+          <form id="listing-form" class="contact-form" data-listing-form novalidate>
+            <noscript><p class="form-note form-note--error">This form needs JavaScript to send securely. Please email <a href="mailto:hello@ilee.ng">hello@ilee.ng</a>.</p></noscript>
+
+            <!-- Bots fill this; people never see it. Same pattern as
+                 staff-apply.html, and declared in publicListingSchema so the
+                 unknown-key policy cannot strip it before the route reads it. -->
+            <label class="access-trap" aria-hidden="true">Website
+              <input id="listing-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </label>
+
+            <p class="form-section-label">About you</p>
+            <div class="form-row">
+              <label class="form-field" for="listing-submitter-name">
+                <span>Your full name</span>
+                <input id="listing-submitter-name" name="submitterName" type="text" autocomplete="name" placeholder="Your name" required maxlength="120">
+                <span class="form-error" data-error-for="listing-submitter-name" aria-live="polite"></span>
+              </label>
+              <label class="form-field" for="listing-submitter-role">
+                <span>You are the</span>
+                <select id="listing-submitter-role" name="submitterRole" required>
+                  <option value="">Choose one</option>
+                  <option value="landlord">Landlord or owner</option>
+                  <option value="agent">Agent</option>
+                  <option value="caretaker">Caretaker</option>
+                </select>
+                <span class="form-error" data-error-for="listing-submitter-role" aria-live="polite"></span>
+              </label>
+            </div>
+            <div class="form-row">
+              <label class="form-field" for="listing-submitter-phone">
+                <span>Phone <em>(one of these two is required)</em></span>
+                <input id="listing-submitter-phone" name="submitterPhone" type="tel" autocomplete="tel" placeholder="0800 000 0000" maxlength="20">
+                <span class="form-error" data-error-for="listing-submitter-phone" aria-live="polite"></span>
+              </label>
+              <label class="form-field" for="listing-submitter-email">
+                <span>Email</span>
+                <input id="listing-submitter-email" name="submitterEmail" type="email" autocomplete="email" placeholder="you@example.com" maxlength="180">
+                <span class="form-error" data-error-for="listing-submitter-email" aria-live="polite"></span>
+              </label>
+            </div>
+
+            <p class="form-section-label">The home</p>
+            <div class="form-row">
+              <label class="form-field" for="listing-area">
+                <span>Area</span>
+                <!-- Filled from /api/v1/meta. The route refuses anything outside
+                     the launch areas with a 400 that names the area, so a
+                     hardcoded list here would let a visitor type a home we
+                     cannot verify and only find out on submit. -->
+                <select id="listing-area" name="area" required data-launch-areas>
+                  <option value="">Loading pilot areas...</option>
+                </select>
+                <span class="form-error" data-error-for="listing-area" aria-live="polite"></span>
+              </label>
+              <label class="form-field" for="listing-home-type">
+                <span>Home type</span>
+                <input id="listing-home-type" name="homeType" type="text" list="listing-home-types" placeholder="Duplex, flat, terrace..." required maxlength="80">
+                <datalist id="listing-home-types">
+                  <option value="Flat"></option><option value="Duplex"></option>
+                  <option value="Terrace"></option><option value="Bungalow"></option>
+                  <option value="Semi-detached"></option><option value="Self-contained"></option>
+                </datalist>
+                <span class="form-error" data-error-for="listing-home-type" aria-live="polite"></span>
+              </label>
+            </div>
+            <label class="form-field form-field--full" for="listing-address">
+              <span>Street address <em>(optional, never published)</em></span>
+              <input id="listing-address" name="address" type="text" autocomplete="off" placeholder="Street and close, if you want the inspector to find it faster" maxlength="240">
+              <span class="form-hint">Used to arrange the inspection only. Tenants and buyers see the area, never the address, until a viewing is arranged.</span>
+            </label>
+
+            <fieldset class="form-field form-field--full listing-category" data-listing-category>
+              <legend>Are you offering it to</legend>
+              <label class="choice-chip"><input type="radio" name="category" value="rent" checked><span>Rent</span></label>
+              <label class="choice-chip"><input type="radio" name="category" value="buy"><span>Sell</span></label>
+              <span class="form-error" data-error-for="listing-category" aria-live="polite"></span>
+            </fieldset>
+
+            <div class="form-row">
+              <label class="form-field" for="listing-price">
+                <span data-listing-price-label>Annual rent (&#8358;)</span>
+                <input id="listing-price" name="priceNaira" type="text" inputmode="numeric" placeholder="4500000" required maxlength="20" aria-describedby="listing-price-hint">
+                <span class="form-hint" id="listing-price-hint" data-listing-price-hint>Naira, no commas. This is what a tenant pays for a year.</span>
+                <span class="form-error" data-error-for="listing-price" aria-live="polite"></span>
+              </label>
+              <label class="form-field" for="listing-terms">
+                <span>Terms <em>(optional)</em></span>
+                <textarea id="listing-terms" name="terms" rows="3" maxlength="2000" placeholder="Minimum stay, service charge, agency or legal fees, what is included"></textarea>
+                <span class="form-error" data-error-for="listing-terms" aria-live="polite"></span>
+              </label>
+            </div>
+            <div class="form-consent">
+              <input id="listing-installments" name="acceptsInstallments" type="checkbox" value="yes">
+              <div>
+                <label for="listing-installments">I am open to a Pay Small Small schedule on this home.</label>
+                <p id="listing-installments-note">Tick this only if you would genuinely take the rent in agreed parts. ilee never holds or moves money, and nothing here obliges you to accept a schedule.</p>
+              </div>
+            </div>
+
+            <p class="form-section-label">Who owns it</p>
+            <div class="form-row">
+              <label class="form-field" for="listing-owner-name">
+                <span>Owner's full name</span>
+                <input id="listing-owner-name" name="ownerName" type="text" placeholder="The person on the title" required maxlength="120">
+                <span class="form-error" data-error-for="listing-owner-name" aria-live="polite"></span>
+              </label>
+              <label class="form-field" for="listing-owner-phone">
+                <span>Owner's phone <em>(optional)</em></span>
+                <input id="listing-owner-phone" name="ownerPhone" type="tel" placeholder="0800 000 0000" maxlength="20">
+                <span class="form-error" data-error-for="listing-owner-phone" aria-live="polite"></span>
+              </label>
+            </div>
+            <label class="form-field form-field--full" for="listing-agent-name">
+              <span>Agent name <em>(optional)</em></span>
+              <input id="listing-agent-name" name="agentName" type="text" placeholder="If an agent is handling this for the owner" maxlength="120">
+            </label>
+
+            <div class="form-consent">
+              <input id="listing-consent" name="consent" type="checkbox" value="yes" required aria-describedby="listing-consent-note">
+              <div>
+                <label for="listing-consent">I agree that ilee may store these details, contact me about this home, and verify it with the owner and in person.</label>
+                <p id="listing-consent-note">Withdraw at any time from the <a href="/ilee/privacy.html">privacy notice</a> or by replying to our message. We will not ask you for a BVN, NIN, selfie or bank statement &mdash; not now, and not to list a home.</p>
+              </div>
+            </div>
+            <span class="form-error" data-error-for="listing-consent" aria-live="polite"></span>
+
+            <button class="button button--primary form-submit" type="submit" data-listing-submit>Send to the desk <i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+            <p class="form-note" role="status" aria-live="polite" data-listing-status></p>
+          </form>
+
+          <aside class="contact-aside">
+            <div class="contact-card" data-reveal>
+              <h3>What we verify</h3>
+              <p>That the home is real, that you have the authority to offer it, and what it will actually cost. An inspector walks it and photographs it; the desk checks the title where a sale depends on it.</p>
+            </div>
+            <div class="contact-card" data-reveal>
+              <h3>What you are not asked for</h3>
+              <p>No BVN, no NIN, no selfie, no bank statement and no account password. The API refuses those fields even if someone posts them, and there is no column to store them in.</p>
+            </div>
+            <div class="contact-card" data-reveal>
+              <h3>What a submission is not</h3>
+              <p>It is not a listing. Nothing you send appears on the homes page until an inspection has passed, and you cannot publish it yourself. That gate is in the database, not in this page.</p>
+            </div>
+            <div class="contact-card" data-reveal>
+              <h3>Prefer to talk it through?</h3>
+              <p> or <a href="mailto:hello@ilee.ng">hello@ilee.ng</a>. Weekdays 9 to 5. Or <a href="/ilee/contact.html#contact-form">send an enquiry</a> and we will call you.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+      <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div class="footer-brand-col">
+        <a class="footer-brand" href="/ilee/index.html#home" aria-label="ilee home"><img src="/ilee/assets/img/logo-green.png" alt="ilee" width="960" height="285"></a>
+        <p class="footer-blurb">Verified homes to rent and to buy in Lagos, starting with Lekki and Ikeja. Clear costs, practical verification and a clear next step.</p>
+        <p class="footer-address">Lagos pilot,<br>Starting with Lekki and Ikeja</p>
+      </div>
+      <nav class="footer-col" aria-label="Explore">
+        <h3 class="footer-heading">Explore</h3>
+        <a href="/ilee/listings.html">Browse homes</a>
+        <a href="/ilee/index.html#about">For tenants</a>
+        <a href="/ilee/index.html#how-it-works">How it works</a>
+        <a href="/ilee/index.html#agents">For owners</a>
+        <a href="/ilee/list-your-home.html">List your home</a>
+        <a href="/ilee/status.html">Track status</a>
+        <a href="/ilee/index.html#faq">FAQ</a>
+      </nav>
+      <nav class="footer-col" aria-label="Company">
+        <h3 class="footer-heading">Company</h3>
+        <a href="/ilee/about.html">About ilee</a>
+        <a href="/ilee/contact.html">Contact</a>
+        <a href="/ilee/privacy.html">Privacy</a>
+        <a href="/ilee/terms.html">Terms</a>
+      </nav>
+      <nav class="footer-col" aria-label="Guides">
+        <h3 class="footer-heading">Guides</h3>
+        <a href="/ilee/guides/verify-land-ownership.html">Verify who owns a home</a>
+        <a href="/ilee/guides/c-of-o-vs-governors-consent.html">C of O and Governor's Consent</a>
+        <a href="/ilee/guides/evaluate-a-rental-listing.html">Evaluate a rental listing</a>
+        <a href="/ilee/guides/rent-in-installments.html">Rent in installments, plainly</a>
+        <a href="/ilee/guides/true-cost-of-renting-in-lagos.html">The true cost of renting</a>
+      </nav>
+      <div class="footer-col footer-desk">
+        <h3 class="footer-heading">The desk</h3>
+        hello@ilee.ng
+        
+        <p class="footer-hours">Weekdays 9 to 5.<br>WhatsApp support during pilot hours.</p>
+      </div>
+    </div>
+    <div class="shell footer-legal">
+      <p>&copy; <span id="year">2026</span> ilee Nigeria Ltd. Verified homes to rent and to buy, Lagos.</p>
+      <p class="footer-legal-links"><a href="/ilee/privacy.html">Privacy</a><a href="/ilee/terms.html">Terms</a></p>
+    </div>
+    <div class="footer-engraving" aria-hidden="true">
+      <svg viewBox="0 0 26 9" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="1.07" y="0.07" width="0.86" height="0.86"/><rect x="2.07" y="0.07" width="0.86" height="0.86"/><rect x="7.07" y="0.07" width="0.86" height="0.86"/><rect x="8.07" y="0.07" width="0.86" height="0.86"/><rect x="1.07" y="1.07" width="0.86" height="0.86"/><rect x="2.07" y="1.07" width="0.86" height="0.86"/><rect x="7.07" y="1.07" width="0.86" height="0.86"/><rect x="8.07" y="1.07" width="0.86" height="0.86"/><rect x="7.07" y="2.07" width="0.86" height="0.86"/><rect x="8.07" y="2.07" width="0.86" height="0.86"/><rect x="13.07" y="2.07" width="0.86" height="0.86"/><rect x="14.07" y="2.07" width="0.86" height="0.86"/><rect x="15.07" y="2.07" width="0.86" height="0.86"/><rect x="16.07" y="2.07" width="0.86" height="0.86"/><rect x="21.07" y="2.07" width="0.86" height="0.86"/><rect x="22.07" y="2.07" width="0.86" height="0.86"/><rect x="23.07" y="2.07" width="0.86" height="0.86"/><rect x="24.07" y="2.07" width="0.86" height="0.86"/><rect x="1.07" y="3.07" width="0.86" height="0.86"/><rect x="2.07" y="3.07" width="0.86" height="0.86"/><rect x="7.07" y="3.07" width="0.86" height="0.86"/><rect x="8.07" y="3.07" width="0.86" height="0.86"/><rect x="12.07" y="3.07" width="0.86" height="0.86"/><rect x="13.07" y="3.07" width="0.86" height="0.86"/><rect x="16.07" y="3.07" width="0.86" height="0.86"/><rect x="17.07" y="3.07" width="0.86" height="0.86"/><rect x="20.07" y="3.07" width="0.86" height="0.86"/><rect x="21.07" y="3.07" width="0.86" height="0.86"/><rect x="24.07" y="3.07" width="0.86" height="0.86"/><rect x="25.07" y="3.07" width="0.86" height="0.86"/><rect x="1.07" y="4.07" width="0.86" height="0.86"/><rect x="2.07" y="4.07" width="0.86" height="0.86"/><rect x="7.07" y="4.07" width="0.86" height="0.86"/><rect x="8.07" y="4.07" width="0.86" height="0.86"/><rect x="12.07" y="4.07" width="0.86" height="0.86"/><rect x="13.07" y="4.07" width="0.86" height="0.86"/><rect x="16.07" y="4.07" width="0.86" height="0.86"/><rect x="17.07" y="4.07" width="0.86" height="0.86"/><rect x="20.07" y="4.07" width="0.86" height="0.86"/><rect x="21.07" y="4.07" width="0.86" height="0.86"/><rect x="24.07" y="4.07" width="0.86" height="0.86"/><rect x="25.07" y="4.07" width="0.86" height="0.86"/><rect x="1.07" y="5.07" width="0.86" height="0.86"/><rect x="2.07" y="5.07" width="0.86" height="0.86"/><rect x="7.07" y="5.07" width="0.86" height="0.86"/><rect x="8.07" y="5.07" width="0.86" height="0.86"/><rect x="12.07" y="5.07" width="0.86" height="0.86"/><rect x="13.07" y="5.07" width="0.86" height="0.86"/><rect x="14.07" y="5.07" width="0.86" height="0.86"/><rect x="15.07" y="5.07" width="0.86" height="0.86"/><rect x="16.07" y="5.07" width="0.86" height="0.86"/><rect x="17.07" y="5.07" width="0.86" height="0.86"/><rect x="20.07" y="5.07" width="0.86" height="0.86"/><rect x="21.07" y="5.07" width="0.86" height="0.86"/><rect x="22.07" y="5.07" width="0.86" height="0.86"/><rect x="23.07" y="5.07" width="0.86" height="0.86"/><rect x="24.07" y="5.07" width="0.86" height="0.86"/><rect x="25.07" y="5.07" width="0.86" height="0.86"/><rect x="1.07" y="6.07" width="0.86" height="0.86"/><rect x="2.07" y="6.07" width="0.86" height="0.86"/><rect x="7.07" y="6.07" width="0.86" height="0.86"/><rect x="8.07" y="6.07" width="0.86" height="0.86"/><rect x="12.07" y="6.07" width="0.86" height="0.86"/><rect x="13.07" y="6.07" width="0.86" height="0.86"/><rect x="20.07" y="6.07" width="0.86" height="0.86"/><rect x="21.07" y="6.07" width="0.86" height="0.86"/><rect x="1.07" y="7.07" width="0.86" height="0.86"/><rect x="2.07" y="7.07" width="0.86" height="0.86"/><rect x="7.07" y="7.07" width="0.86" height="0.86"/><rect x="8.07" y="7.07" width="0.86" height="0.86"/><rect x="12.07" y="7.07" width="0.86" height="0.86"/><rect x="13.07" y="7.07" width="0.86" height="0.86"/><rect x="16.07" y="7.07" width="0.86" height="0.86"/><rect x="17.07" y="7.07" width="0.86" height="0.86"/><rect x="20.07" y="7.07" width="0.86" height="0.86"/><rect x="21.07" y="7.07" width="0.86" height="0.86"/><rect x="24.07" y="7.07" width="0.86" height="0.86"/><rect x="25.07" y="7.07" width="0.86" height="0.86"/><rect x="1.07" y="8.07" width="0.86" height="0.86"/><rect x="2.07" y="8.07" width="0.86" height="0.86"/><rect x="7.07" y="8.07" width="0.86" height="0.86"/><rect x="8.07" y="8.07" width="0.86" height="0.86"/><rect x="13.07" y="8.07" width="0.86" height="0.86"/><rect x="14.07" y="8.07" width="0.86" height="0.86"/><rect x="15.07" y="8.07" width="0.86" height="0.86"/><rect x="16.07" y="8.07" width="0.86" height="0.86"/><rect x="21.07" y="8.07" width="0.86" height="0.86"/><rect x="22.07" y="8.07" width="0.86" height="0.86"/><rect x="23.07" y="8.07" width="0.86" height="0.86"/><rect x="24.07" y="8.07" width="0.86" height="0.86"/></svg>
+    </div>
+  </footer>
+
+  <script src="/ilee/js/debug.js"></script>
+  <script src="/ilee/js/site.js"></script>
+  <script src="/ilee/js/custom-select.js"></script>
+  <script src="/ilee/js/listing-submit.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+/* Desk component layer — layout and motion translated from the Kobra
+   component library (sidebar, menubar, button, select, magnetic dropzone)
+   into the ilee palette. Scoped to the staff desk (#app) and the staff
+   onboarding shells (.access-shell) so no public page changes.
+   Motion tokens taken from the reference: cubic-bezier(0.23,1,0.32,1) for
+   expressive moves, cubic-bezier(0.4,0,0.2,1) for colour, 150-300ms. */
+
+#app, .access-shell {
+  --k-express: cubic-bezier(0.23, 1, 0.32, 1);
+  --k-color: cubic-bezier(0.4, 0, 0.2, 1);
+  --k-slide: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* ── frame + sidebar ─────────────────────────────────────────────── */
+#app.desk-frame {
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+  align-items: start;
+  transition: grid-template-columns 300ms var(--k-slide);
+}
+#app.desk-frame[data-collapsed='true'] { grid-template-columns: 52px minmax(0, 1fr); }
+#app.desk-frame > .topbar { grid-column: 1 / -1; grid-row: 1; }
+#app.desk-frame > .desk-sidebar { grid-column: 1; grid-row: 2; }
+#app.desk-frame > #main { grid-column: 2; grid-row: 2; min-width: 0; }
+#app.desk-frame > .deskfoot { grid-column: 1 / -1; grid-row: 3; }
+
+.desk-sidebar {
+  position: sticky;
+  top: 0;
+  align-self: stretch;
+  min-height: 100vh;
+  padding: 8px;
+  
+  background: var(--paper);
+}
+.desk-sidebar__group {
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  margin-top: 8px;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  transition: margin 200ms linear, opacity 200ms linear;
+}
+.desk-sidebar__list { display: flex; flex-direction: column; gap: 2px; }
+.desk-sidebar .tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 2rem;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 200ms var(--k-color), color 200ms var(--k-color);
+}
+.desk-sidebar .tab:hover { background: var(--tile, #f4f3ef); color: var(--ink, #161d18); }
+.desk-sidebar .tab:focus,
+.desk-sidebar .tab:focus-visible,
+.desk-sidebar .tab.is-active {
+  background: var(--green) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  outline: none;
+}
+.desk-sidebar .tab:focus i,
+.desk-sidebar .tab:focus-visible i,
+.desk-sidebar .tab.is-active i {
+  color: #ffffff !important;
+}
+.desk-sidebar .tab:focus span,
+.desk-sidebar .tab:focus-visible span,
+.desk-sidebar .tab:focus .desk-label,
+.desk-sidebar .tab:focus-visible .desk-label,
+.desk-sidebar .tab.is-active span,
+.desk-sidebar .tab.is-active .desk-label {
+  color: #ffffff !important;
+}
+/* label crossfades out when the rail collapses, exactly like the reference */
+.desk-sidebar .tab .desk-label {
+  display: inline-block;
+  transform-origin: left center;
+  white-space: nowrap;
+  transition: transform 200ms var(--k-color), opacity 200ms var(--k-express), filter 200ms var(--k-express), visibility 200ms;
+}
+.desk-sidebar .tab:hover .desk-label { transform: scale(1.01) translateX(1px); }
+#app.desk-frame[data-collapsed='true'] .desk-label,
+#app.desk-frame[data-collapsed='true'] .desk-sidebar__group {
+  opacity: 0;
+  filter: blur(3px);
+  visibility: hidden;
+  transform: translateX(-8px);
+}
+#app.desk-frame[data-collapsed='true'] .desk-sidebar .tab { justify-content: center; padding: 0; }
+
+/* ── menubar ─────────────────────────────────────────────────────── */
+.menubar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 2rem;
+  padding: 3px;
+  border-radius: 8px;
+  background: var(--paper);
+}
+.menubar__trigger {
+  display: flex;
+  align-items: center;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 150ms var(--k-color);
+}
+.menubar__trigger:hover,
+.menubar__trigger[aria-expanded='true'] { background: var(--canvas-deep, #e9e6df); color: var(--ink, #161d18); }
+.menubar__slot { position: relative; }
+.menubar__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 40;
+  display: none;
+  min-width: 180px;
+  padding: 4px;
+  border-radius: 8px;
+  background: var(--paper);
+}
+.menubar__slot:last-child .menubar__menu { left: auto; right: 0; }
+.menubar__slot[data-open='true'] .menubar__menu {
+  display: block;
+  animation: k-menu-in 200ms var(--k-express) both;
+}
+.menubar__menu button,
+.menubar__menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 2rem;
+  padding: 0 8px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-soft);
+  font: inherit;
+  font-size: 0.875rem;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms var(--k-color);
+}
+.menubar__menu button:hover,
+.menubar__menu a:hover { background: var(--tile, #f4f3ef); color: var(--ink, #161d18); }
+
+/* ── magnetic buttons ────────────────────────────────────────────── */
+#app .btn, .access-button {
+  position: relative;
+  transition: background-color 200ms var(--k-color), color 200ms var(--k-color), transform 150ms var(--k-color);
+}
+#app .btn .btn-label, .access-button .btn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: translate(var(--mx, 0px), var(--my, 0px));
+  transition: transform 300ms var(--k-express);
+}
+#app .btn:active, .access-button:active { transform: scale(0.98); }
+
+/* ── select (kobra metrics on the existing custom-select) ────────── */
+.access-shell .custom-select__trigger {
+  height: 2rem;
+  border-radius: 8px;
+  background: transparent;
+  padding: 0 8px 0 10px;
+  font-size: 0.875rem;
+  transition: background-color 200ms var(--k-color);
+}
+.access-shell .custom-select__trigger:hover { background: #ffffff; color: var(--ink, #161d18); }
+.access-shell .custom-select__trigger:focus, .access-shell .custom-select__trigger:focus-visible { background: #ffffff; }
+.access-shell .custom-select__menu {
+  border-radius: 8px;
+  padding: 4px;
+  overflow: hidden;
+}
+.access-shell .custom-select__menu:not([hidden]) {
+  animation: k-menu-in 200ms var(--k-express) both;
+}
+@keyframes k-menu-in {
+  from { opacity: 0; transform: translateY(-4px); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.access-shell .custom-select__option {
+  height: 2rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  transition: background-color 150ms var(--k-color);
+}
+.access-shell .custom-select__option:hover { background: var(--green-tint, #e7f0ea); color: var(--green-dark, #114d33); }
+
+/* ── magnetic dropzone (evidence upload) ─────────────────────────── */
+#app label.dz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 24px 16px;
+  border-radius: 12px;
+  background: var(--paper);
+  text-align: center;
+  cursor: pointer;
+  transform: perspective(700px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 300ms var(--k-express), background-color 200ms var(--k-color);
+}
+#app label.dz.is-drag {
+  
+  background: var(--green);
+}
+#app label.dz .dz-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: var(--canvas);
+  color: var(--muted);
+  font-size: 1.25rem;
+  transition: background-color 200ms var(--k-color), color 200ms var(--k-color);
+}
+#app label.dz.is-drag .dz-icon {
+  
+  color: var(--green);
+  background: var(--paper);
+}
+#app label.dz .dz-stack { display: grid; }
+#app label.dz .dz-stack > span {
+  grid-area: 1 / 1;
+  transition: opacity 200ms var(--k-express), filter 200ms var(--k-express), transform 200ms var(--k-express);
+}
+#app label.dz .dz-drag { opacity: 0; filter: blur(3px); transform: translateY(4px); font-weight: 600; color: var(--green-dark); }
+#app label.dz.is-drag .dz-drag { opacity: 1; filter: blur(0); transform: none; }
+#app label.dz.is-drag .dz-default { opacity: 0; filter: blur(3px); transform: translateY(-4px); }
+#app label.dz input[type='file'] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+#app label.dz small { color: var(--muted); }
+
+/* ── reduced motion: every translated move collapses ─────────────── */
+@media (prefers-reduced-motion: reduce) {
+  #app *, #app *::before, #app *::after,
+  .access-shell *, .access-shell *::before, .access-shell *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ── responsive: the rail becomes a drawer under 900px ───────────── */
+.desk-burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 150ms var(--k-color);
+}
+.desk-burger:hover { background: var(--canvas-deep, #e9e6df); color: var(--ink, #161d18); }
+.desk-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  border: 0;
+  background: rgba(24, 35, 29, 0.32);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms var(--k-express), visibility 200ms;
+}
+@media (max-width: 900px) {
+  #app.desk-frame,
+  #app.desk-frame[data-collapsed='true'] { grid-template-columns: minmax(0, 1fr); }
+  #app.desk-frame > #main,
+  #app.desk-frame > .deskfoot { grid-column: 1; }
+  #app.desk-frame > .desk-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 60;
+    width: 264px;
+    min-height: 0;
+    transform: translateX(-102%);
+    transition: transform 300ms var(--k-slide);
+  }
+  #app.desk-frame[data-drawer='open'] > .desk-sidebar { transform: none; }
+  #app.desk-frame[data-drawer='open'] .desk-scrim { opacity: 1; visibility: visible; }
+  /* the drawer always shows its labels, whatever the rail pref says */
+  #app.desk-frame[data-collapsed='true'] .desk-label,
+  #app.desk-frame[data-collapsed='true'] .desk-sidebar__group {
+    opacity: 1;
+    filter: none;
+    visibility: visible;
+    transform: none;
+  }
+  #app.desk-frame[data-collapsed='true'] .desk-sidebar .tab { justify-content: flex-start; padding: 0 10px; }
+  .desk-burger { display: flex; }
+}
+/* stats grids are owned by ops/ops.css (auto-fit minmax + flex wrap) */
+
+/* guardrail: nothing on the desk page may create sideways scroll */
+body:has(#app) { overflow-x: clip; }
+
+/* Desk-only motion corrections per the animation skill: colour and hover
+   changes take the plain ease keyword, and the magnetic lean stays under
+   the 300ms UI ceiling. Staff onboarding keeps its existing tokens. */
+#app { --k-color: ease; }
+#app .btn .btn-label { transition-duration: 250ms; }
