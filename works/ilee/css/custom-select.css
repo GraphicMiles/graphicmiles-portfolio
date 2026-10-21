@@ -1,0 +1,57 @@
+/* Shared custom select. Keeps the form value in a native select while replacing
+   the mobile OS radio-list popup with a calm, keyboard-accessible listbox.
+   Borderless system: tone carries the affordance (fill + colour shift), never
+   outlines, rings or hairlines. */
+.custom-select { position: relative; display: block; width: 100%; }
+.custom-select select.custom-select__native {
+  display: none !important;
+}
+.custom-select__trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.7rem;
+  width: 100%; min-height: 2.85rem; padding: 0.76rem 0.9rem;
+  border: 0; border-radius: 10px;
+  background: var(--field, #eef0ec); color: var(--ink); cursor: pointer; text-align: left;
+  font: inherit; font-size: 0.9rem; font-weight: 500;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+.custom-select__trigger:hover { background: var(--field-hover, #e2e5df); color: var(--ink); }
+.custom-select__trigger:focus,
+.custom-select__trigger:focus-visible {
+  outline: 0; background: var(--paper, #ffffff); color: var(--ink);
+  caret-color: var(--green, #176b46);
+}
+.custom-select__value { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* chevron drawn as an inline SVG mark, not border edges */
+.custom-select__chevron {
+  flex: 0 0 0.85rem; width: 0.85rem; height: 0.85rem; opacity: 0.72;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center / contain no-repeat;
+  transition: transform 180ms ease;
+}
+.custom-select.is-open .custom-select__chevron { transform: rotate(180deg); }
+.custom-select__menu {
+  position: absolute; z-index: 80; top: calc(100% + 0.35rem); left: 0; right: 0;
+  display: grid; gap: 0.15rem; max-height: 13rem; overflow: auto; padding: 0.35rem;
+  border: 0; border-radius: 12px; background: var(--paper, #ffffff);
+  color: var(--ink);
+}
+.custom-select__menu[hidden] { display: none !important; }
+.custom-select.is-open .custom-select__menu { position: static; margin-top: 0.35rem; }
+.custom-select__option {
+  display: flex; align-items: center; width: 100%; min-height: 2.35rem; padding: 0.56rem 0.7rem;
+  border: 0; border-radius: 8px; background: transparent; color: var(--ink-soft);
+  cursor: pointer; text-align: left; font: inherit; font-size: 0.84rem; font-weight: 500;
+  touch-action: manipulation;
+}
+.custom-select__option:hover, .custom-select__option:focus-visible { outline: 0; background: var(--tile, #f2f3ef); color: var(--ink); }
+.custom-select__option.is-selected { background: var(--green-tint, #e7f0ea); color: var(--green-dark, #114d33); font-weight: 700; }
+
+/* No focus halo anywhere: focus reads through fill and colour only. */
+input:focus, textarea:focus, select:focus,
+input:focus-visible, textarea:focus-visible, select:focus-visible,
+button:focus-visible, a:focus-visible, summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}

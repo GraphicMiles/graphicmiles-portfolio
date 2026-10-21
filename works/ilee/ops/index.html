@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Desk · ilee ops</title>
+    <link rel="icon" href="/ilee/assets/img/logo-green.png" />
+    <link rel="stylesheet" href="/ilee/css/fonts.css" />
+    <link rel="stylesheet" href="/ilee/css/icons.css" />
+    <link rel="stylesheet" href="/ilee/css/custom-select.css" />
+    <link rel="stylesheet" href="/ilee/ops/ops.css" />
+    <link rel="stylesheet" href="/ilee/css/staff-access.css" />
+    <link rel="stylesheet" href="/ilee/css/surfaces.css">
+</head>
+  <body>
+    <!-- Staff entry uses the same tokens and components as the desk. -->
+    <main id="gate" class="staff-access">
+      <a class="access-skip" href="#ops-user">Skip to sign-in form</a>
+      <header class="access-header">
+        <a class="access-logo" href="/ilee/index.html" aria-label="ilee home"
+          ><span class="access-mark">ilee</span
+          ><span>ilee desk<small>Staff workspace</small></span></a
+        >
+        <nav aria-label="Staff access">
+          <a href="/ilee/ops" aria-current="page">Sign in</a
+          ><a href="/ilee/staff-apply.html">Apply for access</a>
+        </nav>
+      </header>
+      <div class="access-layout">
+        <aside class="access-story" aria-label="About the staff workspace">
+          <div>
+            <p class="access-eyebrow">The ilee staff workspace</p>
+            <h2>Local work.<br />Clear ownership.</h2>
+            <p class="access-story-intro">
+              The people, properties and next steps behind every verified home.
+              Together in one staff workspace.
+            </p>
+          </div>
+          <ol class="access-story-list">
+            <li>
+              <span class="access-story-icon"
+                ><i class="ph ph-buildings" aria-hidden="true"></i
+              ></span>
+              <div>
+                <h3>Know the next step</h3>
+                <p>Move homes from first enquiry to verified supply.</p>
+              </div>
+            </li>
+            <li>
+              <span class="access-story-icon"
+                ><i class="ph ph-shield-check" aria-hidden="true"></i
+              ></span>
+              <div>
+                <h3>Keep evidence close</h3>
+                <p>Record checks and decisions against the right property.</p>
+              </div>
+            </li>
+            <li>
+              <span class="access-story-icon"
+                ><i class="ph ph-users" aria-hidden="true"></i
+              ></span>
+              <div>
+                <h3>Work with accountability</h3>
+                <p>Desk actions are recorded to your staff account.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="access-story-foot">
+            <span class="access-dot"></span>Lekki &amp; Ikeja pilot
+          </div>
+        </aside>
+        <section class="access-form-panel" aria-labelledby="signin-title">
+          <div class="access-form-content">
+            <span class="access-symbol"
+              ><i class="ph ph-lock-key" aria-hidden="true"></i
+            ></span>
+            <p class="access-eyebrow">Welcome back</p>
+            <h1 id="signin-title">Sign in to your desk.</h1>
+            <p class="access-intro">
+              Use the email and password for your approved staff account.
+            </p>
+            <form class="gate-form" id="gate-form">
+              <div class="gate-field">
+                <label class="gate-field__label" for="ops-user"
+                  >Work email</label
+                >
+                <input
+                  class="gate-field__input"
+                  id="ops-user"
+                  name="ops-user"
+                  type="email"
+                  autocomplete="username"
+                  placeholder="you@ilee.ng"
+                  aria-describedby="signin-email-error"
+                  required
+                />
+                <p
+                  class="field-error"
+                  id="signin-email-error"
+                  data-error-for="ops-user"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <div class="gate-field">
+                <div class="gate-field__head">
+                  <label class="gate-field__label" for="ops-token"
+                    >Password</label
+                  >
+                </div>
+                <div class="gate-field__input-wrap">
+                  <input
+                    class="gate-field__input"
+                    id="ops-token"
+                    name="ops-token"
+                    type="password"
+                    autocomplete="current-password"
+                    placeholder="Enter your password"
+                    aria-describedby="signin-password-error"
+                    required
+                  />
+                  <button
+                    class="gate-pw-toggle"
+                    id="gate-pw-toggle"
+                    type="button"
+                    aria-label="Show password"
+                    aria-pressed="false"
+                  >
+                    <svg
+                      class="gate-pw-icon gate-pw-icon--show"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    <svg
+                      class="gate-pw-icon gate-pw-icon--hide"
+                      viewBox="0 0 24 24"
+                      width="18"
+                      height="18"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                      hidden
+                    >
+                      <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                      <path
+                        d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"
+                      />
+                      <path
+                        d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"
+                      />
+                      <line x1="2" y1="2" x2="22" y2="22" />
+                    </svg>
+                  </button>
+                </div>
+                <p
+                  class="field-error"
+                  id="signin-password-error"
+                  data-error-for="ops-token"
+                  aria-live="polite"
+                ></p>
+              </div>
+
+              <button class="gate-submit-btn" type="submit" id="gate-submit">
+                Sign in
+              </button>
+              <p class="gate-apply">
+                New to the desk?
+                <a href="/ilee/staff-apply.html">Apply for staff access</a>
+              </p>
+            </form>
+            <details class="access-help">
+              <summary>
+                Trouble signing in?<i
+                  class="ph ph-plus-circle"
+                  aria-hidden="true"
+                ></i>
+              </summary>
+              <p>
+                Contact your ilee administrator if you’ve forgotten your
+                password or need help with an existing account. A new access
+                application does not reset your password.
+              </p>
+            </details>
+            <p class="access-assurance">
+              <i class="ph ph-shield-check" aria-hidden="true"></i>For
+              authorised staff. Your actions stay attributable.
+            </p>
+          </div>
+        </section>
+      </div>
+      <footer class="access-footer">
+        <span>ilee desk · Staff access</span
+        ><a href="/ilee/privacy.html"
+          >Privacy notice<i class="ph ph-arrow-up-right" aria-hidden="true"></i
+        ></a>
+      </footer>
+    </main>
+
+    <!-- Approved desk presentation; data and writes remain in ops.js. -->
+    <div id="app" class="shell desk-frame" hidden>
+      <a class="skip-link" href="#main">Skip to content</a>
+      <button
+        class="mobile-scrim"
+        id="desk-scrim"
+        aria-label="Close navigation"
+        type="button"
+      ></button>
+      <aside class="rail" id="rail" aria-label="Desk navigation">
+        <div class="sidebar-header">
+          <a class="brand" href="/ilee/index.html" aria-label="ilee home"
+            ><span>ilee</span></a
+          >
+          <span class="sidebar-identity"
+            ><strong>ilee desk</strong
+            ><small><span class="dot"></span>Staff workspace</small></span
+          >
+          <button
+            class="sidebar-toggle"
+            id="sidebar-toggle-inline"
+            type="button"
+            aria-label="Collapse sidebar"
+            aria-expanded="true"
+          >
+            <i class="ph ph-caret-left" aria-hidden="true"></i>
+          </button>
+          <button
+            class="sidebar-close"
+            id="sidebar-close"
+            type="button"
+            aria-label="Close navigation"
+          >
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div
+          class="sidebar-search"
+          role="search"
+          aria-label="Filter navigation"
+        >
+          <button
+            id="sidebar-search-btn"
+            type="button"
+            aria-label="Search queues"
+          >
+            <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          </button>
+          <input
+            id="desk-nav-search"
+            type="search"
+            placeholder="Search queues"
+            aria-label="Search queues"
+            autocomplete="off"
+          />
+          <kbd aria-hidden="true">Ctrl K</kbd>
+        </div>
+        <p class="nav-empty" id="nav-empty" role="status" hidden>
+          No matching queues. Try another name.
+        </p>
+        <nav class="railnav" id="desk-nav" aria-label="Work queues">
+          <section class="nav-group" aria-label="Workspace">
+            <h2 class="nav-group-heading">Workspace</h2>
+            <button
+              class="tab navbtn is-active active"
+              id="tab-overview"
+              type="button"
+              data-tab="overview"
+              aria-controls="panel-overview"
+              aria-current="page"
+              title="Overview"
+            >
+              <i class="ph ph-house" aria-hidden="true"></i
+              ><span class="navlabel">Overview</span>
+            </button>
+            <button
+              class="tab navbtn"
+              id="tab-leads"
+              type="button"
+              data-tab="leads"
+              aria-controls="panel-leads"
+              title="Leads"
+            >
+              <i class="ph ph-users" aria-hidden="true"></i
+              ><span class="navlabel">Leads</span>
+            </button>
+            <button
+              class="tab navbtn"
+              id="tab-listings"
+              type="button"
+              data-tab="listings"
+              aria-controls="panel-listings"
+              title="Listings"
+            >
+              <i class="ph ph-buildings" aria-hidden="true"></i
+              ><span class="navlabel">Listings</span>
+            </button>
+          </section>
+          <section class="nav-group" aria-label="Verifications">
+            <h2 class="nav-group-heading">Verifications</h2>
+            <button
+              class="tab navbtn"
+              id="tab-tasks"
+              type="button"
+              data-tab="tasks"
+              aria-controls="panel-tasks"
+              title="Verification checks"
+            >
+              <i class="ph ph-shield-check" aria-hidden="true"></i
+              ><span class="navlabel">Verification checks</span>
+            </button>
+            <button
+              class="tab navbtn"
+              id="tab-apps"
+              type="button"
+              data-tab="apps"
+              aria-controls="panel-apps"
+              title="Applications"
+            >
+              <i class="ph ph-file-text" aria-hidden="true"></i
+              ><span class="navlabel">Applications</span>
+            </button>
+            <button
+              class="tab navbtn"
+              id="tab-viewings"
+              type="button"
+              data-tab="viewings"
+              aria-controls="panel-viewings"
+              title="Viewings"
+            >
+              <i class="ph ph-calendar-check" aria-hidden="true"></i
+              ><span class="navlabel">Viewings</span>
+            </button>
+          </section>
+          <section class="nav-group" aria-label="Configure">
+            <h2 class="nav-group-heading">Configure</h2>
+            <button
+              class="tab navbtn"
+              id="tab-rights"
+              type="button"
+              data-tab="rights"
+              aria-controls="panel-rights"
+              title="Rights requests"
+            >
+              <i class="ph ph-lock-key" aria-hidden="true"></i
+              ><span class="navlabel">Rights requests</span>
+            </button>
+            <button
+              class="tab navbtn"
+              id="staff-tab"
+              type="button"
+              data-tab="staff"
+              aria-controls="panel-staff"
+              title="Staff access"
+              hidden
+            >
+              <i class="ph ph-gear" aria-hidden="true"></i
+              ><span class="navlabel">Staff access</span>
+            </button>
+          </section>
+        </nav>
+        <div class="sidebar-footer">
+          <button
+            class="sidebar-guide"
+            id="setup-guide"
+            type="button"
+            aria-label="Open setup guide"
+            title="Setup guide"
+          >
+            <i class="ph ph-info" aria-hidden="true"></i
+            ><span class="guide-label">Setup guide</span>
+          </button>
+          <button
+            class="sidebar-account"
+            id="sidebar-account"
+            type="button"
+            aria-label="Open account menu"
+            title="Account"
+          >
+            <span class="avatar" id="sidebar-initial">IS</span
+            ><span class="sidebar-account-copy"
+              ><strong id="sidebar-name">Staff session</strong
+              ><small id="sidebar-role">Staff</small></span
+            ><span id="sidebar-account-chevron"
+              ><i class="ph ph-caret-up-down" aria-hidden="true"></i
+            ></span>
+          </button>
+        </div>
+      </aside>
+      <div class="app">
+        <header class="topbar">
+          <button
+            class="mobile-menu iconbtn"
+            id="desk-burger"
+            type="button"
+            aria-label="Open navigation"
+            aria-expanded="false"
+          >
+            <i class="ph ph-list" aria-hidden="true"></i>
+          </button>
+          <div class="crumb">
+            <span class="crumb-brand">ilee desk</span
+            ><i class="ph ph-caret-right" aria-hidden="true"></i
+            ><b id="crumb-current">Overview</b>
+          </div>
+          <div class="account">
+            <button
+              class="account-trigger menubar__trigger"
+              id="account-trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="account-menu"
+              aria-label="Open account menu"
+            >
+              <span class="avatar" id="whoami-initial">IS</span
+              ><span class="account-copy"
+                ><strong id="whoami">Staff</strong
+                ><small id="account-role">Staff workspace</small></span
+              ><span id="account-chevron"
+                ><i class="ph ph-caret-up-down" aria-hidden="true"></i
+              ></span>
+            </button>
+            <div class="account-menu" id="account-menu" hidden>
+              <div class="menu-head">
+                <strong id="account-name">Staff</strong>
+                <p class="small muted" id="account-queue-total"></p>
+              </div>
+              <button id="refresh" type="button">
+                <i class="ph ph-circle-notch" aria-hidden="true"></i>Refresh
+                queues
+              </button>
+              <button id="account-dashboard" type="button">
+                <i class="ph ph-house" aria-hidden="true"></i>Dashboard overview
+              </button>
+              <button id="account-copy-email" type="button">
+                <i class="ph ph-file-text" aria-hidden="true"></i>Copy account
+                email
+              </button>
+              <a href="/ilee/listings.html"
+                ><i class="ph ph-buildings" aria-hidden="true"></i>Open live
+                homes</a
+              >
+              <a href="/ilee/index.html"
+                ><i class="ph ph-arrow-up-right" aria-hidden="true"></i>Public
+                website</a
+              >
+              <button id="signout" type="button">
+                <i class="ph ph-arrow-right" aria-hidden="true"></i>Sign out
+              </button>
+            </div>
+          </div>
+        </header>
+        <main class="main" id="main" tabindex="-1">
+          <div class="banner" id="banner" role="status" hidden></div>
+          <div
+            class="desk-notice"
+            id="desk-notice"
+            role="status"
+            aria-live="polite"
+            hidden
+          ></div>
+          <div class="verified-toast" id="verified-toast" role="status" hidden>
+            <strong>Signed in</strong><small>Your desk session is ready.</small>
+          </div>
+          <section
+            class="panel"
+            id="panel-overview"
+            aria-labelledby="tab-overview"
+          >
+            <header class="pageheading">
+              <div>
+                <time class="eyebrow" id="desk-date"></time>
+                <h1 id="desk-greeting">Today at the desk</h1>
+                <p>Here’s where the desk stands today.</p>
+              </div>
+              <div class="heading-actions">
+                <div class="date">
+                  Lekki &amp; Ikeja pilot<br /><span id="desk-updated"
+                    >Loading queues</span
+                  >
+                </div>
+              </div>
+            </header>
+            <div class="metric-grid" aria-label="Workload summary">
+              <article class="metric">
+                <div class="metric-top">
+                  New enquiries<i class="ph ph-users" aria-hidden="true"></i>
+                </div>
+                <div class="metric-value" id="c-leads">—</div>
+                <div class="metric-foot">Ready for first contact</div>
+              </article>
+              <article class="metric">
+                <div class="metric-top">
+                  Open checks<i
+                    class="ph ph-shield-check"
+                    aria-hidden="true"
+                  ></i>
+                </div>
+                <div class="metric-value" id="c-tasks">—</div>
+                <div class="metric-foot">Evidence and outcomes pending</div>
+              </article>
+              <article class="metric">
+                <div class="metric-top">
+                  Live homes<i class="ph ph-buildings" aria-hidden="true"></i>
+                </div>
+                <div class="metric-value" id="c-live">—</div>
+                <div class="metric-foot">Published inventory</div>
+              </article>
+              <article class="metric">
+                <div class="metric-top">
+                  Applications<i class="ph ph-file-text" aria-hidden="true"></i>
+                </div>
+                <div class="metric-value" id="c-apps">—</div>
+                <div class="metric-foot">Recorded tenancy applications</div>
+              </article>
+            </div>
+            <div id="overview-content"></div>
+          </section>
+          <section
+            class="panel"
+            id="panel-leads"
+            aria-label="Leads"
+            hidden
+          ></section>
+          <section
+            class="panel"
+            id="panel-listings"
+            aria-label="Listings"
+            hidden
+          ></section>
+          <section
+            class="panel"
+            id="panel-tasks"
+            aria-label="Verification"
+            hidden
+          ></section>
+          <section
+            class="panel"
+            id="panel-apps"
+            aria-label="Applications"
+            hidden
+          ></section>
+          <section
+            class="panel"
+            id="panel-viewings"
+            aria-label="Viewings"
+            hidden
+          ></section>
+          <section
+            class="panel"
+            id="panel-rights"
+            aria-label="Rights requests"
+            hidden
+          ></section>
+          <section
+            class="panel"
+            id="panel-staff"
+            aria-label="Staff access"
+            hidden
+          ></section>
+          <footer class="footnote">
+            <span>ilee desk · Lekki &amp; Ikeja pilot</span
+            ><span
+              >Every desk action is recorded to the signed-in staff
+              member.</span
+            >
+          </footer>
+        </main>
+      </div>
+      <dialog id="desk-dialog" aria-labelledby="dialog-title">
+        <header class="drawerhead">
+          <h2 id="dialog-title"></h2>
+          <button
+            class="iconbtn"
+            type="button"
+            data-dialog-close
+            aria-label="Close dialog"
+          >
+            <i class="ph ph-x" aria-hidden="true"></i>
+          </button>
+        </header>
+        <div id="dialog-content"></div>
+      </dialog>
+    </div>
+    <script src="/ilee/js/onboardingQuality.js"></script>
+    <script src="/ilee/js/custom-select.js"></script>
+    <script src="/ilee/ops/desk-view.js"></script>
+    <script src="/ilee/ops/ops.js"></script>
+  </body>
+</html>

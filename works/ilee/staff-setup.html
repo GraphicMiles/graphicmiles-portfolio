@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Set up staff access · ilee</title>
+  <link rel="icon" href="/ilee/assets/img/logo-green.png">
+  <link rel="stylesheet" href="/ilee/css/fonts.css">
+  <link rel="stylesheet" href="/ilee/css/staff-onboarding.css">
+  <link rel="stylesheet" href="/ilee/css/desk-ui.css">
+  <link rel="stylesheet" href="/ilee/css/custom-select.css">
+  <link rel="stylesheet" href="/ilee/css/surfaces.css">
+</head>
+<body>
+  <main class="access-shell">
+    <header class="access-nav">
+      <a class="access-brand" href="/ilee/ops" aria-label="Back to ilee staff sign in"><img src="/ilee/assets/img/logo-green.png" alt="ilee" width="960" height="285"></a>
+      <span class="access-nav-note">Private setup</span>
+    </header>
+    <section class="access-card" aria-labelledby="setup-title">
+      <p class="access-kicker">One-time setup</p>
+      <h1 id="setup-title">Choose your desk password</h1>
+      <p class="access-intro">This link is private, expires after 60 minutes, and can be used once. Choose a password and we’ll open the desk automatically.</p>
+      <div class="access-progress" aria-label="Account setup progress">
+        <span>Step 2 of 3</span><strong>Password setup</strong>
+      </div>
+
+      <form id="staff-setup-form" novalidate>
+        <label class="access-field">Password
+          <input name="password" data-password-field type="password" autocomplete="new-password" minlength="10" maxlength="500" required>
+        </label>
+        <div class="password-meter" data-password-meter aria-live="polite">
+          <div class="password-meter__head"><span>Password strength</span><strong data-password-label>Use a unique password</strong></div>
+          <div class="password-meter__bar" data-password-bar><i></i><i></i><i></i><i></i><i></i></div>
+          <ul class="password-rules" aria-label="Password requirements">
+            <li data-password-rule="length">10+ characters</li><li data-password-rule="lower">Lowercase letter</li><li data-password-rule="upper">Uppercase letter</li><li data-password-rule="number">Number</li><li data-password-rule="special">Special character</li>
+          </ul>
+        </div>
+        <label class="access-field">Repeat password
+          <input name="confirmPassword" data-confirm-password type="password" autocomplete="new-password" minlength="10" maxlength="500" required>
+        </label>
+        <p class="match-note" data-match-note aria-live="polite"></p>
+        <button class="access-button" type="submit">Create my account</button>
+        <p class="access-feedback" id="setup-feedback" role="status" aria-live="polite"></p>
+      </form>
+      <p class="access-foot">Your first desk session starts automatically after setup. You can sign out at any time from the desk.</p>
+      <p class="access-return"><a href="/ilee/ops">Return to staff sign in</a></p>
+    </section>
+  </main>
+  <script src="/ilee/js/debug.js"></script>
+  <script src="/ilee/js/onboardingQuality.js"></script>
+  <script src="/ilee/js/staff-onboarding.js"></script>
+  <script src="/ilee/js/desk-ui.js"></script>
+</body>
+</html>

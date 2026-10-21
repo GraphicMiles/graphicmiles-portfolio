@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#176b46" />
+    <meta
+      name="description"
+      content="Homes in Lagos that have passed an ilee inspection, with the verification tier and the rent shown before you enquire."
+    />
+    <meta property="og:title" content="Homes | ilee" />
+    <meta
+      property="og:description"
+      content="Homes in Lagos that have passed an ilee inspection, with the verification tier and the rent shown before you enquire."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/img/brand/beacon-walk.webp" />
+    <title>Homes | ilee</title>
+    <link rel="icon" href="/ilee/assets/img/logo-green.png" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link
+      rel="preload"
+      href="/ilee/assets/fonts/outfit-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/ilee/css/fonts.css" />
+    <link rel="stylesheet" href="/ilee/css/icons.css" />
+    <link rel="stylesheet" href="/ilee/css/site.css" />
+    <link rel="stylesheet" href="/ilee/css/custom-select.css" />
+    <link rel="stylesheet" href="/ilee/css/public-design.css" />
+    <link rel="stylesheet" href="/ilee/css/surfaces.css" />
+  </head>
+  <body class="public-design listings-page">
+    <span id="bar-sentinel" aria-hidden="true"></span>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <div class="shell header-inner">
+        <a class="brand" href="/ilee/index.html#home" aria-label="ilee home">
+          <img
+            src="/ilee/assets/img/logo-green.png"
+            alt="ilee"
+            width="960"
+            height="285"
+          />
+        </a>
+
+        <nav class="desktop-nav" aria-label="Main navigation">
+          <a href="/ilee/listings.html" aria-current="page">Browse homes</a>
+          <a href="/ilee/index.html#how-it-works">How it works</a>
+          <a href="/ilee/list-your-home.html">List your home</a>
+          <a href="/ilee/status.html">Track status</a>
+        </nav>
+
+        <span class="nav-divider" aria-hidden="true"></span>
+        <a
+          class="button button--primary button--compact"
+          href="/ilee/contact.html#contact-form"
+          >Start an enquiry</a
+        >
+
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Open navigation menu"
+          data-menu-toggle
+        >
+          <i class="ph ph-list menu-toggle__bar" aria-hidden="true"></i
+          ><i class="ph ph-x menu-toggle__close" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <div
+        class="mobile-menu"
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        hidden
+      >
+        <nav aria-label="Mobile navigation">
+          <p class="mobile-menu__label">Explore</p>
+          <ul class="mobile-menu__list">
+            <li><a href="/ilee/index.html#home">Home</a></li>
+            <li>
+              <a href="/ilee/listings.html" aria-current="page">Browse homes</a>
+            </li>
+            <li><a href="/ilee/index.html#how-it-works">How it works</a></li>
+            <li><a href="/ilee/index.html#agents">For owners</a></li>
+            <li><a href="/ilee/list-your-home.html">List your home</a></li>
+            <li><a href="/ilee/status.html">Track status</a></li>
+            <li><a href="/ilee/index.html#faq">FAQ</a></li>
+          </ul>
+          <p class="mobile-menu__label">Learn</p>
+          <ul class="mobile-menu__list">
+            <li><a href="/ilee/about.html">About ilee</a></li>
+            <li><a href="/ilee/contact.html">Contact the desk</a></li>
+            <li>
+              <a href="/ilee/guides/verify-land-ownership.html">Verify ownership</a>
+            </li>
+            <li>
+              <a href="/ilee/guides/c-of-o-vs-governors-consent.html"
+                >C of O and Governor's Consent</a
+              >
+            </li>
+            <li>
+              <a href="/ilee/guides/evaluate-a-rental-listing.html"
+                >Evaluate a listing</a
+              >
+            </li>
+            <li>
+              <a href="/ilee/guides/rent-in-installments.html"
+                >Rent in installments</a
+              >
+            </li>
+            <li>
+              <a href="/ilee/guides/true-cost-of-renting-in-lagos.html"
+                >True cost of renting</a
+              >
+            </li>
+            <li><a href="/ilee/privacy.html">Privacy</a></li>
+            <li><a href="/ilee/terms.html">Terms</a></li>
+          </ul>
+          <p class="mobile-menu__label">For the desk</p>
+          <ul class="mobile-menu__list">
+            <li><a href="/ilee/contact.html#contact-form">Start an enquiry</a></li>
+            <li><a href="/ilee/list-your-home.html">List your home</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="homes-hero">
+        <div class="shell homes-hero__layout">
+          <div>
+            <p class="eyebrow">Find your place · Lagos</p>
+            <h1>A home to move<br />forward with.</h1>
+            <p class="homes-hero__intro">
+              Homes to rent and buy, with the checks and costs in view. Find a
+              place that fits. We’ll help with the next step.
+            </p>
+            <a class="text-link" href="#browse-homes"
+              >Explore the homes<i
+                class="ph ph-arrow-down-right"
+                aria-hidden="true"
+              ></i
+            ></a>
+          </div>
+          <aside class="homes-promise" aria-label="Before you enquire">
+            <span class="homes-promise__icon"
+              ><i class="ph ph-shield-check" aria-hidden="true"></i
+            ></span>
+            <p class="eyebrow">Clarity before commitment</p>
+            <h2>Know what’s been checked.</h2>
+            <p>
+              Every published home has passed a physical inspection. Its badge
+              tells you whether title checks are complete or still pending.
+            </p>
+            <a href="#verification-guide"
+              >Understand the checks<i
+                class="ph ph-arrow-up-right"
+                aria-hidden="true"
+              ></i
+            ></a>
+          </aside>
+        </div>
+      </section>
+
+      <section
+        class="page-section homes-browse"
+        id="browse-homes"
+        aria-labelledby="browse-title"
+      >
+        <div class="shell">
+          <div class="discovery-tools" data-reveal>
+            <div class="discovery-tools__top">
+              <div>
+                <p class="eyebrow">A place for your next chapter</p>
+                <h2 id="browse-title">Find your home.</h2>
+              </div>
+              <p
+                class="discovery-summary"
+                data-homes-summary
+                role="status"
+                aria-live="polite"
+              >
+                Loading live homes...
+              </p>
+            </div>
+            <form class="discovery-filters" data-homes-filters novalidate>
+              <label
+                class="form-field discovery-filter discovery-filter--search"
+                for="home-search"
+              >
+                <span>Search homes</span>
+                <input
+                  id="home-search"
+                  type="search"
+                  placeholder="Area or home type"
+                  autocomplete="off"
+                />
+              </label>
+              <!-- SRS 3.1: filtering by category. Rent and buy only. Short-let and
+                 commercial are not offered because they are not in the schema,
+                 and a filter with nothing behind it is a dead control. -->
+              <fieldset
+                class="form-field discovery-filter discovery-filter--category"
+                data-homes-category
+              >
+                <legend>Looking to</legend>
+                <div class="category-options">
+                  <label class="choice-chip"
+                    ><input
+                      type="radio"
+                      name="home-category"
+                      value=""
+                      checked
+                    /><span>Rent or buy</span></label
+                  >
+                  <label class="choice-chip"
+                    ><input
+                      type="radio"
+                      name="home-category"
+                      value="rent"
+                    /><span>Rent</span></label
+                  >
+                  <label class="choice-chip"
+                    ><input
+                      type="radio"
+                      name="home-category"
+                      value="buy"
+                    /><span>Buy</span></label
+                  >
+                </div>
+                <p
+                  class="discovery-filter__note"
+                  data-homes-category-note
+                  hidden
+                ></p>
+              </fieldset>
+              <button
+                class="discovery-more"
+                type="button"
+                data-filter-toggle
+                aria-expanded="false"
+                aria-controls="home-area home-type home-budget home-installments"
+              >
+                <i class="ph ph-plus-circle" aria-hidden="true"></i
+                ><span>More filters</span>
+              </button>
+              <label
+                class="form-field discovery-filter"
+                data-advanced-filter
+                for="home-area"
+              >
+                <span>Area</span>
+                <!-- Populated from the live response. Hardcoding Lekki and Ikeja
+                   here is what left a live home in another area reachable only
+                   through "All pilot areas" and invisible under both chips. -->
+                <select id="home-area">
+                  <option value="">All pilot areas</option>
+                </select>
+              </label>
+              <label
+                class="form-field discovery-filter"
+                data-advanced-filter
+                for="home-type"
+              >
+                <span>Home type</span>
+                <select id="home-type">
+                  <option value="">All home types</option>
+                </select>
+              </label>
+              <label
+                class="form-field discovery-filter"
+                data-advanced-filter
+                for="home-budget"
+              >
+                <span data-homes-price-label>Price range</span>
+                <select id="home-budget">
+                  <option value="">Any range</option>
+                  <option value="under-3m">Under ₦3m</option>
+                  <option value="3m-6m">₦3m–₦6m</option>
+                  <option value="over-6m">Over ₦6m</option>
+                </select>
+              </label>
+              <!-- D-010 was reversed on 23 September 2026: the programme may be
+                 named publicly. The word "installments" stays in the sentence so
+                 the label is still legible to someone who has not heard it. -->
+              <label class="discovery-check" data-advanced-filter
+                ><input id="home-installments" type="checkbox" /><span
+                  data-homes-program-label
+                  >Pay Small Small available</span
+                ></label
+              >
+              <button
+                class="text-button discovery-reset"
+                type="reset"
+                data-homes-reset
+              >
+                Clear filters
+              </button>
+            </form>
+            <div class="discovery-tools__foot">
+              <p class="discovery-hint">
+                Availability is confirmed before a viewing. Exact addresses stay
+                private.
+              </p>
+              <div
+                class="discovery-tabs"
+                role="tablist"
+                aria-label="Home discovery view"
+              >
+                <button
+                  class="discovery-tab is-active"
+                  type="button"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="homes-list-view"
+                  id="homes-tab-list"
+                  data-homes-view="list"
+                >
+                  <i class="ph ph-list" aria-hidden="true"></i>Homes
+                </button>
+                <button
+                  class="discovery-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="homes-map-view"
+                  id="homes-tab-map"
+                  data-homes-view="map"
+                >
+                  <i class="ph ph-map-pin" aria-hidden="true"></i>Area map
+                </button>
+                <button
+                  class="discovery-tab"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="homes-tour-view"
+                  id="homes-tab-tour"
+                  data-homes-view="tour"
+                >
+                  <i class="ph ph-house" aria-hidden="true"></i>Photos
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="discovery-view discovery-view--list"
+            id="homes-list-view"
+            data-homes-view-panel="list"
+            role="tabpanel"
+            aria-labelledby="homes-tab-list"
+          >
+            <!-- Cards are rendered from GET /api/v1/homes, which returns live
+               listings only. js/homes.js swaps in loading, empty and error
+               states and re-attaches the supply cell below the grid. -->
+            <div class="listing-grid" data-homes-grid aria-live="polite">
+              <div class="listing-cta" data-reveal>
+                <h3>Have a home to list?</h3>
+                <p>
+                  We are speaking with landlords, agents and caretakers who can
+                  provide authority, availability and clear home details.
+                </p>
+                <a
+                  class="contextual-link"
+                  href="/ilee/contact.html?topic=Listing%20a%20home#contact-form"
+                  >Talk to us about your home
+                  <i class="ph ph-arrow-up-right" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="discovery-view discovery-view--map"
+            id="homes-map-view"
+            data-homes-view-panel="map"
+            role="tabpanel"
+            aria-labelledby="homes-tab-map"
+            hidden
+          >
+            <div class="map-layout">
+              <div
+                class="map-canvas"
+                aria-label="Approximate Lagos pilot area map"
+                role="img"
+              >
+                <svg viewBox="0 0 800 440" aria-hidden="true" focusable="false">
+                  <path
+                    class="map-water"
+                    d="M0 318 C104 280 157 333 250 307 C344 281 391 332 493 303 C602 272 671 306 800 263 L800 440 L0 440 Z"
+                  ></path>
+                  <path
+                    class="map-road"
+                    d="M-30 362 C120 300 223 334 324 278 S533 230 830 180"
+                  ></path>
+                  <path
+                    class="map-road map-road--soft"
+                    d="M140 470 C192 367 221 254 289 171 S443 82 540 -30"
+                  ></path>
+                  <path
+                    class="map-road map-road--soft"
+                    d="M470 470 C474 371 510 319 604 255 S742 145 831 115"
+                  ></path>
+                  <path
+                    class="map-line"
+                    d="M78 110 C208 126 290 130 390 111 S604 51 726 84"
+                  ></path>
+                  <text x="68" y="392">Lagos pilot area</text>
+                  <text x="220" y="220">Ikeja</text>
+                  <text x="566" y="346">Lekki</text>
+                  <g data-map-markers></g>
+                </svg>
+                <div class="map-key">
+                  <span class="map-key__dot"></span
+                  ><span>Approximate live-home area</span>
+                </div>
+              </div>
+              <aside class="map-aside">
+                <p class="eyebrow">Area view</p>
+                <h3 data-map-title>Waiting for the first live home.</h3>
+                <p data-map-copy>
+                  The map will show a broad area only. Exact addresses stay with
+                  the desk until a viewing is arranged.
+                </p>
+                <a
+                  class="text-link"
+                  href="/ilee/contact.html?topic=Looking%20for%20a%20rental%20home#contact-form"
+                  ><i class="ph ph-arrow-right" aria-hidden="true"></i>Tell the
+                  desk where you want to live</a
+                >
+              </aside>
+            </div>
+          </div>
+
+          <div
+            class="discovery-view discovery-view--tour"
+            id="homes-tour-view"
+            data-homes-view-panel="tour"
+            role="tabpanel"
+            aria-labelledby="homes-tab-tour"
+            hidden
+          >
+            <div class="tour-layout">
+              <div class="tour-stage">
+                <!-- The placeholder stays in the markup and is hidden, not removed,
+                   so the neutral empty state comes back when no live home carries
+                   photographs. js/homes.js fills [data-tour-stage] with the real
+                   inspection photographs when one does. -->
+                <div class="tour-stage__placeholder" data-tour-placeholder>
+                  <i class="ph ph-buildings" aria-hidden="true"></i
+                  ><strong>Inspection photos will appear here.</strong>
+                  <p>
+                    We only show photographs published for a real listing. Until
+                    then, ask the desk about a viewing.
+                  </p>
+                </div>
+                <div class="tour-stage__live" data-tour-stage hidden></div>
+              </div>
+              <div class="tour-copy">
+                <p class="eyebrow">Inspection photographs</p>
+                <h3 data-tour-title>Choose a live home to see its rooms.</h3>
+                <p data-tour-copy>
+                  Published inspection photographs appear here. The desk
+                  confirms availability before a viewing.
+                </p>
+                <ol
+                  class="tour-scenes"
+                  data-photo-scenes
+                  aria-label="Choose an inspection photograph"
+                ></ol>
+              </div>
+            </div>
+          </div>
+
+          <noscript>
+            <div class="homes-state">
+              <i class="ph ph-info homes-state__icon" aria-hidden="true"></i>
+              <h3>This list needs JavaScript.</h3>
+              <p>
+                Use the <a href="/ilee/contact.html#contact-form">enquiry form</a> and
+                the desk will tell you which homes have passed inspection.
+              </p>
+            </div>
+          </noscript>
+        </div>
+      </section>
+
+      <section class="page-section homes-verification" id="verification-guide">
+        <div class="shell">
+          <div class="section-head" data-reveal>
+            <h2>How a home earns its place.</h2>
+            <p>
+              A physical inspection is the starting point. Read each home’s
+              badge and ask the desk about its remaining checks.
+            </p>
+          </div>
+          <div class="how-split">
+            <ol class="workflow-list">
+              <li data-reveal>
+                <span class="step-number" aria-hidden="true">1</span>
+                <div>
+                  <h3>Inspect the home</h3>
+                  <p>
+                    Condition, access, basic property details and inspection
+                    evidence are recorded before the home is published.
+                  </p>
+                </div>
+              </li>
+              <li data-reveal>
+                <span class="step-number" aria-hidden="true">2</span>
+                <div>
+                  <h3>Check owner or agent authority</h3>
+                  <p>
+                    The listing records who owns the home or has authority to
+                    represent it, with the right documents requested for the
+                    pilot.
+                  </p>
+                </div>
+              </li>
+              <li data-reveal>
+                <span class="step-number" aria-hidden="true">3</span>
+                <div>
+                  <h3>Publish the terms</h3>
+                  <p>
+                    Availability, accepted schedule, fees, refund terms and the
+                    next step are written down before staff creates an
+                    application.
+                  </p>
+                </div>
+              </li>
+              <li data-reveal>
+                <span class="step-number" aria-hidden="true">4</span>
+                <div>
+                  <h3>Show the total cost</h3>
+                  <p>
+                    Rent, service fees, deposit and proposed payment dates are
+                    explained before commitment. This Phase 1 build does not
+                    collect payment.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-final" id="start" aria-labelledby="cta-title">
+        <div class="shell" data-reveal>
+          <h2 id="cta-title">Not quite what you’re looking for?</h2>
+          <p>
+            Tell us your area, budget and timing. The desk will confirm
+            availability and help you plan the next step.
+          </p>
+          <a class="button button--glass" href="/ilee/contact.html#contact-form"
+            ><span class="button__label">Tell us what you need</span>
+            <i class="ph ph-arrow-right" aria-hidden="true"></i
+          ></a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div class="footer-brand-col">
+          <a class="footer-brand" href="/ilee/index.html#home" aria-label="ilee home"
+            ><img
+              src="/ilee/assets/img/logo-green.png"
+              alt="ilee"
+              width="960"
+              height="285"
+          /></a>
+          <p class="footer-blurb">
+            Verified homes to rent and to buy in Lagos, starting with Lekki and
+            Ikeja. Clear costs, practical verification and a clear next step.
+          </p>
+          <p class="footer-address">
+            Lagos pilot,<br />Starting with Lekki and Ikeja
+          </p>
+        </div>
+        <nav class="footer-col" aria-label="Explore">
+          <h3 class="footer-heading">Explore</h3>
+          <a href="/ilee/listings.html" aria-current="page">Browse homes</a>
+          <a href="/ilee/index.html#about">For tenants</a>
+          <a href="/ilee/index.html#how-it-works">How it works</a>
+          <a href="/ilee/index.html#agents">For owners</a>
+          <a href="/ilee/list-your-home.html">List your home</a>
+          <a href="/ilee/status.html">Track status</a>
+          <a href="/ilee/index.html#faq">FAQ</a>
+        </nav>
+        <nav class="footer-col" aria-label="Company">
+          <h3 class="footer-heading">Company</h3>
+          <a href="/ilee/about.html">About ilee</a>
+          <a href="/ilee/contact.html">Contact</a>
+          <a href="/ilee/privacy.html">Privacy</a>
+          <a href="/ilee/terms.html">Terms</a>
+        </nav>
+        <nav class="footer-col" aria-label="Guides">
+          <h3 class="footer-heading">Guides</h3>
+          <a href="/ilee/guides/verify-land-ownership.html">Verify who owns a home</a>
+          <a href="/ilee/guides/c-of-o-vs-governors-consent.html"
+            >C of O and Governor's Consent</a
+          >
+          <a href="/ilee/guides/evaluate-a-rental-listing.html"
+            >Evaluate a rental listing</a
+          >
+          <a href="/ilee/guides/rent-in-installments.html"
+            >Rent in installments, plainly</a
+          >
+          <a href="/ilee/guides/true-cost-of-renting-in-lagos.html"
+            >The true cost of renting</a
+          >
+        </nav>
+        <div class="footer-col footer-desk">
+          <h3 class="footer-heading">The desk</h3>
+          hello@ilee.ng
+
+          <p class="footer-hours">
+            Weekdays 9 to 5.<br />WhatsApp support during pilot hours.
+          </p>
+        </div>
+      </div>
+      <div class="shell footer-legal">
+        <p>
+          &copy; <span id="year">2026</span> ilee Nigeria Ltd. Verified homes to
+          rent and to buy, Lagos.
+        </p>
+        <p class="footer-legal-links">
+          <a href="/ilee/privacy.html">Privacy</a><a href="/ilee/terms.html">Terms</a>
+        </p>
+      </div>
+      <div class="footer-engraving" aria-hidden="true">
+        <svg
+          viewBox="0 0 26 9"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect x="1.07" y="0.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="0.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="0.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="0.07" width="0.86" height="0.86" />
+          <rect x="1.07" y="1.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="1.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="1.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="1.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="13.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="14.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="15.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="16.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="21.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="22.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="23.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="24.07" y="2.07" width="0.86" height="0.86" />
+          <rect x="1.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="12.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="13.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="16.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="17.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="20.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="21.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="24.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="25.07" y="3.07" width="0.86" height="0.86" />
+          <rect x="1.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="12.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="13.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="16.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="17.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="20.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="21.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="24.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="25.07" y="4.07" width="0.86" height="0.86" />
+          <rect x="1.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="12.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="13.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="14.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="15.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="16.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="17.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="20.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="21.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="22.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="23.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="24.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="25.07" y="5.07" width="0.86" height="0.86" />
+          <rect x="1.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="12.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="13.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="20.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="21.07" y="6.07" width="0.86" height="0.86" />
+          <rect x="1.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="12.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="13.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="16.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="17.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="20.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="21.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="24.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="25.07" y="7.07" width="0.86" height="0.86" />
+          <rect x="1.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="2.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="7.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="8.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="13.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="14.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="15.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="16.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="21.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="22.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="23.07" y="8.07" width="0.86" height="0.86" />
+          <rect x="24.07" y="8.07" width="0.86" height="0.86" />
+        </svg>
+      </div>
+    </footer>
+
+    <script src="/ilee/js/debug.js"></script>
+    <script src="/ilee/js/site.js"></script>
+    <script src="/ilee/js/custom-select.js"></script>
+    <script src="/ilee/js/homes.js"></script>
+  </body>
+</html>

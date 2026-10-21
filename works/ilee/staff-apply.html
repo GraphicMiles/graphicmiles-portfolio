@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Apply for staff access · ilee</title>
+    <link rel="icon" href="/ilee/assets/img/logo-green.png" />
+    <link rel="stylesheet" href="/ilee/css/fonts.css" />
+    <link rel="stylesheet" href="/ilee/css/icons.css" />
+    <link rel="stylesheet" href="/ilee/css/custom-select.css" />
+    <link rel="stylesheet" href="/ilee/css/staff-access.css" />
+    <link rel="stylesheet" href="/ilee/css/surfaces.css">
+</head>
+  <body class="staff-access-page">
+    <main class="staff-access">
+      <a class="access-skip" href="#application-name"
+        >Skip to application form</a
+      >
+      <header class="access-header">
+        <a class="access-logo" href="/ilee/index.html" aria-label="ilee home"
+          ><span class="access-mark">ilee</span
+          ><span>ilee desk<small>Staff workspace</small></span></a
+        >
+        <nav aria-label="Staff access">
+          <a href="/ilee/ops">Sign in</a
+          ><a href="/ilee/staff-apply.html" aria-current="page">Apply for access</a>
+        </nav>
+      </header>
+      <div class="access-layout access-layout--apply">
+        <aside class="access-story" aria-label="How access works">
+          <div>
+            <p class="access-eyebrow">Joining the desk</p>
+            <h2>A place for your<br />work at ilee.</h2>
+            <p class="access-story-intro">
+              Request the access you need. We’ll keep the review personal and
+              the permissions intentional.
+            </p>
+          </div>
+          <ol class="access-story-list">
+            <li>
+              <span class="access-story-icon">01</span>
+              <div>
+                <h3>Tell us about your work</h3>
+                <p>Share your role, team and reason for access.</p>
+              </div>
+            </li>
+            <li>
+              <span class="access-story-icon">02</span>
+              <div>
+                <h3>Administrator review</h3>
+                <p>
+                  An administrator reviews the request and assigns permissions.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="access-story-icon">03</span>
+              <div>
+                <h3>Set up your account</h3>
+                <p>If approved, use the emailed link to choose a password.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="access-story-foot">
+            <span class="access-dot"></span>Reviewed access. No automatic
+            accounts.
+          </div>
+        </aside>
+        <section class="access-form-panel" aria-labelledby="apply-title">
+          <div class="access-form-content">
+            <p class="access-eyebrow">Join the workspace</p>
+            <h1 id="apply-title">Apply for staff access.</h1>
+            <p class="access-intro">
+              Tell us who you are and what you’ll work on. An administrator
+              reviews every request.
+            </p>
+            <form id="staff-application-form" novalidate>
+              <label class="access-field"
+                >Your name
+                <input
+                  id="application-name"
+                  name="name"
+                  autocomplete="name"
+                  placeholder="Your full name"
+                  maxlength="120"
+                  aria-describedby="application-name-note"
+                  required
+                />
+                <small
+                  class="field-note"
+                  id="application-name-note"
+                  data-name-note
+                  >Use the name your team knows you by.</small
+                >
+              </label>
+              <label class="access-field"
+                >Work email
+                <input
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@ilee.ng"
+                  maxlength="200"
+                  aria-describedby="application-email-note"
+                  required
+                />
+                <small
+                  class="field-note"
+                  id="application-email-note"
+                  data-email-note
+                  >Use an address you can check for the review.</small
+                >
+              </label>
+              <label class="access-field"
+                >Access area
+                <select name="requestedRole">
+                  <option value="ops">Operations</option>
+                  <option value="inspector">Property inspection</option>
+                  <option value="analyst">Analysis</option>
+                  <option value="finance">Finance</option>
+                </select>
+              </label>
+              <label class="access-field"
+                >Why do you need access?
+                <textarea
+                  name="reason"
+                  rows="4"
+                  aria-describedby="application-reason-note"
+                  maxlength="2000"
+                  required
+                  placeholder="Your team, the area you cover and the work you’ll do."
+                ></textarea
+                ><small class="field-note" id="application-reason-note"
+                  >At least 10 characters. Please don’t include identity or
+                  financial documents.</small
+                >
+              </label>
+              <label class="access-trap" aria-hidden="true"
+                >Website
+                <input name="website" tabindex="-1" autocomplete="off" />
+              </label>
+              <button class="access-button" type="submit">
+                Send application
+              </button>
+              <p
+                class="access-feedback"
+                id="application-feedback"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+            <div class="access-note">
+              <i class="ph ph-info" aria-hidden="true"></i>
+              <p>
+                Submitting a request does not create an account. Unreviewed
+                applications expire after 24 hours; approved setup links work
+                once and expire after 60 minutes.
+              </p>
+            </div>
+            <p class="access-return">
+              Already have an account? <a href="/ilee/ops">Sign in to the desk</a>
+            </p>
+          </div>
+        </section>
+      </div>
+      <footer class="access-footer">
+        <span>ilee desk · Staff access</span
+        ><a href="/ilee/privacy.html"
+          >Privacy notice<i class="ph ph-arrow-up-right" aria-hidden="true"></i
+        ></a>
+      </footer>
+    </main>
+    <script src="/ilee/js/debug.js"></script>
+    <script src="/ilee/js/custom-select.js"></script>
+    <script src="/ilee/js/onboardingQuality.js"></script>
+    <script src="/ilee/js/staff-onboarding.js"></script>
+  </body>
+</html>
