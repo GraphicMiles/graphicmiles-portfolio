@@ -60,12 +60,12 @@
       --sky-tint: #dbf1fc;
       --cerulean: #035f8a;
       --cerulean-hover: #024d71;
-      --sage-bg: #e5f5d6;
-      --sage-fg: #265408;
-      --amber-bg: #fff1d6;
-      --amber-fg: #6b4300;
-      --berry-bg: #fde5ee;
-      --berry-fg: #7d0c33;
+      --sage-bg: #e8f5fc;
+      --sage-fg: #07587f;
+      --amber-bg: #eef7fd;
+      --amber-fg: #0a638e;
+      --berry-bg: #dceffc;
+      --berry-fg: #084e74;
 
       --r-shell: 2rem;
       --r-card: 1.5rem;
@@ -648,20 +648,24 @@
     .kpi-tile {
       padding: 1rem 1.125rem;
       border-radius: var(--r-item);
-      background: var(--cloud);
+      background: #f3f9fd;
+      color: var(--ink);
+      border: 1px solid #dcecf5;
       display: flex;
       flex-direction: column;
       gap: 0.25rem;
     }
 
     .kpi-tile--overdue {
-      background: var(--berry-bg);
-      color: var(--berry-fg);
+      background: #e8f4fb;
+      color: var(--ink);
+      border-color: #cce5f3;
     }
 
     .kpi-tile--collected {
-      background: var(--sage-bg);
-      color: var(--sage-fg);
+      background: #dff1fb;
+      color: var(--ink);
+      border-color: #bedfee;
     }
 
     .kpi-label {
@@ -696,12 +700,16 @@
       gap: 0.875rem;
       padding: 0.75rem 0.9375rem;
       border-radius: var(--r-item);
-      background: var(--cloud);
-      transition: background-color var(--dur-fast) var(--ease-out);
+      background: var(--paper);
+      border: 1px solid #e5eef4;
+      box-shadow: 0 5px 16px -14px rgba(3, 95, 138, 0.35);
+      transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
     }
 
     .ledger-row:hover {
-      background: #edf2f6;
+      background: #f7fbfe;
+      border-color: #c7e2f1;
+      transform: translateY(-1px);
     }
 
     .avatar-dot {
@@ -1098,7 +1106,7 @@
       width: 1.375rem;
       height: 1.375rem;
       border-radius: 50%;
-      background: #8dc85a;
+      background: #86c8f2;
       color: var(--ink);
       display: flex;
       align-items: center;
@@ -1120,7 +1128,7 @@
     .strike-chaos {
       color: var(--faint);
       text-decoration: line-through;
-      text-decoration-color: #e5484d;
+      text-decoration-color: #196ce0;
       text-decoration-thickness: 0.09em;
     }
 
@@ -1197,7 +1205,7 @@
       font-weight: 700;
       padding: 0.3125rem 0.75rem;
       border-radius: var(--r-pill);
-      background: #8dc85a;
+      background: #86c8f2;
       color: var(--ink);
     }
 
@@ -1476,11 +1484,15 @@
       .win-toolbar, .win-heading-wrap { align-items: flex-start; }
       .seg-group { max-width: 100%; overflow-x: auto; }
       .kpi-grid, .steps-grid, .entity-pills { grid-template-columns: minmax(0, 1fr); }
-      .ledger-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 0.625rem; align-items: center; }
-      .ledger-row .ledger-meta { grid-column: 2 / -1; }
-      .ledger-row .status-pill { grid-column: 2; justify-self: start; }
-      .ledger-row .ledger-amount { grid-column: 3; min-width: auto; }
-      .ledger-row .mini-action { grid-column: 2 / -1; width: 100%; }
+      .ledger-list { gap: 0.75rem; }
+      .ledger-row { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr) auto; grid-template-areas: "avatar meta meta" "avatar status amount" ". action action"; gap: 0.5rem 0.75rem; padding: 1rem; }
+      .ledger-row .avatar-dot { grid-area: avatar; align-self: start; width: 2.5rem; height: 2.5rem; background: #b9def5 !important; color: #064b70; }
+      .ledger-row .ledger-meta { grid-area: meta; }
+      .ledger-row .ledger-name { font-size: 1rem; }
+      .ledger-row .ledger-sub { margin-top: 0.125rem; line-height: 1.35; }
+      .ledger-row .status-pill { grid-area: status; justify-self: start; }
+      .ledger-row .ledger-amount { grid-area: amount; min-width: auto; align-self: center; }
+      .ledger-row .mini-action { grid-area: action; width: 100%; min-height: 2.375rem; margin-top: 0.25rem; }
 
       .compat-section { padding-top: 2rem; overflow: hidden; text-align: left; }
       .compat-row { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; margin-inline: -0.75rem; padding: 0 0.75rem 0.5rem; }
@@ -1654,7 +1666,7 @@
           <article class="bento-cell bento-cell--7" data-reveal>
             <div class="bento-stage">
               <div class="mini-card mini-inv-row">
-                <span class="avatar-dot" style="background:#f7b6d5">R</span>
+                <span class="avatar-dot" style="background:#b9def5">R</span>
                 <div class="ledger-meta">
                   <div class="ledger-name">Rufus Studios</div>
                   <div class="ledger-sub">INV-1042, due in 3 days</div>
@@ -1672,7 +1684,7 @@
                 <div class="ledger-amount">₦7,500</div>
               </div>
               <div class="mini-card mini-inv-row">
-                <span class="avatar-dot" style="background:#8dc85a">M</span>
+                <span class="avatar-dot" style="background:#72bde9">M</span>
                 <div class="ledger-meta">
                   <div class="ledger-name">Mustapha Logistics</div>
                   <div class="ledger-sub">INV-1044, due in 12 days</div>
@@ -2117,10 +2129,10 @@
           name: "Lagos HQ",
           collectedBase: 2350000,
           invoices: [
-            { id: "INV-1031", initial: "T", bg: "#f5b84b", name: "Tunde Agro", note: "9 days overdue", amount: 480000, bucket: "overdue", paid: false },
-            { id: "INV-1042", initial: "R", bg: "#f7b6d5", name: "Rufus Studios", note: "Due in 3 days", amount: 100000, bucket: "soon", paid: false },
+            { id: "INV-1031", initial: "T", bg: "#86c8f2", name: "Tunde Agro", note: "9 days overdue", amount: 480000, bucket: "overdue", paid: false },
+            { id: "INV-1042", initial: "R", bg: "#b9def5", name: "Rufus Studios", note: "Due in 3 days", amount: 100000, bucket: "soon", paid: false },
             { id: "INV-1043", initial: "J", bg: "#50c5e8", name: "Janet Foods", note: "Issued today", amount: 7500, bucket: "sent", paid: false },
-            { id: "INV-1044", initial: "M", bg: "#8dc85a", name: "Mustapha Logistics", note: "Due in 12 days", amount: 700000, bucket: "sent", paid: false }
+            { id: "INV-1044", initial: "M", bg: "#72bde9", name: "Mustapha Logistics", note: "Due in 12 days", amount: 700000, bucket: "sent", paid: false }
           ],
           reminders: [
             { id: "REM-1", customer: "Tunde Agro", rule: "9 days past due, escalate with statement PDF", channel: "Email + WhatsApp", approved: false },
@@ -2137,9 +2149,9 @@
           name: "Abuja Branch",
           collectedBase: 3120000,
           invoices: [
-            { id: "ABJ-208", initial: "K", bg: "#9bc1f0", name: "Kano Coldchain", note: "5 days overdue", amount: 640000, bucket: "overdue", paid: false },
-            { id: "ABJ-214", initial: "Z", bg: "#f7b6d5", name: "Zuma Medix", note: "Due in 2 days", amount: 520000, bucket: "soon", paid: false },
-            { id: "ABJ-219", initial: "A", bg: "#8dc85a", name: "Arewa Builders", note: "Due in 15 days", amount: 980000, bucket: "sent", paid: false }
+            { id: "ABJ-208", initial: "K", bg: "#a7d6f2", name: "Kano Coldchain", note: "5 days overdue", amount: 640000, bucket: "overdue", paid: false },
+            { id: "ABJ-214", initial: "Z", bg: "#b9def5", name: "Zuma Medix", note: "Due in 2 days", amount: 520000, bucket: "soon", paid: false },
+            { id: "ABJ-219", initial: "A", bg: "#72bde9", name: "Arewa Builders", note: "Due in 15 days", amount: 980000, bucket: "sent", paid: false }
           ],
           reminders: [
             { id: "REM-4", customer: "Kano Coldchain", rule: "5 days past due, cc account owner", channel: "Email", approved: false },
@@ -2156,7 +2168,7 @@
           collectedBase: 4190000,
           invoices: [
             { id: "EXP-091", initial: "C", bg: "#50c5e8", name: "Coastal Cocoa Co.", note: "Due in 4 days", amount: 890000, bucket: "soon", paid: false },
-            { id: "EXP-094", initial: "W", bg: "#f5b84b", name: "Westport Freight", note: "Due in 18 days", amount: 500000, bucket: "sent", paid: false }
+            { id: "EXP-094", initial: "W", bg: "#86c8f2", name: "Westport Freight", note: "Due in 18 days", amount: 500000, bucket: "sent", paid: false }
           ],
           reminders: [
             { id: "REM-6", customer: "Coastal Cocoa Co.", rule: "4 days before due date, wire instructions", channel: "Email", approved: true }
@@ -2381,12 +2393,12 @@
         fin: [
           { n: "1", bg: "#50c5e8", fg: "#0b1f2e", title: "Connect your books", desc: "Sync open invoices from QuickBooks, Xero, Zoho Books, or drop in a CSV." },
           { n: "2", bg: "#035f8a", fg: "#ffffff", title: "Set reminder rules", desc: "Define due-date cadences by invoice size and customer tier once." },
-          { n: "3", bg: "#8dc85a", fg: "#0b1f2e", title: "Approve and collect", desc: "Review queued nudges, record incoming transfers, and watch aging drop." }
+          { n: "3", bg: "#72bde9", fg: "#0b1f2e", title: "Approve and collect", desc: "Review queued nudges, record incoming transfers, and watch aging drop." }
         ],
         sales: [
           { n: "1", bg: "#50c5e8", fg: "#0b1f2e", title: "Claim your accounts", desc: "See every open balance across the customer relationships you own." },
           { n: "2", bg: "#035f8a", fg: "#ffffff", title: "Pin context early", desc: "Log delivery notes or payment promises so finance never chases blind." },
-          { n: "3", bg: "#8dc85a", fg: "#0b1f2e", title: "Know when cash lands", desc: "Get instant alerts the moment an account settles or slips overdue." }
+          { n: "3", bg: "#72bde9", fg: "#0b1f2e", title: "Know when cash lands", desc: "Get instant alerts the moment an account settles or slips overdue." }
         ]
       };
 
