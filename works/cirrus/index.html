@@ -955,6 +955,49 @@
     .compat-pill { padding:.5rem 1rem .5rem .5rem; }
 
     /* =========================================
+       PROBLEM, TRANSPARENCY & PROTOTYPE DISCLOSURES
+       ========================================= */
+    .problem-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: clamp(2rem, 7vw, 6rem);
+      align-items: start;
+      padding: clamp(2rem, 5vw, 4rem);
+      border-radius: var(--r-shell);
+      background: #f3f9fd;
+      border: 1px solid #dcecf5;
+    }
+
+    .problem-intro { position: sticky; top: 2rem; }
+    .problem-list { display: flex; flex-direction: column; }
+    .problem-row { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid #d5e7f1; }
+    .problem-row:first-child { padding-top: 0; }
+    .problem-row:last-child { padding-bottom: 0; border-bottom: 0; }
+    .problem-icon { width: 2.5rem; height: 2.5rem; display: inline-flex; align-items: center; justify-content: center; border-radius: .875rem; background: #dff1fb; color: var(--cerulean); }
+    .problem-icon svg { width: 1.125rem; height: 1.125rem; }
+    .problem-row h3 { font-family: var(--font-display); font-size: 1.125rem; font-weight: 600; letter-spacing: -.015em; }
+    .problem-row p { margin-top: .375rem; max-width: 54ch; color: var(--muted); font-size: .9375rem; line-height: 1.55; }
+
+    .prototype-note { display: flex; align-items: flex-start; gap: .75rem; max-width: 48rem; margin: 1.25rem auto 0; padding: .875rem 1rem; border-radius: var(--r-item); background: #eef7fd; color: var(--ink-soft); text-align: left; font-size: .875rem; line-height: 1.5; }
+    .prototype-note svg { width: 1.125rem; height: 1.125rem; margin-top: .125rem; color: var(--cerulean); }
+
+    .trust-shell { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 1.25rem; }
+    .trust-main, .trust-facts { border-radius: var(--r-card); padding: clamp(1.5rem, 4vw, 2.5rem); }
+    .trust-main { background: var(--ink); color: var(--paper); }
+    .trust-main .section-h2 { color: var(--paper); }
+    .trust-main p { max-width: 52ch; margin-top: 1rem; color: #b9cbd5; font-size: 1rem; line-height: 1.65; }
+    .trust-facts { background: #e8f5fc; border: 1px solid #cde6f3; display: flex; flex-direction: column; justify-content: center; }
+    .trust-fact { padding: 1rem 0; border-bottom: 1px solid #c8e1ee; }
+    .trust-fact:first-child { padding-top: 0; }
+    .trust-fact:last-child { padding-bottom: 0; border-bottom: 0; }
+    .trust-fact strong { display: block; font-size: .9375rem; }
+    .trust-fact span { display: block; margin-top: .25rem; color: var(--muted); font-size: .875rem; line-height: 1.5; }
+
+    .field-error { min-height: 1.1rem; margin-top: .25rem; color: #9b2838; font-size: .75rem; line-height: 1.35; }
+    .form-field [aria-invalid="true"] { border-color: #b53a4a; background: #fff8f8; }
+    .form-status { margin-top: 1rem; padding: .75rem .875rem; border-radius: .75rem; background: #eef7fd; color: var(--ink-soft); font-size: .8125rem; line-height: 1.45; }
+
+    /* =========================================
        ASYMMETRIC BENTO FEATURES (#product)
        ========================================= */
     .section-pad {
@@ -1445,7 +1488,7 @@
     .footer-meta-label { color:#7f949f; font-size:.6875rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
     .footer-meta-value { display:flex; align-items:center; gap:.625rem; margin-top:.625rem; color:#dce9ef; font-size:.9375rem; line-height:1.5; }
     .footer-meta-value svg { width:1.125rem; height:1.125rem; color:var(--sky-bright); flex:0 0 auto; }
-    .footer-directory { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(255,255,255,.12); border-bottom:1px solid rgba(255,255,255,.12); }
+    .footer-directory { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(255,255,255,.12); border-bottom:1px solid rgba(255,255,255,.12); }
     .footer-col { display:flex; flex-direction:column; gap:.65rem; }
     .footer-col-title { margin-bottom:.25rem; color:#7f949f; font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
     .footer-col a { width:fit-content; color:#dce9ef; font-size:.9375rem; transition:color var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out); }
@@ -1584,6 +1627,10 @@
       .compat-row { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; margin-inline: -0.75rem; padding: 0 0.75rem 0.5rem; }
       .compat-row::-webkit-scrollbar { display: none; }
       .compat-pill { flex: 0 0 auto; scroll-snap-align: start; }
+      .problem-shell, .trust-shell { grid-template-columns: minmax(0, 1fr); }
+      .problem-intro { position: static; }
+      .problem-shell { padding: 1.25rem; }
+      .trust-main, .trust-facts { padding: 1.25rem; }
       .section-pad { padding: 4.25rem 0 1rem; }
       .section-head-split { align-items: flex-start; margin-bottom: 2rem; gap: 1rem; }
       .section-h2 { font-size: clamp(2.25rem, 11vw, 3rem); }
@@ -1681,7 +1728,7 @@
 
         <div class="nav-actions">
           <a href="/" class="nav-ghost">Graphic Miles</a>
-          <button type="button" class="btn btn-white btn-sm" data-open-modal="Walkthrough">Book a demo</button>
+          <button type="button" class="btn btn-white btn-sm" data-open-modal="Walkthrough">Book a walkthrough</button>
         </div>
       </header>
 
@@ -1756,8 +1803,34 @@
     <!-- STACK COMPATIBILITY -->
     <section id="compat" class="compat-section" aria-label="Compatible accounting and payment tools">
       <div class="container">
-        <p class="compat-label">Works with the tools already in your finance stack</p>
+        <p class="compat-label">Illustrative connection flows for common finance tools</p>
         <div class="compat-row"><span class="compat-pill"><span class="brand-logo-box"><svg class="brand-logo" viewBox="0 0 24 24" fill="#2CA01C" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm.642 4.1335c.9554 0 1.7296.776 1.7296 1.7332v9.0667h1.6c1.614 0 2.9275-1.3156 2.9275-2.933 0-1.6173-1.3136-2.9333-2.9276-2.9333h-.6654V7.3334h.6654c2.5722 0 4.6577 2.0897 4.6577 4.667 0 2.5774-2.0855 4.6666-4.6577 4.6666H12.642zM7.9837 7.333h3.3291v12.533c-.9555 0-1.73-.7759-1.73-1.7332V9.0662H7.9837c-1.6146 0-2.9277 1.316-2.9277 2.9334 0 1.6175 1.3131 2.9333 2.9277 2.9333h.6654v1.7332h-.6654c-2.5725 0-4.6577-2.0892-4.6577-4.6665 0-2.5771 2.0852-4.6666 4.6577-4.6666Z"/></svg></span><span>QuickBooks</span></span><span class="compat-pill"><span class="brand-logo-box"><svg class="brand-logo" viewBox="0 0 24 24" fill="#13B5EA" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.585 14.655c-1.485 0-2.69-1.206-2.69-2.689 0-1.485 1.207-2.691 2.69-2.691 1.485 0 2.69 1.207 2.69 2.691s-1.207 2.689-2.69 2.689zM7.53 14.644c-.099 0-.192-.041-.267-.116l-2.043-2.04-2.052 2.047c-.069.068-.16.108-.258.108-.202 0-.368-.166-.368-.368 0-.099.04-.191.111-.263l2.04-2.05-2.038-2.047c-.075-.069-.113-.162-.113-.261 0-.203.166-.366.368-.366.098 0 .188.037.258.105l2.055 2.048 2.048-2.045c.069-.071.162-.108.26-.108.211 0 .375.165.375.366 0 .098-.029.188-.104.258l-2.056 2.055 2.055 2.051c.068.069.104.16.104.258 0 .202-.165.368-.365.368h-.01zm8.017-4.591c-.796.101-.882.476-.882 1.404v2.787c0 .202-.165.366-.366.366-.203 0-.367-.165-.368-.366v-4.53c0-.204.16-.366.362-.366.166 0 .316.125.346.289.27-.209.6-.317.93-.317h.105c.195 0 .359.165.359.368 0 .201-.164.352-.375.359 0 0-.09 0-.164.008l.053-.002zm-3.091 2.205H8.625c0 .019.003.037.006.057.02.105.045.211.083.31.194.531.765 1.275 1.829 1.29.33-.003.631-.086.9-.229.21-.12.391-.271.525-.428.045-.058.09-.112.12-.168.18-.229.405-.186.54-.083.164.135.18.391.045.57l-.016.016c-.21.27-.435.495-.689.66-.255.164-.525.284-.811.345-.33.09-.645.104-.975.06-1.095-.135-2.01-.93-2.28-2.01-.06-.21-.09-.42-.09-.645 0-.855.421-1.695 1.125-2.205.885-.615 2.085-.66 3-.075.63.405 1.035 1.021 1.185 1.771.075.419-.21.794-.734.81l.068-.046zm6.129-2.223c-1.064 0-1.931.865-1.931 1.931 0 1.064.866 1.931 1.931 1.931s1.931-.867 1.931-1.931c0-1.065-.866-1.933-1.931-1.933v.002zm0 2.595c-.367 0-.666-.297-.666-.666 0-.367.3-.665.666-.665.367 0 .667.299.667.665 0 .369-.3.667-.667.666zm-8.04-2.603c-.91 0-1.672.623-1.886 1.466v.03h3.776c-.203-.855-.973-1.494-1.891-1.494v-.002z"/></svg></span><span>Xero</span></span><span class="compat-pill"><span class="brand-logo-box"><svg class="brand-logo" viewBox="0 0 24 24" fill="#E42527" aria-hidden="true"><path d="M8.66 6.897a1.299 1.299 0 0 0-1.205.765l-.642 1.44-.062-.385A1.291 1.291 0 0 0 5.27 7.648l-4.185.678A1.291 1.291 0 0 0 .016 9.807l.678 4.18a1.293 1.293 0 0 0 1.27 1.087c.074 0 .143-.01.216-.017l4.18-.678c.436-.07.784-.351.96-.723l2.933 1.307a1.304 1.304 0 0 0 .988.026c.321-.12.575-.365.716-.678l.28-.629.038.276a1.297 1.297 0 0 0 1.455 1.103l3.712-.501a1.29 1.29 0 0 0 1.03.514h4.236c.713 0 1.29-.58 1.291-1.291V9.545c0-.712-.58-1.291-1.291-1.291h-4.236c-.079 0-.155.008-.23.022a1.309 1.309 0 0 0-.275-.288c-.275-.21-.614-.3-.958-.253l-4.197.571c-.155.021-.3.07-.432.14L9.159 7.01a1.27 1.27 0 0 0-.499-.113zm-.025.705c.077 0 .159.013.24.052l2.971 1.324c-.128.238-.18.508-.142.782l.357 2.596h.002l-.745 1.672a.59.59 0 0 1-.777.296l-3.107-1.385-.004-.041-.41-2.526L8.1 7.95a.589.589 0 0 1 .536-.348zm-3.159.733c.125 0 .245.039.343.112.13.09.21.227.237.382l.234 1.446-.56 1.259a1.27 1.27 0 0 0-.026.987c.12.322.364.575.678.717l.295.131a.585.585 0 0 1-.428.314l-4.185.678a.59.59 0 0 1-.674-.485l-.678-4.18a.588.588 0 0 1 .485-.674l4.185-.678c.03-.004.064-.01.094-.01zm11.705.09a.59.59 0 0 1 .415.173 1.287 1.287 0 0 0-.416.947v4.237c0 .033.003.065.005.097l-3.55.482a.586.586 0 0 1-.66-.502l-.191-1.403.899-2.017a1.29 1.29 0 0 0-.333-1.5l3.754-.51c.026-.004.051-.004.077-.004zm1.3.532h4.227c.326 0 .588.266.588.588v4.237a.589.589 0 0 1-.588.588h-4.237a.564.564 0 0 1-.12-.013c.47-.246.758-.765.684-1.318zm-5.988.309.254.113c.296.133.43.48.296.777l-.432.97-.207-1.465a.58.58 0 0 1 .09-.395zm5.39.538.453 3.325a.583.583 0 0 1-.453.65zM6.496 11.545l.17 1.052a.588.588 0 0 1-.293-.776zm3.985 4.344a.588.588 0 0 0-.612.603c0 .358.244.61.601.61a.582.582 0 0 0 .607-.608c0-.35-.242-.605-.596-.605zm5.545 0a.588.588 0 0 0-.612.603c0 .358.245.61.602.61a.582.582 0 0 0 .606-.608c0-.35-.24-.605-.596-.605zm-8.537.018a.047.047 0 0 0-.048.047v.085c0 .026.021.047.048.047h.52l-.623.9a.052.052 0 0 0-.009.027v.027c0 .026.021.047.048.047h.815a.047.047 0 0 0 .047-.047v-.085a.047.047 0 0 0-.047-.047h-.55l.606-.9a.05.05 0 0 0 .008-.026v-.028a.047.047 0 0 0-.047-.047zm5.303 0a.047.047 0 0 0-.047.047v1.086c0 .026.02.047.047.047h.135a.047.047 0 0 0 .047-.047v-.454h.545v.454c0 .026.02.047.047.047h.134a.047.047 0 0 0 .047-.047v-1.086a.047.047 0 0 0-.047-.047h-.134a.047.047 0 0 0-.047.047v.453h-.545v-.453a.047.047 0 0 0-.047-.047zm-2.324.164c.25 0 .372.194.372.425 0 .219-.109.425-.358.426-.242 0-.375-.197-.375-.419 0-.235.108-.432.36-.432zm5.545 0c.25 0 .372.194.372.425 0 .219-.108.425-.358.426-.242 0-.374-.197-.374-.419 0-.235.108-.432.36-.432z"/></svg></span><span>Zoho Books</span></span><span class="compat-pill"><span class="brand-logo-box"><svg class="brand-logo" viewBox="0 0 24 24" aria-hidden="true"><g fill="#00C3F7"><rect x="2" y="3" width="17" height="3" rx="1.5"/><rect x="2" y="8.25" width="20" height="3" rx="1.5"/><rect x="2" y="13.5" width="14" height="3" rx="1.5"/><rect x="2" y="18.75" width="9" height="2.5" rx="1.25"/></g></svg></span><span>Paystack</span></span><span class="compat-pill"><span class="brand-logo-box"><img class="brand-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIzLjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiIFsKCTwhRU5USVRZIG5zX2V4dGVuZCAiaHR0cDovL25zLmFkb2JlLmNvbS9FeHRlbnNpYmlsaXR5LzEuMC8iPgoJPCFFTlRJVFkgbnNfYWkgImh0dHA6Ly9ucy5hZG9iZS5jb20vQWRvYmVJbGx1c3RyYXRvci8xMC4wLyI+Cgk8IUVOVElUWSBuc19ncmFwaHMgImh0dHA6Ly9ucy5hZG9iZS5jb20vR3JhcGhzLzEuMC8iPgoJPCFFTlRJVFkgbnNfdmFycyAiaHR0cDovL25zLmFkb2JlLmNvbS9WYXJpYWJsZXMvMS4wLyI+Cgk8IUVOVElUWSBuc19pbXJlcCAiaHR0cDovL25zLmFkb2JlLmNvbS9JbWFnZVJlcGxhY2VtZW50LzEuMC8iPgoJPCFFTlRJVFkgbnNfc2Z3ICJodHRwOi8vbnMuYWRvYmUuY29tL1NhdmVGb3JXZWIvMS4wLyI+Cgk8IUVOVElUWSBuc19jdXN0b20gImh0dHA6Ly9ucy5hZG9iZS5jb20vR2VuZXJpY0N1c3RvbU5hbWVzcGFjZS8xLjAvIj4KCTwhRU5USVRZIG5zX2Fkb2JlX3hwYXRoICJodHRwOi8vbnMuYWRvYmUuY29tL1hQYXRoLzEuMC8iPgpdPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxpdmVsbG9fMSIgeG1sbnM6eD0iJm5zX2V4dGVuZDsiIHhtbG5zOmk9IiZuc19haTsiIHhtbG5zOmdyYXBoPSImbnNfZ3JhcGhzOyIKCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIyODkuNzUgMjEzMCIKCSBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyMjg5Ljc1IDIxMzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8bWV0YWRhdGE+Cgk8c2Z3ICB4bWxucz0iJm5zX3NmdzsiPgoJCTxzbGljZXM+PC9zbGljZXM+CgkJPHNsaWNlU291cmNlQm91bmRzICBib3R0b21MZWZ0T3JpZ2luPSJ0cnVlIiBoZWlnaHQ9IjIxMzAiIHdpZHRoPSIyMjg5Ljc1IiB4PSItMTE0Ny41IiB5PSItMTA0MSI+PC9zbGljZVNvdXJjZUJvdW5kcz4KCTwvc2Z3Pgo8L21ldGFkYXRhPgo8cGF0aCBmaWxsPSIjMTg1QzM3IiBkPSJNMTQzNy43NSwxMDExLjc1TDUzMi41LDg1MnYxMTgwLjM5M2MwLDUzLjkwNyw0My43LDk3LjYwNyw5Ny42MDcsOTcuNjA3bDAsMGgxNTYyLjAzNgoJYzUzLjkwNywwLDk3LjYwNy00My43LDk3LjYwNy05Ny42MDdsMCwwVjE1OTcuNUwxNDM3Ljc1LDEwMTEuNzV6Ii8+CjxwYXRoIGZpbGw9IiMyMUEzNjYiIGQ9Ik0xNDM3Ljc1LDBINjMwLjEwN0M1NzYuMiwwLDUzMi41LDQzLjcsNTMyLjUsOTcuNjA3YzAsMCwwLDAsMCwwVjUzMi41bDkwNS4yNSw1MzIuNUwxOTE3LDEyMjQuNzUKCUwyMjg5Ljc1LDEwNjVWNTMyLjVMMTQzNy43NSwweiIvPgo8cGF0aCBmaWxsPSIjMTA3QzQxIiBkPSJNNTMyLjUsNTMyLjVoOTA1LjI1VjEwNjVINTMyLjVWNTMyLjV6Ii8+CjxwYXRoIG9wYWNpdHk9IjAuMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiIGQ9Ik0xMTgwLjM5Myw0MjZINTMyLjV2MTMzMS4yNWg2NDcuODkzYzUzLjgzNC0wLjE3NSw5Ny40MzItNDMuNzczLDk3LjYwNy05Ny42MDcKCVY1MjMuNjA3QzEyNzcuODI1LDQ2OS43NzMsMTIzNC4yMjcsNDI2LjE3NSwxMTgwLjM5Myw0MjZ6Ii8+CjxwYXRoIG9wYWNpdHk9IjAuMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiIGQ9Ik0xMTI3LjE0Myw0NzkuMjVINTMyLjVWMTgxMC41aDU5NC42NDMKCWM1My44MzQtMC4xNzUsOTcuNDMyLTQzLjc3Myw5Ny42MDctOTcuNjA3VjU3Ni44NTdDMTIyNC41NzUsNTIzLjAyMywxMTgwLjk3Nyw0NzkuNDI1LDExMjcuMTQzLDQ3OS4yNXoiLz4KPHBhdGggb3BhY2l0eT0iMC4yIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3ICAgICIgZD0iTTExMjcuMTQzLDQ3OS4yNUg1MzIuNVYxNzA0aDU5NC42NDNjNTMuODM0LTAuMTc1LDk3LjQzMi00My43NzMsOTcuNjA3LTk3LjYwNwoJVjU3Ni44NTdDMTIyNC41NzUsNTIzLjAyMywxMTgwLjk3Nyw0NzkuNDI1LDExMjcuMTQzLDQ3OS4yNXoiLz4KPHBhdGggb3BhY2l0eT0iMC4yIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3ICAgICIgZD0iTTEwNzMuODkzLDQ3OS4yNUg1MzIuNVYxNzA0aDU0MS4zOTNjNTMuODM0LTAuMTc1LDk3LjQzMi00My43NzMsOTcuNjA3LTk3LjYwNwoJVjU3Ni44NTdDMTE3MS4zMjUsNTIzLjAyMywxMTI3LjcyNyw0NzkuNDI1LDEwNzMuODkzLDQ3OS4yNXoiLz4KPGxpbmVhckdyYWRpZW50IGlkPSJTVkdJRF8xXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIyMDMuNTEzMiIgeTE9IjE3MjkuMDE4MyIgeDI9Ijk2Ny45ODY4IiB5Mj0iNDA0Ljk4MTciIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgMCAyMTMyKSI+Cgk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojMTg4ODRGIi8+Cgk8c3RvcCAgb2Zmc2V0PSIwLjUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxMTdFNDMiLz4KCTxzdG9wICBvZmZzZXQ9IjEiIHN0eWxlPSJzdG9wLWNvbG9yOiMwQjY2MzEiLz4KPC9saW5lYXJHcmFkaWVudD4KPHBhdGggZmlsbD0idXJsKCNTVkdJRF8xXykiIGQ9Ik05Ny42MDcsNDc5LjI1aDk3Ni4yODVjNTMuOTA3LDAsOTcuNjA3LDQzLjcsOTcuNjA3LDk3LjYwN3Y5NzYuMjg1CgljMCw1My45MDctNDMuNyw5Ny42MDctOTcuNjA3LDk3LjYwN0g5Ny42MDdDNDMuNywxNjUwLjc1LDAsMTYwNy4wNSwwLDE1NTMuMTQzVjU3Ni44NTdDMCw1MjIuOTUsNDMuNyw0NzkuMjUsOTcuNjA3LDQ3OS4yNXoiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTMwMi4zLDEzODIuMjY0bDIwNS4zMzItMzE4LjE2OUwzMTkuNSw3NDcuNjgzaDE1MS4zMzZsMTAyLjY2NiwyMDIuMzUKCWM5LjQ3OSwxOS4yMjMsMTUuOTc1LDMzLjQ5NCwxOS40OSw0Mi45MTloMS4zMzFjNi43NDUtMTUuMzM2LDEzLjg0NS0zMC4yMjgsMjEuMy00NC42NzdMNzI1LjM3MSw3NDcuNzloMTM4LjkyOWwtMTkyLjkyNSwzMTQuNTQ4CglMODY5LjIsMTM4Mi4yNjNINzIxLjM3OEw2MDIuNzksMTE2MC4xNThjLTUuNTg2LTkuNDUtMTAuMzI2LTE5LjM3Ni0xNC4xNjQtMjkuNjZoLTEuNzU3Yy0zLjQ3NCwxMC4wNzUtOC4wODMsMTkuNzIyLTEzLjczOSwyOC43NTUKCWwtMTIyLjEwMiwyMjMuMDExSDMwMi4zeiIvPgo8cGF0aCBmaWxsPSIjMzNDNDgxIiBkPSJNMjE5Mi4xNDMsMEgxNDM3Ljc1djUzMi41aDg1MlY5Ny42MDdDMjI4OS43NSw0My43LDIyNDYuMDUsMCwyMTkyLjE0MywwTDIxOTIuMTQzLDB6Ii8+CjxwYXRoIGZpbGw9IiMxMDdDNDEiIGQ9Ik0xNDM3Ljc1LDEwNjVoODUydjUzMi41aC04NTJWMTA2NXoiLz4KPC9zdmc+Cg==" alt=""></span><span>Excel</span></span></div>
+      </div>
+    </section>
+
+    <!-- PROBLEM STATEMENT -->
+    <section id="problem" class="section-pad">
+      <div class="container">
+        <div class="problem-shell" data-reveal>
+          <div class="problem-intro">
+            <h2 class="section-h2">Collections break when context lives everywhere.</h2>
+            <p class="section-lead" style="margin-top:1rem">Accounting systems record what is owed. They rarely show who promised to pay, what blocked delivery, or which follow-up should happen next.</p>
+          </div>
+          <div class="problem-list">
+            <article class="problem-row">
+              <span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V88H40V56ZM40,200V104H216v96Z"/></svg></span>
+              <div><h3>Invoice status is fragmented</h3><p>Balances sit in the ledger while payment promises, disputes, and delivery notes remain in spreadsheets, inboxes, and private messages.</p></div>
+            </article>
+            <article class="problem-row">
+              <span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M117.25,157.92a60,60,0,1,0-66.5,0A96.52,96.52,0,0,0,16.41,185a8,8,0,1,0,15.18,5.06,80,80,0,0,1,152.82,0A8,8,0,1,0,199.59,185,96.52,96.52,0,0,0,165.25,157.92a60,60,0,1,0-48,0ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm88,44a44,44,0,1,1,44-44A44.05,44.05,0,0,1,128,152Z"/></svg></span>
+              <div><h3>Finance and sales chase different facts</h3><p>Account owners know the customer history, but finance often sees only an overdue balance. The result is duplicated outreach and avoidable friction.</p></div>
+            </article>
+            <article class="problem-row">
+              <span class="problem-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="currentColor"><path d="M24,200a8,8,0,0,0,8,8H224a8,8,0,0,0,0-16H216V88a8,8,0,0,0-8-8H168a8,8,0,0,0-8,8V192H144V40a8,8,0,0,0-8-8H96a8,8,0,0,0-8,8V192H64V136a8,8,0,0,0-8-8H32a8,8,0,0,0-8,8Zm152-104h24v96H176ZM104,48h24V192H104ZM40,144h8v48H40Z"/></svg></span>
+              <div><h3>Incoming cash is difficult to explain</h3><p>Without a shared follow-up history, forecasts depend on memory and status meetings instead of visible customer commitments.</p></div>
+            </article>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1934,7 +2007,7 @@
               </div>
             </div>
 
-            <button type="button" class="btn btn-white btn-lg" style="width:100%" data-open-modal="Rollout">Start collecting now</button>
+            <button type="button" class="btn btn-white btn-lg" style="width:100%" data-open-modal="Rollout">Book a walkthrough</button>
           </aside>
         </div>
       </div>
@@ -1949,17 +2022,34 @@
 
           <div class="bench-grid">
             <div class="bench-card">
-              <div class="bench-stat">15 min</div>
-              <p class="bench-desc">From uploading your open-invoice CSV to a live aging board with assigned account owners.</p>
+              <div class="bench-stat">Less chasing</div>
+              <p class="bench-desc">Give each open balance an owner, a next action, and the customer context needed to follow up clearly.</p>
             </div>
             <div class="bench-card">
-              <div class="bench-stat">1 ledger</div>
-              <p class="bench-desc">Promises to pay, delivery disputes, partial wires, and reminder logs stay pinned to each invoice.</p>
+              <div class="bench-stat">Shared context</div>
+              <p class="bench-desc">Keep payment promises, delivery disputes, partial transfers, and reminder history attached to the invoice.</p>
             </div>
             <div class="bench-card">
-              <div class="bench-stat">100%</div>
-              <p class="bench-desc">Timestamped audit history across every nudge, approval, and settlement by entity and teammate.</p>
+              <div class="bench-stat">Clearer cash view</div>
+              <p class="bench-desc">Separate confirmed commitments from scheduled due dates so the team can discuss incoming cash from one view.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRE-LAUNCH TRUST -->
+    <section id="trust" class="section-pad">
+      <div class="container">
+        <div class="trust-shell" data-reveal>
+          <div class="trust-main">
+            <h2 class="section-h2">A transparent pre-launch prototype.</h2>
+            <p>Cirrus is currently a functional product concept by Graphic Miles. The workspace demonstrates the intended receivables workflow, but it does not connect to live accounting systems, send reminders, process payments, or store submitted business data.</p>
+          </div>
+          <div class="trust-facts">
+            <div class="trust-fact"><strong>No live financial connection</strong><span>The accounting brands and balances shown on this page are illustrative prototype content.</span></div>
+            <div class="trust-fact"><strong>No background submission</strong><span>The walkthrough form runs locally in this browser and does not send its contents to a server.</span></div>
+            <div class="trust-fact"><strong>Built by an identifiable designer</strong><span>Concept, interaction design, and implementation by Raji Farouq Adewunmi through Graphic Miles.</span></div>
           </div>
         </div>
       </div>
@@ -1970,7 +2060,8 @@
       <div class="container">
         <div style="text-align:center;max-width:44rem;margin-inline:auto" data-reveal>
           <h2 class="section-h2">Simple plans that scale with your ledger</h2>
-          <p class="section-lead" style="margin:1rem auto 0">Start with a single workspace and add branches, automated dunning rules, and team seats as volume grows.</p>
+          <p class="section-lead" style="margin:1rem auto 0">Explore how the pre-launch product could be packaged as teams add branches, workflow controls, and seats.</p>
+          <div class="prototype-note"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M128,24a104,104,0,1,0,104,104A104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm12-52a12,12,0,1,1-12-12A12,12,0,0,1,140,164Zm-4-72v32a8,8,0,0,1-16,0V92a8,8,0,0,1,16,0Z"/></svg><span>All plan names, prices, feature limits, discounts, and integrations below are illustrative prototype content. They are not a commercial offer.</span></div>
 
           <div class="pricing-controls">
             <div class="seg-group" role="group" aria-label="Billing currency">
@@ -2012,7 +2103,7 @@
                 </li>
               </ul>
             </div>
-            <button type="button" class="btn btn-ink btn-lg" style="width:100%" data-open-modal="Starter">Start 14-day trial</button>
+            <button type="button" class="btn btn-ink btn-lg" style="width:100%" data-open-modal="Starter">Discuss Starter</button>
           </article>
 
           <!-- Growth -->
@@ -2073,7 +2164,7 @@
                 </li>
               </ul>
             </div>
-            <button type="button" class="btn btn-ink btn-lg" style="width:100%" data-open-modal="Enterprise">Talk to sales</button>
+            <button type="button" class="btn btn-ink btn-lg" style="width:100%" data-open-modal="Enterprise">Book a walkthrough</button>
           </article>
         </div>
       </div>
@@ -2104,7 +2195,7 @@
       <div class="container">
         <div class="cta-banner" data-reveal>
           <h2 class="section-h2" style="max-width:44rem;margin-inline:auto">See where your cash stands today.</h2>
-          <p class="section-lead" style="max-width:32rem;margin:1.125rem auto 0;color:var(--ink)">Book a 20-minute walkthrough and we will configure your first receivables workspace together.</p>
+          <p class="section-lead" style="max-width:32rem;margin:1.125rem auto 0;color:var(--ink)">Preview the walkthrough request flow and explore how the proposed workspace would fit your receivables process.</p>
           <div class="hero-cta-row">
             <button type="button" class="btn btn-cerulean btn-lg" data-open-modal="Walkthrough">Book a walkthrough</button>
             <a href="#pricing" class="btn btn-white btn-lg">Compare plans</a>
@@ -2117,11 +2208,11 @@
   <!-- FOOTER -->
   <footer class="site-footer" data-reveal>
     <div class="container"><div class="footer-shell">
-      <div class="footer-quick"><div class="footer-kicker">Connected finance stack</div>
+      <div class="footer-quick"><div class="footer-kicker">Prototype connection targets</div>
         <nav class="footer-icon-links" aria-label="Connected finance tools"><a class="footer-icon-link" href="#compat" aria-label="Works with QuickBooks"><svg class="brand-logo" viewBox="0 0 24 24" fill="#2CA01C" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm.642 4.1335c.9554 0 1.7296.776 1.7296 1.7332v9.0667h1.6c1.614 0 2.9275-1.3156 2.9275-2.933 0-1.6173-1.3136-2.9333-2.9276-2.9333h-.6654V7.3334h.6654c2.5722 0 4.6577 2.0897 4.6577 4.667 0 2.5774-2.0855 4.6666-4.6577 4.6666H12.642zM7.9837 7.333h3.3291v12.533c-.9555 0-1.73-.7759-1.73-1.7332V9.0662H7.9837c-1.6146 0-2.9277 1.316-2.9277 2.9334 0 1.6175 1.3131 2.9333 2.9277 2.9333h.6654v1.7332h-.6654c-2.5725 0-4.6577-2.0892-4.6577-4.6665 0-2.5771 2.0852-4.6666 4.6577-4.6666Z"/></svg></a><a class="footer-icon-link" href="#compat" aria-label="Works with Xero"><svg class="brand-logo" viewBox="0 0 24 24" fill="#13B5EA" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.585 14.655c-1.485 0-2.69-1.206-2.69-2.689 0-1.485 1.207-2.691 2.69-2.691 1.485 0 2.69 1.207 2.69 2.691s-1.207 2.689-2.69 2.689zM7.53 14.644c-.099 0-.192-.041-.267-.116l-2.043-2.04-2.052 2.047c-.069.068-.16.108-.258.108-.202 0-.368-.166-.368-.368 0-.099.04-.191.111-.263l2.04-2.05-2.038-2.047c-.075-.069-.113-.162-.113-.261 0-.203.166-.366.368-.366.098 0 .188.037.258.105l2.055 2.048 2.048-2.045c.069-.071.162-.108.26-.108.211 0 .375.165.375.366 0 .098-.029.188-.104.258l-2.056 2.055 2.055 2.051c.068.069.104.16.104.258 0 .202-.165.368-.365.368h-.01zm8.017-4.591c-.796.101-.882.476-.882 1.404v2.787c0 .202-.165.366-.366.366-.203 0-.367-.165-.368-.366v-4.53c0-.204.16-.366.362-.366.166 0 .316.125.346.289.27-.209.6-.317.93-.317h.105c.195 0 .359.165.359.368 0 .201-.164.352-.375.359 0 0-.09 0-.164.008l.053-.002zm-3.091 2.205H8.625c0 .019.003.037.006.057.02.105.045.211.083.31.194.531.765 1.275 1.829 1.29.33-.003.631-.086.9-.229.21-.12.391-.271.525-.428.045-.058.09-.112.12-.168.18-.229.405-.186.54-.083.164.135.18.391.045.57l-.016.016c-.21.27-.435.495-.689.66-.255.164-.525.284-.811.345-.33.09-.645.104-.975.06-1.095-.135-2.01-.93-2.28-2.01-.06-.21-.09-.42-.09-.645 0-.855.421-1.695 1.125-2.205.885-.615 2.085-.66 3-.075.63.405 1.035 1.021 1.185 1.771.075.419-.21.794-.734.81l.068-.046zm6.129-2.223c-1.064 0-1.931.865-1.931 1.931 0 1.064.866 1.931 1.931 1.931s1.931-.867 1.931-1.931c0-1.065-.866-1.933-1.931-1.933v.002zm0 2.595c-.367 0-.666-.297-.666-.666 0-.367.3-.665.666-.665.367 0 .667.299.667.665 0 .369-.3.667-.667.666zm-8.04-2.603c-.91 0-1.672.623-1.886 1.466v.03h3.776c-.203-.855-.973-1.494-1.891-1.494v-.002z"/></svg></a><a class="footer-icon-link" href="#compat" aria-label="Works with Zoho Books"><svg class="brand-logo" viewBox="0 0 24 24" fill="#E42527" aria-hidden="true"><path d="M8.66 6.897a1.299 1.299 0 0 0-1.205.765l-.642 1.44-.062-.385A1.291 1.291 0 0 0 5.27 7.648l-4.185.678A1.291 1.291 0 0 0 .016 9.807l.678 4.18a1.293 1.293 0 0 0 1.27 1.087c.074 0 .143-.01.216-.017l4.18-.678c.436-.07.784-.351.96-.723l2.933 1.307a1.304 1.304 0 0 0 .988.026c.321-.12.575-.365.716-.678l.28-.629.038.276a1.297 1.297 0 0 0 1.455 1.103l3.712-.501a1.29 1.29 0 0 0 1.03.514h4.236c.713 0 1.29-.58 1.291-1.291V9.545c0-.712-.58-1.291-1.291-1.291h-4.236c-.079 0-.155.008-.23.022a1.309 1.309 0 0 0-.275-.288c-.275-.21-.614-.3-.958-.253l-4.197.571c-.155.021-.3.07-.432.14L9.159 7.01a1.27 1.27 0 0 0-.499-.113zm-.025.705c.077 0 .159.013.24.052l2.971 1.324c-.128.238-.18.508-.142.782l.357 2.596h.002l-.745 1.672a.59.59 0 0 1-.777.296l-3.107-1.385-.004-.041-.41-2.526L8.1 7.95a.589.589 0 0 1 .536-.348zm-3.159.733c.125 0 .245.039.343.112.13.09.21.227.237.382l.234 1.446-.56 1.259a1.27 1.27 0 0 0-.026.987c.12.322.364.575.678.717l.295.131a.585.585 0 0 1-.428.314l-4.185.678a.59.59 0 0 1-.674-.485l-.678-4.18a.588.588 0 0 1 .485-.674l4.185-.678c.03-.004.064-.01.094-.01zm11.705.09a.59.59 0 0 1 .415.173 1.287 1.287 0 0 0-.416.947v4.237c0 .033.003.065.005.097l-3.55.482a.586.586 0 0 1-.66-.502l-.191-1.403.899-2.017a1.29 1.29 0 0 0-.333-1.5l3.754-.51c.026-.004.051-.004.077-.004zm1.3.532h4.227c.326 0 .588.266.588.588v4.237a.589.589 0 0 1-.588.588h-4.237a.564.564 0 0 1-.12-.013c.47-.246.758-.765.684-1.318zm-5.988.309.254.113c.296.133.43.48.296.777l-.432.97-.207-1.465a.58.58 0 0 1 .09-.395zm5.39.538.453 3.325a.583.583 0 0 1-.453.65zM6.496 11.545l.17 1.052a.588.588 0 0 1-.293-.776zm3.985 4.344a.588.588 0 0 0-.612.603c0 .358.244.61.601.61a.582.582 0 0 0 .607-.608c0-.35-.242-.605-.596-.605zm5.545 0a.588.588 0 0 0-.612.603c0 .358.245.61.602.61a.582.582 0 0 0 .606-.608c0-.35-.24-.605-.596-.605zm-8.537.018a.047.047 0 0 0-.048.047v.085c0 .026.021.047.048.047h.52l-.623.9a.052.052 0 0 0-.009.027v.027c0 .026.021.047.048.047h.815a.047.047 0 0 0 .047-.047v-.085a.047.047 0 0 0-.047-.047h-.55l.606-.9a.05.05 0 0 0 .008-.026v-.028a.047.047 0 0 0-.047-.047zm5.303 0a.047.047 0 0 0-.047.047v1.086c0 .026.02.047.047.047h.135a.047.047 0 0 0 .047-.047v-.454h.545v.454c0 .026.02.047.047.047h.134a.047.047 0 0 0 .047-.047v-1.086a.047.047 0 0 0-.047-.047h-.134a.047.047 0 0 0-.047.047v.453h-.545v-.453a.047.047 0 0 0-.047-.047zm-2.324.164c.25 0 .372.194.372.425 0 .219-.109.425-.358.426-.242 0-.375-.197-.375-.419 0-.235.108-.432.36-.432zm5.545 0c.25 0 .372.194.372.425 0 .219-.108.425-.358.426-.242 0-.374-.197-.374-.419 0-.235.108-.432.36-.432z"/></svg></a><a class="footer-icon-link" href="#compat" aria-label="Works with Paystack"><svg class="brand-logo" viewBox="0 0 24 24" aria-hidden="true"><g fill="#00C3F7"><rect x="2" y="3" width="17" height="3" rx="1.5"/><rect x="2" y="8.25" width="20" height="3" rx="1.5"/><rect x="2" y="13.5" width="14" height="3" rx="1.5"/><rect x="2" y="18.75" width="9" height="2.5" rx="1.25"/></g></svg></a><a class="footer-icon-link" href="#compat" aria-label="Works with Excel"><img class="brand-logo" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDIzLjAuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiIFsKCTwhRU5USVRZIG5zX2V4dGVuZCAiaHR0cDovL25zLmFkb2JlLmNvbS9FeHRlbnNpYmlsaXR5LzEuMC8iPgoJPCFFTlRJVFkgbnNfYWkgImh0dHA6Ly9ucy5hZG9iZS5jb20vQWRvYmVJbGx1c3RyYXRvci8xMC4wLyI+Cgk8IUVOVElUWSBuc19ncmFwaHMgImh0dHA6Ly9ucy5hZG9iZS5jb20vR3JhcGhzLzEuMC8iPgoJPCFFTlRJVFkgbnNfdmFycyAiaHR0cDovL25zLmFkb2JlLmNvbS9WYXJpYWJsZXMvMS4wLyI+Cgk8IUVOVElUWSBuc19pbXJlcCAiaHR0cDovL25zLmFkb2JlLmNvbS9JbWFnZVJlcGxhY2VtZW50LzEuMC8iPgoJPCFFTlRJVFkgbnNfc2Z3ICJodHRwOi8vbnMuYWRvYmUuY29tL1NhdmVGb3JXZWIvMS4wLyI+Cgk8IUVOVElUWSBuc19jdXN0b20gImh0dHA6Ly9ucy5hZG9iZS5jb20vR2VuZXJpY0N1c3RvbU5hbWVzcGFjZS8xLjAvIj4KCTwhRU5USVRZIG5zX2Fkb2JlX3hwYXRoICJodHRwOi8vbnMuYWRvYmUuY29tL1hQYXRoLzEuMC8iPgpdPgo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxpdmVsbG9fMSIgeG1sbnM6eD0iJm5zX2V4dGVuZDsiIHhtbG5zOmk9IiZuc19haTsiIHhtbG5zOmdyYXBoPSImbnNfZ3JhcGhzOyIKCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDIyODkuNzUgMjEzMCIKCSBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyMjg5Ljc1IDIxMzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8bWV0YWRhdGE+Cgk8c2Z3ICB4bWxucz0iJm5zX3NmdzsiPgoJCTxzbGljZXM+PC9zbGljZXM+CgkJPHNsaWNlU291cmNlQm91bmRzICBib3R0b21MZWZ0T3JpZ2luPSJ0cnVlIiBoZWlnaHQ9IjIxMzAiIHdpZHRoPSIyMjg5Ljc1IiB4PSItMTE0Ny41IiB5PSItMTA0MSI+PC9zbGljZVNvdXJjZUJvdW5kcz4KCTwvc2Z3Pgo8L21ldGFkYXRhPgo8cGF0aCBmaWxsPSIjMTg1QzM3IiBkPSJNMTQzNy43NSwxMDExLjc1TDUzMi41LDg1MnYxMTgwLjM5M2MwLDUzLjkwNyw0My43LDk3LjYwNyw5Ny42MDcsOTcuNjA3bDAsMGgxNTYyLjAzNgoJYzUzLjkwNywwLDk3LjYwNy00My43LDk3LjYwNy05Ny42MDdsMCwwVjE1OTcuNUwxNDM3Ljc1LDEwMTEuNzV6Ii8+CjxwYXRoIGZpbGw9IiMyMUEzNjYiIGQ9Ik0xNDM3Ljc1LDBINjMwLjEwN0M1NzYuMiwwLDUzMi41LDQzLjcsNTMyLjUsOTcuNjA3YzAsMCwwLDAsMCwwVjUzMi41bDkwNS4yNSw1MzIuNUwxOTE3LDEyMjQuNzUKCUwyMjg5Ljc1LDEwNjVWNTMyLjVMMTQzNy43NSwweiIvPgo8cGF0aCBmaWxsPSIjMTA3QzQxIiBkPSJNNTMyLjUsNTMyLjVoOTA1LjI1VjEwNjVINTMyLjVWNTMyLjV6Ii8+CjxwYXRoIG9wYWNpdHk9IjAuMSIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiIGQ9Ik0xMTgwLjM5Myw0MjZINTMyLjV2MTMzMS4yNWg2NDcuODkzYzUzLjgzNC0wLjE3NSw5Ny40MzItNDMuNzczLDk3LjYwNy05Ny42MDcKCVY1MjMuNjA3QzEyNzcuODI1LDQ2OS43NzMsMTIzNC4yMjcsNDI2LjE3NSwxMTgwLjM5Myw0MjZ6Ii8+CjxwYXRoIG9wYWNpdHk9IjAuMiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiIGQ9Ik0xMTI3LjE0Myw0NzkuMjVINTMyLjVWMTgxMC41aDU5NC42NDMKCWM1My44MzQtMC4xNzUsOTcuNDMyLTQzLjc3Myw5Ny42MDctOTcuNjA3VjU3Ni44NTdDMTIyNC41NzUsNTIzLjAyMywxMTgwLjk3Nyw0NzkuNDI1LDExMjcuMTQzLDQ3OS4yNXoiLz4KPHBhdGggb3BhY2l0eT0iMC4yIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3ICAgICIgZD0iTTExMjcuMTQzLDQ3OS4yNUg1MzIuNVYxNzA0aDU5NC42NDNjNTMuODM0LTAuMTc1LDk3LjQzMi00My43NzMsOTcuNjA3LTk3LjYwNwoJVjU3Ni44NTdDMTIyNC41NzUsNTIzLjAyMywxMTgwLjk3Nyw0NzkuNDI1LDExMjcuMTQzLDQ3OS4yNXoiLz4KPHBhdGggb3BhY2l0eT0iMC4yIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3ICAgICIgZD0iTTEwNzMuODkzLDQ3OS4yNUg1MzIuNVYxNzA0aDU0MS4zOTNjNTMuODM0LTAuMTc1LDk3LjQzMi00My43NzMsOTcuNjA3LTk3LjYwNwoJVjU3Ni44NTdDMTE3MS4zMjUsNTIzLjAyMywxMTI3LjcyNyw0NzkuNDI1LDEwNzMuODkzLDQ3OS4yNXoiLz4KPGxpbmVhckdyYWRpZW50IGlkPSJTVkdJRF8xXyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIyMDMuNTEzMiIgeTE9IjE3MjkuMDE4MyIgeDI9Ijk2Ny45ODY4IiB5Mj0iNDA0Ljk4MTciIGdyYWRpZW50VHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgMCAyMTMyKSI+Cgk8c3RvcCAgb2Zmc2V0PSIwIiBzdHlsZT0ic3RvcC1jb2xvcjojMTg4ODRGIi8+Cgk8c3RvcCAgb2Zmc2V0PSIwLjUiIHN0eWxlPSJzdG9wLWNvbG9yOiMxMTdFNDMiLz4KCTxzdG9wICBvZmZzZXQ9IjEiIHN0eWxlPSJzdG9wLWNvbG9yOiMwQjY2MzEiLz4KPC9saW5lYXJHcmFkaWVudD4KPHBhdGggZmlsbD0idXJsKCNTVkdJRF8xXykiIGQ9Ik05Ny42MDcsNDc5LjI1aDk3Ni4yODVjNTMuOTA3LDAsOTcuNjA3LDQzLjcsOTcuNjA3LDk3LjYwN3Y5NzYuMjg1CgljMCw1My45MDctNDMuNyw5Ny42MDctOTcuNjA3LDk3LjYwN0g5Ny42MDdDNDMuNywxNjUwLjc1LDAsMTYwNy4wNSwwLDE1NTMuMTQzVjU3Ni44NTdDMCw1MjIuOTUsNDMuNyw0NzkuMjUsOTcuNjA3LDQ3OS4yNXoiLz4KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTMwMi4zLDEzODIuMjY0bDIwNS4zMzItMzE4LjE2OUwzMTkuNSw3NDcuNjgzaDE1MS4zMzZsMTAyLjY2NiwyMDIuMzUKCWM5LjQ3OSwxOS4yMjMsMTUuOTc1LDMzLjQ5NCwxOS40OSw0Mi45MTloMS4zMzFjNi43NDUtMTUuMzM2LDEzLjg0NS0zMC4yMjgsMjEuMy00NC42NzdMNzI1LjM3MSw3NDcuNzloMTM4LjkyOWwtMTkyLjkyNSwzMTQuNTQ4CglMODY5LjIsMTM4Mi4yNjNINzIxLjM3OEw2MDIuNzksMTE2MC4xNThjLTUuNTg2LTkuNDUtMTAuMzI2LTE5LjM3Ni0xNC4xNjQtMjkuNjZoLTEuNzU3Yy0zLjQ3NCwxMC4wNzUtOC4wODMsMTkuNzIyLTEzLjczOSwyOC43NTUKCWwtMTIyLjEwMiwyMjMuMDExSDMwMi4zeiIvPgo8cGF0aCBmaWxsPSIjMzNDNDgxIiBkPSJNMjE5Mi4xNDMsMEgxNDM3Ljc1djUzMi41aDg1MlY5Ny42MDdDMjI4OS43NSw0My43LDIyNDYuMDUsMCwyMTkyLjE0MywwTDIxOTIuMTQzLDB6Ii8+CjxwYXRoIGZpbGw9IiMxMDdDNDEiIGQ9Ik0xNDM3Ljc1LDEwNjVoODUydjUzMi41aC04NTJWMTA2NXoiLz4KPC9zdmc+Cg==" alt=""></a></nav>
       </div>
       <div class="footer-main">
-        <div><a href="#top" class="footer-brand-lockup"><svg viewBox="0 0 34 24" aria-hidden="true"><path d="M2 20 C8 6 22 2 32 4 C25 8 21 13 19 21 C14 17 8 17 2 20Z" fill="#50C5E8"/></svg><span>Cirrus</span></a><p class="footer-tagline">One calm workspace for receivables.</p><p class="footer-description">Track open invoices, coordinate customer follow-ups, and understand incoming cash across every branch without replacing your accounting system.</p></div>
+        <div><a href="#top" class="footer-brand-lockup"><svg viewBox="0 0 34 24" aria-hidden="true"><path d="M2 20 C8 6 22 2 32 4 C25 8 21 13 19 21 C14 17 8 17 2 20Z" fill="#50C5E8"/></svg><span>Cirrus</span></a><p class="footer-tagline">A pre-launch concept for calmer receivables.</p><p class="footer-description">A functional prototype exploring how finance and account teams could track invoices, coordinate follow-ups, and discuss incoming cash from one workspace.</p></div>
         <div class="footer-meta">
           <div class="footer-meta-block"><div class="footer-meta-label">Built for</div><div class="footer-meta-value">Finance teams, account owners, and multi-entity operators</div></div>
           <div class="footer-meta-block"><div class="footer-meta-label">Designed in</div><div class="footer-meta-value"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M128,24a88.1,88.1,0,0,0-88,88c0,75.36,80,117.19,83.4,118.93a8,8,0,0,0,9.2,0C136,229.19,216,187.36,216,112A88.1,88.1,0,0,0,128,24Zm0,190.63C113.47,205.76,56,167.19,56,112a72,72,0,0,1,144,0C200,167.2,142.52,205.77,128,214.63ZM128,64a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,64Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,144Z"/></svg>Lagos, Nigeria</div></div>
@@ -2131,7 +2222,8 @@
       <div class="footer-directory">
         <div class="footer-col"><span class="footer-col-title">Product</span><a href="#workspace">Live workspace</a><a href="#product">Capabilities</a><a href="#how">How it works</a></div>
         <div class="footer-col"><span class="footer-col-title">Plans</span><a href="#pricing">Pricing</a><a href="#cta">Book a walkthrough</a><a href="#faq">Questions</a></div>
-        <div class="footer-col"><span class="footer-col-title">Portfolio</span><a href="/">Graphic Miles</a><a href="/projects/">All projects</a></div>
+        <div class="footer-col"><span class="footer-col-title">About</span><a href="/">Graphic Miles</a><a href="https://github.com/GraphicMiles" rel="noreferrer">GitHub</a><a href="https://x.com/DSGNBMILES" rel="noreferrer">X</a></div>
+        <div class="footer-col"><span class="footer-col-title">Legal</span><a href="/cirrus/privacy/">Privacy</a><a href="/cirrus/terms/">Terms</a></div>
       </div>
       <div class="footer-bottom"><span>&copy; 2026 Cirrus Financial Systems. Concept and design system by Graphic Miles.</span><a href="/">Back to portfolio</a></div>
     </div></div>
@@ -2147,26 +2239,26 @@
         </button>
       </div>
       <div id="modal-body">
-        <p style="margin-top:0.5rem;font-size:0.9375rem;color:var(--muted)">Tell us about your finance setup and we will prepare a live sandbox around your invoice workflow.</p>
-        <form id="demo-form">
+        <p style="margin-top:0.5rem;font-size:0.9375rem;color:var(--muted)">Explore the pre-launch request flow. This mock form stays in your browser and does not send data.</p>
+        <form id="demo-form" novalidate>
           <div class="form-field">
             <label for="f-name">Full name</label>
-            <input id="f-name" name="name" type="text" required placeholder="Adaeze Okafor">
+            <input id="f-name" name="name" type="text" required autocomplete="name" aria-describedby="f-name-error" placeholder="Adaeze Okafor"><div class="field-error" id="f-name-error" aria-live="polite"></div>
           </div>
           <div class="form-field">
             <label for="f-email">Work email</label>
-            <input id="f-email" name="email" type="email" required placeholder="adaeze@company.ng">
+            <input id="f-email" name="email" type="email" required autocomplete="email" aria-describedby="f-email-error" placeholder="adaeze@company.ng"><div class="field-error" id="f-email-error" aria-live="polite"></div>
           </div>
           <div class="form-field">
             <label for="f-plan">Selected interest</label>
             <select id="f-plan" name="plan">
-              <option value="Walkthrough">20-minute product walkthrough</option>
-              <option value="Starter">Starter 14-day trial</option>
-              <option value="Growth">Growth multi-entity workspace</option>
-              <option value="Enterprise">Enterprise custom rollout</option>
+              <option value="Walkthrough">Walkthrough request preview</option>
+              <option value="Starter">Starter plan discussion</option>
+              <option value="Growth">Growth plan discussion</option>
+              <option value="Enterprise">Enterprise plan discussion</option>
             </select>
           </div>
-          <button type="submit" class="btn btn-cerulean btn-lg" style="width:100%;margin-top:1.25rem">Confirm walkthrough request</button>
+          <div class="form-status" id="form-status">Prototype only. Nothing entered here is transmitted or stored.</div><button type="submit" class="btn btn-cerulean btn-lg" style="width:100%;margin-top:1.25rem">Preview request confirmation</button>
         </form>
       </div>
     </div>
@@ -2577,23 +2669,23 @@
       var FAQS = [
         {
           q: "Do we need to replace our accounting software?",
-          a: "No. Cirrus sits alongside QuickBooks, Xero, Zoho Books, or your spreadsheet export so your general ledger remains the single accounting source of truth."
+          a: "The prototype is designed around that approach: the accounting ledger remains the source of truth while Cirrus coordinates collections context. Live integrations are not connected in this pre-launch demo."
         },
         {
           q: "How does Cirrus decide who to remind?",
-          a: "You set reminder rules once by due date, balance threshold, and customer tier. Cirrus queues personalized follow-ups for one-click approval or automatic dispatch."
+          a: "The prototype demonstrates configurable reminder rules and approval states. It does not send real emails or WhatsApp messages."
         },
         {
           q: "Can we track multiple branches or subsidiaries?",
-          a: "Yes. Give Lagos HQ, regional branches, and export desks separate workspaces with isolated permissions, then view consolidated receivables in one group rollup."
+          a: "The prototype demonstrates separate entity workspaces and a consolidated rollup. Production permissions and data isolation are not yet deployed."
         },
         {
           q: "Who can see what inside a workspace?",
-          a: "Finance controllers have full ledger and rule visibility, while account managers only see the customers and invoices assigned to them."
+          a: "The prototype illustrates role-scoped views for finance controllers and account managers. These access controls are part of the proposed product behavior, not a live security claim."
         },
         {
           q: "How long does initial setup take?",
-          a: "Under fifteen minutes for your first workspace. Upload a CSV of open invoices or connect your ledger, confirm your reminder cadence, and invite account owners."
+          a: "Setup timing has not been validated. The proposed flow is to import open invoices, review reminder rules, and assign account owners before using the workspace."
         }
       ];
 
@@ -2665,15 +2757,44 @@
 
       demoForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        var nameVal = document.getElementById("f-name").value.trim() || "there";
-        modalBody.innerHTML =
-          '<div style="padding:1rem 0 0.25rem">' +
-            '<div style="display:inline-flex;padding:0.5rem 0.875rem;border-radius:9999px;background:var(--sage-bg);color:var(--sage-fg);font-size:0.8125rem;font-weight:600">Walkthrough requested</div>' +
-            '<p style="margin-top:0.875rem;font-size:1rem;line-height:1.6;color:var(--ink)">Thanks, ' + nameVal.replace(/[<>&"]/g, "") + '. Your Cirrus workspace walkthrough slot is reserved and a calendar invite is on its way.</p>' +
-            '<button type="button" id="modal-done" class="btn btn-ink btn-lg" style="width:100%;margin-top:1.25rem">Return to Cirrus</button>' +
-          '</div>';
-        var doneBtn = document.getElementById("modal-done");
-        if (doneBtn) doneBtn.addEventListener("click", closeModal);
+        var nameInput = document.getElementById("f-name");
+        var emailInput = document.getElementById("f-email");
+        var nameError = document.getElementById("f-name-error");
+        var emailError = document.getElementById("f-email-error");
+        var submitBtn = demoForm.querySelector('button[type="submit"]');
+        var nameVal = nameInput.value.trim();
+        var emailVal = emailInput.value.trim();
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+        nameError.textContent = "";
+        emailError.textContent = "";
+        nameInput.removeAttribute("aria-invalid");
+        emailInput.removeAttribute("aria-invalid");
+        if (nameVal.length < 2) {
+          nameError.textContent = "Enter at least two characters for your name.";
+          nameInput.setAttribute("aria-invalid", "true");
+        }
+        if (!emailOk) {
+          emailError.textContent = "Enter a valid email address, such as name@company.com.";
+          emailInput.setAttribute("aria-invalid", "true");
+        }
+        if (nameVal.length < 2 || !emailOk) {
+          (nameVal.length < 2 ? nameInput : emailInput).focus();
+          notify("Check the highlighted fields");
+          return;
+        }
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Preparing preview...";
+        setTimeout(function () {
+          modalBody.innerHTML =
+            '<div style="padding:1rem 0 0.25rem">' +
+              '<div style="display:inline-flex;padding:0.5rem 0.875rem;border-radius:9999px;background:var(--sage-bg);color:var(--sage-fg);font-size:0.8125rem;font-weight:600">Prototype confirmation</div>' +
+              '<p style="margin-top:0.875rem;font-size:1rem;line-height:1.6;color:var(--ink)">Thanks, ' + nameVal.replace(/[<>&"]/g, "") + '. This demonstrates the intended confirmation state. No request was sent, no calendar event was created, and the details were not stored.</p>' +
+              '<div class="form-status">Selected interest: ' + (planSelect ? planSelect.value.replace(/[<>&"]/g, "") : "Walkthrough") + '</div>' +
+              '<button type="button" id="modal-done" class="btn btn-ink btn-lg" style="width:100%;margin-top:1.25rem">Return to Cirrus</button>' +
+            '</div>';
+          var doneBtn = document.getElementById("modal-done");
+          if (doneBtn) doneBtn.addEventListener("click", closeModal);
+        }, reduceMotion ? 0 : 450);
       });
 
       // Section-aware navigation uses IntersectionObserver without scroll-frame listeners.
