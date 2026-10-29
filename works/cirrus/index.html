@@ -1325,55 +1325,31 @@
       background: linear-gradient(180deg, #50c5e8 0%, #a9e0f4 56%, #eaf7fd 100%);
     }
 
-    .site-footer {
-      padding: 4.5rem 0 3rem;
-    }
-
-    .footer-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 3rem;
-    }
-
-    .footer-cols {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3.5rem;
-      font-size: 0.9375rem;
-    }
-
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      gap: 0.6875rem;
-    }
-
-    .footer-col-title {
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .footer-col a {
-      color: var(--muted);
-      transition: color var(--dur-fast) var(--ease-out);
-    }
-
-    .footer-col a:hover {
-      color: var(--cerulean);
-    }
-
-    .footer-bottom {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 0.875rem;
-      color: var(--faint);
-    }
+    .site-footer { margin-top: 4.5rem; padding: 0 0 1rem; color: #f3f8fb; }
+    .footer-shell { position: relative; overflow: hidden; padding: clamp(2rem, 5vw, 4rem); border-radius: var(--r-shell); background: radial-gradient(circle at 90% 0%, rgba(80,197,232,.13), transparent 30rem), #071824; border: 1px solid rgba(134,200,242,.14); box-shadow: 0 30px 70px -42px rgba(3,95,138,.7); }
+    .footer-quick { padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,.12); }
+    .footer-kicker { color:#9eb0bb; font-size:.75rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
+    .footer-icon-links { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
+    .footer-icon-link { width:3.5rem; height:3.5rem; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; color:#dce9ef; background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.08); transition:transform var(--dur-med) var(--ease-out),background-color var(--dur-med) var(--ease-out),color var(--dur-med) var(--ease-out); }
+    .footer-icon-link:hover { transform:translateY(-3px); color:#071824; background:var(--sky-bright); }
+    .footer-icon-link svg { width:1.375rem; height:1.375rem; }
+    .footer-main { display:grid; grid-template-columns:minmax(0,7fr) minmax(16rem,5fr); gap:clamp(2.5rem,7vw,6rem); padding:clamp(2.75rem,6vw,5rem) 0 2.5rem; }
+    .footer-brand-lockup { display:inline-flex; align-items:center; gap:.75rem; font-family:var(--font-display); font-size:clamp(2.5rem,6vw,4.75rem); font-weight:600; letter-spacing:-.055em; line-height:.95; color:#f3f8fb; }
+    .footer-brand-lockup svg { width:3.5rem; height:2.5rem; flex:0 0 auto; }
+    .footer-tagline { margin-top:1.5rem; font-size:clamp(1.25rem,2.4vw,2rem); line-height:1.2; letter-spacing:-.025em; color:#f3f8fb; }
+    .footer-description { max-width:39rem; margin-top:1rem; color:#9eb0bb; font-size:1rem; line-height:1.65; }
+    .footer-meta { display:grid; gap:1.5rem; align-content:start; }
+    .footer-meta-block { padding-top:1rem; border-top:1px solid rgba(255,255,255,.12); }
+    .footer-meta-label { color:#7f949f; font-size:.6875rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; }
+    .footer-meta-value { display:flex; align-items:center; gap:.625rem; margin-top:.625rem; color:#dce9ef; font-size:.9375rem; line-height:1.5; }
+    .footer-meta-value svg { width:1.125rem; height:1.125rem; color:var(--sky-bright); flex:0 0 auto; }
+    .footer-directory { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.5rem; padding:2rem 0; border-top:1px solid rgba(255,255,255,.12); border-bottom:1px solid rgba(255,255,255,.12); }
+    .footer-col { display:flex; flex-direction:column; gap:.65rem; }
+    .footer-col-title { margin-bottom:.25rem; color:#7f949f; font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; }
+    .footer-col a { width:fit-content; color:#dce9ef; font-size:.9375rem; transition:color var(--dur-fast) var(--ease-out),transform var(--dur-fast) var(--ease-out); }
+    .footer-col a:hover { color:var(--sky-bright); transform:translateX(3px); }
+    .footer-bottom { padding-top:1.5rem; display:flex; flex-wrap:wrap; justify-content:space-between; gap:1rem; color:#7f949f; font-size:.8125rem; }
+    .footer-bottom a { color:#dce9ef; font-weight:600; }
 
     /* =========================================
        WALKTHROUGH MODAL DIALOG
@@ -1509,6 +1485,14 @@
       .bento-copy h3 { font-size: 1.625rem; }
       .how-panel, .rollout-panel, .price-card, .faq-answer { padding: 1.25rem; }
       .pricing-controls { gap: 0.5rem; }
+      .site-footer { margin-top: 3.25rem; }
+      .site-footer .container { padding-inline: 0; }
+      .footer-shell { padding: 1.5rem 1.25rem; border-radius: 1.5rem 1.5rem 0 0; }
+      .footer-main { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding: 2.75rem 0 2rem; }
+      .footer-brand-lockup { font-size: 3rem; }
+      .footer-brand-lockup svg { width: 2.75rem; height: 2rem; }
+      .footer-directory { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 2rem; }
+      .footer-bottom { flex-direction: column; }
       .nav-ghost { display: none; }
     }
 
@@ -2017,43 +2001,31 @@
   </main>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div style="max-width:21rem">
-          <a href="#top" class="brand-link" style="color:var(--ink)">
-            <svg width="28" height="20" viewBox="0 0 34 24" aria-hidden="true"><path d="M2 20 C8 6 22 2 32 4 C25 8 21 13 19 21 C14 17 8 17 2 20Z" fill="#0479AE"/></svg>
-            <span>Cirrus</span>
-          </a>
-          <p style="margin-top:0.875rem;font-size:0.9375rem;line-height:1.6;color:var(--muted)">Receivables, finally calm. Designed for finance and revenue teams that would rather build than chase.</p>
-        </div>
-
-        <div class="footer-cols">
-          <div class="footer-col">
-            <span class="footer-col-title">Product</span>
-            <a href="#workspace">Live workspace</a>
-            <a href="#product">Capabilities</a>
-            <a href="#how">How it works</a>
-            <a href="#pricing">Pricing</a>
-          </div>
-          <div class="footer-col">
-            <span class="footer-col-title">Resources</span>
-            <a href="#faq">FAQ</a>
-            <a href="#cta">Book walkthrough</a>
-          </div>
-          <div class="footer-col">
-            <span class="footer-col-title">Portfolio</span>
-            <a href="/">Raji Farouq Adewunmi</a>
-            <a href="/projects/">All projects</a>
-          </div>
+  <footer class="site-footer" data-reveal>
+    <div class="container"><div class="footer-shell">
+      <div class="footer-quick"><div class="footer-kicker">Explore Cirrus</div>
+        <nav class="footer-icon-links" aria-label="Quick footer links">
+          <a class="footer-icon-link" href="#workspace" aria-label="Open the live workspace"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V88H40V56ZM40,200V104H216v96Z"/></svg></a>
+          <a class="footer-icon-link" href="#product" aria-label="View Cirrus capabilities"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,32H160a8,8,0,0,0-8,8V80a8,8,0,0,0,8,8h40a8,8,0,0,0,8-8V40A8,8,0,0,0,200,32Zm-8,40H168V48h24Zm8,80H160a8,8,0,0,0-8,8v40a8,8,0,0,0,8,8h40a8,8,0,0,0,8-8V160A8,8,0,0,0,200,152Zm-8,40H168V168h24ZM96,32H56A8,8,0,0,0,48,40V80a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V40A8,8,0,0,0,96,32ZM88,72H64V48H88Zm8,80H56a8,8,0,0,0-8,8v40a8,8,0,0,0,8,8H96a8,8,0,0,0,8-8V160A8,8,0,0,0,96,152Zm-8,40H64V168H88Z"/></svg></a>
+          <a class="footer-icon-link" href="#pricing" aria-label="Compare Cirrus plans"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,48H32a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H224a8,8,0,0,0,8-8V56A8,8,0,0,0,224,48Zm-8,16V88H40V64ZM40,192V104H216v88Zm32-56a8,8,0,0,1,8-8h48a8,8,0,0,1,0,16H80A8,8,0,0,1,72,136Zm0,32a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H80A8,8,0,0,1,72,168Z"/></svg></a>
+          <a class="footer-icon-link" href="#faq" aria-label="Read frequently asked questions"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,28A100,100,0,1,0,228,128,100.11,100.11,0,0,0,128,28Zm0,184a84,84,0,1,1,84-84A84.09,84.09,0,0,1,128,212Zm4-132c-23.71,0-44,17.57-44,38a8,8,0,0,0,16,0c0-11.44,12.82-22,28-22,13.23,0,24,8.07,24,18,0,7.27-5.16,12.69-15.34,16.13C127.15,134.69,120,145,120,160a8,8,0,0,0,16,0c0-7.36,2.9-11.15,9.78-13.48C162.2,141,172,128.84,172,114,172,95.25,154.06,80,132,80Z"/></svg></a>
+        </nav>
+      </div>
+      <div class="footer-main">
+        <div><a href="#top" class="footer-brand-lockup"><svg viewBox="0 0 34 24" aria-hidden="true"><path d="M2 20 C8 6 22 2 32 4 C25 8 21 13 19 21 C14 17 8 17 2 20Z" fill="#50C5E8"/></svg><span>Cirrus</span></a><p class="footer-tagline">One calm workspace for receivables.</p><p class="footer-description">Track open invoices, coordinate customer follow-ups, and understand incoming cash across every branch without replacing your accounting system.</p></div>
+        <div class="footer-meta">
+          <div class="footer-meta-block"><div class="footer-meta-label">Built for</div><div class="footer-meta-value">Finance teams, account owners, and multi-entity operators</div></div>
+          <div class="footer-meta-block"><div class="footer-meta-label">Designed in</div><div class="footer-meta-value"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M128,24a88.1,88.1,0,0,0-88,88c0,75.36,80,117.19,83.4,118.93a8,8,0,0,0,9.2,0C136,229.19,216,187.36,216,112A88.1,88.1,0,0,0,128,24Zm0,190.63C113.47,205.76,56,167.19,56,112a72,72,0,0,1,144,0C200,167.2,142.52,205.77,128,214.63ZM128,64a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,64Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,144Z"/></svg>Lagos, Nigeria</div></div>
+          <div class="footer-meta-block"><div class="footer-meta-label">Contact</div><a class="footer-meta-value" href="mailto:rfarouq69@gmail.com"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,48H32A16,16,0,0,0,16,64V192a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V64A16,16,0,0,0,224,48Zm-20.69,16L128,133.15,52.69,64ZM32,192V74.19l90.59,83.15a8,8,0,0,0,10.82,0L224,74.19V192Z"/></svg>rfarouq69@gmail.com</a></div>
         </div>
       </div>
-
-      <div class="footer-bottom">
-        <span>&copy; 2026 Cirrus Financial Systems. Concept &amp; design system by Graphic Miles.</span>
-        <a href="/" style="font-weight:600;color:var(--cerulean)">Back to portfolio</a>
+      <div class="footer-directory">
+        <div class="footer-col"><span class="footer-col-title">Product</span><a href="#workspace">Live workspace</a><a href="#product">Capabilities</a><a href="#how">How it works</a></div>
+        <div class="footer-col"><span class="footer-col-title">Plans</span><a href="#pricing">Pricing</a><a href="#cta">Book a walkthrough</a><a href="#faq">Questions</a></div>
+        <div class="footer-col"><span class="footer-col-title">Portfolio</span><a href="/">Graphic Miles</a><a href="/projects/">All projects</a></div>
       </div>
-    </div>
+      <div class="footer-bottom"><span>&copy; 2026 Cirrus Financial Systems. Concept and design system by Graphic Miles.</span><a href="/">Back to portfolio</a></div>
+    </div></div>
   </footer>
 
   <!-- WALKTHROUGH BOOKING MODAL -->
