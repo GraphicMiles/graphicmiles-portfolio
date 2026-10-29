@@ -1441,6 +1441,7 @@
        RESPONSIVE BREAKPOINTS
        ========================================= */
     @media (max-width: 960px) {
+      .container { padding-inline: 1rem; }
       .hero-sky {
         background: linear-gradient(180deg, #0949b2 0%, #1767da 46%, #7dc3f0 74%, #ebf6fd 89%, #ffffff 100%);
       }
@@ -1468,7 +1469,7 @@
     }
 
     @media (max-width: 640px) {
-      .container { width: min(100% - 1.5rem, 72rem); }
+      .container { width: 100%; padding-inline: 0.75rem; }
       .top-nav { margin-top: 1rem; padding: 0.5rem 0.5rem 0.5rem 0.875rem; }
       .hero-copy { padding-top: 4.75rem; }
       .hero-tag { max-width: calc(100vw - 2rem); white-space: normal; line-height: 1.25; }
