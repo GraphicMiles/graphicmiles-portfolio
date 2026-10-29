@@ -75,10 +75,10 @@
       --font-display: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
       --font-sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
 
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out: cubic-bezier(0.62, 0, 0.41, 1);
       --dur-fast: 180ms;
       --dur-med: 320ms;
-      --dur-reveal: 560ms;
+      --dur-reveal: 600ms;
     }
 
     *, *::before, *::after {
@@ -171,6 +171,76 @@
       margin-inline: auto;
       padding-inline: 1.5rem;
     }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 75;
+      width: 100%;
+      height: 3px;
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: var(--sky-bright);
+      animation: page-progress linear both;
+      animation-timeline: scroll(root block);
+      pointer-events: none;
+      opacity: 0.9;
+    }
+
+    @keyframes page-progress { to { transform: scaleX(1); } }
+
+    .top-nav .btn-white::after,
+    .hero-cta-row .btn-white::after,
+    .cta-banner .btn-cerulean::after {
+      content: "→";
+      width: 1.75rem;
+      height: 1.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: -0.5rem;
+      border-radius: 50%;
+      background: rgba(11, 31, 46, 0.08);
+      font-size: 1rem;
+      line-height: 1;
+      transition: transform var(--dur-med) var(--ease-out), background-color var(--dur-med) var(--ease-out);
+    }
+
+    .cta-banner .btn-cerulean::after { background: rgba(255,255,255,.14); }
+    .top-nav .btn-white:hover::after,
+    .hero-cta-row .btn-white:hover::after,
+    .cta-banner .btn-cerulean:hover::after { transform: translateX(3px); }
+
+    .section-head-split { position: relative; }
+    .section-head-split::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1.5rem;
+      height: 1px;
+      background: linear-gradient(90deg, var(--sky-bright), var(--line) 42%, transparent);
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    .section-head-split.is-visible::after {
+      transform: scaleX(1);
+      transition: transform 900ms var(--ease-out) 160ms;
+    }
+
+    .nav-links a[aria-current="true"] { color: var(--paper); }
+    .nav-links a[aria-current="true"]::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: .2rem;
+      background: rgba(255,255,255,.8);
+      transform-origin: left;
+      animation: nav-line-in 400ms var(--ease-out) both;
+    }
+    @keyframes nav-line-in { from { transform:scaleX(0); } to { transform:scaleX(1); } }
 
     /* Tactile Buttons */
     .btn {
@@ -1549,6 +1619,7 @@
   </style>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <a href="#workspace" class="skip-link">Skip to interactive workspace</a>
 
   <!-- HERO & INTERACTIVE WORKSPACE -->
@@ -2114,6 +2185,11 @@
             duration: 520,
             easing: "easeOutExpo"
           });
+          var moneyNodes = winStage.querySelectorAll("[data-money]");
+          moneyNodes.forEach(function (node, index) {
+            var counter = { value: 0 };
+            anime({ targets: counter, value: Number(node.getAttribute("data-money")), round: 1, delay: index * 55, duration: 720, easing: "easeOutExpo", update: function () { node.textContent = formatNaira(counter.value); } });
+          });
           var fills = winStage.querySelectorAll(".forecast-fill");
           if (fills.length) anime({ targets: fills, scaleX: [0, 1], transformOrigin: "left center", delay: anime.stagger(80), duration: 750, easing: "easeOutExpo" });
         });
@@ -2288,9 +2364,9 @@
 
           bodyHtml =
             '<div class="kpi-grid">' +
-              '<div class="kpi-tile"><span class="kpi-label">Outstanding</span><span class="kpi-val">' + formatNaira(outstanding) + '</span></div>' +
-              '<div class="kpi-tile kpi-tile--overdue"><span class="kpi-label">Overdue</span><span class="kpi-val">' + formatNaira(overdue) + '</span></div>' +
-              '<div class="kpi-tile kpi-tile--collected"><span class="kpi-label">Collected this month</span><span class="kpi-val">' + formatNaira(collected) + '</span></div>' +
+              '<div class="kpi-tile"><span class="kpi-label">Outstanding</span><span class="kpi-val" data-money="' + outstanding + '">' + formatNaira(outstanding) + '</span></div>' +
+              '<div class="kpi-tile kpi-tile--overdue"><span class="kpi-label">Overdue</span><span class="kpi-val" data-money="' + overdue + '">' + formatNaira(overdue) + '</span></div>' +
+              '<div class="kpi-tile kpi-tile--collected"><span class="kpi-label">Collected this month</span><span class="kpi-val" data-money="' + collected + '">' + formatNaira(collected) + '</span></div>' +
             '</div>' +
             '<div class="list-caption">Priority accounts</div>' +
             '<div class="ledger-list">' + attnRows + '</div>';
@@ -2564,6 +2640,28 @@
         if (doneBtn) doneBtn.addEventListener("click", closeModal);
       });
 
+      // Section-aware navigation uses IntersectionObserver without scroll-frame listeners.
+      var navSectionLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-links a[href^='#']"));
+      if (typeof IntersectionObserver === "function") {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            navSectionLinks.forEach(function (link) { link.removeAttribute("aria-current"); });
+            var active = navSectionLinks.find(function (link) { return link.getAttribute("href") === "#" + entry.target.id; });
+            if (active) active.setAttribute("aria-current", "true");
+          });
+        }, { rootMargin: "-25% 0px -62% 0px", threshold: 0 });
+        ["product", "how", "pricing", "faq"].forEach(function (id) { var section = document.getElementById(id); if (section) spy.observe(section); });
+      }
+
+      document.addEventListener("pointerdown", function (event) {
+        if (!canAnimate) return;
+        var target = event.target.closest(".btn, .mini-action, .seg-btn, .ws-pill, .win-nav-btn");
+        if (!target) return;
+        anime.remove(target);
+        anime({ targets: target, scale: [1, 0.97, 1], duration: 320, easing: "easeOutQuad" });
+      });
+
       // Initialize interactive views
       renderWorkspace();
       renderSteps();
@@ -2592,9 +2690,12 @@
             if (!entry.isIntersecting) return;
             var node = entry.target;
             node.classList.add("is-visible");
-            anime({ targets: node, opacity: [0, 1], translateY: [28, 0], duration: 760, easing: "easeOutExpo" });
-            var children = node.querySelectorAll(".compat-pill, .mini-card, .entity-box, .step-card, .price-feature, .faq-btn, .check-row");
-            if (children.length) anime({ targets: children, opacity: [0, 1], translateY: [12, 0], delay: anime.stagger(48), duration: 560, easing: "easeOutExpo" });
+            var isPanel = node.matches(".statement-shell, .cta-banner, .site-footer");
+            anime({ targets: node, opacity: [0, 1], translateY: [isPanel ? 36 : 28, 0], scale: isPanel ? [0.985, 1] : [1, 1], duration: 760, easing: "cubicBezier(0.62, 0, 0.41, 1)" });
+            var headingParts = node.querySelectorAll(".section-h2, .section-lead");
+            if (headingParts.length) anime({ targets: headingParts, opacity: [0, 1], translateY: [18, 0], delay: anime.stagger(90), duration: 680, easing: "easeOutExpo" });
+            var children = node.querySelectorAll(".compat-pill, .mini-card, .entity-box, .step-card, .price-feature, .faq-btn, .check-row, .footer-icon-link");
+            if (children.length) anime({ targets: children, opacity: [0, 1], translateY: [14, 0], scale: [0.98, 1], delay: anime.stagger(52), duration: 620, easing: "easeOutExpo" });
             obs.unobserve(node);
           });
         }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
