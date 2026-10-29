@@ -1,0 +1,2540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cirrus - Calm Receivables for Finance Teams</title>
+  <meta name="description" content="Cirrus gives finance and sales teams one calm workspace to track invoices, automate customer nudges, and forecast incoming cash.">
+  <meta name="theme-color" content="#0949B2">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0%25' stop-color='%230949B2'/%3E%3Cstop offset='100%25' stop-color='%232AA9E0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Cpath d='M12 43 C20 21 40 15 54 18 C44 24 38 32 35 44 C28 38 20 38 12 43Z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="preload" href="/fonts/InterTight-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <style>
+    /*
+     * Cirrus Design System + B2B Receivables Workspace
+     *
+     * Z-index scale:
+     *   0  - Atmospheric hero cloud light pockets
+     *   1  - Primary section content
+     *   20 - Floating glassmorphic header
+     *   60 - Skip-to-content pill
+     *   80 - Walkthrough modal dialog backdrop & card
+     *
+     * Concentric shape scale:
+     *   --r-shell: 32px (section shells & outer window bezel)
+     *   --r-card:  24px (inner app frame, bento cards, pricing & FAQ panels)
+     *   --r-item:  16px (invoice rows, KPI tiles, step cards)
+     *   --r-pill:  9999px (buttons, segmented tabs, status pills)
+     */
+
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("/fonts/InterTight-latin-ext.woff2") format("woff2");
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    @font-face {
+      font-family: "Inter Tight";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url("/fonts/InterTight-latin.woff2") format("woff2");
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    :root {
+      --ink: #0b1f2e;
+      --ink-soft: #35505f;
+      --muted: #4a5b68;
+      --faint: #5f6e79;
+      --paper: #ffffff;
+      --cloud: #f4f7fa;
+      --cloud-alt: #ebf1f5;
+      --line: #e2e8ee;
+      --sky-deep: #0949b2;
+      --sky-mid: #196ce0;
+      --sky-bright: #50c5e8;
+      --sky-tint: #dbf1fc;
+      --cerulean: #035f8a;
+      --cerulean-hover: #024d71;
+      --sage-bg: #e5f5d6;
+      --sage-fg: #265408;
+      --amber-bg: #fff1d6;
+      --amber-fg: #6b4300;
+      --berry-bg: #fde5ee;
+      --berry-fg: #7d0c33;
+
+      --r-shell: 2rem;
+      --r-card: 1.5rem;
+      --r-item: 1rem;
+      --r-pill: 9999px;
+
+      --font-display: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-sans: "Inter Tight", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-fast: 180ms;
+      --dur-med: 320ms;
+      --dur-reveal: 560ms;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      font-family: var(--font-sans);
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    svg {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: -4rem;
+      left: 1.5rem;
+      z-index: 60;
+      padding: 0.625rem 1.125rem;
+      border-radius: var(--r-pill);
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: top var(--dur-fast) var(--ease-out);
+    }
+
+    .skip-link:focus {
+      top: 1.25rem;
+      outline: 3px solid var(--sky-bright);
+      outline-offset: 2px;
+    }
+
+    :focus-visible {
+      outline: 2.5px solid var(--sky-bright);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 74rem;
+      margin-inline: auto;
+      padding-inline: 1.5rem;
+    }
+
+    /* Tactile Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: var(--r-pill);
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition:
+        transform var(--dur-fast) var(--ease-out),
+        background-color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out),
+        border-color var(--dur-fast) var(--ease-out);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-white {
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: 0 12px 28px -10px rgba(6, 36, 96, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .btn-white:hover {
+      background: #f8fcff;
+    }
+
+    .btn-glass {
+      background: rgba(255, 255, 255, 0.16);
+      color: var(--paper);
+      border: 1px solid rgba(255, 255, 255, 0.44);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .btn-cerulean {
+      background: var(--cerulean);
+      color: var(--paper);
+      box-shadow: 0 14px 28px -12px rgba(3, 95, 138, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-cerulean:hover {
+      background: var(--cerulean-hover);
+    }
+
+    .btn-ink {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-ink:hover {
+      background: #132f44;
+    }
+
+    .btn-lg {
+      height: 3.375rem;
+      padding-inline: 1.875rem;
+      font-size: 1rem;
+    }
+
+    .btn-sm {
+      height: 2.625rem;
+      padding-inline: 1.25rem;
+      font-size: 0.9375rem;
+    }
+
+    /* =========================================
+       HERO & ATMOSPHERIC SKY DOME
+       ========================================= */
+    .hero-sky {
+      position: relative;
+      overflow: hidden;
+      padding: 1.25rem 0 4.5rem;
+      background: linear-gradient(180deg, #0949b2 0%, #196ce0 50%, #86c8f2 77%, #ebf6fd 92%, #ffffff 100%);
+    }
+
+    .cloud-pocket {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+    }
+
+    .cloud-pocket--left {
+      left: -12rem;
+      top: 36rem;
+      width: 36rem;
+      height: 15rem;
+      background: radial-gradient(closest-side, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));
+    }
+
+    .cloud-pocket--right {
+      right: -12rem;
+      top: 34rem;
+      width: 40rem;
+      height: 16rem;
+      background: radial-gradient(closest-side, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0));
+    }
+
+    .cloud-pocket--top {
+      left: 10%;
+      top: 5.5rem;
+      width: 20rem;
+      height: 6rem;
+      background: radial-gradient(closest-side, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+    }
+
+    .top-nav {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.625rem 0.625rem 0.625rem 1.375rem;
+      border-radius: var(--r-pill);
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      color: var(--paper);
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.375rem;
+      letter-spacing: -0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.9375rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      transition: color var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+    }
+
+    .nav-links a:hover {
+      color: var(--paper);
+      opacity: 0.8;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-ghost {
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.5rem 0.875rem;
+      border-radius: var(--r-pill);
+      transition: background-color var(--dur-fast) var(--ease-out);
+    }
+
+    .nav-ghost:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 54rem;
+      margin: 4.5rem auto 0;
+      text-align: center;
+      color: var(--paper);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4375rem 1rem;
+      border-radius: var(--r-pill);
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--paper);
+    }
+
+    .hero-title {
+      margin-top: 1.375rem;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2.875rem, 7vw, 5.5rem);
+      line-height: 1.01;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .hero-sub {
+      margin: 1.5rem auto 0;
+      max-width: 39rem;
+      font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.94);
+      text-wrap: pretty;
+    }
+
+    .hero-cta-row {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .hero-note {
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    /* =========================================
+       INTERACTIVE DOUBLE-BEZEL PRODUCT WORKSPACE
+       ========================================= */
+    .workspace-bezel {
+      position: relative;
+      z-index: 1;
+      max-width: 66rem;
+      margin: 3.5rem auto 0;
+      padding: 0.5rem;
+      border-radius: var(--r-shell);
+      background: rgba(255, 255, 255, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow:
+        0 42px 90px -28px rgba(8, 44, 112, 0.36),
+        0 12px 28px -12px rgba(11, 31, 46, 0.12);
+    }
+
+    .workspace-window {
+      background: var(--paper);
+      border-radius: calc(var(--r-shell) - 0.375rem);
+      border: 1px solid rgba(11, 31, 46, 0.08);
+      overflow: hidden;
+    }
+
+    .window-chrome {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.875rem 1.25rem;
+      background: var(--cloud);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .window-dots {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .window-dots span {
+      width: 0.6875rem;
+      height: 0.6875rem;
+      border-radius: 50%;
+    }
+
+    .window-Interactive-hint {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .window-body {
+      display: grid;
+      grid-template-columns: 14rem minmax(0, 1fr);
+      min-height: 27.5rem;
+    }
+
+    .win-sidebar {
+      padding: 1.25rem 0.875rem;
+      border-right: 1px solid var(--line);
+      background: #fafcfd;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .ws-Select-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--faint);
+      padding: 0 0.625rem 0.375rem;
+    }
+
+    .ws-switcher {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .ws-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.5rem 0.625rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-align: left;
+      transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+    }
+
+    .ws-pill:hover {
+      background: var(--cloud);
+      color: var(--ink);
+    }
+
+    .ws-pill[aria-pressed="true"] {
+      background: var(--sky-tint);
+      color: var(--cerulean);
+      font-weight: 600;
+    }
+
+    .ws-badge {
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      background: var(--cerulean);
+      color: var(--paper);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .win-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .win-nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.625rem 0.75rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-align: left;
+      transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+    }
+
+    .win-nav-btn:hover {
+      background: var(--cloud);
+      color: var(--ink);
+    }
+
+    .win-nav-btn[aria-selected="true"] {
+      background: var(--ink);
+      color: var(--paper);
+      font-weight: 600;
+    }
+
+    .win-nav-count {
+      font-size: 0.75rem;
+      padding: 0.125rem 0.4375rem;
+      border-radius: var(--r-pill);
+      background: rgba(11, 31, 46, 0.08);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .win-nav-btn[aria-selected="true"] .win-nav-count {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--paper);
+    }
+
+    .win-main {
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+
+    .win-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.875rem;
+    }
+
+    .win-heading-wrap {
+      display: flex;
+      align-items: baseline;
+      gap: 0.625rem;
+    }
+
+    .win-heading {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    .win-subtag {
+      font-size: 0.8125rem;
+      color: var(--faint);
+    }
+
+    .seg-group {
+      display: inline-flex;
+      gap: 0.25rem;
+      padding: 0.25rem;
+      border-radius: var(--r-pill);
+      background: var(--cloud-alt);
+    }
+
+    .seg-btn {
+      padding: 0.4375rem 0.9375rem;
+      border-radius: var(--r-pill);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: 0 2px 8px rgba(11, 31, 46, 0.1);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .kpi-tile {
+      padding: 1rem 1.125rem;
+      border-radius: var(--r-item);
+      background: var(--cloud);
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .kpi-tile--overdue {
+      background: var(--berry-bg);
+      color: var(--berry-fg);
+    }
+
+    .kpi-tile--collected {
+      background: var(--sage-bg);
+      color: var(--sage-fg);
+    }
+
+    .kpi-label {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      opacity: 0.88;
+    }
+
+    .kpi-val {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .list-caption {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .ledger-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .ledger-row {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.75rem 0.9375rem;
+      border-radius: var(--r-item);
+      background: var(--cloud);
+      transition: background-color var(--dur-fast) var(--ease-out);
+    }
+
+    .ledger-row:hover {
+      background: #edf2f6;
+    }
+
+    .avatar-dot {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+
+    .ledger-meta {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .ledger-name {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--ink);
+    }
+
+    .ledger-sub {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .status-pill {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--r-pill);
+      white-space: nowrap;
+    }
+
+    .ledger-amount {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      min-width: 6rem;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .mini-action {
+      padding: 0.375rem 0.75rem;
+      border-radius: var(--r-pill);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--paper);
+      color: var(--cerulean);
+      border: 1px solid rgba(3, 95, 138, 0.22);
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out),
+        transform var(--dur-fast) var(--ease-out);
+    }
+
+    .mini-action:hover {
+      background: var(--cerulean);
+      color: var(--paper);
+    }
+
+    .mini-action:active {
+      transform: scale(0.96);
+    }
+
+    .mini-action--done {
+      background: var(--sage-bg);
+      color: var(--sage-fg);
+      border-color: transparent;
+    }
+
+    .forecast-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }
+
+    .forecast-row {
+      padding: 0.875rem 1rem;
+      border-radius: var(--r-item);
+      background: var(--cloud);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .forecast-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .forecast-track {
+      height: 0.5rem;
+      border-radius: var(--r-pill);
+      background: var(--cloud-alt);
+      overflow: hidden;
+    }
+
+    .forecast-fill {
+      height: 100%;
+      border-radius: var(--r-pill);
+      background: linear-gradient(90deg, var(--cerulean), var(--sky-bright));
+      transition: width var(--dur-med) var(--ease-out);
+    }
+
+    /* =========================================
+       COMPATIBILITY STRIP
+       ========================================= */
+    .compat-section {
+      padding: 2.5rem 0 1.5rem;
+      text-align: center;
+    }
+
+    .compat-label {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .compat-row {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.625rem;
+    }
+
+    .compat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6875rem 1.25rem;
+      border-radius: var(--r-pill);
+      background: var(--cloud);
+      border: 1px solid var(--line);
+      color: var(--ink-soft);
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .compat-pill svg {
+      width: 1rem;
+      height: 1rem;
+      color: var(--cerulean);
+    }
+
+    /* =========================================
+       ASYMMETRIC BENTO FEATURES (#product)
+       ========================================= */
+    .section-pad {
+      padding: 5.5rem 0 2.5rem;
+    }
+
+    .section-head-split {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-h2 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(2.125rem, 4.6vw, 3.625rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .section-lead {
+      max-width: 27rem;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      color: var(--muted);
+      text-wrap: pretty;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .bento-cell {
+      border-radius: var(--r-card);
+      background: var(--cloud);
+      border: 1px solid var(--line);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+      transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+    }
+
+    .bento-cell:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -24px rgba(11, 31, 46, 0.16);
+    }
+
+    .bento-cell--7 { grid-column: span 7; }
+    .bento-cell--5 { grid-column: span 5; }
+
+    .bento-cell--sky {
+      background: linear-gradient(180deg, #50c5e8 0%, #c4ebfa 48%, #f4f7fa 100%);
+      border-color: rgba(3, 95, 138, 0.14);
+    }
+
+    .bento-stage {
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+
+    .mini-card {
+      background: var(--paper);
+      border-radius: var(--r-item);
+      padding: 0.875rem 1rem;
+      box-shadow: 0 4px 14px -6px rgba(11, 31, 46, 0.08);
+      border: 1px solid rgba(11, 31, 46, 0.05);
+    }
+
+    .mini-inv-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .bento-copy h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    .bento-copy p {
+      margin-top: 0.375rem;
+      font-size: 0.96875rem;
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 46ch;
+      text-wrap: pretty;
+    }
+
+    .settled-emblem {
+      align-self: center;
+      text-align: center;
+      padding: 0.75rem 0;
+    }
+
+    .settled-coin {
+      width: 4.5rem;
+      height: 4.5rem;
+      margin: 0.625rem auto;
+      border-radius: 50%;
+      background: var(--cerulean);
+      color: var(--paper);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.875rem;
+      font-weight: 700;
+      box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.45), 0 12px 24px -8px rgba(3, 95, 138, 0.45);
+    }
+
+    .entity-pills {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.625rem;
+    }
+
+    .entity-box {
+      background: var(--paper);
+      border-radius: var(--r-item);
+      padding: 0.875rem;
+      border: 1px solid rgba(11, 31, 46, 0.06);
+    }
+
+    .entity-box--active {
+      border-color: var(--sky-bright);
+      background: #f2faff;
+    }
+
+    /* =========================================
+       HOW IT WORKS (#how)
+       ========================================= */
+    .how-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .how-panel {
+      background: var(--cloud);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.875rem;
+      flex: 1;
+    }
+
+    .step-card {
+      background: var(--paper);
+      border-radius: var(--r-item);
+      padding: 1.25rem 1.125rem;
+      border: 1px solid rgba(11, 31, 46, 0.05);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .step-num {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .step-title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .step-desc {
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: var(--muted);
+      text-wrap: pretty;
+    }
+
+    .rollout-card {
+      border-radius: var(--r-card);
+      padding: 2rem;
+      background: linear-gradient(180deg, #0b1f2e 0%, #10324a 100%);
+      color: var(--paper);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .rollout-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .rollout-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: var(--r-item);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .rollout-check {
+      width: 1.375rem;
+      height: 1.375rem;
+      border-radius: 50%;
+      background: #8dc85a;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+
+    /* =========================================
+       STATEMENT & BENCHMARKS BAND
+       ========================================= */
+    .statement-shell {
+      border-radius: var(--r-shell);
+      background: #d8ecf6;
+      padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 4vw, 3.5rem);
+      text-align: center;
+    }
+
+    .strike-chaos {
+      color: var(--faint);
+      text-decoration: line-through;
+      text-decoration-color: #e5484d;
+      text-decoration-thickness: 0.09em;
+    }
+
+    .bench-grid {
+      margin-top: 2.75rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      text-align: left;
+    }
+
+    .bench-card {
+      background: var(--paper);
+      border-radius: var(--r-card);
+      padding: 1.625rem;
+    }
+
+    .bench-stat {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.6vw, 2.875rem);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .bench-desc {
+      margin-top: 0.5rem;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: var(--muted);
+      text-wrap: pretty;
+    }
+
+    /* =========================================
+       PRICING (#pricing)
+       ========================================= */
+    .pricing-controls {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+
+    .pricing-grid {
+      margin-top: 2.75rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .price-card {
+      background: var(--cloud);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.75rem;
+    }
+
+    .price-card--featured {
+      background: var(--cerulean);
+      border-color: var(--cerulean);
+      color: var(--paper);
+      box-shadow: 0 28px 56px -24px rgba(3, 95, 138, 0.5);
+    }
+
+    .price-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.3125rem 0.75rem;
+      border-radius: var(--r-pill);
+      background: #8dc85a;
+      color: var(--ink);
+    }
+
+    .price-amount {
+      margin-top: 1.25rem;
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .price-period {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      opacity: 0.78;
+    }
+
+    .price-features {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.9375rem;
+    }
+
+    .price-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+
+    .check-dot {
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 50%;
+      background: var(--sky-tint);
+      color: var(--cerulean);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .price-card--featured .check-dot {
+      background: var(--paper);
+      color: var(--cerulean);
+    }
+
+    /* =========================================
+       FAQ (#faq)
+       ========================================= */
+    .faq-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      padding: 1rem 1.25rem;
+      border-radius: var(--r-item);
+      border: 1.5px solid transparent;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      transition:
+        background-color var(--dur-fast) var(--ease-out),
+        border-color var(--dur-fast) var(--ease-out),
+        color var(--dur-fast) var(--ease-out);
+    }
+
+    .faq-btn:hover {
+      background: var(--cloud);
+      color: var(--ink);
+    }
+
+    .faq-btn[aria-pressed="true"] {
+      background: #eef9fe;
+      border-color: var(--sky-bright);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .faq-answer-card {
+      background: var(--cloud);
+      border: 1px solid var(--line);
+      border-radius: var(--r-card);
+      padding: 2.25rem;
+      min-height: 13.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.875rem;
+    }
+
+    .faq-answer-q {
+      font-family: var(--font-display);
+      font-size: 1.375rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .faq-answer-a {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      max-width: 58ch;
+      text-wrap: pretty;
+    }
+
+    /* =========================================
+       CTA BANNER & FOOTER
+       ========================================= */
+    .cta-banner {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-shell);
+      padding: clamp(3rem, 7vw, 5.5rem) 1.5rem;
+      text-align: center;
+      background: linear-gradient(180deg, #50c5e8 0%, #a9e0f4 56%, #eaf7fd 100%);
+    }
+
+    .site-footer {
+      padding: 4.5rem 0 3rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .footer-cols {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3.5rem;
+      font-size: 0.9375rem;
+    }
+
+    .footer-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6875rem;
+    }
+
+    .footer-col-title {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .footer-col a {
+      color: var(--muted);
+      transition: color var(--dur-fast) var(--ease-out);
+    }
+
+    .footer-col a:hover {
+      color: var(--cerulean);
+    }
+
+    .footer-bottom {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--faint);
+    }
+
+    /* =========================================
+       WALKTHROUGH MODAL DIALOG
+       ========================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      background: rgba(11, 31, 46, 0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--dur-fast) var(--ease-out);
+    }
+
+    .modal-backdrop[data-open="true"] {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 28rem;
+      background: var(--paper);
+      border-radius: var(--r-card);
+      padding: 2rem;
+      box-shadow: 0 32px 64px -20px rgba(11, 31, 46, 0.4);
+      transform: translateY(10px) scale(0.98);
+      transition: transform var(--dur-med) var(--ease-out);
+    }
+
+    .modal-backdrop[data-open="true"] .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      margin-top: 1rem;
+    }
+
+    .form-field label {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+
+    .form-field input,
+    .form-field select {
+      height: 2.75rem;
+      padding-inline: 0.875rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--line);
+      background: var(--cloud);
+      font-size: 0.9375rem;
+    }
+
+    /* =========================================
+       RESPONSIVE BREAKPOINTS
+       ========================================= */
+    @media (max-width: 960px) {
+      .hero-sky {
+        background: linear-gradient(180deg, #0949b2 0%, #1767da 46%, #7dc3f0 74%, #ebf6fd 89%, #ffffff 100%);
+      }
+      .cloud-pocket--left, .cloud-pocket--right { display: none; }
+      .nav-links { display: none; }
+      .window-body { grid-template-columns: minmax(0, 1fr); }
+      .win-sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        gap: 0.75rem;
+      }
+      .ws-switcher {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        padding-bottom: 0.75rem;
+      }
+      .ws-pill { width: auto; }
+      .win-nav { flex-direction: row; flex-wrap: wrap; }
+      .win-nav-btn { width: auto; }
+      .bento-cell--7, .bento-cell--5 { grid-column: span 12; }
+      .how-layout, .faq-layout, .pricing-grid, .bench-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .kpi-grid, .steps-grid, .entity-pills {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .ledger-row {
+        flex-wrap: wrap;
+      }
+      .ledger-amount {
+        min-width: auto;
+      }
+      .nav-ghost {
+        display: none;
+      }
+    }
+
+    /* Scroll-entry choreography via IntersectionObserver */
+    @media (prefers-reduced-motion: no-preference) {
+      html.motion-ready [data-reveal] {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity var(--dur-reveal) var(--ease-out),
+          transform var(--dur-reveal) var(--ease-out);
+      }
+      html.motion-ready [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#workspace" class="skip-link">Skip to interactive workspace</a>
+
+  <!-- HERO & INTERACTIVE WORKSPACE -->
+  <div id="top" class="hero-sky">
+    <div aria-hidden="true" class="cloud-pocket cloud-pocket--left"></div>
+    <div aria-hidden="true" class="cloud-pocket cloud-pocket--right"></div>
+    <div aria-hidden="true" class="cloud-pocket cloud-pocket--top"></div>
+
+    <div class="container">
+      <header class="top-nav">
+        <a href="#top" class="brand-link">
+          <svg width="28" height="20" viewBox="0 0 34 24" aria-hidden="true"><path d="M2 20 C8 6 22 2 32 4 C25 8 21 13 19 21 C14 17 8 17 2 20Z" fill="#ffffff"/></svg>
+          <span>Cirrus</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary">
+          <a href="#product">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="/" class="nav-ghost">Graphic Miles</a>
+          <button type="button" class="btn btn-white btn-sm" data-open-modal="Walkthrough">Book a demo</button>
+        </div>
+      </header>
+
+      <div class="hero-copy" data-reveal>
+        <span class="hero-tag">Receivables workspace for finance &amp; sales</span>
+        <h1 class="hero-title">Get paid faster.<br>Stop chasing.</h1>
+        <p class="hero-sub">Cirrus gives your team one calm workspace to track every open invoice, schedule customer follow-ups, and see incoming cash before it lands.</p>
+        <div class="hero-cta-row">
+          <button type="button" class="btn btn-white btn-lg" data-open-modal="Walkthrough">Book a walkthrough</button>
+          <a href="#workspace" class="btn btn-glass btn-lg">Try live workspace</a>
+        </div>
+        <p class="hero-note">14-day free trial, no credit card required</p>
+      </div>
+
+      <!-- DOUBLE-BEZEL INTERACTIVE PRODUCT WINDOW -->
+      <div id="workspace" class="workspace-bezel" data-reveal>
+        <div class="workspace-window" role="region" aria-label="Interactive Cirrus receivables preview">
+          <div class="window-chrome">
+            <div class="window-dots" aria-hidden="true">
+              <span style="background:#ff6159"></span>
+              <span style="background:#ffbd2e"></span>
+              <span style="background:#28c940"></span>
+            </div>
+            <span class="window-Interactive-hint">Interactive preview: switch workspaces, views, or record a payment</span>
+          </div>
+
+          <div class="window-body">
+            <aside class="win-sidebar" aria-label="Workspace selector and sections">
+              <div>
+                <div class="ws-Select-label">Entity workspace</div>
+                <div class="ws-switcher" role="group" aria-label="Select entity">
+                  <button type="button" class="ws-pill" data-ws="lagos" aria-pressed="true">
+                    <span class="ws-badge" aria-hidden="true">L</span>
+                    <span>Lagos HQ</span>
+                  </button>
+                  <button type="button" class="ws-pill" data-ws="abuja" aria-pressed="false">
+                    <span class="ws-badge" style="background:#0b52c4" aria-hidden="true">A</span>
+                    <span>Abuja Branch</span>
+                  </button>
+                  <button type="button" class="ws-pill" data-ws="export" aria-pressed="false">
+                    <span class="ws-badge" style="background:#265408" aria-hidden="true">E</span>
+                    <span>Export Desk</span>
+                  </button>
+                </div>
+
+                <div class="ws-Select-label">Workspace views</div>
+                <div class="win-nav" role="tablist" aria-label="Module navigation">
+                  <button type="button" role="tab" class="win-nav-btn" data-module="receivables" aria-selected="true">
+                    <span>Receivables</span>
+                    <span class="win-nav-count" id="nav-inv-count">4</span>
+                  </button>
+                  <button type="button" role="tab" class="win-nav-btn" data-module="reminders" aria-selected="false">
+                    <span>Reminders</span>
+                    <span class="win-nav-count" id="nav-rem-count">3</span>
+                  </button>
+                  <button type="button" role="tab" class="win-nav-btn" data-module="forecast" aria-selected="false">
+                    <span>Cash forecast</span>
+                  </button>
+                </div>
+              </div>
+            </aside>
+
+            <div class="win-main" id="win-stage" aria-live="polite">
+              <!-- Populated and updated by Cirrus interactive state controller -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- STACK COMPATIBILITY -->
+    <section class="compat-section" aria-label="Compatible tools">
+      <div class="container">
+        <p class="compat-label">Works alongside the accounting and payment tools your team already runs</p>
+        <div class="compat-row">
+          <span class="compat-pill">
+            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></svg>
+            QuickBooks Sync
+          </span>
+          <span class="compat-pill">
+            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M72,104a8,8,0,0,1,8-8h96a8,8,0,0,1,0,16H80A8,8,0,0,1,72,104Zm8,40h96a8,8,0,0,0,0-16H80a8,8,0,0,0,0,16ZM232,56V208a8,8,0,0,1-11.58,7.15L192,200.94l-28.42,14.21a8,8,0,0,1-7.16,0L128,200.94,99.58,215.15a8,8,0,0,1-7.16,0L64,200.94,35.58,215.15A8,8,0,0,1,24,208V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V195.06l20.42-10.22a8,8,0,0,1,7.16,0L96,199.06l28.42-14.22a8,8,0,0,1,7.16,0L160,199.06l28.42-14.22a8,8,0,0,1,7.16,0L216,195.06Z"/></svg>
+            Xero Ledger
+          </span>
+          <span class="compat-pill">
+            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M240,208H224V96a16,16,0,0,0-16-16H144V32a16,16,0,0,0-24.88-13.32L39.12,72A16,16,0,0,0,32,85.34V208H16a8,8,0,0,0,0,16H240a8,8,0,0,0,0-16ZM208,96V208H144V96ZM48,85.34,128,32V208H48Z"/></svg>
+            Zoho Books
+          </span>
+          <span class="compat-pill">
+            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M24,104H48v64H32a8,8,0,0,0,0,16H224a8,8,0,0,0,0-16H208V104h24a8,8,0,0,0,4.19-14.81l-104-64a8,8,0,0,0-8.38,0l-104,64A8,8,0,0,0,24,104Zm40,0H96v64H64Zm80,0v64H112V104Zm48,64H160V104h32ZM128,41.39,203.74,88H52.26ZM248,208a8,8,0,0,1-8,8H16a8,8,0,0,1,0-16H240A8,8,0,0,1,248,208Z"/></svg>
+            Paystack Links
+          </span>
+          <span class="compat-pill">
+            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM40,112H80v32H40Zm56,0H216v32H96ZM216,64V96H40V64ZM40,160H80v32H40Zm176,32H96V160H216v32Z"/></svg>
+            CSV &amp; Excel Import
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ASYMMETRIC BENTO FEATURES (#product) -->
+    <section id="product" class="section-pad">
+      <div class="container">
+        <div class="section-head-split" data-reveal>
+          <h2 class="section-h2">How Cirrus keeps collections calm</h2>
+          <p class="section-lead">Every open balance, customer promise, partial payment, and branch ledger stays organized in one shared view.</p>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Cell 1 (7 cols): Log invoices -->
+          <article class="bento-cell bento-cell--7" data-reveal>
+            <div class="bento-stage">
+              <div class="mini-card mini-inv-row">
+                <span class="avatar-dot" style="background:#f7b6d5">R</span>
+                <div class="ledger-meta">
+                  <div class="ledger-name">Rufus Studios</div>
+                  <div class="ledger-sub">INV-1042, due in 3 days</div>
+                </div>
+                <span class="status-pill" style="background:var(--amber-bg);color:var(--amber-fg)">Due soon</span>
+                <div class="ledger-amount">₦100,000</div>
+              </div>
+              <div class="mini-card mini-inv-row">
+                <span class="avatar-dot" style="background:#50c5e8">J</span>
+                <div class="ledger-meta">
+                  <div class="ledger-name">Janet Foods</div>
+                  <div class="ledger-sub">INV-1043, issued today</div>
+                </div>
+                <span class="status-pill" style="background:var(--sky-tint);color:var(--cerulean)">Sent</span>
+                <div class="ledger-amount">₦7,500</div>
+              </div>
+              <div class="mini-card mini-inv-row">
+                <span class="avatar-dot" style="background:#8dc85a">M</span>
+                <div class="ledger-meta">
+                  <div class="ledger-name">Mustapha Logistics</div>
+                  <div class="ledger-sub">INV-1044, due in 12 days</div>
+                </div>
+                <span class="status-pill" style="background:var(--sky-tint);color:var(--cerulean)">Sent</span>
+                <div class="ledger-amount">₦700,000</div>
+              </div>
+            </div>
+            <div class="bento-copy">
+              <h3>Log invoices in seconds</h3>
+              <p>Sync open receivables from your accounting ledger or drop in a CSV. Every invoice starts aging and tracking immediately.</p>
+            </div>
+          </article>
+
+          <!-- Cell 2 (5 cols): Add context -->
+          <article class="bento-cell bento-cell--5" data-reveal>
+            <div class="mini-card" style="padding:1.25rem">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:0.8125rem;color:var(--faint);font-weight:500">Tunde Agro (INV-1031)</span>
+                <span class="status-pill" style="background:var(--berry-bg);color:var(--berry-fg)">9 days overdue</span>
+              </div>
+              <div class="tabular" style="margin-top:0.5rem;font-family:var(--font-display);font-size:2.125rem;font-weight:600;letter-spacing:-0.035em">
+                ₦480,000<span style="font-size:1.125rem;color:var(--faint)">.00</span>
+              </div>
+              <div style="margin-top:0.875rem;padding:0.875rem;border-radius:0.75rem;background:var(--cloud);font-size:0.84375rem;line-height:1.5;color:var(--ink-soft)">
+                "Part-delivered pallets inspected on Tuesday. Procurement confirmed full wire settlement this Friday."
+                <div style="margin-top:0.375rem;font-size:0.75rem;color:var(--faint);font-weight:600">Logged by Kemi, Account Lead</div>
+              </div>
+            </div>
+            <div class="bento-copy">
+              <h3>Keep account context attached</h3>
+              <p>Pin delivery notes and payment promises directly to the invoice so finance never chases a customer blind.</p>
+            </div>
+          </article>
+
+          <!-- Cell 3 (5 cols): Record payments -->
+          <article class="bento-cell bento-cell--5 bento-cell--sky" data-reveal>
+            <div class="settled-emblem">
+              <span class="status-pill" style="background:rgba(255,255,255,0.75);color:var(--ink)">Settlement recorded</span>
+              <div class="settled-coin" aria-hidden="true">₦</div>
+              <div style="font-size:0.84375rem;color:var(--ink-soft)">Rufus Studios remaining balance</div>
+              <div class="tabular" style="font-family:var(--font-display);font-size:2rem;font-weight:600;letter-spacing:-0.035em">₦0<span style="font-size:1.0625rem;color:var(--muted)">.00</span></div>
+            </div>
+            <div class="bento-copy">
+              <h3>Settle balances cleanly</h3>
+              <p>Record full or partial bank transfers in two clicks. Automated reminders pause the instant a balance clears.</p>
+            </div>
+          </article>
+
+          <!-- Cell 4 (7 cols): Multi-entity workspaces -->
+          <article class="bento-cell bento-cell--7" data-reveal>
+            <div class="bento-stage">
+              <div class="entity-pills">
+                <div class="entity-box entity-box--active">
+                  <div style="font-size:0.75rem;font-weight:600;color:var(--cerulean)">Lagos HQ</div>
+                  <div class="tabular" style="margin-top:0.25rem;font-family:var(--font-display);font-size:1.25rem;font-weight:600">₦1.29M</div>
+                  <div style="margin-top:0.125rem;font-size:0.75rem;color:var(--muted)">4 open</div>
+                </div>
+                <div class="entity-box">
+                  <div style="font-size:0.75rem;font-weight:600;color:var(--muted)">Abuja Branch</div>
+                  <div class="tabular" style="margin-top:0.25rem;font-family:var(--font-display);font-size:1.25rem;font-weight:600">₦2.14M</div>
+                  <div style="margin-top:0.125rem;font-size:0.75rem;color:var(--muted)">6 open</div>
+                </div>
+                <div class="entity-box">
+                  <div style="font-size:0.75rem;font-weight:600;color:var(--muted)">Export Desk</div>
+                  <div class="tabular" style="margin-top:0.25rem;font-family:var(--font-display);font-size:1.25rem;font-weight:600">₦1.39M</div>
+                  <div style="margin-top:0.125rem;font-size:0.75rem;color:var(--muted)">3 open</div>
+                </div>
+              </div>
+              <div class="mini-card" style="display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:0.875rem;font-weight:600;color:var(--ink-soft)">Consolidated group receivables</span>
+                <span class="tabular" style="font-family:var(--font-display);font-size:1.25rem;font-weight:600;color:var(--cerulean)">₦4,820,000</span>
+              </div>
+            </div>
+            <div class="bento-copy">
+              <h3>Separate entities, unified rollup</h3>
+              <p>Give each subsidiary, city branch, or business line its own workspace while keeping group cash visibility one click away.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS (#how) -->
+    <section id="how" class="section-pad">
+      <div class="container">
+        <div class="section-head-split" data-reveal>
+          <h2 class="section-h2">Start collecting<br>in three steps</h2>
+          <p class="section-lead">Connect your ledger, set follow-up cadence once, and keep finance and sales aligned without Monday-morning status calls.</p>
+        </div>
+
+        <div class="how-layout" data-reveal>
+          <div class="how-panel">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem">
+              <span style="font-size:0.875rem;font-weight:600;color:var(--muted)">Workflow by role</span>
+              <div class="seg-group" role="group" aria-label="Choose team workflow">
+                <button type="button" class="seg-btn" data-role-tab="fin" aria-pressed="true">For finance</button>
+                <button type="button" class="seg-btn" data-role-tab="sales" aria-pressed="false">For sales</button>
+              </div>
+            </div>
+
+            <div class="steps-grid" id="role-steps" aria-live="polite">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <aside class="rollout-card" aria-label="Rollout highlights">
+            <div>
+              <span style="font-size:0.8125rem;font-weight:600;color:var(--sky-bright)">Day-one rollout</span>
+              <h3 style="margin-top:0.375rem;font-family:var(--font-display);font-size:1.625rem;font-weight:600;letter-spacing:-0.025em">Built for fast adoption</h3>
+            </div>
+
+            <div class="rollout-list">
+              <div class="rollout-item">
+                <span class="rollout-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>
+                </span>
+                <div>
+                  <div style="font-weight:600;font-size:0.9375rem">No ERP migration</div>
+                  <div style="font-size:0.8125rem;color:rgba(255,255,255,0.74)">Keep your current general ledger as source of truth.</div>
+                </div>
+              </div>
+              <div class="rollout-item">
+                <span class="rollout-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>
+                </span>
+                <div>
+                  <div style="font-weight:600;font-size:0.9375rem">Role-scoped visibility</div>
+                  <div style="font-size:0.8125rem;color:rgba(255,255,255,0.74)">Account reps see only the customers assigned to them.</div>
+                </div>
+              </div>
+              <div class="rollout-item">
+                <span class="rollout-check" aria-hidden="true">
+                  <svg width="12" height="12" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>
+                </span>
+                <div>
+                  <div style="font-weight:600;font-size:0.9375rem">Approval-gated nudges</div>
+                  <div style="font-size:0.8125rem;color:rgba(255,255,255,0.74)">Review sensitive reminders before anything leaves your inbox.</div>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-white btn-lg" style="width:100%" data-open-modal="Rollout">Start collecting now</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATEMENT & OPERATIONAL BENCHMARKS -->
+    <section class="section-pad">
+      <div class="container">
+        <div class="statement-shell" data-reveal>
+          <h2 class="section-h2" style="max-width:48rem;margin-inline:auto">Collections, without the <span class="strike-chaos">chaos</span>.</h2>
+          <p class="section-lead" style="max-width:34rem;margin:1.25rem auto 0;color:var(--ink-soft)">One structured workspace instead of fragile spreadsheet tabs, buried WhatsApp threads, and manual reminder emails.</p>
+
+          <div class="bench-grid">
+            <div class="bench-card">
+              <div class="bench-stat">15 min</div>
+              <p class="bench-desc">From uploading your open-invoice CSV to a live aging board with assigned account owners.</p>
+            </div>
+            <div class="bench-card">
+              <div class="bench-stat">1 ledger</div>
+              <p class="bench-desc">Promises to pay, delivery disputes, partial wires, and reminder logs stay pinned to each invoice.</p>
+            </div>
+            <div class="bench-card">
+              <div class="bench-stat">100%</div>
+              <p class="bench-desc">Timestamped audit history across every nudge, approval, and settlement by entity and teammate.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING (#pricing) -->
+    <section id="pricing" class="section-pad">
+      <div class="container">
+        <div style="text-align:center;max-width:44rem;margin-inline:auto" data-reveal>
+          <h2 class="section-h2">Simple plans that scale with your ledger</h2>
+          <p class="section-lead" style="margin:1rem auto 0">Start with a single workspace and add branches, automated dunning rules, and team seats as volume grows.</p>
+
+          <div class="pricing-controls">
+            <div class="seg-group" role="group" aria-label="Billing currency">
+              <button type="button" class="seg-btn" data-currency="NGN" aria-pressed="true">NGN (₦)</button>
+              <button type="button" class="seg-btn" data-currency="USD" aria-pressed="false">USD ($)</button>
+            </div>
+            <div class="seg-group" role="group" aria-label="Billing cycle">
+              <button type="button" class="seg-btn" data-cycle="monthly" aria-pressed="true">Monthly</button>
+              <button type="button" class="seg-btn" data-cycle="annual" aria-pressed="false">Annual (-20%)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing-grid" data-reveal>
+          <!-- Starter -->
+          <article class="price-card">
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:-0.02em">Starter</h3>
+              <p style="margin-top:0.25rem;font-size:0.9375rem;color:var(--muted)">For small finance teams organizing open receivables</p>
+              <div class="price-amount">
+                <span id="price-starter">₦45,000</span><span class="price-period"> /month</span>
+              </div>
+              <ul class="price-features">
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  1 entity workspace, up to 3 seats
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Invoice aging and partial payment tracking
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Scheduled email reminders
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  CSV import and clean ledger export
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-ink btn-lg" style="width:100%" data-open-modal="Starter">Start 14-day trial</button>
+          </article>
+
+          <!-- Growth -->
+          <article class="price-card price-card--featured">
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem">
+                <h3 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:-0.02em">Growth</h3>
+                <span class="price-badge">Most popular</span>
+              </div>
+              <p style="margin-top:0.25rem;font-size:0.9375rem;color:rgba(255,255,255,0.88)">For finance and sales teams automating collections</p>
+              <div class="price-amount">
+                <span id="price-growth">₦120,000</span><span class="price-period"> /month</span>
+              </div>
+              <ul class="price-features">
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Up to 5 entity workspaces, 15 seats
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  QuickBooks, Xero, and Zoho Books sync
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Tiered reminder workflows and approvals
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Rolling 4-week cash inflow forecast
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-white btn-lg" style="width:100%" data-open-modal="Growth">Book a walkthrough</button>
+          </article>
+
+          <!-- Enterprise -->
+          <article class="price-card">
+            <div>
+              <h3 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;letter-spacing:-0.02em">Enterprise</h3>
+              <p style="margin-top:0.25rem;font-size:0.9375rem;color:var(--muted)">For multi-subsidiary groups with custom controls</p>
+              <div class="price-amount">Custom</div>
+              <ul class="price-features">
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Unlimited entities and consolidated rollup
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Granular role permissions and SSO
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Full immutable compliance audit log
+                </li>
+                <li>
+                  <span class="check-dot" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span>
+                  Dedicated ERP integration engineer
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-ink btn-lg" style="width:100%" data-open-modal="Enterprise">Talk to sales</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (#faq) -->
+    <section id="faq" class="section-pad">
+      <div class="container">
+        <div class="section-head-split" data-reveal>
+          <h2 class="section-h2">Frequently asked questions</h2>
+          <p class="section-lead">Straight answers on accounting sync, team permissions, and rollout speed.</p>
+        </div>
+
+        <div class="faq-layout" data-reveal>
+          <div class="faq-list" id="faq-buttons" role="group" aria-label="Questions">
+            <!-- Populated by JS -->
+          </div>
+          <div class="faq-answer-card" aria-live="polite">
+            <h3 class="faq-answer-q" id="faq-q"></h3>
+            <p class="faq-answer-a" id="faq-a"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section id="cta" class="section-pad">
+      <div class="container">
+        <div class="cta-banner" data-reveal>
+          <h2 class="section-h2" style="max-width:44rem;margin-inline:auto">See where your cash stands today.</h2>
+          <p class="section-lead" style="max-width:32rem;margin:1.125rem auto 0;color:var(--ink)">Book a 20-minute walkthrough and we will configure your first receivables workspace together.</p>
+          <div class="hero-cta-row">
+            <button type="button" class="btn btn-cerulean btn-lg" data-open-modal="Walkthrough">Book a walkthrough</button>
+            <a href="#pricing" class="btn btn-white btn-lg">Compare plans</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div style="max-width:21rem">
+          <a href="#top" class="brand-link" style="color:var(--ink)">
+            <svg width="28" height="20" viewBox="0 0 34 24" aria-hidden="true"><path d="M2 20 C8 6 22 2 32 4 C25 8 21 13 19 21 C14 17 8 17 2 20Z" fill="#0479AE"/></svg>
+            <span>Cirrus</span>
+          </a>
+          <p style="margin-top:0.875rem;font-size:0.9375rem;line-height:1.6;color:var(--muted)">Receivables, finally calm. Designed for finance and revenue teams that would rather build than chase.</p>
+        </div>
+
+        <div class="footer-cols">
+          <div class="footer-col">
+            <span class="footer-col-title">Product</span>
+            <a href="#workspace">Live workspace</a>
+            <a href="#product">Capabilities</a>
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Resources</span>
+            <a href="#faq">FAQ</a>
+            <a href="#cta">Book walkthrough</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Portfolio</span>
+            <a href="/">Raji Farouq Adewunmi</a>
+            <a href="/projects/">All projects</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Cirrus Financial Systems. Concept &amp; design system by Graphic Miles.</span>
+        <a href="/" style="font-weight:600;color:var(--cerulean)">Back to portfolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WALKTHROUGH BOOKING MODAL -->
+  <div class="modal-backdrop" id="demo-modal" data-open="false" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:1rem">
+        <h2 id="modal-title" style="font-family:var(--font-display);font-size:1.375rem;font-weight:600;letter-spacing:-0.02em">Book a 20-minute walkthrough</h2>
+        <button type="button" id="modal-close" aria-label="Close dialog" style="padding:0.375rem;border-radius:50%;background:var(--cloud);color:var(--muted)">
+          <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg>
+        </button>
+      </div>
+      <div id="modal-body">
+        <p style="margin-top:0.5rem;font-size:0.9375rem;color:var(--muted)">Tell us about your finance setup and we will prepare a live sandbox around your invoice workflow.</p>
+        <form id="demo-form">
+          <div class="form-field">
+            <label for="f-name">Full name</label>
+            <input id="f-name" name="name" type="text" required placeholder="Adaeze Okafor">
+          </div>
+          <div class="form-field">
+            <label for="f-email">Work email</label>
+            <input id="f-email" name="email" type="email" required placeholder="adaeze@company.ng">
+          </div>
+          <div class="form-field">
+            <label for="f-plan">Selected interest</label>
+            <select id="f-plan" name="plan">
+              <option value="Walkthrough">20-minute product walkthrough</option>
+              <option value="Starter">Starter 14-day trial</option>
+              <option value="Growth">Growth multi-entity workspace</option>
+              <option value="Enterprise">Enterprise custom rollout</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-cerulean btn-lg" style="width:100%;margin-top:1.25rem">Confirm walkthrough request</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function formatNaira(n) {
+        return "₦" + n.toLocaleString("en-US");
+      }
+
+      // 1. Multi-entity live workspace dataset
+      var WORKSPACES = {
+        lagos: {
+          name: "Lagos HQ",
+          collectedBase: 2350000,
+          invoices: [
+            { id: "INV-1031", initial: "T", bg: "#f5b84b", name: "Tunde Agro", note: "9 days overdue", amount: 480000, bucket: "overdue", paid: false },
+            { id: "INV-1042", initial: "R", bg: "#f7b6d5", name: "Rufus Studios", note: "Due in 3 days", amount: 100000, bucket: "soon", paid: false },
+            { id: "INV-1043", initial: "J", bg: "#50c5e8", name: "Janet Foods", note: "Issued today", amount: 7500, bucket: "sent", paid: false },
+            { id: "INV-1044", initial: "M", bg: "#8dc85a", name: "Mustapha Logistics", note: "Due in 12 days", amount: 700000, bucket: "sent", paid: false }
+          ],
+          reminders: [
+            { id: "REM-1", customer: "Tunde Agro", rule: "9 days past due, escalate with statement PDF", channel: "Email + WhatsApp", approved: false },
+            { id: "REM-2", customer: "Rufus Studios", rule: "3 days before due date, polite heads-up", channel: "Email", approved: true },
+            { id: "REM-3", customer: "Mustapha Logistics", rule: "7 days before due date, attach Paystack link", channel: "Email", approved: false }
+          ],
+          forecast: [
+            { week: "This week (confirmed promises)", amount: 580000, pct: 76 },
+            { week: "Next week (scheduled due dates)", amount: 707500, pct: 92 },
+            { week: "Week 3 (net-30 cycle)", amount: 420000, pct: 55 }
+          ]
+        },
+        abuja: {
+          name: "Abuja Branch",
+          collectedBase: 3120000,
+          invoices: [
+            { id: "ABJ-208", initial: "K", bg: "#9bc1f0", name: "Kano Coldchain", note: "5 days overdue", amount: 640000, bucket: "overdue", paid: false },
+            { id: "ABJ-214", initial: "Z", bg: "#f7b6d5", name: "Zuma Medix", note: "Due in 2 days", amount: 520000, bucket: "soon", paid: false },
+            { id: "ABJ-219", initial: "A", bg: "#8dc85a", name: "Arewa Builders", note: "Due in 15 days", amount: 980000, bucket: "sent", paid: false }
+          ],
+          reminders: [
+            { id: "REM-4", customer: "Kano Coldchain", rule: "5 days past due, cc account owner", channel: "Email", approved: false },
+            { id: "REM-5", customer: "Zuma Medix", rule: "2 days before due date, attach invoice copy", channel: "Email", approved: true }
+          ],
+          forecast: [
+            { week: "This week (confirmed promises)", amount: 1160000, pct: 88 },
+            { week: "Next week (scheduled due dates)", amount: 620000, pct: 48 },
+            { week: "Week 3 (net-30 cycle)", amount: 980000, pct: 74 }
+          ]
+        },
+        export: {
+          name: "Export Desk",
+          collectedBase: 4190000,
+          invoices: [
+            { id: "EXP-091", initial: "C", bg: "#50c5e8", name: "Coastal Cocoa Co.", note: "Due in 4 days", amount: 890000, bucket: "soon", paid: false },
+            { id: "EXP-094", initial: "W", bg: "#f5b84b", name: "Westport Freight", note: "Due in 18 days", amount: 500000, bucket: "sent", paid: false }
+          ],
+          reminders: [
+            { id: "REM-6", customer: "Coastal Cocoa Co.", rule: "4 days before due date, wire instructions", channel: "Email", approved: true }
+          ],
+          forecast: [
+            { week: "This week (letter of credit)", amount: 890000, pct: 84 },
+            { week: "Next week (scheduled export settlement)", amount: 500000, pct: 52 }
+          ]
+        }
+      };
+
+      var state = {
+        ws: "lagos",
+        module: "receivables",
+        subTab: "ov",
+        role: "fin",
+        currency: "NGN",
+        cycle: "monthly",
+        faqIndex: 0
+      };
+
+      var winStage = document.getElementById("win-stage");
+      var navInvCount = document.getElementById("nav-inv-count");
+      var navRemCount = document.getElementById("nav-rem-count");
+
+      function badgeStyle(inv) {
+        if (inv.paid) return { label: "Paid", bg: "var(--sage-bg)", fg: "var(--sage-fg)" };
+        if (inv.bucket === "overdue") return { label: "Overdue", bg: "var(--berry-bg)", fg: "var(--berry-fg)" };
+        if (inv.bucket === "soon") return { label: "Due soon", bg: "var(--amber-bg)", fg: "var(--amber-fg)" };
+        return { label: "Sent", bg: "var(--sky-tint)", fg: "var(--cerulean)" };
+      }
+
+      function renderWorkspace() {
+        var wsData = WORKSPACES[state.ws];
+        var openInvs = wsData.invoices.filter(function (i) { return !i.paid; });
+        var outstanding = openInvs.reduce(function (s, i) { return s + i.amount; }, 0);
+        var overdue = openInvs.filter(function (i) { return i.bucket === "overdue"; }).reduce(function (s, i) { return s + i.amount; }, 0);
+        var paidDelta = wsData.invoices.filter(function (i) { return i.paid; }).reduce(function (s, i) { return s + i.amount; }, 0);
+        var collected = wsData.collectedBase + paidDelta;
+
+        navInvCount.textContent = String(openInvs.length);
+        navRemCount.textContent = String(wsData.reminders.length);
+
+        if (state.module === "reminders") {
+          var remRows = wsData.reminders.map(function (r) {
+            var btnClass = r.approved ? "mini-action mini-action--done" : "mini-action";
+            var btnLabel = r.approved ? "Scheduled" : "Approve nudge";
+            return (
+              '<div class="ledger-row">' +
+                '<div class="ledger-meta">' +
+                  '<div class="ledger-name">' + r.customer + '</div>' +
+                  '<div class="ledger-sub">' + r.rule + '</div>' +
+                '</div>' +
+                '<span class="status-pill" style="background:var(--sky-tint);color:var(--cerulean)">' + r.channel + '</span>' +
+                '<button type="button" class="' + btnClass + '" data-toggle-rem="' + r.id + '">' + btnLabel + '</button>' +
+              '</div>'
+            );
+          }).join("");
+
+          winStage.innerHTML =
+            '<div class="win-toolbar">' +
+              '<div class="win-heading-wrap"><span class="win-heading">Automated reminders</span><span class="win-subtag">' + wsData.name + '</span></div>' +
+            '</div>' +
+            '<div class="ledger-list">' + remRows + '</div>';
+          return;
+        }
+
+        if (state.module === "forecast") {
+          var fRows = wsData.forecast.map(function (f) {
+            return (
+              '<div class="forecast-row">' +
+                '<div class="forecast-top"><span>' + f.week + '</span><span class="tabular">' + formatNaira(f.amount) + '</span></div>' +
+                '<div class="forecast-track"><div class="forecast-fill" style="width:' + f.pct + '%"></div></div>' +
+              '</div>'
+            );
+          }).join("");
+
+          winStage.innerHTML =
+            '<div class="win-toolbar">' +
+              '<div class="win-heading-wrap"><span class="win-heading">Expected cash inflow</span><span class="win-subtag">' + wsData.name + '</span></div>' +
+            '</div>' +
+            '<div class="forecast-bars">' + fRows + '</div>';
+          return;
+        }
+
+        // Default module: Receivables (Overview / Invoices / Customers)
+        var tabsHtml = [
+          { k: "ov", label: "Overview" },
+          { k: "inv", label: "Invoices" },
+          { k: "cus", label: "Customers" }
+        ].map(function (t) {
+          var pressed = state.subTab === t.k ? "true" : "false";
+          return '<button type="button" class="seg-btn" data-subtab="' + t.k + '" aria-pressed="' + pressed + '">' + t.label + '</button>';
+        }).join("");
+
+        var bodyHtml = "";
+        if (state.subTab === "ov") {
+          var attnRows = wsData.invoices.slice(0, 3).map(function (inv) {
+            var b = badgeStyle(inv);
+            var actLabel = inv.paid ? "Undo" : "Mark paid";
+            var actClass = inv.paid ? "mini-action mini-action--done" : "mini-action";
+            return (
+              '<div class="ledger-row">' +
+                '<span class="avatar-dot" style="background:' + inv.bg + '">' + inv.initial + '</span>' +
+                '<div class="ledger-meta">' +
+                  '<div class="ledger-name">' + inv.name + '</div>' +
+                  '<div class="ledger-sub">' + inv.id + ', ' + (inv.paid ? "settled just now" : inv.note) + '</div>' +
+                '</div>' +
+                '<span class="status-pill" style="background:' + b.bg + ';color:' + b.fg + '">' + b.label + '</span>' +
+                '<div class="ledger-amount">' + formatNaira(inv.paid ? 0 : inv.amount) + '</div>' +
+                '<button type="button" class="' + actClass + '" data-toggle-paid="' + inv.id + '">' + actLabel + '</button>' +
+              '</div>'
+            );
+          }).join("");
+
+          bodyHtml =
+            '<div class="kpi-grid">' +
+              '<div class="kpi-tile"><span class="kpi-label">Outstanding</span><span class="kpi-val">' + formatNaira(outstanding) + '</span></div>' +
+              '<div class="kpi-tile kpi-tile--overdue"><span class="kpi-label">Overdue</span><span class="kpi-val">' + formatNaira(overdue) + '</span></div>' +
+              '<div class="kpi-tile kpi-tile--collected"><span class="kpi-label">Collected this month</span><span class="kpi-val">' + formatNaira(collected) + '</span></div>' +
+            '</div>' +
+            '<div class="list-caption">Priority accounts</div>' +
+            '<div class="ledger-list">' + attnRows + '</div>';
+        } else if (state.subTab === "inv") {
+          var invRows = wsData.invoices.map(function (inv) {
+            var b = badgeStyle(inv);
+            var actLabel = inv.paid ? "Undo" : "Mark paid";
+            var actClass = inv.paid ? "mini-action mini-action--done" : "mini-action";
+            return (
+              '<div class="ledger-row">' +
+                '<span class="avatar-dot" style="background:' + inv.bg + '">' + inv.initial + '</span>' +
+                '<div class="ledger-meta">' +
+                  '<div class="ledger-name">' + inv.name + '</div>' +
+                  '<div class="ledger-sub">' + inv.id + ', ' + (inv.paid ? "settled" : inv.note) + '</div>' +
+                '</div>' +
+                '<span class="status-pill" style="background:' + b.bg + ';color:' + b.fg + '">' + b.label + '</span>' +
+                '<div class="ledger-amount">' + formatNaira(inv.paid ? 0 : inv.amount) + '</div>' +
+                '<button type="button" class="' + actClass + '" data-toggle-paid="' + inv.id + '">' + actLabel + '</button>' +
+              '</div>'
+            );
+          }).join("");
+          bodyHtml = '<div class="ledger-list">' + invRows + '</div>';
+        } else {
+          var cusRows = wsData.invoices.map(function (inv) {
+            return (
+              '<div class="ledger-row">' +
+                '<span class="avatar-dot" style="background:' + inv.bg + '">' + inv.initial + '</span>' +
+                '<div class="ledger-meta">' +
+                  '<div class="ledger-name">' + inv.name + '</div>' +
+                  '<div class="ledger-sub">' + (inv.paid ? "0 open invoices" : "1 open invoice (" + inv.id + ")") + '</div>' +
+                '</div>' +
+                '<span style="font-size:0.8125rem;color:var(--muted)">Balance</span>' +
+                '<div class="ledger-amount">' + formatNaira(inv.paid ? 0 : inv.amount) + '</div>' +
+              '</div>'
+            );
+          }).join("");
+          bodyHtml = '<div class="ledger-list">' + cusRows + '</div>';
+        }
+
+        winStage.innerHTML =
+          '<div class="win-toolbar">' +
+            '<div class="win-heading-wrap"><span class="win-heading">Receivables</span><span class="win-subtag">' + wsData.name + '</span></div>' +
+            '<div class="seg-group" role="group" aria-label="Ledger view">' + tabsHtml + '</div>' +
+          '</div>' +
+          bodyHtml;
+      }
+
+      document.querySelectorAll("[data-ws]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.ws = btn.getAttribute("data-ws");
+          document.querySelectorAll("[data-ws]").forEach(function (b) {
+            b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+          });
+          renderWorkspace();
+        });
+      });
+
+      document.querySelectorAll("[data-module]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.module = btn.getAttribute("data-module");
+          document.querySelectorAll("[data-module]").forEach(function (b) {
+            b.setAttribute("aria-selected", b === btn ? "true" : "false");
+          });
+          renderWorkspace();
+        });
+      });
+
+      winStage.addEventListener("click", function (e) {
+        var subBtn = e.target.closest("[data-subtab]");
+        if (subBtn) {
+          state.subTab = subBtn.getAttribute("data-subtab");
+          renderWorkspace();
+          return;
+        }
+        var paidBtn = e.target.closest("[data-toggle-paid]");
+        if (paidBtn) {
+          var id = paidBtn.getAttribute("data-toggle-paid");
+          WORKSPACES[state.ws].invoices.forEach(function (inv) {
+            if (inv.id === id) inv.paid = !inv.paid;
+          });
+          renderWorkspace();
+          return;
+        }
+        var remBtn = e.target.closest("[data-toggle-rem]");
+        if (remBtn) {
+          var rid = remBtn.getAttribute("data-toggle-rem");
+          WORKSPACES[state.ws].reminders.forEach(function (r) {
+            if (r.id === rid) r.approved = !r.approved;
+          });
+          renderWorkspace();
+        }
+      });
+
+      // 2. Role-switched 3-step workflow (#how)
+      var ROLE_STEPS = {
+        fin: [
+          { n: "1", bg: "#50c5e8", fg: "#0b1f2e", title: "Connect your books", desc: "Sync open invoices from QuickBooks, Xero, Zoho Books, or drop in a CSV." },
+          { n: "2", bg: "#035f8a", fg: "#ffffff", title: "Set reminder rules", desc: "Define due-date cadences by invoice size and customer tier once." },
+          { n: "3", bg: "#8dc85a", fg: "#0b1f2e", title: "Approve and collect", desc: "Review queued nudges, record incoming transfers, and watch aging drop." }
+        ],
+        sales: [
+          { n: "1", bg: "#50c5e8", fg: "#0b1f2e", title: "Claim your accounts", desc: "See every open balance across the customer relationships you own." },
+          { n: "2", bg: "#035f8a", fg: "#ffffff", title: "Pin context early", desc: "Log delivery notes or payment promises so finance never chases blind." },
+          { n: "3", bg: "#8dc85a", fg: "#0b1f2e", title: "Know when cash lands", desc: "Get instant alerts the moment an account settles or slips overdue." }
+        ]
+      };
+
+      var roleStepsEl = document.getElementById("role-steps");
+      function renderSteps() {
+        roleStepsEl.innerHTML = ROLE_STEPS[state.role].map(function (s) {
+          return (
+            '<div class="step-card">' +
+              '<span class="step-num" style="background:' + s.bg + ';color:' + s.fg + '">' + s.n + '</span>' +
+              '<div class="step-title">' + s.title + '</div>' +
+              '<p class="step-desc">' + s.desc + '</p>' +
+            '</div>'
+          );
+        }).join("");
+      }
+
+      document.querySelectorAll("[data-role-tab]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.role = btn.getAttribute("data-role-tab");
+          document.querySelectorAll("[data-role-tab]").forEach(function (b) {
+            b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+          });
+          renderSteps();
+        });
+      });
+
+      // 3. Pricing currency & billing cycle switcher (#pricing)
+      var PRICES = {
+        NGN: { monthly: ["₦45,000", "₦120,000"], annual: ["₦36,000", "₦96,000"] },
+        USD: { monthly: ["$39", "$99"], annual: ["$31", "$79"] }
+      };
+      var elStarter = document.getElementById("price-starter");
+      var elGrowth = document.getElementById("price-growth");
+
+      function renderPricing() {
+        var pair = PRICES[state.currency][state.cycle];
+        elStarter.textContent = pair[0];
+        elGrowth.textContent = pair[1];
+      }
+
+      document.querySelectorAll("[data-currency]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.currency = btn.getAttribute("data-currency");
+          document.querySelectorAll("[data-currency]").forEach(function (b) {
+            b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+          });
+          renderPricing();
+        });
+      });
+
+      document.querySelectorAll("[data-cycle]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          state.cycle = btn.getAttribute("data-cycle");
+          document.querySelectorAll("[data-cycle]").forEach(function (b) {
+            b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+          });
+          renderPricing();
+        });
+      });
+
+      // 4. Master-detail FAQ (#faq)
+      var FAQS = [
+        {
+          q: "Do we need to replace our accounting software?",
+          a: "No. Cirrus sits alongside QuickBooks, Xero, Zoho Books, or your spreadsheet export so your general ledger remains the single accounting source of truth."
+        },
+        {
+          q: "How does Cirrus decide who to remind?",
+          a: "You set reminder rules once by due date, balance threshold, and customer tier. Cirrus queues personalized follow-ups for one-click approval or automatic dispatch."
+        },
+        {
+          q: "Can we track multiple branches or subsidiaries?",
+          a: "Yes. Give Lagos HQ, regional branches, and export desks separate workspaces with isolated permissions, then view consolidated receivables in one group rollup."
+        },
+        {
+          q: "Who can see what inside a workspace?",
+          a: "Finance controllers have full ledger and rule visibility, while account managers only see the customers and invoices assigned to them."
+        },
+        {
+          q: "How long does initial setup take?",
+          a: "Under fifteen minutes for your first workspace. Upload a CSV of open invoices or connect your ledger, confirm your reminder cadence, and invite account owners."
+        }
+      ];
+
+      var faqListEl = document.getElementById("faq-buttons");
+      var faqQEl = document.getElementById("faq-q");
+      var faqAEl = document.getElementById("faq-a");
+
+      function renderFaq() {
+        faqListEl.innerHTML = FAQS.map(function (item, idx) {
+          var active = idx === state.faqIndex;
+          return (
+            '<button type="button" class="faq-btn" data-faq="' + idx + '" aria-pressed="' + (active ? "true" : "false") + '">' +
+              '<span>' + item.q + '</span>' +
+              '<svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>' +
+            '</button>'
+          );
+        }).join("");
+        faqQEl.textContent = FAQS[state.faqIndex].q;
+        faqAEl.textContent = FAQS[state.faqIndex].a;
+      }
+
+      faqListEl.addEventListener("click", function (e) {
+        var btn = e.target.closest("[data-faq]");
+        if (!btn) return;
+        state.faqIndex = Number(btn.getAttribute("data-faq"));
+        renderFaq();
+      });
+
+      // 5. Accessible walkthrough modal dialog
+      var modal = document.getElementById("demo-modal");
+      var modalClose = document.getElementById("modal-close");
+      var planSelect = document.getElementById("f-plan");
+      var demoForm = document.getElementById("demo-form");
+      var modalBody = document.getElementById("modal-body");
+      var lastTrigger = null;
+
+      function openModal(plan) {
+        lastTrigger = document.activeElement;
+        if (plan && planSelect) planSelect.value = plan;
+        modal.setAttribute("data-open", "true");
+        modal.setAttribute("aria-hidden", "false");
+        var firstInput = modal.querySelector("input");
+        if (firstInput) firstInput.focus();
+      }
+
+      function closeModal() {
+        modal.setAttribute("data-open", "false");
+        modal.setAttribute("aria-hidden", "true");
+        if (lastTrigger && typeof lastTrigger.focus === "function") lastTrigger.focus();
+      }
+
+      document.querySelectorAll("[data-open-modal]").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          openModal(btn.getAttribute("data-open-modal"));
+        });
+      });
+
+      modalClose.addEventListener("click", closeModal);
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && modal.getAttribute("data-open") === "true") closeModal();
+      });
+
+      demoForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var nameVal = document.getElementById("f-name").value.trim() || "there";
+        modalBody.innerHTML =
+          '<div style="padding:1rem 0 0.25rem">' +
+            '<div style="display:inline-flex;padding:0.5rem 0.875rem;border-radius:9999px;background:var(--sage-bg);color:var(--sage-fg);font-size:0.8125rem;font-weight:600">Walkthrough requested</div>' +
+            '<p style="margin-top:0.875rem;font-size:1rem;line-height:1.6;color:var(--ink)">Thanks, ' + nameVal.replace(/[<>&"]/g, "") + '. Your Cirrus workspace walkthrough slot is reserved and a calendar invite is on its way.</p>' +
+            '<button type="button" id="modal-done" class="btn btn-ink btn-lg" style="width:100%;margin-top:1.25rem">Return to Cirrus</button>' +
+          '</div>';
+        var doneBtn = document.getElementById("modal-done");
+        if (doneBtn) doneBtn.addEventListener("click", closeModal);
+      });
+
+      // Initialize interactive views
+      renderWorkspace();
+      renderSteps();
+      renderPricing();
+      renderFaq();
+
+      // 6. Scroll-entry choreography via IntersectionObserver (zero scroll listeners)
+      var revealNodes = document.querySelectorAll("[data-reveal]");
+      var allowsMotion =
+        typeof window.matchMedia === "function" &&
+        window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+
+      if (!allowsMotion || !revealNodes.length || typeof IntersectionObserver !== "function") {
+        revealNodes.forEach(function (n) { n.classList.add("is-visible"); });
+        return;
+      }
+
+      document.documentElement.classList.add("motion-ready");
+      var io = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
+        });
+      }, { rootMargin: "0px 0px -6% 0px", threshold: 0.06 });
+
+      revealNodes.forEach(function (node) {
+        if (node.getBoundingClientRect().top < window.innerHeight * 0.96) {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () { node.classList.add("is-visible"); });
+          });
+        } else {
+          io.observe(node);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
