@@ -372,7 +372,7 @@
     }
 
     .hero-title {
-      margin-top: 1.375rem;
+      margin-top: 0;
       font-family: var(--font-display);
       font-weight: 600;
       font-size: clamp(2.875rem, 7vw, 5.5rem);
@@ -1471,8 +1471,7 @@
     @media (max-width: 640px) {
       .container { width: 100%; padding-inline: 0.75rem; }
       .top-nav { margin-top: 1rem; padding: 0.5rem 0.5rem 0.5rem 0.875rem; }
-      .hero-copy { padding-top: 4.75rem; }
-      .hero-tag { max-width: calc(100vw - 2rem); white-space: normal; line-height: 1.25; }
+      .hero-copy { margin-top: 2rem; padding-top: 0; }
       .hero-title { font-size: clamp(3.2rem, 14vw, 4.25rem); line-height: 0.96; }
       .hero-sub { margin-top: 1.25rem; font-size: 1.0625rem; line-height: 1.5; }
       .hero-cta-row { margin-top: 1.5rem; gap: 0.625rem; }
@@ -1567,7 +1566,6 @@
       </header>
 
       <div class="hero-copy" data-reveal>
-        <span class="hero-tag">Receivables workspace for finance &amp; sales</span>
         <h1 class="hero-title">Get paid faster.<br>Stop chasing.</h1>
         <p class="hero-sub">Cirrus gives your team one calm workspace to track every open invoice, schedule customer follow-ups, and see incoming cash before it lands.</p>
         <div class="hero-cta-row">
@@ -2611,7 +2609,7 @@
         anime.set(".hero-copy", { opacity: 1, translateY: 0 });
         anime.timeline({ easing: "easeOutExpo" })
           .add({ targets: ".top-nav", opacity: [0, 1], translateY: [-14, 0], duration: 700 })
-          .add({ targets: [".hero-tag", ".hero-title", ".hero-sub", ".hero-cta-row"], opacity: [0, 1], translateY: [24, 0], delay: anime.stagger(85), duration: 760 }, "-=420")
+          .add({ targets: [".hero-title", ".hero-sub", ".hero-cta-row"], opacity: [0, 1], translateY: [24, 0], delay: anime.stagger(85), duration: 760 }, "-=420")
           .add({ targets: ".workspace-bezel", opacity: [0, 1], translateY: [36, 0], scale: [0.985, 1], duration: 900 }, "-=500");
         document.querySelectorAll(".hero-copy, .workspace-bezel").forEach(function (node) { node.classList.add("is-visible"); });
 
