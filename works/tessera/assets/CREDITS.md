@@ -8,3 +8,8 @@ Photography is used as sourced editorial material and remains credited to its or
 - `marble-dialogue.webp`: Pexels marble sculpture search — https://www.pexels.com/search/marble%20sculpture/
 - `server-detail.webp`: Pexels data center search — https://www.pexels.com/search/data%20center/
 - `water-infrastructure.webp`: Pexels water industry search — https://www.pexels.com/search/water%20industry/
+
+## Network marks
+- Ethereum, Optimism, Solana, and Polygon: Simple Icons — https://simpleicons.org/
+- Arbitrum: Crypto Logos — https://cryptologos.cc/logos/arbitrum-arb-logo.svg
+- Base: official Base organization avatar — https://github.com/base-org
