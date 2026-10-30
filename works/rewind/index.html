@@ -125,6 +125,7 @@ h1{font-size:clamp(46px,9vw,96px);font-weight:700;line-height:.94;letter-spacing
 .track::-webkit-scrollbar{display:none}
 .track.drag{scroll-snap-type:none;cursor:grabbing}
 .card{--r:26px;display:block;padding:0;border:0;text-align:left;color:#fff;font:inherit;position:relative;flex:none;overflow:hidden;cursor:pointer;scroll-snap-align:start;transition:filter .3s var(--io)}
+.card.has-poster,.sl.has-poster,.ph.has-poster,.related-card.has-poster,.episode-art.has-poster,.rs.has-poster{background-size:cover!important;background-position:center!important}
 .card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,0) 56%);pointer-events:none}
 .card:active,.dim{filter:brightness(.72);scale:.985}
 @media(hover:hover){.card:hover{filter:brightness(1.08)}}
@@ -145,7 +146,7 @@ footer{margin-top:56px;color:var(--mu);font-weight:600;letter-spacing:-.02em}
 #watch{position:fixed;inset:0;z-index:120;display:none;overflow:auto;overscroll-behavior:contain;background:#050506;color:#fff}
 #watch.open{display:block}
 .watch-shell{width:min(100%,1520px);min-height:100%;margin:auto;padding:max(12px,env(safe-area-inset-top)) clamp(12px,3vw,40px) max(24px,env(safe-area-inset-bottom))}
-.watch-head{display:flex;padding:0;align-items:center;gap:12px;min-width:0;margin-bottom:14px}
+.watch-head{position:sticky;top:0;z-index:12;display:flex;padding:10px 0;background:linear-gradient(#050506 72%,transparent);align-items:center;gap:12px;min-width:0;margin-bottom:14px}
 .watch-back{flex:none;width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--s1);transition:background-color 150ms ease-out,scale 150ms ease-out}
 .watch-heading{min-width:0}.watch-heading b,.watch-heading span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.watch-heading b{font-size:17px}.watch-heading span{font-size:13px;color:var(--mu)}
 .watch-brand{margin-left:auto;display:flex;align-items:center;gap:7px;color:var(--mu);font-weight:700}
@@ -164,11 +165,18 @@ footer{margin-top:56px;color:var(--mu);font-weight:600;letter-spacing:-.02em}
 .range{position:relative;z-index:1;width:100%;height:24px;margin:0;appearance:none;background:transparent;cursor:pointer}.range::-webkit-slider-runnable-track{height:4px;background:linear-gradient(to right,#fff 0 var(--played,0%),transparent var(--played,0%));border-radius:999px}.range::-webkit-slider-thumb{appearance:none;width:14px;height:14px;margin-top:-5px;border-radius:50%;background:#fff;box-shadow:0 1px 6px rgba(0,0,0,.4)}.range::-moz-range-track{height:4px;background:rgba(255,255,255,.2);border-radius:999px}.range::-moz-range-progress{height:4px;background:#fff}.range::-moz-range-thumb{width:14px;height:14px;border:0;border-radius:50%;background:#fff}
 .control-row{display:flex;align-items:center;gap:4px;min-width:0}.pc{flex:none;width:40px;height:40px;display:grid;place-items:center;border-radius:50%;transition:background-color 150ms ease-out,scale 150ms ease-out}.pc svg{width:19px;height:19px}.pc.play svg{fill:currentColor}.ptime{min-width:84px;margin:0 6px;color:rgba(255,255,255,.82);font-size:12px}.volume-group{display:flex;align-items:center}.vol{width:0;opacity:0;transition:width 200ms ease-out,opacity 150ms ease-out}.volume-group:focus-within .vol{width:72px;opacity:1}.player-spacer{flex:1}.quality{font-size:11px;font-weight:800}
 .settings{position:absolute;right:18px;bottom:72px;width:min(250px,calc(100% - 36px));padding:8px;border-radius:18px;background:rgba(28,28,30,.96);box-shadow:0 16px 50px rgba(0,0,0,.4);opacity:0;visibility:hidden;translate:0 8px;transition:opacity 150ms ease-out,translate 200ms var(--io),visibility 0s 200ms}.settings.open{opacity:1;visibility:visible;translate:0 0;transition-delay:0s}.settings-title{padding:7px 9px;color:var(--mu);font-size:12px}.rate{display:flex;justify-content:space-between;width:100%;padding:10px;border-radius:12px;text-align:left}.rate[aria-checked=true]{background:var(--fill)}
-.watch-meta{display:grid;gap:18px;margin-top:20px}.watch-copy h1{max-width:none;margin:0;font-size:clamp(30px,5vw,54px);line-height:1;letter-spacing:-.04em}.watch-copy p{max-width:62ch;margin:12px 0 0;color:var(--mu)}.meta-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.meta-pill{padding:6px 10px;border-radius:999px;background:var(--s1);color:rgba(255,255,255,.8);font-size:12px;font-weight:600}
-.episodes{min-width:0;padding:14px;border-radius:24px;background:var(--s1)}.episodes-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 4px 12px}.episodes-head h2{font-size:18px}.episodes-list{display:grid;gap:6px;max-height:370px;overflow:auto;overscroll-behavior:contain}.episode{display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;padding:8px;border-radius:15px;text-align:left;transition:background-color 150ms ease-out}.episode[aria-current=true]{background:var(--fill)}.episode-art{height:44px;display:grid;place-items:center;border-radius:11px}.episode-art svg{width:18px}.episode-copy{min-width:0}.episode-copy b,.episode-copy span{display:block;overflow:hidden;text-overflow:ellipsis}.episode-copy b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:14px;line-height:1.2}.episode-copy span{white-space:nowrap}.episode-copy span,.episode time{color:var(--mu);font-size:12px}
+.watch-meta{order:2;display:grid;gap:18px;margin-top:20px}.watch-copy h1{max-width:none;margin:0;font-size:clamp(30px,5vw,54px);line-height:1;letter-spacing:-.04em}.watch-copy p{max-width:62ch;margin:12px 0 0;color:var(--mu)}.meta-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.meta-pill{padding:6px 10px;border-radius:999px;background:var(--s1);color:rgba(255,255,255,.8);font-size:12px;font-weight:600}
+.episodes{order:3;min-width:0;padding:14px;border-radius:24px;background:var(--s1)}.episodes-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 4px 12px}.episodes-head h2{font-size:18px}.episodes-list{display:grid;gap:6px;max-height:370px;overflow:auto;overscroll-behavior:contain}.episode{display:grid;grid-template-columns:72px minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;padding:8px;border-radius:15px;text-align:left;transition:background-color 150ms ease-out}.episode[aria-current=true]{background:var(--fill)}.episode-art{height:44px;display:grid;place-items:center;border-radius:11px}.episode-art svg{width:18px}.episode-copy{min-width:0}.episode-copy b,.episode-copy span{display:block;overflow:hidden;text-overflow:ellipsis}.episode-copy b{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;font-size:14px;line-height:1.2}.episode-copy span{white-space:nowrap}.episode-copy span,.episode time{color:var(--mu);font-size:12px}
 .related{margin-top:32px}.related h2{margin-bottom:14px;font-size:22px}.related-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.related-card{position:relative;overflow:hidden;min-width:0;aspect-ratio:16/10;padding:14px;border-radius:18px;text-align:left}.related-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),transparent 70%)}.related-card b{position:absolute;z-index:1;left:14px;right:14px;bottom:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-@media(min-width:980px){.watch-layout{grid-template-columns:minmax(0,1fr) 360px}.watch-meta{grid-column:1}.episodes{grid-column:2;grid-row:1/span 2;position:sticky;top:12px}.related-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:620px){.watch-shell{padding-inline:0}.watch-head,.watch-meta,.related{margin-left:14px;margin-right:14px}.player-shell{border-radius:0;border-inline:0}.player-center .skip-ten{display:none}.player-ui{padding:10px}.ptime{min-width:70px;margin-inline:2px}.volume-group,.quality,.pip-control{display:none}.pc{width:36px;height:36px}.settings{right:10px;bottom:60px}.episodes{margin:0 14px}.watch-brand span{display:none}}
+@media(min-width:980px){.watch-layout{grid-template-columns:minmax(0,1fr) 360px}.watch-meta{order:initial;grid-column:1}.episodes{order:initial;grid-column:2;grid-row:1/span 2;position:sticky;top:12px}.related-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:620px){
+  .watch-shell{padding-inline:0}.watch-head,.watch-meta,.related{margin-left:14px;margin-right:14px}.watch-head{padding-block:8px}.watch-back{width:42px;height:42px}
+  .player-shell{border-radius:0;border-inline:0}.player-center .skip-ten{display:none}.player-ui{padding:10px}.player-top .player-badge:last-child{display:none}.player-top .player-badge:first-child{max-width:calc(100vw - 32px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .ptime{min-width:70px;margin-inline:2px}.volume-group,.quality,.pip-control{display:none}.pc{width:36px;height:36px}
+  .settings{left:10px;right:10px;bottom:58px;width:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.settings.open{display:grid;opacity:1;visibility:visible;translate:0 0;z-index:20}.settings-title{grid-column:1/-1}.rate{align-items:center;background:rgba(118,118,128,.1)}
+  .episodes{margin:0 14px;padding:12px}.episodes-list{display:flex;gap:8px;max-height:none;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none}.episodes-list::-webkit-scrollbar{display:none}.episode{flex:0 0 min(270px,82vw);grid-template-columns:64px minmax(0,1fr) auto;scroll-snap-align:start}.episode-art{height:48px}
+  .watch-brand span{display:none}.watch-copy h1{font-size:34px}.related{margin-top:26px}
+}
 @media(hover:hover){.watch-back:hover,.pc:hover,.player-circle:hover{background-color:rgba(255,255,255,.2)}.player-circle.primary:hover{background:#e5e5e7}.episode:hover{background:rgba(118,118,128,.16)}.related-card:hover{filter:brightness(1.12)}}
 .watch-back:active,.pc:active,.player-circle:active,.episode:active,.related-card:active{scale:.96;transition:scale 150ms ease-out}
 body.watch-open{overflow:hidden}
@@ -208,7 +216,7 @@ body.modal-open{overflow:hidden}.play-state{display:grid;place-items:center;min-
 <main id="content">
   <section class="hero sq" id="hero" aria-roledescription="carousel" aria-label="Featured titles"></section>
   <div id="rows"></div>
-  <footer><strong>Rewind</strong><span aria-hidden="true"> / </span><span>A streaming nostalgia interface concept.</span></footer>
+  <footer><strong>Rewind</strong><span aria-hidden="true"> / </span><span>A streaming nostalgia interface concept. Artwork data via <a href="https://www.tvmaze.com/api" target="_blank" rel="noreferrer">TVmaze</a>.</span></footer>
 </main>
 <div id="sheet" aria-hidden="true"><div class="scrim"></div><div class="panel" role="dialog" aria-modal="true" aria-labelledby="sheet-title" tabindex="-1"></div></div>
 <section id="watch" aria-hidden="true" aria-labelledby="watch-title">
@@ -220,14 +228,12 @@ body.modal-open{overflow:hidden}.play-state{display:grid;place-items:center;min-
     </header>
     <div class="watch-layout">
       <div class="player-shell" id="player-shell">
-        <video id="video" preload="none" playsinline crossorigin="anonymous">
-          <source src="./media/rewind-preview.webm" type="video/webm">
-          <source src="./media/rewind-preview.mp4" type="video/mp4">
+        <video id="video" preload="none" playsinline>
           <track id="caption-track" kind="captions" srclang="en" label="English" src="./media/rewind-preview.vtt">
         </video>
         <div class="player-shade"></div>
         <div class="player-ui" id="player-ui">
-          <div class="player-top"><span class="player-badge" id="player-episode">Preview</span><span class="player-badge">CC0 demo footage</span></div>
+          <div class="player-top"><span class="player-badge" id="player-episode">Preview</span><span class="player-badge" id="media-credit">Open demo footage</span></div>
           <div class="player-center">
             <button class="player-circle skip-ten" type="button" data-seek="-10" aria-label="Back 10 seconds"><i data-lucide="rotate-ccw"></i><small>10</small></button>
             <button class="player-circle primary" id="center-play" type="button" aria-label="Play"><i data-lucide="play"></i></button>
@@ -251,7 +257,7 @@ body.modal-open{overflow:hidden}.play-state{display:grid;place-items:center;min-
         </div>
       </div>
       <aside class="episodes"><div class="episodes-head"><h2>Episodes</h2><span class="player-badge">Season 1</span></div><div class="episodes-list" id="episodes-list"></div></aside>
-      <div class="watch-meta"><div class="watch-copy"><h1 id="watch-title">Title</h1><div class="meta-line"><span class="meta-pill" id="watch-genre">Genre</span><span class="meta-pill">Preview</span><span class="meta-pill">CC0 footage</span></div><p id="watch-description"></p></div></div>
+      <div class="watch-meta"><div class="watch-copy"><h1 id="watch-title">Title</h1><div class="meta-line"><span class="meta-pill" id="watch-genre">Genre</span><span class="meta-pill">Preview</span><span class="meta-pill" id="media-license">Open demo footage</span></div><p id="watch-description"></p></div></div>
     </div>
     <section class="related"><h2>More like this</h2><div class="related-grid" id="related-grid"></div></section>
   </div>
@@ -294,13 +300,27 @@ const CL=[["Opening scene","0:48"],["Official trailer","2:05"],["Fan-favorite mo
 const $=s=>document.querySelector(s),bg=x=>`background:linear-gradient(160deg,${x[3]},${x[4]})`;
 let saved=new Set();try{saved=new Set(JSON.parse(localStorage.getItem("rewind-list")||"[]"))}catch(e){}
 const announce=t=>{$("#live").textContent="";requestAnimationFrame(()=>$("#live").textContent=t)};
+const posterCache=new Map();
+async function posterFor(i){
+  if(posterCache.has(i))return posterCache.get(i);
+  const key="rewind-poster-"+i,cached=sessionStorage.getItem(key);if(cached){posterCache.set(i,cached);return cached}
+  try{const r=await fetch("https://api.tvmaze.com/search/shows?q="+encodeURIComponent(D[i][1]));if(!r.ok)throw 0;const matches=await r.json(),data=matches[0]&&matches[0].show,url=data&&data.image&&(data.image.original||data.image.medium);if(!url)throw 0;posterCache.set(i,url);sessionStorage.setItem(key,url);return url}catch(e){posterCache.set(i,"");return ""}
+}
+function hydrateArtwork(root=document){
+  root.querySelectorAll("[data-poster]:not([data-art-ready])").forEach(el=>{
+    el.dataset.artReady="loading";const load=async()=>{const i=+el.dataset.poster,url=await posterFor(i);if(url){el.style.backgroundImage=`linear-gradient(to top,rgba(0,0,0,.72),rgba(0,0,0,.04) 66%),url("${url}")`;el.classList.add("has-poster")}el.dataset.artReady="true"};
+    if("IntersectionObserver" in window){const ob=new IntersectionObserver(es=>{if(es[0].isIntersecting){ob.disconnect();load()}},{rootMargin:"240px"});ob.observe(el)}else load();
+  })
+}
+const LOCAL_MEDIA="./media/rewind-preview.webm";
+function loadWatchMedia(){video.pause();video.src=LOCAL_MEDIA;video.load();$("#media-credit").textContent="Local CC0 demo footage";$("#media-license").textContent="CC0 preview"}
 let cur="all",slides=[],hi=0,ht,still=false,hoverPaused=false,sx=null,lastFocus=null,watchIndex=0,watchEpisode=0,idleTimer;
 
 const ml=(i,full)=>`<button class="btn g ml${full?"":" ic"}" data-k="${i}" data-f="${full?1:""}" aria-label="${saved.has(i)?"In my list":"Add to my list"}"><i data-lucide="${saved.has(i)?"check":"plus"}"></i>${full?(saved.has(i)?"In my list":"My list"):""}</button>`;
 function card(x,k){
   const i=D.indexOf(x);
-  if(k==="clip")return `<button type="button" class="card clip sq" data-i="${i}" aria-label="Open ${x[1]}, ${CL[i%4][0]}" style="${bg(x)}"><span class="dur">${CL[i%4][1]}</span><span class="pb"><i data-lucide="play"></i></span><div class="cap"><small>${CL[i%4][0]}</small><b>${x[1]}</b></div></button>`;
-  return `<button type="button" class="card poster sq" data-i="${i}" aria-label="Open ${x[1]}, ${x[2]}" style="${bg(x)}">${x[6]?'<span class="soon">Coming soon</span>':''}<i class="pi" data-lucide="${x[5]}"></i><div class="cap"><small>${x[2]}</small><b>${x[1]}</b></div></button>`;
+  if(k==="clip")return `<button type="button" class="card clip sq" data-i="${i}" data-poster="${i}" aria-label="Open ${x[1]}, ${CL[i%4][0]}" style="${bg(x)}"><span class="dur">${CL[i%4][1]}</span><span class="pb"><i data-lucide="play"></i></span><div class="cap"><small>${CL[i%4][0]}</small><b>${x[1]}</b></div></button>`;
+  return `<button type="button" class="card poster sq" data-i="${i}" data-poster="${i}" aria-label="Open ${x[1]}, ${x[2]}" style="${bg(x)}">${x[6]?'<span class="soon">Coming soon</span>':''}<i class="pi" data-lucide="${x[5]}"></i><div class="cap"><small>${x[2]}</small><b>${x[1]}</b></div></button>`;
 }
 const row=(t,items,k)=>`<section class="row"><h2>${t}</h2><div class="track" aria-label="${t}">${items.map(x=>card(x,k)).join("")}</div></section>`;
 const fi=el=>{el.classList.remove("fi");void el.offsetWidth;el.classList.add("fi")};
@@ -319,10 +339,10 @@ function go(c){
   cur=c;setNav(c);
   const k=C[c],L=c==="all"?D:D.filter(x=>x[0]===c);
   slides=c==="all"?[10,5,0,16,13].map(n=>D[n]):L.slice(0,5);
-  $("#hero").innerHTML=slides.map((x,n)=>`<div class="sl${n?" ":" on"}" style="${bg(x)}" aria-hidden="${n?"true":"false"}"${n?" inert":""}><span class="wm"><i data-lucide="${x[5]}"></i></span><div class="hc"><h1>${x[1]}</h1><p>${x[2]}. ${C[x[0]].b}</p><div class="btns"><button class="btn p" data-i="${D.indexOf(x)}"><i data-lucide="play"></i>${x[6]?"Watch teaser":"Play trailer"}</button>${ml(D.indexOf(x),0)}</div></div><div class="art sq" style="${bg(x)}"><i data-lucide="${x[5]}"></i></div></div>`).join("")+`<div class="dots" role="group" aria-label="Choose featured title">${slides.map(x=>`<button class="dt" aria-label="Show ${x[1]}"><i></i></button>`).join("")}</div><div class="hero-tools"><button class="hero-ctl" data-dir="-1" aria-label="Previous featured title"><i data-lucide="chevron-left"></i></button><button class="hero-ctl" id="pause" aria-label="Pause slideshow" aria-pressed="false"><i data-lucide="pause"></i></button><button class="hero-ctl" data-dir="1" aria-label="Next featured title"><i data-lucide="chevron-right"></i></button></div>`;
+  $("#hero").innerHTML=slides.map((x,n)=>`<div class="sl${n?" ":" on"}" data-poster="${D.indexOf(x)}" style="${bg(x)}" aria-hidden="${n?"true":"false"}"${n?" inert":""}><span class="wm"><i data-lucide="${x[5]}"></i></span><div class="hc"><h1>${x[1]}</h1><p>${x[2]}. ${C[x[0]].b}</p><div class="btns"><button class="btn p" data-i="${D.indexOf(x)}"><i data-lucide="play"></i>${x[6]?"Watch teaser":"Play trailer"}</button>${ml(D.indexOf(x),0)}</div></div><div class="art sq" style="${bg(x)}"><i data-lucide="${x[5]}"></i></div></div>`).join("")+`<div class="dots" role="group" aria-label="Choose featured title">${slides.map(x=>`<button class="dt" aria-label="Show ${x[1]}"><i></i></button>`).join("")}</div><div class="hero-tools"><button class="hero-ctl" data-dir="-1" aria-label="Previous featured title"><i data-lucide="chevron-left"></i></button><button class="hero-ctl" id="pause" aria-label="Pause slideshow" aria-pressed="false"><i data-lucide="pause"></i></button><button class="hero-ctl" data-dir="1" aria-label="Next featured title"><i data-lucide="chevron-right"></i></button></div>`;
   const soon=D.filter(x=>x[6]&&(c==="all"||x[0]===c));
   $("#rows").innerHTML=row(c==="all"?"Trending now":"Popular in "+k.n,L.filter(x=>!x[6]),"poster")+row("Clips worth rewatching",L.slice().reverse(),"clip")+(soon.length?row("Coming soon",soon,"poster"):"");
-  lucide.createIcons();show(0);fi($("#hero"));fi($("#rows"));
+  lucide.createIcons();hydrateArtwork($("#hero"));hydrateArtwork($("#rows"));show(0);fi($("#hero"));fi($("#rows"));
 }
 
 // hero slideshow
@@ -348,8 +368,8 @@ hero.addEventListener("pointerup",e=>{if(sx!==null&&Math.abs(e.clientX-sx)>50)sh
 // sheet
 function openSheet(i){
   const x=D[i],s=$("#sheet");if(!s.classList.contains("open"))lastFocus=document.activeElement;
-  s.querySelector(".panel").innerHTML=`<button class="x" aria-label="Close"><i data-lucide="x"></i></button><div class="ph sq" style="${bg(x)}"><i data-lucide="${x[5]}"></i></div><div class="pt"><h3 id="sheet-title">${x[1]}</h3><span>${C[x[0]].n}, ${x[2].toLowerCase()}</span><p>${C[x[0]].b}</p><div class="btns"><button class="btn p" data-watch="${i}"><i data-lucide="play"></i>${x[6]?"Watch teaser":"Watch preview"}</button>${ml(i,1)}</div></div>`;
-  s.classList.add("open");s.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");lucide.createIcons();requestAnimationFrame(()=>s.querySelector(".panel").focus());
+  s.querySelector(".panel").innerHTML=`<button class="x" aria-label="Close"><i data-lucide="x"></i></button><div class="ph sq" data-poster="${i}" style="${bg(x)}"><i data-lucide="${x[5]}"></i></div><div class="pt"><h3 id="sheet-title">${x[1]}</h3><span>${C[x[0]].n}, ${x[2].toLowerCase()}</span><p>${C[x[0]].b}</p><div class="btns"><button class="btn p" data-watch="${i}"><i data-lucide="play"></i>${x[6]?"Watch teaser":"Watch preview"}</button>${ml(i,1)}</div></div>`;
+  hydrateArtwork(s);s.classList.add("open");s.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");lucide.createIcons();requestAnimationFrame(()=>s.querySelector(".panel").focus());
 }
 const closeSheet=()=>{const s=$("#sheet");if(!s.classList.contains("open"))return;s.classList.remove("open");s.setAttribute("aria-hidden","true");document.body.classList.remove("modal-open");if(lastFocus&&lastFocus.focus)lastFocus.focus({preventScroll:true})};
 
@@ -362,14 +382,14 @@ function togglePlay(){video.paused?video.play().catch(()=>{}):video.pause()}
 function showControls(){playerShell.classList.remove("controls-idle");clearTimeout(idleTimer);if(!video.paused)idleTimer=setTimeout(()=>playerShell.classList.add("controls-idle"),2600)}
 function updateTimeline(){const pct=video.duration?video.currentTime/video.duration*100:0;seek.value=pct;seek.style.setProperty("--played",pct+"%");$("#current").textContent=fmt(video.currentTime);$("#duration").textContent=fmt(video.duration);try{if(video.buffered.length)$("#buffered").style.width=(video.buffered.end(video.buffered.length-1)/video.duration*100)+"%"}catch(e){}if(video.duration)localStorage.setItem("rewind-progress-"+watchIndex,JSON.stringify({episode:watchEpisode,time:video.currentTime}))}
 function setEpisode(n,autoplay=false){watchEpisode=Math.max(0,Math.min(4,n));const x=D[watchIndex],label=`Episode ${watchEpisode+1}: ${episodeNames[watchEpisode]}`;$("#watch-head-episode").textContent=label;$("#player-episode").textContent=label;document.querySelectorAll(".episode").forEach((b,j)=>b.setAttribute("aria-current",String(j===watchEpisode)));video.currentTime=0;updateTimeline();if(autoplay)video.play().catch(()=>{});announce(label)}
-function episodeMarkup(i){const x=D[watchIndex];return `<button class="episode" type="button" data-episode="${i}" aria-current="${i===watchEpisode}"><span class="episode-art" style="${bg(x)}"><i data-lucide="${i===watchEpisode?"play":x[5]}"></i></span><span class="episode-copy"><b>${i+1}. ${episodeNames[i]}</b><span>${i?"Continue the story":"Start the preview"}</span></span><time>${2+i}:0${i}</time></button>`}
+function episodeMarkup(i){const x=D[watchIndex];return `<button class="episode" type="button" data-episode="${i}" aria-current="${i===watchEpisode}"><span class="episode-art" data-poster="${watchIndex}" style="${bg(x)}"><i data-lucide="${i===watchEpisode?"play":x[5]}"></i></span><span class="episode-copy"><b>${i+1}. ${episodeNames[i]}</b><span>${i?"Continue the story":"Start the preview"}</span></span><time>${2+i}:0${i}</time></button>`}
 function openWatch(i){
   const x=D[i];if(x[6]){announce(`${x[1]} is coming soon`);return}
-  watchIndex=i;watchEpisode=0;lastFocus=document.activeElement;closeSheet();clearTimeout(ht);video.pause();if(video.readyState===0)video.load();
-  $("#watch-title").textContent=x[1];$("#watch-head-title").textContent=x[1];$("#watch-genre").textContent=x[2];$("#watch-description").textContent=C[x[0]].b+" This watch screen demonstrates the complete Rewind playback experience using locally hosted CC0 preview footage.";
+  watchIndex=i;watchEpisode=0;lastFocus=document.activeElement;closeSheet();clearTimeout(ht);loadWatchMedia();
+  $("#watch-title").textContent=x[1];$("#watch-head-title").textContent=x[1];$("#watch-genre").textContent=x[2];$("#watch-description").textContent=C[x[0]].b+" This watch screen demonstrates the complete Rewind playback experience with dynamically loaded title artwork and locally hosted CC0 preview footage.";
   $("#episodes-list").innerHTML=[0,1,2,3,4].map(episodeMarkup).join("");
-  const related=D.map((v,n)=>[v,n]).filter(([v,n])=>n!==i&&!v[6]&&(v[0]===x[0]||n%3===i%3)).slice(0,4);$("#related-grid").innerHTML=related.map(([v,n])=>`<button class="related-card" type="button" data-related="${n}" style="${bg(v)}"><b>${v[1]}</b></button>`).join("");
-  watch.classList.add("open");watch.setAttribute("aria-hidden","false");document.body.classList.add("watch-open");watch.scrollTop=0;lucide.createIcons();
+  const related=D.map((v,n)=>[v,n]).filter(([v,n])=>n!==i&&!v[6]&&(v[0]===x[0]||n%3===i%3)).slice(0,4);$("#related-grid").innerHTML=related.map(([v,n])=>`<button class="related-card" type="button" data-related="${n}" data-poster="${n}" style="${bg(v)}"><b>${v[1]}</b></button>`).join("");
+  hydrateArtwork(watch);watch.classList.add("open");watch.setAttribute("aria-hidden","false");document.body.classList.add("watch-open");watch.scrollTop=0;lucide.createIcons();
   let resumeAt=0;try{const savedProgress=JSON.parse(localStorage.getItem("rewind-progress-"+i)||"null");if(savedProgress){watchEpisode=savedProgress.episode||0;resumeAt=savedProgress.time||0}}catch(e){}
   setEpisode(watchEpisode);if(resumeAt)video.currentTime=resumeAt;requestAnimationFrame(()=>$(".watch-back").focus());showControls();
 }
@@ -382,7 +402,7 @@ seek.addEventListener("input",()=>{if(video.duration)video.currentTime=video.dur
 volume.addEventListener("input",()=>{video.volume=+volume.value;video.muted=video.volume===0;$("#mute").innerHTML=`<i data-lucide="${video.muted?"volume-x":video.volume<.5?"volume-1":"volume-2"}"></i>`;lucide.createIcons()});
 $("#mute").addEventListener("click",()=>{video.muted=!video.muted;$("#mute").setAttribute("aria-label",video.muted?"Unmute":"Mute");$("#mute").innerHTML=`<i data-lucide="${video.muted?"volume-x":"volume-2"}"></i>`;lucide.createIcons()});
 $("#captions").addEventListener("click",e=>{const track=video.textTracks[0],on=track.mode!=="showing";track.mode=on?"showing":"hidden";e.currentTarget.setAttribute("aria-pressed",String(on));e.currentTarget.setAttribute("aria-label",on?"Turn captions off":"Turn captions on");announce(on?"Captions on":"Captions off")});
-$("#settings-button").addEventListener("click",e=>{const open=settings.classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",String(open))});
+$("#settings-button").addEventListener("click",e=>{showControls();const open=settings.classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",String(open))});
 settings.addEventListener("click",e=>{const b=e.target.closest(".rate");if(!b)return;video.playbackRate=+b.dataset.rate;settings.querySelectorAll(".rate").forEach(x=>{const on=x===b;x.setAttribute("aria-checked",String(on));x.innerHTML=x.textContent.trim()+(on?' <i data-lucide="check"></i>':'')});settings.classList.remove("open");$("#settings-button").setAttribute("aria-expanded","false");lucide.createIcons();announce(`Playback speed ${b.textContent.trim()}`)});
 $("#fullscreen").addEventListener("click",async()=>{try{if(document.fullscreenElement&&document.exitFullscreen)await document.exitFullscreen();else if(playerShell.requestFullscreen)await playerShell.requestFullscreen();else announce("Fullscreen is not available in this browser")}catch(e){announce("Fullscreen is not available in this browser")}});document.addEventListener("fullscreenchange",()=>{$("#fullscreen").innerHTML=`<i data-lucide="${document.fullscreenElement?"minimize":"maximize"}"></i>`;$("#fullscreen").setAttribute("aria-label",document.fullscreenElement?"Exit fullscreen":"Enter fullscreen");lucide.createIcons()});
 $("#pip").addEventListener("click",async()=>{try{if(document.pictureInPictureElement)await document.exitPictureInPicture();else if(document.pictureInPictureEnabled)await video.requestPictureInPicture()}catch(e){announce("Picture in picture is not available")}});
@@ -398,9 +418,9 @@ function results(raw){
   if(!n)return `<p class="rl">Trending searches</p><div class="ch">${["Naruto","Samurai Jack","The Flash","Superman"].map(t=>`<button data-s="${t}">${t}</button>`).join("")}</div>`;
   const m=D.map((x,i)=>[x,i]).filter(([x])=>norm(x[1]+" "+x[2]+" "+C[x[0]].n).includes(n));
   if(!m.length)return `<p class="rl">Nothing matches “${esc(raw)}”. Try Naruto or The Flash.</p>`;
-  return `<p class="rl">${m.length} ${m.length>1?"results":"result"}</p>`+m.map(([x,i])=>`<button class="rr" data-i="${i}"><span class="rs sq" style="${bg(x)}"><i data-lucide="${x[5]}"></i></span><span><b>${x[1]}</b><small>${C[x[0]].n}, ${x[2].toLowerCase()}${x[6]?", coming soon":""}</small></span></button>`).join("");
+  return `<p class="rl">${m.length} ${m.length>1?"results":"result"}</p>`+m.map(([x,i])=>`<button class="rr" data-i="${i}"><span class="rs sq" data-poster="${i}" style="${bg(x)}"><i data-lucide="${x[5]}"></i></span><span><b>${x[1]}</b><small>${C[x[0]].n}, ${x[2].toLowerCase()}${x[6]?", coming soon":""}</small></span></button>`).join("");
 }
-function paint(){res.innerHTML=results(q.value);lucide.createIcons()}
+function paint(){res.innerHTML=results(q.value);lucide.createIcons();hydrateArtwork(res)}
 function sOpen(){paint();hd.classList.add("so");sbar.classList.add("open");res.classList.add("on");sb.setAttribute("aria-expanded","true");q.focus({preventScroll:true})}
 function sClose(){sbar.classList.remove("open");res.classList.remove("on");sb.setAttribute("aria-expanded","false");q.blur();setTimeout(()=>{if(!isOpen()){hd.classList.remove("so");q.value=""}},650)}
 sb.addEventListener("click",()=>isOpen()?q.focus():sOpen());
