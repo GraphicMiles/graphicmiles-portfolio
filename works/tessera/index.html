@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tessera - Agentic workflows with verifiable execution</title>
+<meta name="description" content="Tessera turns plain-language briefs into policy-bound agent workflows with on-chain receipts.">
+<meta name="theme-color" content="#f5f5f7">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%231d1d1f'/%3E%3Crect x='14' y='14' width='15' height='15' rx='4' fill='white'/%3E%3Crect x='35' y='14' width='15' height='15' rx='4' fill='white' opacity='.35'/%3E%3Crect x='14' y='35' width='15' height='15' rx='4' fill='white' opacity='.35'/%3E%3Crect x='35' y='35' width='15' height='15' rx='4' fill='white'/%3E%3C/svg%3E">
+<style>
+@font-face{font-family:"Tessera Sans";font-style:normal;font-weight:100 900;font-display:swap;src:url("/fonts/InterTight-latin.woff2") format("woff2")}
+@font-face{font-family:"Tessera Serif";font-style:normal;font-weight:100 900;font-display:swap;src:url("/fonts/Fraunces.woff2") format("woff2")}
+/*
+  Layout concept: a 12-column editorial grid on a soft grey ground. The hero is a centred
+  white sheet (after the mood board); everything after it is asymmetric, with a rule and
+  label opening each section, staggered columns, sticky copy beside moving content, and one
+  ink-black panel for security. Ink and paper carry the page; a single violet accent marks
+  live state, receipts and links. Halftone image slots are the recurring motif.
+*/
+:root {
+  --bg: #F5F5F7;
+  --surface: #FFFFFF;
+  --surface-2: #EDEDF1;
+  --ink: #1D1D1F;
+  --muted: #6B6B73;
+  --line: rgba(29, 29, 31, 0.12);
+  --line-strong: rgba(29, 29, 31, 0.28);
+  --accent: #5129D9;
+  --accent-soft: rgba(81, 41, 217, 0.09);
+  --btn-bg: #1D1D1F;
+  --btn-fg: #F5F5F7;
+  --header-bg: rgba(245, 245, 247, 0.78);
+  --glass: rgba(255, 255, 255, 0.78);
+  --slot: #E7E7EC;
+  --slot-dot: rgba(29, 29, 31, 0.2);
+  --sheet-shadow: 0 40px 90px -50px rgba(29, 29, 31, 0.28);
+  --inv-bg: #0E0E10;
+  --inv-surface: #18181B;
+  --inv-fg: #F5F5F7;
+  --inv-muted: #A1A1AA;
+  --inv-line: rgba(245, 245, 247, 0.14);
+  --inv-accent: #A594FF;
+
+  --font-sans: "Tessera Sans", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Tessera Serif", "New York", Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --ease: cubic-bezier(0.19, 0.8, 0.22, 1);
+  --gap: clamp(16px, 2vw, 32px);
+  interpolate-size: allow-keywords;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A0A0B;
+    --surface: #161618;
+    --surface-2: #212125;
+    --ink: #F5F5F7;
+    --muted: #9B9BA3;
+    --line: rgba(245, 245, 247, 0.13);
+    --line-strong: rgba(245, 245, 247, 0.3);
+    --accent: #A594FF;
+    --accent-soft: rgba(165, 148, 255, 0.15);
+    --btn-bg: #F5F5F7;
+    --btn-fg: #0A0A0B;
+    --header-bg: rgba(10, 10, 11, 0.78);
+    --glass: rgba(22, 22, 24, 0.78);
+    --slot: #1C1C20;
+    --slot-dot: rgba(245, 245, 247, 0.18);
+    --sheet-shadow: none;
+    --inv-bg: #131315;
+    --inv-surface: #1D1D20;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A0A0B;
+  --surface: #161618;
+  --surface-2: #212125;
+  --ink: #F5F5F7;
+  --muted: #9B9BA3;
+  --line: rgba(245, 245, 247, 0.13);
+  --line-strong: rgba(245, 245, 247, 0.3);
+  --accent: #A594FF;
+  --accent-soft: rgba(165, 148, 255, 0.15);
+  --btn-bg: #F5F5F7;
+  --btn-fg: #0A0A0B;
+  --header-bg: rgba(10, 10, 11, 0.78);
+  --glass: rgba(22, 22, 24, 0.78);
+  --slot: #1C1C20;
+  --slot-dot: rgba(245, 245, 247, 0.18);
+  --sheet-shadow: none;
+  --inv-bg: #131315;
+  --inv-surface: #1D1D20;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+a { color: inherit; }
+figure { margin: 0; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.g12 { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); }
+.g12 > * { min-width: 0; }
+.mono { font-family: var(--font-mono); }
+
+/* Type */
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(2.5rem, 5.6vw, 4.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.018em;
+}
+em { font-style: italic; }
+.lede { margin: 0; color: var(--muted); font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.45; max-width: 32rem; text-wrap: pretty; }
+.eyebrow {
+  display: block; margin: 0;
+  font: 500 0.75rem/1 var(--font-mono);
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink);
+}
+
+/* Section opener: a rule, a label, and a fact about the section */
+.sec-top {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  padding-top: 16px; border-top: 1px solid var(--line);
+  margin-bottom: clamp(40px, 6vw, 88px);
+}
+.sec-top .meta { font: 400 0.75rem/1 var(--font-mono); letter-spacing: 0.04em; color: var(--muted); text-align: right; }
+.sec-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 24px; align-items: end; margin-bottom: clamp(48px, 7vw, 104px); }
+.sec-head h2 { grid-column: 1 / span 8; }
+.sec-head .lede { grid-column: 9 / span 4; padding-bottom: 0.5em; }
+.section { padding-top: clamp(88px, 12vw, 176px); scroll-margin-top: 56px; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 48px; padding: 0 24px;
+  border: 0; border-radius: 999px;
+  font: 500 0.9375rem/1 var(--font-sans);
+  text-decoration: none; cursor: pointer;
+  transition: transform 0.2s var(--ease), background-color 0.2s ease, opacity 0.2s ease;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+.btn-ghost { background: var(--surface-2); color: var(--ink); }
+.btn-sm { height: 36px; padding: 0 16px; font-size: 0.875rem; }
+.btn .arr { display: inline-block; transition: transform 0.25s var(--ease); }
+@media (hover: hover) {
+  .btn-primary:hover { opacity: 0.86; }
+  .btn-ghost:hover { background: var(--line); }
+  .btn:hover .arr { transform: translateX(4px); }
+}
+
+/* Header */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: var(--header-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+  animation: fade 0.8s ease both;
+}
+.site-header.scrolled { border-bottom-color: var(--line); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.01em; text-decoration: none; }
+.nav-links { display: flex; gap: 32px; list-style: none; margin: 0; padding: 0; font-size: 0.9375rem; }
+.nav-links a { position: relative; display: inline-block; color: var(--muted); text-decoration: none; transition: color 0.2s ease; }
+.nav-links a:hover, .nav-links a[aria-current="true"] { color: var(--ink); }
+.nav-links a::after { content: ""; position: absolute; left: 50%; bottom: -9px; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); translate: -50% 0; scale: 0; transition: scale 0.25s var(--ease); }
+.nav-links a[aria-current="true"]::after { scale: 1; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.menu-btn { display: none; }
+
+/* Hero */
+.hero { padding-top: clamp(8px, 2vw, 24px); }
+.sheet {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 32px;
+  box-shadow: var(--sheet-shadow);
+  padding: clamp(48px, 8vw, 120px) clamp(14px, 3.5vw, 48px) clamp(14px, 3.5vw, 48px);
+}
+.hero-copy { max-width: 74rem; margin-inline: auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.pill {
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 8px 15px; border: 1px solid var(--line); border-radius: 999px;
+  font-size: 0.8125rem; color: var(--muted);
+  animation: fade-up 0.8s var(--ease) 0.05s both;
+}
+.live-dot { width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--accent); }
+.pulse { animation: pulse 2s ease-out infinite; }
+h1 {
+  margin-top: clamp(24px, 3vw, 36px);
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(2.75rem, 7.1vw, 6.25rem);
+  line-height: 0.95; letter-spacing: -0.022em;
+}
+h1 .ln { display: block; text-wrap: balance; }
+h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding: 0 0.07em 0.16em; margin: 0 -0.07em -0.16em; }
+h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; animation-delay: calc(0.12s + var(--w) * 0.075s); }
+.hero-sub { margin: clamp(22px, 2.6vw, 32px) 0 0; max-width: 40rem; color: var(--muted); font-size: clamp(1.0625rem, 1.5vw, 1.25rem); line-height: 1.45; text-wrap: pretty; animation: fade-up 0.9s var(--ease) 0.7s both; }
+.hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: clamp(26px, 3vw, 36px); animation: fade-up 0.9s var(--ease) 0.82s both; }
+.hero-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px; margin: 22px 0 0; padding: 0; list-style: none; font: 400 0.75rem var(--font-mono); letter-spacing: 0.04em; color: var(--muted); animation: fade-up 0.9s var(--ease) 0.94s both; }
+.hero-facts li::before { content: ""; display: inline-block; width: 4px; height: 4px; margin: 0 9px 2px 0; border-radius: 50%; background: var(--ink); }
+.hero .slot { --ar: 2 / 1; margin-top: clamp(40px, 6vw, 80px); border-radius: 20px; animation: frame-in 1.4s var(--ease) 0.55s both; }
+
+/* Image slots: replace the .slot-label span with an <img> and it fills the frame */
+.slot {
+  position: relative; overflow: hidden; display: grid; place-items: center;
+  aspect-ratio: var(--ar, 16 / 9); max-width: 100%;
+  border-radius: 18px;
+  background-color: var(--slot);
+  background-image: radial-gradient(var(--slot-dot) 1.1px, transparent 1.5px);
+  background-size: 9px 9px;
+}
+.slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slot-label {
+  position: relative; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px;
+  background: var(--surface); color: var(--muted);
+  font: 400 0.6875rem/1 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; text-align: center;
+}
+.slot:has(img) .slot-label { display: none; }
+.chip {
+  position: absolute; left: clamp(12px, 2vw, 20px); bottom: clamp(12px, 2vw, 20px); z-index: 1;
+  display: grid; gap: 5px; max-width: calc(100% - 24px);
+  padding: 12px 15px; border: 1px solid var(--line); border-radius: 14px;
+  background: var(--glass); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px);
+  font-size: 0.875rem;
+  animation: pop 0.9s var(--ease) 1.5s both, float 7s ease-in-out 2.5s infinite;
+}
+.chip-right { left: auto; bottom: auto; right: clamp(12px, 2vw, 20px); top: clamp(12px, 2vw, 20px); animation-delay: 1.75s, 3s; animation-duration: 0.9s, 8s; }
+.chip-top { display: flex; align-items: center; gap: 8px; font-weight: 500; }
+.chip .mono { font-size: 0.75rem; color: var(--muted); overflow-wrap: anywhere; }
+.chip .hash { color: var(--accent); }
+
+/* Networks marquee */
+.nets { display: flex; align-items: center; gap: clamp(20px, 3vw, 48px); padding-top: clamp(28px, 4vw, 44px); }
+.nets .k { flex: none; font: 500 0.75rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.marquee { flex: 1; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.marquee-track { display: flex; width: max-content; }
+.marquee-list { display: flex; flex: none; gap: clamp(36px, 5vw, 64px); padding-right: clamp(36px, 5vw, 64px); margin: 0; list-style: none; }
+.marquee-list li { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; white-space: nowrap; }
+.marquee.on .marquee-track { animation: marquee 40s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Why on-chain: words warm up as you scroll */
+.why { row-gap: 20px; }
+.why .eyebrow { grid-column: 1 / span 3; padding-top: 1.1em; }
+.why-text { grid-column: 4 / span 9; margin: 0; font-family: var(--font-display); font-size: clamp(2rem, 4.2vw, 3.75rem); line-height: 1.1; letter-spacing: -0.014em; text-wrap: pretty; }
+.why-text .wd { transition: opacity 0.25s ease; }
+.why-link { grid-column: 4 / span 9; margin-top: 12px; }
+.link { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; color: var(--accent); text-decoration: none; }
+.link .arr { transition: transform 0.25s var(--ease); }
+.link:hover .arr { transform: translateX(4px); }
+
+/* How it works: three columns that step down the page */
+.steps { align-items: start; row-gap: 56px; }
+.step { display: flex; flex-direction: column; gap: 22px; }
+.step:nth-child(1) { grid-column: 1 / span 4; }
+.step:nth-child(2) { grid-column: 5 / span 4; margin-top: clamp(56px, 8vw, 128px); }
+.step:nth-child(3) { grid-column: 9 / span 4; margin-top: clamp(112px, 16vw, 256px); }
+.step .slot { --ar: 4 / 5; }
+.step-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.step-num { font-family: var(--font-display); font-style: italic; font-size: clamp(3.5rem, 6vw, 5.25rem); line-height: 0.75; letter-spacing: -0.02em; }
+.step-tag { font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.step h3 { font-size: clamp(1.375rem, 2vw, 1.75rem); font-weight: 600; letter-spacing: -0.022em; line-height: 1.15; margin-top: -6px; }
+.step p { margin: 0; color: var(--muted); text-wrap: pretty; }
+
+/* Example run */
+.run-grid { align-items: start; }
+.run-copy { grid-column: 1 / span 5; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); display: flex; flex-direction: column; gap: 24px; }
+.run-copy .lede { max-width: 28rem; }
+.notes { margin: 12px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.notes li { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; }
+.notes b { font: 500 0.75rem/1.6 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.notes span { color: var(--muted); }
+.run-copy .note { font: 400 0.75rem var(--font-mono); color: var(--muted); letter-spacing: 0.03em; }
+.console { grid-column: 7 / span 6; min-width: 0; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--sheet-shadow); }
+.console-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; padding: 12px 14px; }
+.tabs { display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--surface-2); }
+.tab { border: 0; background: transparent; color: var(--muted); font: 500 0.875rem/1 var(--font-sans); padding: 9px 15px; border-radius: 999px; cursor: pointer; transition: background-color 0.25s ease, color 0.25s ease; }
+.tab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14); }
+.status { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; font: 500 0.6875rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.status[data-state="settled"] .live-dot { animation: none; }
+.progress { height: 2px; background: var(--line); }
+.progress i { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.7s var(--ease); }
+.prompt { padding: 22px 22px 4px; }
+.prompt-top { display: flex; justify-content: space-between; gap: 12px; font: 500 0.6875rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.prompt p { margin: 12px 0 0; min-height: 3.1em; font: 400 0.9375rem/1.55 var(--font-mono); overflow-wrap: anywhere; }
+.log { list-style: none; margin: 0; padding: 8px 22px 4px; }
+.log-row { position: relative; display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 14px 0; }
+.log-row:not(:last-child)::before { content: ""; position: absolute; left: 6px; top: 36px; bottom: -14px; width: 1px; background: var(--line-strong); }
+.dot { position: relative; width: 13px; height: 13px; margin-top: 5px; border-radius: 50%; border: 1.5px solid var(--line-strong); background: var(--surface); }
+.dot.done { background: var(--ink); border-color: var(--ink); }
+.dot.wait { background: var(--accent-soft); border-color: var(--accent); }
+.dot.settled { background: var(--accent); border-color: var(--accent); }
+.agent { font: 500 0.6875rem/1.4 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.log-text { margin: 4px 0 0; font-size: 0.9375rem; text-wrap: pretty; }
+.log-row .btn { margin-top: 14px; }
+.time { font: 400 0.75rem/1.7 var(--font-mono); color: var(--muted); white-space: nowrap; }
+.receipt { margin: 8px 22px 22px; padding: 18px; border: 1px dashed var(--line-strong); border-radius: 16px; transition: background-color 0.4s ease, border-color 0.4s ease; }
+.receipt.ok { border-style: solid; border-color: var(--accent); background: var(--accent-soft); }
+.receipt-title { font: 500 0.6875rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.receipt p { margin: 10px 0 0; color: var(--muted); font-size: 0.9375rem; }
+.receipt dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 9px 20px; margin: 14px 0 0; font: 400 0.8125rem/1.4 var(--font-mono); }
+.receipt dt { color: var(--muted); }
+.receipt dd { margin: 0; overflow-wrap: anywhere; }
+.receipt dd.hash { color: var(--accent); }
+.enter { animation: enter 0.5s var(--ease) both; }
+
+/* Access */
+.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px; }
+.tile { display: flex; flex-direction: column; gap: 14px; min-width: 0; padding: clamp(24px, 3vw, 36px); background: var(--surface); border: 1px solid var(--line); border-radius: 28px; transition: translate 0.4s var(--ease), border-color 0.3s ease; }
+@media (hover: hover) { .tile:hover { translate: 0 -4px; border-color: var(--line-strong); } }
+.kicker { font: 500 0.6875rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.tile h3 { font-size: clamp(1.5rem, 2.2vw, 2rem); font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; margin-top: 8px; }
+.tile p { margin: 0; color: var(--muted); max-width: 34rem; text-wrap: pretty; }
+.tile .slot { --ar: auto; flex: 1; min-height: 240px; margin-top: 12px; }
+.t-a { grid-column: span 7; }
+.t-b { grid-column: span 5; }
+.t-c { grid-column: span 5; }
+.t-d { grid-column: span 7; }
+.lines { margin-top: auto; padding-top: 28px; display: grid; gap: 12px; font: 400 0.8125rem var(--font-mono); }
+.lines div { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.lines div:last-child { border-bottom: 0; padding-bottom: 0; color: var(--ink); font-weight: 500; }
+.lines span:first-child { color: var(--muted); }
+.lines div:last-child span:first-child { color: var(--ink); }
+.chiplist { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; padding: 0; list-style: none; }
+.chiplist li { padding: 9px 15px; border-radius: 999px; background: var(--surface-2); font-size: 0.9375rem; }
+.chiplist.quotes { flex-direction: column; align-items: flex-start; }
+.chiplist.quotes li { border-radius: 16px; }
+
+/* Security */
+.inv { background: var(--inv-bg); color: var(--inv-fg); border: 1px solid var(--inv-line); border-radius: 36px; padding: clamp(24px, 5vw, 80px); }
+.inv .sec-top { border-color: var(--inv-line); }
+.inv .eyebrow { color: var(--inv-fg); }
+.inv .meta, .inv .lede { color: var(--inv-muted); }
+.inv-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); align-items: start; }
+.inv-grid > * { min-width: 0; }
+.inv-copy { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: 24px; }
+.inv-side { grid-column: 8 / span 5; display: flex; flex-direction: column; gap: 16px; }
+.ctls { margin: 16px 0 0; padding: 0; list-style: none; counter-reset: c; }
+.ctls li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); padding: 20px 0; border-top: 1px solid var(--inv-line); }
+.ctls li::before { counter-increment: c; content: counter(c, decimal-leading-zero); font: 400 0.75rem/1.9 var(--font-mono); color: var(--inv-muted); }
+.ctls h3 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.012em; }
+.ctls p { margin: 4px 0 0; color: var(--inv-muted); font-size: 0.9375rem; text-wrap: pretty; }
+.code { background: var(--inv-surface); border: 1px solid var(--inv-line); border-radius: 20px; overflow: hidden; }
+.code-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--inv-line); font: 400 0.75rem var(--font-mono); color: var(--inv-muted); }
+.code pre { margin: 0; padding: 20px 18px; overflow-x: auto; font: 400 0.8125rem/1.8 var(--font-mono); white-space: pre; tab-size: 2; }
+.code .k { color: var(--inv-accent); }
+.code .c { color: var(--inv-muted); }
+.code .btn { height: 30px; padding: 0 12px; font-size: 0.75rem; background: var(--inv-line); color: var(--inv-fg); }
+.try { padding: 20px 20px 22px; background: var(--inv-surface); border: 1px solid var(--inv-line); border-radius: 20px; }
+.try-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.try-head span:first-child { font: 500 0.6875rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--inv-muted); }
+.try-amt { font-family: var(--font-display); font-size: 2.75rem; line-height: 1; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.zone-wrap { position: relative; height: 28px; margin-top: 16px; }
+.zones, .zlabels { display: grid; grid-template-columns: 1fr 4fr 1fr; gap: 3px; }
+.zones { position: absolute; left: 10px; right: 10px; top: 11px; height: 6px; }
+.zones i { border-radius: 3px; opacity: 0.3; transition: opacity 0.3s ease; }
+.z-auto { background: var(--inv-accent); }
+.z-appr { background: var(--inv-fg); }
+.z-block { background: repeating-linear-gradient(135deg, var(--inv-muted) 0 3px, transparent 3px 6px); }
+.try[data-zone="auto"] .z-auto, .try[data-zone="approve"] .z-appr, .try[data-zone="block"] .z-block { opacity: 1; }
+.try input[type="range"] { -webkit-appearance: none; appearance: none; position: absolute; inset: 0; width: 100%; height: 28px; margin: 0; background: transparent; cursor: pointer; }
+.try input[type="range"]::-webkit-slider-runnable-track { height: 28px; background: transparent; }
+.try input[type="range"]::-moz-range-track { height: 28px; background: transparent; }
+.try input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; margin-top: 4px; border-radius: 50%; background: var(--inv-fg); border: 4px solid var(--inv-surface); box-shadow: 0 0 0 1.5px var(--inv-fg); }
+.try input[type="range"]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--inv-fg); border: 4px solid var(--inv-surface); box-shadow: 0 0 0 1.5px var(--inv-fg); }
+.zlabels { margin: 10px 10px 0; font: 400 0.6875rem var(--font-mono); color: var(--inv-muted); }
+.zlabels span:nth-child(2) { text-align: center; }
+.zlabels span:nth-child(3) { text-align: right; }
+.try-out { margin: 18px 0 0; min-height: 4.2em; color: var(--inv-muted); font-size: 0.9375rem; text-wrap: pretty; }
+.try-out strong { color: var(--inv-fg); font-weight: 600; }
+
+/* Developers */
+.dev-grid { align-items: center; }
+.dev-copy { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 24px; }
+.dev-code { grid-column: 7 / span 6; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--sheet-shadow); }
+.dev-code .code-head { border-color: var(--line); color: var(--muted); }
+.dev-code .k { color: var(--accent); }
+.dev-code .c { color: var(--muted); }
+.dev-code .btn { background: var(--surface-2); color: var(--ink); }
+.dev-code .out { border-top: 1px solid var(--line); background: var(--surface-2); }
+.dev-code .out pre { padding: 16px 18px; line-height: 1.75; }
+.dev-code .out .hash { color: var(--accent); }
+.links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 4px 0 0; padding: 0; list-style: none; }
+
+/* Use cases */
+.uc { align-items: start; }
+.uc-stack { grid-column: 1 / span 5; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); position: sticky; aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden; }
+.uc-stack .slot { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; opacity: 0; transition: opacity 0.6s ease; }
+.uc-stack .slot.active { opacity: 1; }
+.uc-body { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: clamp(32px, 4vw, 56px); }
+.uc-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.uc-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; padding: 30px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.uc-list h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.875rem, 3.2vw, 2.75rem); line-height: 1.02; letter-spacing: -0.012em; color: var(--muted); transition: color 0.3s ease, translate 0.4s var(--ease); }
+.uc-list p { grid-column: 1; margin: 0; color: var(--muted); max-width: 32rem; text-wrap: pretty; }
+.uc-list .arrow { grid-column: 2; grid-row: 1; align-self: center; color: var(--muted); font-size: 1.375rem; transition: translate 0.4s var(--ease), color 0.3s ease; }
+.uc-list li.active h3 { color: var(--ink); translate: 10px 0; }
+.uc-list li.active .arrow { color: var(--accent); translate: 6px 0; }
+
+/* FAQ */
+.faq-grid { align-items: start; }
+.faq-left { grid-column: 1 / span 4; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); display: flex; flex-direction: column; gap: 24px; }
+.faq { grid-column: 6 / span 7; }
+.faq details { border-top: 1px solid var(--line); }
+.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; align-items: center; gap: 18px; padding: 26px 0; font-size: clamp(1.1875rem, 1.8vw, 1.5rem); font-weight: 500; letter-spacing: -0.015em; line-height: 1.25; cursor: pointer; list-style: none; transition: color 0.2s ease; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; font-size: 1.75rem; font-weight: 300; line-height: 1; color: var(--muted); transition: rotate 0.35s var(--ease); }
+.faq details[open] summary::after { rotate: 45deg; }
+.faq details::details-content { block-size: 0; overflow: hidden; transition: block-size 0.4s var(--ease), content-visibility 0.4s allow-discrete; }
+.faq details[open]::details-content { block-size: auto; }
+.faq details p { margin: -6px 0 28px; max-width: 40rem; color: var(--muted); text-wrap: pretty; }
+
+/* Closing call to action */
+.cta { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 36px; box-shadow: var(--sheet-shadow); }
+.cta-copy { display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: clamp(28px, 5vw, 80px); min-width: 0; }
+.cta h2 { font-size: clamp(2.5rem, 5.4vw, 4.5rem); }
+.cta .slot { --ar: auto; min-height: 420px; border-radius: 0; }
+.cta form { display: flex; flex-wrap: wrap; gap: 8px; }
+.cta input { flex: 1 1 220px; min-width: 0; height: 48px; padding: 0 20px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--bg); color: var(--ink); font: 400 0.9375rem var(--font-sans); }
+.cta input::placeholder { color: var(--muted); }
+.cta .done { margin: 0; font-size: 1rem; color: var(--accent); }
+.next { margin: 8px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line); counter-reset: n; }
+.next li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 0.9375rem; }
+.next li::before { counter-increment: n; content: counter(n); font: 500 0.75rem/1.9 var(--font-mono); color: var(--muted); }
+.next b { font-weight: 600; }
+.next span { grid-column: 2; color: var(--muted); }
+.fine { margin: 0; font: 400 0.75rem var(--font-mono); color: var(--muted); }
+
+/* Footer */
+.site-footer { padding-top: clamp(88px, 12vw, 176px); overflow: hidden; }
+.site-footer .slot { --ar: 21 / 8; border-radius: 28px; }
+.foot-grid { margin-top: clamp(36px, 5vw, 64px); row-gap: 40px; }
+.foot-brand { grid-column: 1 / span 5; display: flex; flex-direction: column; gap: 16px; max-width: 24rem; }
+.foot-brand p { margin: 0; color: var(--muted); font-size: 0.9375rem; text-wrap: pretty; }
+.foot-cols { grid-column: 7 / span 6; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.foot-cols h3 { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.foot-cols ul { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; font-size: 0.9375rem; }
+.foot-cols a { text-decoration: none; transition: color 0.2s ease; }
+.foot-cols a:hover { color: var(--accent); }
+.legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: clamp(48px, 6vw, 88px); padding-top: 20px; border-top: 1px solid var(--line); font: 400 0.75rem var(--font-mono); color: var(--muted); }
+.wordmark { margin-top: clamp(16px, 3vw, 40px); height: min(17vw, 15.5rem); overflow: hidden; text-align: center; user-select: none; }
+.wordmark span { display: block; font-family: var(--font-display); font-size: min(31vw, 28rem); line-height: 0.9; letter-spacing: -0.03em; color: var(--line); }
+
+/* Motion */
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-up { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { transform: translateY(108%); } to { transform: none; } }
+@keyframes frame-in {
+  from { opacity: 0; transform: translateY(48px) scale(0.965); clip-path: inset(0 0 14% 0 round 20px); }
+  to { opacity: 1; transform: none; clip-path: inset(0 0 0 0 round 20px); }
+}
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-soft), 0 0 0 0 var(--accent-soft); } 70% { box-shadow: 0 0 0 7px rgba(81, 41, 217, 0), 0 0 0 7px rgba(81, 41, 217, 0); } 100% { box-shadow: 0 0 0 0 rgba(81, 41, 217, 0); } }
+@keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes marquee { to { transform: translateX(-25%); } }
+@keyframes rv { from { opacity: 0.2; transform: translateY(40px); } to { opacity: 1; transform: none; } }
+@keyframes drift { from { transform: translateY(-5%) scale(1.12); } to { transform: translateY(5%) scale(1.12); } }
+
+/* Scroll-driven reveals. Browsers without support simply show everything. */
+@supports (animation-timeline: view()) {
+  .rv {
+    animation: rv linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry calc(46% + var(--i, 0) * 7%);
+  }
+  .px img { animation: drift linear both; animation-timeline: view(); animation-range: cover; }
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .sec-head h2, .sec-head .lede { grid-column: 1 / -1; }
+  .why .eyebrow, .why-text, .why-link { grid-column: 1 / -1; }
+  .why .eyebrow { padding-top: 0; }
+  .step:nth-child(n) { grid-column: 1 / -1; margin-top: 0; }
+  .step .slot { --ar: 16 / 10; }
+  .run-copy, .console, .dev-copy, .dev-code, .uc-stack, .uc-body, .faq-left, .faq, .foot-brand, .foot-cols { grid-column: 1 / -1; }
+  .run-copy, .uc-stack, .faq-left { position: static; }
+  .uc-stack { aspect-ratio: 4 / 3; margin-bottom: 40px; }
+  .run-grid, .dev-grid, .uc, .faq-grid { row-gap: 40px; }
+  .inv-copy, .inv-side { grid-column: 1 / -1; }
+  .inv-grid { row-gap: 40px; }
+  .t-a, .t-d { grid-column: span 12; }
+  .t-b, .t-c { grid-column: span 6; }
+  .cta { grid-template-columns: minmax(0, 1fr); }
+  .cta .slot { min-height: 0; --ar: 4 / 3; }
+  .menu-btn { display: inline-flex; }
+  .nav-links { display: none; }
+  .site-header.open .nav-links {
+    display: flex; flex-direction: column; gap: 2px;
+    position: absolute; left: 0; right: 0; top: 64px;
+    padding: 12px max(16px, env(safe-area-inset-right, 0px)) 20px max(16px, env(safe-area-inset-left, 0px));
+    background: var(--bg); border-bottom: 1px solid var(--line); font-size: 1.125rem;
+  }
+  .site-header.open .nav-links a { display: block; padding: 11px 0; color: var(--ink); }
+  .site-header.open .nav-links a::after { display: none; }
+}
+@media (max-width: 720px) {
+  .hero .slot { --ar: 4 / 3; }
+  .chip-right { display: none; }
+  .nets { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .nets .marquee { width: 100%; flex: none; }
+  .t-b, .t-c { grid-column: span 12; }
+  .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .site-footer .slot { --ar: 16 / 9; }
+  .notes li { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (max-width: 600px) {
+  .nav-actions .btn-ghost:not(.menu-btn) { display: none; }
+  .log-row { grid-template-columns: 14px minmax(0, 1fr); }
+  .time { grid-column: 2; margin-top: -4px; }
+  .console-head { padding: 10px; }
+  .tab { padding: 9px 11px; }
+  .zlabels { font-size: 0.625rem; }
+}
+
+.skip-link{position:fixed;top:-4rem;left:1rem;z-index:100;padding:.65rem 1rem;border-radius:999px;background:var(--ink);color:var(--surface);font-weight:600;text-decoration:none;transition:top 150ms ease-out}.skip-link:focus{top:1rem}
+.slot img{filter:saturate(.72) contrast(1.04)}
+.slot::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(29,29,31,.18) .7px,transparent .8px);background-size:5px 5px;mix-blend-mode:multiply;opacity:.26}
+.slot .chip,.slot .slot-label{z-index:2}.slot img{z-index:0}
+.img-credit{position:absolute;right:10px;bottom:8px;z-index:2;padding:4px 7px;border-radius:999px;background:rgba(0,0,0,.48);color:#fff;font:500 .56rem/1 var(--font-mono);letter-spacing:.04em;text-decoration:none;opacity:0;transition:opacity 150ms ease-out}
+@media(hover:hover){.slot:hover .img-credit{opacity:1}}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#top">Skip to content</a>
+<header class="site-header" id="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Tessera home">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+        <rect x="1" y="1" width="9" height="9" rx="2.5" fill="currentColor"/>
+        <rect x="12" y="1" width="9" height="9" rx="2.5" fill="currentColor" opacity="0.3"/>
+        <rect x="1" y="12" width="9" height="9" rx="2.5" fill="currentColor" opacity="0.3"/>
+        <rect x="12" y="12" width="9" height="9" rx="2.5" fill="currentColor"/>
+      </svg>
+      Tessera
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#access">Access</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#developers">Developers</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn btn-ghost btn-sm menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <a class="btn btn-ghost btn-sm" href="#request">Log in</a>
+      <a class="btn btn-primary btn-sm" href="#request">Get access</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="sheet">
+        <div class="hero-copy">
+          <span class="pill"><span class="live-dot pulse"></span>Early access is open</span>
+          <h1>
+            <span class="ln"><span class="w"><span style="--w:0">Agents</span></span> <span class="w"><span style="--w:1">do</span></span> <span class="w"><span style="--w:2">the</span></span> <span class="w"><span style="--w:3">work.</span></span></span>
+            <span class="ln"><span class="w"><span style="--w:4">The</span></span> <span class="w"><span style="--w:5">chain</span></span> <span class="w"><span style="--w:6">keeps</span></span> <span class="w"><span style="--w:7">the</span></span> <span class="w"><span style="--w:8"><em>receipts.</em></span></span></span>
+          </h1>
+          <p class="hero-sub">Tessera turns a plain-language brief into a crew of agents that plan, pay and report back. Every action is signed and settled on-chain, so you can trust the result without watching the process.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#request">Request access <span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#live-run">See a run</a>
+          </div>
+          <ul class="hero-facts">
+            <li>No wallet</li>
+            <li>No gas</li>
+            <li>No seed phrase</li>
+          </ul>
+        </div>
+
+        <!-- IMAGE SLOT: hero. Replace the .slot-label span with <img src="..." alt="..."> -->
+        <figure class="slot px">
+          <img src="./assets/glass-grid.webp" alt="A mirrored glass facade converging into a precise structural grid" width="1800" height="1197" fetchpriority="high" decoding="async"><a class="img-credit" href="https://unsplash.com/collections/168902/abstract-architecture" target="_blank" rel="noreferrer">Unsplash</a>
+          <div class="chip">
+            <span class="chip-top"><span class="live-dot pulse"></span>Treasury crew settled 11 payments</span>
+            <span class="mono">Base · tx <span class="hash">0x7c1e…a9d4</span></span>
+          </div>
+          <div class="chip chip-right">
+            <span class="chip-top">Approved by 2 of 3 signers</span>
+            <span class="mono">Policy friday-payouts v3</span>
+          </div>
+        </figure>
+      </div>
+
+      <div class="nets">
+        <span class="k">Settles on</span>
+        <div class="marquee" id="marquee" aria-label="Supported networks">
+          <div class="marquee-track" id="marquee-track">
+            <ul class="marquee-list" id="marquee-list">
+              <li>Ethereum</li><li>Base</li><li>Arbitrum</li><li>Optimism</li><li>Solana</li><li>Polygon</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="wrap g12 why">
+      <span class="eyebrow">Why on-chain</span>
+      <p class="why-text" id="why-text">Most automation asks you to trust it. Tessera asks the chain to vouch for it. Hand real work to a crew of agents and still know exactly what happened, who allowed it and what it cost.</p>
+      <div class="why-link"><a class="link" href="#how-it-works">See how it works <span class="arr" aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works">
+    <div class="wrap">
+      <div class="sec-top"><span class="eyebrow">How it works</span><span class="meta">3 steps</span></div>
+      <div class="sec-head">
+        <h2>From a sentence to a settled transaction.</h2>
+        <p class="lede">You describe the outcome. Tessera assembles the agents, sets the limits and records what happens.</p>
+      </div>
+      <div class="g12 steps">
+        <article class="step rv" style="--i:0">
+          <figure class="slot px"><img src="./assets/marble-figure.webp" alt="Classical marble figure in a dark museum gallery" width="1440" height="1800" decoding="async"><a class="img-credit" href="https://www.pexels.com/search/classical%20sculpture/" target="_blank" rel="noreferrer">Pexels</a></figure>
+          <div class="step-meta"><span class="step-num">1</span><span class="step-tag">Describe</span></div>
+          <h3>Brief it like a colleague.</h3>
+          <p>Write the workflow in your own words. Tessera drafts the crew, the tools it needs and the limits it will run under. You review before anything goes live.</p>
+        </article>
+        <article class="step rv" style="--i:1">
+          <figure class="slot px"><img src="./assets/brutalist-geometry.webp" alt="Geometric concrete facade with repeating structural modules" width="1800" height="1200" decoding="async"><a class="img-credit" href="https://www.pexels.com/search/brutalist%20architecture/" target="_blank" rel="noreferrer">Pexels</a></figure>
+          <div class="step-meta"><span class="step-num">2</span><span class="step-tag">Delegate</span></div>
+          <h3>Agents do the legwork.</h3>
+          <p>Agents plan the work, call your systems and move funds within the caps you set. They stop and ask you only where your policy says to.</p>
+        </article>
+        <article class="step rv" style="--i:2">
+          <figure class="slot px"><img src="./assets/server-detail.webp" alt="Detailed server hardware and network connections" width="1800" height="1200" decoding="async"><a class="img-credit" href="https://www.pexels.com/search/data%20center/" target="_blank" rel="noreferrer">Pexels</a></figure>
+          <div class="step-meta"><span class="step-num">3</span><span class="step-tag">Verify</span></div>
+          <h3>One record everyone trusts.</h3>
+          <p>Every action lands on-chain as a signed receipt. Finance, legal and your auditors read the same record, with no exports to reconcile.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="live-run">
+    <div class="wrap">
+      <div class="sec-top"><span class="eyebrow">Example run</span><span class="meta">3 workflows · sample data</span></div>
+      <div class="g12 run-grid">
+        <div class="run-copy">
+          <h2>Watch a crew work.</h2>
+          <p class="lede">Pick a workflow. The agents plan, check the policy and prepare the work. When your policy needs a person, the run waits for you.</p>
+          <ul class="notes">
+            <li><b>One job each</b><span>Agents are named for the task they own.</span></li>
+            <li><b>One limit each</b><span>Caps travel with the agent's key.</span></li>
+            <li><b>One receipt</b><span>Settlement writes proof anyone on your team can open.</span></li>
+          </ul>
+        </div>
+
+        <div class="console rv" aria-label="Example workflow run">
+          <div class="console-head">
+            <div class="tabs" role="tablist" aria-label="Example workflows">
+              <button class="tab" role="tab" data-demo="treasury" aria-selected="true" type="button">Treasury</button>
+              <button class="tab" role="tab" data-demo="procurement" aria-selected="false" type="button">Procurement</button>
+              <button class="tab" role="tab" data-demo="compliance" aria-selected="false" type="button">Compliance</button>
+            </div>
+            <span class="status" id="run-status" data-state="waiting"><span class="live-dot pulse"></span><span id="run-status-text">Waiting for you</span></span>
+          </div>
+          <div class="progress"><i id="run-progress" style="width:80%"></i></div>
+          <div class="prompt">
+            <div class="prompt-top"><span>Brief</span><span id="run-id">Run 2481</span></div>
+            <p id="run-prompt"></p>
+          </div>
+          <ol class="log" id="run-log" aria-live="polite"></ol>
+          <div id="run-receipt"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="access">
+    <div class="wrap">
+      <div class="sec-top"><span class="eyebrow">Access</span><span class="meta">4 defaults</span></div>
+      <div class="sec-head">
+        <h2>Nothing to install. Nothing to learn about wallets.</h2>
+        <p class="lede">Your team signs in the way it signs in everywhere else. Keys, fees and chains are handled underneath.</p>
+      </div>
+      <div class="bento">
+        <article class="tile t-a rv" style="--i:0">
+          <span class="kicker">Sign-in</span>
+          <h3>Sign in like any other app</h3>
+          <p>Tessera creates a secure account in the background, with recovery that your admin controls. No seed phrase and no browser extension.</p>
+          <ul class="chiplist"><li>Email</li><li>Google</li><li>SSO</li><li>Passkey</li></ul>
+          <!-- IMAGE SLOT: product screen -->
+          <figure class="slot px"><img src="./assets/vertical-edge.webp" alt="Monochrome architectural edge converging toward the sky" width="1800" height="1192" decoding="async"><a class="img-credit" href="https://unsplash.com/collections/168902/abstract-architecture" target="_blank" rel="noreferrer">Unsplash</a></figure>
+        </article>
+        <article class="tile t-b rv" style="--i:1">
+          <span class="kicker">Fees</span>
+          <h3>Network fees, in dollars</h3>
+          <p>We sponsor gas and show it as one line on your invoice.</p>
+          <div class="lines" aria-label="Example invoice lines">
+            <div><span>Crews (4)</span><span>$1,200.00</span></div>
+            <div><span>Network fees</span><span>$38.40</span></div>
+            <div><span>Total</span><span>$1,238.40</span></div>
+          </div>
+        </article>
+        <article class="tile t-c rv" style="--i:0">
+          <span class="kicker">Policy</span>
+          <h3>Rules in plain English</h3>
+          <p>Write limits as sentences. Tessera compiles them into controls that agents cannot cross.</p>
+          <ul class="chiplist quotes">
+            <li>No payment over $5,000 without approval.</li>
+            <li>Pay only vendors on the approved list.</li>
+            <li>Pause everything if the balance drops under $20,000.</li>
+          </ul>
+        </article>
+        <article class="tile t-d rv" style="--i:1">
+          <span class="kicker">Integrations</span>
+          <h3>Works with your stack</h3>
+          <p>Agents use the tools your team already runs. Anything else connects through the API.</p>
+          <ul class="chiplist">
+            <li>Slack</li><li>Google Workspace</li><li>Microsoft 365</li><li>NetSuite</li><li>Stripe</li><li>Salesforce</li><li>GitHub</li><li>Webhooks</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="security">
+    <div class="wrap">
+      <div class="inv rv">
+        <div class="sec-top"><span class="eyebrow">Security and control</span><span class="meta">5 controls</span></div>
+        <div class="inv-grid">
+          <div class="inv-copy">
+            <h2>You set the limits. Agents stay inside them.</h2>
+            <p class="lede">Limits live in the contract that holds the funds. An agent cannot talk its way past a cap, because the cap is not part of the conversation.</p>
+            <ul class="ctls">
+              <li><div><h3>Scoped keys</h3><p>Each agent holds its own key, limited to the chains, contracts and vendors you name.</p></div></li>
+              <li><div><h3>Spending caps</h3><p>Per-payment and per-day limits are enforced on-chain, not by the agent.</p></div></li>
+              <li><div><h3>Approval gates</h3><p>Route anything above a threshold to one or more signers on your team.</p></div></li>
+              <li><div><h3>Instant revoke</h3><p>Pause a crew or cancel a key in one click. Pending actions stop before they settle.</p></div></li>
+              <li><div><h3>Permanent audit trail</h3><p>Every decision is recorded with the policy version that allowed it.</p></div></li>
+            </ul>
+          </div>
+          <div class="inv-side">
+            <figure class="code">
+              <div class="code-head"><span>friday-payouts.policy</span><span>v3 · active</span></div>
+<pre><span class="k">policy</span> friday-payouts {
+  <span class="k">agent</span>    treasury-01
+  <span class="k">chain</span>    base
+  <span class="k">allow</span>    vendors in "approved-suppliers"
+  <span class="k">auto</span>     payment &le; $5,000
+  <span class="k">approve</span>  payment &le; $25,000  by 2 of [cfo, controller, ops]
+  <span class="k">block</span>    payment &gt; $25,000
+  <span class="k">cap</span>      day $50,000
+  <span class="k">expires</span>  2026-12-31
+}
+
+<span class="c">// Compiled to limits on the smart account.
+// Agents cannot edit or override them.</span></pre>
+            </figure>
+            <div class="try" id="try" data-zone="approve">
+              <div class="try-head"><span>Try a payment</span><span class="try-amt" id="try-amt">$12,000</span></div>
+              <div class="zone-wrap">
+                <div class="zones" aria-hidden="true"><i class="z-auto"></i><i class="z-appr"></i><i class="z-block"></i></div>
+                <input type="range" id="try-range" min="0" max="30000" step="100" value="12000" aria-label="Payment amount in dollars" aria-describedby="try-out">
+              </div>
+              <div class="zlabels" aria-hidden="true"><span>Auto</span><span>2 of 3 approve</span><span>Blocked</span></div>
+              <p class="try-out" id="try-out" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="developers">
+    <div class="wrap">
+      <div class="sec-top"><span class="eyebrow">Developers</span><span class="meta">TypeScript SDK · REST</span></div>
+      <div class="g12 dev-grid">
+        <div class="dev-copy">
+          <h2>Bring your own agents.</h2>
+          <p class="lede">Run crews from your own code with the SDK or REST API, or register agents you already built. Policies, approvals and receipts work the same way for both.</p>
+          <ul class="links">
+            <li><a class="link" href="#faq">Read the docs <span class="arr" aria-hidden="true">→</span></a></li>
+            <li><a class="link" href="#faq">API reference <span class="arr" aria-hidden="true">→</span></a></li>
+            <li><a class="link" href="#faq">Quickstart <span class="arr" aria-hidden="true">→</span></a></li>
+          </ul>
+        </div>
+        <figure class="code dev-code rv">
+          <div class="code-head"><span>crew.ts</span><button class="btn" id="copy-code" type="button">Copy</button></div>
+<pre id="sdk-code"><span class="k">import</span> { Tessera } <span class="k">from</span> "@tessera/sdk";
+
+<span class="k">const</span> tessera = <span class="k">new</span> Tessera({ key: process.env.TESSERA_KEY });
+
+<span class="k">const</span> crew = <span class="k">await</span> tessera.crews.create({
+  brief: "Pay approved invoices under $5,000 every Friday.",
+  policy: "friday-payouts",
+  approvers: ["cfo@acme.com", "controller@acme.com"],
+});
+
+crew.on("approval", (req) =&gt; notify(req.summary));
+crew.on("receipt", (r) =&gt; console.log(r.chain, r.txHash));</pre>
+          <div class="out"><pre><span class="c">→ approval</span>  11 payments · $38,420 · waiting for cfo, controller
+<span class="c">→ receipt</span>   base · <span class="hash">0x7c1e…a9d4</span></pre></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="use-cases">
+    <div class="wrap">
+      <div class="sec-top"><span class="eyebrow">Use cases</span><span class="meta">4 teams</span></div>
+      <div class="g12 uc">
+        <!-- IMAGE SLOTS: one per use case, they cross-fade as you hover the list -->
+        <div class="uc-stack" aria-hidden="true">
+          <figure class="slot active"><img src="./assets/glass-grid.webp" alt="Mirrored grid representing coordinated finance operations" width="1800" height="1197" decoding="async"></figure>
+          <figure class="slot"><img src="./assets/concrete-rhythm.webp" alt="Repeating concrete modules representing structured procurement" width="1800" height="1200" decoding="async"></figure>
+          <figure class="slot"><img src="./assets/server-detail.webp" alt="Network infrastructure representing controlled access" width="1800" height="1200" decoding="async"></figure>
+          <figure class="slot"><img src="./assets/marble-dialogue.webp" alt="Two marble figures representing coordinated governance" width="1260" height="1800" decoding="async"></figure>
+        </div>
+        <div class="uc-body">
+          <h2>Built for teams that move money and make decisions.</h2>
+          <ul class="uc-list" id="uc-list">
+            <li class="active"><a href="#request"><h3>Finance and treasury</h3><span class="arrow" aria-hidden="true">→</span><p>Scheduled payouts, reconciliation and cash sweeps, with approvals where you want them.</p></a></li>
+            <li><a href="#request"><h3>Procurement</h3><span class="arrow" aria-hidden="true">→</span><p>Quotes, purchase orders and escrow that releases on confirmed delivery.</p></a></li>
+            <li><a href="#request"><h3>Compliance and risk</h3><span class="arrow" aria-hidden="true">→</span><p>Screening, evidence collection and sign-offs anchored to a tamper-proof record.</p></a></li>
+            <li><a href="#request"><h3>Protocol and DAO operations</h3><span class="arrow" aria-hidden="true">→</span><p>Grants, payroll and treasury moves that follow the governance rules you voted on.</p></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="sec-top"><span class="eyebrow">FAQ</span><span class="meta">6 answers</span></div>
+      <div class="g12 faq-grid">
+        <div class="faq-left">
+          <h2>Questions, answered.</h2>
+          <p class="lede">Something missing? Request access and we will answer it on a call.</p>
+          <div><a class="link" href="#request">Talk to us <span class="arr" aria-hidden="true">→</span></a></div>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>Does my team need to know anything about crypto?</summary>
+            <p>No. People sign in with email, SSO or a passkey. Tessera manages keys, network fees and chain selection. Your team sees dollars, vendors and approvals.</p>
+          </details>
+          <details>
+            <summary>Where do the funds sit?</summary>
+            <p>In smart accounts that your organisation controls. Agents hold scoped keys that can spend only within the limits in your policy. Tessera cannot move your funds outside those limits.</p>
+          </details>
+          <details>
+            <summary>What happens if an agent makes a mistake?</summary>
+            <p>Caps and allowlists limit the damage before it happens. Anything above your threshold waits for a person. You can pause a crew at any time, and each receipt shows which policy allowed the action.</p>
+          </details>
+          <details>
+            <summary>Which chains do you support?</summary>
+            <p>Ethereum and the major layer 2 networks, plus Solana. You write a policy once and it applies on every chain you enable.</p>
+          </details>
+          <details>
+            <summary>Can I use agents I already built?</summary>
+            <p>Yes. Register them through the SDK and they run under the same policies, approvals and receipts as Tessera's own agents.</p>
+          </details>
+          <details>
+            <summary>How is pricing set?</summary>
+            <p>Plans are based on the number of crews and monthly runs. Network fees are passed through at cost. Request access and we will send current pricing.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="request">
+    <div class="wrap">
+      <div class="cta rv">
+        <div class="cta-copy">
+          <h2>Put your first crew to work this week.</h2>
+          <p class="lede">Request access and we will set up a workspace with you, using sample data or your own.</p>
+          <form id="request-form" novalidate>
+            <input id="email" type="email" name="email" placeholder="Work email" autocomplete="email" aria-label="Work email" required>
+            <button class="btn btn-primary" type="submit">Request access <span class="arr" aria-hidden="true">→</span></button>
+          </form>
+          <p class="done" id="request-done" role="status" hidden>Thanks. We will be in touch at the address you entered.</p>
+          <ol class="next">
+            <li><b>We set up a workspace</b><span>With sample data or your own.</span></li>
+            <li><b>You connect your tools</b><span>Sign-in, networks and the apps your team uses.</span></li>
+            <li><b>Your first crew goes live</b><span>Under the limits you wrote.</span></li>
+          </ol>
+        </div>
+        <!-- IMAGE SLOT: closing image -->
+        <figure class="slot px"><img src="./assets/marble-dialogue.webp" alt="Two marble figures in conversation" width="1260" height="1800" decoding="async"><a class="img-credit" href="https://www.pexels.com/search/marble%20sculpture/" target="_blank" rel="noreferrer">Pexels</a></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <!-- IMAGE SLOT: footer banner -->
+    <figure class="slot px rv"><img src="./assets/water-infrastructure.webp" alt="Industrial structure extending across calm water" width="1350" height="1800" decoding="async"><a class="img-credit" href="https://www.pexels.com/search/water%20industry/" target="_blank" rel="noreferrer">Pexels</a></figure>
+    <div class="g12 foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top">
+          <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+            <rect x="1" y="1" width="9" height="9" rx="2.5" fill="currentColor"/>
+            <rect x="12" y="1" width="9" height="9" rx="2.5" fill="currentColor" opacity="0.3"/>
+            <rect x="1" y="12" width="9" height="9" rx="2.5" fill="currentColor" opacity="0.3"/>
+            <rect x="12" y="12" width="9" height="9" rx="2.5" fill="currentColor"/>
+          </svg>
+          Tessera
+        </a>
+        <p>Agentic workflows, settled on-chain. Built for teams that want the speed of automation and the proof of a public record.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h3>Platform</h3>
+          <ul>
+            <li><a href="#how-it-works">How it works</a></li>
+            <li><a href="#access">Access</a></li>
+            <li><a href="#security">Security</a></li>
+            <li><a href="#use-cases">Use cases</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Developers</h3>
+          <ul>
+            <li><a href="#developers">Docs</a></li>
+            <li><a href="#developers">API reference</a></li>
+            <li><a href="#developers">SDK</a></li>
+            <li><a href="#developers">Status</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Company</h3>
+          <ul>
+            <li><a href="#request">About</a></li>
+            <li><a href="#request">Careers</a></li>
+            <li><a href="#request">Press</a></li>
+            <li><a href="#request">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Tessera Labs. All rights reserved.</span>
+      <span>Privacy · Terms · Security disclosures · Photography from Pexels and Unsplash</span>
+    </div>
+    <div class="wordmark" aria-hidden="true"><span>Tessera</span></div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ---------- Header: border on scroll, active section ---------- */
+  var header = $("site-header");
+  function onScroll() { header.classList.toggle("scrolled", window.scrollY > 8); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  var links = {};
+  document.querySelectorAll("#nav-links a").forEach(function (a) { links[a.getAttribute("href").slice(1)] = a; });
+  if ("IntersectionObserver" in window) {
+    var navIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        Object.keys(links).forEach(function (k) { links[k].removeAttribute("aria-current"); });
+        var l = links[en.target.id];
+        if (l) l.setAttribute("aria-current", "true");
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    Object.keys(links).forEach(function (k) { var s = $(k); if (s) navIO.observe(s); });
+  }
+
+  var menuBtn = $("menu-btn");
+  menuBtn.addEventListener("click", function () {
+    var open = header.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  document.querySelectorAll("#nav-links a").forEach(function (a) {
+    a.addEventListener("click", function () {
+      header.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  /* ---------- Networks marquee ---------- */
+  var list = $("marquee-list"), track = $("marquee-track"), marquee = $("marquee");
+  if (list && !reduce) {
+    for (var c = 0; c < 3; c++) {
+      var clone = list.cloneNode(true);
+      clone.removeAttribute("id");
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    }
+    marquee.classList.add("on");
+  }
+
+  /* ---------- Why on-chain: words warm up with scroll ---------- */
+  var why = $("why-text");
+  var spans = [];
+  if (why) {
+    var words = why.textContent.trim().split(/\s+/);
+    why.innerHTML = words.map(function (w) { return '<span class="wd">' + w + "</span>"; }).join(" ");
+    spans = Array.prototype.slice.call(why.querySelectorAll(".wd"));
+  }
+  var ticking = false;
+  function scrub() {
+    ticking = false;
+    if (!why) return;
+    var r = why.getBoundingClientRect(), vh = window.innerHeight;
+    var start = vh * 0.92, end = vh * 0.4;
+    var p = (start - r.top) / ((start - end) + r.height);
+    p = Math.max(0, Math.min(1, p));
+    var n = spans.length;
+    spans.forEach(function (s, i) {
+      var o = Math.max(0, Math.min(1, (p * (n + 5) - i) / 5));
+      s.style.opacity = (0.22 + 0.78 * o).toFixed(3);
+    });
+  }
+  if (!reduce) {
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(scrub); } }, { passive: true });
+    window.addEventListener("resize", scrub);
+    scrub();
+  }
+
+  /* ---------- Example run ---------- */
+  var DEMOS = {
+    treasury: {
+      id: "Run 2481",
+      prompt: "Every Friday, pay approved invoices under $5,000. Hold anything new for me.",
+      steps: [
+        { a: "Intake", t: "Read 14 invoices from the shared inbox and matched them to vendors.", ts: "09:00:02" },
+        { a: "Policy", t: "11 invoices are within the $5,000 cap and on the approved list. 3 were held for review.", ts: "09:00:05" },
+        { a: "Treasury", t: "Prepared 11 USDC payments totalling $38,420.", ts: "09:00:08" }
+      ],
+      gate: { t: "Approve this batch of 11 payments?", btn: "Approve batch" },
+      done: { t: "Batch approved by you.", ts: "09:00:19" },
+      after: { a: "Treasury", t: "Settled 11 payments on Base and filed the receipts to your ledger.", ts: "09:00:31" },
+      receipt: { chain: "Base", tx: "0x7c1e…a9d4", block: "24,118,902", by: "treasury-01 · friday-payouts v3" }
+    },
+    procurement: {
+      id: "Run 1107",
+      prompt: "Reorder lab supplies when stock drops below 20%. Get three quotes and pick the cheapest one in stock.",
+      steps: [
+        { a: "Inventory", t: "Nitrile gloves are at 14% of par level, below the 20% trigger.", ts: "14:12:40" },
+        { a: "Sourcing", t: "Requested quotes from 3 approved suppliers.", ts: "14:12:44" },
+        { a: "Pricing", t: "Supplier B is cheapest and in stock at $212 per case.", ts: "14:13:02" }
+      ],
+      gate: { t: "Approve a purchase order for 40 cases, $8,480?", btn: "Approve order" },
+      done: { t: "Order approved by you.", ts: "14:15:27" },
+      after: { a: "Escrow", t: "Locked $8,480 in escrow. Funds release when delivery is confirmed.", ts: "14:15:41" },
+      receipt: { chain: "Arbitrum", tx: "0x31b8…e07c", block: "291,447,018", by: "procurement-02 · lab-supplies v1" }
+    },
+    compliance: {
+      id: "Run 3392",
+      prompt: "Screen every outbound payment over $1,000 against sanctions lists and keep a record of each check.",
+      steps: [
+        { a: "Monitor", t: "Found 6 outbound payments over $1,000 since yesterday.", ts: "08:30:11" },
+        { a: "Screening", t: "Checked every counterparty against sanctions lists. 5 clear, 1 flagged.", ts: "08:30:19" },
+        { a: "Records", t: "Wrote an evidence file for each check.", ts: "08:30:24" }
+      ],
+      gate: { t: "Review the flagged payment and sign off on this batch?", btn: "Sign off" },
+      done: { t: "Batch signed off by you.", ts: "08:41:03" },
+      after: { a: "Records", t: "Sign-off recorded. Evidence hashes are anchored on-chain.", ts: "08:41:12" },
+      receipt: { chain: "Ethereum", tx: "0xa4d2…5b19", block: "21,904,336", by: "compliance-01 · sanctions-screen v2" }
+    }
+  };
+
+  var current = "treasury", approved = {}, timers = [], played = false;
+  var tabs = document.querySelectorAll(".tab");
+  var promptEl = $("run-prompt"), logEl = $("run-log"), receiptEl = $("run-receipt");
+  var statusEl = $("run-status"), statusText = $("run-status-text"), bar = $("run-progress"), idEl = $("run-id");
+
+  function stopTimers() { timers.forEach(clearTimeout); timers = []; }
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+
+  function row(kind, agent, text, time, extra, enter) {
+    return '<li class="log-row' + (enter ? " enter" : "") + '"><span class="dot ' + kind + '" aria-hidden="true"></span>' +
+      '<div><div class="agent">' + agent + '</div><p class="log-text">' + text + "</p>" + (extra || "") + "</div>" +
+      '<span class="time">' + time + "</span></li>";
+  }
+  function gateRow(d, enter) {
+    return row("wait", "You", d.gate.t, "Waiting", '<button class="btn btn-primary btn-sm" type="button" data-approve>' + d.gate.btn + "</button>", enter);
+  }
+  function setStatus(s) {
+    var map = { running: "Running", waiting: "Waiting for you", settled: "Settled" };
+    statusEl.setAttribute("data-state", s);
+    statusText.textContent = map[s];
+  }
+  function setProgress(p) { bar.style.width = Math.round(p * 100) + "%"; }
+  function pendingReceipt() {
+    return '<div class="receipt"><div class="receipt-title">On-chain receipt</div><p>The receipt appears here once the run settles.</p></div>';
+  }
+  function scramble(el, finalText) {
+    if (reduce) { el.textContent = finalText; return; }
+    var hex = "0123456789abcdef", t0 = performance.now(), dur = 750;
+    (function tick(now) {
+      var p = Math.min(1, ((now || performance.now()) - t0) / dur), out = "";
+      for (var i = 0; i < finalText.length; i++) {
+        var ch = finalText.charAt(i);
+        out += (i < 2 || ch === "…" || i / finalText.length < p) ? ch : hex.charAt(Math.floor(Math.random() * 16));
+      }
+      el.textContent = out;
+      if (p < 1) requestAnimationFrame(tick); else el.textContent = finalText;
+    })(t0);
+  }
+  function receiptHtml(r, animate) {
+    return '<div class="receipt ok' + (animate ? " enter" : "") + '"><div class="receipt-title">On-chain receipt</div>' +
+      '<dl><dt>Network</dt><dd>' + r.chain + "</dd>" +
+      '<dt>Transaction</dt><dd class="hash" id="run-hash">' + r.tx + "</dd>" +
+      "<dt>Block</dt><dd>" + r.block + "</dd>" +
+      "<dt>Signed by</dt><dd>" + r.by + "</dd></dl></div>";
+  }
+
+  /* Static render of the current workflow in its current state */
+  function render(animate) {
+    var d = DEMOS[current], ok = !!approved[current];
+    idEl.textContent = d.id;
+    promptEl.textContent = d.prompt;
+    var html = d.steps.map(function (s) { return row("done", s.a, s.t, s.ts); }).join("");
+    if (ok) {
+      html += row("done", "You", d.done.t, d.done.ts, "", animate);
+      html += row("settled", d.after.a, d.after.t, d.after.ts, "", animate);
+      receiptEl.innerHTML = receiptHtml(d.receipt, animate);
+      if (animate) scramble($("run-hash"), d.receipt.tx);
+      setStatus("settled"); setProgress(1);
+    } else {
+      html += gateRow(d, false);
+      receiptEl.innerHTML = pendingReceipt();
+      setStatus("waiting"); setProgress(0.8);
+    }
+    logEl.innerHTML = html;
+  }
+
+  /* Live playback: the brief types out, then each agent reports in */
+  function play() {
+    stopTimers();
+    logEl.style.minHeight = "";
+    render(false);
+    if (reduce || approved[current]) return;
+    var d = DEMOS[current];
+    logEl.style.minHeight = logEl.offsetHeight + "px";
+    logEl.innerHTML = "";
+    receiptEl.innerHTML = pendingReceipt();
+    setStatus("running"); setProgress(0.04);
+    promptEl.textContent = "";
+    var i = 0, text = d.prompt, step = Math.max(10, Math.floor(750 / text.length));
+    (function typeNext() {
+      i++;
+      promptEl.textContent = text.slice(0, i);
+      if (i < text.length) { later(typeNext, step); return; }
+      var total = d.steps.length + 2;
+      d.steps.forEach(function (s, k) {
+        later(function () {
+          logEl.insertAdjacentHTML("beforeend", row("done", s.a, s.t, s.ts, "", true));
+          setProgress((k + 1) / total);
+        }, 250 + k * 520);
+      });
+      later(function () {
+        logEl.insertAdjacentHTML("beforeend", gateRow(d, true));
+        setStatus("waiting"); setProgress((d.steps.length + 1) / total);
+      }, 250 + d.steps.length * 520);
+    })();
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      current = tab.getAttribute("data-demo");
+      tabs.forEach(function (t) { t.setAttribute("aria-selected", t === tab ? "true" : "false"); });
+      play();
+    });
+  });
+  logEl.addEventListener("click", function (e) {
+    if (e.target.closest("[data-approve]")) {
+      stopTimers();
+      approved[current] = true;
+      render(true);
+    }
+  });
+  render(false);
+
+  var consoleEl = document.querySelector(".console");
+  if ("IntersectionObserver" in window && consoleEl) {
+    var runIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && !played) { played = true; play(); runIO.disconnect(); }
+      });
+    }, { threshold: 0.35 });
+    runIO.observe(consoleEl);
+  }
+
+  /* ---------- Try a payment ---------- */
+  var range = $("try-range"), amt = $("try-amt"), out = $("try-out"), tryEl = $("try");
+  var MSG = {
+    auto: "<strong>The agent pays it on its own.</strong> It is inside the auto limit, so it settles at once and writes a receipt.",
+    approve: "<strong>Held for approval.</strong> Two of three signers (cfo, controller, ops) must sign before it settles.",
+    block: "<strong>Blocked.</strong> It is above the hard limit. The attempt is recorded on-chain and nothing moves."
+  };
+  function updateTry() {
+    var v = +range.value;
+    var zone = v <= 5000 ? "auto" : (v <= 25000 ? "approve" : "block");
+    amt.textContent = "$" + v.toLocaleString("en-US");
+    if (tryEl.getAttribute("data-zone") !== zone || !out.innerHTML) {
+      tryEl.setAttribute("data-zone", zone);
+      out.innerHTML = MSG[zone];
+    }
+  }
+  range.addEventListener("input", updateTry);
+  updateTry();
+
+  /* ---------- Use cases: image stack follows the list ---------- */
+  var ucItems = document.querySelectorAll("#uc-list li");
+  var ucSlots = document.querySelectorAll(".uc-stack .slot");
+  function setUc(i) {
+    ucItems.forEach(function (li, j) { li.classList.toggle("active", i === j); });
+    ucSlots.forEach(function (s, j) { s.classList.toggle("active", i === j); });
+  }
+  ucItems.forEach(function (li, i) {
+    li.addEventListener("mouseenter", function () { setUc(i); });
+    li.querySelector("a").addEventListener("focus", function () { setUc(i); });
+  });
+
+  /* ---------- Copy SDK snippet ---------- */
+  var copyBtn = $("copy-code"), codeEl = $("sdk-code");
+  copyBtn.addEventListener("click", function () {
+    function done(label) {
+      copyBtn.textContent = label;
+      setTimeout(function () { copyBtn.textContent = "Copy"; }, 1600);
+    }
+    function fallback() {
+      var range2 = document.createRange();
+      range2.selectNodeContents(codeEl);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range2);
+      done("Selected");
+    }
+    try { navigator.clipboard.writeText(codeEl.innerText).then(function () { done("Copied"); }, fallback); }
+    catch (err) { fallback(); }
+  });
+
+  /* ---------- Access form (front end only; connect to your own endpoint) ---------- */
+  var form = $("request-form"), thanks = $("request-done");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = $("email");
+    if (!email.value || email.value.indexOf("@") < 1) { email.focus(); return; }
+    form.hidden = true;
+    thanks.hidden = false;
+  });
+})();
+</script>
+
+</body></html>
