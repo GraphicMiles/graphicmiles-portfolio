@@ -6,7 +6,7 @@
 <title>Tessera - Agentic workflows with verifiable execution</title>
 <meta name="description" content="Tessera turns plain-language briefs into policy-bound agent workflows with on-chain receipts.">
 <meta name="theme-color" content="#f5f5f7">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%231d1d1f'/%3E%3Crect x='14' y='14' width='15' height='15' rx='4' fill='white'/%3E%3Crect x='35' y='14' width='15' height='15' rx='4' fill='white' opacity='.35'/%3E%3Crect x='14' y='35' width='15' height='15' rx='4' fill='white' opacity='.35'/%3E%3Crect x='35' y='35' width='15' height='15' rx='4' fill='white'/%3E%3C/svg%3E">
 <style>
 @font-face{font-family:"Tessera Sans";font-style:normal;font-weight:100 900;font-display:swap;src:url("/fonts/InterTight-latin.woff2") format("woff2")}
@@ -19,6 +19,7 @@
   live state, receipts and links. Halftone image slots are the recurring motif.
 */
 :root {
+  color-scheme: light;
   --bg: #F5F5F7;
   --surface: #FFFFFF;
   --surface-2: #EDEDF1;
@@ -50,50 +51,7 @@
   --gap: clamp(16px, 2vw, 32px);
   interpolate-size: allow-keywords;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0A0A0B;
-    --surface: #161618;
-    --surface-2: #212125;
-    --ink: #F5F5F7;
-    --muted: #9B9BA3;
-    --line: rgba(245, 245, 247, 0.13);
-    --line-strong: rgba(245, 245, 247, 0.3);
-    --accent: #A594FF;
-    --accent-soft: rgba(165, 148, 255, 0.15);
-    --btn-bg: #F5F5F7;
-    --btn-fg: #0A0A0B;
-    --header-bg: rgba(10, 10, 11, 0.78);
-    --glass: rgba(22, 22, 24, 0.78);
-    --slot: #1C1C20;
-    --slot-dot: rgba(245, 245, 247, 0.18);
-    --sheet-shadow: none;
-    --inv-bg: #131315;
-    --inv-surface: #1D1D20;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0A0A0B;
-  --surface: #161618;
-  --surface-2: #212125;
-  --ink: #F5F5F7;
-  --muted: #9B9BA3;
-  --line: rgba(245, 245, 247, 0.13);
-  --line-strong: rgba(245, 245, 247, 0.3);
-  --accent: #A594FF;
-  --accent-soft: rgba(165, 148, 255, 0.15);
-  --btn-bg: #F5F5F7;
-  --btn-fg: #0A0A0B;
-  --header-bg: rgba(10, 10, 11, 0.78);
-  --glass: rgba(22, 22, 24, 0.78);
-  --slot: #1C1C20;
-  --slot-dot: rgba(245, 245, 247, 0.18);
-  --sheet-shadow: none;
-  --inv-bg: #131315;
-  --inv-surface: #1D1D20;
-  color-scheme: dark;
-}
+
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -135,11 +93,11 @@ figure { margin: 0; }
 /* Type */
 h1, h2, h3 { margin: 0; text-wrap: balance; }
 h2 {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.5rem, 5.6vw, 4.75rem);
+  font-family: var(--font-sans);
+  font-weight: 560;
+  font-size: clamp(2.35rem, 5vw, 4.35rem);
   line-height: 0.98;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.045em;
 }
 em { font-style: italic; }
 .lede { margin: 0; color: var(--muted); font-size: clamp(1.0625rem, 1.4vw, 1.25rem); line-height: 1.45; max-width: 32rem; text-wrap: pretty; }
@@ -159,7 +117,7 @@ em { font-style: italic; }
 .sec-head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gap); row-gap: 24px; align-items: end; margin-bottom: clamp(48px, 7vw, 104px); }
 .sec-head h2 { grid-column: 1 / span 8; }
 .sec-head .lede { grid-column: 9 / span 4; padding-bottom: 0.5em; }
-.section { padding-top: clamp(88px, 12vw, 176px); scroll-margin-top: 56px; }
+.section { padding-top: clamp(84px, 10vw, 144px); scroll-margin-top: 56px; }
 
 /* Buttons */
 .btn {
@@ -264,17 +222,14 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 /* Networks marquee */
 .nets { display: flex; align-items: center; gap: clamp(20px, 3vw, 48px); padding-top: clamp(28px, 4vw, 44px); }
 .nets .k { flex: none; font: 500 0.75rem var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-.marquee { flex: 1; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-.marquee-track { display: flex; width: max-content; }
-.marquee-list { display: flex; flex: none; gap: clamp(36px, 5vw, 64px); padding-right: clamp(36px, 5vw, 64px); margin: 0; list-style: none; }
-.marquee-list li { font-family: var(--font-display); font-size: 1.75rem; line-height: 1; white-space: nowrap; }
-.marquee.on .marquee-track { animation: marquee 40s linear infinite; }
-.marquee:hover .marquee-track { animation-play-state: paused; }
+.network-list { flex: 1; min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: clamp(18px, 3vw, 36px); }
+.network { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; color: var(--muted); font-size: .875rem; font-weight: 550; }
+.network svg, .network img { width: 20px; height: 20px; flex: none; object-fit: contain; fill: currentColor; filter: grayscale(1); }
 
 /* Why on-chain: words warm up as you scroll */
 .why { row-gap: 20px; }
 .why .eyebrow { grid-column: 1 / span 3; padding-top: 1.1em; }
-.why-text { grid-column: 4 / span 9; margin: 0; font-family: var(--font-display); font-size: clamp(2rem, 4.2vw, 3.75rem); line-height: 1.1; letter-spacing: -0.014em; text-wrap: pretty; }
+.why-text { grid-column: 4 / span 8; margin: 0; font-family: var(--font-display); font-size: clamp(2rem, 3.8vw, 3.35rem); line-height: 1.1; letter-spacing: -0.014em; text-wrap: pretty; }
 .why-text .wd { transition: opacity 0.25s ease; }
 .why-link { grid-column: 4 / span 9; margin-top: 12px; }
 .link { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; color: var(--accent); text-decoration: none; }
@@ -285,9 +240,9 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 .steps { align-items: start; row-gap: 56px; }
 .step { display: flex; flex-direction: column; gap: 22px; }
 .step:nth-child(1) { grid-column: 1 / span 4; }
-.step:nth-child(2) { grid-column: 5 / span 4; margin-top: clamp(56px, 8vw, 128px); }
-.step:nth-child(3) { grid-column: 9 / span 4; margin-top: clamp(112px, 16vw, 256px); }
-.step .slot { --ar: 4 / 5; }
+.step:nth-child(2) { grid-column: 5 / span 4; }
+.step:nth-child(3) { grid-column: 9 / span 4; }
+.step .slot { --ar: 4 / 3; }
 .step-meta { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 .step-num { font-family: var(--font-display); font-style: italic; font-size: clamp(3.5rem, 6vw, 5.25rem); line-height: 0.75; letter-spacing: -0.02em; }
 .step-tag { font: 500 0.75rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
@@ -305,8 +260,8 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 .run-copy .note { font: 400 0.75rem var(--font-mono); color: var(--muted); letter-spacing: 0.03em; }
 .console { grid-column: 7 / span 6; min-width: 0; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--sheet-shadow); }
 .console-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; padding: 12px 14px; }
-.tabs { display: flex; gap: 2px; padding: 4px; border-radius: 999px; background: var(--surface-2); }
-.tab { border: 0; background: transparent; color: var(--muted); font: 500 0.875rem/1 var(--font-sans); padding: 9px 15px; border-radius: 999px; cursor: pointer; transition: background-color 0.25s ease, color 0.25s ease; }
+.tabs { display: flex; max-width: 100%; overflow-x: auto; scrollbar-width: none; gap: 2px; padding: 4px; border-radius: 999px; background: var(--surface-2); }
+.tab { flex: none; border: 0; background: transparent; color: var(--muted); font: 500 0.875rem/1 var(--font-sans); padding: 9px 15px; border-radius: 999px; cursor: pointer; transition: background-color 0.25s ease, color 0.25s ease; }
 .tab[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.14); }
 .status { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; font: 500 0.6875rem/1 var(--font-mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
 .status[data-state="settled"] .live-dot { animation: none; }
@@ -416,16 +371,13 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 
 /* Use cases */
 .uc { align-items: start; }
-.uc-stack { grid-column: 1 / span 5; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); position: sticky; aspect-ratio: 4 / 5; border-radius: 24px; overflow: hidden; }
-.uc-stack .slot { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; opacity: 0; transition: opacity 0.6s ease; }
-.uc-stack .slot.active { opacity: 1; }
-.uc-body { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: clamp(32px, 4vw, 56px); }
+.uc-body { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,5fr) minmax(0,6fr); gap: clamp(40px,7vw,104px); align-items:start; }
 .uc-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
 .uc-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; padding: 30px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
-.uc-list h3 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.875rem, 3.2vw, 2.75rem); line-height: 1.02; letter-spacing: -0.012em; color: var(--muted); transition: color 0.3s ease, translate 0.4s var(--ease); }
+.uc-list h3 { font-family: var(--font-sans); font-weight: 520; font-size: clamp(1.875rem, 3.2vw, 2.75rem); line-height: 1.02; letter-spacing: -0.012em; color: var(--muted); transition: color 0.18s ease; }
 .uc-list p { grid-column: 1; margin: 0; color: var(--muted); max-width: 32rem; text-wrap: pretty; }
-.uc-list .arrow { grid-column: 2; grid-row: 1; align-self: center; color: var(--muted); font-size: 1.375rem; transition: translate 0.4s var(--ease), color 0.3s ease; }
-.uc-list li.active h3 { color: var(--ink); translate: 10px 0; }
+.uc-list .arrow { grid-column: 2; grid-row: 1; align-self: center; color: var(--muted); font-size: 1.375rem; transition: translate 0.25s var(--ease), color 0.18s ease; }
+.uc-list li.active h3 { color: var(--ink); }
 .uc-list li.active .arrow { color: var(--accent); translate: 6px 0; }
 
 /* FAQ */
@@ -485,7 +437,6 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 @keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -6px; } }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 var(--accent-soft), 0 0 0 0 var(--accent-soft); } 70% { box-shadow: 0 0 0 7px rgba(81, 41, 217, 0), 0 0 0 7px rgba(81, 41, 217, 0); } 100% { box-shadow: 0 0 0 0 rgba(81, 41, 217, 0); } }
 @keyframes enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-@keyframes marquee { to { transform: translateX(-25%); } }
 @keyframes rv { from { opacity: 0.2; transform: translateY(40px); } to { opacity: 1; transform: none; } }
 @keyframes drift { from { transform: translateY(-5%) scale(1.12); } to { transform: translateY(5%) scale(1.12); } }
 
@@ -501,9 +452,8 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
   .why .eyebrow { padding-top: 0; }
   .step:nth-child(n) { grid-column: 1 / -1; margin-top: 0; }
   .step .slot { --ar: 16 / 10; }
-  .run-copy, .console, .dev-copy, .dev-code, .uc-stack, .uc-body, .faq-left, .faq, .foot-brand, .foot-cols { grid-column: 1 / -1; }
-  .run-copy, .uc-stack, .faq-left { position: static; }
-  .uc-stack { aspect-ratio: 4 / 3; margin-bottom: 40px; }
+  .run-copy, .console, .dev-copy, .dev-code, .uc-body, .faq-left, .faq, .foot-brand, .foot-cols { grid-column: 1 / -1; }
+  .run-copy, .faq-left { position: static; }
   .run-grid, .dev-grid, .uc, .faq-grid { row-gap: 40px; }
   .inv-copy, .inv-side { grid-column: 1 / -1; }
   .inv-grid { row-gap: 40px; }
@@ -525,8 +475,10 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 @media (max-width: 720px) {
   .hero .slot { --ar: 4 / 3; }
   .chip-right { display: none; }
-  .nets { flex-direction: column; align-items: flex-start; gap: 14px; }
-  .nets .marquee { width: 100%; flex: none; }
+  .nets { flex-direction: column; align-items: stretch; gap: 16px; }
+  .network-list { width: 100%; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px 10px; }
+  .network { gap: 7px; font-size: .75rem; }
+  .network svg, .network img { width: 18px; height: 18px; }
   .t-b, .t-c { grid-column: span 12; }
   .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .site-footer .slot { --ar: 16 / 9; }
@@ -537,8 +489,18 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
   .log-row { grid-template-columns: 14px minmax(0, 1fr); }
   .time { grid-column: 2; margin-top: -4px; }
   .console-head { padding: 10px; }
-  .tab { padding: 9px 11px; }
+  .tab { padding: 8px 8px; font-size: .75rem; }
   .zlabels { font-size: 0.625rem; }
+  .inv { padding: 20px; border-radius: 24px; }
+  .inv-grid { row-gap: 24px; }
+  .inv-copy { gap: 16px; }
+  .ctls { margin-top: 6px; }
+  .ctls li { padding: 14px 0; }
+  .inv .code pre { max-height: 16rem; }
+  .try { padding: 18px 16px 20px; }
+  .try-amt { font-size: 2.2rem; }
+  .cta .slot { display: none; }
+  .cta-copy { padding: 24px 20px; }
 }
 
 .skip-link{position:fixed;top:-4rem;left:1rem;z-index:100;padding:.65rem 1rem;border-radius:999px;background:var(--ink);color:var(--surface);font-weight:600;text-decoration:none;transition:top 150ms ease-out}.skip-link:focus{top:1rem}
@@ -549,13 +511,14 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 @media(hover:hover){.slot:hover .img-credit{opacity:1}}
 
 @media (max-width: 720px) {
-  .wrap { padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: max(14px, env(safe-area-inset-right, 0px)); }
+  .wrap { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .hero .wrap { padding-inline: 0; }
   .nav { height: 58px; gap: 8px; }
   .brand { gap: 8px; font-size: 1rem; }
   .nav-actions { gap: 6px; }
   .nav-actions .btn { height: 38px; padding-inline: 15px; }
-  .sheet { padding: 34px 14px 14px; border-radius: 22px; }
-  .hero-copy { padding-inline: 4px; }
+  .sheet { padding: 38px 20px 20px; border-radius: 0 0 24px 24px; border-inline: 0; }
+  .hero-copy { padding-inline: 0; }
   h1 { margin-top: 20px; font-size: clamp(2.65rem, 11vw, 3.35rem); line-height: .94; }
   .hero-sub { margin-top: 18px; font-size: 1rem; }
   .hero-actions { margin-top: 24px; }
@@ -567,14 +530,21 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
   .section { padding-top: 72px; }
   .sec-top { margin-bottom: 32px; padding-top: 12px; }
   .sec-head { margin-bottom: 38px; row-gap: 16px; }
-  .steps { row-gap: 48px; }
-  .step { gap: 17px; }
-  .step .slot { --ar: 16 / 11; }
+  .steps { display: grid; grid-template-columns: minmax(0,1fr); gap: 18px; padding: 0; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .step:nth-child(n) { display: grid; grid-template-columns: 6.25rem minmax(0,1fr); grid-template-rows: auto auto 1fr; gap: 8px 16px; margin: 0; }
+  .step .slot { grid-column: 1; grid-row: 1 / span 3; --ar: auto; height: 100%; min-height: 10.5rem; border-radius: 15px; }
+  .step-meta, .step h3, .step p { grid-column: 2; }
+  .step-meta { align-items: center; padding-bottom: 8px; }
+  .step-num { font-size: 2.35rem; line-height: .8; }
+  .step h3 { margin: 0; font-size: 1.15rem; }
+  .step p { font-size: .9rem; line-height: 1.45; }
+  .bento { display: grid; grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .bento .tile { grid-column: 1 / -1; min-height: 0; padding: 22px; }
+  .tile .slot { min-height: 11rem; max-height: 13rem; }
   .run-grid, .dev-grid, .faq-grid { row-gap: 30px; }
-  .uc { display: flex; flex-direction: column; gap: 24px; }
-  .uc-stack { position: relative; top: auto; grid-column: 1 / -1; grid-row: 1; width: 100%; aspect-ratio: 16 / 10; margin: 0; border-radius: 18px; }
-  .uc-stack .slot img { object-position: center; }
-  .uc-body { grid-column: 1 / -1; grid-row: 2; }
+  .uc { display: block; }
+  .uc-body { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 28px; }
   .uc-body h2 { margin-bottom: 26px; }
   .uc-list li a { padding-block: 22px; }
   .cta { padding: 22px; border-radius: 22px; }
@@ -582,6 +552,18 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
   .site-footer .slot { --ar: 16 / 8; }
   .hero-copy *, .hero .slot { animation-duration: .01ms !important; animation-delay: 0s !important; }
 }
+
+@media (min-width: 360px) and (max-width: 720px) {
+  .bento { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .bento .tile { grid-column: auto; }
+  .bento .t-a, .bento .t-d { grid-column: 1 / -1; }
+  .bento .t-b, .bento .t-c { padding: 18px; }
+  .bento .t-b h3, .bento .t-c h3 { font-size: 1.2rem; }
+  .bento .t-b p, .bento .t-c p { font-size: .875rem; }
+  .bento .t-b .lines { padding-top: 14px; font-size: .68rem; }
+  .bento .t-c .chiplist li { padding: 7px 10px; font-size: .78rem; }
+}
+
 @media (prefers-reduced-transparency: reduce) {
   .site-header, .chip { backdrop-filter: none; -webkit-backdrop-filter: none; background: var(--surface); }
 }
@@ -635,9 +617,9 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
             <a class="btn btn-ghost" href="#live-run">See a run</a>
           </div>
           <ul class="hero-facts">
-            <li>No wallet</li>
-            <li>No gas</li>
-            <li>No seed phrase</li>
+            <li>Policy-bound</li>
+            <li>Human approvals</li>
+            <li>Verifiable receipts</li>
           </ul>
         </div>
 
@@ -657,12 +639,13 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 
       <div class="nets">
         <span class="k">Settles on</span>
-        <div class="marquee" id="marquee" aria-label="Supported networks">
-          <div class="marquee-track" id="marquee-track">
-            <ul class="marquee-list" id="marquee-list">
-              <li>Ethereum</li><li>Base</li><li>Arbitrum</li><li>Optimism</li><li>Solana</li><li>Polygon</li>
-            </ul>
-          </div>
+        <div class="network-list" aria-label="Supported networks">
+          <span class="network"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.944 17.97L4.58 13.62 11.943 24l7.37-10.38-7.372 4.35h.003zM12.056 0L4.69 12.223l7.365 4.354 7.365-4.35L12.056 0z"/></svg>Ethereum</span>
+          <span class="network"><img src="./assets/base.png" alt="">Base</span>
+          <span class="network"><img src="./assets/arbitrum.svg" alt="">Arbitrum</span>
+          <span class="network"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0M9.61 8.705c1.47 0 2.424.75 2.424 1.998 0 .126-.015.286-.045.478-.09.54-.198 1.06-.324 1.559-.408 1.633-1.463 2.45-3.164 2.45-1.56 0-2.43-.72-2.43-1.964 0-.132.015-.294.045-.486.078-.432.19-.952.334-1.559.408-1.651 1.461-2.476 3.16-2.476m4.17.09h2.396c1.46 0 2.214.536 2.214 1.611 0 .15-.019.307-.055.469-.3 1.38-1.221 2.027-2.763 2.027h-1.217l-.414 1.973c-.024.144-.114.225-.27.225h-1.224c-.144 0-.204-.084-.181-.225l1.244-5.856c.024-.144.114-.224.27-.224m-4.288 1.207c-.69 0-1.17.402-1.367 1.207-.108.402-.216.894-.324 1.477-.024.144-.037.27-.037.379 0 .552.289.828.865.828.69 0 1.17-.408 1.359-1.207.138-.564.242-1.056.314-1.477.024-.144.037-.273.037-.389 0-.546-.287-.818-.857-.818m5.45.045-.342 1.611h1.035c.528 0 .9-.264 1.035-.8.018-.102.027-.192.027-.27 0-.366-.225-.541-.676-.541z"/></svg>Optimism</span>
+          <span class="network"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m23.876 18.031-3.962 4.14a.94.94 0 0 1-.673.284H.46a.45.45 0 0 1-.336-.753l3.965-4.14a.94.94 0 0 1 .671-.284h18.78a.45.45 0 0 1 .336.753zm-3.962-8.335a.94.94 0 0 0-.673-.285H.46a.45.45 0 0 0-.336.754l3.965 4.139a.94.94 0 0 0 .671.285h18.78a.45.45 0 0 0 .336-.754zM.46 6.723h18.781a.94.94 0 0 0 .673-.285l3.962-4.14a.45.45 0 0 0-.336-.753H4.76a.94.94 0 0 0-.671.284L.124 5.969a.45.45 0 0 0 .336.754z"/></svg>Solana</span>
+          <span class="network"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m17.82 16.342 5.692-3.287A.98.98 0 0 0 24 12.21V5.635a.98.98 0 0 0-.488-.846l-5.693-3.286a.98.98 0 0 0-.977 0L11.15 4.789a.98.98 0 0 0-.489.846v11.747L6.67 19.686l-3.992-2.304v-4.61l3.992-2.304 2.633 1.52V8.896L7.158 7.658a.98.98 0 0 0-.977 0L.488 10.945A.98.98 0 0 0 0 11.791v6.573a.98.98 0 0 0 .488.847l5.693 3.286a.981.981 0 0 0 .977 0l5.692-3.286a.98.98 0 0 0 .489-.846V6.618l3.992-2.304 3.99 2.305v4.609l-3.99 2.304-2.63-1.517v3.092l2.14 1.236a.981.981 0 0 0 .978 0Z"/></svg>Polygon</span>
         </div>
       </div>
     </div>
@@ -671,7 +654,7 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
   <section class="section" id="why">
     <div class="wrap g12 why">
       <span class="eyebrow">Why on-chain</span>
-      <p class="why-text" id="why-text">Most automation asks you to trust it. Tessera asks the chain to vouch for it. Hand real work to a crew of agents and still know exactly what happened, who allowed it and what it cost.</p>
+      <p class="why-text" id="why-text">Automation becomes enterprise-ready when every action has an owner, a limit and a receipt. Tessera gives agents room to move while keeping people in control of the decisions that matter.</p>
       <div class="why-link"><a class="link" href="#how-it-works">See how it works <span class="arr" aria-hidden="true">→</span></a></div>
     </div>
   </section>
@@ -683,7 +666,7 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
         <h2>From a sentence to a settled transaction.</h2>
         <p class="lede">You describe the outcome. Tessera assembles the agents, sets the limits and records what happens.</p>
       </div>
-      <div class="g12 steps">
+      <div class="g12 steps" tabindex="0" aria-label="Three steps in the Tessera workflow">
         <article class="step rv" style="--i:0">
           <figure class="slot px"><img src="./assets/marble-figure.webp" alt="Classical marble figure in a dark museum gallery" width="1440" height="1800" decoding="async"><a class="img-credit" href="https://www.pexels.com/search/classical%20sculpture/" target="_blank" rel="noreferrer">Pexels</a></figure>
           <div class="step-meta"><span class="step-num">1</span><span class="step-tag">Describe</span></div>
@@ -713,11 +696,7 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
         <div class="run-copy">
           <h2>Watch a crew work.</h2>
           <p class="lede">Pick a workflow. The agents plan, check the policy and prepare the work. When your policy needs a person, the run waits for you.</p>
-          <ul class="notes">
-            <li><b>One job each</b><span>Agents are named for the task they own.</span></li>
-            <li><b>One limit each</b><span>Caps travel with the agent's key.</span></li>
-            <li><b>One receipt</b><span>Settlement writes proof anyone on your team can open.</span></li>
-          </ul>
+
         </div>
 
         <div class="console rv" aria-label="Example workflow run">
@@ -748,7 +727,7 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
         <h2>Nothing to install. Nothing to learn about wallets.</h2>
         <p class="lede">Your team signs in the way it signs in everywhere else. Keys, fees and chains are handled underneath.</p>
       </div>
-      <div class="bento">
+      <div class="bento" tabindex="0" aria-label="Four access and account capabilities">
         <article class="tile t-a rv" style="--i:0">
           <span class="kicker">Sign-in</span>
           <h3>Sign in like any other app</h3>
@@ -875,13 +854,6 @@ crew.on("receipt", (r) =&gt; console.log(r.chain, r.txHash));</pre>
     <div class="wrap">
       <div class="sec-top"><span class="eyebrow">Use cases</span><span class="meta">4 teams</span></div>
       <div class="g12 uc">
-        <!-- IMAGE SLOTS: one per use case, they cross-fade as you hover the list -->
-        <div class="uc-stack" aria-hidden="true">
-          <figure class="slot active"><img src="./assets/glass-grid.webp" alt="Mirrored grid representing coordinated finance operations" width="1800" height="1197" decoding="async"></figure>
-          <figure class="slot"><img src="./assets/concrete-rhythm.webp" alt="Repeating concrete modules representing structured procurement" width="1800" height="1200" decoding="async"></figure>
-          <figure class="slot"><img src="./assets/server-detail.webp" alt="Network infrastructure representing controlled access" width="1800" height="1200" decoding="async"></figure>
-          <figure class="slot"><img src="./assets/marble-dialogue.webp" alt="Two marble figures representing coordinated governance" width="1260" height="1800" decoding="async"></figure>
-        </div>
         <div class="uc-body">
           <h2>Built for teams that move money and make decisions.</h2>
           <ul class="uc-list" id="uc-list">
@@ -1056,18 +1028,6 @@ crew.on("receipt", (r) =&gt; console.log(r.chain, r.txHash));</pre>
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     document.querySelectorAll(".rv").forEach(function (el) { revealIO.observe(el); });
-  }
-
-  /* ---------- Networks marquee ---------- */
-  var list = $("marquee-list"), track = $("marquee-track"), marquee = $("marquee");
-  if (list && !reduce) {
-    for (var c = 0; c < 3; c++) {
-      var clone = list.cloneNode(true);
-      clone.removeAttribute("id");
-      clone.setAttribute("aria-hidden", "true");
-      track.appendChild(clone);
-    }
-    marquee.classList.add("on");
   }
 
   /* ---------- Why on-chain ---------- */
@@ -1257,18 +1217,6 @@ crew.on("receipt", (r) =&gt; console.log(r.chain, r.txHash));</pre>
   }
   range.addEventListener("input", updateTry);
   updateTry();
-
-  /* ---------- Use cases: image stack follows the list ---------- */
-  var ucItems = document.querySelectorAll("#uc-list li");
-  var ucSlots = document.querySelectorAll(".uc-stack .slot");
-  function setUc(i) {
-    ucItems.forEach(function (li, j) { li.classList.toggle("active", i === j); });
-    ucSlots.forEach(function (s, j) { s.classList.toggle("active", i === j); });
-  }
-  ucItems.forEach(function (li, i) {
-    li.addEventListener("mouseenter", function () { setUc(i); });
-    li.querySelector("a").addEventListener("focus", function () { setUc(i); });
-  });
 
   /* ---------- Copy SDK snippet ---------- */
   var copyBtn = $("copy-code"), codeEl = $("sdk-code");
