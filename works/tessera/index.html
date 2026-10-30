@@ -213,16 +213,10 @@ em { font-style: italic; }
   padding: clamp(48px, 8vw, 120px) clamp(14px, 3.5vw, 48px) clamp(14px, 3.5vw, 48px);
 }
 .hero-copy { max-width: 74rem; margin-inline: auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.pill {
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 8px 15px; border: 1px solid var(--line); border-radius: 999px;
-  font-size: 0.8125rem; color: var(--muted);
-  animation: fade-up 0.8s var(--ease) 0.05s both;
-}
 .live-dot { width: 7px; height: 7px; flex: none; border-radius: 50%; background: var(--accent); }
 .pulse { animation: pulse 2s ease-out infinite; }
 h1 {
-  margin-top: clamp(24px, 3vw, 36px);
+  margin-top: 0;
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(2.75rem, 7.1vw, 6.25rem);
   line-height: 0.95; letter-spacing: -0.022em;
@@ -423,7 +417,7 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 .uc { align-items: start; }
 .uc-stack { grid-column: 1 / span 5; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 96px); aspect-ratio: 1 / 1; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-1); }
 .uc-stack .slot { position: absolute; inset: 0; aspect-ratio: auto; border-radius: 0; opacity: 0; transition: opacity 0.6s ease; }
-.uc-stack .slot.active { opacity: 1; }
+.uc-stack .slot:first-child, .uc-stack .slot.active { opacity: 1; }
 .uc-body { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: clamp(32px, 4vw, 56px); }
 .uc-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
 .uc-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 24px; padding: 30px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
@@ -554,14 +548,14 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
 @media(hover:hover){.slot:hover .img-credit{opacity:1}}
 
 @media (max-width: 720px) {
-  .wrap { padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+  .wrap { padding-left: max(14px, env(safe-area-inset-left, 0px)); padding-right: max(14px, env(safe-area-inset-right, 0px)); }
   .nav { height: 58px; gap: 8px; }
   .brand { gap: 8px; font-size: 1rem; }
   .nav-actions { gap: 6px; }
   .nav-actions .btn { height: 38px; padding-inline: 15px; }
-  .sheet { padding: 38px 20px 20px; border-radius: 24px; }
-  .hero-copy { padding-inline: 4px; }
-  h1 { margin-top: 20px; font-size: clamp(2.65rem, 11vw, 3.35rem); line-height: .94; }
+  .sheet { padding: 32px 14px 14px; border-radius: 22px; }
+  .hero-copy { padding-inline: 0; }
+  h1 { margin-top: 0; font-size: clamp(2.65rem, 11vw, 3.35rem); line-height: .94; }
   .hero-sub { margin-top: 18px; font-size: 1rem; }
   .hero-actions { margin-top: 24px; }
   .hero-actions .btn { flex: 1 1 8.5rem; padding-inline: 16px; }
@@ -577,14 +571,19 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
   .step .slot { --ar: 16 / 11; }
   .run-grid, .dev-grid, .faq-grid { row-gap: 30px; }
   .uc { display: flex; flex-direction: column; gap: 24px; }
-  .uc-stack { position: relative; top: auto; grid-column: 1 / -1; grid-row: 1; width: 100%; aspect-ratio: 16 / 10; margin: 0; border-radius: 18px; }
+  .uc-stack { position: relative; top: auto; grid-column: 1 / -1; grid-row: 1; width: 100%; aspect-ratio: 16 / 9; margin: 0; border-radius: 16px; }
   .uc-stack .slot img { object-position: center; }
   .uc-body { grid-column: 1 / -1; grid-row: 2; }
   .uc-body h2 { margin-bottom: 26px; }
   .uc-list li a { padding-block: 22px; }
-  .cta { padding: 22px; border-radius: 22px; }
-  .site-footer { padding-top: 72px; }
-  .site-footer .slot { --ar: 16 / 8; }
+  .cta { padding: 16px; border-radius: 20px; }
+  .site-footer { min-height: 0; padding: 56px 0 max(20px, env(safe-area-inset-bottom, 0px)); }
+  .site-footer .slot { --ar: 16 / 7; border-radius: 18px; }
+  .foot-grid { margin-top: 28px; row-gap: 28px; }
+  .legal { margin-top: 36px; padding-top: 16px; }
+  .wordmark { display: none; }
+  .tile { padding: 18px 16px; }
+  .console-body, .dev-code .code, .inv, .try { padding-left: 16px; padding-right: 16px; }
   .hero-copy *, .hero .slot { animation-duration: .01ms !important; animation-delay: 0s !important; }
 }
 @media (prefers-reduced-transparency: reduce) {
@@ -629,7 +628,6 @@ h1 .w > span { display: inline-block; animation: rise 1.1s var(--ease) both; ani
     <div class="wrap">
       <div class="sheet">
         <div class="hero-copy">
-          <span class="pill"><span class="live-dot pulse"></span>Early access is open</span>
           <h1>
             <span class="ln"><span class="w"><span style="--w:0">Agents</span></span> <span class="w"><span style="--w:1">do</span></span> <span class="w"><span style="--w:2">the</span></span> <span class="w"><span style="--w:3">work.</span></span></span>
             <span class="ln"><span class="w"><span style="--w:4">The</span></span> <span class="w"><span style="--w:5">chain</span></span> <span class="w"><span style="--w:6">keeps</span></span> <span class="w"><span style="--w:7">the</span></span> <span class="w"><span style="--w:8"><em>receipts.</em></span></span></span>
