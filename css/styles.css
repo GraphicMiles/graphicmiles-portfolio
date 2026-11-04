@@ -661,6 +661,161 @@ ol {
   }
 }
 
+/* Archive rows with a preview thumbnail */
+.row-link--thumb {
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.row-thumb {
+  display: block;
+  width: 7.5rem;
+  height: 4.6875rem;
+  flex: none;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: var(--radius-icon);
+  background-color: var(--color-raised);
+  box-shadow: 0 0 0 1px var(--ring-subtle);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.row-link:hover .row-thumb {
+  transform: scale(1.02);
+}
+
+.row-link--thumb .row-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+@media (max-width: 520px) {
+  .row-thumb {
+    width: 5rem;
+    height: 3.125rem;
+  }
+}
+
+/* Featured project: preview image, then the copy */
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem 0 2rem;
+}
+
+.project-media {
+  display: block;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background-color: var(--color-raised);
+  box-shadow: 0 0 0 1px var(--ring-subtle);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.project-media:hover {
+  transform: translateY(-2px);
+}
+
+.project-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-what {
+  max-width: 58ch;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-paper);
+  text-wrap: pretty;
+}
+
+.project-body {
+  max-width: 62ch;
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+.project-fact {
+  max-width: 62ch;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+.more-work {
+  padding: 1rem 0 0;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.row-link--static {
+  cursor: default;
+}
+
+.row-link--static:hover {
+  background-color: transparent;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--color-line);
+  margin-top: 4rem;
+  padding: 2rem 0 3rem;
+}
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.footer-name {
+  font-size: 0.9375rem;
+  color: var(--color-paper);
+}
+
+.footer-note {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  list-style: none;
+}
+
+@media (min-width: 760px) {
+  .project {
+    padding: 2rem 0 2.75rem;
+  }
+}
+
 /* Layout family 4: 2x2 Tactile Surface Grid (Write-ups & code) */
 .notes-grid {
   display: grid;

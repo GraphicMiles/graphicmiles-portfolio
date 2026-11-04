@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Raji Farouq Adewunmi - Design engineer in Lagos</title>
-  <meta name="description" content="Raji Farouq Adewunmi (Graphic Miles) is a design engineer in Lagos. I build web and mobile products, including the AI parts, and ship them with tests.">
+  <title>Raji Farouq Adewunmi - Junior fullstack developer</title>
+  <meta name="description" content="Raji Farouq Adewunmi (Graphic Miles) is a junior fullstack developer in Lagos. I build web and mobile products, do the design myself, and specialise in AI agents.">
   <meta name="author" content="Raji Farouq Adewunmi">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0b0d12">
@@ -15,25 +15,25 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Graphic Miles">
   <meta property="og:title" content="Raji Farouq Adewunmi">
-  <meta property="og:description" content="Design engineer in Lagos building web and mobile products, including the AI parts.">
+  <meta property="og:description" content="Junior fullstack developer in Lagos. Web and mobile products, designed and built by me, with AI agents inside.">
   <meta property="og:url" content="https://designedbymiles.vercel.app/">
   <meta property="og:image" content="https://designedbymiles.vercel.app/og-image.png?v=3">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Raji Farouq Adewunmi, Design engineer">
+  <meta property="og:image:alt" content="Raji Farouq Adewunmi, fullstack developer">
   <meta property="og:locale" content="en_US">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DSGNBYMILES">
   <meta name="twitter:creator" content="@DSGNBYMILES">
   <meta name="twitter:title" content="Raji Farouq Adewunmi">
-  <meta name="twitter:description" content="Design engineer in Lagos building web and mobile products, including the AI parts.">
+  <meta name="twitter:description" content="Junior fullstack developer in Lagos. Web and mobile products, designed and built by me, with AI agents inside.">
   <meta name="twitter:image" content="https://designedbymiles.vercel.app/og-image.png?v=3">
   <meta name="twitter:image:type" content="image/png">
   <meta name="twitter:image:width" content="1200">
   <meta name="twitter:image:height" content="630">
-  <meta name="twitter:image:alt" content="Raji Farouq Adewunmi, Design engineer">
+  <meta name="twitter:image:alt" content="Raji Farouq Adewunmi, fullstack developer">
 
   <link rel="icon" href="/favicon.svg?v=3" sizes="any" type="image/svg+xml">
   <link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
@@ -51,7 +51,7 @@
     "alternateName": "Graphic Miles",
     "url": "https://designedbymiles.vercel.app/",
     "image": "https://designedbymiles.vercel.app/images/photo.jpg",
-    "jobTitle": "Design Engineer",
+    "jobTitle": "Fullstack Developer",
     "email": "mailto:rfarouq69@gmail.com",
     "address": {
       "@type": "PostalAddress",
@@ -84,8 +84,8 @@
 
       <div class="profile-intro">
         <h1 class="profile-name">Raji Farouq Adewunmi</h1>
-        <p class="profile-role">Design engineer</p>
-        <p class="profile-bio">I build web and mobile products end to end: the interface, the data behind it, and the model layer where a model earns its place. Most of it is TypeScript and React on the front, Node with Firebase or Postgres behind, and Rust or llama.cpp when the work has to run close to the device. I keep products small, make them work offline where they can, and ship them with tests I can point at. I am looking for a frontend or AI engineering team where I can own one product surface from first sketch to production.</p>
+        <p class="profile-role">Junior fullstack developer</p>
+        <p class="profile-bio">I build web and mobile products, mostly React and Node, usually with an AI agent somewhere inside. I do the design myself, so the interface and the code get decided together. Looking for a junior fullstack or AI engineering role.</p>
       </div>
 
       <div class="profile-actions">
@@ -146,207 +146,98 @@
         </ul>
       </nav>
 
-      <!-- Layout 2: App-icon showcase directory -->
+      <!-- Layout 2: featured projects with previews -->
       <section id="projects" aria-labelledby="projects-heading" class="section-block" data-reveal style="--stagger: 2">
         <div class="section-header">
-          <h2 id="projects-heading" class="section-title">Projects</h2>
+          <h2 id="projects-heading" class="section-title">Four things I built</h2>
         </div>
 
         <ul class="hairline-list">
           <li class="hairline-item">
             <article class="project">
-              <div class="row-copy">
+              <a class="project-media" href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                <img src="/images/previews/legally-unbullied.jpg" alt="The Legally Unbullied app open on a new question, with the sidebar of saved questions." width="1200" height="750" decoding="async">
+              </a>
+              <div class="project-copy">
                 <h3 class="row-title">Legally Unbullied</h3>
-                <p class="row-sub">A Nigerian legal information assistant that answers from statute and shows its source.</p>
+                <p class="project-what">A Nigerian legal assistant that answers from statute and cites the section it used.</p>
+                <p class="project-body">It takes a question in plain English and sorts it into one of twenty practice areas. Then it pulls the matching provisions from a Nigerian law corpus and drafts an answer with every claim tied to a section. Each citation is checked against the retrieved text, and a critic stage refuses the answer when the support is missing.</p>
+                <p class="project-fact">Node, Express, Firebase, Gemini. 100 test scenarios run through the evaluation gate.</p>
+                <p class="project-links">
+                  <a class="prose-link" href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer">Live demo</a>
+                  <a class="prose-link" href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank" rel="noopener noreferrer">Code</a>
+                </p>
               </div>
-              <p class="project-body">I built the assistant and the pipeline behind it. It classifies a question, retrieves the relevant provisions from a Nigerian statutory corpus, and drafts an answer with each claim tied to a provision. Every citation is checked token by token against the retrieved text, and a critic stage refuses the answer when the support is not there. The hard part was keeping that line while the answer streams: when support is thin, it fails closed instead of sounding confident.</p>
-              <p class="project-fact">Node.js, Express, Firebase, Gemini. 100 authored scenarios run through the evaluation gate.</p>
-              <p class="project-links">
-                <a class="prose-link" href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer">Live demo</a>
-                <a class="prose-link" href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank" rel="noopener noreferrer">Code</a>
-              </p>
             </article>
           </li>
 
           <li class="hairline-item">
             <article class="project">
-              <div class="row-copy">
+              <a class="project-media" href="https://github.com/GraphicMiles/Scout#readme" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                <img src="/images/previews/scout.jpg" alt="Scout's install and start commands, showing the npm package, the API key and the MCP entry point." width="1200" height="750" decoding="async" loading="lazy">
+              </a>
+              <div class="project-copy">
                 <h3 class="row-title">Scout</h3>
-                <p class="row-sub">A browser automation runtime in Rust that runs without a browser install.</p>
+                <p class="project-what">A browser automation runtime in Rust, small enough to sit beside the app that calls it.</p>
+                <p class="project-body">It loads a page, runs its JavaScript in a sandbox, fills forms and returns structured fields. The same tools are served over an HTTP API and an MCP server, so an agent can drive it. The hard part was memory: a browser costs hundreds of megabytes and this had to idle at five.</p>
+                <p class="project-fact">Rust, MCP over stdio, on npm as @graphicmiles/scout. Idles around 5 MB.</p>
+                <p class="project-links">
+                  <a class="prose-link" href="https://github.com/GraphicMiles/Scout#readme" target="_blank" rel="noopener noreferrer">Docs</a>
+                  <a class="prose-link" href="https://github.com/GraphicMiles/Scout" target="_blank" rel="noopener noreferrer">Code</a>
+                </p>
               </div>
-              <p class="project-body">I wrote Scout as one small binary. It fetches a page, parses the DOM, runs page JavaScript in a sandbox, fills forms and returns structured data. The same tools are exposed over an authenticated HTTP API and an MCP server, so an agent can drive it. The hard part was memory: a headless browser costs hundreds of megabytes, and Scout had to stay small enough to run beside the app that calls it.</p>
-              <p class="project-fact">Rust, MCP over stdio, published as @graphicmiles/scout. Idles around 5 MB.</p>
-              <p class="project-links">
-                <a class="prose-link" href="https://github.com/GraphicMiles/Scout#readme" target="_blank" rel="noopener noreferrer">Docs</a>
-                <a class="prose-link" href="https://github.com/GraphicMiles/Scout" target="_blank" rel="noopener noreferrer">Code</a>
-              </p>
             </article>
           </li>
 
           <li class="hairline-item">
             <article class="project">
-              <div class="row-copy">
+              <a class="project-media" href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                <img src="/images/previews/nearspace.jpg" alt="Nearspace's map artwork beside its sign-in screen, showing Google sign-in, email and password." width="1200" height="750" decoding="async" loading="lazy">
+              </a>
+              <div class="project-copy">
                 <h3 class="row-title">Nearspace</h3>
-                <p class="row-sub">A creator network for Nigeria, built around who is nearby.</p>
+                <p class="project-what">A mobile app for finding creators near you, live in Nigeria.</p>
+                <p class="project-body">Geohash proximity puts nearby creators on a map, with one-to-one and group chat and a Pro tier through Paystack. Presence runs on Firebase Realtime Database while reads stay cache-first, and it installs as a PWA so it opens on a weak connection. The hard part was doing this without a server of my own, so every write goes through Firebase rules or a Vercel function.</p>
+                <p class="project-fact">React, Vite, Firebase, Vercel. 590+ tests across the unit, API and rules suites.</p>
+                <p class="project-links">
+                  <a class="prose-link" href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer">Live demo</a>
+                  <a class="prose-link" href="https://github.com/GraphicMiles/Nearspace" target="_blank" rel="noopener noreferrer">Code</a>
+                </p>
               </div>
-              <p class="project-body">I built it end to end. It maps creators near you, carries one-to-one and group chat, and sells a Pro tier through Paystack. Presence runs on Firebase Realtime Database while reads are cache-first, and the app installs as a PWA so it opens on a weak connection. The hard part was doing proximity without a server of my own, so location checks, security rules and every write go through Firebase and Vercel functions.</p>
-              <p class="project-fact">React, Vite, Firebase, Vercel functions. 590+ tests across unit, API and rules suites.</p>
-              <p class="project-links">
-                <a class="prose-link" href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer">Live demo</a>
-                <a class="prose-link" href="https://github.com/GraphicMiles/Nearspace" target="_blank" rel="noopener noreferrer">Code</a>
-              </p>
             </article>
           </li>
 
           <li class="hairline-item">
             <article class="project">
-              <div class="row-copy">
+              <a class="project-media" href="https://github.com/GraphicMiles/Luna/blob/main/docs/TEST_REPORT.md" target="_blank" rel="noopener noreferrer" tabindex="-1" aria-hidden="true">
+                <img src="/images/previews/luna.jpg" alt="Luna's measured numbers on a free T4: 49 tokens a second generation, 604 tokens a second prompt processing, 16K context, 6 of 6 prompts answered." width="1200" height="750" decoding="async" loading="lazy">
+              </a>
+              <div class="project-copy">
                 <h3 class="row-title">Luna</h3>
-                <p class="row-sub">An Android agent that runs the language model on the phone.</p>
+                <p class="project-what">An Android agent that runs the language model on the phone.</p>
+                <p class="project-body">llama.cpp is loaded through JNI, so GGUF models run on the device with no network call, streaming tokens as they arrive. Model files are checked against a checksum before loading, and a small agent core decides when to reach for a tool. The hard part was the bridge: memory limits, heat, and a 4-bit model that has to answer before Android decides the app is stuck.</p>
+                <p class="project-fact">Flutter, Java, JNI, llama.cpp. 42 agent-core tests, and a cloud tier measured at 49 tokens a second.</p>
+                <p class="project-links">
+                  <a class="prose-link" href="https://github.com/GraphicMiles/Luna/blob/main/docs/TEST_REPORT.md" target="_blank" rel="noopener noreferrer">Test report</a>
+                  <a class="prose-link" href="https://github.com/GraphicMiles/Luna" target="_blank" rel="noopener noreferrer">Code</a>
+                </p>
               </div>
-              <p class="project-body">I built Luna as a Flutter app over a Java device layer, with llama.cpp loaded through JNI so GGUF models run locally with no network call. It streams tokens as they are generated, checks every model file against a checksum before loading, and keeps a small agent core that decides when to reach for a tool. The hard part was the bridge: memory ceilings, heat, and a 4-bit model that has to answer before the phone decides the app has stalled.</p>
-              <p class="project-fact">Flutter, Java, JNI, llama.cpp. 42 tests on the agent core, with an optional cloud control plane.</p>
-              <p class="project-links">
-                <a class="prose-link" href="https://github.com/GraphicMiles/Luna/blob/main/docs/TEST_REPORT.md" target="_blank" rel="noopener noreferrer">Test report</a>
-                <a class="prose-link" href="https://github.com/GraphicMiles/Luna" target="_blank" rel="noopener noreferrer">Code</a>
-              </p>
             </article>
           </li>
         </ul>
 
-        <p class="more-work"><a class="prose-link" href="/projects/">More work</a>, the full archive.</p>
+        <p class="more-work"><a class="prose-link" href="/projects/">More work</a>, everything else in one list.</p>
       </section>
 
-      <!-- Layout 3: Progressive-disclosure accordion -->
-      <section id="experiences" aria-labelledby="experiences-heading" class="section-block" data-reveal>
-        <h2 id="experiences-heading" class="section-title">Experiences</h2>
-
-        <ul class="hairline-list">
-          <li class="hairline-item exp-item" data-open="true">
-            <button type="button" class="row-link exp-trigger" aria-expanded="true" aria-controls="exp-lu">
-              <div class="row-copy">
-                <span class="row-title">Legally Unbullied</span>
-                <span class="row-sub">Legal information assistant. Built it and ran the evaluation gate.</span>
-              </div>
-              <span class="exp-meta-wrap">
-                <span class="row-meta tabular">Shipped</span>
-                <span class="exp-toggle-glyph" aria-hidden="true">+</span>
-              </span>
-            </button>
-            <div id="exp-lu" class="exp-panel" role="region" aria-label="Legally Unbullied experience details">
-              <div class="exp-panel-inner">
-                <div class="exp-body">
-                  <ul class="exp-points">
-                    <li>Built the assistant across <span class="tabular">20</span> practice areas on Node.js, Express, Firebase Auth and Firestore.</li>
-                    <li>Wrote the retrieval, citation and refusal stages behind it, and the <span class="tabular">100</span>-scenario suite that runs before a release.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li class="hairline-item exp-item" data-open="false">
-            <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-scout">
-              <div class="row-copy">
-                <span class="row-title">Scout</span>
-                <span class="row-sub">Rust automation runtime. Published to npm.</span>
-              </div>
-              <span class="exp-meta-wrap">
-                <span class="row-meta tabular">Shipped</span>
-                <span class="exp-toggle-glyph" aria-hidden="true">+</span>
-              </span>
-            </button>
-            <div id="exp-scout" class="exp-panel" role="region" aria-label="Scout experience details">
-              <div class="exp-panel-inner">
-                <div class="exp-body">
-                  <ul class="exp-points tabular">
-                    <li>Built a Rust browser automation runtime that idles around <span class="tabular">5 MB</span> (@graphicmiles/scout), so it runs without Chromium.</li>
-                    <li>It runs page JavaScript in a sandbox, fills forms, reads structured data, and serves the same tools over an HTTP API and an MCP server.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li class="hairline-item exp-item" data-open="false">
-            <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-nearspace">
-              <div class="row-copy">
-                <span class="row-title">Nearspace</span>
-                <span class="row-sub">Creator app for Nigeria. Live, with paying users on Pro.</span>
-              </div>
-              <span class="exp-meta-wrap">
-                <span class="row-meta tabular">Shipped</span>
-                <span class="exp-toggle-glyph" aria-hidden="true">+</span>
-              </span>
-            </button>
-            <div id="exp-nearspace" class="exp-panel" role="region" aria-label="Nearspace experience details">
-              <div class="exp-panel-inner">
-                <div class="exp-body">
-                  <ul class="exp-points">
-                    <li>Built nearby-creator discovery on geohashes, with live presence on Firebase RTDB and cache-first reads on Firestore.</li>
-                    <li>Kept the verification pipeline strict, with <span class="tabular">590+</span> tests across the map, discovery and feed modules.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li class="hairline-item exp-item" data-open="false">
-            <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-luna">
-              <div class="row-copy">
-                <span class="row-title">Luna</span>
-                <span class="row-sub">Android agent. Models run on the device, not a server.</span>
-              </div>
-              <span class="exp-meta-wrap">
-                <span class="row-meta tabular">Shipped</span>
-                <span class="exp-toggle-glyph" aria-hidden="true">+</span>
-              </span>
-            </button>
-            <div id="exp-luna" class="exp-panel" role="region" aria-label="Luna experience details">
-              <div class="exp-panel-inner">
-                <div class="exp-body">
-                  <ul class="exp-points">
-                    <li>Built a local-first Android coding assistant that runs GGUF models on the device through llama.cpp, JNI and a Flutter shell.</li>
-                    <li>Shipped token streaming, a checksummed model catalog and a <span class="tabular">42</span>-test agent core.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-
-          <li class="hairline-item exp-item" data-open="false">
-            <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-odg">
-              <div class="row-copy">
-                <span class="row-title">ODG Deliveries</span>
-                <span class="row-sub">Food delivery platform in Ibadan. Four roles, one database.</span>
-              </div>
-              <span class="exp-meta-wrap">
-                <span class="row-meta tabular">Shipped</span>
-                <span class="exp-toggle-glyph" aria-hidden="true">+</span>
-              </span>
-            </button>
-            <div id="exp-odg" class="exp-panel" role="region" aria-label="ODG Deliveries experience details">
-              <div class="exp-panel-inner">
-                <div class="exp-body">
-                  <ul class="exp-points">
-                    <li>Built a four-role delivery platform for customers, reviewed kitchens, riders and admin, on PostgreSQL and Express.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Layout 4: Tactile Surface Grid (1 featured wide + 2x2 grid) -->
+      <!-- Write-ups: three links into the code -->
       <section id="writeups" aria-labelledby="writeups-heading" class="section-block" data-reveal>
-        <h2 id="writeups-heading" class="section-title">Write-ups &amp; code</h2>
+        <h2 id="writeups-heading" class="section-title">Written down</h2>
 
         <div class="notes-grid">
           <a href="https://github.com/GraphicMiles/Legallyunbullied/blob/main/docs/SYSTEM_REFERENCE.md" target="_blank" rel="noopener noreferrer" class="note-card note-card--wide">
             <div class="note-top">
               <span class="note-title">How Legally Unbullied answers</span>
-              <span class="note-sub">The whole pipeline written down: what gets retrieved, how a citation is checked against the provision, and where the answer is refused. Includes the <span class="tabular">100</span>-scenario evaluation.</span>
+              <span class="note-sub">The full pipeline: what gets retrieved, how a citation is checked against the provision, and where the answer is refused instead of guessed.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">github.com/GraphicMiles/Legallyunbullied</span>
@@ -357,7 +248,7 @@
           <a href="https://github.com/GraphicMiles/Scout#readme" target="_blank" rel="noopener noreferrer" class="note-card">
             <div class="note-top">
               <span class="note-title">Scout, documented</span>
-              <span class="note-sub">How a <span class="tabular">5 MB</span> Rust runtime drives a page and serves the same tools to an MCP client, without a browser install.</span>
+              <span class="note-sub">What it does, what it deliberately does not do, and every API route.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">github.com/GraphicMiles/Scout</span>
@@ -365,158 +256,102 @@
             </div>
           </a>
 
-          <a href="https://github.com/GraphicMiles/Luna" target="_blank" rel="noopener noreferrer" class="note-card">
+          <a href="https://github.com/GraphicMiles/Luna/blob/main/docs/TEST_REPORT.md" target="_blank" rel="noopener noreferrer" class="note-card">
             <div class="note-top">
-              <span class="note-title">Luna, on-device</span>
-              <span class="note-sub">Loading and running a GGUF model on an Android phone through llama.cpp and JNI, and what the phone does to it under load.</span>
+              <span class="note-title">Running a 30B model on a free GPU</span>
+              <span class="note-sub">The benchmark report behind Luna's cloud tier, including the parts that did not work.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">github.com/GraphicMiles/Luna</span>
               <svg class="note-arrow" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
             </div>
           </a>
-
-          <a href="https://github.com/GraphicMiles/Middleground/blob/main/docs/ground-materials.md" target="_blank" rel="noopener noreferrer" class="note-card">
-            <div class="note-top">
-              <span class="note-title">Baking the Okavango marsh</span>
-              <span class="note-sub">Procedural wetland textures, seeded terrain and a <span class="tabular">36</span>-minute sky cycle, generated in the browser.</span>
-            </div>
-            <div class="note-foot">
-              <span class="note-host">github.com/GraphicMiles/Middleground</span>
-              <svg class="note-arrow" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
-            </div>
-          </a>
-
-          <a href="https://motionshelf.onrender.com/interactions.html" target="_blank" rel="noopener noreferrer" class="note-card">
-            <div class="note-top">
-              <span class="note-title">Inside MotionShelf</span>
-              <span class="note-sub">Interaction primitives you can copy out for vanilla JS, React, Vue or Svelte.</span>
-            </div>
-            <div class="note-foot">
-              <span class="note-host">motionshelf.onrender.com</span>
-              <svg class="note-arrow" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></svg>
-            </div>
-          </a>
         </div>
       </section>
 
-      <!-- Layout 5: 3 Grouped Capability Clusters (Phosphor regular icons) -->
+      <!-- Toolkit: six lines, no badges -->
       <section id="skills" aria-labelledby="skills-heading" class="section-block" data-reveal>
-        <h2 id="skills-heading" class="section-title">Skills</h2>
+        <h2 id="skills-heading" class="section-title">What I work with</h2>
 
-        <div class="skill-clusters">
-          <div class="skill-cluster">
-            <h3 class="cluster-label">Product &amp; Interface</h3>
-            <ul class="cluster-items">
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M221.07,144.41A96.68,96.68,0,0,0,181,88h59a8,8,0,0,0,0-16H159a32,32,0,0,0-62,0H16a8,8,0,0,0,0,16H75a96.68,96.68,0,0,0-40.07,56.41A32,32,0,1,0,51.08,146,80.6,80.6,0,0,1,99,93.44a32,32,0,0,0,58.06,0A80.6,80.6,0,0,1,204.92,146a32,32,0,1,0,16.15-1.57ZM56,176a16,16,0,1,1-16-16A16,16,0,0,1,56,176Zm72-80a16,16,0,1,1,16-16A16,16,0,0,1,128,96Zm88,96a16,16,0,1,1,16-16A16,16,0,0,1,216,192Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Product Design</span>
-                  <span class="row-sub">Photoshop, Illustrator, CorelDRAW, Canva, Blender</span>
-                </div>
-              </li>
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M128,128a8,8,0,0,1-3,6.25l-40,32a8,8,0,1,1-10-12.5L107.19,128,75,102.25a8,8,0,1,1,10-12.5l40,32A8,8,0,0,1,128,128Zm48,24H136a8,8,0,0,0,0,16h40a8,8,0,0,0,0-16Zm56-96V200a16,16,0,0,1-16,16H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56ZM216,200V56H40V200H216Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Frontend Engineering</span>
-                  <span class="row-sub">React, Next.js, TypeScript, Tailwind CSS, Three.js</span>
-                </div>
-              </li>
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M88,24V16a8,8,0,0,1,16,0v8a8,8,0,0,1-16,0ZM16,104h8a8,8,0,0,0,0-16H16a8,8,0,0,0,0,16ZM124.42,39.16a8,8,0,0,0,10.74-3.58l8-16a8,8,0,0,0-14.31-7.16l-8,16A8,8,0,0,0,124.42,39.16Zm-96,81.69-16,8a8,8,0,0,0,7.16,14.31l16-8a8,8,0,1,0-7.16-14.31ZM219.31,184a16,16,0,0,1,0,22.63l-12.68,12.68a16,16,0,0,1-22.63,0L132.7,168,115,214.09c0,.1-.08.21-.13.32a15.83,15.83,0,0,1-14.6,9.59l-.79,0a15.83,15.83,0,0,1-14.41-11L32.8,52.92A16,16,0,0,1,52.92,32.8L213,85.07a16,16,0,0,1,1.41,29.8l-.32.13L168,132.69ZM208,195.31,156.69,144h0a16,16,0,0,1,4.93-26l.32-.14,45.95-17.64L48,48l52.2,159.86,17.65-46c0-.11.08-.22.13-.33a16,16,0,0,1,11.69-9.34,16.72,16.72,0,0,1,3-.28,16,16,0,0,1,11.3,4.69L195.31,208Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Motion &amp; Interaction</span>
-                  <span class="row-sub">GSAP, CSS choreography, WebGL shaders, tactile feedback</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="skill-cluster">
-            <h3 class="cluster-label">Systems &amp; AI</h3>
-            <ul class="cluster-items">
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M152,96H104a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V104A8,8,0,0,0,152,96Zm-8,48H112V112h32Zm88,0H216V112h16a8,8,0,0,0,0-16H216V56a16,16,0,0,0-16-16H160V24a8,8,0,0,0-16,0V40H112V24a8,8,0,0,0-16,0V40H56A16,16,0,0,0,40,56V96H24a8,8,0,0,0,0,16H40v32H24a8,8,0,0,0,0,16H40v40a16,16,0,0,0,16,16H96v16a8,8,0,0,0,16,0V216h32v16a8,8,0,0,0,16,0V216h40a16,16,0,0,0,16-16V160h16a8,8,0,0,0,0-16Zm-32,56H56V56H200v95.87s0,.09,0,.13,0,.09,0,.13V200Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">AI Native</span>
-                  <span class="row-sub">Agent loops, local GGUF inference, streaming tool use</span>
-                </div>
-              </li>
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M128,24C74.17,24,32,48.6,32,80v96c0,31.4,42.17,56,96,56s96-24.6,96-56V80C224,48.6,181.83,24,128,24Zm80,104c0,9.62-7.88,19.43-21.61,26.92C170.93,163.35,150.19,168,128,168s-42.93-4.65-58.39-13.08C55.88,147.43,48,137.62,48,128V111.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64ZM69.61,53.08C85.07,44.65,105.81,40,128,40s42.93,4.65,58.39,13.08C200.12,60.57,208,70.38,208,80s-7.88,19.43-21.61,26.92C170.93,115.35,150.19,120,128,120s-42.93-4.65-58.39-13.08C55.88,99.43,48,89.62,48,80S55.88,60.57,69.61,53.08ZM186.39,202.92C170.93,211.35,150.19,216,128,216s-42.93-4.65-58.39-13.08C55.88,195.43,48,185.62,48,176V159.36c17.06,15,46.23,24.64,80,24.64s62.94-9.68,80-24.64V176C208,185.62,200.12,195.43,186.39,202.92Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Backend &amp; APIs</span>
-                  <span class="row-sub">Node.js, Supabase, PostgreSQL, REST &amp; WebSockets</span>
-                </div>
-              </li>
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Realtime Data</span>
-                  <span class="row-sub">Live presence, low-latency rooms, optimistic state</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div class="skill-cluster">
-            <h3 class="cluster-label">Mobile &amp; Craft</h3>
-            <ul class="cluster-items">
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M176,16H80A24,24,0,0,0,56,40V216a24,24,0,0,0,24,24h96a24,24,0,0,0,24-24V40A24,24,0,0,0,176,16ZM72,64H184V192H72Zm8-32h96a8,8,0,0,1,8,8v8H72V40A8,8,0,0,1,80,32Zm96,192H80a8,8,0,0,1-8-8v-8H184v8A8,8,0,0,1,176,224Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Mobile &amp; Desktop</span>
-                  <span class="row-sub">React Native, Expo, Tauri v2, Rust, offline-first PWAs</span>
-                </div>
-              </li>
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Testing</span>
-                  <span class="row-sub">Vitest, Playwright, automated unit and UI verification</span>
-                </div>
-              </li>
-              <li class="skill-entry">
-                <span class="skill-glyph" aria-hidden="true">
-                  <svg viewBox="0 0 256 256" fill="currentColor"><path d="M207.06,72.67A111.24,111.24,0,0,0,128,40h-.4C66.07,40.21,16,91,16,153.13V176a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V152A111.25,111.25,0,0,0,207.06,72.67ZM224,176H119.71l54.76-75.3a8,8,0,0,0-12.94-9.42L99.92,176H32V153.13c0-3.08.15-6.12.43-9.13H56a8,8,0,0,0,0,16H35.27c10.32-38.86,44-68.24,84.73-71.66V80a8,8,0,0,0,16,0V56.33A96.14,96.14,0,0,1,221,128H200a8,8,0,0,0,0,16h23.67c.21,2.65.33,5.31.33,8Z"/></svg>
-                </span>
-                <div class="row-copy">
-                  <span class="row-title">Performance</span>
-                  <span class="row-sub">Core Web Vitals, small bundles, zero-jank rendering</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <ul class="hairline-list">
+          <li class="hairline-item">
+            <div class="row-link row-link--static">
+              <div class="row-copy">
+                <span class="row-title">Frontend</span>
+                <span class="row-sub">React, Next.js, TypeScript, Tailwind, plain CSS when it is faster</span>
+              </div>
+            </div>
+          </li>
+          <li class="hairline-item">
+            <div class="row-link row-link--static">
+              <div class="row-copy">
+                <span class="row-title">Backend</span>
+                <span class="row-sub">Node, Express, Firebase, PostgreSQL, REST</span>
+              </div>
+            </div>
+          </li>
+          <li class="hairline-item">
+            <div class="row-link row-link--static">
+              <div class="row-copy">
+                <span class="row-title">Agents</span>
+                <span class="row-sub">Retrieval, tool calling, evaluation suites, MCP, llama.cpp</span>
+              </div>
+            </div>
+          </li>
+          <li class="hairline-item">
+            <div class="row-link row-link--static">
+              <div class="row-copy">
+                <span class="row-title">Mobile and desktop</span>
+                <span class="row-sub">React Native, Expo, Flutter, PWAs that work offline</span>
+              </div>
+            </div>
+          </li>
+          <li class="hairline-item">
+            <div class="row-link row-link--static">
+              <div class="row-copy">
+                <span class="row-title">Design</span>
+                <span class="row-sub">Photoshop, layout, type. I draw the interface before I build it</span>
+              </div>
+            </div>
+          </li>
+          <li class="hairline-item">
+            <div class="row-link row-link--static">
+              <div class="row-copy">
+                <span class="row-title">Testing</span>
+                <span class="row-sub">Vitest, Playwright, and the habit of running them before I push</span>
+              </div>
+            </div>
+          </li>
+        </ul>
       </section>
 
-      <!-- Layout 6: Editorial Essay Block -->
-      <section id="philosophy" aria-labelledby="philosophy-heading" class="section-block" data-reveal>
-        <h2 id="philosophy-heading" class="section-title">My philosophy</h2>
+      <!-- Closing line -->
+      <section id="about" aria-labelledby="about-heading" class="section-block" data-reveal>
+        <h2 id="about-heading" class="section-title">About</h2>
 
         <div class="prose-block">
           <p class="prose-lead">Good software opens fast, explains itself and holds up on a bad connection.</p>
-          <p>If you have a product to build, write to <a href="mailto:rfarouq69@gmail.com" class="prose-link">rfarouq69@gmail.com</a>.</p>
+          <p>I am based in Lagos and looking for a junior fullstack or AI engineering role. Write to <a href="mailto:rfarouq69@gmail.com" class="prose-link">rfarouq69@gmail.com</a>.</p>
         </div>
       </section>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="page-shell">
+      <div class="footer-row">
+        <p class="footer-name">Raji Farouq Adewunmi</p>
+        <p class="footer-note">Junior fullstack developer, Lagos. This site is plain HTML and CSS.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a class="prose-link" href="mailto:rfarouq69@gmail.com">Email</a></li>
+        <li><a class="prose-link" href="/projects/">Archive</a></li>
+        <li><a class="prose-link" href="/Raji_Adewunmi_Farouq_Resume.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
+        <li><a class="prose-link" href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a class="prose-link" href="https://x.com/DSGNBYMILES" target="_blank" rel="noopener noreferrer">X</a></li>
+      </ul>
+    </div>
+  </footer>
 
   <script src="/js/main.js" defer></script>
 </body>
