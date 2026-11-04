@@ -26,7 +26,7 @@ works/middleground/     Okavango Marsh
 works/quarry/           Quarry — a design studio for startups
 works/rewind/           Rewind — streaming concept
 works/tessera/          Tessera — agentic workflows
-Raji_Adewunmi_Farouq_Resume.pdf
+Raji_Adewunmi_Farouq_CV.pdf
 ```
 
 Each folder under `works/` is a complete static build of its own case study.
