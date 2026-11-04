@@ -19,6 +19,7 @@ images/                 photography, project logos, resume-adjacent assets
 works/                  one folder per case study, each self-contained
 works/cala/             Cala — a house on the caldera
 works/cirrus/           Cirrus — receivables for finance teams
+works/drop/             Drop — send something worth keeping (concept)
 works/demos/            concept gallery
 works/ilee/             ilee — verified long-term rentals in Lagos
 works/middleground/     Okavango Marsh
