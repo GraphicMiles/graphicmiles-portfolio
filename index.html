@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Raji Farouq Adewunmi - Design engineer</title>
-  <meta name="description" content="Raji Farouq Adewunmi (Graphic Miles) is a design engineer in Lagos building web apps, AI products, and interfaces for everyday use.">
+  <title>Raji Farouq Adewunmi - Design engineer in Lagos</title>
+  <meta name="description" content="Raji Farouq Adewunmi (Graphic Miles) is a design engineer in Lagos. I build web and mobile products, including the AI parts, and ship them with tests.">
   <meta name="author" content="Raji Farouq Adewunmi">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0b0d12">
@@ -15,7 +15,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Graphic Miles">
   <meta property="og:title" content="Raji Farouq Adewunmi">
-  <meta property="og:description" content="Design engineer building web apps, AI products and interfaces for everyday use.">
+  <meta property="og:description" content="Design engineer in Lagos building web and mobile products, including the AI parts.">
   <meta property="og:url" content="https://designedbymiles.vercel.app/">
   <meta property="og:image" content="https://designedbymiles.vercel.app/og-image.png?v=3">
   <meta property="og:image:type" content="image/png">
@@ -28,7 +28,7 @@
   <meta name="twitter:site" content="@DSGNBYMILES">
   <meta name="twitter:creator" content="@DSGNBYMILES">
   <meta name="twitter:title" content="Raji Farouq Adewunmi">
-  <meta name="twitter:description" content="Design engineer building web apps, AI products and interfaces for everyday use.">
+  <meta name="twitter:description" content="Design engineer in Lagos building web and mobile products, including the AI parts.">
   <meta name="twitter:image" content="https://designedbymiles.vercel.app/og-image.png?v=3">
   <meta name="twitter:image:type" content="image/png">
   <meta name="twitter:image:width" content="1200">
@@ -85,7 +85,7 @@
       <div class="profile-intro">
         <h1 class="profile-name">Raji Farouq Adewunmi</h1>
         <p class="profile-role">Design engineer</p>
-        <p class="profile-bio">Building web apps, AI products and interfaces for everyday use from Lagos. Graphic Miles.</p>
+        <p class="profile-bio">I build web and mobile products end to end: the interface, the data behind it, and the model layer where a model earns its place. Most of it is TypeScript and React on the front, Node with Firebase or Postgres behind, and Rust or llama.cpp when the work has to run close to the device. I keep products small, make them work offline where they can, and ship them with tests I can point at. I am looking for a frontend or AI engineering team where I can own one product surface from first sketch to production.</p>
       </div>
 
       <div class="profile-actions">
@@ -102,7 +102,7 @@
             <a href="/projects/" class="row-link">
               <div class="row-copy">
                 <span class="row-title">Archive</span>
-                <span class="row-sub">Every shipped product, brand system and prototype</span>
+                <span class="row-sub">Every build, one line each, with links</span>
               </div>
               <span class="row-meta">/projects</span>
             </a>
@@ -111,7 +111,7 @@
             <a href="/Raji_Adewunmi_Farouq_Resume.pdf" target="_blank" rel="noopener noreferrer" class="row-link">
               <div class="row-copy">
                 <span class="row-title">CV</span>
-                <span class="row-sub">Resume, shipped systems and education</span>
+                <span class="row-sub">Resume and education, as a PDF</span>
               </div>
               <span class="row-meta">PDF</span>
             </a>
@@ -120,7 +120,7 @@
             <a href="https://github.com/GraphicMiles" target="_blank" rel="noopener noreferrer" class="row-link">
               <div class="row-copy">
                 <span class="row-title">GitHub</span>
-                <span class="row-sub">Open-source repositories and experiments</span>
+                <span class="row-sub">Code and experiments</span>
               </div>
               <span class="row-meta">GraphicMiles</span>
             </a>
@@ -129,7 +129,7 @@
             <a href="https://x.com/DSGNBYMILES" target="_blank" rel="noopener noreferrer" class="row-link">
               <div class="row-copy">
                 <span class="row-title">X</span>
-                <span class="row-sub">Notes on product design and engineering</span>
+                <span class="row-sub">Short notes on what I build</span>
               </div>
               <span class="row-meta">@DSGNBYMILES</span>
             </a>
@@ -150,182 +150,71 @@
       <section id="projects" aria-labelledby="projects-heading" class="section-block" data-reveal style="--stagger: 2">
         <div class="section-header">
           <h2 id="projects-heading" class="section-title">Projects</h2>
-          <a href="/projects/" class="section-action" aria-label="View all 15 projects">
-            <span>All 15</span>
-            <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg>
-          </a>
         </div>
 
         <ul class="hairline-list">
           <li class="hairline-item">
-            <a href="/drop/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/drop.png" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Drop</span>
-                  <span class="row-sub">Handle-to-handle transfer concept with a single inbox</span>
-                </div>
+            <article class="project">
+              <div class="row-copy">
+                <h3 class="row-title">Legally Unbullied</h3>
+                <p class="row-sub">A Nigerian legal information assistant that answers from statute and shows its source.</p>
               </div>
-              <span class="row-meta row-meta--domain">/drop</span>
-            </a>
+              <p class="project-body">I built the assistant and the pipeline behind it. It classifies a question, retrieves the relevant provisions from a Nigerian statutory corpus, and drafts an answer with each claim tied to a provision. Every citation is checked token by token against the retrieved text, and a critic stage refuses the answer when the support is not there. The hard part was keeping that line while the answer streams: when support is thin, it fails closed instead of sounding confident.</p>
+              <p class="project-fact">Node.js, Express, Firebase, Gemini. 100 authored scenarios run through the evaluation gate.</p>
+              <p class="project-links">
+                <a class="prose-link" href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer">Live demo</a>
+                <a class="prose-link" href="https://github.com/GraphicMiles/Legallyunbullied" target="_blank" rel="noopener noreferrer">Code</a>
+              </p>
+            </article>
           </li>
 
           <li class="hairline-item">
-            <a href="/cala/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/cala.png" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Cala</span>
-                  <span class="row-sub">Aegean house landing page with a dark glass design system</span>
-                </div>
+            <article class="project">
+              <div class="row-copy">
+                <h3 class="row-title">Scout</h3>
+                <p class="row-sub">A browser automation runtime in Rust that runs without a browser install.</p>
               </div>
-              <span class="row-meta row-meta--domain">/cala</span>
-            </a>
+              <p class="project-body">I wrote Scout as one small binary. It fetches a page, parses the DOM, runs page JavaScript in a sandbox, fills forms and returns structured data. The same tools are exposed over an authenticated HTTP API and an MCP server, so an agent can drive it. The hard part was memory: a headless browser costs hundreds of megabytes, and Scout had to stay small enough to run beside the app that calls it.</p>
+              <p class="project-fact">Rust, MCP over stdio, published as @graphicmiles/scout. Idles around 5 MB.</p>
+              <p class="project-links">
+                <a class="prose-link" href="https://github.com/GraphicMiles/Scout#readme" target="_blank" rel="noopener noreferrer">Docs</a>
+                <a class="prose-link" href="https://github.com/GraphicMiles/Scout" target="_blank" rel="noopener noreferrer">Code</a>
+              </p>
+            </article>
           </li>
 
           <li class="hairline-item">
-            <a href="/quarry/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/quarry.png" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Quarry</span>
-                  <span class="row-sub">Design studio site for startups, from brand to launch</span>
-                </div>
+            <article class="project">
+              <div class="row-copy">
+                <h3 class="row-title">Nearspace</h3>
+                <p class="row-sub">A creator network for Nigeria, built around who is nearby.</p>
               </div>
-              <span class="row-meta row-meta--domain">/quarry</span>
-            </a>
+              <p class="project-body">I built it end to end. It maps creators near you, carries one-to-one and group chat, and sells a Pro tier through Paystack. Presence runs on Firebase Realtime Database while reads are cache-first, and the app installs as a PWA so it opens on a weak connection. The hard part was doing proximity without a server of my own, so location checks, security rules and every write go through Firebase and Vercel functions.</p>
+              <p class="project-fact">React, Vite, Firebase, Vercel functions. 590+ tests across unit, API and rules suites.</p>
+              <p class="project-links">
+                <a class="prose-link" href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer">Live demo</a>
+                <a class="prose-link" href="https://github.com/GraphicMiles/Nearspace" target="_blank" rel="noopener noreferrer">Code</a>
+              </p>
+            </article>
           </li>
 
           <li class="hairline-item">
-            <a href="/ilee/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/ilee.png" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Ilée</span>
-                  <span class="row-sub">Concierge desk for verified Lagos long-term rentals</span>
-                </div>
+            <article class="project">
+              <div class="row-copy">
+                <h3 class="row-title">Luna</h3>
+                <p class="row-sub">An Android agent that runs the language model on the phone.</p>
               </div>
-              <span class="row-meta row-meta--domain">/ilee</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="https://legally-unbullied.onrender.com" target="_blank" rel="noopener noreferrer" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/legally-unbullied.png" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Legally Unbullied</span>
-                  <span class="row-sub">Evidence-grounded AI legal assistant for Nigerian law</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">legally-unbullied.onrender.com</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="/tessera/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/tessera.png" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Tessera</span>
-                  <span class="row-sub">Policy-bound agent workflows with verifiable execution</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">/tessera</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="/rewind/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/rewind.svg" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Rewind</span>
-                  <span class="row-sub">Streaming nostalgia concept with tactile browsing and search</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">/rewind</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="/cirrus/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/cirrus.png" alt="" width="40" height="40" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Cirrus</span>
-                  <span class="row-sub">Calm receivables workspace and B2B design system</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">/cirrus</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="https://github.com/GraphicMiles/Scout" target="_blank" rel="noopener noreferrer" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/scout.png" alt="" width="40" height="40" loading="lazy" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Scout</span>
-                  <span class="row-sub">Lightweight Rust browser-automation runtime, idling around 5 MB</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">github.com/GraphicMiles</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="https://motionshelf.onrender.com/" target="_blank" rel="noopener noreferrer" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/motionshelf.png" alt="" width="40" height="40" loading="lazy" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">MotionShelf</span>
-                  <span class="row-sub">Copyable UI components and offline developer tools</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">motionshelf.onrender.com</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="/middleground/" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/middleground.png" alt="" width="40" height="40" loading="lazy" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Middleground</span>
-                  <span class="row-sub">First-person Okavango wetland game in the browser</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">/middleground</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="https://nearspace.com.ng" target="_blank" rel="noopener noreferrer" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/nearspace.png" alt="" width="40" height="40" loading="lazy" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">Nearspace</span>
-                  <span class="row-sub">Proximity-first creator network with live map</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">nearspace.com.ng</span>
-            </a>
-          </li>
-
-          <li class="hairline-item">
-            <a href="https://odgdelivery.com" target="_blank" rel="noopener noreferrer" class="row-link">
-              <div class="row-main">
-                <img src="/images/logos/odg.png" alt="" width="40" height="40" loading="lazy" decoding="async" class="row-icon">
-                <div class="row-copy">
-                  <span class="row-title">ODG Deliveries</span>
-                  <span class="row-sub">Reviewed-kitchen food delivery platform for Ibadan</span>
-                </div>
-              </div>
-              <span class="row-meta row-meta--domain">odgdelivery.com</span>
-            </a>
+              <p class="project-body">I built Luna as a Flutter app over a Java device layer, with llama.cpp loaded through JNI so GGUF models run locally with no network call. It streams tokens as they are generated, checks every model file against a checksum before loading, and keeps a small agent core that decides when to reach for a tool. The hard part was the bridge: memory ceilings, heat, and a 4-bit model that has to answer before the phone decides the app has stalled.</p>
+              <p class="project-fact">Flutter, Java, JNI, llama.cpp. 42 tests on the agent core, with an optional cloud control plane.</p>
+              <p class="project-links">
+                <a class="prose-link" href="https://github.com/GraphicMiles/Luna/blob/main/docs/TEST_REPORT.md" target="_blank" rel="noopener noreferrer">Test report</a>
+                <a class="prose-link" href="https://github.com/GraphicMiles/Luna" target="_blank" rel="noopener noreferrer">Code</a>
+              </p>
+            </article>
           </li>
         </ul>
+
+        <p class="more-work"><a class="prose-link" href="/projects/">More work</a>, the full archive.</p>
       </section>
 
       <!-- Layout 3: Progressive-disclosure accordion -->
@@ -337,7 +226,7 @@
             <button type="button" class="row-link exp-trigger" aria-expanded="true" aria-controls="exp-lu">
               <div class="row-copy">
                 <span class="row-title">Legally Unbullied</span>
-                <span class="row-sub">Creator &amp; Lead Engineer, AI Legal Systems</span>
+                <span class="row-sub">Legal information assistant. Built it and ran the evaluation gate.</span>
               </div>
               <span class="exp-meta-wrap">
                 <span class="row-meta tabular">Shipped</span>
@@ -348,8 +237,8 @@
               <div class="exp-panel-inner">
                 <div class="exp-body">
                   <ul class="exp-points">
-                    <li>Built an evidence-grounded Nigerian legal-information assistant across <span class="tabular">20</span> practice areas on Node.js, Express, Firebase Auth, and Firestore.</li>
-                    <li>Engineered a <span class="tabular">9</span>-stage agent pipeline with statutory corpus retrieval, token-verified source citations, critic safety gating, and a <span class="tabular">100</span>-scenario evaluation suite.</li>
+                    <li>Built the assistant across <span class="tabular">20</span> practice areas on Node.js, Express, Firebase Auth and Firestore.</li>
+                    <li>Wrote the retrieval, citation and refusal stages behind it, and the <span class="tabular">100</span>-scenario suite that runs before a release.</li>
                   </ul>
                 </div>
               </div>
@@ -360,7 +249,7 @@
             <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-scout">
               <div class="row-copy">
                 <span class="row-title">Scout</span>
-                <span class="row-sub">Creator &amp; Systems Engineer, Open Source</span>
+                <span class="row-sub">Rust automation runtime. Published to npm.</span>
               </div>
               <span class="exp-meta-wrap">
                 <span class="row-meta tabular">Shipped</span>
@@ -371,8 +260,8 @@
               <div class="exp-panel-inner">
                 <div class="exp-body">
                   <ul class="exp-points tabular">
-                    <li>Built a Rust browser-automation runtime that idles around <span class="tabular">5 MB</span> of memory (@graphicmiles/scout), for developers and AI agents without Chromium overhead.</li>
-                    <li>Executes sandboxed page JavaScript, submits forms, extracts structured data, and exposes tools over an authenticated HTTP API and MCP server.</li>
+                    <li>Built a Rust browser automation runtime that idles around <span class="tabular">5 MB</span> (@graphicmiles/scout), so it runs without Chromium.</li>
+                    <li>It runs page JavaScript in a sandbox, fills forms, reads structured data, and serves the same tools over an HTTP API and an MCP server.</li>
                   </ul>
                 </div>
               </div>
@@ -383,7 +272,7 @@
             <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-nearspace">
               <div class="row-copy">
                 <span class="row-title">Nearspace</span>
-                <span class="row-sub">Builder &amp; Full-Stack Engineer, Lagos</span>
+                <span class="row-sub">Creator app for Nigeria. Live, with paying users on Pro.</span>
               </div>
               <span class="exp-meta-wrap">
                 <span class="row-meta tabular">Shipped</span>
@@ -394,8 +283,8 @@
               <div class="exp-panel-inner">
                 <div class="exp-body">
                   <ul class="exp-points">
-                    <li>Engineered geohash-proximity creator discovery with Firebase RTDB live presence and cache-first Firestore reads.</li>
-                    <li>Maintained a strict verification pipeline backed by <span class="tabular">590+</span> unit tests across live map, discovery, and feed modules.</li>
+                    <li>Built nearby-creator discovery on geohashes, with live presence on Firebase RTDB and cache-first reads on Firestore.</li>
+                    <li>Kept the verification pipeline strict, with <span class="tabular">590+</span> tests across the map, discovery and feed modules.</li>
                   </ul>
                 </div>
               </div>
@@ -403,22 +292,22 @@
           </li>
 
           <li class="hairline-item exp-item" data-open="false">
-            <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-forge">
+            <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-luna">
               <div class="row-copy">
-                <span class="row-title">ForgeAI</span>
-                <span class="row-sub">Creator &amp; Mobile Engineer, On-Device AI</span>
+                <span class="row-title">Luna</span>
+                <span class="row-sub">Android agent. Models run on the device, not a server.</span>
               </div>
               <span class="exp-meta-wrap">
                 <span class="row-meta tabular">Shipped</span>
                 <span class="exp-toggle-glyph" aria-hidden="true">+</span>
               </span>
             </button>
-            <div id="exp-forge" class="exp-panel" role="region" aria-label="ForgeAI experience details">
+            <div id="exp-luna" class="exp-panel" role="region" aria-label="Luna experience details">
               <div class="exp-panel-inner">
                 <div class="exp-body">
                   <ul class="exp-points">
-                    <li>Built a local-first Android AI coding assistant running GGUF models natively on-device through a llama.cpp, JNI, and Capacitor bridge.</li>
-                    <li>Shipped incremental token streaming, a checksummed model catalog, and a <span class="tabular">42</span>-test agent core.</li>
+                    <li>Built a local-first Android coding assistant that runs GGUF models on the device through llama.cpp, JNI and a Flutter shell.</li>
+                    <li>Shipped token streaming, a checksummed model catalog and a <span class="tabular">42</span>-test agent core.</li>
                   </ul>
                 </div>
               </div>
@@ -429,7 +318,7 @@
             <button type="button" class="row-link exp-trigger" aria-expanded="false" aria-controls="exp-odg">
               <div class="row-copy">
                 <span class="row-title">ODG Deliveries</span>
-                <span class="row-sub">Builder &amp; Product Engineer, Ibadan</span>
+                <span class="row-sub">Food delivery platform in Ibadan. Four roles, one database.</span>
               </div>
               <span class="exp-meta-wrap">
                 <span class="row-meta tabular">Shipped</span>
@@ -440,7 +329,7 @@
               <div class="exp-panel-inner">
                 <div class="exp-body">
                   <ul class="exp-points">
-                    <li>Designed and shipped a four-role food delivery platform (customers, reviewed kitchens, riders, and admin) backed by PostgreSQL and Express.</li>
+                    <li>Built a four-role delivery platform for customers, reviewed kitchens, riders and admin, on PostgreSQL and Express.</li>
                   </ul>
                 </div>
               </div>
@@ -456,8 +345,8 @@
         <div class="notes-grid">
           <a href="https://github.com/GraphicMiles/Legallyunbullied/blob/main/docs/SYSTEM_REFERENCE.md" target="_blank" rel="noopener noreferrer" class="note-card note-card--wide">
             <div class="note-top">
-              <span class="note-title">Legally Unbullied, System Reference</span>
-              <span class="note-sub">Nine-stage statutory retrieval, token-verified Nigerian law citations, critic safety gating, and a <span class="tabular">100</span>-scenario eval suite documented end to end.</span>
+              <span class="note-title">How Legally Unbullied answers</span>
+              <span class="note-sub">The whole pipeline written down: what gets retrieved, how a citation is checked against the provision, and where the answer is refused. Includes the <span class="tabular">100</span>-scenario evaluation.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">github.com/GraphicMiles/Legallyunbullied</span>
@@ -467,8 +356,8 @@
 
           <a href="https://github.com/GraphicMiles/Scout#readme" target="_blank" rel="noopener noreferrer" class="note-card">
             <div class="note-top">
-              <span class="note-title">Scout, Documented</span>
-              <span class="note-sub">How a Rust runtime that idles around <span class="tabular">5 MB</span> automates browsing and MCP tools without Chromium.</span>
+              <span class="note-title">Scout, documented</span>
+              <span class="note-sub">How a <span class="tabular">5 MB</span> Rust runtime drives a page and serves the same tools to an MCP client, without a browser install.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">github.com/GraphicMiles/Scout</span>
@@ -478,8 +367,8 @@
 
           <a href="https://github.com/GraphicMiles/Luna" target="_blank" rel="noopener noreferrer" class="note-card">
             <div class="note-top">
-              <span class="note-title">Luna, On-Device</span>
-              <span class="note-sub">Running local GGUF language models on Android through llama.cpp and JNI.</span>
+              <span class="note-title">Luna, on-device</span>
+              <span class="note-sub">Loading and running a GGUF model on an Android phone through llama.cpp and JNI, and what the phone does to it under load.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">github.com/GraphicMiles/Luna</span>
@@ -489,8 +378,8 @@
 
           <a href="https://github.com/GraphicMiles/Middleground/blob/main/docs/ground-materials.md" target="_blank" rel="noopener noreferrer" class="note-card">
             <div class="note-top">
-              <span class="note-title">Baking the Okavango Marsh</span>
-              <span class="note-sub">Procedural wetland textures, seeded terrain, and a <span class="tabular">36</span>-minute sky cycle.</span>
+              <span class="note-title">Baking the Okavango marsh</span>
+              <span class="note-sub">Procedural wetland textures, seeded terrain and a <span class="tabular">36</span>-minute sky cycle, generated in the browser.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">github.com/GraphicMiles/Middleground</span>
@@ -501,7 +390,7 @@
           <a href="https://motionshelf.onrender.com/interactions.html" target="_blank" rel="noopener noreferrer" class="note-card">
             <div class="note-top">
               <span class="note-title">Inside MotionShelf</span>
-              <span class="note-sub">Copy-ready interaction primitives exported for vanilla JS, React, Vue, and Svelte.</span>
+              <span class="note-sub">Interaction primitives you can copy out for vanilla JS, React, Vue or Svelte.</span>
             </div>
             <div class="note-foot">
               <span class="note-host">motionshelf.onrender.com</span>
@@ -525,7 +414,7 @@
                 </span>
                 <div class="row-copy">
                   <span class="row-title">Product Design</span>
-                  <span class="row-sub">Figma, design systems, typography, responsive layout</span>
+                  <span class="row-sub">Photoshop, Illustrator, CorelDRAW, Canva, Blender</span>
                 </div>
               </li>
               <li class="skill-entry">
@@ -622,9 +511,8 @@
         <h2 id="philosophy-heading" class="section-title">My philosophy</h2>
 
         <div class="prose-block">
-          <p class="prose-lead">Good software respects the person on the other side of the glass. It opens quickly, explains itself without a manual, and stays steady on imperfect networks and modest hardware.</p>
-          <p>Working as both designer and engineer lets me hold the whole arc in one pair of hands. Typography, layout rhythm, state machines, and bundle weight get decided together instead of lost in handoffs.</p>
-          <p>Since <span class="tabular">2021</span> I have shipped marketplaces, desktop companions, civic tools, and spatial web experiences from Lagos under the name Graphic Miles. If you have a product to build or an interface to sharpen, write to <a href="mailto:rfarouq69@gmail.com" class="prose-link">rfarouq69@gmail.com</a>.</p>
+          <p class="prose-lead">Good software opens fast, explains itself and holds up on a bad connection.</p>
+          <p>If you have a product to build, write to <a href="mailto:rfarouq69@gmail.com" class="prose-link">rfarouq69@gmail.com</a>.</p>
         </div>
       </section>
     </div>
