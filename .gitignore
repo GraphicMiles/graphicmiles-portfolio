@@ -4,3 +4,9 @@ Thumbs.db
 node_modules
 dist
 .vercel
+
+# local agent scratch
+.agents/
+.claude/
+agent/
+skills-lock.json
