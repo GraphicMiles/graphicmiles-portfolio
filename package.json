@@ -3,6 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "build": "node static-build.js"
+    "build": "node static-build.js",
+    "serve": "node scripts/serve-dist.js",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1"
   }
 }
