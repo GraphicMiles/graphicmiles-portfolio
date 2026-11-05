@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Drop. Send something worth keeping.</title>
+<meta name="description" content="Send a meme, a file, a link or a note to anyone with a handle. It lands in their inbox with a notification. Private by default, no balance, no fees.">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Drop. Send something worth keeping.">
+<meta property="og:description" content="Send a meme, a file, a link or a note to anyone with a handle. It lands in their inbox with a notification.">
+<link rel="canonical" href="https://designedbymiles.vercel.app/drop/">
+<meta property="og:site_name" content="Drop">
+<meta property="og:url" content="https://designedbymiles.vercel.app/drop/">
+<meta property="og:image" content="https://designedbymiles.vercel.app/og-image.png?v=3">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@DSGNBYMILES">
+<meta name="twitter:title" content="Drop. Send something worth keeping.">
+<meta name="twitter:description" content="Send a meme, a file, a link or a note to anyone with a handle. It lands in their inbox with a notification.">
+<meta name="twitter:image" content="https://designedbymiles.vercel.app/og-image.png?v=3">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%230A0A0A'/%3E%3Cpath d='M9 21l10-10M12 11h7v7' stroke='%23FAF6F0' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<style>__CSS__</style>
+<noscript><style>.enter,.rise{opacity:1;transform:none;filter:none}.faq__a{grid-template-rows:1fr}.faq__a > div{visibility:visible}.faq__q{pointer-events:none}.faq__sign{display:none}#slotEmpty{display:none}#received[hidden]{display:flex}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="nav-wrap">
+  <div class="shell">
+    <header class="nav" id="nav">
+      <a class="brand" href="#top" aria-label="Drop, home">
+        <span class="brand__mark">[[icb:arrow-up-right]]</span>
+        <span class="brand__name">Drop</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#works">How it works</a>
+        <a href="#send">What you can send</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="nav__end">
+        <a class="nav__signin" href="#top">Sign in</a>
+        <a class="btn btn--ink btn--sm" href="#top">Get started</a>
+        <button class="nav__burger" type="button" id="navBurger" aria-expanded="false" aria-controls="navPanel" aria-label="Open menu">
+          <span class="nav__ico nav__ico--open">[[ic:list]]</span>
+          <span class="nav__ico nav__ico--close">[[ic:x]]</span>
+        </button>
+      </div>
+    </header>
+    <nav class="nav__panel" id="navPanel" aria-label="Sections" hidden>
+      <a href="#works">How it works</a>
+      <a href="#send">What you can send</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+      <a href="#top">Sign in</a>
+    </nav>
+  </div>
+</div>
+
+<main id="main">
+  <span id="top"></span>
+
+  <section class="hero">
+    <div class="shell hero__layout">
+      <div class="hero__inner">
+        <h1 class="display enter" style="--d:80ms">Send something worth keeping.</h1>
+        <p class="hero__sub enter" style="--d:160ms">Arrives in their inbox in seconds</p>
+        <div class="cta-row enter" style="--d:240ms">
+          <a class="btn btn--ink" href="#top">Create your handle [[ic:arrow-right]]</a>
+          <a class="quiet" href="#works">See how it works</a>
+        </div>
+      </div>
+
+      <div class="strip enter" id="strip" style="--d:340ms">
+        <div class="strip__cells">
+          <div class="cell cell--send">
+            <div class="cell__top"><span>@miles sends</span><span class="num">01</span></div>
+            <div class="person">
+              <span class="person__avatar">M</span>
+              <span class="person__id">
+                <span class="person__name">@miles</span>
+                <span class="person__meta">Lagos</span>
+              </span>
+            </div>
+            <div class="slot" id="slotSend">
+              <div class="filecard" id="chip">
+                <span class="filecard__ic">[[ic:image-square]]</span>
+                <span class="filecard__body">
+                  <b>sticker-set.gif</b>
+                  <small>GIF · 2.1 MB</small>
+                </span>
+                <span class="chip__flag" id="chipFlag">Sent</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="strip__route" aria-hidden="true">[[ic:arrow-right]]</div>
+
+          <div class="cell cell--receive">
+            <div class="cell__top"><span>@kemi receives</span><span class="num">02</span></div>
+            <div class="person">
+              <span class="person__avatar">K</span>
+              <span class="person__id">
+                <span class="person__name">@kemi</span>
+                <span class="person__meta">Accra</span>
+              </span>
+            </div>
+            <div class="slot" id="slotRecv">
+              <div class="slot__empty" id="slotEmpty">Waiting for the drop</div>
+              <div class="filecard" id="received" hidden>
+                <span class="filecard__ic">[[ic:image-square]]</span>
+                <span class="filecard__body">
+                  <b>sticker-set.gif</b>
+                  <small>Arrived · just now</small>
+                </span>
+                <span class="tag">New</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="strip__note">
+          <span id="stripNote"><b>Ready.</b> One handle, one item, one confirmation.</span>
+          <span>In-app, email and push, if they want them</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="shell">
+      <div class="pairing rise">
+        <figure class="frame">
+          <img class="frame__img" src="data:image/jpeg;base64,__PHOTO_SENDER__" alt="A man on a sunlit balcony in Lagos, smiling at his phone." width="760" height="1014" decoding="async">
+          <figcaption class="frame__chip"><span class="frame__dot">M</span>@miles sends</figcaption>
+        </figure>
+        <figure class="frame">
+          <img class="frame__img" src="data:image/jpeg;base64,__PHOTO_RECIPIENT__" alt="A woman near a window in Accra, smiling as she reads her phone." width="760" height="1014" decoding="async">
+          <figcaption class="frame__chip"><span class="frame__dot">K</span>@kemi opens</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="demo">
+    <div class="shell">
+      <div class="wrap wrap--app rise">
+      <div class="head">
+        <h2 class="h2">One inbox for everything anyone sends you</h2>
+        <p class="lede">Sending takes a handle and one confirmation. Receiving takes nothing at all, because it is already there.</p>
+      </div>
+
+        <div class="app app--split rise">
+          <div class="app__bar">
+            <b>Inbox</b>
+            <span class="tag">2 just in</span>
+          </div>
+          <div class="split-pane">
+            <div class="pane pane--list">
+              <div class="row">
+                <span class="row__ic">[[ic:image-square]]</span>
+                <span class="row__body">
+                  <b>sticker-set.gif</b>
+                  <small>From @miles · 12 minutes ago</small>
+                </span>
+                <span class="tag">New</span>
+              </div>
+              <div class="row">
+                <span class="row__ic">[[ic:file-text]]</span>
+                <span class="row__body">
+                  <b>project-brief.pdf</b>
+                  <small>From @dami · yesterday</small>
+                </span>
+                <span class="tag">New</span>
+              </div>
+              <div class="row">
+                <span class="row__ic">[[ic:link-simple]]</span>
+                <span class="row__body">
+                  <b>Portfolio review</b>
+                  <small>From @tobi · 2 days ago</small>
+                </span>
+                <span class="tag tag--quiet">Opened</span>
+              </div>
+              <div class="row">
+                <span class="row__ic">[[ic:note-pencil]]</span>
+                <span class="row__body">
+                  <b>Thank you, seriously</b>
+                  <small>From @kemi · 4 days ago</small>
+                </span>
+                <span class="tag tag--quiet">Opened</span>
+              </div>
+            </div>
+
+            <div class="pane pane--detail">
+              <div class="row">
+                <span class="row__ic">[[ic:image-square]]</span>
+                <span class="row__body">
+                  <b>sticker-set.gif</b>
+                  <small>Sent 12 minutes ago</small>
+                </span>
+              </div>
+              <div class="facts2 plain">
+                <div class="facts2__line"><span>Size</span><b>2.1 MB</b></div>
+                <div class="facts2__line"><span>Visibility</span><b>Sender and recipient</b></div>
+                <div class="facts2__line"><span>Expires</span><b>In 29 days</b></div>
+                <div class="facts2__line"><span>Download</span><b>Signed link, 5 min</b></div>
+              </div>
+              <div class="track plain">
+                <div class="track__step" data-done="true">
+                  <span class="track__dot"></span>
+                  <b>Sent</b>
+                  <small>12 min ago</small>
+                </div>
+                <div class="track__step" data-done="true">
+                  <span class="track__dot"></span>
+                  <b>Opened</b>
+                  <small>11 min ago</small>
+                </div>
+                <div class="track__step">
+                  <span class="track__dot"></span>
+                  <b>Downloaded</b>
+                  <small>Not yet</small>
+                </div>
+              </div>
+            </div>
+        </div>
+        <p class="shot__claim">Every drop keeps its own status<span>New drops appear live. Email and push are optional, and the inbox is always the record.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark" id="send">
+    <div class="shell">
+      <div class="head head--dark rise">
+        <h2 class="h2">If you can send it in a chat, you can send it here</h2>
+        <p class="lede">No zipping, no drive links, no scrolling back three months for the file someone asked for.</p>
+      </div>
+
+      <div class="features rise">
+        <div class="feature">
+          <span class="feature__tile">[[ic:image-square]]</span>
+          <h3>Memes and images</h3>
+          <p>GIFs, screenshots, photos. They render in the inbox, so the joke lands before the file finishes downloading.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__tile">[[ic:file-text]]</span>
+          <h3>Files and PDFs</h3>
+          <p>Documents up to 10 MB, checked on the server. Private storage, links that expire, no public URLs.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__tile">[[ic:link-simple]]</span>
+          <h3>Links</h3>
+          <p>A portfolio, a folder, a playlist. The link arrives with who sent it and when, instead of vanishing into a group chat.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__tile">[[ic:note-pencil]]</span>
+          <h3>Notes</h3>
+          <p>Just words. A reminder, a thank you, a line you wanted to say properly. Sometimes that is the whole gift.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__tile">[[ic:seal-check]]</span>
+          <h3>10 MB per drop</h3>
+          <p>A deliberate limit. Big enough for a document or a long GIF, small enough that a drop arrives in seconds.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__tile">[[ic:shield-check]]</span>
+          <h3>Nothing executable</h3>
+          <p>Scripts, HTML uploads and installers are refused, and files are checked by content rather than extension.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--works" id="works">
+    <div class="shell">
+      <div class="wrap rise">
+      <div class="head">
+        <h2 class="h2">Pick. Send. They open it.</h2>
+        <p class="lede">No settings to learn, nothing to install, nothing to remember.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="step__n">01</span>
+          <h3>Create your handle</h3>
+          <p>Sign in with Google and choose a handle. Your email stays private, and people find you by the handle.</p>
+        </div>
+        <div class="step">
+          <span class="step__n">02</span>
+          <h3>Send the drop</h3>
+          <p>Enter a handle, attach what you are sending, add a line if you want one. You see the recipient and the item before it goes.</p>
+        </div>
+        <div class="step">
+          <span class="step__n">03</span>
+          <h3>They open it</h3>
+          <p>It appears in their inbox right away, and you see when it was opened. Nothing gets lost in a chat thread.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="privacy">
+    <div class="shell">
+      <div class="head rise">
+        <h2 class="h2">A drop has two readers, that is the whole access list</h2>
+        <p class="lede">No public links, no shared folders, no one else reading over a shoulder.</p>
+      </div>
+      <div class="features features--light rise">
+        <div class="feature">
+          <span class="feature__tile">[[ic:lock-simple]]</span>
+          <h3>Private by default</h3>
+          <p>Files live in private storage and are served through signed links that expire. There are no guessable public URLs.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__tile">[[ic:users-three]]</span>
+          <h3>Account to account</h3>
+          <p>Only the sender and the recipient can open a drop or download what is inside it.</p>
+        </div>
+        <div class="feature">
+          <span class="feature__tile">[[ic:user-focus]]</span>
+          <h3>Block, report, delete</h3>
+          <p>Block a sender, report a drop, turn notifications off, or delete your account and everything in it.</p>
+        </div>
+      </div>
+
+      <div class="notice rise">
+        <span class="notice__tile">[[ic:seal-check]]</span>
+        <div class="notice__body">
+          <b>Drop does not hold money</b>
+          <p>There are no balances, credits, points or top ups. Moving money needs a licensed payment partner and its own compliance work, so it stays separate from digital drops instead of being faked here.</p>
+        </div>
+        <a class="btn btn--light btn--sm" href="#faq">Read the notes</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--faq" id="faq">
+    <div class="shell">
+      <div class="wrap rise">
+      <div class="head">
+        <h2 class="h2">Frequently asked questions</h2>
+      </div>
+
+      <div class="faq" id="faqList">
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="a1">What can I send?<span class="faq__sign" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="a1"><div><p>Images, GIFs, PDFs and common documents up to 10 MB each, plus links and plain notes. Scripts, HTML uploads and installers are refused. Files are checked by content on the server, not trusted because of their extension.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="a2">Do I need an account?<span class="faq__sign" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="a2"><div><p>Yes, for now, and the recipient needs one too. Sending to someone who has not joined yet comes after account to account transfers are solid.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="a3">How do I know it arrived?<span class="faq__sign" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="a3"><div><p>Every drop has a status: sent, opened, downloaded, cancelled or expired. The recipient gets an in-app notification straight away, plus email and browser push if they have switched those on.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="a4">Do drops expire?<span class="faq__sign" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="a4"><div><p>Unclaimed drops expire, and both sides see that it happened. The expiry window is shown before you send, so nothing disappears without warning.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="a5">Is my email visible?<span class="faq__sign" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="a5"><div><p>No. People find you by your handle. Your Google address is used for sign in and for the notifications you choose to receive, and it is never shown on a drop.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="a6">Can I send money?<span class="faq__sign" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="a6"><div><p>Not in this version, and there is no wallet to top up. Sending money needs a licensed provider and its own regulatory footing, so it is a separate product rather than a feature hidden in this one.</p></div></div>
+        </div>
+        <div class="faq__item">
+          <h3><button class="faq__q" type="button" aria-expanded="false" aria-controls="a7">What happens if I delete my account?<span class="faq__sign" aria-hidden="true"></span></button></h3>
+          <div class="faq__a" id="a7"><div><p>Your profile, your drops and the files inside them are deleted, and the other side sees that the drop is gone rather than a broken link.</p></div></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <div class="shell">
+      <p class="closing__kick rise">Ready when you are</p>
+      <h2 class="display rise">Pick something. Send it to someone.</h2>
+      <div class="cta-row cta-row--center rise">
+        <a class="btn btn--ink" href="#top">Create your handle [[ic:arrow-right]]</a>
+      </div>
+      <p class="fine rise">Private beta. Built in Lagos. 18+ during the beta.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="brand" href="#top">
+          <span class="brand__mark">[[icb:arrow-up-right]]</span>
+          <span class="brand__name">Drop</span>
+        </a>
+        <p>A quiet place to send the things that are worth sending.</p>
+      </div>
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h3>Product</h3>
+          <a href="#works">How it works</a>
+          <a href="#send">What you can send</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="footer__col">
+          <h3>Trust</h3>
+          <a href="#privacy">Privacy</a>
+          <a href="#privacy">Security</a>
+          <a href="#privacy">Blocked users</a>
+        </div>
+        <div class="footer__col">
+          <h3>Contact</h3>
+          <a href="mailto:hello@drop.app">hello@drop.app</a>
+          <a href="#top">Support</a>
+          <a href="#top">Status</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__base">
+      <span>© 2026 Drop. Lagos, Nigeria.</span>
+      <span>Terms · Privacy · Cookies</span>
+    </div>
+  </div>
+  <div class="shell footer__mark"><span class="wordmark" aria-hidden="true">Drop</span></div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var nav = document.getElementById("nav");
+  var setNav = function () {
+    nav.dataset.scrolled = window.scrollY > 6 ? "true" : "false";
+  };
+  setNav();
+  window.addEventListener("scroll", setNav, { passive: true });
+
+  var enters = document.querySelectorAll(".enter");
+  var rises = document.querySelectorAll(".rise");
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-in");
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -6% 0px", threshold: 0.12 });
+
+    enters.forEach(function (el) { io.observe(el); });
+    rises.forEach(function (el) { io.observe(el); });
+  } else {
+    enters.forEach(function (el) { el.classList.add("is-in"); });
+    rises.forEach(function (el) { el.classList.add("is-in"); });
+  }
+
+  /* the focal sequence: a copy of the item travels from sender to recipient */
+  var strip = document.getElementById("strip");
+  var chip = document.getElementById("chip");
+  var slotRecv = document.getElementById("slotRecv");
+  var slotEmpty = document.getElementById("slotEmpty");
+  var received = document.getElementById("received");
+  var chipFlag = document.getElementById("chipFlag");
+  var note = document.getElementById("stripNote");
+  var ARRIVED = "<b>Arrived.</b> It is in @kemi's inbox, and in the history on both sides.";
+
+  function settle(clone) {
+    if (clone && clone.parentNode) clone.parentNode.removeChild(clone);
+    if (received) received.hidden = false;
+    if (slotEmpty) slotEmpty.hidden = true;
+    if (chipFlag) chipFlag.hidden = false;
+    strip.classList.remove("is-travelling");
+    strip.dataset.arrived = "true";
+  }
+
+  function arrive(animate) {
+    if (!strip || strip.dataset.arrived === "true") return;
+    strip.dataset.arrived = "true";
+    if (note) note.innerHTML = ARRIVED;
+
+    if (!animate || !chip || !slotRecv) { settle(null); return; }
+
+    var clone = chip.cloneNode(true);
+    var flag = clone.querySelector(".chip__flag");
+    if (flag) flag.parentNode.removeChild(flag);
+    clone.removeAttribute("id");
+    var from = chip.getBoundingClientRect();
+    var to = slotRecv.getBoundingClientRect();
+    var box = strip.getBoundingClientRect();
+
+    clone.style.position = "absolute";
+    clone.style.left = from.left - box.left + "px";
+    clone.style.top = from.top - box.top + "px";
+    clone.style.width = from.width + "px";
+    clone.style.margin = "0";
+    clone.style.zIndex = "2";
+    clone.setAttribute("aria-hidden", "true");
+    strip.appendChild(clone);
+
+    var dx = to.left - from.left;
+    var dy = to.top + (to.height - from.height) / 2 - from.top;
+
+    requestAnimationFrame(function () {
+      strip.classList.add("is-travelling");
+      clone.style.transform = "translate3d(" + dx + "px," + dy + "px,0)";
+    });
+
+    var done = false;
+    var finish = function () {
+      if (done) return;
+      done = true;
+      settle(clone);
+    };
+    clone.addEventListener("transitionend", finish, { once: true });
+    window.setTimeout(finish, 1400);
+  }
+
+  if (strip) {
+    var fire = function () {
+      window.setTimeout(function () { arrive(!reduce); }, reduce ? 0 : 650);
+    };
+    if ("IntersectionObserver" in window) {
+      var so = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { fire(); so.disconnect(); }
+        });
+      }, { threshold: 0.45 });
+      so.observe(strip);
+    } else {
+      fire();
+    }
+  }
+
+  /* mobile menu */
+  var burger = document.getElementById("navBurger");
+  var panel = document.getElementById("navPanel");
+
+  function closeMenu() {
+    if (!burger || !panel || panel.hidden) return;
+    burger.setAttribute("aria-expanded", "false");
+    panel.hidden = true;
+  }
+
+  if (burger && panel) {
+    burger.addEventListener("click", function () {
+      var open = burger.getAttribute("aria-expanded") === "true";
+      burger.setAttribute("aria-expanded", open ? "false" : "true");
+      panel.hidden = open;
+    });
+    panel.addEventListener("click", function (event) {
+      if (event.target.closest("a")) closeMenu();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeMenu();
+    });
+  }
+
+  /* faq */
+  var faqList = document.getElementById("faqList");
+  if (faqList) {
+    faqList.addEventListener("click", function (event) {
+      var q = event.target.closest(".faq__q");
+      if (!q) return;
+      var item = q.closest(".faq__item");
+      var open = q.getAttribute("aria-expanded") === "true";
+
+      faqList.querySelectorAll(".faq__item").forEach(function (other) {
+        if (other === item) return;
+        other.dataset.open = "false";
+        var b = other.querySelector(".faq__q");
+        if (b) b.setAttribute("aria-expanded", "false");
+      });
+
+      q.setAttribute("aria-expanded", open ? "false" : "true");
+      item.dataset.open = open ? "false" : "true";
+    });
+  }
+})();
+</script>
+</body>
+</html>

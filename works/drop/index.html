@@ -22,24 +22,42 @@
 <meta name="twitter:description" content="Send a meme, a file, a link or a note to anyone with a handle. It lands in their inbox with a notification.">
 <meta name="twitter:image" content="https://designedbymiles.vercel.app/og-image.png?v=3">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%230A0A0A'/%3E%3Cpath d='M9 21l10-10M12 11h7v7' stroke='%23FAF6F0' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%231D2BA6'/%3E%3Cpath d='M9 21l10-10M12 11h7v7' stroke='%23FFFFFF' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E">
 <style>/* ============================================================
    Drop, landing page
-   Black and white. One family (Switzer). Symmetric composition:
-   every section header is centred, every item in a card is centred,
-   every card sits in an equal column with equal padding.
+   Paper, one blue, one yellow. One family (Switzer). Symmetric
+   composition: every section header is centred, every item in a card
+   is centred, every card sits in an equal column with equal padding.
    No borders, no shadows, no gradients.
+
+   Colour is spent deliberately: Sun Yellow (#ffc61a) is the only
+   action colour - primary buttons, the step numerals, the FAQ sign,
+   a "New" tag - and it always carries ink, never white, because ink
+   on yellow is 12.6:1. Deep Ultramarine (#1d2ba6) takes over every
+   surface that used to be black: the drop strip, the feature band,
+   the honesty panel, an open FAQ row, the footer. Mist (#e8ebfa) is
+   the cool tinted paper behind cards. Everything else is still
+   black and white.
    ============================================================ */
 
 :root {
+  /* Paper stays paper. Colour is spent only where something acts or
+     where a surface used to be black. Two roles, nothing decorative. */
   --bg: #FFFFFF;
-  --panel: #F2F2F2;
-  --panel-2: #E8E8E8;
-  --ink: #0A0A0A;
-  --muted: #5C5C5C;
-  --dark: #0A0A0A;
-  --on-dark: #FFFFFF;
-  --muted-dark: #ADADAD;
+  --panel: #E8EBFA;        /* Mist: cool surface for nav, cards, hovers */
+  --panel-2: #D6DBF5;      /* Mist, one step deeper: scrolled nav, quiet tags */
+  --ink: #0A0A0A;          /* unchanged near-black type */
+  --muted: #4A4F6E;        /* blue-grey: 6.7:1 on Mist, 8.0:1 on white */
+  --line: #9EA7E0;         /* soft blue underline for quiet links */
+  --dark: #1D2BA6;         /* Deep Ultramarine replaces every black band */
+  --on-dark: #FFFFFF;      /* white type on blue, 10.8:1 */
+  --muted-dark: #C5CBF7;   /* 6.8:1 on Ultramarine */
+
+  /* The action colour. Yellow is a fill, never type on paper
+     (1.6:1 on white), and its label is always ink (12.6:1). */
+  --accent: #FFC61A;
+  --accent-ink: #0A0A0A;
+  --accent-hover: #F0B400;
 
   --max: 1180px;
   --pad: clamp(20px, 5vw, 40px);
@@ -113,6 +131,15 @@ img, svg { display: block; }
   outline: 2px solid var(--ink);
   outline-offset: 3px;
   border-radius: 6px;
+}
+/* On the blue surfaces the ink ring disappears, so it flips to white. */
+.dark :focus-visible,
+.strip :focus-visible,
+.notice :focus-visible,
+.footer :focus-visible,
+.nav__panel :focus-visible,
+.faq__item[data-open="true"] :focus-visible {
+  outline-color: var(--on-dark);
 }
 
 .shell {
@@ -191,8 +218,8 @@ img, svg { display: block; }
 .btn:not(:disabled):active { scale: 0.96; transition-duration: 150ms; }
 .btn .ic { width: 18px; height: 18px; flex: none; }
 
-.btn--ink { background: var(--ink); color: #FFFFFF; }
-.btn--light { background: #FFFFFF; color: var(--ink); }
+.btn--ink { background: var(--accent); color: var(--accent-ink); }
+.btn--light { background: var(--on-dark); color: var(--dark); }
 .btn--sm {
   min-height: 46px;
   padding-inline: 24px;
@@ -200,7 +227,7 @@ img, svg { display: block; }
 }
 
 @media (hover: hover) {
-  .btn--ink:hover { background: #262626; }
+  .btn--ink:hover { background: var(--accent-hover); }
   .btn--light:hover { background: var(--panel); }
 }
 
@@ -217,7 +244,7 @@ img, svg { display: block; }
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 6px;
-  text-decoration-color: #A3A3A3;
+  text-decoration-color: var(--line);
   border-radius: var(--pill);
   transition-property: color, background-color, text-decoration-color;
   transition-duration: 200ms;
@@ -262,8 +289,8 @@ img, svg { display: block; }
   width: 30px;
   height: 30px;
   border-radius: 9px;
-  background: var(--ink);
-  color: #FFFFFF;
+  background: var(--dark);
+  color: var(--on-dark);
   display: grid;
   place-items: center;
   flex: none;
@@ -338,7 +365,7 @@ img, svg { display: block; }
   transition-timing-function: var(--ease-out);
 }
 .nav__ico--close { opacity: 0; scale: 0.6; }
-.nav__burger[aria-expanded="true"] { background: var(--ink); color: #FFFFFF; }
+.nav__burger[aria-expanded="true"] { background: var(--dark); color: var(--on-dark); }
 .nav__burger[aria-expanded="true"] .nav__ico--open { opacity: 0; scale: 0.6; }
 .nav__burger[aria-expanded="true"] .nav__ico--close { opacity: 1; scale: 1; }
 
@@ -346,14 +373,14 @@ img, svg { display: block; }
   margin-top: 8px;
   padding: 10px;
   display: grid;
-  background: var(--ink);
+  background: var(--dark);
   border-radius: var(--r-xl);
 }
 .nav__panel[hidden] { display: none; }
 .nav__panel a {
   padding: 15px 18px;
   border-radius: var(--r-md);
-  color: #FFFFFF;
+  color: var(--on-dark);
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
@@ -469,170 +496,290 @@ img, svg { display: block; }
   transition-timing-function: var(--ease-arrive);
 }
 
-/* ---------- the drop strip ---------- */
+/* ---------- the drop strip ----------
+   One scene, told in beats. The handle is typed, Drop is pressed, the card
+   folds into a token at @miles, the token hops across to @kemi, ripples
+   spread where it lands, and the notification springs out of her avatar.
+   JS only adds the classes is-press, is-fold, is-fly, is-land, is-done in
+   order; every visual change below hangs off one of them. */
 
 .strip {
   position: relative;
+  overflow: hidden;
   margin-top: clamp(36px, 5vw, 60px);
-  background: var(--ink);
-  border-radius: var(--r-xl);
-  padding: clamp(16px, 2vw, 22px);
-  display: grid;
-  gap: 16px;
-  min-width: 0;
-}
-
-.strip__cells {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 12px;
-  align-items: center;
-}
-
-.cell {
-  background: none;
-  border-radius: 0;
-  padding: 0;
-  display: grid;
-  gap: 13px;
-  text-align: left;
+  background: var(--dark);
   color: var(--on-dark);
-  justify-items: stretch;
-  min-width: 0;
-}
-
-.cell__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: var(--muted-dark);
-  width: 100%;
-}
-.cell__top .num { color: var(--muted-dark); }
-
-.strip__route {
+  border-radius: var(--r-xl);
+  padding: clamp(24px, 3vw, 34px) clamp(16px, 3vw, 32px) clamp(12px, 1.6vw, 16px);
   display: grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
-  justify-self: center;
-  color: #ADADAD;
-  transform: rotate(90deg);
-}
-.strip__route .ic { width: 20px; height: 20px; }
-
-.person {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  gap: clamp(24px, 3vw, 32px);
   min-width: 0;
 }
-.person__avatar {
-  width: 46px;
-  height: 46px;
+
+.route {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr) 88px;
+  column-gap: 8px;
+  align-items: start;
+}
+.end { display: grid; justify-items: center; gap: 12px; text-align: center; min-width: 0; }
+.end__avatar {
+  position: relative;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 17px;
+  background: var(--on-dark);
+  color: var(--dark);
+  font-size: 21px;
   font-weight: 700;
-  flex: none;
-  background: #FFFFFF;
-  color: var(--ink);
 }
-.person__id { display: grid; gap: 1px; justify-items: start; min-width: 0; text-align: left; }
-.person__name {
-  font-weight: 700;
-  font-size: 20px;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
-  color: var(--on-dark);
-}
-.person__meta { font-size: 14px; color: var(--muted-dark); line-height: 1.3; }
+.end__id { display: grid; gap: 2px; justify-items: center; }
+.end__name { font-weight: 700; font-size: 19px; letter-spacing: -0.035em; line-height: 1.15; }
+.end__city { font-size: 14px; color: var(--muted-dark); line-height: 1.3; }
 
-.slot {
-  position: relative;
-  display: grid;
-  min-height: 58px;
-  align-content: center;
-  width: 100%;
+/* @kemi: two ripples ride out from her avatar when the drop lands */
+.end--to .end__avatar::before,
+.end--to .end__avatar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--on-dark);
+  opacity: 0;
+  pointer-events: none;
 }
-.slot__empty[hidden] { display: none; }
-.slot__empty {
-  min-height: 58px;
-  display: flex;
-  align-items: center;
-  font-size: 13px;
-  color: var(--muted-dark);
-}
+.is-land .end--to .end__avatar { animation: bump 640ms cubic-bezier(0.3, 0.7, 0.3, 1); }
+.is-land .end--to .end__avatar::before { animation: ring 1300ms cubic-bezier(0.2, 0.6, 0.3, 1) both; }
+.is-land .end--to .end__avatar::after { animation: ring 1300ms 240ms cubic-bezier(0.2, 0.6, 0.3, 1) both; }
+.is-fold .end--from .end__avatar { animation: recoil 520ms cubic-bezier(0.3, 0.7, 0.3, 1); }
 
-.filecard {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  background: #FFFFFF;
-  border-radius: var(--r-md);
-  padding: 10px 11px;
-  text-align: left;
-  min-width: 0;
-  min-height: 58px;
-  color: var(--ink);
-}
-.filecard__ic {
-  width: 22px;
-  height: 22px;
-  border-radius: 0;
+@keyframes ring { 0% { opacity: 0.85; scale: 1; } 100% { opacity: 0; scale: 2.5; } }
+@keyframes bump { 0% { scale: 1; } 28% { scale: 0.88; } 62% { scale: 1.07; } 100% { scale: 1; } }
+@keyframes recoil { 0% { scale: 1; translate: 0 0; } 30% { scale: 0.9; translate: -3px 0; } 100% { scale: 1; translate: 0 0; } }
+
+/* the unread badge: the only yellow that is not a button */
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  min-width: 24px;
+  height: 24px;
+  padding-inline: 6px;
   display: grid;
   place-items: center;
-  background: none;
+  border-radius: var(--pill);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 0 0 3px var(--dark);
+  scale: 0;
+  transition: scale 260ms var(--ease-out);
+}
+.is-land .badge { scale: 1; transition: scale 560ms cubic-bezier(0.34, 1.7, 0.5, 1) 180ms; }
+
+/* the line, and the token that rides it */
+.route__line { position: relative; height: 56px; }
+.route__line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.22);
+}
+.route__fill {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  width: 0;
+  border-radius: 2px;
+  background: var(--on-dark);
+  transition: width 1000ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+.route__file {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  transition: left 1000ms cubic-bezier(0.5, 0, 0.5, 1);
+}
+.route__tok {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--accent-ink);
+  opacity: 0;
+  scale: 0.3;
+  transition: opacity 160ms var(--ease-out), scale 160ms var(--ease-out);
+}
+.route__tok .ic { width: 17px; height: 17px; }
+
+.is-fold .route__tok {
+  opacity: 1;
+  scale: 1;
+  transition: opacity 200ms var(--ease-out) 120ms, scale 460ms cubic-bezier(0.34, 1.6, 0.5, 1) 120ms;
+}
+.is-fly .route__file { left: calc(100% - 32px); }
+.is-fly .route__fill { width: calc(100% - 16px); }
+.is-fly .route__tok { animation: hop 1000ms linear; }
+.is-land .route__fill { width: 100%; }
+.is-land .route__tok { opacity: 0; scale: 0.3; transition: opacity 160ms var(--ease-out), scale 160ms var(--ease-out); }
+
+@keyframes hop {
+  0%   { translate: 0 0;     scale: 1;    animation-timing-function: cubic-bezier(0.25, 0.6, 0.4, 1); }
+  50%  { translate: 0 -30px; scale: 1.18; animation-timing-function: cubic-bezier(0.6, 0, 0.75, 0.4); }
+  100% { translate: 0 0;     scale: 1; }
+}
+
+/* the stage: every state shares one cell, so nothing jumps */
+.stage { display: grid; min-width: 0; }
+.stage > * { grid-area: 1 / 1; min-width: 0; }
+
+/* beat 1: the send card */
+.composer {
+  align-self: start;
+  display: grid;
+  gap: 12px;
+  background: var(--on-dark);
   color: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 14px 16px 16px;
+  transform-origin: 44px -108px;
+  transition: opacity 300ms var(--ease-out), scale 420ms var(--ease-arrive), visibility 0s;
+}
+.composer__to {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--panel);
+  font-size: 17px;
+}
+.composer__label { color: var(--muted); font-size: 14px; }
+.composer__handle { font-weight: 700; letter-spacing: -0.025em; }
+.composer__handle:empty::before { content: "handle"; font-weight: 400; color: #8D93B8; }
+.caret {
+  width: 2px;
+  height: 20px;
+  margin-left: -8px;
+  border-radius: 1px;
+  background: var(--dark);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+.is-press .caret { animation: none; opacity: 0; }
+
+.filecard { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.filecard__ic {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: var(--panel);
+  color: var(--dark);
   flex: none;
 }
 .filecard__ic .ic { width: 22px; height: 22px; }
 .filecard__body { min-width: 0; flex: 1; display: grid; gap: 1px; }
-.filecard b {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  white-space: normal;
-  overflow: visible;
-  overflow-wrap: anywhere;
-  text-overflow: clip;
-}
-.filecard small {
-  font-size: 13px;
-  color: var(--muted);
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-.chip__flag {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
+.filecard b { font-size: 16px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25; overflow-wrap: anywhere; }
+.filecard small { font-size: 13.5px; color: var(--muted); line-height: 1.3; }
+
+.composer__btn {
   flex: none;
+  min-height: 40px;
+  padding-inline: 20px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--pill);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  transition: scale 140ms var(--ease-out), background-color 140ms var(--ease-out);
 }
-.chip__flag[hidden] { display: none; }
+.is-press .composer__btn { scale: 0.9; background: var(--accent-hover); }
 
-@media (min-width: 700px) {
-  .strip__cells {
-    grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr);
-    gap: clamp(10px, 1.6vw, 20px);
-  }
-  .strip__route { transform: none; }
+/* beat 2: the card folds back into @miles */
+.is-fold .composer {
+  opacity: 0;
+  scale: 0.12;
+  visibility: hidden;
+  transition: opacity 240ms ease-in 140ms, scale 480ms cubic-bezier(0.6, 0, 0.4, 1), visibility 0s linear 500ms;
 }
 
-.strip.is-travelling .filecard {
-  transition-property: transform;
-  transition-duration: 720ms;
-  transition-timing-function: var(--ease-arrive);
-  will-change: transform;
+/* while the token is in the air, the landing spot waits */
+.stage__wait {
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-lg);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted-dark);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 300ms var(--ease-out);
+}
+.is-fold .stage__wait { opacity: 1; transition-delay: 380ms; }
+.is-land .stage__wait { opacity: 0; transition-delay: 0s; }
+
+/* beat 3: the notification springs out of @kemi */
+.banner {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  background: var(--on-dark);
+  color: var(--ink);
+  border-radius: var(--r-lg);
+  padding: 14px 16px;
+  min-height: 72px;
+  transform-origin: calc(100% - 44px) -108px;
+}
+.banner__app {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  background: var(--dark);
+  color: var(--on-dark);
+}
+.banner__app .ic { width: 22px; height: 22px; }
+.banner__body { display: grid; gap: 1px; min-width: 0; }
+.banner__top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.banner__top b { font-size: 13px; font-weight: 600; letter-spacing: 0.005em; color: var(--muted); }
+.banner__top small { font-size: 13px; color: var(--muted); }
+.banner__text { font-size: 16px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.25; overflow-wrap: anywhere; }
+.banner__body > small { font-size: 13.5px; color: var(--muted); line-height: 1.3; }
+.nw { white-space: nowrap; }
+
+.stage__recv {
+  opacity: 0;
+  scale: 0.15;
+  visibility: hidden;
+  transition: opacity 200ms var(--ease-out), scale 260ms var(--ease-out), visibility 0s linear 260ms;
+}
+.is-land .stage__recv {
+  opacity: 1;
+  scale: 1;
+  visibility: visible;
+  transition: opacity 280ms var(--ease-out) 160ms, scale 700ms cubic-bezier(0.34, 1.5, 0.55, 1) 160ms, visibility 0s linear 160ms;
 }
 
 .strip__note {
@@ -648,7 +795,34 @@ img, svg { display: block; }
   text-align: center;
   color: var(--muted-dark);
 }
-.strip__note b { color: #FFFFFF; font-weight: 600; }
+.strip__note b { color: var(--on-dark); font-weight: 600; }
+
+/* a quiet way to watch it again */
+.replay {
+  justify-self: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  margin-top: -10px;
+  padding-inline: 16px;
+  border: 0;
+  border-radius: var(--pill);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--on-dark);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 300ms var(--ease-out), background-color 180ms var(--ease-out), visibility 0s linear 300ms;
+}
+.replay svg { width: 16px; height: 16px; }
+.is-done .replay { opacity: 1; visibility: visible; transition-delay: 0s; }
+@media (hover: hover) { .replay:hover { background: rgba(255, 255, 255, 0.18); } }
 
 /* ---------- the pair ---------- */
 
@@ -674,7 +848,6 @@ img, svg { display: block; }
   object-fit: cover;
   object-position: 50% 28%;
   display: block;
-  filter: grayscale(1) contrast(1.04);
 }
 .frame__chip {
   position: absolute;
@@ -686,7 +859,7 @@ img, svg { display: block; }
   gap: 9px;
   padding: 7px 16px 7px 7px;
   border-radius: var(--pill);
-  background: #FFFFFF;
+  background: var(--panel);
   color: var(--ink);
   font-size: 14px;
   font-weight: 500;
@@ -698,8 +871,8 @@ img, svg { display: block; }
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: var(--ink);
-  color: #FFFFFF;
+  background: var(--accent);
+  color: var(--accent-ink);
   display: grid;
   place-items: center;
   font-size: 12px;
@@ -749,148 +922,166 @@ img, svg { display: block; }
 }
 .shot__claim span { display: block; font-weight: 400; color: var(--muted); font-size: 15px; letter-spacing: -0.01em; margin-top: 6px; }
 
-/* app surfaces */
-.app {
-  background: var(--panel);
-  border-radius: var(--r-md);
-  padding: 12px;
-  overflow: hidden;
-  margin-top: clamp(24px, 3vw, 40px);
-}
+/* ---------- the inbox demo ----------
+   Grouped white sheets on a Mist ground, the way a phone settings
+   screen sits. Unread is a blue dot, not a pill. */
 
-.wrap--app {
-  background: none;
-  padding: 0;
-  border-radius: 0;
+.wrap--app { background: none; padding: 0; border-radius: 0; }
+
+.inbox {
+  display: grid;
+  gap: 10px;
+  padding: 10px;
+  margin-top: clamp(28px, 3.4vw, 44px);
+  background: var(--panel);
+  border-radius: var(--r-xl);
 }
-.app__bar {
+@media (min-width: 860px) {
+  .inbox { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 12px; padding: 14px; }
+}
+.sheet { background: var(--bg); border-radius: var(--r-lg); min-width: 0; }
+
+.sheet__head {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  padding: 14px 12px 10px;
+  padding: 22px 22px 8px;
 }
-.app__bar b {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.split-pane {
-  display: grid;
-  gap: 8px;
-  padding: 0;
-}
-@media (min-width: 820px) {
-  .split-pane { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; align-items: start; }
-}
-.pane { display: grid; gap: 8px; align-content: start; }
+.sheet__head h3 { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: -0.045em; line-height: 1.1; }
+.sheet__head span { font-size: 14px; font-weight: 600; color: var(--dark); }
 
-.row {
+.list { list-style: none; margin: 0; padding: 4px 8px 8px; display: grid; }
+.item {
+  position: relative;
   display: grid;
-  grid-template-columns: 36px minmax(0, 1fr);
-  grid-template-areas: "ic body" "tag tag";
-  gap: 8px 10px;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  column-gap: 12px;
   align-items: center;
   padding: 12px;
-  border-radius: var(--r-sm);
-  background: var(--bg);
+  border-radius: var(--r-md);
 }
-@media (min-width: 460px) {
-  .row {
-    grid-template-columns: 40px minmax(0, 1fr) auto;
-    grid-template-areas: "ic body tag";
-    gap: 12px;
-  }
+.item + .item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 68px;
+  right: 12px;
+  height: 1px;
+  background: var(--panel);
 }
-.row__ic {
-  grid-area: ic;
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
+.item[aria-current="true"] { background: var(--panel); }
+.item[aria-current="true"]::before,
+.item[aria-current="true"] + .item::before { display: none; }
+
+.item__ic {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
   display: grid;
   place-items: center;
   background: var(--panel);
   color: var(--ink);
 }
-@media (min-width: 460px) {
-  .row__ic { width: 40px; height: 40px; border-radius: 10px; }
+.item[aria-current="true"] .item__ic { background: var(--bg); }
+.item__ic .ic { width: 20px; height: 20px; }
+.item[data-unread="true"] .item__ic::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--dark);
+  box-shadow: 0 0 0 2.5px var(--bg);
 }
-.row__ic .ic { width: 18px; height: 18px; }
-.row__body { grid-area: body; min-width: 0; display: grid; gap: 1px; }
-.row__body b {
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
-  overflow-wrap: anywhere;
-}
-.row__body small { font-size: 13px; color: var(--muted); line-height: 1.3; }
+.item[aria-current="true"][data-unread="true"] .item__ic::after { box-shadow: 0 0 0 2.5px var(--panel); }
 
-.tag {
-  grid-area: tag;
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 6px 11px;
-  border-radius: var(--pill);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+.item__body { min-width: 0; display: grid; gap: 1px; }
+.item__title,
+.item__from { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item__title { font-size: 16px; font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; }
+.item[data-unread="true"] .item__title { font-weight: 700; }
+.item__from { font-size: 14px; color: var(--muted); line-height: 1.3; }
+.item__time { align-self: start; padding-top: 3px; font-size: 13px; color: var(--muted); white-space: nowrap; }
+.item[data-unread="true"] .item__time { color: var(--dark); font-weight: 600; }
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
   white-space: nowrap;
-  flex: none;
-  background: var(--ink);
-  color: #FFFFFF;
 }
-.tag--new { background: var(--ink); color: #FFFFFF; }
-.tag--quiet { background: var(--panel-2); color: var(--muted); }
 
-.facts2 {
+.detail { padding: 22px 22px 8px; }
+.detail__top { display: flex; align-items: center; gap: 16px; }
+.detail__tile {
+  width: 64px;
+  height: 64px;
+  border-radius: 19px;
   display: grid;
-  gap: 10px;
-  padding: 14px 12px 4px;
+  place-items: center;
+  background: var(--panel);
+  color: var(--dark);
+  flex: none;
 }
-.facts2.plain { background: none; padding: 14px 12px 4px; }
-.facts2__line {
+.detail__tile .ic { width: 30px; height: 30px; }
+.detail__top > div { min-width: 0; }
+.detail__top h3 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -0.035em; line-height: 1.15; overflow-wrap: anywhere; }
+.detail__top p { margin: 4px 0 0; font-size: 14.5px; color: var(--muted); line-height: 1.35; }
+
+.facts { margin: 20px 0 0; padding: 0; display: grid; }
+.facts > div {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 14px;
-  font-size: 14px;
+  gap: 16px;
+  padding: 13px 0;
+  font-size: 15px;
+  border-top: 1px solid var(--panel);
 }
-.facts2__line span { color: var(--muted); }
-.facts2__line b { font-weight: 600; font-size: 14.5px; letter-spacing: -0.01em; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; font-weight: 600; letter-spacing: -0.01em; text-align: right; }
 
-.track {
+.status {
+  list-style: none;
+  margin: 0;
+  padding: 22px 0 20px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  padding: 8px 12px 14px;
-  text-align: center;
+  border-top: 1px solid var(--panel);
 }
-.track__step {
-  display: grid;
-  justify-items: center;
-  gap: 6px;
-  align-content: start;
-}
-.track__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+.status li { position: relative; display: grid; justify-items: center; text-align: center; gap: 2px; }
+.status li + li::before {
+  content: "";
+  position: absolute;
+  top: 11px;
+  left: -50%;
+  width: 100%;
+  height: 2px;
   background: var(--panel-2);
 }
-.track__step[data-done="true"] .track__dot { background: var(--ink); }
-.track__step b {
-  font-size: 13.5px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  line-height: 1.25;
+.status li[data-done="true"]::before { background: var(--dark); }
+.status__dot {
+  position: relative;
+  z-index: 1;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--panel-2);
+  color: var(--on-dark);
 }
-.track__step small { font-size: 12px; color: var(--muted); line-height: 1.3; }
+.status li[data-done="true"] .status__dot { background: var(--dark); }
+.status__dot .ic { width: 13px; height: 13px; stroke: currentColor; stroke-width: 14; }
+.status b { font-size: 14px; font-weight: 600; letter-spacing: -0.015em; line-height: 1.25; }
+.status small { font-size: 12.5px; color: var(--muted); line-height: 1.3; }
 
 /* ---------- dark band ---------- */
 
@@ -930,8 +1121,8 @@ img, svg { display: block; }
   border-radius: 18px;
   display: grid;
   place-items: center;
-  background: #FFFFFF;
-  color: var(--ink);
+  background: var(--on-dark);
+  color: var(--dark);
   flex: none;
 }
 .feature__tile .ic { width: 25px; height: 25px; }
@@ -976,8 +1167,8 @@ img, svg { display: block; }
   width: 54px;
   height: 54px;
   border-radius: 50%;
-  background: var(--ink);
-  color: #FFFFFF;
+  background: var(--accent);
+  color: var(--accent-ink);
   display: grid;
   place-items: center;
   font-size: 17px;
@@ -1008,7 +1199,7 @@ img, svg { display: block; }
   padding: clamp(22px, 2.6vw, 30px);
   gap: 12px;
 }
-.features--light .feature__tile { background: var(--ink); color: #FFFFFF; }
+.features--light .feature__tile { background: var(--accent); color: var(--accent-ink); }
 .features--light h3 { color: var(--ink); }
 .features--light p { color: var(--muted); }
 
@@ -1019,9 +1210,9 @@ img, svg { display: block; }
   gap: 16px;
   margin-top: clamp(40px, 5vw, 64px);
   padding: clamp(26px, 3.6vw, 40px);
-  background: var(--ink);
+  background: var(--dark);
   border-radius: var(--r-xl);
-  color: #FFFFFF;
+  color: var(--on-dark);
 }
 .notice__tile {
   width: 52px;
@@ -1029,8 +1220,8 @@ img, svg { display: block; }
   border-radius: 16px;
   display: grid;
   place-items: center;
-  background: #FFFFFF;
-  color: var(--ink);
+  background: var(--on-dark);
+  color: var(--dark);
   flex: none;
 }
 .notice__tile .ic { width: 24px; height: 24px; }
@@ -1046,7 +1237,7 @@ img, svg { display: block; }
   font-size: 15.5px;
   line-height: 1.6;
   max-width: 56ch;
-  color: #D6D6D6;
+  color: var(--muted-dark);
 }
 .notice .btn { justify-self: center; margin-top: 4px; }
 
@@ -1067,7 +1258,7 @@ img, svg { display: block; }
   transition-duration: 200ms;
   transition-timing-function: var(--ease-out);
 }
-.faq__item[data-open="true"] { background: var(--ink); color: #FFFFFF; }
+.faq__item[data-open="true"] { background: var(--dark); color: var(--on-dark); }
 .faq__item h3 { margin: 0; }
 
 .faq__q {
@@ -1096,13 +1287,17 @@ img, svg { display: block; }
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: var(--ink);
-  color: #FFFFFF;
+  background: var(--panel-2); /* mist rest, yellow on hover: seven solid
+     orange circles down one column read as a dotted stripe */
+  color: var(--ink);
   flex: none;
   position: relative;
   transition-property: transform, background-color, color;
   transition-duration: 260ms;
   transition-timing-function: var(--ease-out);
+}
+@media (hover: hover) {
+  .faq__q:hover .faq__sign { background: var(--accent); }
 }
 .faq__sign::before,
 .faq__sign::after {
@@ -1115,8 +1310,8 @@ img, svg { display: block; }
 .faq__sign::after { width: 1.5px; height: 14px; }
 .faq__q[aria-expanded="true"] .faq__sign {
   transform: rotate(135deg);
-  background: #FFFFFF;
-  color: var(--ink);
+  background: var(--on-dark);
+  color: var(--dark);
 }
 
 .faq__a {
@@ -1141,7 +1336,7 @@ img, svg { display: block; }
   line-height: 1.6;
   max-width: 62ch;
 }
-.faq__item[data-open="true"] .faq__a p { color: #D6D6D6; }
+.faq__item[data-open="true"] .faq__a p { color: var(--muted-dark); }
 
 /* ---------- closing ---------- */
 
@@ -1163,7 +1358,7 @@ img, svg { display: block; }
 /* ---------- footer ---------- */
 
 .footer {
-  background: var(--ink);
+  background: var(--dark);
   color: var(--on-dark);
   border-radius: var(--r-xl) var(--r-xl) 0 0;
   padding-top: clamp(48px, 6vw, 84px);
@@ -1177,7 +1372,7 @@ img, svg { display: block; }
 }
 .footer__brand { display: grid; gap: 16px; justify-items: center; }
 .footer__brand .brand { padding-inline: 0; color: var(--on-dark); }
-.footer__brand .brand__mark { background: #FFFFFF; color: var(--ink); }
+.footer__brand .brand__mark { background: var(--on-dark); color: var(--dark); }
 .footer__brand p {
   margin: 0;
   font-size: 15px;
@@ -1199,7 +1394,7 @@ img, svg { display: block; }
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.01em;
-  color: #FFFFFF;
+  color: var(--on-dark);
 }
 .footer__col a {
   display: block;
@@ -1211,7 +1406,7 @@ img, svg { display: block; }
   transition-duration: 180ms;
 }
 @media (hover: hover) {
-  .footer__col a:hover { color: #FFFFFF; }
+  .footer__col a:hover { color: var(--on-dark); }
 }
 
 .footer__base {
@@ -1253,7 +1448,8 @@ img, svg { display: block; }
   .enter, .rise { opacity: 1; transform: none; filter: none; }
   .enter.is-in, .rise.is-in { transition: none; }
   .btn:not(:disabled):active { scale: 1; }
-  .strip.is-travelling .filecard { transition: none !important; }
+  .strip, .strip *, .strip *::before, .strip *::after { transition: none !important; animation: none !important; }
+  .replay { display: none; }
   .faq__a, .faq__a > div { transition: none; }
 }
 
@@ -1261,10 +1457,134 @@ img, svg { display: block; }
   .nav-wrap, .strip, .footer { display: none; }
   body { background: #fff; color: #000; }
 }
+
+/* ---------- illustration + motion layer ----------
+   Additive only. One drawing language: ink outline, flat fills from the
+   existing palette, halftone dots for shade, dashed trails for movement. */
+.route__arc{position:absolute;left:16px;bottom:50%;width:calc(100% - 32px);height:40px;overflow:visible;pointer-events:none;clip-path:inset(-4px 100% -4px 0)}
+.route__arc path{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:5 9;vector-effect:non-scaling-stroke}
+.is-fly .route__arc{clip-path:inset(-4px 0 -4px 0);transition:clip-path 1000ms cubic-bezier(0.5,0,0.5,1)}
+.is-land .route__arc{opacity:.4;transition:opacity 600ms var(--ease-out) 300ms}
+.burst{position:absolute;left:-18px;top:-18px;width:92px;height:92px;opacity:0;pointer-events:none;overflow:visible}
+.burst circle{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:2 9}
+.is-land .burst{animation:burst 1200ms var(--ease-out) 120ms both}
+@keyframes burst{0%{opacity:1;scale:.7;rotate:0deg}100%{opacity:0;scale:1.6;rotate:70deg}}
+
+.scene{display:grid;justify-items:center;margin-top:clamp(28px,4vw,48px)}
+.scene__row{display:flex;align-items:flex-end;justify-content:center;gap:clamp(10px,3vw,40px)}
+.it{position:relative;width:clamp(62px,14vw,108px);aspect-ratio:1;transform-origin:50% 100%}
+.it svg{width:100%;height:100%;overflow:visible}
+.it::before{content:"";position:absolute;left:50%;bottom:100%;height:90px;border-left:2px dashed rgba(255,255,255,.45);opacity:0}
+.scene__tray{width:min(100%,620px);height:14px;margin-top:2px;border-radius:99px;background:rgba(255,255,255,.16)}
+.scene.is-in .it{animation:dropIn 900ms cubic-bezier(0.3,0.7,0.3,1) calc(var(--i) * 140ms) both}
+.scene.is-in .it::before{animation:trail 900ms linear calc(var(--i) * 140ms) both}
+.scene.is-in .it svg{animation:bob 4.2s ease-in-out calc(var(--i) * 140ms + 1.4s) infinite}
+@keyframes dropIn{
+  0%{opacity:0;translate:0 -140px;rotate:var(--r0);scale:1 1}
+  12%{opacity:1}
+  52%{translate:0 0;rotate:var(--r1);scale:1 1}
+  62%{scale:1.14 .84}
+  76%{scale:.96 1.05}
+  100%{opacity:1;translate:0 0;rotate:var(--r1);scale:1 1}
+}
+@keyframes trail{0%{opacity:0}20%,55%{opacity:.8}100%{opacity:0}}
+@keyframes bob{50%{translate:0 -6px;rotate:2deg}}
+
+.step__n{position:relative}
+.step__n::after{content:"";position:absolute;inset:-9px;border-radius:50%;border:2px dashed var(--dark);opacity:0}
+.step:nth-child(2){--i:1}
+.step:nth-child(3){--i:2}
+.rise.is-in .step__n::after{animation:ringIn 700ms var(--ease-arrive) calc(var(--i,0) * 180ms + 250ms) both}
+@keyframes ringIn{from{opacity:0;scale:.6}to{opacity:.85;scale:1}}
+@keyframes spin{to{rotate:360deg}}
+
+.notice{position:relative;padding-top:clamp(52px,6vw,64px)}
+.coin{position:absolute;left:50%;top:-40px;width:84px;height:84px;margin-left:-42px;pointer-events:none}
+.coin svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.coin__c{transform-origin:50% 100%}
+.coin__ring{fill:none;stroke:var(--on-dark);stroke-width:2;stroke-linecap:round;stroke-dasharray:3 8;opacity:0}
+.coin__ring circle,.coin__ring path{transform-box:fill-box;transform-origin:center}
+.notice.is-in .coin__c{animation:coinFall 1900ms cubic-bezier(0.3,0.7,0.3,1) 350ms both}
+.notice.is-in .coin__ring{animation:ringIn 600ms var(--ease-arrive) 2000ms both}
+.notice.is-in .coin__ring circle{animation:spin 20s linear 2600ms infinite}
+@keyframes coinFall{
+  0%{opacity:0;translate:0 -120px;rotate:-25deg}
+  30%{opacity:1;translate:0 0;rotate:0deg}
+  42%{translate:0 -38px}
+  54%{translate:0 0}
+  63%{translate:0 -14px}
+  72%{translate:0 0}
+  100%{opacity:.32;translate:0 0;rotate:0deg}
+}
+
+.closing{position:relative;overflow:hidden}
+.closing .shell{position:relative;z-index:1}
+.flight{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.flight__d{fill:none;stroke:var(--dark);stroke-width:3;stroke-linecap:round;stroke-dasharray:2 14}
+.flight__m{fill:none;stroke:#fff;stroke-width:24;stroke-dasharray:1;stroke-dashoffset:1}
+.flight__p{opacity:0}
+.flight.go .flight__m{animation:draw 2800ms linear forwards}
+.flight.go .flight__p{opacity:1}
+.flight.static .flight__m{stroke-dashoffset:0}
+.flight.static .flight__p{display:none}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+@media (prefers-reduced-motion:reduce){
+  .scene *,.scene *::before,.coin *,.step__n::after,.burst{animation:none!important}
+  .step__n::after,.coin__ring{opacity:.85}
+  .coin__c{opacity:.32}
+  .it::before{display:none}
+}
+
+/* ---------- nav + menu polish (kept deliberately small) ---------- */
+.nav-wrap{animation:navIn 800ms var(--ease-arrive) both}
+@keyframes navIn{from{opacity:0;translate:0 -24px}}
+.brand__mark{overflow:hidden}
+.brand__mark .ic{animation:send 1100ms var(--ease-out) 900ms both}
+@keyframes send{0%{translate:0 0}45%{translate:16px -16px}46%{translate:-16px 16px}100%{translate:0 0}}
+@keyframes send2{0%{translate:0 0}45%{translate:16px -16px}46%{translate:-16px 16px}100%{translate:0 0}}
+@media (hover:hover){.brand:hover .brand__mark .ic{animation:send2 700ms var(--ease-out)}}
+.nav__panel{transform-origin:50% 0}
+.nav__panel:not([hidden]){animation:panelIn 420ms var(--ease-arrive) both}
+.nav__panel a{display:flex;align-items:center;justify-content:space-between}
+.nav__panel:not([hidden]) a{animation:linkIn 480ms var(--ease-arrive) calc(var(--k,0) * 55ms + 120ms) backwards}
+.nav__panel a::after{content:"";width:18px;height:18px;opacity:.55;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='white'%3E%3Cpath d='M221.66%2C133.66l-72%2C72a8%2C8%2C0%2C0%2C1-11.32-11.32L196.69%2C136H40a8%2C8%2C0%2C0%2C1%2C0-16H196.69L138.34%2C61.66a8%2C8%2C0%2C0%2C1%2C11.32-11.32l72%2C72A8%2C8%2C0%2C0%2C1%2C221.66%2C133.66Z'/%3E%3C/svg%3E") center/contain no-repeat}
+@keyframes panelIn{from{opacity:0;scale:.96;translate:0 -10px}}
+@keyframes linkIn{from{opacity:0;translate:-14px 0}}
+@media (prefers-reduced-motion:reduce){.nav-wrap,.brand__mark .ic,.nav__panel,.nav__panel a{animation:none!important}}
+
+/* ---------- final touches ---------- */
+.route__tok{background:none;rotate:15deg}
+.route__tok .ic{width:44px;height:44px;flex:none;overflow:visible}
+.is-fly .route__tok{animation:hop2 1000ms linear}
+@keyframes hop2{
+  0%{translate:0 0;scale:1;rotate:15deg;animation-timing-function:cubic-bezier(0.25,0.6,0.4,1)}
+  50%{translate:0 -30px;scale:1.18;rotate:45deg;animation-timing-function:cubic-bezier(0.6,0,0.75,0.4)}
+  100%{translate:0 0;scale:1;rotate:75deg}
+}
+.inbox.is-in .item{animation:slideIn 650ms var(--ease-arrive) calc(var(--k,0) * 110ms + 250ms) backwards}
+@keyframes slideIn{from{opacity:0;translate:28px 0}}
+.inbox.is-in .status li::before{transform-origin:0 50%;animation:grow 700ms var(--ease-expo) calc(var(--k,0) * 400ms + 900ms) backwards}
+@keyframes grow{from{scale:0 1}}
+.inbox.is-in .status li[data-done="true"] .status__dot{animation:dotPop 600ms cubic-bezier(0.34,1.7,0.5,1) calc(var(--k,0) * 400ms + 1000ms) backwards}
+@keyframes dotPop{from{scale:0}}
+.faq__a p{opacity:0;translate:0 -8px;transition:opacity 240ms var(--ease-out),translate 360ms var(--ease-expo)}
+.faq__item[data-open="true"] .faq__a p{opacity:1;translate:0 0;transition-delay:120ms}
+.btn .ic{transition:translate 220ms var(--ease-out)}
+@media (hover:hover){.btn:hover .ic{translate:4px 0}}
+@media (prefers-reduced-motion:reduce){.inbox *,.inbox *::before{animation:none!important}.faq__a p{transition:none}}
 </style>
-<noscript><style>.enter,.rise{opacity:1;transform:none;filter:none}.faq__a{grid-template-rows:1fr}.faq__a > div{visibility:visible}.faq__q{pointer-events:none}.faq__sign{display:none}#slotEmpty{display:none}#received[hidden]{display:flex}</style></noscript>
+<noscript><style>.enter,.rise{opacity:1;transform:none;filter:none}.faq__a{grid-template-rows:1fr}.faq__a > div{visibility:visible}.faq__q{pointer-events:none}.faq__sign{display:none}.stage__send,.stage__wait,.replay{display:none}.stage__recv{opacity:1;translate:none;scale:1;visibility:visible}.badge{scale:1}.route__file{display:none}.route__fill{width:100%}</style></noscript>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<pattern id="ht" width="7" height="7" patternUnits="userSpaceOnUse"><circle cx="3.5" cy="3.5" r="1.3" fill="#0A0A0A" opacity=".45"/></pattern>
+<symbol id="i-plane" viewBox="0 0 120 120"><g stroke="#0A0A0A" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M10 58 108 12 56 72Z" fill="#fff"/><path d="M108 12 56 72 74 108Z" fill="#FFC61A"/><path d="M108 12 56 72 74 108Z" fill="url(#ht)" stroke="none"/><path d="M56 72 62 92" fill="none"/></g></symbol>
+<symbol id="i-file" viewBox="0 0 120 120"><g stroke="#0A0A0A" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M30 10H76L100 34V104a6 6 0 0 1-6 6H30a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="#fff"/><path d="M76 10V28a6 6 0 0 0 6 6H100Z" fill="#D6DBF5"/><rect x="36" y="46" width="32" height="15" rx="7.5" fill="#FFC61A" stroke-width="3.5"/><path d="M36 76H88M36 90H88M36 102H62" fill="none"/></g><path d="M76 10V28a6 6 0 0 0 6 6H100Z" fill="url(#ht)"/></symbol>
+<symbol id="i-sticker" viewBox="0 0 120 120"><g stroke="#0A0A0A" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><rect x="12" y="12" width="96" height="96" rx="28" fill="#FFC61A"/><circle cx="34" cy="64" r="9" fill="url(#ht)" stroke="none"/><circle cx="86" cy="64" r="9" fill="url(#ht)" stroke="none"/><path d="M70 108Q102 102 108 70Z" fill="#fff"/><circle cx="44" cy="50" r="5" fill="#0A0A0A"/><circle cx="76" cy="50" r="5" fill="#0A0A0A"/><path d="M40 68Q60 90 80 68" fill="none"/></g></symbol>
+<symbol id="i-note" viewBox="0 0 120 120"><g stroke="#0A0A0A" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><rect x="16" y="20" width="88" height="88" rx="10" fill="#fff"/><path d="M32 56H88M32 72H88M32 88H66" stroke="#1D2BA6" fill="none"/><rect x="38" y="8" width="44" height="22" rx="4" fill="#FFC61A" transform="rotate(-5 60 19)" stroke-width="3.5"/></g><path d="M16 94H104V98a10 10 0 0 1-10 10H26a10 10 0 0 1-10-10Z" fill="url(#ht)"/></symbol>
+<symbol id="i-coin" viewBox="0 0 120 120"><g stroke="#0A0A0A" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><path d="M14 58V72A46 40 0 0 0 106 72V58Z" fill="#F0B400"/><ellipse cx="60" cy="58" rx="46" ry="40" fill="#FFC61A"/><ellipse cx="60" cy="58" rx="35" ry="30" fill="none" stroke-width="3" stroke-dasharray="1 8"/><path d="M44 78V38L76 78V38M36 54H84M36 66H84" fill="none" stroke-width="6"/></g><path d="M14 58V72A46 40 0 0 0 106 72V58Z" fill="url(#ht)"/></symbol>
+</defs></svg>
 <a class="skip" href="#main">Skip to content</a>
 
 <div class="nav-wrap">
@@ -1313,57 +1633,48 @@ img, svg { display: block; }
         </div>
       </div>
 
-      <div class="strip enter" id="strip" style="--d:340ms">
-        <div class="strip__cells">
-          <div class="cell cell--send">
-            <div class="cell__top"><span>@miles sends</span><span class="num">01</span></div>
-            <div class="person">
-              <span class="person__avatar">M</span>
-              <span class="person__id">
-                <span class="person__name">@miles</span>
-                <span class="person__meta">Lagos</span>
+      <div class="strip enter" id="strip" data-state="idle" style="--d:340ms">
+        <div class="route">
+          <div class="end end--from">
+            <span class="end__avatar">M</span>
+            <span class="end__id"><span class="end__name">@miles</span><span class="end__city">Lagos</span></span>
+          </div>
+          <div class="route__line" aria-hidden="true">
+            <span class="route__fill"></span><svg class="route__arc" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 40Q50 -20 100 40"/></svg>
+            <span class="route__file"><span class="route__tok"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-plane"/></svg></span></span>
+          </div>
+          <div class="end end--to">
+            <span class="end__avatar">K<span class="badge" aria-hidden="true">1</span><svg class="burst" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="46"/></svg></span>
+            <span class="end__id"><span class="end__name">@kemi</span><span class="end__city">Accra</span></span>
+          </div>
+        </div>
+        <div class="stage">
+          <div class="composer stage__send" aria-hidden="true">
+            <div class="composer__to"><span class="composer__label">To</span><span class="composer__handle" id="typed"></span><span class="caret"></span></div>
+            <div class="filecard">
+              <span class="filecard__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM48,48H208v77.38l-24.69-24.7a16,16,0,0,0-22.62,0L53.37,208H48ZM208,208H76l96-96,36,36v60ZM96,120A24,24,0,1,0,72,96,24,24,0,0,0,96,120Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,96,88Z"/></svg></span>
+              <span class="filecard__body">
+                <b>sticker-set.gif</b>
+                <small>GIF · 2.1 MB</small>
               </span>
-            </div>
-            <div class="slot" id="slotSend">
-              <div class="filecard" id="chip">
-                <span class="filecard__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM48,48H208v77.38l-24.69-24.7a16,16,0,0,0-22.62,0L53.37,208H48ZM208,208H76l96-96,36,36v60ZM96,120A24,24,0,1,0,72,96,24,24,0,0,0,96,120Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,96,88Z"/></svg></span>
-                <span class="filecard__body">
-                  <b>sticker-set.gif</b>
-                  <small>GIF · 2.1 MB</small>
-                </span>
-                <span class="chip__flag" id="chipFlag">Sent</span>
-              </div>
+              <span class="composer__btn">Drop</span>
             </div>
           </div>
-
-          <div class="strip__route" aria-hidden="true"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></div>
-
-          <div class="cell cell--receive">
-            <div class="cell__top"><span>@kemi receives</span><span class="num">02</span></div>
-            <div class="person">
-              <span class="person__avatar">K</span>
-              <span class="person__id">
-                <span class="person__name">@kemi</span>
-                <span class="person__meta">Accra</span>
-              </span>
-            </div>
-            <div class="slot" id="slotRecv">
-              <div class="slot__empty" id="slotEmpty">Waiting for the drop</div>
-              <div class="filecard" id="received" hidden>
-                <span class="filecard__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM48,48H208v77.38l-24.69-24.7a16,16,0,0,0-22.62,0L53.37,208H48ZM208,208H76l96-96,36,36v60ZM96,120A24,24,0,1,0,72,96,24,24,0,0,0,96,120Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,96,88Z"/></svg></span>
-                <span class="filecard__body">
-                  <b>sticker-set.gif</b>
-                  <small>Arrived · just now</small>
-                </span>
-                <span class="tag">New</span>
-              </div>
-            </div>
+          <div class="stage__wait" aria-hidden="true">Waiting for the drop</div>
+          <div class="banner stage__recv" id="received">
+            <span class="banner__app"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M204,64V168a12,12,0,0,1-24,0V93L72.49,200.49a12,12,0,0,1-17-17L163,76H88a12,12,0,0,1,0-24H192A12,12,0,0,1,204,64Z"/></svg></span>
+            <span class="banner__body">
+              <span class="banner__top"><b>Drop</b><small>now</small></span>
+              <span class="banner__text">@miles sent you a drop</span>
+              <small><span class="nw">sticker-set.gif</span> · <span class="nw">2.1 MB</span></small>
+            </span>
           </div>
         </div>
         <p class="strip__note">
-          <span id="stripNote"><b>Ready.</b> One handle, one item, one confirmation.</span>
-          <span>In-app, email and push, if they want them</span>
+          <span id="stripNote" aria-live="polite"><b>Ready.</b> One handle, one item, one confirmation.</span>
+          <span><span class="nw">In-app,</span> email and push, if they want them</span>
         </p>
+        <button class="replay" id="replay" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Replay</button>
       </div>
     </div>
 
@@ -1384,96 +1695,68 @@ img, svg { display: block; }
   <section class="section" id="demo">
     <div class="shell">
       <div class="wrap wrap--app rise">
-      <div class="head">
-        <h2 class="h2">One inbox for everything anyone sends you</h2>
-        <p class="lede">Sending takes a handle and one confirmation. Receiving takes nothing at all, because it is already there.</p>
-      </div>
-
-        <div class="app app--split rise">
-          <div class="app__bar">
-            <b>Inbox</b>
-            <span class="tag">2 just in</span>
+        <div class="head">
+          <h2 class="h2">One inbox for everything anyone sends you</h2>
+          <p class="lede">Sending takes a handle and one confirmation. Receiving takes nothing at all, because it is already there.</p>
+        </div>
+        <div class="inbox rise">
+          <div class="sheet">
+            <div class="sheet__head"><h3>Inbox</h3><span>2 just in</span></div>
+            <ul class="list">
+              <li class="item" data-unread="true" aria-current="true">
+                <span class="item__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM48,48H208v77.38l-24.69-24.7a16,16,0,0,0-22.62,0L53.37,208H48ZM208,208H76l96-96,36,36v60ZM96,120A24,24,0,1,0,72,96,24,24,0,0,0,96,120Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,96,88Z"/></svg></span>
+                <span class="item__body"><span class="sr">New. </span><b class="item__title">sticker-set.gif</b><span class="item__from">From @miles</span></span>
+                <span class="item__time">12 min</span>
+              </li>
+              <li class="item" data-unread="true">
+                <span class="item__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></svg></span>
+                <span class="item__body"><span class="sr">New. </span><b class="item__title">project-brief.pdf</b><span class="item__from">From @dami</span></span>
+                <span class="item__time">Yesterday</span>
+              </li>
+              <li class="item">
+                <span class="item__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M165.66,90.34a8,8,0,0,1,0,11.32l-64,64a8,8,0,0,1-11.32-11.32l64-64A8,8,0,0,1,165.66,90.34ZM215.6,40.4a56,56,0,0,0-79.2,0L106.34,70.45a8,8,0,0,0,11.32,11.32l30.06-30a40,40,0,0,1,56.57,56.56l-30.07,30.06a8,8,0,0,0,11.31,11.32L215.6,119.6a56,56,0,0,0,0-79.2ZM138.34,174.22l-30.06,30.06a40,40,0,1,1-56.56-56.57l30.05-30.05a8,8,0,0,0-11.32-11.32L40.4,136.4a56,56,0,0,0,79.2,79.2l30.06-30.07a8,8,0,0,0-11.32-11.31Z"/></svg></span>
+                <span class="item__body"><b class="item__title">Portfolio review</b><span class="item__from">From @tobi</span></span>
+                <span class="item__time">2 days</span>
+              </li>
+              <li class="item">
+                <span class="item__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M229.66,58.34l-32-32a8,8,0,0,0-11.32,0l-96,96A8,8,0,0,0,88,128v32a8,8,0,0,0,8,8h32a8,8,0,0,0,5.66-2.34l96-96A8,8,0,0,0,229.66,58.34ZM124.69,152H104V131.31l64-64L188.69,88ZM200,76.69,179.31,56,192,43.31,212.69,64ZM224,128v80a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h80a8,8,0,0,1,0,16H48V208H208V128a8,8,0,0,1,16,0Z"/></svg></span>
+                <span class="item__body"><b class="item__title">Thank you, seriously</b><span class="item__from">From @kemi</span></span>
+                <span class="item__time">4 days</span>
+              </li>
+            </ul>
           </div>
-          <div class="split-pane">
-            <div class="pane pane--list">
-              <div class="row">
-                <span class="row__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM48,48H208v77.38l-24.69-24.7a16,16,0,0,0-22.62,0L53.37,208H48ZM208,208H76l96-96,36,36v60ZM96,120A24,24,0,1,0,72,96,24,24,0,0,0,96,120Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,96,88Z"/></svg></span>
-                <span class="row__body">
-                  <b>sticker-set.gif</b>
-                  <small>From @miles · 12 minutes ago</small>
-                </span>
-                <span class="tag">New</span>
-              </div>
-              <div class="row">
-                <span class="row__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z"/></svg></span>
-                <span class="row__body">
-                  <b>project-brief.pdf</b>
-                  <small>From @dami · yesterday</small>
-                </span>
-                <span class="tag">New</span>
-              </div>
-              <div class="row">
-                <span class="row__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M165.66,90.34a8,8,0,0,1,0,11.32l-64,64a8,8,0,0,1-11.32-11.32l64-64A8,8,0,0,1,165.66,90.34ZM215.6,40.4a56,56,0,0,0-79.2,0L106.34,70.45a8,8,0,0,0,11.32,11.32l30.06-30a40,40,0,0,1,56.57,56.56l-30.07,30.06a8,8,0,0,0,11.31,11.32L215.6,119.6a56,56,0,0,0,0-79.2ZM138.34,174.22l-30.06,30.06a40,40,0,1,1-56.56-56.57l30.05-30.05a8,8,0,0,0-11.32-11.32L40.4,136.4a56,56,0,0,0,79.2,79.2l30.06-30.07a8,8,0,0,0-11.32-11.31Z"/></svg></span>
-                <span class="row__body">
-                  <b>Portfolio review</b>
-                  <small>From @tobi · 2 days ago</small>
-                </span>
-                <span class="tag tag--quiet">Opened</span>
-              </div>
-              <div class="row">
-                <span class="row__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M229.66,58.34l-32-32a8,8,0,0,0-11.32,0l-96,96A8,8,0,0,0,88,128v32a8,8,0,0,0,8,8h32a8,8,0,0,0,5.66-2.34l96-96A8,8,0,0,0,229.66,58.34ZM124.69,152H104V131.31l64-64L188.69,88ZM200,76.69,179.31,56,192,43.31,212.69,64ZM224,128v80a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h80a8,8,0,0,1,0,16H48V208H208V128a8,8,0,0,1,16,0Z"/></svg></span>
-                <span class="row__body">
-                  <b>Thank you, seriously</b>
-                  <small>From @kemi · 4 days ago</small>
-                </span>
-                <span class="tag tag--quiet">Opened</span>
+          <section class="sheet detail" aria-label="Open drop: sticker-set.gif">
+            <div class="detail__top">
+              <span class="detail__tile"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM48,48H208v77.38l-24.69-24.7a16,16,0,0,0-22.62,0L53.37,208H48ZM208,208H76l96-96,36,36v60ZM96,120A24,24,0,1,0,72,96,24,24,0,0,0,96,120Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,96,88Z"/></svg></span>
+              <div>
+                <h3>sticker-set.gif</h3>
+                <p>From @miles, sent 12 minutes ago</p>
               </div>
             </div>
-
-            <div class="pane pane--detail">
-              <div class="row">
-                <span class="row__ic"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM48,48H208v77.38l-24.69-24.7a16,16,0,0,0-22.62,0L53.37,208H48ZM208,208H76l96-96,36,36v60ZM96,120A24,24,0,1,0,72,96,24,24,0,0,0,96,120Zm0-32a8,8,0,1,1-8,8A8,8,0,0,1,96,88Z"/></svg></span>
-                <span class="row__body">
-                  <b>sticker-set.gif</b>
-                  <small>Sent 12 minutes ago</small>
-                </span>
-              </div>
-              <div class="facts2 plain">
-                <div class="facts2__line"><span>Size</span><b>2.1 MB</b></div>
-                <div class="facts2__line"><span>Visibility</span><b>Sender and recipient</b></div>
-                <div class="facts2__line"><span>Expires</span><b>In 29 days</b></div>
-                <div class="facts2__line"><span>Download</span><b>Signed link, 5 min</b></div>
-              </div>
-              <div class="track plain">
-                <div class="track__step" data-done="true">
-                  <span class="track__dot"></span>
-                  <b>Sent</b>
-                  <small>12 min ago</small>
-                </div>
-                <div class="track__step" data-done="true">
-                  <span class="track__dot"></span>
-                  <b>Opened</b>
-                  <small>11 min ago</small>
-                </div>
-                <div class="track__step">
-                  <span class="track__dot"></span>
-                  <b>Downloaded</b>
-                  <small>Not yet</small>
-                </div>
-              </div>
-            </div>
+            <dl class="facts">
+              <div><dt>Size</dt><dd>2.1 MB</dd></div>
+              <div><dt>Visibility</dt><dd>Sender and recipient</dd></div>
+              <div><dt>Expires</dt><dd>In 29 days</dd></div>
+              <div><dt>Download</dt><dd>Signed link, 5 min</dd></div>
+            </dl>
+            <ol class="status" aria-label="Status">
+              <li data-done="true"><span class="status__dot"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><b>Sent</b><small>12 min ago</small></li>
+              <li data-done="true"><span class="status__dot"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg></span><b>Opened</b><small>11 min ago</small></li>
+              <li><span class="status__dot"></span><b>Downloaded</b><small>Not yet</small></li>
+            </ol>
+          </section>
         </div>
         <p class="shot__claim">Every drop keeps its own status<span>New drops appear live. Email and push are optional, and the inbox is always the record.</span></p>
       </div>
     </div>
   </section>
-
   <section class="dark" id="send">
     <div class="shell">
       <div class="head head--dark rise">
         <h2 class="h2">If you can send it in a chat, you can send it here</h2>
         <p class="lede">No zipping, no drive links, no scrolling back three months for the file someone asked for.</p>
       </div>
+<div class="scene rise" aria-hidden="true"><div class="scene__row"><span class="it" style="--i:0;--r0:-24deg;--r1:-7deg"><svg aria-hidden="true" focusable="false"><use href="#i-sticker"/></svg></span><span class="it" style="--i:1;--r0:18deg;--r1:5deg"><svg aria-hidden="true" focusable="false"><use href="#i-file"/></svg></span><span class="it" style="--i:2;--r0:-14deg;--r1:0deg"><svg aria-hidden="true" focusable="false"><use href="#i-plane"/></svg></span><span class="it" style="--i:3;--r0:22deg;--r1:8deg"><svg aria-hidden="true" focusable="false"><use href="#i-note"/></svg></span></div><div class="scene__tray"></div></div>
 
       <div class="features rise">
         <div class="feature">
@@ -1562,7 +1845,7 @@ img, svg { display: block; }
         </div>
       </div>
 
-      <div class="notice rise">
+      <div class="notice rise"><div class="coin" aria-hidden="true"><svg viewBox="0 0 100 100" focusable="false"><g class="coin__ring" style="transform:scale(1)"><circle cx="50" cy="50" r="58" /></g></svg><svg viewBox="0 0 120 120" focusable="false"><g class="coin__c"><use href="#i-coin" width="120" height="120"/></g></svg></div>
         <span class="notice__tile"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M225.86,102.82c-3.77-3.94-7.67-8-9.14-11.57-1.36-3.27-1.44-8.69-1.52-13.94-.15-9.76-.31-20.82-8-28.51s-18.75-7.85-28.51-8c-5.25-.08-10.67-.16-13.94-1.52-3.56-1.47-7.63-5.37-11.57-9.14C146.28,23.51,138.44,16,128,16s-18.27,7.51-25.18,14.14c-3.94,3.77-8,7.67-11.57,9.14C88,40.64,82.56,40.72,77.31,40.8c-9.76.15-20.82.31-28.51,8S41,67.55,40.8,77.31c-.08,5.25-.16,10.67-1.52,13.94-1.47,3.56-5.37,7.63-9.14,11.57C23.51,109.72,16,117.56,16,128s7.51,18.27,14.14,25.18c3.77,3.94,7.67,8,9.14,11.57,1.36,3.27,1.44,8.69,1.52,13.94.15,9.76.31,20.82,8,28.51s18.75,7.85,28.51,8c5.25.08,10.67.16,13.94,1.52,3.56,1.47,7.63,5.37,11.57,9.14C109.72,232.49,117.56,240,128,240s18.27-7.51,25.18-14.14c3.94-3.77,8-7.67,11.57-9.14,3.27-1.36,8.69-1.44,13.94-1.52,9.76-.15,20.82-.31,28.51-8s7.85-18.75,8-28.51c.08-5.25.16-10.67,1.52-13.94,1.47-3.56,5.37-7.63,9.14-11.57C232.49,146.28,240,138.44,240,128S232.49,109.73,225.86,102.82Zm-11.55,39.29c-4.79,5-9.75,10.17-12.38,16.52-2.52,6.1-2.63,13.07-2.73,19.82-.1,7-.21,14.33-3.32,17.43s-10.39,3.22-17.43,3.32c-6.75.1-13.72.21-19.82,2.73-6.35,2.63-11.52,7.59-16.52,12.38S132,224,128,224s-9.15-4.92-14.11-9.69-10.17-9.75-16.52-12.38c-6.1-2.52-13.07-2.63-19.82-2.73-7-.1-14.33-.21-17.43-3.32s-3.22-10.39-3.32-17.43c-.1-6.75-.21-13.72-2.73-19.82-2.63-6.35-7.59-11.52-12.38-16.52S32,132,32,128s4.92-9.15,9.69-14.11,9.75-10.17,12.38-16.52c2.52-6.1,2.63-13.07,2.73-19.82.1-7,.21-14.33,3.32-17.43S70.51,56.9,77.55,56.8c6.75-.1,13.72-.21,19.82-2.73,6.35-2.63,11.52-7.59,16.52-12.38S124,32,128,32s9.15,4.92,14.11,9.69,10.17,9.75,16.52,12.38c6.1,2.52,13.07,2.63,19.82,2.73,7,.1,14.33.21,17.43,3.32s3.22,10.39,3.32,17.43c.1,6.75.21,13.72,2.73,19.82,2.63,6.35,7.59,11.52,12.38,16.52S224,124,224,128,219.08,137.15,214.31,142.11ZM173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34Z"/></svg></span>
         <div class="notice__body">
           <b>Drop does not hold money</b>
@@ -1614,7 +1897,7 @@ img, svg { display: block; }
     </div>
   </section>
 
-  <section class="closing">
+  <section class="closing"><svg class="flight" id="flight" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><defs><mask id="fm" maskUnits="userSpaceOnUse" x="-100" y="-100" width="1500" height="800"><path class="flight__m" pathLength="1" d="M-40 560C120 560 260 470 250 360C240 260 110 250 120 340C135 440 330 200 520 110C700 30 950 60 1250 40"/></mask></defs><path class="flight__d" mask="url(#fm)" d="M-40 560C120 560 260 470 250 360C240 260 110 250 120 340C135 440 330 200 520 110C700 30 950 60 1250 40"/><g class="flight__p"><g><animateMotion id="fa" dur="2.8s" begin="indefinite" fill="freeze" rotate="auto" path="M-40 560C120 560 260 470 250 360C240 260 110 250 120 340C135 440 330 200 520 110C700 30 950 60 1250 40"/><use href="#i-plane" x="-38" y="-38" width="76" height="76" transform="rotate(45)"/></g></g></svg>
     <div class="shell">
       <p class="closing__kick rise">Ready when you are</p>
       <h2 class="display rise">Pick something. Send it to someone.</h2>
@@ -1697,65 +1980,64 @@ img, svg { display: block; }
     rises.forEach(function (el) { el.classList.add("is-in"); });
   }
 
-  /* the focal sequence: a copy of the item travels from sender to recipient */
+  /* the focal sequence, in beats: type, press, fold, fly, land, done.
+     Each beat only adds a class; the look of each beat lives in the CSS. */
   var strip = document.getElementById("strip");
-  var chip = document.getElementById("chip");
-  var slotRecv = document.getElementById("slotRecv");
-  var slotEmpty = document.getElementById("slotEmpty");
-  var received = document.getElementById("received");
-  var chipFlag = document.getElementById("chipFlag");
   var note = document.getElementById("stripNote");
+  var typed = document.getElementById("typed");
+  var replay = document.getElementById("replay");
+  var READY = note ? note.innerHTML : "";
   var ARRIVED = "<b>Arrived.</b> It is in @kemi's inbox, and in the history on both sides.";
+  var HANDLE = "@kemi";
+  var BEATS = ["is-press", "is-fold", "is-fly", "is-land", "is-done"];
+  var timers = [];
 
-  function settle(clone) {
-    if (clone && clone.parentNode) clone.parentNode.removeChild(clone);
-    if (received) received.hidden = false;
-    if (slotEmpty) slotEmpty.hidden = true;
-    if (chipFlag) chipFlag.hidden = false;
-    strip.classList.remove("is-travelling");
-    strip.dataset.arrived = "true";
+  function later(fn, ms) { timers.push(window.setTimeout(fn, ms)); }
+  function stopTimers() { timers.forEach(window.clearTimeout); timers = []; }
+  function beat(name) { return function () { strip.classList.add(name); }; }
+
+  function finish() {
+    stopTimers();
+    BEATS.forEach(function (c) { strip.classList.add(c); });
+    if (typed) typed.textContent = HANDLE;
+    if (note) note.innerHTML = ARRIVED;
+    strip.dataset.state = "done";
+  }
+
+  function reset() {
+    stopTimers();
+    BEATS.forEach(function (c) { strip.classList.remove(c); });
+    if (typed) typed.textContent = "";
+    if (note) note.innerHTML = READY;
+    strip.dataset.state = "idle";
+  }
+
+  function play() {
+    strip.dataset.state = "playing";
+    for (var i = 0; i < HANDLE.length; i++) {
+      (function (n) {
+        later(function () { if (typed) typed.textContent = HANDLE.slice(0, n + 1); }, 450 + n * 120);
+      })(i);
+    }
+    later(beat("is-press"), 1500);
+    later(beat("is-fold"), 1750);
+    later(beat("is-fly"), 2250);
+    later(beat("is-land"), 3250);
+    later(function () { if (note) note.innerHTML = ARRIVED; }, 3600);
+    later(function () { strip.classList.add("is-done"); strip.dataset.state = "done"; }, 4000);
   }
 
   function arrive(animate) {
-    if (!strip || strip.dataset.arrived === "true") return;
-    strip.dataset.arrived = "true";
-    if (note) note.innerHTML = ARRIVED;
+    if (!strip || strip.dataset.state !== "idle") return;
+    if (!animate) { finish(); return; }
+    play();
+  }
 
-    if (!animate || !chip || !slotRecv) { settle(null); return; }
-
-    var clone = chip.cloneNode(true);
-    var flag = clone.querySelector(".chip__flag");
-    if (flag) flag.parentNode.removeChild(flag);
-    clone.removeAttribute("id");
-    var from = chip.getBoundingClientRect();
-    var to = slotRecv.getBoundingClientRect();
-    var box = strip.getBoundingClientRect();
-
-    clone.style.position = "absolute";
-    clone.style.left = from.left - box.left + "px";
-    clone.style.top = from.top - box.top + "px";
-    clone.style.width = from.width + "px";
-    clone.style.margin = "0";
-    clone.style.zIndex = "2";
-    clone.setAttribute("aria-hidden", "true");
-    strip.appendChild(clone);
-
-    var dx = to.left - from.left;
-    var dy = to.top + (to.height - from.height) / 2 - from.top;
-
-    requestAnimationFrame(function () {
-      strip.classList.add("is-travelling");
-      clone.style.transform = "translate3d(" + dx + "px," + dy + "px,0)";
+  if (replay) {
+    replay.addEventListener("click", function () {
+      reset();
+      later(function () { arrive(true); }, 550);
     });
-
-    var done = false;
-    var finish = function () {
-      if (done) return;
-      done = true;
-      settle(clone);
-    };
-    clone.addEventListener("transitionend", finish, { once: true });
-    window.setTimeout(finish, 1400);
   }
 
   if (strip) {
@@ -1772,6 +2054,23 @@ img, svg { display: block; }
     } else {
       fire();
     }
+  }
+
+  /* closing: the plane flies its dashed route once */
+  var fl = document.getElementById("flight");
+  if (fl) {
+    var go = function () {
+      fl.classList.add("go");
+      var a = document.getElementById("fa");
+      if (a && a.beginElement) a.beginElement();
+    };
+    if (reduce) { fl.classList.add("static"); }
+    else if ("IntersectionObserver" in window) {
+      var fo = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { go(); fo.disconnect(); } });
+      }, { threshold: 0.35 });
+      fo.observe(fl.parentNode);
+    } else { go(); }
   }
 
   /* mobile menu */
@@ -1818,6 +2117,10 @@ img, svg { display: block; }
       item.dataset.open = open ? "false" : "true";
     });
   }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".nav__panel,.steps,.list,.status"), function (g) {
+    Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--k", i); c.style.setProperty("--i", i); });
+  });
 })();
 </script>
 </body>
