@@ -10,3 +10,7 @@ dist
 .claude/
 agent/
 skills-lock.json
+
+# test output
+test-results
+playwright-report
