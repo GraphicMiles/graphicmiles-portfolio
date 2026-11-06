@@ -1,0 +1,856 @@
+/* Fidelity corrections and dedicated mobile surface */
+.content {
+  padding-top: 10px;
+}
+.promo-banner,
+.promo-banner img {
+  height: 80px;
+}
+.promo-banner {
+  margin-bottom: 10px;
+}
+.hero {
+  padding-bottom: 5px;
+}
+.primary-nav .nav-item {
+  padding-inline: 12px;
+}
+.primary-nav .nav-item:first-child {
+  padding-inline: 24px;
+}
+.topbar-row {
+  min-height: 68px;
+}
+.login-fields input {
+  width: 174px;
+}
+.login-fields input:first-of-type {
+  width: 212px;
+}
+.login-fields .field-prefix {
+  border: 0;
+}
+.login-fields .btn-register {
+  padding-inline: 10px;
+}
+.col-main {
+  width: 747px;
+}
+.col-side {
+  width: 235px;
+}
+.columns {
+  gap: 18px;
+}
+.highlights {
+  border: 1px solid #bcbec0;
+}
+.panel-head {
+  padding-top: 24px;
+}
+.panel-head .dot {
+  width: 24px;
+  height: 24px;
+}
+.sport-tabs {
+  gap: 24px;
+}
+.sport-tabs button {
+  font-size: 14px;
+}
+.league-chips button {
+  min-height: 70px;
+  flex-basis: 130px;
+  font-size: 16px;
+  max-width: 140px;
+}
+.league-chips strong {
+  font-weight: 600;
+}
+.league-chips {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.match-row {
+  gap: 8px;
+}
+.match-teams {
+  flex: 1;
+  min-width: 0;
+}
+.match-when {
+  width: 52px;
+}
+.odd-btn {
+  width: 60px;
+}
+.odds-cols {
+  gap: 1px;
+}
+.odd-select {
+  width: 60px;
+}
+.live-row {
+  gap: 8px;
+}
+.live-row .match-when {
+  width: 48px;
+}
+.live-row .odd-btn {
+  width: 60px;
+}
+.live-row .odd-select {
+  width: 44px;
+}
+.live-row .live-score {
+  width: 18px;
+}
+.live-row .match-teams {
+  font-size: 12px;
+}
+.live-row {
+  min-height: 50px;
+}
+.market-head-desktop {
+  padding: 0 60px 0 304px;
+  color: var(--muted-2);
+  font-size: 12px;
+}
+.market-head-desktop span {
+  float: right;
+}
+.jackpot-img {
+  width: 100%;
+}
+.game-pictures {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+}
+.game-pictures button {
+  width: 50%;
+}
+.game-pictures img {
+  height: 120px;
+  object-fit: cover;
+}
+.betslip {
+  border: 5px solid var(--slate);
+}
+.betslip-body {
+  min-height: 220px;
+}
+.footer-top {
+  gap: 24px;
+}
+.footer-brand {
+  width: 420px;
+}
+.footer-col {
+  width: 138px;
+}
+.footer-connect {
+  min-width: 232px;
+}
+.footer-brand .partner img {
+  max-width: 100px;
+  object-fit: contain;
+}
+.footer-brand .brand img {
+  width: 110px;
+  height: auto;
+}
+.footer-brand .partner p {
+  font-size: 20px;
+}
+.footer-top {
+  padding-top: 24px;
+}
+.footer {
+  margin-top: 0;
+}
+.footer-bottom .container {
+  gap: 12px;
+}
+.footer-bottom img {
+  max-width: 65px;
+}
+.footer-bottom .copy {
+  font-size: 12px;
+}
+.footer-mid {
+  gap: 24px;
+}
+.socials button {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+.app-dialog {
+  border: 0;
+  padding: 24px;
+  background: var(--card);
+  color: var(--text);
+  max-width: 420px;
+  width: 100%;
+  border-radius: 4px;
+}
+.app-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.55);
+}
+.app-dialog h2 {
+  font-size: 20px;
+  padding-right: 24px;
+  margin-bottom: 16px;
+}
+.app-dialog p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+.dialog-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+}
+.slip-item {
+  padding-right: 24px;
+}
+.slip-item .match {
+  padding-right: 0;
+}
+.slip-item .remove {
+  bottom: 8px;
+}
+.slip-item strong {
+  color: var(--green);
+}
+.match-when .id,
+.live-row .match-when .ht,
+.winners .when,
+.winners .row2 {
+  font-size: 12px;
+}
+.league-chips button {
+  overflow: hidden;
+}
+.desktop-extra.gap {
+  width: 4px;
+}
+.nav-clock {
+  font-size: 12px;
+}
+.primary-nav .nav-item {
+  font-size: 14px;
+}
+@media (min-width: 768px) and (max-width: 1019px) {
+  .col-main,
+  .col-side {
+    width: 100%;
+  }
+  .footer-brand {
+    width: 100%;
+  }
+  .footer-connect {
+    min-width: 240px;
+  }
+  .hero .container {
+    flex-wrap: nowrap;
+  }
+  .hero-carousel {
+    order: 0;
+    width: 45%;
+    height: 254px;
+    flex: 1;
+  }
+  .popular {
+    width: 23%;
+    flex: none;
+  }
+  .reg-panel {
+    width: 25%;
+    flex: none;
+    padding: 8px;
+  }
+  .primary-nav .nav-item {
+    padding-inline: 8px;
+    font-size: 12px;
+  }
+  .nav-clock {
+    display: none;
+  }
+  .topbar-row {
+    gap: 8px;
+  }
+  .brand img {
+    width: 130px;
+    height: auto;
+  }
+  .brand-country {
+    font-size: 12px;
+  }
+  .login-fields input,
+  .login-fields input:first-of-type {
+    width: 110px;
+  }
+  .login-meta {
+    gap: 8px;
+  }
+  .geo-btn {
+    display: none;
+  }
+  .footer-top {
+    padding-inline: 16px;
+  }
+  .footer-mid {
+    padding-inline: 16px;
+  }
+  .footer-bottom .container {
+    padding-inline: 16px;
+  }
+}
+/* Mobile is its own product surface, not a compressed desktop table. */
+.m-header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px 0 14px;
+  background: var(--red);
+  color: white;
+}
+.m-header > img {
+  width: 110px;
+  height: auto;
+  margin-right: auto;
+}
+.m-header button {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.m-header .join,
+.m-header .login {
+  height: 32px;
+  padding: 0 8px;
+  border-radius: 2px;
+}
+.m-header .join {
+  background: white;
+  color: var(--red);
+}
+.m-header .login {
+  border: 1px solid white;
+}
+.m-main {
+  background: #fff;
+  padding-bottom: 0;
+}
+.m-promos {
+  display: flex;
+  gap: 6px;
+  padding: 10px 8px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.m-promos button {
+  flex: 1 0 68px;
+  max-width: 80px;
+  height: 70px;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--ink);
+  color: white;
+}
+.m-promos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.m-promos span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000b;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 3px;
+}
+.m-tools {
+  display: flex;
+  padding: 0 8px 10px;
+  gap: 4px;
+}
+.m-tools button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 52px;
+  gap: 4px;
+  font-size: 12px;
+}
+.m-categories {
+  display: flex;
+  gap: 4px;
+  padding: 8px 10px;
+  background: var(--page);
+  overflow: auto;
+  scrollbar-width: none;
+}
+.m-categories button {
+  flex: 0 0 114px;
+  min-height: 52px;
+  padding: 8px 12px;
+  background: var(--field);
+  border-top: 3px solid var(--red);
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 700;
+  text-align: left;
+}
+.m-categories button:nth-child(2) {
+  border-color: var(--slate);
+}
+.m-categories button:nth-child(3) {
+  border-color: var(--green);
+}
+.m-feature-tabs {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 44px;
+  padding: 0 12px;
+  overflow: auto;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+.m-feature-tabs strong {
+  font-size: 20px;
+  padding-right: 12px;
+  border-right: 1px solid var(--muted-2);
+}
+.m-feature-tabs button {
+  min-height: 44px;
+  font-size: 14px;
+}
+.m-feature-tabs .active {
+  color: var(--green);
+  font-weight: 700;
+}
+.m-leagues {
+  display: flex;
+  gap: 8px;
+  overflow: auto;
+  scrollbar-width: none;
+  padding: 8px;
+}
+.m-leagues button {
+  flex: none;
+  border: 1px solid var(--muted-2);
+  border-radius: 20px;
+  padding: 8px 16px;
+  min-height: 36px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.m-feature-match {
+  margin: 0 8px 12px;
+  box-shadow: 0 2px 4px #0004;
+  padding: 4px;
+  background: white;
+}
+.m-tourney {
+  color: var(--green);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  text-decoration: underline;
+}
+.m-versus {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 8px;
+}
+.m-versus > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  color: var(--muted-2);
+  font-size: 12px;
+}
+.m-versus img {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+}
+.m-versus strong {
+  font-size: 15px;
+}
+.m-versus small {
+  display: block;
+  font-size: 12px;
+  color: var(--muted-2);
+  font-weight: 400;
+  margin-top: 4px;
+}
+.m-feature-odds {
+  display: flex;
+  gap: 4px;
+}
+.m-feature-odds .odd-btn {
+  flex: 1;
+  height: 44px;
+  width: auto;
+  background: var(--green-pale);
+  color: var(--green);
+  font-size: 15px;
+}
+.m-live {
+  background: var(--ink);
+  color: white;
+}
+.m-live-title {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 12px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.m-live-title h2 {
+  font-size: 20px;
+  border-right: 1px solid var(--muted-2);
+  padding-right: 12px;
+}
+.m-live-title .sport-tabs {
+  padding: 0;
+  gap: 12px;
+  overflow: visible;
+}
+.m-live-title .sport-tabs button {
+  color: white;
+  font-size: 14px;
+  min-height: 48px;
+  border: 0;
+}
+.m-live-title .sport-tabs button[aria-selected="true"] {
+  color: var(--green-live);
+}
+.m-market-tabs {
+  display: flex;
+  gap: 20px;
+  padding: 0 12px;
+  overflow: auto;
+  scrollbar-width: none;
+}
+.m-market-tabs button {
+  font-size: 14px;
+  font-weight: 600;
+  min-height: 44px;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+}
+.m-market-tabs .active {
+  border-color: var(--green);
+}
+.m-odds-labels {
+  background: var(--slate);
+  color: var(--muted-2);
+  text-align: right;
+  padding: 4px 30px;
+  font-size: 12px;
+}
+.m-match {
+  padding: 12px 10px;
+  border-bottom: 1px solid #393d45;
+}
+.m-match-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: 12px;
+  color: var(--muted-2);
+}
+.m-match-meta strong {
+  color: var(--green-live);
+  white-space: nowrap;
+}
+.m-match-meta span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.m-match-meta svg {
+  flex: none;
+}
+.m-match .live-row {
+  padding-top: 8px;
+  gap: 8px;
+}
+.m-match .match-when,
+.m-match .desktop-extra {
+  display: none;
+}
+.m-match .live-row::before {
+  display: none;
+}
+.m-match .match-teams {
+  color: white;
+  font-size: 13px;
+  flex: 1;
+  min-width: 0;
+}
+.m-match .live-score {
+  width: 16px;
+}
+.m-match .odds-cols {
+  width: 55%;
+  gap: 1px;
+}
+.m-match .odd-btn {
+  width: auto;
+  flex: 1;
+  height: 44px;
+  background: var(--slate);
+  color: var(--green-live);
+  font-size: 15px;
+}
+.m-match .odd-btn[aria-pressed="true"] {
+  background: var(--green);
+  color: white;
+}
+.m-all {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  min-height: 56px;
+  padding: 12px;
+  color: var(--green-live);
+  font-size: 13px;
+}
+.m-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: var(--ink);
+  display: flex;
+  z-index: 10;
+  border-top: 1px solid var(--slate);
+}
+.m-bottom button {
+  flex: 1;
+  color: var(--muted-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+.m-slip-fab {
+  position: fixed;
+  bottom: 64px;
+  right: 16px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--green);
+  color: white;
+  display: grid;
+  place-items: center;
+  z-index: 11;
+}
+.m-slip-fab span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  background: white;
+  color: var(--text);
+  min-width: 20px;
+  height: 20px;
+  font-size: 12px;
+}
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #0008;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+}
+.sheet-backdrop[hidden] {
+  display: none;
+}
+.m-sheet {
+  position: relative;
+  width: 100%;
+  max-height: 85dvh;
+  overflow: auto;
+  background: white;
+}
+.sheet-close {
+  position: absolute;
+  right: 4px;
+  top: 0;
+  color: white;
+  width: 44px;
+  height: 44px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+}
+.m-sheet .betslip-head {
+  padding-right: 44px;
+}
+.m-sheet .betslip-body {
+  min-height: 240px;
+}
+.m-sheet input {
+  font-size: 16px;
+}
+.m-sheet button {
+  min-height: 44px;
+}
+.m-sheet .remove {
+  width: 44px;
+  height: 44px;
+  right: 0;
+  bottom: 0;
+}
+.m-sheet .slip-item {
+  padding: 12px 44px 12px 12px;
+}
+.m-sheet .slip-item .pick,
+.m-sheet .slip-item .match {
+  font-size: 13px;
+}
+.m-sheet .slip-item .match {
+  font-size: 12px;
+}
+.m-sheet .betslip-mode button {
+  min-height: 24px;
+}
+.m-sheet .betslip-mode {
+  padding: 8px;
+}
+.m-sheet .slip-foot {
+  font-size: 15px;
+}
+button:active,
+a:active {
+  filter: brightness(0.9);
+}
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 56px;
+  }
+  .app-dialog {
+    max-width: none;
+    margin: auto 0 0;
+    padding: 24px;
+    border-radius: 8px 8px 0 0;
+  }
+  .app-dialog button {
+    min-height: 44px;
+  }
+  .app-dialog .dialog-close {
+    width: 44px;
+  }
+  .m-feature-odds .odd-btn[aria-pressed="true"] {
+    background: var(--green);
+    color: white;
+  }
+}
+.brand .brand-country img {
+  width: 26px;
+  height: 20px;
+  object-fit: cover;
+  object-position: left;
+}
+.league-chips button {
+  display: block;
+  -webkit-line-clamp: unset;
+  padding: 10px 12px;
+}
+.chip-line {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 16px;
+  line-height: 21px;
+}
+.chip-title {
+  font-weight: 600;
+}
+.view-all {
+  width: calc(100% - 24px);
+}
+.game-pictures {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px 8px;
+  gap: 8px;
+}
+.game-pictures button {
+  width: calc(50% - 4px);
+}
+.game-pictures img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.mini-games h2 {
+  line-height: 30px;
+}
+.mini-more {
+  margin-bottom: 12px;
+}
+.footer-brand .partner {
+  gap: 16px;
+}
+.footer-brand .partner > p {
+  display: none;
+}
+.footer-brand .partner > img:first-of-type {
+  height: 70px;
+  max-width: 280px;
+  width: 280px;
+  object-fit: contain;
+}
+.hero {
+  background-image: url("../img/left.0bac49396d.jpg"),
+    url("../img/right.7a114c1a9b.jpg");
+  background-position:
+    left center,
+    right center;
+  background-repeat: no-repeat;
+  background-size: 210px 264px;
+}
+.hero .container {
+  background: var(--ink);
+}
+.betslip-empty .hint {
+  color: var(--muted);
+}
+.panel-head .actions button {
+  color: var(--muted);
+}
