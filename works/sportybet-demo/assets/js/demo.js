@@ -189,7 +189,7 @@
   const fixtureIds = () => [
     ...matches.map((_, i) => i),
     10,
-    ...Object.keys(demoFixtures).map(Number),
+    ...Object.keys(demoFixtures).map(Number).filter(id=>!demoFixtures[id].virtual),
   ];
   const meta = (id) =>
     demoFixtures[id] || {
@@ -419,7 +419,7 @@
       .forEach((b) => (b.hidden = Boolean(state.session)));
     const tag = document.querySelector(".demo-status");
     if (tag)
-      tag.innerHTML = `<div class="container"><a class="portfolio-return" href="/" aria-label="Back to portfolio">Portfolio</a><span>DEMO <span class="demo-status-detail">· simulated events and funds</span></span><a href="#/wallet" aria-label="Demo wallet ${money(balance())}">${icon("wallet", 16)}<strong>${money(balance())}</strong></a><a href="#/account">${icon("user", 16)}<span>${state.session && state.profile ? safe(state.profile.name) : "My account"}</span></a></div>`;
+      tag.innerHTML = `<a class="portfolio-return" href="/" aria-label="Back to portfolio">Portfolio</a><span>DEMO · No real funds</span>`;
   }
   function resetPortal() {
     if (portal && !mobile && homeSlot && portal.parentElement !== homeSlot)
@@ -437,6 +437,7 @@
     });
     route = "Sports";
     currentPath = "home";
+    document.documentElement.dataset.surface="home";
     document.title = "SportyBet · Demo";
     const homeMain=document.querySelector(mobile?'.m-main':'.content');
     if(homeMain&&!homeMain.querySelector('h1')){
@@ -450,12 +451,15 @@
     panel.querySelectorAll('[role="tablist"]').forEach((list, index) => {
       const tabs = [...list.querySelectorAll('[role="tab"]')];
       if (!tabs.length) return;
-      const content = document.createElement("div");
-      content.className = "tab-result-panel";
-      content.id = "route-panel-" + index;
-      content.setAttribute("role", "tabpanel");
-      while (list.nextSibling) content.append(list.nextSibling);
-      list.after(content);
+      const target=tabs[0].getAttribute("aria-controls");
+      const existing=target?document.getElementById(target):null;
+      const content=existing||document.createElement("div");
+      if(!existing){
+        content.className="tab-result-panel";content.id="route-panel-"+index;
+        content.setAttribute("role","tabpanel");
+        while(list.nextSibling)content.append(list.nextSibling);
+        list.after(content);
+      }
       tabs.forEach((tab, i) => {
         tab.id = "route-tab-" + index + "-" + i;
         tab.setAttribute("aria-controls", content.id);
@@ -520,6 +524,139 @@
   document.addEventListener("input", (e) =>
     e.target.removeAttribute?.("aria-invalid"),
   );
+  let referencePhone='',referenceJoinStep=0,referenceRecoveryStep=0;
+  const referencePhoneField=(value='')=>`<label class="reference-phone-field"><span>+234</span><input name="phone" type="tel" inputmode="tel" placeholder="Mobile Number" aria-label="Demo mobile number" autocomplete="off" maxlength="11" pattern="0?[789][01][0-9]{8}" required value="${safe(value)}"></label>`;
+  function referenceAuthMarkup(type){
+    const register=type==='register',phone=referencePhone||state.profile?.phone||'';
+    const top=mobile?`<div class="reference-auth-country"><img src="${asset('flagNigeria.12aeae58bb.png')}" alt="Nigeria"><span>Nigeria</span><button data-reference-region>Change${icon('chevron',20)}</button><a href="#/home" aria-label="Close sign in">${icon('close',22)}</a></div>`:`<div class="reference-auth-tabs"><button data-reference-auth-tab="register" aria-selected="${register}">Register</button><button data-reference-auth-tab="login" aria-selected="${!register}">Login</button></div><span class="reference-auth-ball" aria-hidden="true"></span>`;
+    if(register&&mobile&&referenceJoinStep===0)return `${top}<div class="reference-auth-form reference-join-start"><h2>Join SportyBet<br>with your mobile number</h2><form data-reference-phone-next>${referencePhoneField(phone)}<button class="btn-green" disabled>Next</button>${formError()}</form><a href="#/account/login" class="reference-auth-switch">Already have an account? Log In</a><p class="reference-auth-disclosure">Independent local demo. Use made-up details.</p></div>`;
+    return `${top}<div class="reference-auth-form"><form data-authform="${type}">${referencePhoneField(phone)}<label class="reference-password-field"><input name="pin" type="password" placeholder="${register?'Set Password':'Password'}" aria-label="${register?'Set six-digit demo PIN':'Demo PIN'}" inputmode="numeric" pattern="[0-9]{6}" minlength="6" maxlength="6" required autocomplete="off"><button type="button" data-reference-password aria-label="Show demo PIN">${icon('eye',20)}</button></label>${register?`<input type="hidden" name="name" value="Demo player"><input type="hidden" name="confirm"><label class="reference-auth-consent"><input type="checkbox" name="terms" required><span>I understand this is an independent demo with no real funds.</span></label>`:`<div class="reference-auth-checks"><label><input type="checkbox" checked>Remember me</label><label><input type="checkbox" checked>Keep me signed in</label></div>`}${formError()}<button class="btn-green" disabled>${register?'Create New Account':'Login'}</button></form>${register?`<p class="reference-auth-terms">By creating a local demo account, you agree to the <a href="#/help/terms">demo terms</a>. You must be at least 18 years old.</p>`:`<div class="reference-auth-links"><a href="#/account/recover">Forgot Password?</a><button data-reference-auth-tab="register">Create New Account</button></div><div class="reference-auth-or">Or</div><p class="reference-auth-deactivate">To deactivate or reactivate your local account <a href="#/account/security">click here.</a></p>`}<p class="reference-auth-disclosure">Independent local demo. Password is a six-digit demo PIN. Never enter your SportyBet password.</p></div>`;
+  }
+  function referenceAuth(type,modal=false){
+    if(modal){const d=openDialog(type==='register'?'Register':'Login',referenceAuthMarkup(type));d.classList.add('reference-auth-dialog');return}
+    pageShell(type==='register'?'Register':'Login',`<section class="reference-auth-screen">${referenceAuthMarkup(type)}</section>`,{full:true,aside:false});document.documentElement.dataset.surface='auth';
+  }
+  function referenceRegion(){
+    const countries=['Nigeria','Ghana','Tanzania','Zambia','South Africa','Cameroon','Mozambique','Kenya'];
+    const d=openDialog('Location Preference',`<div class="reference-region-list">${countries.map(c=>`<button data-reference-region-pick="${c}" aria-pressed="${c===(storage.get('sporty-reference-region')||'Nigeria')}"><img src="${asset('flags/'+({'Nigeria':'ng','Ghana':'gh','Tanzania':'tz','Zambia':'zm','South Africa':'za','Cameroon':'cm','Mozambique':'mz','Kenya':'ke'}[c])+'.svg')}" alt=""><span>${c}</span>${c===(storage.get('sporty-reference-region')||'Nigeria')?icon('check',24):''}</button>`).join('')}</div><p class="reference-region-note">Visual location preference only. The demo uses NGN credits.</p>`);d.classList.add('reference-region-dialog');
+  }
+  document.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(b.matches('.geo-btn')){e.preventDefault();e.stopImmediatePropagation();referenceRegion();return}const keys=['referenceAuthTab','referencePassword','referenceRegion','referenceRegionPick'];const k=keys.find(k=>Object.hasOwn(b.dataset,k));if(!k)return;e.preventDefault();e.stopImmediatePropagation();
+    if(k==='referenceAuthTab'){referenceJoinStep=0;if(mobile)navigate('account/'+b.dataset[k]);else referenceAuth(b.dataset[k],Boolean(activeDialog?.classList.contains('reference-auth-dialog')));return}
+    if(k==='referencePassword'){const input=b.parentElement.querySelector('input');const show=input.type==='password';input.type=show?'text':'password';b.setAttribute('aria-label',show?'Hide demo PIN':'Show demo PIN');b.innerHTML=icon(show?'eye-off':'eye',20);drawIcons();return}
+    if(k==='referenceRegion'){referenceRegion();return}
+    storage.set('sporty-reference-region',b.dataset[k]);closeDialog();document.querySelectorAll('.reference-auth-country>span').forEach(el=>el.textContent=b.dataset[k]);toast('Demo location preference saved. Credits remain in NGN.');
+  },true);
+  document.addEventListener('input',e=>{if(!e.target.closest('.reference-auth-form'))return;const f=e.target.closest('form');if(!f)return;if(f.elements.phone)referencePhone=f.elements.phone.value;const phoneOk=/^0?[789][01][0-9]{8}$/.test(referencePhone);if(f.elements.confirm)f.elements.confirm.value=f.elements.pin.value;if(f.elements.name)f.elements.name.value='Demo '+referencePhone.slice(-4);const valid=phoneOk&&(!f.elements.pin||/^\d{6}$/.test(f.elements.pin.value))&&(!f.elements.terms||f.elements.terms.checked);f.querySelector('.btn-green').disabled=!valid},true);
+  document.addEventListener('change',e=>{if(e.target.matches('.reference-auth-form input[type=checkbox]'))e.target.dispatchEvent(new Event('input',{bubbles:true}))},true);
+  document.addEventListener('submit',e=>{if(e.target.matches('[data-reference-recovery-next]')){e.preventDefault();e.stopImmediatePropagation();referencePhone=e.target.elements.phone.value;if(!state.profile){feedback(e.target,'No local profile exists on this browser. Create a demo account first.');return}if(state.profile.phone&&state.profile.phone!==referencePhone){feedback(e.target,'This number does not match your local demo profile.');return}referenceRecoveryStep=1;renderAccount('recover');return}if(!e.target.matches('[data-reference-phone-next]'))return;e.preventDefault();e.stopImmediatePropagation();referencePhone=e.target.elements.phone.value;referenceJoinStep=1;referenceAuth('register')},true);
+
+  let referenceDayFilter='All',referenceSelectedLeagues=[],referenceCountry='Top Leagues',referenceDraftLeagues=new Set(),referenceCalendarTarget='results',referenceTimeHours=null,referenceResultCountry='All';
+  function referenceFilterDialog(kind){
+    if(kind==='Results'){referenceResultsDialog();return}
+    if(kind==='League')referenceDraftLeagues=new Set(referenceSelectedLeagues);
+    const currentLeague=listLeague==='All'?'':listLeague;
+    const hidden=`<input type="hidden" name="league" value="${safe(listLeague)}"><input type="hidden" name="query" value="${safe(listQuery)}"><input type="hidden" name="sort" value="${referenceSort}"><input type="hidden" name="status" value="${listStatus}">`;
+    let body='';
+    if(kind==='Daily')body=`<div class="reference-day-options">${['All','Today','Tomorrow','Sunday','Monday','Tuesday','Wednesday','Thursday','Weekend'].map((s,i)=>`<button data-reference-day="${s}" aria-pressed="${referenceDayFilter===s}">${s}<span>(${referenceDayCount(s)})</span></button>`).join('')}<button data-reference-custom-date>Custom date${icon('calendar-days',16)}</button><label class="reference-custom-time"><span>Custom time</span><input type="range" min="1" max="168" value="${referenceTimeHours||24}" name="hours" data-reference-time-hours aria-label="Hours from reference snapshot"></label><div class="reference-time-labels"><span>0h 1h</span><span>6h</span><span>12h</span><span>1d</span><span>1w</span></div><button class="reference-clear-filter" data-reference-day="All">Clear all</button></div>`;
+    else if(kind==='League')body=`<form class="reference-league-picker" data-reference-league-form><div class="reference-league-columns"><nav>${['Top Leagues','International','International Clubs','England','Spain','Germany','Italy','France','Albania','Algeria','Andorra','Argentina','Armenia','Australia','Austria','Belgium','Brazil','Nigeria','Portugal'].map(c=>`<button type="button" data-reference-country="${c}" aria-pressed="${referenceCountry===c}">${c}</button>`).join('')}</nav><div class="reference-league-options">${referenceLeagueOptions()}</div></div><div class="reference-picker-actions"><button type="button" data-reference-clear-leagues>Reset</button><button class="btn-green">View</button></div></form>`;
+    else if(kind==='Sort')body=`<div class="reference-sort-options">${[['default','Default'],['date','Time'],['league','League']].map(([v,t])=>`<button data-reference-sort="${v}" aria-pressed="${referenceSort===v}"><span>${t}</span>${referenceSort===v?icon('check',20):''}</button>`).join('')}</div>`;
+    else body=`<form data-reference-event-filter class="reference-odds-picker">${hidden}<div class="reference-odds-options">${[['All',1000],['Odds ≤ 1.2',1.2],['Odds ≤ 1.5',1.5],['Odds ≤ 2',2]].map(([t,v])=>`<button type="button" data-reference-odds-preset="${v}">${t}</button>`).join('')}</div><div class="reference-odds-custom"><span>Custom</span><output data-reference-odds-output>${referenceOddsRange?referenceOddsRange.join(' - '):'1 - Max'}</output><button class="btn-green" disabled>Apply</button></div><div class="reference-range-pair"><input type="range" min="1" max="20" step="0.1" name="min" value="${referenceOddsRange?.[0]||1}" aria-label="Minimum odds"><input type="range" min="1" max="1000" step="0.1" name="max" value="${referenceOddsRange?.[1]||1000}" aria-label="Maximum odds"></div><div class="reference-time-labels"><span>1</span><span>Max</span></div>${formError()}</form>`;
+    if(!mobile&&kind==='Odds'){
+      const prior=document.querySelector('.reference-inline-odds');if(prior){prior.remove();return}
+      const box=document.createElement('div');box.className='reference-inline-odds';box.setAttribute('role','dialog');box.setAttribute('aria-label','Odds filter');box.innerHTML=body;document.querySelector('.odds-filter').after(box);drawIcons();return;
+    }
+    const d=openDialog(kind+' filter',body);d.classList.add('reference-filter-popover','reference-filter-'+kind.toLowerCase());d.dataset.referencePopover=kind;
+    const rect=document.querySelector(mobile?'.reference-mobile-filters':'.odds-filter')?.getBoundingClientRect();
+    if(rect){d.style.setProperty('--reference-drop-top',Math.min(rect.bottom,innerHeight-200)+'px');if(!mobile){d.style.setProperty('--reference-drop-left',rect.left+'px');d.style.setProperty('--reference-drop-width',rect.width+'px')}}
+    document.querySelectorAll('[data-reference-filter]').forEach(b=>b.setAttribute('aria-expanded',String(b.dataset.referenceFilter===kind)));
+    d.addEventListener('close',()=>document.querySelectorAll('[data-reference-filter]').forEach(b=>b.setAttribute('aria-expanded','false')));
+    d.addEventListener('click',e=>{if(e.target===d&&mobile&&rect&&e.clientY>=rect.top&&e.clientY<rect.bottom){const tab=['Daily','League','Odds','Sort'][Math.min(3,Math.floor(e.clientX/(innerWidth/4)))];if(tab===kind)closeDialog();else referenceFilterDialog(tab)}});
+  }
+  function referenceDayMatches(id,day=referenceDayFilter){const date=meta(id).day||'',days={Today:'06/11',Tomorrow:'07/11',Sunday:'08/11',Monday:'09/11',Tuesday:'10/11',Wednesday:'11/11',Thursday:'12/11'};return day==='All'||day==='Weekend'&&/^(07|08)\/11/.test(date)||date.startsWith(days[day]||day)}
+  function referenceKickoff(id){const m=meta(id),date=/^(\d{2})\/(\d{2})/.exec(m.day||''),time=/^(\d{1,2}):(\d{2})/.exec(m.time||'');return date&&time?Date.UTC(2026,Number(date[2])-1,Number(date[1]),Number(time[1])-1,Number(time[2])):Infinity}
+  function referenceDayCount(day){return fixtureIds().filter(id=>meta(id).sport===listSport&&referenceDayMatches(id,day)).length}
+  function referenceLeagueOptions(){const leagues=[...new Set(fixtureIds().filter(id=>meta(id).sport===listSport).map(id=>meta(id).league))].filter(l=>referenceCountry==='Top Leagues'||referenceCountry==='International'||l.toLowerCase().includes(referenceCountry.toLowerCase()));return `<label><input type="checkbox" name="all" ${!referenceDraftLeagues.size?'checked':''}><span>All</span></label>`+leagues.map(l=>`<label><input type="checkbox" name="league" value="${safe(l)}" ${referenceDraftLeagues.has(l)?'checked':''}><span>${safe(l)}</span></label>`).join('')}
+  function resultTournamentOptions(country,value='All'){return '<option value="All">All Tournaments</option>'+referenceUI.results.filter(g=>country==='All'||g.title.startsWith(country+' - ')).map(g=>`<option value="${safe(g.title)}" ${g.title===value?'selected':''}>${safe(g.title.split(' - ').slice(1).join(' - '))}</option>`).join('')}
+  function referenceResultsDialog(){const countries=[...new Set(referenceUI.results.map(g=>g.title.split(' - ')[0]))];openDialog('Change results filters',`<form class="reference-filter-form reference-result-change" data-reference-results-filter><label class="form-field"><span>Sport</span><select name="sport">${['Football',...sports.filter(s=>s!=='Football')].map(s=>`<option ${listSport===s?'selected':''}>${s}</option>`).join('')}</select></label><label class="form-field"><span>Category</span><select name="country"><option value="All">All Categories</option>${countries.map(c=>`<option ${referenceResultCountry===c?'selected':''}>${safe(c)}</option>`).join('')}</select></label><label class="form-field"><span>Tournament</span><select name="category">${resultTournamentOptions(referenceResultCountry,referenceResultCategory)}</select></label><input type="hidden" name="query" value="${safe(listQuery)}">${formError()}<div class="reference-picker-actions"><button type="button" data-reference-reset-result-dialog>Reset</button>${primary('Apply')}</div></form>`).classList.add('reference-results-dialog')}
+  document.addEventListener('change',e=>{if(e.target.matches('[data-reference-results-filter] [name=country]'))e.target.form.elements.category.innerHTML=resultTournamentOptions(e.target.value)},true);
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;const keys=['referenceDay','referenceCountry','referenceClearLeagues','referenceSort','referenceOddsPreset','referenceCustomDate','referenceResetResultDialog'];const k=keys.find(k=>Object.hasOwn(b.dataset,k));if(!k)return;e.preventDefault();e.stopImmediatePropagation();
+    if(k==='referenceDay'){referenceDayFilter=b.dataset[k];if(referenceDayFilter==='All')referenceTimeHours=null;listStatus='all';closeDialog();renderPage();return}
+    if(k==='referenceSort'){referenceSort=b.dataset[k];closeDialog();renderPage();return}
+    if(k==='referenceCountry'){referenceCountry=b.dataset[k];document.querySelectorAll('[data-reference-country]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));document.querySelector('.reference-league-options').innerHTML=referenceLeagueOptions();return}
+    if(k==='referenceClearLeagues'){referenceDraftLeagues.clear();document.querySelector('.reference-league-options').innerHTML=referenceLeagueOptions();return}
+    if(k==='referenceOddsPreset'){referenceOddsRange=Number(b.dataset[k])===1000?null:[1,Number(b.dataset[k])];closeDialog();renderPage();return}
+    if(k==='referenceCustomDate'){referenceCalendar('sports');return}
+    if(k==='referenceResetResultDialog'){const f=b.closest('form');f.elements.sport.value='Football';f.elements.country.value='All';f.elements.category.innerHTML=resultTournamentOptions('All');f.elements.query.value='';return}
+  },true);
+  document.addEventListener('submit',e=>{if(!e.target.matches('[data-reference-league-form]'))return;e.preventDefault();e.stopImmediatePropagation();referenceSelectedLeagues=[...referenceDraftLeagues];listLeague='All';closeDialog();renderPage()},true);
+  document.addEventListener('change',e=>{if(!e.target.matches('.reference-league-options input'))return;if(e.target.name==='all'){referenceDraftLeagues.clear();document.querySelectorAll('.reference-league-options [name=league]').forEach(x=>x.checked=false)}else{if(e.target.checked)referenceDraftLeagues.add(e.target.value);else referenceDraftLeagues.delete(e.target.value);e.target.closest('form').querySelector('[name=all]').checked=!referenceDraftLeagues.size}},true);
+  document.addEventListener('input',e=>{if(!e.target.matches('.reference-range-pair input'))return;const form=e.target.closest('form'),min=Number(form.elements.min.value),max=Number(form.elements.max.value);form.querySelector('[data-reference-odds-output]').textContent=min+' - '+(max===1000?'Max':max);feedback(form,min>max?'Minimum odds must not exceed maximum odds.':'');form.querySelector('.btn-green').disabled=min>max},true);
+
+  function referenceCalendar(target='results'){referenceCalendarTarget=target;openDialog(target==='sports'?'Select match date':'Select result date',`<p>November 2026</p><div class="reference-calendar">${['M','T','W','T','F','S','S'].map(d=>`<span>${d}</span>`).join('')}${Array.from({length:30},(_,i)=>`<button data-reference-date-pick="${i+1}" aria-pressed="${i+1===referenceResultDateOffset+5}">${i+1}</button>`).join('')}</div>`)}
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('button,a');if(!b)return;
+    const keys=['referenceStatus','referenceFilter','referenceListMarket','referencePromoFilter','referenceRefresh','referenceLeague','referenceDate','referenceDatePick','referenceResetFilters','resetResults'];
+    const key=keys.find(k=>Object.hasOwn(b.dataset,k));if(!key)return;e.preventDefault();e.stopImmediatePropagation();
+    if(key==='referenceFilter'){referenceFilterDialog(b.dataset[key]);return}
+    if(key==='referenceStatus'){listStatus=b.dataset[key];renderPage();return}
+    if(key==='referenceListMarket'){referenceListMarket=b.dataset[key];renderPage();return}
+    if(key==='referencePromoFilter'){referencePromoFilter=b.dataset[key];referencePromotions();return}
+    if(key==='referenceRefresh'){renderPage();toast('Showing the saved reference snapshot. No live feed is connected.');return}
+    if(key==='referenceLeague'){const name=b.dataset[key];listLeague=['England','Top Leagues'].includes(name)?'England Premier League':name;listStatus='all';renderSports();return}
+    if(key==='resetResults'){referenceResultDateOffset=0;referenceResultCategory='All';referenceResultCountry='All';listSport='Football';listQuery='';renderResults(currentPath==='results');return}
+    if(key==='referenceResetFilters'){referenceDayFilter='All';referenceSelectedLeagues=[];referenceOddsRange=null;referenceSort='default';referenceTimeHours=null;listQuery='';listLeague='All';listStatus='all';closeDialog();renderPage();return}
+    if(key==='referenceDatePick'){if(referenceCalendarTarget==='sports'){referenceDayFilter=String(b.dataset[key]).padStart(2,'0')+'/11';listStatus='all';closeDialog();renderSports();return}referenceResultDateOffset=Number(b.dataset[key])-5;closeDialog();renderResults(currentPath==='results');return}
+    if(key==='referenceDate'){if(b.dataset[key]==='0'){referenceCalendar();return}referenceResultDateOffset+=Number(b.dataset[key]);renderResults(currentPath==='results');return}
+  },true);
+  document.addEventListener('submit',e=>{
+    const form=e.target;if(!form.matches('[data-reference-event-filter],[data-reference-results-filter],[data-reference-menu-search]'))return;
+    e.preventDefault();e.stopImmediatePropagation();
+    if(form.hasAttribute('data-reference-menu-search')){listQuery=form.elements.query.value.trim();listLeague='All';listStatus='all';navigate('sports/football');return}
+    if(form.hasAttribute('data-reference-results-filter')){listSport=form.elements.sport.value;listQuery=form.elements.query.value.trim();referenceResultCategory=form.elements.category.value;referenceResultCountry=form.elements.country.value;closeDialog();renderResults(currentPath==='results');return}
+    const min=Number(form.elements.min.value),max=Number(form.elements.max.value);if(!Number.isFinite(min)||!Number.isFinite(max)||min<1||max<min||max>1000){feedback(form,'Use odds between 1 and 1000, with the maximum above the minimum.');return}
+    referenceOddsRange=min===1&&max===1000?null:[min,max];listLeague=form.elements.league.value;listQuery=form.elements.query.value.trim();listStatus=form.elements.status.value;referenceSort=form.elements.sort.value;closeDialog();renderPage();
+  },true);
+  document.addEventListener('change',e=>{if(e.target.matches('[data-reference-time]')){referenceTimeHours=[1,3,6,24,null][Number(e.target.value)];listStatus='all';renderPage()}if(e.target.matches('[data-reference-time-hours]')){referenceTimeHours=Number(e.target.value);listStatus='all';closeDialog();renderPage()}},true);
+
+  const referenceTimerStarted=Date.now();
+  setInterval(()=>{const left=Math.max(0,104681-Math.floor((Date.now()-referenceTimerStarted)/1000));const clock={Days:Math.floor(left/86400),Hours:Math.floor(left%86400/3600),Minutes:Math.floor(left%3600/60),Seconds:left%60};document.querySelectorAll('[data-reference-clock]').forEach(e=>e.textContent=String(clock[e.dataset.referenceClock]||0).padStart(2,'0'))},1000);
+
+  function referenceSidebar(){
+    const leagues=['Top Leagues','International','International Clubs','England','Spain','Germany','Italy','France'];
+    return `<nav class="reference-sidebar" aria-label="Sports filters"><div class="sidebar-box">${[['Today Games','scheduled'],['Upcoming Games','all'],['Outrights','outrights']].map(([t,v])=>`<button data-reference-status="${v}">${t}${icon('chevron',14)}</button>`).join('')}</div><div class="sidebar-box time-filter"><strong>Filter by start time</strong><input type="range" min="0" max="4" value="${[1,3,6,24,null].indexOf(referenceTimeHours)}" aria-label="Filter by start time" data-reference-time><div><span>1 h</span><span>3 h</span><span>6 h</span><span>24 h</span><span>All</span></div></div><button class="sidebar-box odds-filter" data-reference-filter="Odds">Odds Filter ${icon('sliders-horizontal',16)}</button><div class="sidebar-box country-list">${leagues.map((l,i)=>`<button data-reference-league="${l}"><span>${l}</span><span>${[287,32,28,118,100,49,157,52][i]}</span></button>`).join('')}<strong>A–Z</strong>${['Albania','Algeria','Andorra','Argentina','Armenia','Australia','Austria','Austria Amateur','Azerbaijan','Bahrain','Belarus','Belgium','Bolivia','Bosnia and Herzegovina','Brazil','Bulgaria','Cambodia','Cameroon','Canada','Chile','China','Colombia','Croatia','Cyprus','Czechia','Denmark','Ecuador','Egypt','England','France','Germany','Italy','Japan','Netherlands','Nigeria','Portugal','Spain','USA'].map(l=>`<button data-reference-league="${l}">${l}${icon('chevron',12)}</button>`).join('')}</div></nav>`;
+  }
+  function referenceRegistration(){return `<form class="reference-registration reg-panel"><h2>Instant Registration</h2><p>Make a Deposit and Start Betting!</p><label class="reg-field"><span>+234</span><input aria-label="Registration Mobile Number" placeholder="Mobile Number" inputmode="tel"></label><button class="btn-green">Register</button></form>`;}
+  function referenceToolbar(title){return `<div class="reference-breadcrumb"><span>${safe(title)}</span><span><button data-print aria-label="Print">${icon('printer',16)}</button><button data-reference-refresh aria-label="Refresh events">${icon('refresh',18)}</button></span></div>`;}
+  function referenceScheduledRow(id){const f=fixture(id),m=meta(id),ref=referenceUI.football[id-100],markets=allMarkets(id),first=(referenceListMarket==="Main"?markets.find(x=>x.id==="dc"):referenceListMarket==="Goals"?markets.find(x=>x.id==="btts"):referenceListMarket==="Totals"?markets.find(x=>x.id.startsWith("half-total:")):referenceListMarket==="Handicap"?markets.find(x=>x.id.startsWith("handicap:")):null)||markets[0],total=markets.find(x=>x.id==='totals:2.5')||markets.find(x=>x.id.startsWith('totals:'));
+    return `<article class="reference-match ${m.reference?'captured-match':''}"><div class="reference-match-meta"><time>${safe(m.time)}</time><span>ID ${safe(m.gameId||String(id))}</span><span class="mobile-competition">${safe(m.league)}</span><button data-star="${id}" aria-label="Pin ${safe(f[0])}" aria-pressed="${isStarred(id)}">${icon('chart-no-axes-combined',16)}</button></div><a class="reference-match-teams" href="#/event/${id}"><span>${safe(f[0])}</span><span>${safe(f[1])}</span></a><div class="reference-match-odds">${first.outcomes.map(([o,v])=>marketOdd(id,first.id,o,v)).join('')}</div>${total?`<div class="reference-match-totals"><button data-lines="${id}" class="odd-select" aria-label="Select total goals line">${safe(total.id.split(':')[1])}${icon('down',12)}</button>${total.outcomes.map(([o,v])=>marketOdd(id,total.id,o,v)).join('')}</div>`:''}<a class="reference-market-count" href="#/event/${id}">${safe(ref?.size||'+33')}${icon('chevron',12)}</a></article>`;
+  }
+  function referenceDay(label,two=false){const labels=referenceListMarket==='Main'?['1X','12','X2']:referenceListMarket==='Goals'?['Yes','No']:referenceListMarket==='Totals'?['Over','Under']:referenceListMarket==='Handicap'?['Home','Away']:two?['1','2']:['1','X','2'];return `<div class="reference-day"><strong>${safe(label)}</strong><div>${labels.map(x=>`<span>${x}</span>`).join('')}</div><div class="reference-day-totals"><span>Goals</span><span>Over</span><span>Under</span></div></div>`;}
+
+  function referenceArticle(index){
+    const article=SportyPromoReferences[index];if(!article)return false;
+    document.documentElement.dataset.promoStandalone='true';
+    pageShell(article.title,`<section class="reference-promo-reader"><h1 class="sr-only">${safe(article.title)}</h1><iframe class="reference-promo-frame" title="${safe(article.title)}" src="reference/promotions/${index}-${innerWidth<1000?'mobile':'desktop'}.html" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe></section>`,{full:true,aside:false});return true;
+  }
+  window.addEventListener('resize',()=>{const frame=document.querySelector('.reference-promo-frame');if(!frame)return;const device=innerWidth<1000?'mobile':'desktop';if(!frame.src.endsWith('-'+device+'.html'))frame.src=frame.src.replace(/-(desktop|mobile)\.html$/,'-'+device+'.html')});
+  window.addEventListener('message',event=>{const frame=document.querySelector('.reference-promo-frame');if(!frame||event.origin!==location.origin||event.source!==frame.contentWindow)return;const message=event.data;if(message?.type==='sporty-demo-article-size'&&Number.isFinite(message.height)){frame.style.height=Math.min(30000,Math.max(300,message.height))+'px';return}if(message?.type==='sporty-demo-article-action'&&['account/login','account/register','games','sports/football'].includes(message.destination))navigate(message.destination)});
+  function referencePromotions(){
+    if(currentPath.startsWith('promotions/reference/')){const parts=currentPath.split('/'),items=parts[2]==='features'?SportyMenu.features:SportyMenu.promotions,p=items[Number(parts[3])],index=p?SportyPromoReferences.findIndex(a=>a.source===p.url):-1;if(index>=0&&referenceArticle(index))return;}
+
+    const part=currentPath.split('/')[2];
+    if(part!=null&&referenceUI.promotions[Number(part)]){const p=referenceUI.promotions[Number(part)],items=[...SportyMenu.promotions,...SportyMenu.features],match=items.find(i=>i.title===p.title||i.title.startsWith(p.title)||p.title.startsWith(i.title)),index=match?SportyPromoReferences.findIndex(a=>a.source===match.url):-1;if(index>=0&&referenceArticle(index))return;}
+    if(part!=null&&referenceUI.promotions[Number(part)]){const p=referenceUI.promotions[Number(part)];pageShell(p.title,`<article class="reference-promotion-detail"><img src="${asset(p.image)}" alt="${safe(p.title)}"><h2>${safe(p.title)}</h2><p>This is a captured promotion shown for visual reference. This portfolio demo does not participate in the official promotion or offer its advertised prizes.</p><a class="btn-green" href="#/games">Try local demo games</a><a class="inline-action" href="#/promotions">All promotions</a></article>`,{full:true,aside:false});return}
+    const offers=referenceUI.promotions.filter(p=>referencePromoFilter==='All'||p.category===referencePromoFilter);
+    pageShell('Promotions',`<section class="reference-promotions"><h2>Promotions</h2><div class="page-tabs reference-promo-tabs" role="tablist" aria-label="Promotion category">${['All','Games','Features'].map(t=>`<button role="tab" data-reference-promo-filter="${t}" aria-selected="${referencePromoFilter===t}">${t}</button>`).join('')}</div><div class="reference-promo-list">${offers.map(p=>`<a href="#/promotions/details/${referenceUI.promotions.indexOf(p)}" class="reference-promo-card"><img src="${asset(p.image)}" alt="${safe(p.title)}"><div><h3>${safe(p.title)}</h3>${icon('chevron',24)}</div></a>`).join('')}</div><details class="reference-local-rewards"><summary>Local demo rewards${icon('down',16)}</summary><p>Separate from the reference promotions above. Demo credits only.</p>${promotions.map(p=>`<article><h3>${p.title}</h3><p>${p.copy}</p>${primary(state.claimed.includes(p.id)?'Claimed':p.eligible()?'Claim demo reward':p.id==='welcome'?'Create demo account':'Place a demo bet',`data-claim="${p.id}" ${state.claimed.includes(p.id)?'disabled':''}`)}</article>`).join('')}</details></section>`,{full:true,aside:false});
+  }
+  let meBalanceVisible=true;
+  function referenceGuestAccount(){
+    const signed=Boolean(state.profile&&state.session);
+    const preference=storage.get("sporty-me-theme")||"system",theme=preference==="system"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):preference;
+    pageShell('Me',`<section class="reference-me ${signed?'reference-me-signed':''}" data-me-mode="${theme}"><div class="reference-me-main">${signed?`<div class="signed-me-heading"><a href="#/account/edit" class="signed-me-profile"><span class="signed-me-avatar">${safe(state.profile.name.slice(0,1).toUpperCase())}</span><strong>${safe(state.profile.name)}</strong>${icon('chevron',16)}</a><a href="#/account/security" aria-label="Account settings">${icon('settings',24)}</a></div><a class="signed-me-tier" href="#/loyalty"><span>Loyalty Tier: <img src="${surface.loyalty.tiers[0].image}" alt="Iron"></span><span>${state.points} local demo points</span><span class="signed-me-progress" role="progressbar" aria-label="Local loyalty progress" aria-valuenow="${Math.min(10,state.points)}" aria-valuemin="0" aria-valuemax="10"><i style="width:${Math.min(100,state.points*10)}%"></i></span></a>`:`<button data-me-theme-toggle class="me-theme-toggle" aria-expanded="false" aria-haspopup="menu">Dark Mode ${icon('moon',17)}</button><a class="reference-me-login" href="#/account/login">${icon('circle-user',28)}<strong>Login to View</strong>${icon('chevron',18)}</a>`}<div class="reference-me-balance"><span>Total Balance</span><strong>${signed?(meBalanceVisible?money(balance()):'NGN ••••••'):'NGN --'}</strong>${signed?`<button data-me-balance aria-label="${meBalanceVisible?'Hide':'Show'} balance" aria-pressed="${!meBalanceVisible}">${icon(meBalanceVisible?'eye':'eye-off',18)}</button>`:''}</div><div class="reference-me-actions"><a class="btn-green" href="#/wallet/deposit">${icon('wallet',20)}Deposit</a><a href="#/wallet/withdraw">${icon('banknote',20)}Withdraw</a></div><a class="reference-me-loyalty" href="#/loyalty" style="background-image:url('${signed?asset('me-loyalty-banner.webp'):surface.loyalty.banner}')"><strong>Sporty Loyalty</strong><span>${signed?'Earn Rewards':'Log in to join'}${icon('chevron',20)}</span></a><div class="reference-me-records">${[['bets','receipt-text','Sports Bet History'],['wallet/transactions','refresh-cw','Transaction Records'],['promotions','gift','Gifts (0)<br>Lucky Wheel (0)']].map(([p,i,t])=>`<a href="#/${p}">${icon(i,26)}<span>${t}</span></a>`).join('')}</div></div><div class="reference-me-links">${[['promotions','Sporty Survivor','trophy'],['help/support','Customer Service','headset'],['help/faq','How to play','info'],...(signed?[['account/notifications','Notification Center','bell'],['help/support','Share an Idea','message-circle']]:[])].map(([p,t,i])=>`<a class="page-link" href="#/${p}">${icon(i,22)}<span>${t}</span>${p==='help/support'?'<small>Online 24/7</small>':''}${icon('chevron',20)}</a>`).join('')}</div><div class="reference-me-age">18+<small>© 2026 SportyBet. All rights reserved.</small></div><div class="reference-me-footer"><img src="${asset('Image_partnership_3logo_wap_69bcc5ae73.png')}" alt="SportyBet and LALIGA reference partners"><p>The world’s most visited betting platform</p><small>Payment methods</small><div class="reference-me-payments">${['footer_opay_logo_a954fa8a51.png','footer_palmpay_logo_dbb2dc54fc.png','footer_quickteller_logo_67ba461e70.png','footer_verve_logo_c68b5a53c0.png','footer_visa_logo_9dabd03576.png','footer_uba_logo_58a31a9c3b.png'].map(im=>`<img src="${asset(im)}" alt="${im.split('_')[1]} reference payment logo">`).join('')}</div><a href="#/help/terms">Demo terms & privacy</a>${signed?'<button class="signed-me-logout" data-signout-demo>Logout</button>':''}</div></section>`,{full:true,aside:false});
+  }
+
+  let referenceOddsRange=null,referenceListMarket="All",referencePromoFilter="All",referenceResultDateOffset=0,referenceResultCategory="All",referenceSort="default";
   function pageShell(
     title,
     body,
@@ -537,27 +674,13 @@
       panel.className = "route-view container";
       document.querySelector(mobile ? ".m-main" : ".hero").after(panel);
     }
-    panel.innerHTML = `<nav class="demo-page-nav" aria-label="Demo pages">${[
-      ["sports/football", "Sports"],
-      ["live", "Live"],
-      ["games", "Games"],
-      ["jackpot", "Jackpot"],
-      ["results", "Results"],
-      ["wallet", "Wallet"],
-      ["bets", "My bets"],
-      ["promotions", "Promotions"],
-      ["loyalty", "Loyalty"],
-      ["account", "Account"],
-      ["settings", "Settings"],
-      ["help/faq", "Help"],
-    ]
-      .map(
-        ([p, t]) =>
-          `<a href="#/${p}" ${currentPath === p ? 'aria-current="page"' : ""}>${t}</a>`,
-      )
-      .join(
-        "",
-      )}</nav><div class="page-heading"><a href="#/home" aria-label="Back to home">${icon("arrow-left", 22)}</a><div><h1>${safe(title)}</h1>${subtitle ? `<p>${safe(subtitle)}</p>` : ""}</div><button aria-label="Search events" data-search>${icon("search", 22)}</button></div><div class="demo-page-columns ${full ? "full-page" : ""}"><section class="demo-page-content" tabindex="-1">${body}</section>${!mobile && aside ? '<aside class="page-slip-portal"></aside>' : ""}</div>`;
+    const family=currentPath.split('/')[0];
+    panel.className='route-view container reference-layout reference-'+family;
+    const auth=currentPath.startsWith('account/')&&['login','register','recover'].includes(currentPath.split('/')[1]);
+    document.documentElement.dataset.surface=auth?'auth':family;
+    const structural=['sports','live','event','jackpot','results','scores','promotions','help','menu'].includes(family)||auth;
+    const heading=mobile?`<header class="reference-mobile-header"><a href="#/home" aria-label="Back to home">${icon('arrow-left',26)}</a><h1>${safe(title)}</h1><button data-search aria-label="Search events">${icon('search',24)}</button><a href="#/home" aria-label="Home">${icon('house',24)}</a></header>`:structural?`<h1 class="sr-only">${safe(title)}</h1>`:`<div class="page-heading"><h1>${safe(title)}</h1></div>`;
+    panel.innerHTML=heading+`<div class="demo-page-columns ${full?'full-page':''}"><section class="demo-page-content" tabindex="-1">${body}</section>${!mobile&&aside?`<aside class="reference-right-column">${referenceRegistration()}<div class="page-slip-portal"></div><a href="#/instant-football"><img src="${asset('59bd76f2fe42b8cd5daf90e91b822ef3.jpg')}" alt="Instant Football"></a></aside>`:''}</div>`;
     enhancePageTabs(panel);
     const slot = panel.querySelector(".page-slip-portal");
     if (slot && portal) slot.append(portal);
@@ -575,6 +698,8 @@
   }
   function renderPage(path = current()) {
     currentPath = path;
+    document.documentElement.dataset.promoStandalone='false';
+    document.documentElement.dataset.surface=path.split("/")[0];
     document.documentElement.dataset.route = path;
     document.title =
       path === "home"
@@ -604,6 +729,7 @@
       parts[1] ? renderGame(parts[1]) : renderGames();
       return;
     }
+    if(main==="virtual"){if(parts[1]==="product")referenceVirtualProduct(Number(parts[2]));else if(parts[1]==="instant"&&Number(parts[2])>0)referenceVirtualProduct(Number(parts[2]));else if(parts[1]==="instant")referenceInstant();else if(parts[1]==="scheduled")renderVirtual("scheduled");else referenceVirtualLobby();return;}
     if (main === "virtuals" || main === "instant-football") {
       renderVirtual(main);
       return;
@@ -669,38 +795,9 @@
     baseMount();
     enhanceMount();
   };
-  const sportFromSlug = (slug) =>
-    [
-      "Football",
-      "vFootball",
-      "Basketball",
-      "Tennis",
-      "eFootball",
-      "Table Tennis",
-      "eBasketball",
-      "Ice Hockey",
-      "eIce Hockey",
-      "Volleyball",
-      "Cricket",
-      "Handball",
-    ].find(
-      (s) => s.toLowerCase().replaceAll(" ", "-") === slug.toLowerCase(),
-    ) || "Football";
-  const sportSlug = (s) => s.toLowerCase().replaceAll(" ", "-");
-  const sports = [
-    "Football",
-    "vFootball",
-    "Basketball",
-    "Tennis",
-    "eFootball",
-    "Table Tennis",
-    "eBasketball",
-    "Ice Hockey",
-    "eIce Hockey",
-    "Volleyball",
-    "Cricket",
-    "Handball",
-  ];
+  const sportSlug=s=>s.toLowerCase().replaceAll(' ','-');
+  const sports=[...new Set(['Football','vFootball','Basketball','Tennis','eFootball','Table Tennis','eBasketball','eTennis','Ice Hockey','eIce Hockey','Handball','Volleyball','Baseball','American Football','Cricket','Darts','MMA','Boxing','Badminton','Beach Volleyball','Futsal','Rugby','Snooker','Basketball 3x3','ESport Counter-Strike','ESport Dota','ESport League of Legends'])];
+  const sportFromSlug=slug=>sports.find(s=>sportSlug(s)===slug.toLowerCase())||'Football';
   const panelEmpty = (t, p) =>
     `<div class="page-empty">${icon("inbox", 32)}<h2>${safe(t)}</h2><p>${safe(p)}</p><a href="#/sports/football" class="inline-action">Browse football</a></div>`;
   const field = (label, name, type = "text", value = "", attrs = "") =>
@@ -730,70 +827,73 @@
   if (!Array.isArray(favourites)) favourites = [];
   const isStarred = (id) => favourites.includes(id);
   let onlyPinned = false;
-  function renderSports(liveOnly = false) {
-    const leagues = [
-      ...new Set(
-        fixtureIds()
-          .filter((id) => meta(id).sport === listSport)
-          .map((id) => meta(id).league),
-      ),
-    ];
-    const ids = fixtureIds().filter(
-      (id) =>
-        meta(id).sport === listSport &&
-        (liveOnly
-          ? status(id) === "live"
-          : listStatus === "all" || status(id) === listStatus) &&
-        (listLeague === "All" || meta(id).league === listLeague) &&
-        (!onlyPinned || isStarred(id)) &&
-        (!listQuery ||
-          fixture(id)
-            .slice(0, 2)
-            .join(" ")
-            .toLowerCase()
-            .includes(listQuery.toLowerCase())),
-    );
-    const body = `<div class="sports-layout"><nav class="sports-directory" aria-label="Sports">${sports.map((s) => `<a href="#/sports/${sportSlug(s)}" ${s === listSport ? 'aria-current="page"' : ""}>${icon(s.includes("Basket") ? "dribbble" : s === "Tennis" ? "circle-dot" : "ball", 16)}<span>${s}</span><small>${fixtureIds().filter((id) => meta(id).sport === s && status(id) !== "finished").length}</small></a>`).join("")}</nav><div class="sport-events"><div class="page-tabs" role="tablist" aria-label="Event status">${["all", "live", "scheduled", "finished"].map((s) => `<button role="tab" data-eventstatus="${s}" aria-selected="${(liveOnly ? "live" : listStatus) === s}" tabindex="${(liveOnly ? "live" : listStatus) === s ? 0 : -1}">${{ all: "All", live: "Live", scheduled: "Upcoming", finished: "Finished" }[s]}</button>`).join("")}</div><form class="event-filter" data-eventfilter><input name="query" aria-label="Filter teams" placeholder="Search teams" value="${safe(listQuery)}"><select name="league" aria-label="Competition"><option value="All">All competitions</option>${leagues.map((l) => `<option ${l === listLeague ? "selected" : ""}>${safe(l)}</option>`).join("")}</select><button aria-label="Apply event filters">${icon("search", 18)}</button><button type="button" data-pinned aria-pressed="${onlyPinned}" aria-label="Pinned events">${icon("star", 18)}</button></form><div class="competition-caption">${safe(listSport)} <span>${ids.length} events</span></div>${
-      ids.length
-        ? ids
-            .sort((a, b) => Number(isStarred(b)) - Number(isStarred(a)))
-            .map((id) => eventCard(id))
-            .join("")
-        : panelEmpty(
-            "No matching events",
-            "Change the competition or search to find more fixtures.",
-          )
-    }<button class="inline-action" data-reset-eventfilter>Reset filters</button></div></div>`;
-    pageShell(liveOnly ? "Live Betting" : listSport, body, {
-      subtitle: "Reference fixtures and simulated demo events",
-    });
-  }
-  function renderEvent(id) {
-    if (!fixture(id)) {
-      pageShell(
-        "Event not found",
-        panelEmpty("Unknown event", "This event is not available in the demo."),
-      );
-      return;
-    }
-    const f = fixture(id),
-      m = meta(id),
-      r = result(id),
-      groups = ["All", "Main", "Goals", "Totals"],
-      markets = allMarkets(id).filter(
-        (x) => marketGroup === "All" || x.group === marketGroup,
-      );
-    pageShell(
-      f[0] + " v " + f[1],
-      `<section class="event-scoreboard"><div class="scoreboard-top"><span>${safe(m.league)}</span><button data-star="${id}" aria-label="Pin event" aria-pressed="${isStarred(id)}">${icon("star", 20)}</button></div><div class="scoreboard-teams"><strong>${safe(f[0])}</strong><div><b>${r ? r.home : m.status === "live" ? f[2] : ""}<span>${m.status === "scheduled" && !r ? "VS" : ":"}</span>${r ? r.away : m.status === "live" ? f[3] : ""}</b><small>${r ? "Full time · simulated" : m.status === "live" ? "Half-time snapshot" : m.time + " · Demo schedule"}</small></div><strong>${safe(f[1])}</strong></div></section><div class="page-tabs" role="tablist" aria-label="Event detail"><button role="tab" aria-selected="true" data-event-section="markets">Markets</button><button role="tab" aria-selected="false" data-event-section="stats">Statistics</button><button role="tab" aria-selected="false" data-event-section="timeline">Timeline</button></div><div class="event-detail-section" id="event-section">${r ? `<div class="settled-notice">This demo event has finished. Bets on this fixture have been settled.</div>` : ""}<div class="market-filters">${groups.map((g) => `<button data-marketgroup="${g}" aria-pressed="${marketGroup === g}">${g}</button>`).join("")}</div><div class="market-stack">${markets.map((x) => `<details class="market-block" open><summary>${safe(x.title)}${icon("down", 16)}</summary><div class="market-outcomes">${x.outcomes.map(([o, v]) => `<div class="labelled-odd"><span>${safe(pickLabel({ id, market: x.id, outcome: o }))}</span>${marketOdd(id, x.id, o, v)}</div>`).join("")}</div></details>`).join("")}</div></div><div class="simulation-controls"><div><h3>Demo match controls</h3><p>Generate a simulated final result and settle affected demo bets.</p></div>${primary(r ? "View result" : "Simulate final result", `type="button" data-simulate="${id}" ${r ? "disabled" : ""}`)}</div>`,
-      {
-        subtitle:
-          m.sport + " · " + (m.demo ? "Simulated event" : "Reference snapshot"),
-      },
-    );
+  function renderSports(liveOnly=false){
+    const leagues=[...new Set(fixtureIds().filter(id=>meta(id).sport===listSport).map(id=>meta(id).league))];
+    let ids=fixtureIds().filter(id=>meta(id).sport===listSport&&(liveOnly?status(id)==='live':listStatus==='all'||listStatus==='outrights'||status(id)===listStatus)&&(listLeague==='All'||meta(id).league===listLeague)&&(!onlyPinned||isStarred(id))&&(!listQuery||fixture(id).slice(0,2).join(' ').toLowerCase().includes(listQuery.toLowerCase())));
+    ids.sort((a,b)=>referenceSort==='date'?referenceKickoff(a)-referenceKickoff(b):referenceSort==='name'?fixture(a)[0].localeCompare(fixture(b)[0]):referenceSort==='league'?meta(a).league.localeCompare(meta(b).league):Number(Boolean(meta(b).reference))-Number(Boolean(meta(a).reference))||Number(isStarred(b))-Number(isStarred(a)));
+    if(!liveOnly){ids=ids.filter(id=>referenceDayMatches(id)&&(!referenceSelectedLeagues.length||referenceSelectedLeagues.includes(meta(id).league)))}
+    if(referenceTimeHours!==null)ids=ids.filter(id=>{const delta=referenceKickoff(id)-Date.now();return delta>=0&&delta<=referenceTimeHours*3600000});
+    if(referenceOddsRange)ids=ids.filter(id=>fixture(id)[4].some(v=>v>=referenceOddsRange[0]&&v<=referenceOddsRange[1]));
+    const title=liveOnly?'Live':listSport,liveCount=fixtureIds().filter(id=>meta(id).sport===listSport&&status(id)==='live').length;
+    const liveBanner=`<a class="reference-live-banner" href="#/live"><span>${icon('play',18)}Live Betting <b>${liveCount}</b></span><span>All Live <b>${fixtureIds().filter(id=>status(id)==='live').length}</b>${icon('chevron',20)}</span></a>`;
+    let previous='',rows=ids.map(id=>{if(status(id)==='live'||status(id)==='finished')return eventCard(id);const day=meta(id).day||'Upcoming';let h=day!==previous?referenceDay(day,allMarkets(id)[0].outcomes.length===2):'';previous=day;return h+referenceScheduledRow(id)}).join('');
+    if(listStatus==='outrights')rows=panelEmpty('No outright markets in this snapshot','Match markets remain available in the Matches tab.');
+    const filters=`<div class="reference-mobile-filters">${['Daily','League','Odds','Sort'].map(x=>`<button data-reference-filter="${x}" aria-haspopup="dialog" aria-expanded="false">${x}${icon('down',14)}</button>`).join('')}</div>`;
+    const bar=`<div class="reference-market-tabs">${[['3 Way & O/U','1X2','All'],['Double Chance','DC','Main'],['GG/NG','GG/NG','Goals'],['Draw No Bet','1st Half O/U','Totals'],['Other Markets','Handicap','Handicap']].map(([desktop,mobileLabel,g],i)=>`<button data-reference-list-market="${g}" aria-pressed="${referenceListMarket===g}"><span class="desktop-market-name">${desktop}</span><span class="mobile-market-name">${mobileLabel}</span></button>`).join('')}</div>`;
+    const tabs=`<div class="reference-matches-tabs"><button data-reference-status="all" aria-pressed="${listStatus!=='outrights'}">Matches</button><button data-reference-status="outrights" aria-pressed="${listStatus==='outrights'}">Outrights</button></div>`;
+    const content=`<div class="sports-layout">${referenceSidebar()}<section class="sport-events">${referenceToolbar(listSport)}${liveBanner}<div class="reference-competition"><h2>${icon('down',16)}${safe(listLeague==='All'?(listSport==='Football'?'England Premier League':listSport):listLeague)}</h2>${tabs}${filters}${bar}<div class="reference-fixture-list">${rows||panelEmpty('No matching events','Change your filters to find more fixtures.')}</div><button class="inline-action" data-reference-reset-filters>Reset filters</button></div></section></div>`;
+    pageShell(title,content,{subtitle:'',aside:true});
   }
 
+  let nativeVariants={}, nativePins=readJSON('sporty-market-pins',[]);
+  if(!Array.isArray(nativePins))nativePins=[];
+  function nativeOutcomes(group,variant){
+    return `<div class="market-outcomes">${variant.outcomes.map(o=>`<div class="labelled-odd"><span>${safe(o.name)}</span>${variant.model&&o.active?marketOdd(100,variant.model,o.outcome,o.odd):`<button class="odd native-reference-odd" data-native-info="${group.id}" data-native-unavailable aria-label="${safe(o.name)} ${o.odd.toFixed(2)}; reference market information">${o.odd.toFixed(2)}</button>`}</div>`).join('')}</div>`;
+  }
+  function nativeMarketStack(){
+    return SportyEventMarkets.filter(g=>marketGroup==='All'||g.category===marketGroup).map((g,i)=>{
+      const variants=g.variants.filter(v=>g.id!=='18'||Number(v.specifier.split('=')[1])%1!==0);
+      const v=variants[nativeVariants[g.id]||0]||variants[0];
+      const totals=g.id==='18';
+      return `<details class="market-block native-market-block" data-native-market="${g.id}" ${i<6?'open':''}><summary>${icon('down',14)}<span>${safe(g.name)}</span><button data-native-info="${g.id}" aria-label="${safe(g.name)} rules">${icon('info',14)}</button><button data-native-pin="${g.id}" aria-label="Favourite ${safe(g.name)}" aria-pressed="${nativePins.includes(g.id)}">${icon('star',20)}</button></summary>${totals?`<div class="native-total-heading"><span></span><b>Over</b><b>Under</b></div>${variants.map(v=>`<div class="native-total-row"><strong>${safe(v.specifier.split('=')[1])}</strong>${v.outcomes.map(o=>marketOdd(100,v.model,o.outcome,o.odd)).join('')}</div>`).join('')}`:`${variants.length>1?`<label class="native-variant-label">Market line <select data-native-variant="${g.id}">${variants.map((v,j)=>`<option value="${j}" ${v===(variants[nativeVariants[g.id]||0]||variants[0])?'selected':''}>${safe(v.specifier||g.name)}</option>`).join('')}</select></label>`:''}<div class="native-variant-outcomes">${nativeOutcomes(g,v)}</div>`}</details>`;
+    }).join('');
+  }
+  document.addEventListener('click',event=>{
+    const b=event.target.closest('[data-native-info],[data-native-pin]');if(!b)return;
+    event.preventDefault();event.stopImmediatePropagation();
+    const id=b.dataset.nativeInfo||b.dataset.nativePin,g=SportyEventMarkets.find(g=>g.id===id);
+    if(b.hasAttribute('data-native-pin')){nativePins=nativePins.includes(id)?nativePins.filter(x=>x!==id):[...nativePins,id];storage.set('sporty-market-pins',JSON.stringify(nativePins));b.setAttribute('aria-pressed',nativePins.includes(id));return}
+    openDialog(g.name,`${g.guide.split(/\n\s*\n/).map(text=>`<p>${safe(text)}</p>`).join('')}${b.hasAttribute('data-native-unavailable')?'<p class="local-note">Captured reference odds only. This market has no local settlement model, so no demo wager is taken.</p>':'<p class="local-note">Reference rules. Supported demo selections settle against locally simulated scores and goal order, not official results.</p>'}<button class="btn-green" data-close>OK</button>`);
+  },true);
+  document.addEventListener('change',event=>{
+    const b=event.target.closest('[data-native-variant]');if(!b)return;
+    nativeVariants[b.dataset.nativeVariant]=Number(b.value);
+    const g=SportyEventMarkets.find(g=>g.id===b.dataset.nativeVariant);
+    b.closest('.market-block').querySelector('.native-variant-outcomes').innerHTML=nativeOutcomes(g,g.variants[Number(b.value)]);markPicks();
+  });
+
+  function renderEvent(id){
+    if(!fixture(id)){pageShell('Event not found',panelEmpty('Unknown event','This event is unavailable.'));return}
+    const f=fixture(id),m=meta(id),r=result(id),groups=id===100?['All','Main','Goals','Corners','Half','Players','Teams','Match','Bookings','Specials','Minutes']:['All','Main','Goals','Totals'],markets=allMarkets(id).filter(x=>marketGroup==='All'||x.group===marketGroup);
+    const teamLogo=(index)=>id===100?`<img src="${asset(index?'adcb1bfee50ec016c560c007941dccf4.png':'6b82f2b1ef59196096a4a42d6a3b5224.png')}" alt="">`:'';
+    const score=`<section class="event-scoreboard reference-scoreboard"><a class="scoreboard-competition" href="#/sports/${sportSlug(m.sport)}">${safe(m.sport)} - ${safe(m.league)}</a><div class="scoreboard-meta">Friday 06/11 ${safe(m.time)} <span>Live In-Play Available</span> ID:${safe(m.gameId||String(id))}</div><div class="scoreboard-teams"><strong>${teamLogo(0)}${safe(f[0])}</strong><div><b>${r?r.home:m.status==='live'?f[2]:'06/11'}<span>${r||m.status==='live'?':':'Friday'}</span>${r?r.away:m.status==='live'?f[3]:''}</b><small>${r?'Full time · simulated':m.time}</small></div><strong>${teamLogo(1)}${safe(f[1])}</strong></div><h2 class="desktop-event-title">${safe(f[0])} vs ${safe(f[1])}</h2></section>`;
+    const detail=`${score}<div class="page-tabs event-detail-tabs" role="tablist" aria-label="Event detail"><button role="tab" aria-selected="true" data-event-section="markets">Markets</button><button role="tab" aria-selected="false" data-event-section="stats">Stats</button><button role="tab" aria-selected="false" data-event-section="timeline">Timeline</button></div><div class="event-detail-section" id="event-section">${r?'<div class="settled-notice">This simulated event has finished.</div>':''}<div class="market-filters">${groups.map(g=>`<button data-marketgroup="${g}" aria-pressed="${marketGroup===g}">${g==='Totals'?'Half':g}</button>`).join('')}</div><div class="market-stack">${id===100?nativeMarketStack():markets.map(x=>`<details class="market-block" open><summary>${icon('down',14)}<span>${safe(x.title)}</span>${icon('info',14)}<button data-star="${id}" aria-label="Pin event">${icon('star',20)}</button></summary><div class="market-outcomes">${x.outcomes.map(([o,v])=>`<div class="labelled-odd"><span>${safe(o==="home"?"Home":o==="away"?"Away":o==="draw"?"Draw":pickLabel({id,market:x.id,outcome:o}))}</span>${marketOdd(id,x.id,o,v)}</div>`).join('')}</div></details>`).join('')}</div></div><details class="simulation-controls reference-demo-controls"><summary>Local demo match controls${icon('down',16)}</summary><p>Generate a simulated result, not a live match result.</p>${primary(r?'View result':'Simulate final result',`type="button" data-simulate="${id}" ${r?'disabled':''}`)}</details>`;
+    pageShell('Details',`<div class="sports-layout">${referenceSidebar()}<div class="sport-events">${referenceToolbar(m.sport+' / '+m.league+' / '+f[0]+' vs '+f[1])}<div class="reference-event-card">${detail}</div></div></div>`,{aside:true});
+  }
+
+  let menuTab='Sports',menuSport='Popular',menuPromoFilter='All';
+  const menuSportSlug=name=>sportSlug(name==='eSoccer'?'eFootball':name);
+  function referenceMenu(){const data=globalThis.SportyMenu,live=menuTab==='Live',content=data.sports[menuSport]||data.sports.Football,side=live?data.liveSports:Object.keys(data.sports).map(label=>({label}));
+    const tabs=[['Sports','Sports'],['Live','Live (172)'],['Promotions','Promotions (5)'],['Features','Features (11)']];
+    let body='';
+    if(menuTab==='Sports'||live){const rows=live?data.liveCountries:content;body=`<div class="reference-menu-columns"><nav aria-label="Sports">${side.map(s=>`<button data-menu-sport="${safe(s.label)}" aria-pressed="${menuSport===s.label}" class="${menuSport===s.label?'selected':''}"><span>${safe(s.label)}</span>${s.count?`<small>${s.count}</small>`:''}</button>`).join('')}</nav><section>${rows.map((r,i)=>r.header?`<div class="menu-country-heading">${safe(r.label)}${r.all?`<button data-menu-country="All">All ${icon('chevron',13)}</button>`:''}</div>`:`<button data-menu-country="${safe(r.label)}"><span>${safe(r.label)}</span>${r.count?`<small>${r.count}</small>`:''}</button>`).join('')}</section></div>`}
+    else{const cards=menuTab==='Features'?data.features:data.promotions;body=`<div class="menu-promo-body">${menuTab==='Promotions'?`<div class="menu-promo-filters">${['All','Games'].map(t=>`<button data-menu-promo-filter="${t}" aria-pressed="${menuPromoFilter===t}">${t}</button>`).join('')}</div>`:''}${cards.map((p,i)=>`<a class="menu-reference-promo" href="#/promotions/reference/${menuTab.toLowerCase()}/${i}"><img src="${p.image}" alt="${safe(p.title)}"><div><strong>${safe(p.title)}</strong>${icon('chevron',22)}</div></a>`).join('')}</div>`}
+    pageShell('A–Z Menu',`<div class="reference-menu"><form data-reference-menu-search class="reference-menu-search"><input name="query" placeholder="Teams/Players, League, Game ID" aria-label="Search teams, league or event ID"><button aria-label="Search events">${icon('search',20)}</button></form><nav class="m-tools">${[['layers','Virtuals'],['code','Load Code'],['trophy','Jackpot'],['network','SportyPicks'],['circle-dot','Livescore'],['list','Results'],['smartphone','App']].map(([i,t])=>`<button data-tool="${t}">${icon(i,22)}<span>${t}</span></button>`).join('')}</nav><div class="reference-menu-tabs" role="tablist" aria-label="A–Z sections">${tabs.map(([key,title])=>`<button role="tab" data-menu-tab="${key}" aria-selected="${menuTab===key}">${title}</button>`).join('')}</div>${body}</div>`,{full:true,aside:false});
+  }
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-menu-tab],[data-menu-sport],[data-menu-country],[data-menu-promo-filter]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();if(b.hasAttribute('data-menu-tab')){menuTab=b.dataset.menuTab;if(menuTab==='Live'&&menuSport==='Popular')menuSport='Football';referenceMenu();return}if(b.hasAttribute('data-menu-sport')){menuSport=b.dataset.menuSport;referenceMenu();return}if(b.hasAttribute('data-menu-promo-filter')){menuPromoFilter=b.dataset.menuPromoFilter;referenceMenu();return}let label=b.dataset.menuCountry,sport=menuSport==='Popular'?'Football':menuSport;referenceDayFilter='All';referenceTimeHours=null;listLeague='All';referenceSelectedLeagues=[];if(label==="Today's Football")referenceDayFilter='Today';else if(label==='Football In Next 3 Hours')referenceTimeHours=3;else if(label==='NBA'||label==='Euroleague')sport='Basketball';else if(label==='ATP/WTA')sport='Tennis';else if(label==='NFL')sport='American Football';else if(label==='NHL')sport='Ice Hockey';else if(label==='SportyPicks'){navigate('bets');return}else if(menuSport==='Popular'){const names={'ENGLAND PREMIER LEAGUE':'England Premier League','SPAIN LA LIGA':'Spain La Liga','ITALY SERIE A':'Italy Serie A','GERMANY BUNDESLIGA':'Germany Bundesliga','FRANCE LIGUE 1':'France Ligue 1'};if(names[label])listLeague=names[label]}else if(!['All','Top Leagues','International','International Clubs'].includes(label)){referenceSelectedLeagues=[...new Set(fixtureIds().filter(id=>meta(id).sport===sport&&meta(id).league.toLowerCase().startsWith(label.toLowerCase())).map(id=>meta(id).league))];if(!referenceSelectedLeagues.length)listLeague=label}listSport=sport;listStatus=menuTab==='Live'?'live':'all';navigate((menuTab==='Live'?'live':'sports/'+menuSportSlug(sport)))},true);
+
   function renderMenu() {
+    if(mobile){referenceMenu();return}
     pageShell(
       "Explore SportyBet",
       `<div class="menu-page">${[
@@ -841,7 +941,31 @@
       { full: true, aside: false },
     );
   }
+  let notificationTab='System',transactionCategory='All Categories',transactionFrom='',transactionTo='';
+  function referenceNotifications(){
+    const messages=notificationTab==='Message'?(state.messages||[]):[];
+    pageShell('Notification Center',`<section class="reference-notifications"><header><a href="#/account" aria-label="Back to account">${icon('arrow-left',22)}</a><h1>Notification Center</h1></header><div class="notification-tabs" role="tablist" aria-label="Notifications">${['System','Promotion','Message'].map(tab=>`<button role="tab" data-notification-tab="${tab}" aria-selected="${notificationTab===tab}" aria-controls="notification-list">${tab}</button>`).join('')}</div><div id="notification-list" role="tabpanel" aria-label="${notificationTab} notifications">${messages.length?messages.map(m=>`<details class="notification-entry"><summary>${safe(m.subject)}${icon('chevron',16)}</summary><p>${safe(m.message)}</p><small>${dateText(m.time)} · Saved locally, not sent to SportyBet</small></details>`).join(''):`<div class="notification-empty">${icon('bell',48)}<p>No Messages available</p></div>`}</div></section>`,{full:true,aside:false});
+  }
+  const transactionCategories=['All Categories','Deposits','Withdrawals','Bets','Winnings','Refunds'];
+  function referenceTransactions(){
+    const types={Deposits:['Demo deposit'],Withdrawals:['Demo withdrawal'],Bets:['Bet stake','Game stake','Jackpot entry'],Winnings:['Bet return','Game return','Cashout','Jackpot prize'],Refunds:['Bet refund','Refund','Cancelled bet refund']};
+    const rows=state.ledger.filter(x=>(transactionCategory==='All Categories'||(types[transactionCategory]||[]).includes(x.kind))&&(!transactionFrom||nigeriaDay.format(new Date(x.time))>=transactionFrom)&&(!transactionTo||nigeriaDay.format(new Date(x.time))<=transactionTo));
+    pageShell('Transactions',`<section class="reference-transactions"><header><a href="#/account" aria-label="Back to account">${icon('arrow-left',22)}</a><h1>Transactions</h1><button data-export="ledger">Export CSV</button></header><p class="transaction-status-prompt">Need to speed up your payment? <button data-transaction-status>Fix Status</button></p><div class="transaction-controls"><label><span class="sr-only">Transaction category</span><select data-transaction-category>${transactionCategories.map(c=>`<option ${c===transactionCategory?'selected':''}>${c}</option>`).join('')}</select></label><button data-transaction-dates>${transactionFrom&&transactionTo?safe(transactionFrom+' ~ '+transactionTo):'Choose Date Range'}${icon('down',15)}</button></div><p class="transaction-local-note">Local demo transactions only. No bank or payment service is connected.</p><div class="ledger-list">${rows.length?rows.map(x=>`<button class="ledger-row" data-receipt="${safe(x.id)}"><span class="ledger-icon">${icon(x.amount>=0?'arrow-down-left':'arrow-up-right',20)}</span><span><strong>${safe(x.kind)}</strong><small>${dateText(x.time)}</small></span><strong class="${x.amount>=0?'positive':'negative'}">${x.amount>=0?'+':'−'}${money(Math.abs(x.amount))}</strong>${icon('chevron',16)}</button>`).join(''):'<div class="transaction-empty"><p>No Records Found.</p><small>Select a date range to find more records</small></div>'}</div><button class="inline-action transaction-reset" data-transaction-reset>Reset filters</button></section>`,{full:true,aside:false});
+  }
+  function transactionDateDialog(){openDialog('Choose Date Range',`<form data-transaction-date-form><div class="transaction-date-presets">${[7,14,30].map(days=>`<button type="button" data-transaction-preset="${days}">Last ${days} days</button>`).join('')}</div><label class="form-field"><span>From</span><input type="date" name="from" required value="${safe(transactionFrom)}"></label><label class="form-field"><span>To</span><input type="date" name="to" required value="${safe(transactionTo)}"></label><p class="form-feedback" role="alert"></p><button class="btn-green">Apply</button><button type="button" class="inline-action" data-close>Cancel</button></form>`)}
+  document.addEventListener('click',event=>{const b=event.target.closest('[data-me-balance],[data-notification-tab],[data-transaction-dates],[data-transaction-preset],[data-transaction-reset],[data-transaction-status]');if(!b)return;event.preventDefault();event.stopImmediatePropagation();
+    if(b.hasAttribute('data-me-balance')){meBalanceVisible=!meBalanceVisible;referenceGuestAccount();document.querySelector('[data-me-balance]')?.focus();return}
+    if(b.hasAttribute('data-notification-tab')){notificationTab=b.dataset.notificationTab;referenceNotifications();document.querySelector(`[data-notification-tab="${notificationTab}"]`)?.focus();return}
+    if(b.hasAttribute('data-transaction-dates')){transactionDateDialog();return}
+    if(b.hasAttribute('data-transaction-reset')){transactionCategory='All Categories';transactionFrom='';transactionTo='';referenceTransactions();return}
+    if(b.hasAttribute('data-transaction-preset')){const form=b.closest('form'),to=new Date(),from=new Date(to.getTime()-(Number(b.dataset.transactionPreset)-1)*86400000);form.elements.from.value=nigeriaDay.format(from);form.elements.to.value=nigeriaDay.format(to);return}
+    if(b.hasAttribute('data-transaction-status'))openDialog('Transaction status','<p>All local demo transactions complete immediately. No external payment is pending, and no real payment status can be changed here.</p><button class="btn-green" data-close>OK</button>');
+  },true);
+  document.addEventListener('change',event=>{if(event.target.matches('[data-transaction-category]')){transactionCategory=event.target.value;referenceTransactions();document.querySelector('[data-transaction-category]')?.focus()}});
+  document.addEventListener('submit',event=>{const form=event.target.closest('[data-transaction-date-form]');if(!form)return;event.preventDefault();event.stopImmediatePropagation();if(form.elements.from.value>form.elements.to.value){form.querySelector('[role=alert]').textContent='The start date must be on or before the end date.';return}transactionFrom=form.elements.from.value;transactionTo=form.elements.to.value;closeDialog();referenceTransactions()},true);
+
   function renderWallet(section = "overview") {
+    if(section==='transactions'){referenceTransactions();return}
     const actions = [
       ["wallet", "Overview"],
       ["wallet/deposit", "Add credits"],
@@ -888,7 +1012,13 @@
     );
   }
 
+  let referenceGuestBetTab='Open Bets';
+  function referenceGuestBets(){const scheduled=fixtureIds().filter(id=>meta(id).reference&&status(id)==='scheduled'),codes=[0,1,2].map((n)=>{const ids=scheduled.slice(n*3,n*3+3),code='DEMO0'+(n+1),data=ids.map(id=>({id,market:'1x2',outcome:'home',key:pickKey(id,'1x2','home'),odd:lookupOdd(id,'1x2','home')}));savedCodes[code]=data;return {ids,code,data}});storage.set('sporty-codes',JSON.stringify(savedCodes));pageShell('Open Bets',`<section class="reference-guest-bets"><header><button data-guest-cashout-help>${icon('help-circle',15)} How to Cashout?</button><a href="#/account/register">Register</a><i></i><a href="#/account/login">Login</a></header><nav>${['Open Bets','Bet History'].map(t=>`<button data-guest-bet-tab="${t}" aria-pressed="${referenceGuestBetTab===t}">${t}</button>`).join('')}</nav><div class="guest-bets-login"><p>Please Log In to see your ${referenceGuestBetTab}<br>${referenceGuestBetTab==='Open Bets'?'and Cashout Bets':''}</p><a href="#/account/login">Login</a></div><details class="guest-codes" open><summary>${icon('bookmark',22)}<strong>Recommended Football Codes</strong>${icon('chevron-up',16)}</summary>${codes.map(c=>`<article><header><strong>${c.code}</strong><span>Folds: <b>${c.ids.length}</b></span><span>Odds: <b>${c.data.reduce((n,p)=>n*p.odd,1).toFixed(2)}</b></span></header><p>${icon('shield-check',17)} Local demo code · captured match odds</p><div>${c.ids.map(id=>`<div class="guest-code-selection">${icon('volleyball',15)}<span><b>Home @${lookupOdd(id,'1x2','home').toFixed(2)}</b> <small>1X2</small><br>${safe(fixture(id)[0])} vs ${safe(fixture(id)[1])}</span><time>Today ${safe(meta(id).time)}</time></div>`).join('')}</div><footer><button data-copy="${c.code}">${icon('share-2',16)} Share</button><button data-local-bookcode="${c.code}">Add to Betslip</button></footer></article>`).join('')}</details></section>`,{full:true,aside:false})}
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-guest-bet-tab],[data-local-bookcode],[data-guest-cashout-help],[data-me-theme-toggle],[data-me-theme]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();if(b.hasAttribute('data-guest-bet-tab')){referenceGuestBetTab=b.dataset.guestBetTab;referenceGuestBets();return}if(b.hasAttribute('data-local-bookcode')){picks=structuredClone(savedCodes[b.dataset.localBookcode]);renderSlip();openSheet(b);toast('Local demo selections loaded.');return}if(b.hasAttribute('data-guest-cashout-help')){openDialog('How to Cashout?',`<p>Open an unsettled demo ticket from My Bets and choose Cash out. Review the offered local credit before confirming.</p><p>Cashout and all balances in this replica are simulated.</p>`);return}if(b.hasAttribute('data-me-theme-toggle')){let menu=document.querySelector('.me-theme-menu');if(menu){menu.remove();b.setAttribute('aria-expanded','false');return}const selected=storage.get('sporty-me-theme')||'system';const div=document.createElement('div');div.className='me-theme-menu';div.setAttribute('role','menu');div.innerHTML=[['dark','On'],['light','Off'],['system','Follow System Settings']].map(([k,v])=>`<button role="menuitemradio" aria-checked="${selected===k}" data-me-theme="${k}">${v}<span>${selected===k?icon('check',11):''}</span></button>`).join('');b.after(div);b.setAttribute('aria-expanded','true');div.querySelector('button').focus();return}if(b.hasAttribute('data-me-theme')){storage.set('sporty-me-theme',b.dataset.meTheme);referenceGuestAccount();return}},true);
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.querySelector('.me-theme-menu')){document.querySelector('.me-theme-menu').remove();document.querySelector('[data-me-theme-toggle]')?.focus()}},true);
+
   function renderBets(ticketId) {
+    if(mobile&&!state.session&&!ticketId&&!state.tickets.length){referenceGuestBets();return;}
     const selected = state.tickets.find((t) => t.id === ticketId);
     if (ticketId && !selected) {
       pageShell(
@@ -1007,6 +1137,12 @@
   function evaluate(p, r) {
     const compare = (h, a, o) =>
       o === "home" ? h > a : o === "draw" ? h === a : h < a;
+    if(p.market.startsWith('early:')||p.market==='never-down'){
+      if(p.outcome==='draw')return r.home===r.away;
+      let difference=0,maximum=0,minimum=0;
+      for(const goal of r.goals||[]){difference+=goal===p.outcome?1:-1;maximum=Math.max(maximum,difference);minimum=Math.min(minimum,difference)}
+      return p.market==='never-down'?compare(r.home,r.away,p.outcome)&&minimum>=0:maximum>=Number(p.market.split(':')[1]);
+    }
     if (p.market === "1x2") return compare(r.home, r.away, p.outcome);
     if (p.market === "dc")
       return p.outcome === "home-draw"
@@ -1060,7 +1196,10 @@
       h = Math.max(h, before[2]);
       a = Math.max(a, before[3]);
     }
+    const goals=[...Array(h).fill('home'),...Array(a).fill('away')];
+    if(sport==='Football')for(let i=goals.length-1;i>0;i--){const j=crypto.getRandomValues(new Uint32Array(1))[0]%(i+1);[goals[i],goals[j]]=[goals[j],goals[i]]}
     return {
+      goals,
       home: h,
       away: a,
       halfHome: Math.floor(h / 2),
@@ -1105,41 +1244,15 @@
     renderPage();
     toast("Demo results generated and affected bets settled.");
   }
-  function renderResults(finishedOnly) {
-    const all = fixtureIds().filter(
-      (id) =>
-        (finishedOnly ? Boolean(result(id)) : status(id) === "live") &&
-        (listSport === "All" || meta(id).sport === listSport) &&
-        (!listQuery ||
-          fixture(id)
-            .slice(0, 2)
-            .join(" ")
-            .toLowerCase()
-            .includes(listQuery.toLowerCase()) ||
-          String(id) === listQuery),
-    );
-    pageShell(
-      finishedOnly ? "Results" : "Livescore",
-      `<form class="results-filter" data-resultsfilter><label class="form-field"><span>Sport</span><select name="sport"><option>All</option>${sports.map((s) => `<option ${listSport === s ? "selected" : ""}>${s}</option>`).join("")}</select></label><label class="form-field"><span>Team or event ID</span><input name="query" value="${safe(listQuery)}" placeholder="Search events"></label><button class="btn-green">Search</button></form><div class="page-tabs page-tablinks"><a href="#/scores" ${!finishedOnly ? 'aria-current="page"' : ""}>Live scores</a><a href="#/results" ${finishedOnly ? 'aria-current="page"' : ""}>Finished results</a></div><div class="result-list">${
-        all.length
-          ? all
-              .map((id) => {
-                const f = fixture(id),
-                  r = result(id);
-                return `<a class="result-row" href="#/event/${id}"><span class="result-time">${r ? "FT" : "HT"}<small>ID ${id}</small></span><span>${safe(f[0])}</span><strong>${r ? r.home : f[2]} : ${r ? r.away : f[3]}</strong><span>${safe(f[1])}</span>${icon("chevron", 16)}</a>`;
-              })
-              .join("")
-          : panelEmpty(
-              finishedOnly
-                ? "No completed demo matches"
-                : "No matching live scores",
-              finishedOnly
-                ? "Simulate a final result from any event page to populate this list."
-                : "Try a different sport or search.",
-            )
-      }<button class="inline-action" data-reset-results>Reset filters</button></div>`,
-      { full: true, aside: false },
-    );
+  function renderResults(finishedOnly){
+    const simulated=fixtureIds().filter(id=>(finishedOnly?Boolean(result(id)):status(id)==='live')&&(listSport==='All'||meta(id).sport===listSport)&&(!listQuery||fixture(id).slice(0,2).join(' ').toLowerCase().includes(listQuery.toLowerCase())||String(id)===listQuery));
+    const matchesQuery=(row)=>!listQuery||(row.home+' '+row.away+' '+row.gameId).toLowerCase().includes(listQuery.toLowerCase());
+    const snapshot=finishedOnly&&(listSport==='Football'||listSport==='All')?referenceUI.results.map(g=>({...g,rows:g.rows.filter(matchesQuery)})).filter(g=>g.rows.length):[];
+    const groups=referenceResultDateOffset===0?[...(simulated.length?[{title:finishedOnly?'Local demo results':'Live snapshot',rows:simulated.map(id=>{const f=fixture(id),r=result(id);return{home:f[0],away:f[1],score:(r?r.home:f[2])+':'+(r?r.away:f[3]),gameId:String(id),id,simulated:true}})}]:[]),...snapshot].filter(g=>(referenceResultCountry==='All'||g.title.startsWith(referenceResultCountry+' - '))&&(referenceResultCategory==='All'||g.title===referenceResultCategory)):[];
+    const dateLabel=new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(2026,10,5+referenceResultDateOffset));
+    const row=(x)=>`<div class="score-row ${x.simulated?'result-row':'reference-result-row'}"><div class="score-time"><small>05/11/2026</small><span>20:00</span></div><span class="score-game-id">${safe(x.gameId)}</span><span class="score-home">${safe(x.home)}</span><details class="score-detail"><summary>${safe(x.score)}${icon('down',14)}</summary><div><p>${x.simulated?'Simulated final result.':'Historical reference result captured on 6 November 2026, not a live feed.'}</p>${x.id!=null?`<a href="#/event/${x.id}">Event details</a>`:''}</div></details><span class="score-away">${safe(x.away)}</span></div>`;
+    const filters=`<form class="results-filter" data-resultsfilter><label class="form-field"><span class="sr-only">Sport</span><select name="sport"><option value="All">Football</option>${sports.map(s=>`<option ${listSport===s?'selected':''}>${s}</option>`).join('')}</select></label><label class="form-field result-search"><span class="sr-only">Team or event ID</span><input name="query" value="${safe(listQuery)}" placeholder="Enter event id"></label><button class="btn-green">Search</button></form>`;
+    pageShell(finishedOnly?'Results':'Livescore',`<section class="reference-results"><header class="reference-results-heading"><h2>${finishedOnly?'Results':'Livescore'}</h2>${filters}</header><div class="reference-result-selectors"><button data-reference-date="0">${dateLabel}${icon('down',16)}</button><button data-reference-filter="Results">${safe(listSport==='All'?'Football':listSport)}${icon('down',16)}</button><button data-reference-filter="Results">Select Category${icon('down',16)}</button><button data-reference-filter="Results">Select Tournament${icon('down',16)}</button></div><div class="reference-results-mobile"><div><button data-reference-date="-1" aria-label="Previous day">${icon('chevron-left',24)}</button><button data-reference-date="0">${dateLabel}</button><button data-reference-date="1" aria-label="Next day">${icon('chevron',24)}</button></div><p>${safe(listSport==='All'?'Football':listSport)} / ${safe(referenceResultCountry==='All'?'All Categories':referenceResultCountry)} / ${safe(referenceResultCategory==='All'?'All Tournaments':referenceResultCategory.split(' - ').slice(1).join(' - '))}<button data-reference-filter="Results">Change</button></p></div><div class="score-columns"><span>Time</span><span>Game ID</span><span>Match and Result</span></div><div class="result-list">${groups.map((g,i)=>`<details class="reference-result-group" ${!mobile||g.title.startsWith('Local')?'open':''}><summary>${icon('play',16)}${safe(g.title)}</summary><div>${g.rows.map(row).join('')}</div></details>`).join('')||panelEmpty('No matching results','Change the date or search filter.')}</div><p class="reference-snapshot-note">Reference results captured 6 November 2026. Local demo results are listed separately.</p><button class="inline-action" data-reset-results>Reset filters</button></section>`,{full:true,aside:false});
   }
 
   const gameCatalog = [
@@ -1174,7 +1287,65 @@
   ];
   let gameChoice = "Up",
     gameBusy = false;
+  // Captured public surfaces use structured reference data; no captured scripts or remote game/payment calls run here.
+  const surface = globalThis.SportySurfaces;
+  let catalogCategory=0,catalogQuery='',catalogLimit=96,loyaltyTier=0,loyaltyTab='Latest Rewards',virtualLeague=0,virtualMarket='1x2',virtualRound=(()=>{try{return Math.max(0,Math.min(99,Number(sessionStorage.getItem('sporty-iv-round'))||0))}catch{return 0}})(),virtualBusy=false;
+  const catalogData=()=>globalThis.SportyCatalog;
+  function catalogCard(id,rank=0){const g=catalogData().games[id];return g?`<button class="catalog-card" data-catalog-game="${id}" aria-label="Open ${safe(g.name)}"><img src="${safe(g.image)}" alt="${safe(g.name)}" loading="lazy" width="384" height="384">${rank?`<span class="catalog-rank">${rank}</span>`:''}${g.tags?.length?`<span class="catalog-badge">${safe(g.tags[0])}</span>`:''}<span class="catalog-online">${icon('users',11)} ${g.online}</span></button>`:''}
+  function catalogMatches(){const d=catalogData(),ids=d.sets[catalogCategory]||[];return ids.filter(id=>!catalogQuery||d.games[id].name.toLowerCase().includes(catalogQuery.toLowerCase()))}
+  function catalogGrid(){const ids=catalogMatches();return `<div class="catalog-grid">${ids.slice(0,catalogLimit).map(id=>catalogCard(id)).join('')}</div>${ids.length>catalogLimit?`<button class="catalog-more" data-catalog-more>Load more games (${catalogLimit} of ${ids.length})</button>`:!ids.length?`<p class="catalog-empty" role="status">No games found. Try another name or category.</p>`:''}`}
+  function catalogSection(title,ids,category,rank=false){return `<section class="catalog-section"><header><h2>${safe(title)}</h2><button data-catalog-category="${category}">Show All</button></header><div class="catalog-track">${ids.map((id,i)=>catalogCard(id,rank?i+1:0)).join('')}</div></section>`}
+  function referenceGames(){
+    const d=catalogData();if(!d){pageShell('SportyGames',panelEmpty('Catalog unavailable','Please reload the local page.'),{full:true,aside:false});return;}
+    const categories=d.categories.map(c=>({...c,name:c.id===2?'Card Games':c.id===9?'Live Casino':c.name})).filter(c=>(d.sets[c.id]||[]).length),selected=categories.find(c=>c.id===catalogCategory)||categories[0];
+    const sections=surface.mobileSections;
+    const top=sections[0]?.ids.filter(id=>d.games[id])||[];
+    const home=`${catalogSection('Top 10 in Nigeria',top,17,true)}<section class="catalog-providers"><h2>Game Providers</h2><div>${surface.providers.map(p=>`<button data-catalog-provider="${p.id}" aria-label="Browse ${safe(p.name)} games"><img src="${p.image}" alt="${safe(p.name)}" loading="lazy"></button>`).join('')}</div></section>${sections.slice(1).map(s=>catalogSection(s.name,s.ids.filter(id=>d.games[id]),s.category)).join('')}`;
+    pageShell('SportyGames',`<section class="reference-catalog"><header class="catalog-mobile-head"><a href="#/games" aria-label="SportyGames home"><b>Sporty<span>Games</span></b></a><a href="#/account/register">Join Now</a><a href="#/account/login">Login</a></header><div class="catalog-layout"><nav class="catalog-sidebar" aria-label="Game categories">${categories.map(c=>`<button data-catalog-category="${c.id}" aria-pressed="${catalogCategory===c.id}">${surface.categoryIcons[c.id]?`<img src="${surface.categoryIcons[c.id]}" alt="">`:icon('grid',18)}<span>${safe(c.name)}</span></button>`).join('')}</nav><div class="catalog-right"><section class="catalog-top-wins"><h2>Top Wins Today</h2><div>${surface.topWins.map(w=>`<button data-catalog-win-name="${safe(w.name)}"><img src="${w.image}" alt=""><span><b>NGN ${safe(w.amount)}</b><small>${icon('user',11)} ${safe(w.user)}<em>PLAY</em></small></span></button>`).join('')}</div></section><main class="catalog-content"><div class="catalog-desktop-title"><h1>${safe(selected.name)}</h1><button data-catalog-wins>${icon('trophy',17)} Top Wins</button></div><div class="catalog-toolbar"><label class="catalog-search">${icon('search',18)}<input aria-label="Search games" data-catalog-search placeholder="Search" value="${safe(catalogQuery)}"></label><button class="catalog-category-toggle" data-catalog-menu>${safe(catalogCategory===0?'Home':selected.name)} ${icon('down',15)}</button></div><div class="catalog-results">${mobile&&catalogCategory===0&&!catalogQuery?home:catalogGrid()}</div><p class="catalog-local-engines">Local playable demos: <a href="#/games/aviator">Aviator</a> · <a href="#/games/redblack">Red & Black</a> · <a href="#/games/bottle">Bottle</a> · <a href="#/games/hero">Sporty Hero</a></p></main></div></div></section>`,{full:true,aside:false});
+    document.querySelector('[data-catalog-search]')?.addEventListener('input',e=>{catalogQuery=e.target.value;catalogLimit=96;const results=document.querySelector('.catalog-results');results.innerHTML=mobile&&catalogCategory===0&&!catalogQuery?home:catalogGrid()});
+  }
+  function catalogCategoryMenu(){openDialog('Games',`<div class="catalog-category-dialog">${catalogData().categories.filter(c=>(catalogData().sets[c.id]||[]).length).map(c=>`<button data-catalog-category="${c.id}" aria-pressed="${catalogCategory===c.id}">${surface.categoryIcons[c.id]?`<img src="${surface.categoryIcons[c.id]}" alt="">`:icon('grid',20)}${safe(c.name)}</button>`).join('')}</div>`)}
+  function referenceLoyalty(){
+    const d=surface.loyalty,t=d.tiers[loyaltyTier],neighbors=[(loyaltyTier+7)%8,loyaltyTier,(loyaltyTier+1)%8];
+    pageShell('Sporty Loyalty',`<section class="loyalty-stage"><div class="reference-loyalty"><header><button data-loyalty-back aria-label="Back">${icon('arrow-left',22)}</button><span>Sporty Loyalty</span><button data-loyalty-help aria-label="Loyalty help">${icon('help-circle',20)}</button><button data-loyalty-history aria-label="Loyalty history">${icon('history',20)}</button></header><div class="loyalty-hero" style="background-image:url('${d.banner}')"><img src="${d.title}" alt="Sporty Loyalty"></div><section class="loyalty-tiers"><p>Current Tier</p><div class="loyalty-tier-carousel" aria-label="Loyalty tiers">${neighbors.map(i=>`<button data-loyalty-tier="${i}" aria-pressed="${i===loyaltyTier}"><span><img src="${d.tiers[i].image}" alt="">${icon('lock',15)}</span><b>${safe(d.tiers[i].name)}</b></button>`).join('')}</div><div class="loyalty-dots">${d.tiers.map((v,i)=>`<button aria-label="View ${safe(v.name)} tier" data-loyalty-tier="${i}" aria-pressed="${i===loyaltyTier}"></button>`).join('')}</div><h2>Deposit to unlock Sporty Loyalty</h2><p class="loyalty-weekly">Weekly Free Bet Gift Giveaway</p><div class="loyalty-rakeback"><p>Max. rakeback for this tier:</p><div>${[['Real Sport','5%'],['Instant Virtual','4%'],['Games','3%']].map(([k,v])=>`<span>${k}<b>${v}</b></span>`).join('')}</div></div></section><div class="loyalty-tabs">${['Latest Rewards','Ready To Claim'].map(v=>`<button data-loyalty-tab="${v}" aria-pressed="${loyaltyTab===v}">${v}</button>`).join('')}</div><div class="loyalty-rewards">${loyaltyTab==='Latest Rewards'?`<article><strong>02 - 09 Nov Free Bet Gift Giveaway</strong><button data-loyalty-help>Potential Rewards ${icon('info',13)}</button><b>NGN&nbsp; 0.00</b><a href="#/sports/football">Play Now !</a><small>Ends on 09:00, 09 Nov</small></article><article><strong>02 - 09 Nov<br>Games and Instant Virtual Daily Giveaway</strong><button data-loyalty-help>${icon('info',14)}</button><b>NGN&nbsp; 0.00</b><p>Reminder: claimed rewards will be deducted from Total Potential Rewards</p><p>Games and Instant Virtual rewards are claimable daily. Start playing games and claim your reward here. Rewards amount will display upon calculation.</p></article>`:`<div class="loyalty-claim-empty">${icon('gift',32)}<p>${state.session?'No rewards ready to claim.':'Login to view rewards ready to claim.'}</p>${state.session?`<p>${state.points} local demo points</p><button data-redeem ${state.points<10?'disabled':''}>Redeem 10 points</button>`:`<a href="#/account/login">Login</a>`}</div>`}</div><a class="loyalty-join" href="#/${state.session?'wallet/deposit':'account/login'}">${state.session?'Deposit To Join':'Login To Join'}</a></div></section>`,{full:true,aside:false});
+    let x=0;const carousel=document.querySelector('.loyalty-tier-carousel');carousel?.addEventListener('pointerdown',e=>x=e.clientX);carousel?.addEventListener('pointerup',e=>{if(Math.abs(e.clientX-x)>45){loyaltyTier=(loyaltyTier+(e.clientX<x?1:7))%8;referenceLoyalty()}});
+  }
+  function referenceVirtualLobby(){const d=surface.virtual,groups=[['Instant Games','Start your own games anytime with instant results.',d.cards.slice(0,7)],['Scheduled Games','Shared games that start at fixed times. Bet alongside every player.',d.cards.slice(7,10)],['Originals','More ways to play virtual football.',d.cards.slice(10)]];pageShell('Virtuals',`<section class="reference-virtual-lobby"><header><a href="#/home" aria-label="Back">${icon('arrow-left',24)}</a><span>Virtuals</span><a href="#/account/register">Register</a><i>|</i><a href="#/account/login">Login</a></header><nav><button aria-pressed="true">Game</button><button data-virtual-help>How To Play ${icon('help-circle',18)}</button></nav><div class="virtual-promo-carousel">${d.banners.map((b,i)=>`<a href="#/virtual/instant" style="background-image:url('${b.background}')" aria-label="Virtual games promotion ${i+1}"><img src="${b.image}" alt=""><span>${safe(b.text.replace(/[🔥🏁]/gu,''))}</span></a>`).join('')}</div>${groups.map(([title,sub,cards])=>`<section class="virtual-lobby-section"><h2>${title}${title==='Scheduled Games'?'<em>LIVE</em>':''}</h2><p>${sub}</p><div class="virtual-lobby-grid">${cards.map((c,i)=>`<a class="virtual-reference-card ${c.large?'large':''}" href="#/virtual/${surface.virtual.cards.indexOf(c)===0?'instant':'product/'+surface.virtual.cards.indexOf(c)}" style="background-image:url('${c.background}')">${c.badge?`<small>${safe(c.badge)}</small>`:''}<strong>${safe(c.name)}</strong><img src="${c.image}" alt="" loading="lazy"></a>`).join('')}</div></section>`).join('')}</section>`,{full:true,aside:false});let carousel=document.querySelector('.virtual-promo-carousel');if(carousel&&!motionReduced()){let tick=setInterval(()=>{if(!carousel.isConnected){clearInterval(tick);return;}carousel.scrollTo({left:(Math.round(carousel.scrollLeft/carousel.clientWidth)+1)%d.banners.length*carousel.clientWidth,behavior:'smooth'})},5000)}}
+  function referenceVirtualProduct(index){
+    const card=surface.virtual.cards[index];if(!card){referenceVirtualLobby();return}
+    if(index===0){referenceInstant();return}
+    if(index===6){mode='SIM';listSport='Football';navigate('sports/football');return}
+    const tabs=index===3?['Winner (incl. overtime)','Over/Under (incl. overtime)','1st Half O/U','1st Quarter O/U','1X2','Home Team Total (incl. overtime)','Away Team Total (incl. overtime)','Winner & total (incl. overtime)']:index===1||index===2?['1X2','O/U','Double Chance','GG/NG','Handicap','1st Half 1X2','2nd Half Double Chance','1X2 & Total','1st Half O/U','2nd Half O/U','Home Team O/U','Away Team O/U']:index===11?['All','Main','Teams']:[];
+    pageShell(card.name,`<section class="reference-product-stage"><div class="reference-product"><header><a href="#/virtual" aria-label="Back to Virtuals">${icon('arrow-left',22)}</a><h1>${safe(card.name)}</h1><a href="#/account/register">Register</a><a href="#/account/login">${index===10?'Log In':'Login'}</a></header>${tabs.length?`<nav aria-label="Product markets">${tabs.map((label,i)=>`<button data-product-market aria-pressed="${i===0}">${safe(label)}</button>`).join('')}</nav>`:''}${index===5||index===8?'<div class="product-scheduled-promo">Try our new Scheduled Football <a href="#/virtual/product/7">Play Now</a></div>':''}${index===11?'<p>Penalty shootouts. Virtual action. Instant wins.</p>':index===10?'<p>Pick your own match and bet instantly!</p>':''}<div class="product-connection-note" role="status"><img src="${card.image}" alt=""><h2>${safe(card.name)}</h2><p>${index===4||index===5||index===8?'The public provider did not return playable content in the capture.':'The public screen was captured, but its proprietary match and settlement service is not connected to this independent demo.'}</p><p>No real wager or payment is taken.</p><a class="btn-green" href="#/virtual/instant">Play local Instant Football</a>${index===11?'<a class="inline-action" href="#/games/hero">Play local penalty demo</a>':''}<a class="inline-action" href="#/virtual">Back to Virtuals</a></div></div></section>`,{full:true,aside:false});
+  }
+  document.addEventListener('click',event=>{const b=event.target.closest('[data-product-market]');if(!b)return;b.closest('nav').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  function ivIds(){return surface.instant[virtualLeague].rows.map((_,i)=>5000+virtualRound*100+surface.instant.slice(0,virtualLeague).reduce((n,l)=>n+l.rows.length,0)+i)}
+  function referenceInstant(){const league=surface.instant[virtualLeague],ids=ivIds(),market=demoMarketDefinitions(ids[0]).find(m=>m.id===virtualMarket)||demoMarketDefinitions(ids[0])[0];virtualMarket=market.id;pageShell('Instant Football',`<section class="reference-instant-stage"><div class="reference-instant"><header><a href="#/virtual" aria-label="Back">${icon('arrow-left',23)}</a><strong>Instant Football</strong><button data-virtual-help aria-label="How to play">${icon('help-circle',20)}</button><a href="#/account/login">${icon('user',20)}</a></header><nav class="iv-leagues">${surface.instant.map((l,i)=>`<button data-iv-league="${i}" aria-pressed="${virtualLeague===i}">${safe(l.name)}</button>`).join('')}</nav><div class="iv-tools"><button data-iv-builder aria-label="Bet builder information">BB</button><button data-iv-settings aria-label="Virtual settings">${icon('settings',18)}</button></div><nav class="iv-markets">${[['1x2','1X2'],['dc','Double Chance'],['totals:2.5','O/U'],['btts','GG/NG'],['handicap:-1','Handicap'],['half-total:0.5','1st Half O/U']].map(([k,v])=>`<button data-iv-market="${k}" aria-pressed="${virtualMarket===k}">${v}</button>`).join('')}</nav><div class="iv-column-heading"><strong>${safe(league.name)}</strong><span>${market.outcomes.map(([o])=>`<b>${safe(({home:'1',draw:'X',away:'2',over:'Over',under:'Under','home-draw':'1X','home-away':'12','draw-away':'X2',yes:'Yes',no:'No'})[o]||o)}</b>`).join('')}</span></div><div class="iv-rows">${league.rows.map((r,i)=>{const id=ids[i],m=demoMarketDefinitions(id).find(m=>m.id===virtualMarket),res=result(id);return `<article class="iv-row"><div class="iv-teams"><div><img src="${r.homeImage}" alt=""><b>${safe(r.home)}</b><span>vs</span><b>${safe(r.away)}</b><img src="${r.awayImage}" alt=""></div><p>${icon('star',10).repeat(5)}<span></span>${icon('star',10).repeat(5)}</p></div><div class="iv-odds">${m.outcomes.map(([o,v])=>marketOdd(id,m.id,o,v)).join('')}</div><a href="#/event/${id}" class="iv-more">+71</a>${res?`<span class="iv-score">${res.home} - ${res.away}</span>`:''}</article>`}).join('')}</div><footer><button data-iv-next ${virtualBusy?'disabled':''}>${virtualBusy?'Playing round…':'Next Round'}</button><button data-iv-slip>Betslip <b>${picks.filter(p=>ids.includes(p.id)).length}</b></button></footer><p class="iv-demo-caption">Local simulated round ${virtualRound+1} · no real wagers</p></div></section>`,{full:true,aside:false})}
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('[data-catalog-win-name],[data-catalog-category],[data-catalog-more],[data-catalog-game],[data-catalog-menu],[data-catalog-wins],[data-catalog-provider],[data-loyalty-tier],[data-loyalty-tab],[data-loyalty-back],[data-loyalty-help],[data-loyalty-history],[data-virtual-help],[data-iv-league],[data-iv-market],[data-iv-next],[data-iv-slip],[data-iv-settings],[data-iv-builder]');if(!b)return;e.preventDefault();e.stopImmediatePropagation();
+    if(b.hasAttribute('data-catalog-win-name')){const g=Object.values(catalogData().games).find(g=>g.name===b.dataset.catalogWinName);if(g){const card=document.createElement('button');card.dataset.catalogGame=g.id;document.body.append(card);card.click();card.remove()}return}
+    if(b.hasAttribute('data-catalog-category')){catalogCategory=Number(b.dataset.catalogCategory);catalogQuery='';catalogLimit=96;closeDialog();referenceGames();return}
+    if(b.hasAttribute('data-catalog-more')){catalogLimit+=96;const y=scrollY;document.querySelector('.catalog-results').innerHTML=catalogGrid();scrollTo(0,y);return}
+    if(b.hasAttribute('data-catalog-menu')){catalogCategoryMenu();return}
+    if(b.hasAttribute('data-catalog-game')){const g=catalogData().games[b.dataset.catalogGame],known=/aviator/i.test(g.name)?'aviator':/^red[-\s]*&?[-\s]*black$/i.test(g.name)?'redblack':/spin da.*bottle/i.test(g.name)?'bottle':/^sporty hero$/i.test(g.name)?'hero':null;if(known){navigate('games/'+known);return}openDialog(g.name,`<div class="catalog-game-preview"><img src="${g.image}" alt="${safe(g.name)}"><p>This game’s artwork and catalog entry are available in the replica. Its proprietary game engine is not connected.</p><a class="btn-green" href="#/games/aviator">Play local Aviator demo</a><a href="#/games">Back to games</a></div>`);return}
+    if(b.hasAttribute('data-catalog-wins')){openDialog('Top Wins',`<div class="catalog-wins"><h3>Local demo wins</h3>${state.games.filter(g=>g.return>0).slice(-20).reverse().map(g=>`<p>${safe(g.game||g.type||'Game')}<strong>${money(g.return)}</strong></p>`).join('')||'<p>No local wins yet.</p>'}</div>`);return}
+    if(b.hasAttribute('data-catalog-provider')){const provider=Number(b.dataset.catalogProvider),name=surface.providers.find(p=>p.id===provider)?.name||'Game Provider',games=Object.values(catalogData().games).filter(g=>g.provider===provider);openDialog(name,`<div class="catalog-provider-games">${games.slice(0,60).map(g=>catalogCard(g.id)).join('')}</div>`);return}
+    if(b.hasAttribute('data-loyalty-tier')){loyaltyTier=Number(b.dataset.loyaltyTier);referenceLoyalty();return}
+    if(b.hasAttribute('data-loyalty-tab')){loyaltyTab=b.dataset.loyaltyTab;referenceLoyalty();return}
+    if(b.hasAttribute('data-loyalty-back')){navigate('account');return}
+    if(b.hasAttribute('data-loyalty-help')){openDialog('Sporty Loyalty',`<p>Deposit to unlock Sporty Loyalty.</p><p>Weekly Free Bet Gift Giveaway and Games and Instant Virtual Daily Giveaway are reference promotions. The independent demo uses local points only.</p><p>Earn 1 point per NGN 100 of settled demo sports stakes. Redeem 10 points for NGN 100 in demo credits.</p><a href="#/help/loyalty">How demo points work</a>`);return}
+    if(b.hasAttribute('data-loyalty-history')){navigate(state.session?'wallet/transactions':'account/login');return}
+    if(b.hasAttribute('data-virtual-help')){openDialog('How To Play',`<p>Choose a league, market and selection. Add selections to the betslip and enter a demo stake.</p><p>Next Round generates local simulated results and settles affected demo tickets. Virtual rounds do not represent real fixtures or official SportyBet outcomes.</p><a href="#/help/virtuals">Virtual football help</a>`);return}
+    if(b.hasAttribute('data-iv-league')){virtualLeague=Number(b.dataset.ivLeague);referenceInstant();return}
+    if(b.hasAttribute('data-iv-market')){virtualMarket=b.dataset.ivMarket;referenceInstant();return}
+    if(b.hasAttribute('data-iv-slip')){openSheet();return}
+    if(b.hasAttribute('data-iv-builder')){openDialog('Bet Builder','<p>The independent simulator supports one selection per event. Same-event combination pricing is not connected.</p><button class="btn-green" data-close>OK</button>');return}
+    if(b.hasAttribute('data-iv-settings')){openDialog('Settings',`<label class="setting-row">Reduce motion <input type="checkbox" data-preference-motion ${motionReduced()?'checked':''}></label><p>Decimal odds · NGN demo credits</p>`);return}
+    if(b.hasAttribute('data-iv-next')){if(virtualBusy)return;virtualBusy=true;b.disabled=true;b.textContent='Playing round…';Promise.resolve().then(async()=>{try{const ids=ivIds();await simulate(ids);if(!motionReduced())await new Promise(r=>setTimeout(r,1200));virtualRound=Array.from({length:100},(_,i)=>(virtualRound+i+1)%100).find(round=>!result(5000+round*100))??virtualRound;try{sessionStorage.setItem('sporty-iv-round',String(virtualRound))}catch{};virtualBusy=false;referenceInstant()}finally{virtualBusy=false;document.querySelector('[data-iv-next]')?.removeAttribute('disabled')}}).catch(error=>toast(error.message));return}
+  },true);
+
   function renderGames() {
+    referenceGames();return;
     const games = gameCatalog.filter(
       (g) => gameFilter === "All" || g.category === gameFilter,
     );
@@ -1353,6 +1524,8 @@
 
   let virtualTab = "Upcoming";
   function renderVirtual(type) {
+    if(type==="instant-football"){referenceInstant();return;}
+    if(!type||(mobile&&type==="virtuals")){referenceVirtualLobby();return;}
     const ids = type === "instant-football" ? [28, 13, 11] : [22, 29, 12];
     const shown = ids.filter((id) =>
       virtualTab === "Results" ? Boolean(result(id)) : !result(id),
@@ -1365,30 +1538,16 @@
   }
 
   const jackpotIds = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-  function renderJackpot(tab = "play") {
-    storage.set("sporty-jackpot-picks", JSON.stringify(jackpotPicks));
-    const round = state.jackpot.round,
-      draw = state.jackpot.draws[round],
-      count = Object.keys(jackpotPicks).length;
-    let content = "";
-    if (tab === "results") {
-      content = `<div class="page-surface"><h2>Previous rounds & entries</h2>${state.jackpot.boards.length ? state.jackpot.boards.map((b) => `<div class="jackpot-entry"><strong>${safe(b.id)} · Round ${b.round}</strong><span>${b.correct == null ? "Open" : b.correct + "/12 correct"}</span><strong>${b.prize ? money(b.prize) : b.correct == null ? "Awaiting draw" : "No prize"}</strong></div>`).join("") : panelEmpty("No entries yet", "Complete all twelve selections to enter the demo round.")}<a class="inline-action" href="#/jackpot">Current round</a></div>`;
-    } else if (tab === "rules") {
-      content = `<div class="page-surface prose"><h2>How to play</h2><ol><li>Choose Home, Draw or Away for every one of the twelve matches.</li><li>Review and submit your board for NGN 100 in demo credits.</li><li>Run the simulated draw. Each round can only be drawn once.</li><li>12 correct returns NGN 100,000 demo credits; 11 returns NGN 5,000; 10 returns NGN 500. Otherwise the return is zero.</li></ol><p>These are rules of this local demo, not SportyBet jackpot terms. No real prize is offered.</p>${link("jackpot", "Enter current round")}</div>`;
-    } else
-      content = `<div class="jackpot-board"><div class="section-heading"><h2>Round ${round.toString().padStart(4, "0")}</h2><span>${draw ? "Draw complete" : count + "/12 selected"}</span></div>${jackpotIds
-        .map((id, i) => {
-          const f = fixture(id);
-          return `<div class="jackpot-match"><span class="jackpot-number">${i + 1}</span><div class="jackpot-teams"><span>${safe(f[0])}</span><span>${safe(f[1])}</span></div><div class="jackpot-choices">${["home", "draw", "away"].map((o, j) => `<button data-jackpick="${id}:${o}" aria-label="${safe(f[0])} ${["Home", "Draw", "Away"][j]}" aria-pressed="${jackpotPicks[id] === o}" ${draw ? "disabled" : ""}>${["1", "X", "2"][j]}${draw ? `<small>${draw[i] === o ? "Result" : ""}</small>` : ""}</button>`).join("")}</div></div>`;
-        })
-        .join(
-          "",
-        )}<div class="jackpot-actions"><div><strong>Demo entry NGN 100</strong><span>${count}/12 selected</span></div>${draw ? primary("Start next demo round", "data-next-jackpot") : primary("Review entry", "data-jackpot-enter")}<div class="action-row"><button class="inline-action" data-jackpot-random ${draw ? "disabled" : ""}>Quick pick</button><button class="inline-action" data-jackpot-clear ${draw ? "disabled" : ""}>Clear board</button><button class="inline-action" data-jackpot-draw ${draw ? "disabled" : ""}>Simulate draw</button></div><p class="form-feedback" role="alert"></p></div></div>`;
-    pageShell(
-      "Sporty 12 Jackpot",
-      `<div class="jackpot-hero"><div><span>Predict 12 matches</span><h2>NGN 100,000</h2><p>Maximum demo prize. No real funds.</p></div><strong>ROUND ${round.toString().padStart(4, "0")}</strong></div><div class="page-tabs page-tablinks"><a href="#/jackpot" ${tab === "play" ? 'aria-current="page"' : ""}>Sporty 12</a><a href="#/jackpot/results" ${tab === "results" ? 'aria-current="page"' : ""}>Previous results</a><a href="#/jackpot/rules" ${tab === "rules" ? 'aria-current="page"' : ""}>How to play</a></div>${content}`,
-    );
+  function renderJackpot(tab='play'){
+    storage.set('sporty-jackpot-picks',JSON.stringify(jackpotPicks));const round=state.jackpot.round,draw=state.jackpot.draws[round],count=Object.keys(jackpotPicks).length;
+    const nav=`<nav class="reference-jackpot-nav"><a href="#/jackpot" ${tab==='play'?'aria-current="page"':''}>Sporty 12${icon('chevron',16)}</a><a href="#/jackpot/results" ${tab==='results'?'aria-current="page"':''}>Previous Results${icon('chevron',16)}</a><a href="#/jackpot/rules" ${tab==='rules'?'aria-current="page"':''}>How to play${icon('chevron',16)}</a></nav>`;
+    let content;
+    if(tab==='rules')content=`<section class="reference-jackpot-rules"><h2>How to Play "Jackpot"</h2><p>The local Sporty 12 demo consists of predicting the outcomes of twelve games.</p><ol><li>Select 1(Home), X(Draw) or 2(Away) for each match.</li><li>Review your board and place the demo entry for NGN 100.</li><li>Simulate the draw once. Twelve correct predictions return NGN 100,000; eleven return NGN 5,000; ten return NGN 500.</li></ol><p>These payouts are simulated credits with no cash value, not official SportyBet jackpot terms.</p><a class="inline-action" href="#/jackpot">Back to current round</a></section>`;
+    else if(tab==='results')content=`<section class="reference-jackpot-rules"><h2>Previous Results</h2><p>Local demo entries and simulated draws</p>${state.jackpot.boards.length?state.jackpot.boards.map(b=>`<div class="jackpot-entry"><strong>${safe(b.id)} · Round ${b.round}</strong><span>${b.correct==null?'Open':b.correct+'/12 correct'}</span><strong>${b.prize?money(b.prize):b.correct==null?'Awaiting draw':'No prize'}</strong></div>`).join(''):'<p>No completed demo entries. Play the current round to create your own result.</p>'}<a href="#/jackpot" class="inline-action">Current round</a></section>`;
+    else content=`<section class="jackpot-board"><div class="section-heading"><h2>Round No. ${20261107+round}</h2><span>${draw?'Draw complete':count+'/12 selected'}</span></div><div class="reference-jackpot-columns"><span>No.</span><span>Date</span><span>Match</span><span>H2H</span><span>1(Home)</span><span>X(Draw)</span><span>2(Away)</span></div>${jackpotIds.map((id,i)=>{const f=referenceUI.jackpot[i];return `<div class="jackpot-match"><span class="jackpot-number">${i+1}</span><time class="jackpot-date">${safe(f.date)}</time><div class="jackpot-teams"><small>${safe(f.date)}</small><span>${safe(f.home)}</span><span>${safe(f.away)}</span></div><span class="jackpot-h2h">${icon('chart-no-axes-combined',16)}</span><div class="jackpot-choices">${['home','draw','away'].map((o,j)=>`<button data-jackpick="${id}:${o}" aria-label="${safe(f.home)} ${['Home','Draw','Away'][j]}" aria-pressed="${jackpotPicks[id]===o}" ${draw?'disabled':''}>${f.odds[j].toFixed(2)}${draw&&draw[i]===o?'<small>Result</small>':''}</button>`).join('')}</div></div>`}).join('')}<div class="jackpot-actions"><div><strong>Total Stake <b>NGN ${count===12?'100.00':'0.00'}</b></strong><span>${count}/12 selected</span></div>${draw?primary('Start next demo round','data-next-jackpot'):primary('Place Bet','data-jackpot-enter')}<div class="action-row"><button class="inline-action" data-jackpot-random ${draw?'disabled':''}>Jackpot Rush</button><button class="inline-action" data-jackpot-clear ${draw?'disabled':''}>Clear All</button><button class="inline-action" data-jackpot-draw ${draw?'disabled':''}>Simulate draw</button></div><p class="form-feedback" role="alert"></p><p class="local-note">Local demo entry. No real funds or prizes.</p></div></section>`;
+    pageShell('Jackpot',`<div class="reference-jackpot-hero"><div><h2>Predict 12 GAMES to Win</h2><strong>NGN 100,000</strong><p>Prizes for 11 and 10 correct predictions too!</p><small>Simulated credits only. No real prize.</small></div><div class="reference-countdown"><span>Demo visual timer</span><div>${['01','04','54','41'].map((n,i)=>`<div><b data-reference-clock="${['Days','Hours','Minutes','Seconds'][i]}">${n}</b><small>${['Days','Hours','Minutes','Seconds'][i]}</small></div>`).join('')}</div></div></div><div class="reference-jackpot-layout">${nav}<div>${content}</div><aside><a href="#/instant-football"><img src="${asset('59bd76f2fe42b8cd5daf90e91b822ef3.jpg')}" alt="Instant Football"></a></aside></div>`,{full:true,aside:false});
   }
+
   async function drawJackpot() {
     await transact((s) => {
       const round = s.jackpot.round;
@@ -1439,6 +1598,12 @@
     ).join("");
   }
   function renderAccount(section) {
+    if(section==='notifications'){if(!state.session){referenceAuth('login');return}referenceNotifications();return}
+    if(section==='recover'&&referenceRecoveryStep===0){pageShell('Find Account',`<section class="reference-auth-screen reference-recovery"><a class="reference-recovery-back" href="#/account/login">${icon('arrow-left',22)} Find Account</a><div class="reference-auth-form"><form data-reference-recovery-next><h2>Find Account</h2>${referencePhoneField(referencePhone||state.profile?.phone||'')}<button class="btn-green" disabled>Next</button>${formError()}</form><p class="reference-auth-disclosure">Local profile recovery only. No SMS or real account service is connected.</p></div></section>`,{full:true,aside:false});document.documentElement.dataset.surface='auth';return;}
+    if(!mobile&&!state.profile&&!section){referenceAuth('login');return;}
+
+    if(section==="register"||section==="login"){referenceAuth(section);return}
+    if(mobile&&!section&&(!state.profile||state.session)){referenceGuestAccount();return;}
     if (
       section === "register" ||
       (!state.profile && section !== "recover" && section !== "login")
@@ -1520,7 +1685,9 @@
     },
   ];
   function renderRewards(kind) {
+    if(kind==="promotions"){referencePromotions();return;}
     if (kind === "loyalty") {
+      referenceLoyalty();return;
       pageShell(
         "Sporty Loyalty",
         `<section class="loyalty-balance"><div>${icon("award", 32)}<span>Your demo points</span><strong>${state.points}</strong></div><p>Earn 1 point per NGN 100 of stake when a sports ticket settles. Cancelled or cashed-out bets do not earn points.</p></section><div class="page-surface"><h2>Redeem your points</h2><p>Exchange 10 points for NGN 100 in demo credits.</p><dl class="receipt-details"><div><dt>Available</dt><dd>${state.points} points</dd></div><div><dt>Reward</dt><dd>NGN 100 demo credits</dd></div></dl>${primary("Redeem 10 points", `data-redeem ${state.points < 10 ? "disabled" : ""}`)}<p class="form-feedback" role="alert"></p></div><a class="page-link" href="#/bets">View settled bets ${icon("chevron")}</a>`,
@@ -1769,7 +1936,7 @@
       if (b.dataset.path) {
         handle(() => {
           closeDialog();
-          navigate(b.dataset.path);
+          if(b.dataset.path==="reference-region")referenceRegion();else navigate(b.dataset.path);
         });
         return;
       }
@@ -1778,13 +1945,7 @@
         return;
       }
       if (b.hasAttribute("data-auth")) {
-        handle(() =>
-          navigate(
-            b.classList.contains("login") || b.classList.contains("btn-login")
-              ? "account/login"
-              : "account/register",
-          ),
-        );
+        handle(()=>{referenceJoinStep=0;const type=b.classList.contains("login")||b.classList.contains("btn-login")?"login":"register";if(mobile)navigate("account/"+type);else referenceAuth(type,true)});
         return;
       }
       if (b.hasAttribute("data-subnav")) {
@@ -1803,7 +1964,7 @@
       }
       if (b.hasAttribute("data-league")) {
         handle(() => {
-          const text = b.textContent.toLowerCase();
+          const text = (b.getAttribute("aria-label")||b.textContent).toLowerCase();
           listStatus = "all";
           listSport = "Football";
           listLeague = text.includes("conference")
@@ -1824,7 +1985,7 @@
           navigate(
             {
               Home: "home",
-              "A-Z Menu": "sports/football",
+              "A-Z Menu": "menu",
               Games: "games",
               "Open Bets": "bets",
               Me: "account",
@@ -1844,6 +2005,8 @@
                 Live: "live",
                 Aviator: "games/aviator",
                 Virtuals: "virtuals",
+                Jackpot: "jackpot",
+                Livescore: "scores",
                 More: "menu",
               }[name] || "home",
             );
@@ -2303,10 +2466,11 @@
       e.preventDefault();
       e.stopImmediatePropagation();
       if (form.matches(".login-form,.reg-panel")) {
-        form.reset();
-        navigate(
-          form.matches(".reg-panel") ? "account/register" : "account/login",
-        );
+        const phone=form.querySelector('input:not([type=password]):not([type=checkbox])')?.value||'';
+        referencePhone=/^0?[789][01][0-9]{8}$/.test(phone)?phone:'';
+        const pin=form.querySelector('input[type=password]')?.value||'';
+        const type=form.matches('.reg-panel')?'register':'login';form.reset();referenceJoinStep=0;
+        if(mobile)navigate('account/'+type);else{referenceAuth(type,true);const f=document.querySelector('.reference-auth-form form');if(type==='login'&&/^\d{6}$/.test(pin)){f.elements.pin.value=pin;f.elements.pin.dispatchEvent(new Event('input',{bubbles:true}));f.requestSubmit()}}
         return;
       }
       if (form.hasAttribute("data-eventfilter")) {
@@ -2428,7 +2592,7 @@
             await transact((s) => {
               if (s.profile && !s.profile.legacy)
                 throw Error("A local profile already exists.");
-              s.profile = { id: uid("USER"), name, salt, hash, recoveryHash };
+              s.profile = { id: uid("USER"), name, salt, hash, recoveryHash, phone:form.elements.phone?.value||"" };
               s.session = true;
             });
             if (currentPath === originPath) navigate("account");
