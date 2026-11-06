@@ -1196,7 +1196,7 @@ document.addEventListener("click", async (event) => {
       .forEach((t) => t.setAttribute("aria-pressed", t === b));
     if (b.closest(".highlights")) {
       const text = b.textContent;
-      if (/Uruguay/i.test(text))
+      if (/Romania|Uruguay/i.test(text))
         document.querySelector(".match-table").innerHTML = originalHighlights;
       else if (/Europa|Conference/.test(text)) {
         document.querySelector(".match-table").innerHTML = emptyState(
@@ -1210,8 +1210,8 @@ document.addEventListener("click", async (event) => {
       } else
         document.querySelector(".match-table").innerHTML = emptyState(
           "No captured fixtures",
-          "Choose Uruguay or view the live competitions.",
-          "Show Uruguay",
+          "Choose Romania or view the captured sports.",
+          "Show Romania",
           "data-reset-highlights",
         );
       drawIcons();

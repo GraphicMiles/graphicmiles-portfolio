@@ -1,6 +1,6 @@
 "use strict";
 const PREFIX = "sporty-demo:" + self.registration.scope + ":";
-const CACHE = PREFIX + "v14";
+const CACHE = PREFIX + "v15";
 const ASSETS = [
   "/ng/",
   "/ng/index.html",
@@ -249,6 +249,14 @@ const ASSETS = [
   "/assets/js/views.js",
   "/assets/img/me-tier-background.webp",
   "/assets/img/me-loyalty-banner.webp",
+  "/assets/js/home-data.js",
+  "/assets/img/home-current-hero.webp",
+  "/assets/img/home-current-second.webp",
+  "/assets/img/6e01b6c9aa55fcdd160e76a73653305.webp",
+  "/assets/img/56508e8173d70bed8eda496eb9f09411.webp",
+  "/assets/img/d41c20be4b5a9365391158de0b37600f.webp",
+  "/assets/img/eeb235420f8e5993974485fe3863a2d2.webp",
+  "/assets/img/27ac49634e149949632326a0256b18b.webp",
   "/assets/js/event-market-data.js",
   "/assets/js/article-data.js",
   "/assets/js/article-adapter.js",

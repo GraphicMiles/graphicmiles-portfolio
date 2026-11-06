@@ -63,7 +63,7 @@ test('virtual lobby cards retain distinct destinations and extended screens fit 
 });
 test('service worker precaches and serves the article reader offline',async({page,context})=>{
  const errors=watch(page);await page.goto(base+'#/home');await page.evaluate(()=>navigator.serviceWorker.ready);
- await expect.poll(()=>page.evaluate(async()=>{const keys=await caches.keys();return keys.some(k=>k.endsWith(':v14'))})).toBe(true);
+ await expect.poll(()=>page.evaluate(async()=>{const keys=await caches.keys();return keys.some(k=>k.endsWith(':v15'))})).toBe(true);
  await page.reload();await page.goto(base+'#/promotions/reference/features/0');await expect(page.frameLocator('.reference-promo-frame').locator('#promotion')).toBeVisible();
  await context.setOffline(true);await page.reload();await expect(page.frameLocator('.reference-promo-frame').locator('#promotion')).toBeVisible();await context.setOffline(false);expect(errors).toEqual([]);
 });
@@ -85,4 +85,29 @@ test('signed-in account, notification tabs and transaction filters use local dat
  await page.locator('[data-transaction-status]').click();await expect(page.getByRole('dialog')).toContainText('No external payment is pending');await page.getByRole('dialog').getByRole('button',{name:'OK',exact:true}).click();
  if(info.project.name==='desktop')for(const width of [360,390,768,1024,1440]){await page.setViewportSize({width,height:900});for(const route of ['account','account/notifications','wallet/transactions']){await page.goto(base+'#/'+route);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${width} signed-in ${route}`).toBe(true)}}
  await page.setViewportSize({width:info.project.name==='mobile'?390:1440,height:900});await page.goto(base+'#/account');if(info.project.name==='mobile')await page.locator('.signed-me-logout').click();else await page.locator('[data-signout-demo]').click();await expect(page).toHaveURL(/#\/account\/login$/);await expect(page.locator('input[name=pin]')).toBeVisible();expect(errors).toEqual([]);
+});
+test('all four entry URLs load the current catalog, article and market implementation',async({page})=>{
+ test.setTimeout(90000);const errors=watch(page);
+ for(const alias of ['', 'ng/', 'm/', 'ng/m/']){
+  await page.goto(base+alias+'#/home');
+  await expect(page.locator('meta[name="sporty-demo-version"]')).toHaveAttribute('content','reference-20261106-r15');
+  expect(await page.evaluate(()=>Boolean(globalThis.SportyCatalog&&globalThis.SportySurfaces&&globalThis.SportyMenu&&globalThis.SportyPromoReferences&&globalThis.SportyEventMarkets))).toBe(true);
+  await page.goto(base+alias+'#/games');await expect(page.locator('.catalog-card').first()).toBeVisible();await expect.poll(()=>page.locator('.catalog-card img').first().evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
+  await page.goto(base+alias+'#/event/100');await expect(page.locator('.native-market-block')).toHaveCount(311);
+  await page.goto(base+alias+'#/promotions/reference/features/0');await expect(page.frameLocator('.reference-promo-frame').locator('#promotion')).toBeVisible();
+  expect(await page.frameLocator('.reference-promo-frame').locator('body').evaluate(()=>[...document.images].filter(img=>img.complete&&!img.naturalWidth).length)).toBe(0);
+ }
+ expect(errors).toEqual([]);
+});
+test('homepage shows refreshed reference content and its market controls work',async({page},info)=>{
+ const errors=watch(page);await page.goto(base+'#/home');
+ if(info.project.name==='mobile'){
+  await expect(page.locator('.m-promos button')).toHaveCount(15);await expect(page.locator('.m-feature-card')).toHaveCount(5);await expect(page.locator('.m-feature-card').first()).toContainText('Fritz, Taylor');
+  await page.locator('.m-feature-card').first().locator('[data-pick]').first().click();await page.locator('[data-openslip]').click();await expect(page.locator('.slip-item')).toContainText('Fritz, Taylor');await page.locator('.sheet-close').click();
+  await page.locator('.m-promos [data-path="promotions/reference/features/0"]').click();await expect(page.frameLocator('.reference-promo-frame').locator('#promotion')).toContainText('AutoBet');
+ }else{
+  await expect(page.locator('.hero-carousel .slide').first().locator('img')).toHaveAttribute('src',/home-current-hero\.webp$/);await expect(page.locator('.highlights .match-row')).toHaveCount(9);await expect(page.locator('.highlights')).toContainText('Acad Viitorul Cluj');
+  await page.locator('[data-pick="300|1x2|home"]').click();await expect(page.locator('.slip-item')).toContainText('Acad Viitorul Cluj');await page.locator('[data-lines="300"]').click();await expect(page.getByRole('dialog')).toContainText('Total goals 2.5');await page.getByRole('dialog').locator('[data-pick="300|totals:2.5|over"]').click();await expect(page.locator('.slip-item')).toContainText('Over 2.5');
+ }
+ expect(errors).toEqual([]);
 });
