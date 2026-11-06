@@ -47,6 +47,15 @@ for (const slug of fs.existsSync(path.join(root, "works")) ? fs.readdirSync(path
     const src = path.join(root, "works", slug);
     if (!fs.statSync(src).isDirectory() || !fs.existsSync(path.join(src, "index.html"))) continue;
     copy(src, path.join(dist, slug));
+    // All entry aliases must load the same app; relative catalog/article URLs
+    // resolve from the shared app root, not from /ng/ or /ng/m/.
+    if (slug === "sportybet-demo") {
+        const entry = fs.readFileSync(path.join(src, "index.html"), "utf8");
+        for (const [alias, base] of [["m", "../"], ["ng", "../"], ["ng/m", "../../"]]) {
+            fs.writeFileSync(path.join(dist, slug, alias, "index.html"),
+                entry.replace('    <meta name="viewport"', `    <base href="${base}" />\n    <meta name="viewport"`));
+        }
+    }
 }
 
 console.log("Static build complete -> dist/");

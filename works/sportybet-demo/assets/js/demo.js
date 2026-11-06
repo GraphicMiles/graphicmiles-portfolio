@@ -787,6 +787,8 @@
   }
   routeView = (name) => navigate(aliases[name] || name);
   showDetails = (id) => navigate("event/" + id);
+  showLines=function(id){const totals=allMarkets(id).filter(m=>m.id.startsWith('totals:'));openDialog('Over/Under',`<p>${safe(fixture(id)[0])} vs ${safe(fixture(id)[1])}</p><p class="local-note">Available captured lines. Local demo selections only.</p>${totals.map(m=>`<section class="home-market-lines"><h3>${safe(m.title)}</h3><div>${m.outcomes.map(([o,v])=>marketOdd(id,m.id,o,v)).join('')}</div></section>`).join('')}`)};
+
   showTickets = () => navigate("bets");
   profile = () => navigate("account");
   showSports = () => navigate("sports/football");
@@ -1966,17 +1968,13 @@
         handle(() => {
           const text = (b.getAttribute("aria-label")||b.textContent).toLowerCase();
           listStatus = "all";
-          listSport = "Football";
-          listLeague = text.includes("conference")
-            ? "UEFA Conference League"
-            : text.includes("europa")
-              ? "UEFA Europa League"
-              : text.includes("premier")
-                ? "England Premier League"
-                : text.includes("la liga")
-                  ? "Spain La Liga"
-                  : "All";
-          navigate("sports/football");
+          referenceDayFilter = text.includes("today") ? "Today" : "All";
+          referenceTimeHours = text.includes("3 hours") ? 3 : null;
+          referenceSelectedLeagues = [];
+          listSport = /nba|euroleague/.test(text) ? "Basketball" : text==='nfl' ? "American Football" : text==='nhl' ? "Ice Hockey" : "Football";
+          const leagueNames = {"england premier league":"England Premier League","premier league":"England Premier League","spain la liga":"Spain La Liga","la liga":"Spain La Liga","italy serie a":"Italy Serie A","serie a":"Italy Serie A","germany bundesliga":"Germany Bundesliga","bundesliga":"Germany Bundesliga","france ligue 1":"France Ligue 1","ligue 1":"France Ligue 1"};
+          listLeague = leagueNames[text] || "All";
+          navigate("sports/"+sportSlug(listSport));
         });
         return;
       }
@@ -2812,5 +2810,5 @@
   enhanceMount();
   renderPage();
   if (!globalThis.DEMO_EMBEDDED_ASSETS && ["http:","https:"].includes(location.protocol) && "serviceWorker" in navigator)
-    navigator.serviceWorker.register(new URL("../../sw.js", document.currentScript.src).href).catch(() => {});
+    navigator.serviceWorker.register(new URL("../../sw.js", document.currentScript.src).href,{updateViaCache:"none"}).catch(() => {});
 })();
