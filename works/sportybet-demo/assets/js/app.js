@@ -474,16 +474,8 @@ function motionReduced() {
     matchMedia("(prefers-reduced-motion: reduce)").matches
   );
 }
-function animateContent(el) {
-  if (!motionReduced())
-    el.animate(
-      [
-        { opacity: 0.45, transform: "translateY(4px)" },
-        { opacity: 1, transform: "translateY(0)" },
-      ],
-      { duration: 160, easing: "ease-out" },
-    );
-}
+// The reference switches route content directly; motion belongs to individual components.
+function animateContent(el) { return el; }
 function openSheet(trigger = document.activeElement) {
   if (!mobile) {
     document
@@ -512,7 +504,7 @@ async function closeSheet() {
       .querySelector(".m-sheet")
       .animate(
         [{ transform: "translateY(0)" }, { transform: "translateY(100%)" }],
-        { duration: 180, easing: "ease-in", fill: "forwards" },
+        { duration: 250, easing: "cubic-bezier(.645,.045,.355,1)", fill: "forwards" },
       )
       .finished.catch(() => {});
   if (!bg.isConnected || !bg.dataset.closing) return;

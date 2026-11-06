@@ -21,7 +21,7 @@ const icons = {
   chat: "message-circle",
 };
 function icon(n, s = 16) {
-  return `<i data-lucide="${icons[n] || n}" style="width:${s}px;height:${s}px" aria-hidden="true"></i>`;
+  return `<i class="icon" data-lucide="${icons[n] || n}" style="width:${s}px;height:${s}px" aria-hidden="true"></i>`;
 }
 const matches = [
   ["AC Milan", "Ferencvarosi Budapest", 0, 0, [2.1, 2.75, 4.65]],
@@ -132,18 +132,7 @@ function desktop() {
     )}</div><button class="mini-more" data-info="Mini Games">Discover more games</button></section><a href="#" data-info="Instant Football"><img src="${asset(`59bd76f2fe42b8cd5daf90e91b822ef3.jpg`)}" alt="Instant Football"></a><section class="winners"><h2>Grand Prize Winners</h2><ul>${["133,313.64", "63,661.10", "328,233.65", "85,159.61", "30,824.09", "39,616.04"].map((n) => `<li><div class="row1"><span class="amount">NGN${n}</span><span class="when">1 min ago</span></div><div class="row2"><span>Sports Betting</span><span>********5</span></div></li>`).join("")}</ul></section></aside></div></main>${footer()}<button class="chat-fab" aria-label="Customer support" data-info="Customer support">${icon("chat", 24)}</button>`;
 }
 function mobilePage() {
-  return `<header class="m-header">${logo()}<button aria-label="Search" data-search>${icon("search", 22)}</button><button class="join" data-auth>Join Now</button><button class="login" data-auth>Log in</button></header><main class="m-main"><div class="m-promos">${[
-    ["24b794528caceddf0418741815fefaae.webp", "Sporty Picks"],
-    ["3e03544469705b9601e974c10e5fd961.webp", "Lucky Numbers"],
-    ["b638c0f668a29248d4709fa3618d4615.webp", "LEV vs MAR"],
-    ["4b016f6e289ffc33bf25c4de0261e02f.webp", "CEL vs BJK"],
-    ["winBg.7021172f98.png", "Jackpot"],
-  ]
-    .map(
-      ([f, t], i) =>
-        `<button data-info="${t}" aria-label="${t}"><img src="${asset(`mobile-promo-${i}.png`)}" alt="${t}"></button>`,
-    )
-    .join("")}</div><nav class="m-tools">${[
+  return `<header class="m-header">${logo()}<button aria-label="Search" data-search>${icon("search", 22)}</button><button class="join" data-auth>Join Now</button><button class="login" data-auth>Log in</button></header><main class="m-main"><div class="m-promos">${[['e67c812d32ef2f665d7e83e67c7ddf5b.webp','Lucky Numbers'],['5f8fad5385a91789e6f9713fe084d999.webp','EVE vs COV'],['39de911cfc77348695506e19fe76cea5.webp','SEV vs ALA'],['26a9b0bacc12c823c9e53a63fb120b1a.webp','Sky Legends'],['15c023581130431bee1e0d7cee077a72.webp','Virtuals']].map(([f,t])=>`<button data-info="${t}" aria-label="${t}"><img src="${asset(f)}" alt=""><span>${t}</span></button>`).join('')}</div><nav class="m-tools">${[
     ["ball", "All Sports"],
     ["tv", "Live"],
     ["code", "Load Code"],
@@ -157,7 +146,7 @@ function mobilePage() {
     )
     .join(
       "",
-    )}</nav><div class="m-categories">${["TODAY'S FOOTBALL", "FOOTBALL IN NEXT 3 HOURS", "EUROPA LEAGUE", "CONFERENCE LEAGUE"].map((t) => `<button data-league>${t}</button>`).join("")}</div><div class="m-feature-tabs"><strong>Featured</strong><button class="active" data-feature>Matches</button><button data-feature>Games</button><button data-feature>Codes</button><button data-feature>Virtuals</button></div><div class="m-leagues">${["UEFA Europa League", "UEFA Conference League", "Premier League"].map((t) => `<button data-chip>${t}</button>`).join("")}</div><div class="m-feature-match"><div class="m-tourney">Football · International Clubs · UEFA Europa League</div><div class="m-versus"><div><img src="${asset(`3175f1a20ec5adb7a2ffe7aeff7a1ec8.png`)}" alt="Real Sociedad">Real Sociedad</div><strong>1 - 0<small>Live 45:00 HT</small></strong><div><img src="${asset(`4b182df3cac0aa336aa89b91a64a642d.png`)}" alt="Lyon">Lyon</div></div><div class="m-feature-odds">${matches[3][4].map((v, j) => odd(3, j, v)).join("")}</div></div><section class="m-live"><div class="m-live-title"><h2>Live</h2>${tabs(true)}</div><div class="m-market-tabs">${["1X2", "O/U", "DC", "1st Half O/U", "Hand"].map((t, i) => `<button ${!i ? 'class="active"' : ""} data-market>${t}</button>`).join("")}</div><div class="m-odds-labels">1　　　　　　　 X　　　　　2</div>${matches
+    )}</nav><div class="m-categories">${[['aed95418bdaf759c6e669440e280a1c.png',"Today's Football"],['d2c1b7f09aa4f0ae5098ee990e6740ae.png','Football in Next 3 Hours'],['2ee7dda8cc83fb0d8aefca468f9d734e.png','England Premier League']].map(([f,t])=>`<button data-league aria-label="${t}"><img src="${asset(f)}" alt="${t}"></button>`).join('')}</div><div class="m-feature-tabs"><strong>Featured</strong><button class="active" data-feature>Matches</button><button data-feature>Games</button><button data-feature>Codes</button><button data-feature>Virtuals</button></div><div class="m-leagues">${["Premier League", "La Liga", "Bundesliga", "Serie A", "Ligue 1"].map((t) => `<button data-chip>${t}</button>`).join("")}</div><div class="m-feature-match"><a class="m-tourney" href="#/event/100">Football - England - Premier League</a><div class="m-versus"><div><img src="${asset('6b82f2b1ef59196096a4a42d6a3b5224.png')}" alt="Everton">Everton</div><strong>20:00 | Today<small>1X2</small></strong><div><img src="${asset('adcb1bfee50ec016c560c007941dccf4.png')}" alt="Coventry City">Coventry City</div></div><div class="m-feature-odds">${referenceUI.football[0].odds.slice(0,3).map((v,j)=>odd(100,j,v)).join('')}</div></div><section class="m-live"><div class="m-live-title"><h2>Live</h2>${tabs(true)}</div><div class="m-market-tabs">${["1X2", "O/U", "DC", "1st Half O/U", "Hand"].map((t, i) => `<button ${!i ? 'class="active"' : ""} data-market>${t}</button>`).join("")}</div><div class="m-odds-labels">1　　　　　　　 X　　　　　2</div>${matches
     .slice(0, 6)
     .map(
       (m, i) =>

@@ -254,7 +254,7 @@ globalThis.demoMarketDefinitions = function (id) {
     "Volleyball",
     "Cricket",
   ].includes(sport);
-  const total = sport.includes("Basketball")
+  const total = globalThis.referenceUI?.football[id-100]?.line ? Number(referenceUI.football[id-100].line) : sport.includes("Basketball")
     ? 165.5
     : sport === "Tennis"
       ? 2.5
@@ -297,8 +297,8 @@ globalThis.demoMarketDefinitions = function (id) {
     title: `Total ${sport.includes("Basketball") ? "points" : sport === "Tennis" || sport === "Table Tennis" ? "sets" : "goals"} ${total}`,
     group: "Totals",
     outcomes: [
-      ["over", id === 10 ? 1.54 : 1.9],
-      ["under", id === 10 ? 2.3 : 1.9],
+      ["over", globalThis.referenceUI?.football[id-100]?.odds[3] || (id === 10 ? 1.54 : 1.9)],
+      ["under", globalThis.referenceUI?.football[id-100]?.odds[4] || (id === 10 ? 2.3 : 1.9)],
     ],
   });
   if (!twoWay) {
