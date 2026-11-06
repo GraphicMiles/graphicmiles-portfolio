@@ -45,6 +45,7 @@ test('home landmark geometry matches the measured reference at five widths',asyn
   await page.setViewportSize({width,height:900});await page.goto(base);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   if(width<768){
+   expect(await page.locator('.m-market-tabs>button').evaluateAll(es=>es.every(e=>e.scrollWidth<=e.clientWidth))).toBe(true);
    const live=await page.locator('.m-live').boundingBox();expect(Math.abs(live.y-(width===360?456:496))).toBeLessThan(5);
    const row=await page.locator('.home-live-match').first().boundingBox();const teams=await page.locator('.home-live-teams').first().boundingBox();const odds=await page.locator('.home-live-odds').first().boundingBox();expect(teams.x+teams.width).toBeLessThanOrEqual(odds.x);expect(row.height).toBeLessThan(120);
   }else{
