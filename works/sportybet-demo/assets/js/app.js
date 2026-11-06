@@ -213,6 +213,8 @@ function markPicks() {
   if (badge) badge.textContent = picks.length;
 }
 function marketOdd(id, market, outcome, value) {
+  if (!Number.isFinite(Number(value)) || Number(value) <= 1)
+    return `<button class="odd-btn odd-suspended" disabled aria-label="Market suspended">${icon('lock',12)}</button>`;
   const key = pickKey(id, market, outcome),
     f = fixture(id);
   const label = pickLabel({ id, market, outcome });
@@ -949,15 +951,15 @@ function mount() {
     livePanel.insertBefore(target, livePanel.querySelector(".m-all"));
     const label = livePanel.querySelector(".m-odds-labels");
     label.innerHTML = "<span>1</span><span>X</span><span>2</span>";
-    // The only alternate market included in the captured snapshot is Next Goal.
+    // Market order follows the mobile reference. Prices come from the captured definitions.
     const marketBar = document.querySelector(".m-market-tabs");
     marketBar.innerHTML = [
       "1X2",
-      "Next Goal",
       "O/U",
       "DC",
       "1st Half O/U",
-      "Hand",
+      "Handicap",
+      "Next Goal",
     ]
       .map(
         (t, i) =>
