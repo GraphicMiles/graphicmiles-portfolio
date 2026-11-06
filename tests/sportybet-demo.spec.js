@@ -4,10 +4,12 @@ const base='/sportybet-demo/';
 function watch(page){const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});return errors;}
 async function wallet(page){return page.evaluate(()=>JSON.parse(localStorage.getItem('sporty-demo-v2')).ledger.reduce((sum,t)=>sum+t.amount,0));}
 
-test('portfolio homepage and archive link to the independent demo',async({page})=>{
+test('demo stays archived without appearing on the portfolio homepage',async({page})=>{
  const errors=watch(page);await page.goto('/');
- const project=page.locator('article.project').filter({has:page.getByRole('heading',{name:'SportyBet interface demo'})});
- await expect(project).toContainText('not affiliated');await expect(project.getByRole('link',{name:'Live demo'})).toHaveAttribute('href',base);
+ await expect(page.locator('a[href="/sportybet-demo/"]')).toHaveCount(0);
+ await expect(page.getByRole('heading',{name:'SportyBet interface demo'})).toHaveCount(0);
+ await expect(page.locator('article.project')).toHaveCount(4);
+ await expect(page.getByRole('heading',{name:'Four things I built'})).toBeVisible();
  await page.goto('/projects/');await page.getByRole('link',{name:/SportyBet interface demo/}).click();
  await expect(page).toHaveURL(/\/sportybet-demo\/$/);await expect(page.locator('.demo-status')).toContainText('DEMO');
  await expect(page.locator('h1')).toContainText('interactive demo');expect(errors).toEqual([]);
