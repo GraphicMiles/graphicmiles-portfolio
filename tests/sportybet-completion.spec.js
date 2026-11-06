@@ -63,7 +63,7 @@ test('virtual lobby cards retain distinct destinations and extended screens fit 
 });
 test('service worker precaches and serves the article reader offline',async({page,context})=>{
  const errors=watch(page);await page.goto(base+'#/home');await page.evaluate(()=>navigator.serviceWorker.ready);
- await expect.poll(()=>page.evaluate(async()=>{const keys=await caches.keys();return keys.some(k=>k.endsWith(':v15'))})).toBe(true);
+ await expect.poll(()=>page.evaluate(async()=>{const keys=await caches.keys();return keys.some(k=>k.endsWith(':v16'))})).toBe(true);
  await page.reload();await page.goto(base+'#/promotions/reference/features/0');await expect(page.frameLocator('.reference-promo-frame').locator('#promotion')).toBeVisible();
  await context.setOffline(true);await page.reload();await expect(page.frameLocator('.reference-promo-frame').locator('#promotion')).toBeVisible();await context.setOffline(false);expect(errors).toEqual([]);
 });
@@ -90,7 +90,7 @@ test('all four entry URLs load the current catalog, article and market implement
  test.setTimeout(90000);const errors=watch(page);
  for(const alias of ['', 'ng/', 'm/', 'ng/m/']){
   await page.goto(base+alias+'#/home');
-  await expect(page.locator('meta[name="sporty-demo-version"]')).toHaveAttribute('content','reference-20261106-r15');
+  await expect(page.locator('meta[name="sporty-demo-version"]')).toHaveAttribute('content','reference-20261106-r16');
   expect(await page.evaluate(()=>Boolean(globalThis.SportyCatalog&&globalThis.SportySurfaces&&globalThis.SportyMenu&&globalThis.SportyPromoReferences&&globalThis.SportyEventMarkets))).toBe(true);
   await page.goto(base+alias+'#/games');await expect(page.locator('.catalog-card').first()).toBeVisible();await expect.poll(()=>page.locator('.catalog-card img').first().evaluate(img=>img.complete&&img.naturalWidth>0)).toBe(true);
   await page.goto(base+alias+'#/event/100');await expect(page.locator('.native-market-block')).toHaveCount(311);
@@ -102,12 +102,12 @@ test('all four entry URLs load the current catalog, article and market implement
 test('homepage shows refreshed reference content and its market controls work',async({page},info)=>{
  const errors=watch(page);await page.goto(base+'#/home');
  if(info.project.name==='mobile'){
-  await expect(page.locator('.m-promos button')).toHaveCount(15);await expect(page.locator('.m-feature-card')).toHaveCount(5);await expect(page.locator('.m-feature-card').first()).toContainText('Fritz, Taylor');
+  await expect(page.locator('.m-promos button')).toHaveCount(15);await expect(page.locator('.m-feature-card')).toHaveCount(27);await expect(page.locator('.m-feature-card').first()).toContainText('Fritz, Taylor');
   await page.locator('.m-feature-card').first().locator('[data-pick]').first().click();await page.locator('[data-openslip]').click();await expect(page.locator('.slip-item')).toContainText('Fritz, Taylor');await page.locator('.sheet-close').click();
   await page.locator('.m-promos [data-path="promotions/reference/features/0"]').click();await expect(page.frameLocator('.reference-promo-frame').locator('#promotion')).toContainText('AutoBet');
  }else{
-  await expect(page.locator('.hero-carousel .slide').first().locator('img')).toHaveAttribute('src',/home-current-hero\.webp$/);await expect(page.locator('.highlights .match-row')).toHaveCount(9);await expect(page.locator('.highlights')).toContainText('Acad Viitorul Cluj');
-  await page.locator('[data-pick="300|1x2|home"]').click();await expect(page.locator('.slip-item')).toContainText('Acad Viitorul Cluj');await page.locator('[data-lines="300"]').click();await expect(page.getByRole('dialog')).toContainText('Total goals 2.5');await page.getByRole('dialog').locator('[data-pick="300|totals:2.5|over"]').click();await expect(page.locator('.slip-item')).toContainText('Over 2.5');
+  await expect(page.locator('.hero-carousel .slide').first().locator('img')).toHaveAttribute('src',/home-current-hero\.webp$/);await expect(page.locator('.highlights .match-row')).toHaveCount(2);await expect(page.locator('.highlights')).toContainText('Reyady Abaseya');
+  await page.locator('[data-pick="600|1x2|home"]').click();await expect(page.locator('.slip-item')).toContainText('Reyady Abaseya');await page.locator('[data-lines="600"]').click();await expect(page.getByRole('dialog')).toContainText('Total goals 2.5');await page.getByRole('dialog').locator('[data-pick="600|totals:2.5|over"]').click();await expect(page.locator('.slip-item')).toContainText('Over 2.5');
  }
  expect(errors).toEqual([]);
 });

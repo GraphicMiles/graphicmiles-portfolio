@@ -1,6 +1,6 @@
 "use strict";
 const PREFIX = "sporty-demo:" + self.registration.scope + ":";
-const CACHE = PREFIX + "v15";
+const CACHE = PREFIX + "v16";
 const ASSETS = [
   "/ng/",
   "/ng/index.html",
@@ -249,6 +249,8 @@ const ASSETS = [
   "/assets/js/views.js",
   "/assets/img/me-tier-background.webp",
   "/assets/img/me-loyalty-banner.webp",
+  "/assets/css/home-fidelity.css",
+  "/assets/js/home-fidelity.js",
   "/assets/js/home-data.js",
   "/assets/img/home-current-hero.webp",
   "/assets/img/home-current-second.webp",
