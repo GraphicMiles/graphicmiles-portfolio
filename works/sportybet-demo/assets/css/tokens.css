@@ -1,0 +1,84 @@
+/* SportyBet clone — design tokens extracted from the live product (2026-11-05 capture) */
+:root {
+  /* brand */
+  --red: #E41827;
+  --red-input: #B60606;
+  --red-deep: #7B0911;
+  --green: #0D9737;
+  --green-dark: #0A7A2C;
+  --green-live: #00FF4E;
+  --green-pale: #D6EBDC;
+  /* neutrals */
+  --ink: #1B1E25;
+  --ink-deep: #121315;
+  --slate: #353A45;
+  --slate-soft: #50545E;
+  --page: #EAECEF;
+  --card: #FFFFFF;
+  --chip: #F7F7F7;
+  --field: #FAFAFA;
+  --line: #DCDEE5;
+  --line-soft: #EAECF0;
+  /* text */
+  --text: #353A45;
+  --muted: #80848E;
+  --muted-2: #9CA0AB;
+  --muted-3: #C0C4CC;
+  --on-dark: #FFFFFF;
+  /* type */
+  --font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Barlow', 'Inter', sans-serif;
+  /* spacing scale */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-12: 48px;
+  /* radii */
+  --r-1: 2px; --r-2: 4px; --r-pill: 999px;
+  /* layout */
+  --container: 1000px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--page);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; margin: 0; padding: 0; }
+h1, h2, h3, h4, p, figure { margin: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+input, select { font: inherit; color: inherit; }
+input { -webkit-appearance: none; appearance: none; border: 0; outline: none; background: none; }
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input::placeholder { color: var(--muted-3); }
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0 1000px var(--field) inset; }
+
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.on-dark :focus-visible, .topbar :focus-visible { outline-color: #fff; }
+
+.container { width: 100%; max-width: var(--container); margin-inline: auto; }
+
+.icon { flex: none; display: block; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; margin: -1px;
+  clip: rect(0 0 0 0); overflow: hidden; white-space: nowrap;
+}
+
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter-Regular.a1db723976.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter-Medium.adc5e93683.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter-SemiBold.3558e0041c.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Inter'; src: url('../fonts/Inter-Bold.56a11d287d.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Barlow'; src: url('../fonts/Barlow-Regular.3a262070f4.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Barlow'; src: url('../fonts/Barlow-Bold.af3944704d.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Roboto Condensed'; src: url('../fonts/RobotoCondensed-Regular.461bd71faa.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Roboto Condensed'; src: url('../fonts/RobotoCondensed-SemiBold.2ebf3566cd.ttf') format('truetype'); font-weight: 600; font-display: swap; }
