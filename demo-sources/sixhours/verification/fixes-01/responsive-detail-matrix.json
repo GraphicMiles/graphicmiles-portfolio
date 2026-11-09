@@ -1,0 +1,278 @@
+[
+  {
+    "width": 320,
+    "documentWidth": 320,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      }
+    ],
+    "campaignLines": 4
+  },
+  {
+    "width": 360,
+    "documentWidth": 360,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      }
+    ],
+    "campaignLines": 3
+  },
+  {
+    "width": 390,
+    "documentWidth": 390,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      }
+    ],
+    "campaignLines": 2
+  },
+  {
+    "width": 650,
+    "documentWidth": 650,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      },
+      {
+        "heading": 190,
+        "link": 152,
+        "art": 192
+      }
+    ],
+    "campaignLines": 2
+  },
+  {
+    "width": 768,
+    "documentWidth": 768,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 149,
+        "link": 136,
+        "art": 152
+      },
+      {
+        "heading": 415.65625,
+        "link": 402.65625,
+        "art": 418.65625
+      },
+      {
+        "heading": 682.328125,
+        "link": 669.328125,
+        "art": 685.328125
+      }
+    ],
+    "campaignLines": 1.9999186197916667
+  },
+  {
+    "width": 800,
+    "documentWidth": 800,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 149,
+        "link": 136,
+        "art": 152
+      },
+      {
+        "heading": 426.328125,
+        "link": 413.328125,
+        "art": 429.328125
+      },
+      {
+        "heading": 703.65625,
+        "link": 690.65625,
+        "art": 706.65625
+      }
+    ],
+    "campaignLines": 2
+  },
+  {
+    "width": 820,
+    "documentWidth": 820,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 149,
+        "link": 136,
+        "art": 152
+      },
+      {
+        "heading": 433,
+        "link": 420,
+        "art": 436
+      },
+      {
+        "heading": 717,
+        "link": 704,
+        "art": 720
+      }
+    ],
+    "campaignLines": 2.000127032520325
+  },
+  {
+    "width": 900,
+    "documentWidth": 900,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 149,
+        "link": 136,
+        "art": 152
+      },
+      {
+        "heading": 459.65625,
+        "link": 446.65625,
+        "art": 462.65625
+      },
+      {
+        "heading": 770.328125,
+        "link": 757.328125,
+        "art": 773.328125
+      }
+    ],
+    "campaignLines": 2
+  },
+  {
+    "width": 901,
+    "documentWidth": 901,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 174,
+        "link": 136,
+        "art": 176
+      },
+      {
+        "heading": 485,
+        "link": 447,
+        "art": 487
+      },
+      {
+        "heading": 796,
+        "link": 758,
+        "art": 798
+      }
+    ],
+    "campaignLines": 2.000092489826119
+  },
+  {
+    "width": 980,
+    "documentWidth": 980,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 174,
+        "link": 136,
+        "art": 176
+      },
+      {
+        "heading": 511.328125,
+        "link": 473.328125,
+        "art": 513.328125
+      },
+      {
+        "heading": 848.65625,
+        "link": 810.65625,
+        "art": 850.65625
+      }
+    ],
+    "campaignLines": 2
+  },
+  {
+    "width": 1024,
+    "documentWidth": 1024,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 174,
+        "link": 136,
+        "art": 176
+      },
+      {
+        "heading": 526,
+        "link": 488,
+        "art": 528
+      },
+      {
+        "heading": 878,
+        "link": 840,
+        "art": 880
+      }
+    ],
+    "campaignLines": 2
+  },
+  {
+    "width": 1440,
+    "documentWidth": 1440,
+    "badLabels": [],
+    "tiles": [
+      {
+        "heading": 214,
+        "link": 176,
+        "art": 216
+      },
+      {
+        "heading": 678,
+        "link": 640,
+        "art": 680
+      },
+      {
+        "heading": 1142,
+        "link": 1104,
+        "art": 1144
+      }
+    ],
+    "campaignLines": 2
+  }
+]

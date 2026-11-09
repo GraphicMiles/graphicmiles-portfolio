@@ -1,0 +1,25 @@
+[
+  {
+    "case": "search-filter-sort-gallery-cart-delivery-and-cutoff-checkout",
+    "status": "passed"
+  },
+  {
+    "case": "eight-sets-atomic-add-and-shared-city-stock",
+    "status": "passed"
+  },
+  {
+    "case": "nested-navigation-focus-help-information-and-honest-local-newsletter",
+    "status": "passed"
+  },
+  {
+    "case": "automated-axe-checks-home-menu-search-delivery-product-and-confirmation",
+    "status": "passed"
+  },
+  {
+    "case": "local-only-runtime",
+    "status": "passed",
+    "pageErrors": [],
+    "externalRequests": [],
+    "nonReadRequests": []
+  }
+]

@@ -1,0 +1,146 @@
+[
+  {
+    "width": 320,
+    "columns": 2,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 360,
+    "columns": 2,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 375,
+    "columns": 2,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 390,
+    "columns": 2,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 414,
+    "columns": 2,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 450,
+    "columns": 2,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 480,
+    "columns": 2,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 481,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 600,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 650,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 767,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 768,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 800,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 820,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 980,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 990,
+    "columns": 3,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 991,
+    "columns": 4,
+    "hero": 500,
+    "desktop": false
+  },
+  {
+    "width": 992,
+    "columns": 4,
+    "hero": 500,
+    "desktop": true
+  },
+  {
+    "width": 1024,
+    "columns": 4,
+    "hero": 500,
+    "desktop": true
+  },
+  {
+    "width": 1025,
+    "columns": 4,
+    "hero": 750,
+    "desktop": true
+  },
+  {
+    "width": 1280,
+    "columns": 4,
+    "hero": 750,
+    "desktop": true
+  },
+  {
+    "width": 1440,
+    "columns": 4,
+    "hero": 750,
+    "desktop": true
+  },
+  {
+    "width": 1600,
+    "columns": 4,
+    "hero": 750,
+    "desktop": true
+  },
+  {
+    "width": 1920,
+    "columns": 4,
+    "hero": 750,
+    "desktop": true
+  }
+]

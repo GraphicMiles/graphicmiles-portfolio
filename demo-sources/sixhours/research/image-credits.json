@@ -1,0 +1,278 @@
+[
+  {
+    "slug": "iphone-16",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/iPhone_16_Ultramarine_PDP_Image_Position_1__WWEN.png?v=1727187821",
+    "source": "https://www.istore.com.ng/products/iphone-16-128gb",
+    "title": "iPhone 16 128GB",
+    "local": "images/products/iphone-16-0.webp",
+    "dimensions": [
+      651,
+      787
+    ]
+  },
+  {
+    "slug": "iphone-16",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/iPhone_16_Ultramarine_PDP_Image_Position_1b__WWEN.png?v=1727187820",
+    "source": "https://www.istore.com.ng/products/iphone-16-128gb",
+    "title": "iPhone 16 128GB",
+    "local": "images/products/iphone-16-1.webp",
+    "dimensions": [
+      405,
+      787
+    ]
+  },
+  {
+    "slug": "macbook-air",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/MacBook_Air_13-inch_M4_Starlight_PDP_Image_Position_1__WWEN.jpg?v=1742917063",
+    "source": "https://www.istore.com.ng/products/macbook-air-m4-chip-10-cpu-8c-gpu-256gb-ssd-13-inch",
+    "title": "MacBook Air 13-inch | Apple M4 chip | 512GB SSD",
+    "local": "images/products/macbook-air-0.webp",
+    "dimensions": [
+      734,
+      458
+    ]
+  },
+  {
+    "slug": "macbook-air",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/MacBook_Air_13-inch_M4_Starlight_PDP_Image_Position_2__WWEN.jpg?v=1742917063",
+    "source": "https://www.istore.com.ng/products/macbook-air-m4-chip-10-cpu-8c-gpu-256gb-ssd-13-inch",
+    "title": "MacBook Air 13-inch | Apple M4 chip | 512GB SSD",
+    "local": "images/products/macbook-air-1.webp",
+    "dimensions": [
+      733,
+      462
+    ]
+  },
+  {
+    "slug": "airpods-4",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/AirPods_4_PDP_Image_Position_2__WWEN.png?v=1727282990",
+    "source": "https://www.istore.com.ng/products/airpods-4-with-active-noise-cancellation",
+    "title": "AirPods 4 with Active Noise Cancellation",
+    "local": "images/products/airpods-4-0.webp",
+    "dimensions": [
+      736,
+      763
+    ]
+  },
+  {
+    "slug": "airpods-4",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/AirPods_4_PDP_Image_Position_1__WWEN.png?v=1727282990",
+    "source": "https://www.istore.com.ng/products/airpods-4-with-active-noise-cancellation",
+    "title": "AirPods 4 with Active Noise Cancellation",
+    "local": "images/products/airpods-4-1.webp",
+    "dimensions": [
+      770,
+      719
+    ]
+  },
+  {
+    "slug": "beats-solo3",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/MX432.jpg?v=1655315755",
+    "source": "https://www.istore.com.ng/products/beats-solo3-wireless-headphones",
+    "title": "Beats Solo3 Wireless Headphones",
+    "local": "images/products/beats-solo3-0.webp",
+    "dimensions": [
+      633,
+      900
+    ]
+  },
+  {
+    "slug": "beats-solo3",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/MX432_AV1.jpg?v=1655315755",
+    "source": "https://www.istore.com.ng/products/beats-solo3-wireless-headphones",
+    "title": "Beats Solo3 Wireless Headphones",
+    "local": "images/products/beats-solo3-1.webp",
+    "dimensions": [
+      343,
+      900
+    ]
+  },
+  {
+    "slug": "jbl-flip-6",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/3_JBL_FLIP6_FRONT_BLUE_29503_x1_088ed33f-d59e-4a4f-9d00-d158a9b9a436.jpg?v=1674060958",
+    "source": "https://www.istore.com.ng/products/jbl-flip-6-bluetooth-speaker",
+    "title": "JBL Flip 6",
+    "local": "images/products/jbl-flip-6-0.webp",
+    "dimensions": [
+      800,
+      322
+    ]
+  },
+  {
+    "slug": "jbl-flip-6",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/1_JBL_FLIP6_HERO_BLUE_29399_x1_b323a64c-39e4-492e-8630-24b7c68589b3.jpg?v=1674060958",
+    "source": "https://www.istore.com.ng/products/jbl-flip-6-bluetooth-speaker",
+    "title": "JBL Flip 6",
+    "local": "images/products/jbl-flip-6-1.webp",
+    "dimensions": [
+      348,
+      848
+    ]
+  },
+  {
+    "slug": "ipad-air",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/iPad_Air_11_M2_WiFi_Starlight_PDP_Image_Position_1b__WWEN_017cbfe2-b533-46b0-b897-99a9a99a214d.jpg?v=1716565015",
+    "source": "https://www.istore.com.ng/products/ipad-air-11-wifi-512gb",
+    "title": "iPad Air 11\" WiFi 512GB",
+    "local": "images/products/ipad-air-0.webp",
+    "dimensions": [
+      606,
+      682
+    ]
+  },
+  {
+    "slug": "ipad-air",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/iPad_Air_11_M2_WiFi_Space_Gray_PDP_Image_Position_1b__WWEN_62381126-eb27-42c9-b98b-eb01d90eac82.jpg?v=1716565014",
+    "source": "https://www.istore.com.ng/products/ipad-air-11-wifi-512gb",
+    "title": "iPad Air 11\" WiFi 512GB",
+    "local": "images/products/ipad-air-1.webp",
+    "dimensions": [
+      606,
+      682
+    ]
+  },
+  {
+    "slug": "watch-series-10",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/Apple_Watch_Series_10_42mm_LTE_Jet_Black_Aluminum_Sport_Band_Black_PDP_Image_Position_1__WWEN.png?v=1727271060",
+    "source": "https://www.istore.com.ng/products/apple-watch-series-10-jet-black-aluminium-case-with-black-sport-band",
+    "title": "Apple Watch Series 10 42mm Jet Black Aluminium Case with Black Sport Band",
+    "local": "images/products/watch-series-10-0.webp",
+    "dimensions": [
+      677,
+      779
+    ]
+  },
+  {
+    "slug": "watch-series-10",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/Apple_Watch_Series_10_42mm_LTE_Jet_Black_Aluminum_Sport_Band_Black_PDP_Image_Position_2__WWEN.png?v=1727271060",
+    "source": "https://www.istore.com.ng/products/apple-watch-series-10-jet-black-aluminium-case-with-black-sport-band",
+    "title": "Apple Watch Series 10 42mm Jet Black Aluminium Case with Black Sport Band",
+    "local": "images/products/watch-series-10-1.webp",
+    "dimensions": [
+      491,
+      786
+    ]
+  },
+  {
+    "slug": "belkin-charger",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/5eaf74c149a96c6e_WCH011_Belkin_45WDualUSB-CWallCharger_DQ45WPRONGSWHITE_WEB.jpg?v=1759158542",
+    "source": "https://www.istore.com.ng/products/belkin-pro-gan-dual-wall-charger-45w",
+    "title": "Belkin Pro GaN Dual Wall Charger 45W",
+    "local": "images/products/belkin-charger-0.webp",
+    "dimensions": [
+      680,
+      656
+    ]
+  },
+  {
+    "slug": "belkin-charger",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/files/62a60e0ca5d25902_WCH011_dq_Belkin_45WDualUsbC_WallChargerVariant_MPW259_Web_01.jpg?v=1759158542",
+    "source": "https://www.istore.com.ng/products/belkin-pro-gan-dual-wall-charger-45w",
+    "title": "Belkin Pro GaN Dual Wall Charger 45W",
+    "local": "images/products/belkin-charger-1.webp",
+    "dimensions": [
+      511,
+      346
+    ]
+  },
+  {
+    "slug": "apple-adapter",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/20w1.jpg?v=1616763585",
+    "source": "https://www.istore.com.ng/products/apple-20w-usb-c-power-adapter",
+    "title": "Apple 20W USB-C Power Adapter",
+    "local": "images/products/apple-adapter-0.webp",
+    "dimensions": [
+      755,
+      872
+    ]
+  },
+  {
+    "slug": "apple-adapter",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/20w2.jpg?v=1616763585",
+    "source": "https://www.istore.com.ng/products/apple-20w-usb-c-power-adapter",
+    "title": "Apple 20W USB-C Power Adapter",
+    "local": "images/products/apple-adapter-1.webp",
+    "dimensions": [
+      757,
+      624
+    ]
+  },
+  {
+    "slug": "magic-mouse",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/MMMQ3.jpg?v=1660828743",
+    "source": "https://www.istore.com.ng/products/magic-mouse-black-multi-touch-surface",
+    "title": "Magic Mouse - Black Multi-Touch Surface",
+    "local": "images/products/magic-mouse-0.webp",
+    "dimensions": [
+      800,
+      246
+    ]
+  },
+  {
+    "slug": "magic-mouse",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/MMMQ3_AV1.jpg?v=1660828743",
+    "source": "https://www.istore.com.ng/products/magic-mouse-black-multi-touch-surface",
+    "title": "Magic Mouse - Black Multi-Touch Surface",
+    "local": "images/products/magic-mouse-1.webp",
+    "dimensions": [
+      462,
+      840
+    ]
+  },
+  {
+    "slug": "belkin-powerbank",
+    "index": 0,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/133826226_BPD004btBK_WH__MPP242_MagneticWirelessPowerBank5K_Stand_SideOrtho_WH_Shot7_Web2.png?v=1676219910",
+    "source": "https://www.istore.com.ng/products/belkin-magnetic-wireless-power-bank-5k-stand",
+    "title": "Belkin Magnetic Wireless Power Bank 5K + Stand",
+    "local": "images/products/belkin-powerbank-0.webp",
+    "dimensions": [
+      180,
+      900
+    ]
+  },
+  {
+    "slug": "belkin-powerbank",
+    "index": 1,
+    "url": "https://cdn.shopify.com/s/files/1/0011/0162/7439/products/133826238_BPD004btBK_WH__MPP242_MagneticWirelessPowerBank5K_Stand_OrthoBack_WH_Shot4_Web2.png?v=1676219910",
+    "source": "https://www.istore.com.ng/products/belkin-magnetic-wireless-power-bank-5k-stand",
+    "title": "Belkin Magnetic Wireless Power Bank 5K + Stand",
+    "local": "images/products/belkin-powerbank-1.webp",
+    "dimensions": [
+      619,
+      900
+    ]
+  },
+  {
+    "slug": "galaxy-a17",
+    "index": 0,
+    "url": "https://api-prod.slot.ng/storage/uploads/products/TjfaICDljZn8AV0BAJIkDsmeTabRM3X6s5QoI8pV.webp",
+    "source": "https://slot.ng/products/samsung-galaxy-a17-4gb-128gb-4g",
+    "title": "Samsung Galaxy A17",
+    "local": "images/products/galaxy-a17-0.webp",
+    "dimensions": [
+      326,
+      346
+    ]
+  }
+]

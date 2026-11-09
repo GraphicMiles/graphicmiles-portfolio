@@ -1,0 +1,45 @@
+[
+  {
+    "case": "labels-and-category-art-do-not-overlap-at-12-widths; narrow-menu-close-is-clear",
+    "status": "passed"
+  },
+  {
+    "case": "remaining-stock-includes-other-variants-and-set-components; disabled-opener-focus-is-restored",
+    "status": "passed"
+  },
+  {
+    "case": "city-change-updates-related-cards-without-replacing-images; overstock-can-decrease-to-valid",
+    "status": "passed"
+  },
+  {
+    "case": "removing-current-or-final-line-and-reaching-plus-limit-keeps-focus-in-bag",
+    "status": "passed"
+  },
+  {
+    "case": "centered-view-to-drawer-enters-from-correct-edge-at-scroll-zero; rapid-close-reopen-is-safe",
+    "status": "passed"
+  },
+  {
+    "case": "popover-flips-and-clamps-at-620px-and-375px-heights; keyboard-does-not-scroll-panel; delivery-result-visible; portal-fallback",
+    "status": "passed"
+  },
+  {
+    "case": "carousel-retains-DOM-selected-slide-and-focus-across-height-and-breakpoint-resizes; stale-form-success-clears",
+    "status": "passed"
+  },
+  {
+    "case": "back-forward-restores-collection-position-focus-and-filters; footer-focus-restores",
+    "status": "passed"
+  },
+  {
+    "case": "single-photo-gallery-has-no-dead-arrows; multi-photo-keyboard-and-focus-return-work",
+    "status": "passed"
+  },
+  {
+    "case": "local-only-regressions",
+    "status": "passed",
+    "pageErrors": [],
+    "externalRequests": [],
+    "nonReadRequests": []
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "display": [
+    {
+      "familyName": "Domaine Disp",
+      "postScriptName": "DomaineDisp-Regular",
+      "isCustomFont": true,
+      "glyphCount": 41
+    }
+  ],
+  "body": [
+    {
+      "familyName": "Public Sans Thin Light",
+      "postScriptName": "PublicSansThin-Light",
+      "isCustomFont": true,
+      "glyphCount": 89
+    }
+  ],
+  "input": [
+    {
+      "familyName": "Poppins Medium",
+      "postScriptName": "Poppins-Medium",
+      "isCustomFont": true,
+      "glyphCount": 11
+    }
+  ]
+}

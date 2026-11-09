@@ -1,0 +1,302 @@
+[
+  {
+    "viewport": 980,
+    "role": "announcement",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 980,
+      "height": 39.59375
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "header",
+    "rect": {
+      "x": 0,
+      "y": 39.59375,
+      "width": 980,
+      "height": 97
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "hero",
+    "rect": {
+      "x": 0,
+      "y": 136.59375,
+      "width": 980,
+      "height": 500
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "heroTitle",
+    "rect": {
+      "x": 40,
+      "y": 249,
+      "width": 517,
+      "height": 116
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "heroBody",
+    "rect": {
+      "x": 40,
+      "y": 381,
+      "width": 460,
+      "height": 61.1875
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "heroCTA",
+    "rect": {
+      "x": 40,
+      "y": 466.1875,
+      "width": 283.1875,
+      "height": 58
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "categories",
+    "rect": {
+      "x": 0,
+      "y": 660.59375,
+      "width": 980,
+      "height": 222
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "campaign",
+    "rect": {
+      "x": 40,
+      "y": 946.59375,
+      "width": 900,
+      "height": 400
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "campaignTitle",
+    "rect": {
+      "x": 370.546875,
+      "y": 1104.59375,
+      "width": 529.4375,
+      "height": 112
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "productsHeading",
+    "rect": {
+      "x": 355,
+      "y": 1410.59375,
+      "width": 270,
+      "height": 48
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "productImage",
+    "rect": {
+      "x": 0,
+      "y": 1522.59375,
+      "width": 313.328125,
+      "height": 375.984375
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "editorials",
+    "rect": {
+      "x": 0,
+      "y": 7950.484375,
+      "width": 980,
+      "height": 586
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "corporate",
+    "rect": {
+      "x": 0,
+      "y": 9578.859375,
+      "width": 980,
+      "height": 630
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "newsletterTitle",
+    "rect": {
+      "x": 165,
+      "y": 10332.859375,
+      "width": 650,
+      "height": 55
+    }
+  },
+  {
+    "viewport": 980,
+    "role": "footer",
+    "rect": {
+      "x": 0,
+      "y": 11101.859375,
+      "width": 980,
+      "height": 739.75
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "announcement",
+    "rect": {
+      "x": 0,
+      "y": 0,
+      "width": 1440,
+      "height": 39.59375
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "header",
+    "rect": {
+      "x": 0,
+      "y": 39.59375,
+      "width": 1440,
+      "height": 91
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "hero",
+    "rect": {
+      "x": 0,
+      "y": 130.59375,
+      "width": 1440,
+      "height": 750
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "heroTitle",
+    "rect": {
+      "x": 135,
+      "y": 368,
+      "width": 517,
+      "height": 116
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "heroBody",
+    "rect": {
+      "x": 135,
+      "y": 500,
+      "width": 460,
+      "height": 61.1875
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "heroCTA",
+    "rect": {
+      "x": 135,
+      "y": 585.1875,
+      "width": 283.1875,
+      "height": 58
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "categories",
+    "rect": {
+      "x": 40,
+      "y": 904.59375,
+      "width": 1360,
+      "height": 222
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "campaign",
+    "rect": {
+      "x": 40,
+      "y": 1190.59375,
+      "width": 1360,
+      "height": 400
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "campaignTitle",
+    "rect": {
+      "x": 720,
+      "y": 1284.796875,
+      "width": 640,
+      "height": 144
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "productsHeading",
+    "rect": {
+      "x": 585,
+      "y": 1654.59375,
+      "width": 270,
+      "height": 48
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "productImage",
+    "rect": {
+      "x": 80,
+      "y": 1766.59375,
+      "width": 297.5,
+      "height": 357
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "editorials",
+    "rect": {
+      "x": 0,
+      "y": 5960.96875,
+      "width": 1440,
+      "height": 841
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "corporate",
+    "rect": {
+      "x": 0,
+      "y": 7708.53125,
+      "width": 1440,
+      "height": 630
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "newsletterTitle",
+    "rect": {
+      "x": 395,
+      "y": 8462.53125,
+      "width": 650,
+      "height": 55
+    }
+  },
+  {
+    "viewport": 1440,
+    "role": "footer",
+    "rect": {
+      "x": 0,
+      "y": 9219.53125,
+      "width": 1440,
+      "height": 374.75
+    }
+  }
+]

@@ -1,0 +1,7 @@
+node_modules/
+site/
+six-preview.html
+six-html-source.zip
+__pycache__/
+*.pyc
+verification/

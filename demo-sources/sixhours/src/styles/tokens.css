@@ -1,0 +1,32 @@
+@font-face { font-family: 'Domaine Display'; src: url('fonts/domaine-display-regular.woff2') format('woff2'); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Public Sans'; src: url('fonts/public-sans-300.woff2') format('woff2'); font-style: normal; font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Public Sans'; src: url('fonts/public-sans-400.woff2') format('woff2'); font-style: normal; font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Public Sans'; src: url('fonts/public-sans-500.woff2') format('woff2'); font-style: normal; font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Public Sans'; src: url('fonts/public-sans-600.woff2') format('woff2'); font-style: normal; font-weight: 600; font-display: swap; }
+@font-face { font-family: 'Public Sans'; src: url('fonts/public-sans-700.woff2') format('woff2'); font-style: normal; font-weight: 700; font-display: swap; }
+@font-face { font-family: 'Poppins'; src: url('fonts/poppins-500.woff2') format('woff2'); font-style: normal; font-weight: 500; font-display: swap; }
+:root {
+  --paper: #fff;
+  --ink: #111;
+  --body: #525252;
+  --display-ink: #555;
+  --muted: #767676;
+  --announcement: #fff1da;
+  --cream: #fdfbef;
+  --soft: #f6f6f6;
+  --footer: #efefed;
+  --editorial-action: #2c2c2c;
+  --commerce-action: #1f1f1f;
+  --nav-active: #ff6f61;
+  --stars: #f7b600;
+  --line: #e5e5e5;
+  --line-strong: #ababab;
+  --error: #943c31;
+  --success: #374d3c;
+  --sans: 'Public Sans', Arial, sans-serif;
+  --serif: 'Domaine Display', Georgia, serif;
+  --container: 1170px;
+  --merch-container: 1280px;
+  --drawer-duration: 500ms;
+  --image-duration: 400ms;
+}

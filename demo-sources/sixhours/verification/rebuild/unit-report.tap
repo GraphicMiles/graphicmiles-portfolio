@@ -1,0 +1,124 @@
+
+> sixhours-html-preview@2.0.1 test
+> node --test tests/*.test.js
+
+TAP version 13
+# Subtest: the rebuilt merchandise has 20 products and eight meaningful, unique component-backed sets
+ok 1 - the rebuilt merchandise has 20 products and eight meaningful, unique component-backed sets
+  ---
+  duration_ms: 1.384734
+  ...
+# Subtest: set addition adds its actual components and computes their real demo prices
+ok 2 - set addition adds its actual components and computes their real demo prices
+  ---
+  duration_ms: 0.592746
+  ...
+# Subtest: a second component failure is atomic: the first simulated addition is not committed
+ok 3 - a second component failure is atomic: the first simulated addition is not committed
+  ---
+  duration_ms: 0.792998
+  ...
+# Subtest: sets and individual purchases share component stock, including across variants
+ok 4 - sets and individual purchases share component stock, including across variants
+  ---
+  duration_ms: 0.405519
+  ...
+# Subtest: unknown sets and unavailable city components cannot enter the bag
+ok 5 - unknown sets and unavailable city components cannot enter the bag
+  ---
+  duration_ms: 0.207716
+  ...
+# Subtest: set availability predicts the actual add without changing existing lines
+ok 6 - set availability predicts the actual add without changing existing lines
+  ---
+  duration_ms: 0.472173
+  ...
+# Subtest: catalogue IDs and variants are unique, prices are safe integer NGN amounts
+ok 7 - catalogue IDs and variants are unique, prices are safe integer NGN amounts
+  ---
+  duration_ms: 1.012799
+  ...
+# Subtest: search is case-insensitive, multi-word, category-aware, and sortable
+ok 8 - search is case-insensitive, multi-word, category-aware, and sortable
+  ---
+  duration_ms: 1.448393
+  ...
+# Subtest: persisted cart drops unknown IDs, bad variants, fractional/negative counts and ignores stored prices
+ok 9 - persisted cart drops unknown IDs, bad variants, fractional/negative counts and ignores stored prices
+  ---
+  duration_ms: 0.41755
+  ...
+# Subtest: persisted cart caps combined quantities across variants, not each option separately
+ok 10 - persisted cart caps combined quantities across variants, not each option separately
+  ---
+  duration_ms: 0.128739
+  ...
+# Subtest: adding, incrementing, removing and totals are derived without mutating inputs
+ok 11 - adding, incrementing, removing and totals are derived without mutating inputs
+  ---
+  duration_ms: 0.363563
+  ...
+# Subtest: city stock applies across variants and unavailable cities cannot add items
+ok 12 - city stock applies across variants and unavailable cities cannot add items
+  ---
+  duration_ms: 0.113292
+  ...
+# Subtest: WAT window opens at exactly 09:00 and closes at exactly 15:00
+ok 13 - WAT window opens at exactly 09:00 and closes at exactly 15:00
+  ---
+  duration_ms: 109.367574
+  ...
+# Subtest: WAT scheduling handles local midnight, year boundaries and an invalid clock
+ok 14 - WAT scheduling handles local midnight, year boundaries and an invalid clock
+  ---
+  duration_ms: 0.531202
+  ...
+# Subtest: only configured city/area pairs get a quote, and stock issues block eligibility
+ok 15 - only configured city/area pairs get a quote, and stock issues block eligibility
+  ---
+  duration_ms: 0.72132
+  ...
+# Subtest: checkout accepts valid Nigerian local and international mobile formats
+ok 16 - checkout accepts valid Nigerian local and international mobile formats
+  ---
+  duration_ms: 1.246905
+  ...
+# Subtest: checkout rejects incomplete details, unsupported areas, empty bag and overlong notes
+ok 17 - checkout rejects incomplete details, unsupported areas, empty bag and overlong notes
+  ---
+  duration_ms: 0.779838
+  ...
+# Subtest: demo summary recomputes totals, is explicitly not a transaction, and contains no contact PII
+ok 18 - demo summary recomputes totals, is explicitly not a transaction, and contains no contact PII
+  ---
+  duration_ms: 0.762152
+  ...
+# Subtest: cart and location persist and restore; successful local demo clears the bag only afterward
+ok 19 - cart and location persist and restore; successful local demo clears the bag only afterward
+  ---
+  duration_ms: 0.918591
+  ...
+# Subtest: malformed JSON, tampered storage, and blocked storage safely degrade
+ok 20 - malformed JSON, tampered storage, and blocked storage safely degrade
+  ---
+  duration_ms: 0.413165
+  ...
+# Subtest: purchase availability subtracts every variant already in the bag
+ok 21 - purchase availability subtracts every variant already in the bag
+  ---
+  duration_ms: 0.255104
+  ...
+# Subtest: after a city change an overstocked bag can be reduced one step at a time
+ok 22 - after a city change an overstocked bag can be reduced one step at a time
+  ---
+  duration_ms: 0.335626
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 241.662042

@@ -1,0 +1,8 @@
+# Optional browser verification and asset-preparation dependencies.
+# Install Chromium separately: python -m playwright install --with-deps chromium
+playwright>=1.48
+Pillow>=10
+fonttools>=4.50
+brotli>=1.1
+requests>=2.31
+numpy>=1.26

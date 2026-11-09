@@ -1,0 +1,76 @@
+[
+  {
+    "case": "responsive-breakpoints-and-overflow",
+    "status": "passed",
+    "widths": [
+      320,
+      360,
+      375,
+      390,
+      414,
+      450,
+      480,
+      481,
+      600,
+      650,
+      767,
+      768,
+      800,
+      820,
+      980,
+      990,
+      991,
+      992,
+      1024,
+      1025,
+      1280,
+      1440,
+      1600,
+      1920
+    ]
+  },
+  {
+    "case": "320px-routes-filter-popovers-and-quickview-controls",
+    "status": "passed"
+  },
+  {
+    "case": "actual-custom-font-rendering-not-just-css-declarations",
+    "status": "passed",
+    "fonts": {
+      "display": [
+        {
+          "familyName": "Domaine Disp",
+          "postScriptName": "DomaineDisp-Regular",
+          "isCustomFont": true,
+          "glyphCount": 41
+        }
+      ],
+      "body": [
+        {
+          "familyName": "Public Sans Thin Light",
+          "postScriptName": "PublicSansThin-Light",
+          "isCustomFont": true,
+          "glyphCount": 89
+        }
+      ],
+      "input": [
+        {
+          "familyName": "Poppins Medium",
+          "postScriptName": "Poppins-Medium",
+          "isCustomFont": true,
+          "glyphCount": 11
+        }
+      ]
+    }
+  },
+  {
+    "case": "500ms-drawer-400ms-inline-menu-and-manual-carousel-advance",
+    "status": "passed"
+  },
+  {
+    "case": "self-contained-html-in-opaque-network-free-sandbox",
+    "status": "passed",
+    "externalRequests": [],
+    "pageErrors": []
+  }
+]

@@ -29,6 +29,7 @@ application, and anyone who wants to see the work before talking.
 - **Nine case studies**, each a complete page of its own at `/cala`, `/cirrus`,
   `/demos`, `/drop`, `/ilee`, `/middleground`, `/quarry`, `/rewind` and
   `/tessera`.
+- **Sixhours at `/sixhours/`.** A responsive gadget-store demo with 20 products, eight component-backed sets, local bag and delivery-area checks. No real payments, orders or deliveries.
 - **The CV.** A single page PDF, linked from the home page.
 
 ## Using it
@@ -102,3 +103,7 @@ Vercel. `vercel.json` sets `buildCommand` to `node static-build.js` and
 `outputDirectory` to `dist`. Pushes to `main` deploy, and
 `.github/workflows/ci.yml` runs the build and the Playwright suite on every push
 and pull request.
+
+## Sixhours demo source
+
+The generated, deployable app is in `works/sixhours/`. Editable HTML/CSS/vanilla-JavaScript source and its 22 domain tests are in `demo-sources/sixhours/`, which is excluded from the static deployment. See that directory's README for build/export commands and asset-rights limitations. `tests/sixhours-demo.spec.js` covers its portfolio links and local shopping flow on desktop/mobile. Fonts and retail photography have separate rights; this is a design demonstration, not a commercial retailer.

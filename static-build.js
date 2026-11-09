@@ -24,6 +24,7 @@ function copy(src, dest) {
 const skip = new Set([
     "dist",
     "works",
+    "demo-sources",
     "node_modules",
     ".git",
     ".vercel",

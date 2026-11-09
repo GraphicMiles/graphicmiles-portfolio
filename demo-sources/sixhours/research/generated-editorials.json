@@ -1,0 +1,11 @@
+{
+  "usage": "Illustrative AI-generated editorial photographs for a local design preview. Not photographs of customers, employees, deliveries or endorsements.",
+  "assets": [
+    {"file":"images/editorial/hero-rebuild.jpg","description":"Pale negative space to the left, anonymous person using a phone beside a laptop and wooden desk to the right.","preparedDimensions":[2560,1440]},
+    {"file":"images/editorial/campaign-rebuild.jpg","description":"Headphones and a brown speaker, reframed into the reference campaign relationship on photographic cream paper.","preparedDimensions":[3840,800]},
+    {"file":"images/editorial/business-rebuild.jpg","description":"Overhead technology and brown leather on gray stone, with the source-confirmed dark overlay supplied by CSS.","preparedDimensions":[2560,1034]},
+    {"file":"images/editorial/work.jpg","description":"Illustrative hands at a laptop beside a sunlit window."},
+    {"file":"images/editorial/audio.jpg","description":"Illustrative listening moment with headphones and an open book."}
+  ],
+  "composites": "Category and set artwork is composed from the credited catalogue product photographs. It does not represent separately stocked fictional products."
+}
