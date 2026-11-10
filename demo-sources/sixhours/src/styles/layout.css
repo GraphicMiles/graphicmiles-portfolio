@@ -110,6 +110,7 @@
 .faq-list details { border: 0; }
 .faq-list summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12.5px; font-weight: 700; color: var(--muted); line-height: 20px; min-height: 28px; }
 .faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary .icon { transition: transform 200ms ease; }
 .faq-list details[open] summary .icon { transform: rotate(180deg); }
 .faq-list details > p { font-size: 12.5px; line-height: 20px; color: var(--muted); font-weight: 400; margin: 0 0 10px; }
 .site-footer { background: var(--footer); margin-top: 40px; }

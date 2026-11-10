@@ -60,6 +60,8 @@ button.product-main-image { cursor: zoom-in; }
 .product-accordions { margin-top: 30px; }
 .product-accordions details { border-bottom: 1px solid var(--line); }
 .product-accordions summary { font-size: 16px; line-height: 24px; min-height: 58px; color: #111; }
+/* The disclosure glyph is a plus here, so opening turns it into a close mark instead of a no-op rotation. */
+.product-accordions details[open] summary .icon { transform: rotate(45deg); }
 .product-accordions details > p { font-size: 14px; line-height: 24px; margin-bottom: 20px; }
 .spec-list { margin: 0; padding-bottom: 22px; }
 .spec-list > div { display: grid; grid-template-columns: 120px 1fr; gap: 20px; font-size: 14px; line-height: 23px; padding-block: 7px; }

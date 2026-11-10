@@ -51,7 +51,7 @@ def responsive(browser):
   p.set_viewport_size({'width':width,'height':900});p.wait_for_timeout(60)
   result=p.evaluate('''()=>{
    const badLabels=[...document.querySelectorAll('.card-add')].flatMap(button=>{const r=document.createRange();r.selectNodeContents(button);const t=r.getBoundingClientRect(),b=button.getBoundingClientRect();return t.top<b.top-.5||t.bottom>b.bottom+.5||t.left<b.left-.5||t.right>b.right+.5?[{text:button.textContent,button:b.toJSON(),textBounds:t.toJSON()}]:[]});
-   const tiles=[...document.querySelectorAll('.category-tile')].map(tile=>{const art=tile.querySelector('.category-art').getBoundingClientRect();return{heading:tile.querySelector('h2').getBoundingClientRect().right,link:tile.querySelector('.category-link').getBoundingClientRect().right,art:art.left}});
+   const tiles=[...document.querySelectorAll('.category-tile')].map(tile=>{const art=tile.querySelector('.category-art').getBoundingClientRect();const textRight=selector=>{const range=document.createRange();range.selectNodeContents(tile.querySelector(selector));return range.getBoundingClientRect().right};return{heading:textRight('h2'),link:textRight('.category-link'),art:art.left}});
    const h=document.querySelector('.campaign h2'),style=getComputedStyle(h);
    return{width:innerWidth,documentWidth:document.documentElement.scrollWidth,badLabels,tiles,campaignLines:h.getBoundingClientRect().height/parseFloat(style.lineHeight)}
   }''')

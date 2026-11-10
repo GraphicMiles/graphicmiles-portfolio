@@ -99,3 +99,43 @@ test('the 320px layout and gallery stay usable at the deployed path', async ({ p
   await expect(page.locator('[data-gallery-open]')).toBeFocused();
   expect(problems).toEqual([]);
 });
+
+test('mobile disclosure, gallery, menu and checkout confirmation remain clear', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 760 });
+  await ready(page, '/sixhours/#product/iphone-16');
+  const icon = page.locator('.product-accordions details').first().locator('summary .icon');
+  await expect.poll(() => icon.evaluate(el => getComputedStyle(el).transform)).toMatch(/0\.707/);
+  await page.locator('[data-gallery-open]').click();
+  const photo = await page.locator('.gallery-enlarged').boundingBox();
+  expect(photo.width).toBeGreaterThanOrEqual(288);
+  await page.locator('[data-gallery-step="1"]').click();
+  await expect(page.locator('.gallery-counter')).toHaveText('2 / 2');
+  await page.locator('[data-gallery-step="-1"]').click();
+  await expect(page.locator('.gallery-counter')).toHaveText('1 / 2');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#overlay')).not.toHaveAttribute('open', '');
+  await page.locator('[data-product-add]').click();
+  await page.locator('[data-action="begin-checkout"]').click();
+  await page.locator('[data-sample-details]').click();
+  await pick(page, '#checkout-city', 'Lagos');
+  await pick(page, '#checkout-area', 'Yaba');
+  await page.locator('[data-review-order]').click();
+  await page.locator('[data-confirm-demo]').click();
+  await expect(page.locator('.confirmation-heading h1 + p')).toContainText('below. No payment');
+  await page.locator('[data-action="open-menu"]').click();
+  const close = await page.locator('#overlay [data-close-overlay]').boundingBox();
+  expect(close.width).toBeGreaterThanOrEqual(44);
+  expect(close.height).toBeGreaterThanOrEqual(44);
+});
+
+test('the privacy panel can be scrolled with the keyboard', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 500 });
+  await ready(page);
+  await page.locator('.footer-column [data-action="open-privacy"]').first().click();
+  await expect(page.locator('#overlay [data-close-overlay]')).toBeFocused();
+  const content = page.locator('#overlay-content');
+  await content.focus();
+  await expect(content).toBeFocused();
+  await page.keyboard.press('End');
+  await expect.poll(() => content.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+});
