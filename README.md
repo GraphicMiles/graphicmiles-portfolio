@@ -1,8 +1,8 @@
 # Raji Farouq Adewunmi, portfolio
 
 A personal site for Raji Farouq Adewunmi, a junior fullstack developer in Lagos,
-Nigeria. One page introduces him, a second page holds every build in a single
-list, and each build opens as its own case study.
+Nigeria. One page introduces him, a second page lists the shipped work and live
+links in one place, and each build opens as its own case study.
 
 Live: [designedbymiles.vercel.app](https://designedbymiles.vercel.app)
 
@@ -24,11 +24,12 @@ application, and anyone who wants to see the work before talking.
 - **The home page.** Who he is, how to reach him, and four featured projects
   (Legally Unbullied, Scout, Nearspace, Luna) with the hard part of each build,
   the stack, the test evidence and links to the live demo, the code and the docs.
-- **The archive at `/projects`.** Every build in one list: what it is, one line
-  about it, one link.
-- **Nine case studies**, each a complete page of its own at `/cala`, `/cirrus`,
-  `/demos`, `/drop`, `/ilee`, `/middleground`, `/quarry`, `/rewind` and
-  `/tessera`.
+- **The archive at `/projects`.** The shipped work and live links in one list:
+  what it is, one line about it, one link.
+- **Ten case studies**, each a complete page of its own at `/cala`, `/cirrus`,
+  `/drop`, `/ilee`, `/middleground`, `/quarry`, `/rewind`, `/sportybet-demo`,
+  `/tessera` and `/sixhours`, plus eight single-page concept builds collected
+  under `/demos`.
 - **Sixhours at `/sixhours/`.** A responsive gadget-store demo with 20 products, eight component-backed sets, local bag and delivery-area checks. No real payments, orders or deliveries.
 - **The CV.** A single page PDF, linked from the home page.
 
@@ -63,7 +64,7 @@ css/styles.css          stylesheet for the root pages
 js/main.js              accordion, reveal choreography
 fonts/                  Inter Tight, Fraunces, self-hosted woff2
 images/                 photography, project logos, thumbnails
-works/<slug>/           nine self-contained case studies
+works/<slug>/           ten self-contained case studies
 Raji_Adewunmi_Farouq_CV.pdf
 ```
 

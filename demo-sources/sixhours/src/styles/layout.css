@@ -56,7 +56,8 @@
 .reviews-carousel { width: min(1170px, calc(100% - 80px)); position: relative; padding: 15px 35px; margin-top: 64px; margin-bottom: 30px; }
 .reviews-window { overflow: hidden; touch-action: pan-y; }
 .reviews-track { display: flex; gap: 20px; transition: transform 500ms ease; will-change: transform; }
-.review-card { flex: 0 0 calc((100% - 40px) / 3); min-width: 0; border: 1px solid #efefef; padding: 24px 20px 10px; display: flex; flex-direction: column; min-height: 471.375px; }
+/* Card height follows the guide text; the track stretches every card to the tallest one and the product strip stays pinned to the bottom. */
+.review-card { flex: 0 0 calc((100% - 40px) / 3); min-width: 0; border: 1px solid #efefef; padding: 24px 20px 10px; display: flex; flex-direction: column; }
 .review-person { display: flex; gap: 16px; align-items: center; padding-bottom: 18px; border-bottom: 1px solid #a5a5a5; }
 .review-avatar { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #d0d5d7; font-size: 20px; font-weight: 300; }
 .review-person > div { flex: 1; min-width: 0; }
@@ -145,7 +146,6 @@
   .editorial-audio .editorial-image img { height: 420px; }
   .reviews-heading-block { padding: 65px 0 50px; }
   .reviews-carousel { width: 100%; }
-  .review-card { min-height: 471.375px; }
   .corporate-copy { width: 100%; }
   .newsletter-reserved { height: 124px; }
   .footer-main { width: 600px; max-width: calc(100% - 32px); grid-template-columns: 1fr 1fr; column-gap: 60px; row-gap: 29px; padding-bottom: 72px; }
@@ -164,7 +164,6 @@
 }
 @media (max-width: 990px) { .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 20px; } }
 @media (min-width: 1025px) {
-  .review-card { min-height: 450.578px; }
   .review-content { margin-top: 20px; }
 
 }
@@ -174,9 +173,9 @@
   .announcement .icon { width: 13px; height: 13px; }
   .hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, transparent 0%, #f6f5f1 72%); }
   .hero-inner { z-index: 2; }
-  .hero h1 { font-size: 36px; line-height: 36px; }
+  .hero h1 { font-size: 30px; line-height: 34px; }
   .hero-copy { width: 100%; }
-  .hero-inner { width: calc(100% - 40px); align-items: flex-end; padding-bottom: 56px; }
+  .hero-inner { width: calc(100% - 40px); align-items: flex-end; padding-bottom: 32px; }
   .hero-copy > p { width: 350px; font-size: 16px; line-height: 27.2px; }
   .hero-background { object-position: 75% center; }
 
@@ -203,7 +202,6 @@
   .reviews-section .section-heading { padding: 0; }
   .reviews-section .section-heading h2 { font-size: 28px; line-height: 28px; }
   .reviews-carousel { width: calc(100% - 32px); margin-top: 64px; padding-inline: 30px; }
-  .review-card { min-height: 471.375px; }
   .review-person strong { font-size: 15px; }
   .corporate-section { margin-top: 0; min-height: 445px; }
   .corporate-copy { width: calc(100% - 32px); }
@@ -228,6 +226,11 @@
 }
 @media (max-width: 800px) { .review-card { flex-basis: calc((100% - 20px) / 2); } }
 @media (max-width: 650px) { .review-card { flex-basis: 100%; } }
+/* Narrow phones keep the two-line heading so the copy still sits below the photographed subject. */
+@media (max-width: 360px) {
+  .hero h1 { font-size: 26px; line-height: 30px; }
+  .hero-inner { padding-bottom: 24px; }
+}
 @media (max-width: 480px) { .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 450px) { .review-arrow { display: none; } .reviews-carousel { padding-inline: 12px; } }
 

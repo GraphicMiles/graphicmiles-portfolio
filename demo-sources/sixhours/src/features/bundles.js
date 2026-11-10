@@ -35,7 +35,7 @@ export function createBundlesFeature(context) {
     store.setCart(result.lines); context.cart.openCart(opener); toast(`${getBundle(button.dataset.bundle).name} added as its component products.`);
   }
   function mountCollection(root) {
-    root.innerHTML = '<section class="shop-intro"><div class="container"><h1>Gift Items &amp; Bundles</h1><p>Thoughtful pairs, made from the actual products in the collection. Sample prices.</p></div></section><section class="merch-container shop-section"><div class="product-grid" data-bundle-collection></div></section>';
+    root.innerHTML = '<section class="shop-intro"><div class="container"><h1>Gift Items &amp; Bundles</h1><p>Thoughtful pairs, made from the actual products in the collection. Sample prices.</p></div></section><section class="merch-container shop-section"><h2 class="sr-only">Gift sets in this collection</h2><div class="product-grid" data-bundle-collection></div></section>';
     const render = () => { root.querySelector('[data-bundle-collection]').innerHTML = bundles.map(bundle => bundleCard(bundle, { city: store.getState().location?.city, lines: store.getState().cart })).join(''); };
     render(); return store.subscribe(state => updateBundleCards(root, state));
   }

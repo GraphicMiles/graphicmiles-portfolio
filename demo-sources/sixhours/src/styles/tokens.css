@@ -17,7 +17,9 @@
   --footer: #efefed;
   --editorial-action: #2c2c2c;
   --commerce-action: #1f1f1f;
-  --nav-active: #ff6f61;
+  /* Source accent #ff6f61 reads 2.7:1 on white. The active-navigation colour
+     carries text, so it is darkened along the same hue to 4.6:1 and stays legible. */
+  --nav-active: #bf5349;
   --stars: #f7b600;
   --line: #e5e5e5;
   --line-strong: #ababab;
