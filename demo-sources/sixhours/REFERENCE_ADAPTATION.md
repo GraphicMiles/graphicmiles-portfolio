@@ -41,7 +41,7 @@ At native 390px, the hero is 500px, categories stack, the campaign is 540px and 
 
 - Real gadget models replace clothing; the original clothing photos, Hingees brand asset, contact details and commerce endpoints are not reused as a gadget business.
 - The own-brand SVG wordmark retains the measured image footprint and heavy serif character, using licensed Bree Serif paths. It is not claimed to be the reference's unidentified logotype typeface.
-- Product-copy wrapping naturally differs with model/configuration names. The final document heights are approximately 11,825px at 980, 9,551px at 1440 and 12,615px at 390, rather than forcing fake merchandise text to reproduce an exact clothing document height.
+- Product-copy wrapping naturally differs with model/configuration names. The final document heights are approximately 11,981px at 980, 9,621px at 1440 and 12,863px at 390, rather than forcing fake merchandise text to reproduce an exact clothing document height.
 - The small information text uses #767676 rather than source #858585 for readable contrast. Muted text on light-gray commerce surfaces uses #6E6E6E. Main reference palette roles remain intact.
 - The source's slight negative-margin overflow is not reproduced. The rebuilt page has no horizontal overflow across the tested 24 widths.
 - Stars are visibly labeled Sample. Preview guides replace genuine-looking customer testimonials and the unsupported 12,000-customer claim. Their layout, manual slide density, outlines, stars, product strips and pagination preserve the relationship of the reference review section.
@@ -89,4 +89,6 @@ The reports and the scripts that produced them are in `verification/audit-02/`.
 
 Three layout and copy findings were closed without touching the palette, the type scale above the breakpoint or the section order. The review cards lost their fixed minimum height: the track now stretches every card to the tallest guide and the product strip stays pinned to the bottom, so the space between a short guide and its product strip is content-driven rather than reserved. The mobile hero heading is 30px/34px and the copy block sits 32px above the hero floor, which puts the two-line heading below the photographed laptop and phone instead of across them; a 360px breakpoint steps the heading down to 26px/30px for the same reason. The portfolio README and the demo hub no longer claim a case-study count the archive does not hold: the repository carries ten case studies and the hub lists eight concept builds.
 
-The document heights above move with the review change: 11,825px at 980, 9,551px at 1440 and 12,615px at 390. The primary 980px and 1440px measurements in the tables above are otherwise unchanged.
+Merchandise cards now share one height in every grid. Each product and set card keeps a fixed title slot (two lines, three below 480px and four below 360px), the star row is reserved even when a set carries no sample stars, and the card action sits on the row's baseline, so names, stars, prices and buttons line up across a row. Longer names truncate inside that slot and the full name stays on the product page and in the accessible name.
+
+The document heights above move with these changes: 11,981px at 980, 9,621px at 1440 and 12,863px at 390. The primary 980px and 1440px measurements in the tables above are otherwise unchanged.

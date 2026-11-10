@@ -38,7 +38,7 @@
 .campaign .button { margin-top: 32px; width: 266.19px; max-width: 100%; padding-inline: 20px; }
 .featured-section { padding-top: 64px; padding-bottom: 90px; }
 .featured-section .product-grid, .bundles-section .product-grid { margin-top: 64px; }
-.product-grid { padding-bottom: 25px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 30px; row-gap: 25px; align-items: start; }
+.product-grid { padding-bottom: 25px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 30px; row-gap: 25px; align-items: stretch; }
 .bundles-section { padding-top: 168px; padding-bottom: 90px; }
 .editorial-section { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 168px; text-align: center; }
 .editorial { min-width: 0; }
