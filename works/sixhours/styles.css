@@ -292,7 +292,7 @@ legend { padding: 0; }
   .announcement { min-height: 34.2px; padding: 7px 12px; font-size: 12px; line-height: 20.2px; }
   .announcement > button { gap: 6px; }
   .announcement .icon { width: 13px; height: 13px; }
-  .hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, transparent 0%, rgba(246,245,241,0) 34%, #f6f5f1 60%); }
+  .hero::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(246,245,241,0) 0%, rgba(246,245,241,0) 34%, #f6f5f1 60%); }
   .hero-inner { z-index: 2; }
   .hero h1 { font-size: 30px; line-height: 34px; }
   .hero-copy { width: 100%; }

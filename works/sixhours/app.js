@@ -3120,7 +3120,7 @@
       toast2(`${getBundle(button.dataset.bundle).name} added as its component products.`);
     }
     function mountCollection(root) {
-      root.innerHTML = '<section class="shop-intro"><div class="container"><h1>Gift Items &amp; Bundles</h1><p>Thoughtful pairs, made from the actual products in the collection. Sample prices.</p></div></section><section class="merch-container shop-section"><h2 class="sr-only">Gift sets in this collection</h2><div class="product-grid" data-bundle-collection></div></section>';
+      root.innerHTML = `<section class="shop-intro"><div class="container"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="#home">Home</a>${icon("chevron-right", 13)}<span>Gift Sets</span></nav><h1>Gift Items &amp; Bundles</h1><p>Thoughtful pairs, made from the actual products in the collection. Sample prices.</p></div></section><section class="merch-container shop-section"><h2 class="sr-only">Gift sets in this collection</h2><div class="product-grid" data-bundle-collection></div></section>`;
       const render = () => {
         root.querySelector("[data-bundle-collection]").innerHTML = bundles.map((bundle) => bundleCard(bundle, { city: store2.getState().location?.city, lines: store2.getState().cart })).join("");
       };
