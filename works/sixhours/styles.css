@@ -141,7 +141,7 @@ legend { padding: 0; }
 .campaign .button { margin-top: 32px; width: 266.19px; max-width: 100%; padding-inline: 20px; }
 .featured-section { padding-top: 64px; padding-bottom: 90px; }
 .featured-section .product-grid, .bundles-section .product-grid { margin-top: 64px; }
-.product-grid { padding-bottom: 25px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 30px; row-gap: 25px; align-items: start; }
+.product-grid { padding-bottom: 25px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 30px; row-gap: 25px; align-items: stretch; }
 .bundles-section { padding-top: 168px; padding-bottom: 90px; }
 .editorial-section { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 168px; text-align: center; }
 .editorial { min-width: 0; }
@@ -345,7 +345,7 @@ legend { padding: 0; }
 }
 
 /* Merchandise: 5:6 canvases, centered text and a single responsive commerce control. */
-.product-card { display: grid; grid-template-areas: 'media' 'info'; grid-template-columns: minmax(0, 1fr); position: relative; min-width: 0; padding-bottom: 20px; }
+.product-card { display: grid; grid-template-areas: 'media' 'info'; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 1fr; align-content: start; position: relative; min-width: 0; padding-bottom: 20px; }
 .product-media { grid-area: media; position: relative; aspect-ratio: 5 / 6; background: var(--soft); }
 .product-photo { position: relative; display: block; width: 100%; height: 100%; overflow: hidden; }
 .product-photo img { position: absolute; inset: 0; width: 100%; height: 100%; padding: 24px; object-fit: contain; mix-blend-mode: multiply; transition: opacity var(--image-duration) ease; }
@@ -355,7 +355,8 @@ legend { padding: 0; }
 .product-badge { position: absolute; left: 0; top: 15px; max-width: calc(100% - 48px); background: #fff; color: #111; font-size: 9px; line-height: 14px; padding: 3px 10px; pointer-events: none; }
 .quick-view { position: absolute; right: 14px; top: 15px; width: 38px; height: 38px; border-radius: 50%; background: #fff; color: #111; opacity: 0; transform: translateY(10px); transition: opacity 100ms ease, transform 100ms ease; }
 .product-info { display: flex; flex-direction: column; align-items: stretch; grid-area: info; padding-top: 20px; min-width: 0; text-align: center; }
-.product-info h3 { font-family: var(--sans); font-size: 16px; line-height: 21.28px; font-weight: 500; margin-bottom: 3px; color: var(--ink); }
+/* Every card keeps the same title slot, so names, stars and prices line up across a row. */
+.product-info h3 { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; min-height: 42.56px; font-family: var(--sans); font-size: 16px; line-height: 21.28px; font-weight: 500; margin-bottom: 3px; color: var(--ink); }
 .product-info h3 a { transition: color 350ms ease; }
 .product-info h3 a:hover { color: #767676; }
 .product-price { font-size: 16px; line-height: 24px; font-weight: 500; color: var(--muted); margin-top: 7px; }
@@ -469,13 +470,21 @@ legend { padding: 0; }
 
 @media (min-width: 991px) { .product-info { padding-inline: 15px; } }
 @media (max-width: 990px) {
-  .product-card { grid-template-areas: 'media' 'info' 'action'; }
+  .product-card { grid-template-areas: 'media' 'info' 'action'; grid-template-rows: auto 1fr auto; }
   .card-add { grid-area: action; width: 100%; margin: 15px 0 0; border-radius: 3px; background: var(--commerce-action); color: #fff; opacity: 1; transform: none; }
 }
 @media (hover: none) {
   .product-card:hover .has-alternate .product-primary { opacity: 1; }
   .product-card:hover .has-alternate .product-alternate { opacity: 0; }
 }
+@media (max-width: 480px) {
+  .product-info h3 { -webkit-line-clamp: 3; min-height: 63.84px; }
+}
+@media (max-width: 360px) {
+  .product-info h3 { -webkit-line-clamp: 4; min-height: 85.12px; }
+}
+/* Set names are short, so their cards keep a two-line slot at every width. */
+.bundle-card .product-info h3 { -webkit-line-clamp: 2; min-height: 42.56px; }
 @media (max-width: 767px) {
   .product-photo img { padding: 18px; }
   .product-badge { font-size: 8px; padding: 3px 6px; }
