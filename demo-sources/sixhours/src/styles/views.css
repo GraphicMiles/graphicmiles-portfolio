@@ -228,3 +228,7 @@ button.product-main-image { cursor: zoom-in; }
   .policy-page-aside { position: static; border-bottom: 1px solid var(--line); padding-bottom: 35px; }
   .promise-page-number { font-size: 100px; }
 }
+@media (max-width: 480px) {
+  .collection-tabs { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; gap: 14px 22px; }
+  .collection-tabs button { justify-self: start; }
+}

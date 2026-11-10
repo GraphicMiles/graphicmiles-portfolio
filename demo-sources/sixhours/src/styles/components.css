@@ -130,8 +130,8 @@
 @media (hover: none) {
   .product-card:hover .has-alternate .product-primary { opacity: 1; }
   .product-card:hover .has-alternate .product-alternate { opacity: 0; }
-  /* Without hover there is no reveal, so the quick view stays visible and reachable by touch. */
-  .quick-view { opacity: 1; transform: none; }
+  /* Without hover there is no reveal, and the card already carries the path: the photo opens the product page and "Select options" opens the quick view. */
+  .quick-view { display: none; }
 }
 @media (max-width: 480px) {
   .product-info h3 { -webkit-line-clamp: 3; min-height: 63.84px; }
