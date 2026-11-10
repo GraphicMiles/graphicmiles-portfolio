@@ -227,6 +227,7 @@ legend { padding: 0; }
 .faq-list details { border: 0; }
 .faq-list summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12.5px; font-weight: 700; color: var(--muted); line-height: 20px; min-height: 28px; }
 .faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary .icon { transition: transform 200ms ease; }
 .faq-list details[open] summary .icon { transform: rotate(180deg); }
 .faq-list details > p { font-size: 12.5px; line-height: 20px; color: var(--muted); font-weight: 400; margin: 0 0 10px; }
 .site-footer { background: var(--footer); margin-top: 40px; }
@@ -402,7 +403,7 @@ legend { padding: 0; }
 .overlay[data-kind='menu'].is-open .overlay-surface { transform: translateX(0); }
 .overlay[data-kind='menu'] .overlay-header { position: relative; padding: 25px 20px 20px; min-height: 153.84px; height: 153.84px; }
 .overlay[data-kind='menu'] .overlay-header h2 img { width: 405px; height: 108.84px; max-width: 100%; object-fit: fill; }
-.overlay[data-kind='menu'] .overlay-header > .icon-button { position: absolute; right: 12px; top: 58px; width: 24px; height: 24px; color: #767676; }
+.overlay[data-kind='menu'] .overlay-header > .icon-button { position: absolute; right: 0; top: 48px; width: 44px; height: 44px; color: #767676; }
 .overlay[data-kind='menu'] .overlay-header > .icon-button .icon { width: 16px; height: 16px; }
 .overlay[data-kind='menu'] .overlay-content { padding: 60px 30px 30px; }
 .menu-links, .menu-sublist { list-style: none; margin: 0; padding: 0; }
@@ -471,7 +472,7 @@ legend { padding: 0; }
 .gallery-arrow { position: absolute; top: calc(50% - 24px); color: #fff; width: 48px; height: 48px; }
 .gallery-previous { left: 8px; }
 .gallery-next { right: 8px; }
-.gallery-counter { position: absolute; bottom: 24px; left: 0; right: 0; text-align: center; color: #fff; font-size: 14px; line-height: 24px; }
+.gallery-counter { position: absolute; bottom: 24px; left: 0; right: 0; text-align: center; color: #fff; font-size: 14px; line-height: 24px; pointer-events: none; }
 
 .custom-select { position: relative; font-size: 14px; min-width: 0; }
 .custom-select.is-open { z-index: 8; }
@@ -526,14 +527,19 @@ legend { padding: 0; }
   .signup-copy h3 { font-size: 30px; line-height: 36px; }
   .signup-copy > p { max-width: 270px; }
   .overlay[data-kind='newsletter'] .overlay-header { right: 12px; top: 12px; }
-  .overlay[data-kind='newsletter'] .overlay-header .icon-button { width: 34px; height: 34px; }
+  .overlay[data-kind='newsletter'] .overlay-header .icon-button { width: 44px; height: 44px; }
   .toast { left: 16px; bottom: 76px; max-width: calc(100vw - 32px); }
+  .gallery-lightbox { padding: 64px 16px 104px; }
+  .gallery-arrow { top: auto; bottom: 24px; width: 44px; height: 44px; }
+  .gallery-previous { left: 12px; }
+  .gallery-next { right: 12px; }
+  .gallery-counter { bottom: 34px; }
 }
 @media (max-width: 470px) {
-  .overlay[data-kind='menu'] .overlay-header { min-height: calc((100vw - 72px) / 3.721 + 45px); height: calc((100vw - 72px) / 3.721 + 45px); }
-  .overlay[data-kind='menu'] .overlay-header h2 { flex: none; width: calc(100% - 32px); }
+  .overlay[data-kind='menu'] .overlay-header { min-height: calc((100vw - 84px) / 3.721 + 45px); height: calc((100vw - 84px) / 3.721 + 45px); }
+  .overlay[data-kind='menu'] .overlay-header h2 { flex: none; width: calc(100% - 44px); }
   .overlay[data-kind='menu'] .overlay-header h2 img { width: 100%; height: auto; }
-  .overlay[data-kind='menu'] .overlay-header > .icon-button { top: calc(25px + (100vw - 72px) / 7.442 - 12px); right: 10px; }
+  .overlay[data-kind='menu'] .overlay-header > .icon-button { width: 44px; height: 44px; top: calc(25px + (100vw - 84px) / 7.442 - 22px); right: 0; }
 }
 
 .product-stock-note:empty, .bundle-availability:empty { display: none; }
@@ -699,6 +705,8 @@ button.product-main-image { cursor: zoom-in; }
 .product-accordions { margin-top: 30px; }
 .product-accordions details { border-bottom: 1px solid var(--line); }
 .product-accordions summary { font-size: 16px; line-height: 24px; min-height: 58px; color: #111; }
+/* The disclosure glyph is a plus here, so opening turns it into a close mark instead of a no-op rotation. */
+.product-accordions details[open] summary .icon { transform: rotate(45deg); }
 .product-accordions details > p { font-size: 14px; line-height: 24px; margin-bottom: 20px; }
 .spec-list { margin: 0; padding-bottom: 22px; }
 .spec-list > div { display: grid; grid-template-columns: 120px 1fr; gap: 20px; font-size: 14px; line-height: 23px; padding-block: 7px; }
