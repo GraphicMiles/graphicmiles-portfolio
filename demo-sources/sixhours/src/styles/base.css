@@ -37,14 +37,18 @@ legend { padding: 0; }
 .text-link { font-size: inherit; line-height: inherit; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .inline-link { display: inline-flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 400; font-size: 14px; padding-bottom: 4px; border-bottom: 1px solid currentColor; line-height: 1.6; width: fit-content; }
 .inline-link:hover, .text-link:hover { color: var(--muted); }
+.inline-link:active, .text-link:active { opacity: 0.65; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 56px; padding: 16px 28px; border: 1px solid var(--commerce-action); border-radius: 0; font-size: 16px; font-weight: 500; line-height: 22px; text-align: center; transition: color 350ms ease, background-color 350ms ease; }
+/* Press feedback answers on pointer-down: the control reacts while the finger is still down. */
+.button:active:not(:disabled) { transform: scale(0.985); transition: transform 100ms ease-out; }
 .button-dark { color: var(--paper); background: var(--commerce-action); }
 .button-dark:hover:not(:disabled) { background: #000; border-color: #000; }
 .button-outline { background: transparent; color: var(--ink); }
 .button-outline:hover:not(:disabled) { background: var(--commerce-action); color: var(--paper); }
 .editorial-cta { background: var(--editorial-action); color: #fff; border: 0; border-radius: 100px; min-height: 58px; padding: 17px 40px; font-size: 19.2px; line-height: 24px; font-weight: 400; }
 .small-pill { border: 0; border-radius: 100px; min-height: 56px; padding: 16px 32px; font-size: 14px; font-weight: 400; }
-.icon-button { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; flex: 0 0 auto; color: var(--ink); }
+.icon-button { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; flex: 0 0 auto; color: var(--ink); transition: transform 100ms ease-out; }
+.icon-button:active { transform: scale(0.9); }
 .section-heading { display: flex; align-items: center; justify-content: center; text-align: center; gap: 24px; }
 .section-heading h2 { font-size: 30px; line-height: 48px; font-weight: 500; }
 .section-footer { display: flex; justify-content: center; margin-top: 40px; }
