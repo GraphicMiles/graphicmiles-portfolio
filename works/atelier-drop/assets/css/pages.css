@@ -1,0 +1,191 @@
+/* ==========================================================================
+   pages.css — shared chrome for the standalone section pages
+   (/pages/runway product list, page wrappers)
+   ========================================================================== */
+.page-live-section {
+  position: relative;
+}
+
+/* ------------------------------------------------ runway page: "Shoes" list */
+.pg-list {
+  padding: 48px 40px;
+}
+.pg-list__head {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+}
+.pg-list__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 322px);
+  gap: 24px 8px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.runway-pad {
+  height: 1px;
+}
+.pg-card {
+  position: relative;
+}
+.pg-card__media {
+  overflow: hidden;
+}
+.pg-card__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pg-card__name {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+}
+.pg-card__price {
+  margin: 6px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15px;
+}
+.pg-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+@media (max-width: 899.98px) {
+  /* the theme's mobile product list scrolls sideways: 234px cards, 8px apart */
+  .pg-list {
+    padding: 33.6px 0;
+  }
+  .pg-list__head {
+    padding-inline: 16px;
+  }
+  .pg-list__grid {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 16px;
+    padding-inline: 16px;
+    scrollbar-width: none;
+  }
+  .pg-list__grid::-webkit-scrollbar {
+    display: none;
+  }
+  .pg-card {
+    flex: 0 0 234px;
+    scroll-snap-align: start;
+  }
+}
+
+/* ==========================================================================
+   404 — /pages/* unknown  "Page not found" + Discover something new
+   ========================================================================== */
+.pg404-hero {
+  padding: 144px 40px 145px;
+  text-align: center;
+}
+.pg404-title {
+  margin: 0 auto;
+  max-width: 1040px;
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #000;
+}
+.pg404-sub {
+  margin: 22px 0 0;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink, #151413);
+}
+.pg404-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+  min-width: 180px;
+  min-height: 52px;
+  padding: 0 24px;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.pg404-btn:hover {
+  opacity: 0.82;
+}
+
+.pg404-list {
+  padding: 48px 40px;
+}
+.pg404-list__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+}
+.pg404-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pg404-card {
+  position: relative;
+  min-width: 0;
+}
+.pg404-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pg404-card__name {
+  margin: 8px 0 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #000;
+}
+.pg404-card__price {
+  margin: 2.4px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #000;
+}
+.pg404-card__link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+.pg404-card__link:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
+
+@media (max-width: 749.98px) {
+  .pg404-hero {
+    padding: 72px 18px;
+  }
+  .pg404-list {
+    padding: 36px 18px;
+  }
+  .pg404-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 16px;
+    margin-top: 24px;
+  }
+}

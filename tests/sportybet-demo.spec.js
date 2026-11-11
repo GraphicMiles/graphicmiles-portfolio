@@ -8,8 +8,8 @@ test('demo stays archived without appearing on the portfolio homepage',async({pa
  const errors=watch(page);await page.goto('/');
  await expect(page.locator('a[href="/sportybet-demo/"]')).toHaveCount(0);
  await expect(page.getByRole('heading',{name:'SportyBet interface demo'})).toHaveCount(0);
- await expect(page.locator('article.project')).toHaveCount(4);
- await expect(page.getByRole('heading',{name:'Four things I built'})).toBeVisible();
+ await expect(page.locator('article.project')).toHaveCount(5);
+ await expect(page.getByRole('heading',{name:'Five things I built'})).toBeVisible();
  await page.goto('/projects/');await page.getByRole('link',{name:/SportyBet interface demo/}).click();
  await expect(page).toHaveURL(/\/sportybet-demo\/$/);await expect(page.locator('.demo-status')).toContainText('DEMO');
  await expect(page.locator('h1')).toContainText('interactive demo');expect(errors).toEqual([]);

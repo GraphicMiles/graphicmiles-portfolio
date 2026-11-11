@@ -1,0 +1,111 @@
+/* ==========================================================================
+   search.css — /search results
+   Ref @1440: H3 "Search results" 48/700 at y144; search field 680x54 (r4,
+   border #DFDFDF, icon 24 at x16, reset 24 at right); toolbar row with
+   summaries at y330 (44 tall); grid y390, 5 cols 259.2, gap 24/16.
+   Empty state: message 14 at y282, then H4 "Products" 24/700 at y342 and the
+   same grid at y398.
+   ========================================================================== */
+.search-page{padding:0 40px}
+.search-page h1{
+  margin:0;
+  padding-top:40px;
+  font-size:48px;
+  font-weight:700;
+  line-height:48px;
+  letter-spacing:-.5px;
+}
+.search-form{
+  margin:24px 0 12.8px;
+}
+.search-field{
+  position:relative;
+  width:680px;
+  max-width:100%;
+  height:54px;
+  border:1px solid #dfdfdf;
+  border-radius:4px;
+  background:#fff;
+}
+.search-field__icon{
+  position:absolute;
+  left:16px;
+  top:15px;
+  width:24px;
+  height:24px;
+  color:#111;
+  pointer-events:none;
+}
+.search-field input{
+  width:100%;
+  height:52px;
+  padding:16px 54px;
+  border:0;
+  background:transparent;
+  font-size:14px;
+  line-height:20px;
+  color:#111;
+  border-radius:4px;
+}
+.search-field input::placeholder{color:rgba(0,0,0,.55)}
+.search-field input::-webkit-search-cancel-button{display:none}
+.search-reset{
+  position:absolute;
+  right:16px;
+  top:15px;
+  width:24px;
+  height:24px;
+  display:grid;
+  place-items:center;
+  color:#111;
+  border-radius:50%;
+}
+.search-reset:hover{background:#f2f2f2}
+.search-reset svg{width:18px;height:18px}
+
+/* toolbar spacing: summaries at 330 when the form ends at 282.8 */
+.search-page .collection-toolbar{
+  padding:48px 0 16px;
+}
+.search-page.search-page--empty .collection-toolbar{
+  display:none;
+}
+
+.search-note{
+  margin:0;
+  padding-top:2px;
+  font-size:14px;
+  line-height:20px;
+  color:#000;
+}
+.search-note[hidden]{display:none}
+
+.search-all-head{
+  padding-top:40px;
+}
+.search-all-head h4{
+  margin:0;
+  font-size:24px;
+  font-weight:700;
+  line-height:24px;
+  letter-spacing:-.2px;
+}
+.search-page.search-page--empty .product-grid{
+  margin-top:32px;
+}
+.search-page .product-grid{
+  margin:0;
+}
+.search-page .empty-note{margin-top:24px}
+
+@media (max-width:749.98px){
+  .search-page{padding:0 16px}
+  .search-page h1{font-size:34px;line-height:38px;padding-top:24px}
+  .search-form{margin-top:18px}
+  .search-field{width:100%;height:50px}
+  .search-field input{height:48px;padding:14px 48px}
+  .search-field__icon{top:13px;left:14px}
+  .search-reset{top:13px;right:14px}
+  .search-page .collection-toolbar{padding:28px 0 14px}
+  .search-all-head{padding-top:28px}
+}

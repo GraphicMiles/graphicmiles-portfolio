@@ -102,3 +102,47 @@ test("a visit to the home page never leaves the keyboard without a target", asyn
   });
   expect(focused).not.toBe("none");
 });
+
+// The Atelier Drop demo is a self-contained static clone served at /atelier-drop/.
+// It must open from its own folder, keep its pages noindex, and never reach the
+// store it was rebuilt from.
+test("the Atelier Drop demo opens from its folder and stays offline", async ({ page }) => {
+  const problems = watch(page);
+  const offsite = [];
+  page.on("request", (request) => {
+    const url = new URL(request.url());
+    if (!["127.0.0.1", "localhost"].includes(url.hostname)) offsite.push(request.url());
+  });
+
+  const response = await page.goto("/atelier-drop/");
+  expect(response?.status()).toBe(200);
+  await expect(page).toHaveTitle(/Nikey/i);
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex, nofollow");
+  await expect(page.locator(".header-logo")).toBeVisible();
+  await expect(page.locator(".st-circle")).not.toHaveCount(0);
+
+  // the rail and the header are built by JS, so a broken script shows up as an
+  // empty header rather than as a console error alone
+  const navLinks = page.locator(".header-menu .menu-list__link");
+  await expect(navLinks).toHaveCount(5);
+
+  await page.goto("/atelier-drop/collection.html");
+  await expect(page.locator(".product-card__title")).not.toHaveCount(0);
+
+  await page.goto("/atelier-drop/product-blazzer.html");
+  await page.locator(".opt-pill").first().click();
+  await page.locator("[data-add]").click();
+  await expect(page.locator("[data-cart-count]")).toHaveText(/[1-9]/);
+
+  expect(offsite, `off-site requests: ${offsite.join(", ")}`).toEqual([]);
+  expect(problems).toEqual([]);
+});
+
+test("the case study links to the demo and to the archive", async ({ page }) => {
+  const problems = watch(page);
+  await page.goto("/atelier-drop-case-study");
+  await expect(page.locator("h1")).toContainText("Atelier Drop");
+  await expect(page.locator('a[href="/atelier-drop/"]').first()).toBeVisible();
+  await expect(page.locator('a[href="/projects/"]').first()).toBeVisible();
+  expect(problems).toEqual([]);
+});
