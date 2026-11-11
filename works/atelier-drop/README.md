@@ -63,7 +63,7 @@ exact recreation, not a cleanup.
 ```
 index.html …            18 hand-composed pages
 assets/css/             16 stylesheets, one per section, plus tokens
-assets/js/              18 vanilla-JS modules (cart, layout, rail, runway, …)
+assets/js/              17 vanilla-JS modules (cart, layout, rail, runway, …)
 assets/img/             61 optimised WebP/PNG shots (8.4 MB, recompressed from 36 MB)
 assets/video/           2 story videos
 assets/fonts/           Inter, Instrument Serif, GT Standard (woff2)
