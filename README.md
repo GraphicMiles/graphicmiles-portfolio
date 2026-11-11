@@ -116,7 +116,7 @@ and pull request.
 ## Atelier Drop clone
 
 `works/atelier-drop/` is a self-contained static site: 18 pages, 16
-stylesheets and 18 vanilla-JS modules, its own fonts, photography and story
+stylesheets and 17 vanilla-JS modules, its own fonts, photography and story
 videos, and no request outside its folder. It recreates a Shopify Horizon
 storefront — sticky header, mega menu, search overlay, cart drawer and page,
 scene rail with a measured catenary, runway with pinned looks and a bundle add,
