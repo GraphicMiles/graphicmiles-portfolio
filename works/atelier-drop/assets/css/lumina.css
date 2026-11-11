@@ -1,0 +1,98 @@
+/* ==========================================================================
+   lumina.css — "Lumina Slider" full-bleed hero (theme section, transcribed)
+   ========================================================================== */
+.lumina-slider {
+    --lu-h: 100svh;
+    --lu-h-m: 100svh;
+    --lu-text: #ffffff;
+    --lu-accent: #ffffff;
+    --lu-ptext: #0a0a0a;
+    --lu-bg: #0a0a0a;
+    --lu-title: 50px;
+    --lu-title-m: 38px;
+    --lu-overlay: 0.45;
+    --lu-pad: 32px;
+    --lu-t: 3px;
+    --lu-bar: 56px;
+    --lu-r: 0px;
+    position: relative;
+    width: 100%;
+    height: var(--lu-h);
+    overflow: hidden;
+    background: var(--lu-bg);
+    color: var(--lu-text);
+    isolation: isolate;
+    cursor: grab;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: pan-y;
+  }
+  .lumina-slider.is-dragging { cursor: grabbing; }
+  .lumina-slider .lu-canvas { position:absolute; inset:0; width:100%; height:100%; display:block; opacity:0; transition:opacity 1s ease; -webkit-user-drag:none; }
+  .lumina-slider.is-loaded .lu-canvas { opacity:1; }
+  .lumina-slider .lu-shade { position:absolute; inset:0; pointer-events:none;
+    background: linear-gradient(to top, rgba(0,0,0,var(--lu-overlay)), rgba(0,0,0,calc(var(--lu-overlay) * .25)) 60%, rgba(0,0,0,calc(var(--lu-overlay) * .1))); }
+
+  .lumina-slider .lu-content { position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; pointer-events:none;
+    padding: 48px var(--lu-pad) 88px;
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left; }
+  .lumina-slider .lu-inner { max-width: 460px; pointer-events:auto; }
+  .lumina-slider .lu-title { margin:0 0 .35em; font-family:"Instrument Serif", serif;
+    font-weight:400; font-style:normal;
+    font-size:var(--lu-title); line-height:1.02; color:var(--lu-text); }
+  .lumina-slider .lu-title .w { display:inline-block; white-space:nowrap; }
+  .lumina-slider .lu-title .c { display:inline-block; opacity:0; }
+  .lumina-slider .lu-desc { margin:0; font-size:13px; line-height:1.5; opacity:.8; }
+
+  .lumina-slider .lu-actions { display:flex; flex-wrap:wrap; align-items:center; gap:14px 22px; margin-top:1.75rem;
+    justify-content: flex-start; }
+  .lumina-slider .lu-actions:empty { display:none; }
+  .lumina-slider .lu-btn { display:inline-flex; align-items:center; padding:1em 2.1em; font:inherit; font-size:12px; line-height:1; letter-spacing:.14em;
+    text-transform:uppercase; text-decoration:none; cursor:pointer; border-radius:var(--lu-r); transition:background .3s, color .3s, border-color .3s; }
+  .lumina-slider .lu-btn--primary { background:var(--lu-accent); color:var(--lu-ptext); border:1px solid var(--lu-accent); }
+  .lumina-slider .lu-btn--primary:hover { background:transparent; color:var(--lu-accent); }
+  .lumina-slider .lu-btn--secondary { background:transparent; color:var(--lu-text); border:1px solid rgba(255,255,255,.55); }
+  .lumina-slider .lu-btn--secondary:hover { background:var(--lu-text); color:#0a0a0a; border-color:var(--lu-text); }
+  .lumina-slider .lu-btn--link { position:relative; padding:.6em 0; border:0; border-radius:0; background:none; color:var(--lu-text); }
+  .lumina-slider .lu-btn--link::after { content:""; position:absolute; left:0; right:0; bottom:0; height:1px; background:currentColor;
+    transform-origin:left; transition:transform .4s cubic-bezier(.2,.8,.2,1); }
+  .lumina-slider .lu-btn--link:hover::after { transform:scaleX(.35); }
+  .lumina-slider .lu-btn:focus-visible, .lumina-slider .lu-dot:focus-visible { outline:2px solid var(--lu-accent); outline-offset:3px; }
+
+  .lumina-slider .lu-footer { position:absolute; left:var(--lu-pad); right:var(--lu-pad); bottom:28px; z-index:3;
+    display:grid; grid-template-columns:1fr auto 1fr; align-items:center; pointer-events:none; }
+  .lumina-slider .lu-dots { grid-column:1; justify-self:start;
+    display:flex; align-items:center; gap:8px; pointer-events:auto; }
+  .lumina-slider .lu-dot { position:relative; flex:none; width:var(--lu-t); height:var(--lu-t); padding:0; border:0; border-radius:99px; cursor:pointer; overflow:hidden;
+    background:rgba(255,255,255,.45); transition:width .5s cubic-bezier(.2,.8,.2,1), background .3s; }
+  .lumina-slider .lu-dot::after { content:""; position:absolute; inset:-12px -4px; }
+  .lumina-slider .lu-dot:hover { background:rgba(255,255,255,.85); }
+  .lumina-slider .lu-dot.is-active { width:var(--lu-bar); background:rgba(255,255,255,.22); }
+  .lumina-slider .lu-dot i { position:absolute; top:0; bottom:0; left:0; width:0; background:var(--lu-accent); }
+  .lumina-slider .lu-counter { grid-column:3; justify-self:end; font-size:12px; letter-spacing:.12em; font-variant-numeric:tabular-nums; }
+  .lumina-slider .lu-counter b { font-weight:400; color:var(--lu-text); }
+  .lumina-slider .lu-counter span { opacity:.5; }
+
+  @media (max-width: 749px) {
+    .lumina-slider { height: var(--lu-h-m); --lu-pad: 20px; }
+    .lumina-slider .lu-title { font-size: var(--lu-title-m); }
+    .lumina-slider .lu-desc { font-size: 11px; }
+    .lumina-slider .lu-content { padding: 40px 20px 72px; }
+    .lumina-slider .lu-footer { bottom: 24px; }
+  }
+
+/* ---- static clone: CSS cross-fade replaces the WebGL shader ---- */
+.lumina-slider .lu-slides{position:absolute;inset:0;overflow:hidden}
+.lumina-slider .lu-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease}
+.lumina-slider .lu-slide.is-active{opacity:1;z-index:1}
+.lumina-slider .lu-slide img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02);
+  transition:transform 7s linear}
+.lumina-slider .lu-slide.is-active img{transform:scale(1.08)}
+@media (max-width: 749.98px){
+  .lumina-slider .lu-slide img{content:url("")}
+}
+@media (prefers-reduced-motion: reduce){
+  .lumina-slider .lu-slide img{transition:none;transform:none}
+}

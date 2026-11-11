@@ -37,6 +37,10 @@ function resolveFile(urlPath) {
     const index = path.join(target, "index.html");
     return fs.existsSync(index) ? index : null;
   }
+  // Vercel serves foo.html at /foo (cleanUrls); mirror that so tests can use the
+  // same extensionless URLs the deployed site does.
+  const asHtml = `${target}.html`;
+  if (!fs.existsSync(target) && fs.existsSync(asHtml)) return asHtml;
   return fs.existsSync(target) ? target : null;
 }
 

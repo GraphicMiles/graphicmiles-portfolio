@@ -1,0 +1,439 @@
+/* stories.css — mobile shop stories (transcribed from the theme section) */
+
+  /* ============ 1. Editor note (desktop preview only) ============ */
+  .st-editor-note { display: none; }
+  @media (min-width: 750px) {
+    .st-editor-note { display: block; margin: 0; padding: 14px 20px; font-size: 13px; text-align: center; background: #f4f4f4; color: #555; }
+  }
+
+  /* ============ 2. Story row (mobile only) ============ */
+  mobile-shop-stories { display: none; }
+
+  @media (max-width: 749px) {
+    mobile-shop-stories {
+      display: block;
+      padding: 18px 0;
+      background: var(--st-bg);
+      color: var(--st-text);
+    }
+  }
+
+  .st-row {
+    display: flex;
+    gap: var(--st-gap);
+    padding: 0 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .st-row::-webkit-scrollbar { display: none; }
+  .st-item { flex: none; }
+
+  .st-circle {
+    display: block;
+    width: calc(var(--st-size) + 8px);
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .st-ring {
+    display: block;
+    box-sizing: border-box;
+    width: var(--st-size);
+    height: var(--st-size);
+    margin: auto;
+    padding: 3px;
+    border: 2px solid var(--st-ring);
+    border-radius: 50%;
+    transition: border-color .3s ease, transform .2s ease;
+  }
+  .st-circle:active .st-ring { transform: scale(.96); }
+  .st-circle[data-seen] .st-ring { border-color: #999; }
+  .st-ring img,
+  .st-placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .st-placeholder { display: grid; place-items: center; background: #eee; color: #111; }
+  .st-placeholder svg { width: 34%; height: 34%; }
+  .st-label {
+    display: block;
+    margin-top: 7px;
+    font-size: 11px;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ============ 3. Viewer shell ============ */
+  .st-viewer {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    background: #090909;
+    color: #fff;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .st-viewer::backdrop { background: #090909; }
+  .st-viewer *, .st-viewer *::before, .st-viewer *::after { box-sizing: border-box; }
+  .st-viewer [hidden] { display: none !important; }
+  .st-viewer button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .st-viewer svg {
+    display: block;
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .st-screen { position: relative; width: 100%; height: 100%; overflow: hidden; isolation: isolate; }
+
+  /* ============ 4. Media, shade and progress ============ */
+  .st-media, .st-shade { position: absolute; inset: 0; }
+  /* Always full screen: the picture or video covers the whole viewer, edge to edge, with no backdrop. */
+  .st-media { background: transparent; }
+  .st-media > img,
+  .st-media > video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; background: transparent; }
+  .st-shade {
+    pointer-events: none;
+    background: linear-gradient(#0007, transparent 25%, transparent 65%, #0009);
+  }
+  .st-empty { display: grid; place-content: center; height: 100%; padding: 30px; text-align: center; }
+
+  .st-progress {
+    position: absolute;
+    z-index: 3;
+    top: calc(env(safe-area-inset-top, 0px) + 9px);
+    left: 12px;
+    right: 12px;
+    display: flex;
+    gap: 4px;
+  }
+  .st-progress > span { flex: 1; height: 2px; border-radius: 4px; overflow: hidden; background: #ffffff50; }
+  .st-progress i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+    will-change: transform;
+  }
+
+  /* ============ 5. Header, tap zones, footer ============ */
+  .st-header {
+    position: absolute;
+    z-index: 4;
+    top: calc(env(safe-area-inset-top, 0px) + 18px);
+    left: 18px;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+  .st-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 600; }
+  .st-header button,
+  .st-footer button,
+  .st-panel-head button { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
+  .st-header svg { width: 22px; height: 22px; }
+
+  .st-nav {
+    position: absolute;
+    z-index: 1;
+    inset: 90px 0 calc(90px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    touch-action: none;
+  }
+  .st-nav button { width: 50%; }
+
+  .st-footer {
+    position: absolute;
+    z-index: 4;
+    left: 18px;
+    right: 12px;
+    bottom: calc(15px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .st-spacer { flex: 1; }
+  .st-viewer .st-shop { position: relative; border-radius: 50%; background: #0004; }
+  .st-shop-count {
+    position: absolute;
+    top: 0;
+    right: -2px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: #fff;
+    color: #111;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .st-shop-count:empty { display: none; }
+  .st-shop-check {
+    position: absolute;
+    right: -2px;
+    bottom: 0;
+    width: 18px;
+    height: 18px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #1f9d55;
+    color: #fff;
+    opacity: 0;
+    transform: scale(.4);
+    transition: opacity .2s ease, transform .5s cubic-bezier(.2, 1.6, .4, 1);
+  }
+  .st-viewer .st-shop-check svg { width: 12px; height: 12px; stroke-width: 2.6; }
+  .st-shop.is-added .st-shop-check { opacity: 1; transform: none; }
+  .st-shop.is-added::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    pointer-events: none;
+    animation: st-burst 1s cubic-bezier(.16, 1, .3, 1) forwards;
+  }
+  .st-fly { position: fixed; z-index: 20; margin: 0; border-radius: 10px; object-fit: cover; pointer-events: none; box-shadow: 0 18px 40px -16px #000c; }
+  .st-footer [aria-pressed="true"] { color: #ff627d; }
+  .st-footer [aria-pressed="true"] svg { fill: currentColor; }
+
+  .st-retry {
+    position: absolute;
+    z-index: 5;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .st-viewer .st-retry { padding: 14px 22px; border-radius: 30px; background: #0009; font-size: 14px; }
+
+  .st-toast {
+    position: absolute;
+    z-index: 8;
+    top: calc(env(safe-area-inset-top, 0px) + 76px);
+    left: 50%;
+    max-width: calc(100% - 40px);
+    margin: 0;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: #fff;
+    color: #151515;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    pointer-events: none;
+    box-shadow: 0 12px 30px -12px #000a;
+    transform: translateX(-50%);
+    transition: opacity .3s ease, transform .5s cubic-bezier(.2, 1.4, .4, 1);
+  }
+  .st-toast:empty { opacity: 0; transform: translate(-50%, -10px); }
+
+  /* ============ 6. Product sheet ============ */
+  .st-panel {
+    position: absolute;
+    z-index: 6;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 70%;
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 24px 20px calc(22px + env(safe-area-inset-bottom, 0px));
+    border-radius: 26px 26px 0 0;
+    background: #fff;
+    color: #171717;
+    box-shadow: 0 -12px 60px #0003;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  .st-panel::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 4px;
+    margin: -10px auto 18px;
+    border-radius: 4px;
+    background: #ddd;
+  }
+  .st-panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 12px; }
+
+  .st-pick { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: center; gap: 14px; }
+  .st-pick-img img { display: block; width: 72px; height: 72px; object-fit: contain; }
+  .st-pick-title { display: block; font-size: 15px; line-height: 1.3; }
+  .st-pick .st-vendor { margin-bottom: 5px; font-size: 10px; }
+  .st-pick .st-price { margin-top: 5px; font-size: 14px; }
+
+  /* ============ 7. Product card dock (bag button) ============ */
+  .st-dock {
+    position: absolute;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 22px 0 calc(20px + env(safe-area-inset-bottom, 0px));
+    border-radius: 22px 22px 0 0;
+    background: #fff;
+    color: #151515;
+    box-shadow: 0 -18px 50px -24px #000a;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  .st-dock:not([hidden]) { animation: st-dock-up .55s cubic-bezier(.32, .72, 0, 1); }
+  .st-dock-track {
+    display: flex;
+    padding: 0 20px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 20px;
+    scrollbar-width: none;
+  }
+  .st-dock-track::-webkit-scrollbar { display: none; }
+  .st-footer { transition: transform .55s cubic-bezier(.32, .72, 0, 1); }
+  .st-screen.has-dock .st-footer { transform: translateY(calc(var(--st-dock-h, 0px) * -1)); }
+
+  .st-card {
+    flex: 0 0 100%;
+    display: grid;
+    grid-template-columns: 66px minmax(0, 1fr) 40px;
+    align-items: center;
+    column-gap: 16px;
+    scroll-snap-align: start;
+  }
+  /* Several products: a divider and the next product's picture peeking in from the right. */
+  .st-dock-track.is-multi .st-card { flex-basis: calc(100% - 70px); margin-right: 14px; padding-right: 4px; border-right: 1px solid #cfcfcf; }
+  .st-dock-track.is-multi .st-card:last-child { flex-basis: 100%; margin-right: 0; padding-right: 0; border-right: 0; }
+
+  .st-card-media { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .st-card-num { font-size: 15px; font-weight: 700; line-height: 1; transition: opacity .3s ease, transform .4s cubic-bezier(.2, 1.4, .4, 1); }
+  .st-card-img { position: relative; display: block; width: 66px; }
+  .st-card-img img { display: block; width: 66px; height: 72px; object-fit: contain; background: transparent; }
+  .st-card-badge {
+    position: absolute;
+    top: 2px;
+    right: -2px;
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    opacity: 0;
+    transform: scale(.6);
+    transition: opacity .3s ease, transform .45s cubic-bezier(.2, 1.4, .4, 1);
+  }
+  /* The card in view shows its number above the picture; the others carry a round badge. */
+  .st-dock-track.is-multi .st-card:not(.is-current) .st-card-num { opacity: 0; transform: translateY(6px); }
+  .st-dock-track.is-multi .st-card:not(.is-current) .st-card-badge { opacity: 1; transform: none; }
+  .st-dock-track:not(.is-multi) .st-card-num,
+  .st-dock-track:not(.is-multi) .st-card-badge { display: none; }
+
+  .st-card-info { min-width: 0; }
+  .st-vendor { display: block; margin-bottom: 6px; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #6b6b6b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .st-card-title { display: block; color: #111; text-decoration: none; font-size: 16px; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .st-price { margin: 6px 0 0; font-size: 15px; font-variant-numeric: tabular-nums; }
+  .st-card.is-soldout .st-price { color: #8a8a8a; }
+
+  .st-viewer .st-card-add { position: relative; width: 40px; height: 44px; justify-self: end; display: grid; place-items: center; color: #111; }
+  .st-card-add > * { grid-area: 1 / 1; transition: opacity .2s ease, transform .5s cubic-bezier(.2, 1.6, .4, 1); }
+  .st-viewer .st-card-add svg { width: 28px; height: 28px; stroke-width: 1.25; }
+  .st-viewer .st-card-add .st-i-check { stroke-width: 1.8; color: #1f9d55; }
+  .st-card-add:not(:disabled):active .st-i-plus { transform: rotate(90deg) scale(.9); }
+  .st-card-add .st-i-check, .st-card-add .st-i-spin { opacity: 0; }
+  .st-i-spin { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid #111; border-right-color: transparent; }
+  .st-card.is-loading .st-i-plus, .st-card.is-added .st-i-plus { opacity: 0; transform: scale(.5); }
+  .st-card.is-loading .st-i-spin { opacity: 1; animation: st-spin .8s linear infinite; }
+  .st-card.is-added .st-i-check { opacity: 1; animation: st-pop .6s cubic-bezier(.2, 1.6, .4, 1); }
+  .st-viewer .st-card-add:disabled { opacity: .3; cursor: default; }
+
+  .st-options:not(:empty) { margin-top: 18px; border-top: 1px solid #ddd; }
+  .st-options fieldset { margin: 22px 0; padding: 0; border: 0; }
+  .st-options legend { margin-bottom: 12px; padding: 0; font-size: 13px; }
+  .st-viewer .st-options button {
+    display: inline-grid;
+    place-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    margin: 0 8px 8px 0;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 999px;
+    background: #fff;
+    color: #111;
+    font-size: 13px;
+  }
+  .st-viewer .st-options button[aria-pressed="true"] {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+    outline: 1px solid #111;
+    outline-offset: 3px;
+  }
+  .st-viewer .st-options button.is-unavailable { border-style: dashed; color: #888; }
+  .st-viewer .st-options button:disabled { opacity: .3; text-decoration: line-through; cursor: default; }
+
+  .st-viewer .st-confirm {
+    display: block;
+    width: 100%;
+    min-height: 54px;
+    margin-top: 15px;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+  }
+  .st-viewer .st-confirm:disabled { opacity: .55; cursor: default; }
+  .st-status { min-height: 16px; margin: 12px 0 0; font-size: 12px; }
+
+  @keyframes st-dock-up { from { transform: translateY(100%); } }
+  @keyframes st-spin { to { transform: rotate(360deg); } }
+  @keyframes st-pop { 0% { transform: scale(.4); } 55% { transform: scale(1.2); } 100% { transform: scale(1); } }
+  @keyframes st-burst { from { transform: scale(.9); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .st-row { scroll-behavior: auto; }
+    .st-ring, .st-toast { transition: none; }
+    .st-shop.is-added::after, .st-dock:not([hidden]), .st-card.is-added .st-i-check { animation: none; }
+    .st-footer, .st-card-num, .st-card-badge { transition: none; }
+  }

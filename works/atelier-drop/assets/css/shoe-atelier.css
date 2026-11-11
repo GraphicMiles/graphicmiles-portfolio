@@ -1,0 +1,464 @@
+/* ==========================================================================
+   shoe-atelier.css — "A place for every pair." shelf wall (theme section,
+   transcribed verbatim from the storefront)
+   ========================================================================== */
+#shopify-section-template--28102324420913__shoe_atelier_KDDma3 shoe-atelier:not(.is-laid) .sa-cell:nth-child(n + 10) { display: none; }
+  @media (min-width: 750px) {
+    #shopify-section-template--28102324420913__shoe_atelier_KDDma3 shoe-atelier:not(.is-laid) .sa-cell:nth-child(n + 10) { display: flex; }
+    #shopify-section-template--28102324420913__shoe_atelier_KDDma3 shoe-atelier:not(.is-laid) .sa-cell:nth-child(n + 19) { display: none; }
+  }
+/* =================== 1. Tokens and base =================== */
+  shoe-atelier {
+    --cols: var(--cols-m);
+    --sa-ease: cubic-bezier(.16, 1, .3, 1);
+    --sa-soft: color-mix(in srgb, var(--sa-ink) 58%, transparent);
+    --sa-line: color-mix(in srgb, var(--sa-ink) 14%, transparent);
+    --k: 1;
+    display: block;
+    position: relative;
+    color: var(--sa-ink);
+  }
+  @media (min-width: 750px) { shoe-atelier { --cols: var(--cols-d); } }
+  shoe-atelier *, shoe-atelier *::before, shoe-atelier *::after { box-sizing: border-box; }
+  shoe-atelier button { font: inherit; color: inherit; -webkit-tap-highlight-color: transparent; }
+  shoe-atelier img { -webkit-user-drag: none; }
+  /* themes often set img { display: block }, which would beat the hidden attribute */
+  shoe-atelier [hidden] { display: none !important; }
+  shoe-atelier svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* =================== 2. Wall and toolbar =================== */
+  .sa-stage { position: relative; overflow: hidden; isolation: isolate; }
+  .sa-wall {
+    position: relative;
+    background-color: var(--sa-wall);
+    transform-origin: var(--fx, 50%) var(--fy, 50%);
+    transition: transform calc(1s * var(--k)) var(--sa-ease);
+  }
+  .sa-wall--photo { background-image: var(--sa-photo); background-size: cover; background-position: center; }
+  .sa-inner { position: relative; max-width: var(--sa-max); margin: 0 auto; padding: var(--sa-pt) clamp(16px, 4vw, 56px) var(--sa-pb); }
+
+  .sa-bar { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(28px, 4vw, 56px); }
+  .sa-eyebrow { margin: 0 0 10px; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--sa-soft); }
+  .sa-title { margin: 0; font-family: var(--sa-hf); font-size: clamp(24px, 2.6vw, 38px); font-weight: 500; line-height: 1.05; letter-spacing: -.01em; }
+  .sa-count { margin-left: 6px; font-size: .42em; font-weight: 400; letter-spacing: .04em; color: var(--sa-soft); vertical-align: super; }
+  .sa-tools { display: flex; align-items: center; gap: 22px; }
+  .sa-seg { display: flex; align-items: center; gap: 4px; }
+  .sa-seg:empty { display: none; }
+  .sa-seg button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--sa-soft);
+    cursor: pointer;
+    transition: color .25s ease;
+  }
+  .sa-seg button[aria-pressed="true"] { color: var(--sa-ink); }
+  .sa-seg button:hover { color: var(--sa-ink); }
+  .sa-seg i { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 1.5px; width: 20px; height: 14px; }
+  .sa-seg i b { background: currentColor; border-radius: 1px; }
+  .sa-tool {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .sa-tool svg { width: 18px; height: 18px; transition: transform .8s var(--sa-ease); }
+  .sa-tool.is-spin svg { transform: rotate(360deg); }
+  .sa-tool span { border-bottom: 1px solid transparent; transition: border-color .25s ease; }
+  .sa-tool:hover span { border-color: currentColor; }
+  .sa-snd { width: 34px; justify-content: center; color: var(--sa-soft); }
+  .sa-snd[aria-pressed="true"] { color: var(--sa-ink); }
+  .sa-snd[aria-pressed="true"] .sa-snd-off, .sa-snd[aria-pressed="false"] .sa-snd-on { display: none; }
+
+  /* =================== 3. Pages, shelves and products =================== */
+  /* The viewport clips sideways only, so tops of products and focus rings are never cut. */
+  .sa-viewport { position: relative; overflow: hidden; touch-action: pan-y pinch-zoom; }
+  @supports (overflow: clip) { .sa-viewport { overflow-x: clip; overflow-y: visible; } }
+  .is-paged .sa-viewport { cursor: grab; }
+  .is-dragging .sa-viewport, .is-dragging .sa-item { cursor: grabbing; }
+
+  .sa-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--cols-user, var(--cols)), minmax(0, 1fr));
+    row-gap: var(--sa-row);
+    column-gap: 0;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  /* Laid out by the script: every page is rows × columns, pages sit side by side and the track slides. */
+  .is-laid .sa-grid { grid-template-columns: none; grid-auto-columns: calc(100% / var(--cols-user, var(--cols))); transform: translate3d(0, 0, 0); }
+  .is-laid .sa-grid.is-moving, .is-dragging .sa-grid { will-change: transform; }
+  /* The moving track is its own layer, so it carries the wall colour for white-background photos to melt into. */
+  .is-laid .sa-wall:not(.sa-wall--photo) .sa-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -100%;
+    right: calc(-100% * var(--pages, 1));
+    z-index: -1;
+    background: var(--sa-wall);
+    pointer-events: none;
+  }
+
+  .sa-cell { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; padding-bottom: var(--sa-tag-space, 48px); container-type: inline-size; }
+  .sa--labels-none .sa-cell { --sa-tag-space: 0px; }
+  .sa-prod { position: relative; width: 100%; transition: opacity calc(.7s * var(--k)) ease; }
+  .sa-item { position: relative; display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+  .sa-cell--demo .sa-item { cursor: default; }
+  .sa-pic { position: relative; display: flex; align-items: flex-end; justify-content: center; width: 100%; aspect-ratio: 1 / var(--sa-h); }
+  .sa-img {
+    display: block;
+    width: var(--sa-scale);
+    height: 100%;
+    object-fit: contain;
+    object-position: 50% 100%;
+    /* automatic seating + the position set in the theme editor (all products, then this product) */
+    /* the editor positions are a percentage of the product's height, so they look the same on every screen */
+    translate: 0 calc(var(--seat, 0px) + (var(--sa-offset, 0) + var(--sa-own, 0)) * 1%);
+  }
+  .sa-ph { fill: color-mix(in srgb, var(--sa-ink) 30%, transparent); }
+  /* White-background photos: each shelf cell is multiplied onto the wall, so white melts into it */
+  .sa--img-white .sa-cell { mix-blend-mode: multiply; }
+  .sa--img-cutout .sa-img { filter: drop-shadow(2px 5px 4px rgb(0 0 0 / .14)); }
+  /* the product's footprint on the shelf */
+  .sa-contact {
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    bottom: -1.2cqw;
+    height: clamp(4px, 3cqw, 8px);
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgb(0 0 0 / .28), rgb(0 0 0 / 0));
+    pointer-events: none;
+  }
+  /* no theme outline or tap highlight on products (iOS drew it around the whole column after closing) */
+  shoe-atelier .sa-item, shoe-atelier .sa-item:focus, shoe-atelier .sa-item:focus-visible, shoe-atelier .sa-item:active {
+    outline: none !important; box-shadow: none !important; -webkit-tap-highlight-color: transparent;
+  }
+  shoe-atelier .sa-cell, shoe-atelier .sa-prod { -webkit-tap-highlight-color: transparent; }
+  shoe-atelier.is-kbd .sa-item:focus-visible .sa-pic::after { content: ''; position: absolute; inset: -6px; border: 1px solid var(--sa-ink); }
+  /* hand-over to the flying copy is instant in both directions: no fade, so no blink */
+  .sa-item.is-lifted .sa-img, .sa-item.is-lifted .sa-contact { opacity: 0; }
+
+  .sa-badge {
+    position: absolute;
+    top: 6%;
+    left: 8%;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--sa-ink);
+  }
+
+  /* the shelf: a thin top face and front edge; the product stands on the top face */
+  .sa-shelf { --t: clamp(3px, 2.4cqw, 7px); position: relative; width: 80%; height: var(--t); margin-top: calc(var(--t) * .5); }
+  .sa-shelf::before { content: ''; position: absolute; left: 0; right: 0; bottom: 100%; height: var(--t); transform: perspective(40px) rotateX(50deg); transform-origin: 50% 100%; }
+  .sa--shelf-acrylic .sa-shelf {
+    background: linear-gradient(180deg, rgb(255 255 255 / .9), rgb(214 222 227 / .9));
+    box-shadow: inset 0 1px 0 #fff, 0 1px 1px rgb(0 0 0 / .12), 0 8px 12px -8px rgb(0 0 0 / .25);
+  }
+  .sa--shelf-acrylic .sa-shelf::before { background: linear-gradient(to bottom, rgb(255 255 255 / .15), rgb(238 243 246 / .8)); }
+  .sa--shelf-wood .sa-shelf { --t: clamp(4px, 3.2cqw, 9px); background: linear-gradient(180deg, #caa57c, #9c7248); box-shadow: inset 0 1px 0 rgb(255 255 255 / .3), 0 8px 12px -8px rgb(0 0 0 / .3); }
+  .sa--shelf-wood .sa-shelf::before { background: linear-gradient(#c19a6e, #dcbb94); }
+  .sa--shelf-metal .sa-shelf { --t: clamp(2px, 1.8cqw, 5px); background: linear-gradient(180deg, #f3f3f2, #a9acaf); box-shadow: inset 0 1px 0 #fff, 0 7px 10px -7px rgb(0 0 0 / .3); }
+  .sa--shelf-metal .sa-shelf::before { background: linear-gradient(#d3d5d7, #f2f2f1); }
+  .sa--shelf-black .sa-shelf { --t: clamp(2px, 1.8cqw, 5px); background: linear-gradient(180deg, #3a3836, #121110); box-shadow: 0 7px 10px -7px rgb(0 0 0 / .35); }
+  .sa--shelf-black .sa-shelf::before { background: linear-gradient(#2a2826, #4a4744); }
+  .sa--shelf-none .sa-shelf { height: 0; margin: 0; }
+  .sa--shelf-none .sa-shelf::before { display: none; }
+
+  /* name and price hang under the shelf */
+  .sa-tag { position: absolute; left: 4%; right: 4%; top: calc(100% + 18px); display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; line-height: 1.35; text-align: center; pointer-events: none; }
+  .sa-tag b { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
+  .sa-tag i { font-style: normal; color: var(--sa-soft); font-variant-numeric: tabular-nums; }
+  .sa--labels-none .sa-tag { display: none; }
+  .sa--labels-hover .sa-tag { opacity: 0; transition: opacity .3s ease; }
+  @media (hover: hover) { .sa--labels-hover .sa-cell:hover .sa-tag, .sa--labels-hover .sa-cell:focus-within .sa-tag { opacity: 1; } }
+  @media (hover: none) { .sa--labels-hover .sa-tag { opacity: 1; } }
+
+  /* while a product is open, the rest of the wall steps back (opacity only: no blur) */
+  .sa-stage.is-open .sa-wall { transform: scale(.965); }
+  .sa-stage.is-open .sa-cell:not(.is-target) .sa-prod { opacity: var(--sa-fade, .15); }
+  .sa-stage.is-open .sa-cell.is-target .sa-tag { opacity: 0; }
+
+  /* =================== 4. Pager: progress bar, counter, arrows =================== */
+  .sa-nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 24px); margin-top: clamp(18px, 2.6vw, 34px); }
+  .sa-progress { position: relative; flex: 1 1 auto; padding: 12px 0; cursor: pointer; }
+  .sa-rail { position: relative; display: block; height: 2px; overflow: hidden; border-radius: 2px; background: var(--sa-line); }
+  .sa-fill { position: absolute; top: 0; left: 0; height: 100%; width: calc(100% / var(--pages, 1)); border-radius: inherit; background: var(--sa-ink); will-change: transform; }
+  .sa-pages { display: inline-flex; align-items: baseline; gap: 6px; font-size: 12px; letter-spacing: .14em; font-variant-numeric: tabular-nums; color: var(--sa-soft); }
+  .sa-pages b { font-weight: 500; color: var(--sa-ink); }
+  .sa-arrows { display: flex; gap: 8px; }
+  .sa-arrow {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--sa-line);
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    transition: border-color .3s ease, opacity .3s ease;
+  }
+  .sa-arrow svg { width: 18px; height: 18px; }
+  .sa-arrow:hover:not(:disabled) { border-color: var(--sa-ink); }
+  .sa-arrow:disabled { opacity: .3; cursor: default; }
+  @media (hover: none) { .sa-arrows { display: none; } }
+
+  /* =================== 5. Product view =================== */
+  /* The product view sits below the store header, so the header and its cart icon stay visible. */
+  .sa-pop {
+    --sa-ph: calc(100vh - var(--sa-top, 0px));
+    position: fixed;
+    z-index: 90;
+    inset: var(--sa-top, 0px) 0 0 0;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background: transparent;
+    color: #151413;
+  }
+  @supports (height: 100dvh) { .sa-pop { --sa-ph: calc(100dvh - var(--sa-top, 0px)); } }
+  .sa-pop::backdrop { background: transparent; }
+  .sa-pop:focus { outline: none; }
+  .sa-pop-bg { position: absolute; inset: 0; background: var(--sa-pop-bg); opacity: 0; }
+  .sa-slats { position: absolute; inset: 0; display: none; }
+  .sa-slats span { flex: 1 1 0; height: 100%; margin-right: -1px; background: var(--sa-pop-bg); transform: scaleY(0); }
+  .sa-pop button { font: inherit; color: inherit; cursor: pointer; }
+  .sa-pop svg { width: 20px; height: 20px; }
+
+  .sa-pop-bar {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: max(12px, env(safe-area-inset-top)) clamp(12px, 3vw, 40px) 12px;
+    opacity: 0;
+  }
+  .sa-back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px 0 6px; border: 0; background: none; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; }
+  .sa-back svg { transition: transform .4s var(--sa-ease); }
+  .sa-back:hover svg { transform: translateX(-3px); }
+
+  .sa-pop-body {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(320px, 1fr);
+    gap: clamp(24px, 4vw, 72px);
+    align-items: center;
+    height: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 64px clamp(16px, 4vw, 56px) 40px;
+    /* the picture is as large as fits, so picture and details sit centred in the view */
+    --sa-img-max: calc(var(--sa-ph) - 104px - 82px);
+  }
+  .sa-gal { display: flex; flex-direction: column; justify-content: center; gap: 14px; min-height: 0; max-height: 100%; }
+  .sa-main {
+    position: relative;
+    flex: none;
+    width: min(100%, var(--sa-img-max));
+    aspect-ratio: 1;
+    margin-inline: auto;
+    min-height: 0;
+    border-radius: var(--sa-radius);
+    background: var(--sa-studio);
+    overflow: hidden;
+    touch-action: pan-y;
+    opacity: 0;
+  }
+  .sa-main img {
+    position: absolute;
+    inset: 7%;
+    width: 86%;
+    height: 86%;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transition: transform .5s var(--sa-ease);
+    transform-origin: var(--zx, 50%) var(--zy, 50%);
+  }
+  .sa-main .sa-ghost { pointer-events: none; }
+  .sa-main.is-landing img { opacity: 0; }
+  @media (hover: hover) and (pointer: fine) {
+    .sa-main { cursor: zoom-in; }
+    .sa-main.is-zoom { cursor: zoom-out; }
+    .sa-main.is-zoom img { transform: scale(1.9); }
+  }
+  .sa-main-badge { position: absolute; top: 16px; left: 16px; font-size: 10px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+  .sa-main-badge:empty { display: none; }
+  .sa-thumbs { display: flex; gap: 10px; max-width: 100%; margin-inline: auto; overflow-x: auto; scrollbar-width: none; opacity: 0; }
+  .sa-thumbs::-webkit-scrollbar { display: none; }
+  .sa-thumbs:empty { display: none; }
+  .sa-thumbs button { flex: 0 0 auto; width: 68px; aspect-ratio: 1; padding: 6px; border: 0; border-bottom: 1px solid transparent; border-radius: 0; background: var(--sa-studio); opacity: .55; transition: opacity .3s ease, border-color .3s ease; }
+  .sa-thumbs button[aria-current="true"] { opacity: 1; border-bottom-color: #151413; }
+  .sa-thumbs button:hover { opacity: 1; }
+  .sa-thumbs img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+
+  .sa-info { display: flex; flex-direction: column; width: 100%; max-width: 560px; min-height: 0; max-height: 100%; overflow-y: auto; padding: 8px 4px 24px 0; scrollbar-width: thin; overscroll-behavior: contain; }
+  .sa-vendor { font-size: var(--sa-t-vendor); letter-spacing: .22em; text-transform: uppercase; color: #77726c; }
+  .sa-vendor:empty { display: none; }
+  .sa-name { margin: 12px 0 0; font-family: var(--sa-hf); font-size: var(--sa-t-title); font-weight: 500; line-height: 1.06; letter-spacing: -.015em; }
+  .sa-w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; }
+  .sa-ch { display: inline-block; }
+  .sa-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 22px; margin-top: 16px; font-size: var(--sa-t-price); font-weight: 500; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+  .sa-price s { color: #9a9894; font-size: .86em; font-weight: 500; text-decoration-thickness: 2px; }
+  .sa-desc { margin: 18px 0 0; max-width: 46ch; font-size: var(--sa-t-desc); line-height: 1.65; color: #5d5852; }
+  .sa-desc:empty { display: none; }
+
+  /* options: "Color - Blackout" with picture tiles, "Size - 9-10" with joined boxes */
+  .sa-opts { display: flex; flex-direction: column; gap: 26px; margin-top: 26px; }
+  .sa-opts:empty { display: none; }
+  .sa-opt { margin: 0; padding: 0; border: 0; min-width: 0; }
+  .sa-opt legend { margin-bottom: 14px; padding: 0; font-size: var(--sa-t-label); color: #151413; }
+  .sa-opt legend b { font-weight: 400; }
+  .sa-swatches { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sa-tile {
+    position: relative;
+    width: 76px;
+    height: 76px;
+    padding: 4px;
+    border: 2px solid transparent;
+    border-radius: var(--sa-radius);
+    background: #fff;
+    transition: border-color .2s ease, opacity .2s ease;
+  }
+  .sa-tile:hover { border-color: #c9c6c1; }
+  .sa-tile[aria-pressed="true"] { border-color: #8a8885; }
+  .sa-tile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .sa-tile i { display: block; width: 100%; height: 100%; border-radius: max(0px, calc(var(--sa-radius) - 4px)); box-shadow: inset 0 0 0 1px rgb(0 0 0 / .1); }
+  .sa-tile.is-na { opacity: .4; }
+  .sa-tile.is-na::after { content: ''; position: absolute; left: 50%; top: 8px; bottom: 8px; width: 1px; background: #151413; transform: rotate(45deg); }
+  .sa-sizes { display: flex; flex-wrap: wrap; padding: 0 0 1px 1px; }
+  .sa-size {
+    position: relative;
+    min-width: 72px;
+    min-height: 58px;
+    margin: 0 0 -1px -1px;
+    padding: 0 16px;
+    border: 1px solid #8a8885;
+    border-radius: 0;
+    background: var(--sa-studio);
+    color: #151413;
+    font-size: var(--sa-t-variant);
+    letter-spacing: .04em;
+    font-variant-numeric: tabular-nums;
+    transition: background .2s ease, color .2s ease;
+  }
+  .sa-size:hover:not(:disabled) { background: #fff; }
+  .sa-size[aria-pressed="true"] { z-index: 1; background: #fff; box-shadow: inset 0 0 0 1px #151413; }
+  .sa-size:disabled, .sa-size.is-na { color: #aaa6a0; text-decoration: line-through; }
+  .sa-size:disabled { cursor: default; }
+  /* separate size boxes with an adjustable gap */
+  .sa--sizes-separate .sa-sizes { gap: var(--sa-size-gap); padding: 0; }
+  .sa--sizes-separate .sa-size { margin: 0; border-radius: var(--sa-radius); }
+  .sa--sizes-separate .sa-size[aria-pressed="true"] { border-color: #151413; }
+  .sa--sizes-separate .sa-swatches { gap: var(--sa-size-gap); }
+  .sa-opts.is-shake .sa-sizes { animation: sa-shake .45s ease; }
+  @keyframes sa-shake { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+
+  .sa-guide { margin-top: 22px; font-size: var(--sa-t-label); }
+  .sa-guide summary { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; list-style: none; color: #151413; }
+  .sa-guide summary span { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+  .sa-guide summary svg { width: 22px; height: 22px; flex: none; }
+  .sa-guide summary::-webkit-details-marker { display: none; }
+  .sa-guide-body { margin-top: 12px; font-size: 14px; color: #4f4a45; line-height: 1.6; }
+  .sa-guide-body table { width: 100%; border-collapse: collapse; }
+  .sa-guide-body td, .sa-guide-body th { padding: 6px; border-bottom: 1px solid #e3dfd9; text-align: left; }
+
+  .sa-buy { margin-top: 24px; }
+  .sa-atc {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 62px;
+    padding: 0 24px;
+    border: 0;
+    border-radius: var(--sa-radius);
+    background: var(--sa-accent);
+    color: var(--sa-on-accent) !important;
+    font-size: var(--sa-t-atc);
+    font-weight: 500;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    transition: opacity .25s ease;
+  }
+  .sa-atc:disabled { opacity: .45; cursor: default; }
+  .sa-atc.is-wait { opacity: .6; }
+  .sa-atc.is-done, .sa-atc.is-done:disabled { opacity: 1; }
+  .sa-spin { display: none; position: absolute; right: 22px; width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent; }
+  .sa-atc.is-loading .sa-spin { display: block; animation: sa-spin .8s linear infinite; }
+  @keyframes sa-spin { to { transform: rotate(360deg); } }
+  .sa-msg { min-height: 18px; margin: 12px 0 0; font-size: 13px; color: #4f4a45; }
+  .sa-msg a { color: inherit; text-underline-offset: 3px; }
+  .sa-msg.is-error { color: #b3261e; }
+  .sa-full { align-self: flex-start; margin-top: 15px; font-size: var(--sa-t-link); letter-spacing: .14em; text-transform: uppercase; color: #151413; text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+  .sa-note { margin: 16px 0 0; font-size: 12px; color: #6f6a64; }
+
+  /* The flying copy of the product. Its picture is multiplied exactly like the gallery image,
+     so the hand-over at either end is pixel-identical. On a plain wall with white-background
+     photos it carries the wall colour (fading to the studio colour), so no white box ever shows. */
+  .sa-fly { position: fixed; z-index: 5; margin: 0; pointer-events: none; transform-origin: 0 0; will-change: transform, opacity; }
+  .sa-fly img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+  .sa-fly.is-card { background: var(--sa-wall); isolation: isolate; }
+
+  /* =================== 6. Phones =================== */
+  @media (max-width: 749px) {
+    .sa-bar { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .sa-tools { width: 100%; justify-content: space-between; }
+    .sa-tag { font-size: 11px; top: calc(100% + 14px); }
+    .sa-cell { --sa-tag-space: 40px; }
+    .sa-pop-body { display: block; height: 100%; padding: 0; overflow-y: auto; overscroll-behavior: contain; }
+    .sa-gal { padding: 60px 12px 0; }
+    .sa-main { flex: none; width: 100%; aspect-ratio: 1; }
+    .sa-thumbs button { width: 56px; }
+    .sa-tile { width: 64px; height: 64px; }
+    .sa-size { min-width: 50px; min-height: 52px; padding: 0 12px; font-size: calc(var(--sa-t-variant) * .88); }
+    .sa-opt legend, .sa-guide { font-size: calc(var(--sa-t-label) * .88); }
+    .sa-price { font-size: var(--sa-t-price-m); }
+    .sa-info { overflow: visible; padding: 22px 20px calc(104px + env(safe-area-inset-bottom)); }
+    .sa-name { font-size: var(--sa-t-title-m); }
+    .sa-buy {
+      position: fixed;
+      z-index: 4;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: 0;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, var(--sa-pop-bg) 72%, color-mix(in srgb, var(--sa-pop-bg) 0%, transparent));
+    }
+    .sa-msg { min-height: 0; margin-top: 8px; text-align: center; }
+    .sa-msg:empty { display: none; }
+    .sa-pop-bar { background: linear-gradient(var(--sa-pop-bg) 60%, color-mix(in srgb, var(--sa-pop-bg) 0%, transparent)); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sa-wall, .sa-prod, .sa-tool svg { transition: none !important; }
+  }

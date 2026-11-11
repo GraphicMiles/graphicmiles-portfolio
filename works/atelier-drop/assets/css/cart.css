@@ -1,0 +1,343 @@
+/* ==========================================================================
+   cart.css — /cart
+   Ref @1440: main y104. Filled: lines area x40 w1000, summary 400px flush right,
+   bg #DFDFDF, inner pad 12.8/40/32; discount row 44 with 1px top border,
+   total 14 + 14/600, note 14 rgba(0,0,0,.8), checkout 320x52.
+   Line: media 120x150, name 16 at x175, qty 159x46 at x535, price 14/600 right.
+   Empty: h1 24/700 centred y208, sub 14, button 196x52 black y296.
+   Recs: pad 48/40, title 24/700 + "View all" 14, grid 4x gap 24/8.
+   ========================================================================== */
+.cart-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 400px;
+  align-items:start;
+  padding-left:40px;
+}
+.cart-main{
+  padding-right:49px;
+}
+.cart-head{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:24px 0 0;
+}
+.cart-head h1{
+  margin:0;
+  font-size:24px;
+  font-weight:700;
+  line-height:26px;
+  letter-spacing:-.2px;
+}
+.cart-page__count{
+  display:inline-grid;
+  place-items:center;
+  min-width:24px;
+  height:24px;
+  padding:0 6px;
+  border-radius:999px;
+  background:#e5e5e5;
+  font-size:13px;
+  line-height:1;
+  color:#000;
+}
+
+/* ------------------------------------------------------------ line items */
+.cart-rows{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  padding:17px 0 56px;
+}
+.cart-row{
+  display:grid;
+  grid-template-columns:120px 345px 157px minmax(0,1fr);
+  column-gap:15px;
+  align-items:start;
+}
+.cart-row__media{
+  width:120px;
+  height:150px;
+  overflow:hidden;
+  background:#f4f4f4;
+}
+.cart-row__media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.cart-row__info{padding-top:1px}
+.cart-row__name{
+  margin:0;
+  font-size:16px;
+  font-weight:400;
+  line-height:22px;
+}
+.cart-row__name a{text-decoration:none}
+.cart-row__name a:hover{text-decoration:underline}
+.cart-row__opt{
+  margin:5px 0 0;
+  font-size:14px;
+  line-height:19px;
+  color:#000;
+}
+.cart-row__price{
+  margin:1px 0 0;
+  font-size:14px;
+  line-height:19px;
+  color:#000;
+}
+.cart-row__qty{display:flex;align-items:center;gap:8px}
+.qty-box{
+  display:flex;
+  align-items:center;
+  flex:0 0 105px;
+  width:105px;
+  height:46px;
+  border:1px solid #dfdfdf;
+  border-radius:5px;
+  background:#fff;
+}
+.qty-box button{
+  width:32px;
+  height:100%;
+  display:grid;
+  place-items:center;
+  font-size:15px;
+  line-height:1;
+  color:#111;
+  border-radius:5px;
+}
+.qty-box button:hover{background:#f4f4f4}
+.qty-box button:disabled{color:rgba(0,0,0,.25);background:none}
+.qty-box input{
+  flex:1;
+  width:100%;
+  min-width:0;
+  border:0;
+  background:transparent;
+  text-align:center;
+  font-size:14px;
+  color:#000;
+  -moz-appearance:textfield;
+}
+.qty-box input::-webkit-outer-spin-button,
+.qty-box input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.cart-remove{
+  flex:0 0 44px;
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  color:#111;
+  border-radius:50%;
+}
+.cart-remove svg{width:19px;height:19px}
+.cart-remove:hover{background:#f4f4f4}
+.cart-row__total{
+  justify-self:end;
+  font-size:14px;
+  font-weight:600;
+  line-height:17px;
+}
+
+/* -------------------------------------------------------------- summary */
+.cart-summary{
+  background:#dfdfdf;
+  padding:39.8px 40px 32px;
+  margin-top:24px;
+}
+.cart-discount{
+  border-top:1px solid rgba(0,0,0,.1);
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+.cart-discount > summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:44px;
+  padding:11.2px 0;
+  font-size:12px;
+  line-height:14px;
+  cursor:pointer;
+  list-style:none;
+}
+.cart-discount > summary::-webkit-details-marker{display:none}
+.cart-discount > summary svg{
+  width:14px;
+  height:14px;
+  transition:transform .25s ease;
+}
+.cart-discount[open] > summary svg{transform:rotate(45deg)}
+.cart-discount__body{
+  display:flex;
+  gap:8px;
+  padding:0 0 14px;
+}
+.cart-discount__body input{
+  flex:1;
+  height:44px;
+  border:1px solid #dfdfdf;
+  background:#fff;
+  padding:11.2px 12.8px;
+  font-size:14px;
+  color:#111;
+}
+.cart-discount__body button{
+  width:88px;
+  height:44px;
+  background:#000;
+  color:#fff;
+  font-size:14px;
+  padding:16px 24px;
+}
+.cart-totals{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:20px;
+  font-size:14px;
+  line-height:20px;
+}
+.cart-totals b{font-size:14px;font-weight:600}
+.cart-tax{
+  margin:16px 0 0;
+  font-size:14px;
+  line-height:17px;
+  color:rgba(0,0,0,.8);
+}
+.btn-checkout{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:52px;
+  margin-top:33px;
+  background:#000;
+  color:#fff;
+  font-size:14px;
+  line-height:20px;
+  transition:background .2s ease;
+}
+.btn-checkout:hover{background:#1c1c1c}
+
+/* ---------------------------------------------------------- empty state */
+.cart-empty-state{
+  padding:104px 40px 80px;
+  text-align:center;
+}
+.cart-empty-state h1{
+  margin:0;
+  font-size:24px;
+  font-weight:700;
+  line-height:24px;
+}
+.cart-empty-state p{
+  margin:18px 0 0;
+  font-size:14px;
+  line-height:19.6px;
+  color:#000;
+}
+.cart-empty-state p a{text-decoration:underline}
+.btn-continue{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:52px;
+  margin-top:26px;
+  padding:16px 32px;
+  background:#000;
+  color:#fff;
+  font-size:14px;
+  line-height:20px;
+  transition:background .2s ease;
+}
+.btn-continue:hover{background:#1c1c1c}
+
+/* ----------------------------------------------------------------- recs */
+.cart-recs{padding:48px 40px}
+.cart-recs__head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+}
+.cart-recs__head h2{
+  margin:0;
+  font-size:24px;
+  font-weight:700;
+  line-height:24px;
+  letter-spacing:-.2px;
+}
+.cart-recs__head a{
+  margin-top:6px;
+  font-size:14px;
+  line-height:20px;
+  color:#000;
+}
+.cart-recs__grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:24px 8px;
+  margin:27px 0 0;
+  padding:0;
+  list-style:none;
+}
+.cart-card{position:relative}
+.cart-card__media{overflow:hidden}
+.cart-card__media img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.cart-card__name{
+  margin:8px 0 0;
+  font-size:14px;
+  font-weight:400;
+  line-height:20px;
+}
+.cart-card__price{
+  margin:3px 0 0;
+  font-size:12px;
+  font-weight:600;
+  line-height:15px;
+}
+.cart-card__link{position:absolute;inset:0;z-index:2}
+
+/* ------------------------------------------------------------- responsive */
+@media (max-width:1199.98px){
+  .cart-layout{grid-template-columns:minmax(0,1fr) 340px;padding-left:24px}
+  .cart-main{padding-right:24px}
+  .cart-row{grid-template-columns:100px minmax(0,1fr) 159px 100px;column-gap:12px}
+  .cart-row__media{width:100px;height:125px}
+  .cart-summary{padding:28px 24px 28px}
+  .cart-recs{padding:48px 24px}
+}
+@media (max-width:899.98px){
+  .cart-layout{grid-template-columns:1fr;padding-left:0}
+  .cart-main{padding:0 16px}
+  .cart-rows{padding:17px 0 8px}
+  .cart-summary{margin:8px 16px 0;padding:3px 0 0}
+  .cart-totals{margin-top:22px}
+  .cart-tax{margin-top:6px;font-size:14px;line-height:17px}
+  .btn-checkout{margin-top:42px}
+  .cart-recs{padding:40px 16px 32px}
+  .cart-recs{padding:40px 16px}
+  .cart-recs__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cart-row{
+    grid-template-columns:54px minmax(0,1fr) auto;
+    grid-template-areas:"media info total" "media qty qty";
+    column-gap:15px;
+    row-gap:0;
+  }
+  .cart-row__media{grid-area:media;width:54px;height:67px}
+  .cart-row__info{grid-area:info}
+  .cart-row__price{margin-top:1px}
+  .cart-row__qty{grid-area:qty;margin-top:8px;gap:12px}
+  .qty-box{flex:0 0 180px;width:180px;height:48px;border-radius:4px}
+  .cart-row__total{grid-area:total;justify-self:end;font-size:14px;line-height:19px}
+  .cart-head{padding-top:20px}
+  .cart-empty-state{padding:80px 16px 64px}
+}
