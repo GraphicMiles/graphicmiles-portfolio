@@ -111,7 +111,7 @@
         '<div class="cart-empty">' +
         '<div class="cart-empty__title">Your cart is empty</div>' +
         '<p class="cart-empty__note">Have an account? <a href="#" data-noop>Log in</a> to check out faster.</p>' +
-        '<a class="cart-empty__cta" href="collections.html">Continue shopping</a>' +
+        '<a class="cart-empty__cta" href="collection.html">Continue shopping</a>' +
         '</div>';
       foot.hidden = true;
       foot.innerHTML = '';

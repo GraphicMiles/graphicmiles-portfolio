@@ -28,8 +28,9 @@ application, and anyone who wants to see the work before talking.
   what it is, one line about it, one link.
 - **Eleven case studies**, each a complete page of its own: `/atelier-drop-case-study`,
   `/cala`, `/cirrus`, `/drop`, `/ilee`, `/middleground`, `/quarry`, `/rewind`,
-  `/sportybet-demo`, `/tessera` and `/sixhours`, plus nine single-page concept
-  builds collected under `/demos`.
+  `/sportybet-demo`, `/tessera` and `/sixhours`. The demo hub at `/demos` lists
+  nine concept builds: five single-page studies under `/demos`, plus Sixhours,
+  Tessera, Rewind and Atelier Drop.
 - **Atelier Drop at `/atelier-drop/`.** A self-contained static clone of a
   password-gated Shopify streetwear store (Horizon theme): home, collection,
   nine product pages, cart, search, 404 and four concept templates, with a
@@ -81,24 +82,28 @@ demos and asset credits.
 ### Build and preview
 
 ```sh
-npm run build          # node static-build.js, writes dist/
-npx --yes serve dist   # or: python3 -m http.server 8080, served from the repo root
+npm run build   # node static-build.js, writes dist/
+npm run serve   # node scripts/serve-dist.js, http://127.0.0.1:4173
 ```
 
 `static-build.js` copies the root site into `dist/` and each `works/<slug>`
 folder to `dist/<slug>/`, which is how the case studies are served at `/<slug>/`
-in production. There are no runtime dependencies; the build is a plain Node
-script. The pages use root-absolute paths (`/css/styles.css`), so serve from the
-project root.
+in production. There are no runtime dependencies; the build and the server are
+plain Node scripts. Serve `dist/`, not the repository root: the pages use
+root-absolute paths (`/css/styles.css`) and the demos only exist at their built
+paths.
 
 ### Tests
 
 ```sh
-npm install
+npm ci
 npx playwright install chromium
 npm run build
 npm test
 ```
+
+The same four steps run in CI (`.github/workflows/ci.yml`) on Node 20 on every
+push and pull request.
 
 Playwright drives the built site over a local static server and checks the
 journeys that matter: the home page, the archive, a case study, the 404 page, the
