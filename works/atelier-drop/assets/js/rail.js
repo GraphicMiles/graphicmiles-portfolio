@@ -44,7 +44,7 @@
       '<div class="sr-corner">' +
       '<div class="sr-corner-h">Crafted in heavyweight fleece. Cut oversized. Made to last.</div>' +
       '<div class="sr-cta-w">' +
-      '<a class="sr-cta-link" href="collections.html"><span>Shop the Collection</span>' +
+      '<a class="sr-cta-link" href="collection.html"><span>Shop the Collection</span>' +
       '<svg class="sr-cta-ar" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 5h13M10 1l4 4-4 4"></path></svg></a>' +
       '</div></div>' +
       '</div></div>';
