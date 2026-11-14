@@ -1,31 +1,7 @@
 (function () {
   "use strict";
 
-  // 1. Accessible accordion disclosure for Experiences
-  var triggers = document.querySelectorAll(".exp-trigger");
-
-  function setExpanded(trigger, open) {
-    var item = trigger.closest(".exp-item");
-    if (!item) return;
-    trigger.setAttribute("aria-expanded", open ? "true" : "false");
-    item.setAttribute("data-open", open ? "true" : "false");
-  }
-
-  triggers.forEach(function (trigger) {
-    trigger.addEventListener("click", function () {
-      var isOpen = trigger.getAttribute("aria-expanded") === "true";
-      setExpanded(trigger, !isOpen);
-    });
-
-    trigger.addEventListener("keydown", function (event) {
-      if (event.key === "Escape" && trigger.getAttribute("aria-expanded") === "true") {
-        setExpanded(trigger, false);
-        trigger.focus();
-      }
-    });
-  });
-
-  // 2. Scroll-entry choreography via IntersectionObserver (never scroll listeners)
+  // Scroll-entry choreography via IntersectionObserver (never scroll listeners)
   var revealNodes = document.querySelectorAll("[data-reveal]");
   var allowsMotion =
     typeof window.matchMedia === "function" &&

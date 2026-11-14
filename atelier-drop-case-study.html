@@ -58,13 +58,13 @@
 
       <div class="profile-intro">
         <h1 class="profile-name">Atelier Drop</h1>
-        <p class="profile-role">Storefront clone · static HTML</p>
+        <p class="profile-role">Storefront clone, static HTML</p>
         <p class="profile-bio">A password-gated Shopify streetwear store rebuilt page by page in plain HTML, CSS and vanilla JavaScript, then measured against the live build at 1440 and 390 pixels until the differences closed.</p>
       </div>
 
       <div class="profile-actions">
         <a href="/atelier-drop/" class="cta-btn">Open the demo</a>
-        <span class="profile-email">18 pages · no framework</span>
+        <span class="profile-email">18 pages, no framework</span>
       </div>
     </header>
 
@@ -75,7 +75,7 @@
             <a href="/projects/" class="row-link">
               <div class="row-copy">
                 <span class="row-title back-title">
-                  <svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,128a8,8,0,0,1-8,8H59.31l58.35,58.34a8,8,0,0,1-11.32,11.32l-72-72a8,8,0,0,1,0-11.32l72-72a8,8,0,0,1,11.32,11.32L59.31,120H216A8,8,0,0,1,224,128Z"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
                   <span>Archive</span>
                 </span>
                 <span class="row-sub">Every build in one list</span>
@@ -108,7 +108,7 @@
         <h2 id="what-heading" class="section-title">What it is</h2>
         <div class="prose-block">
           <p class="prose-lead">The store runs the Horizon theme: a sticky two-row header, a scene rail of garments hanging from a catenary, a runway with six looks pinned to a wall, a shelf wall of shoes, a shader-driven slider and a bag drawer.</p>
-          <p>Rebuilding it is a test of whether an interface can be reproduced from its output alone — no theme files, no design handoff, just the rendered page and a ruler. The result is 18 static pages that open from any static server. Nothing is fetched from the store: fonts, photography and video sit in the folder, and the bag is <code>localStorage</code>.</p>
+          <p>Rebuilding it is a test of whether an interface can be reproduced from its output alone: no theme files, no design handoff, just the rendered page and a ruler. The result is 18 static pages that open from any static server. Nothing is fetched from the store: fonts, photography and video sit in the folder, and the bag is <code>localStorage</code>.</p>
         </div>
       </section>
 
@@ -116,7 +116,7 @@
         <h2 id="hard-heading" class="section-title">The hard part</h2>
         <div class="prose-block">
           <p><strong>Geometry that only exists at runtime.</strong> The rail is a catenary sampled into a path, and each garment hangs at its own angle. Instead of eyeballing it, the build reads the live path's points and replays them under the same viewBox, so the curve, the tag anchors and the hover-widen transform agree at both widths.</p>
-          <p><strong>Pages that scroll a div, not the window.</strong> The theme puts the scroll on <code>.page-wrapper</code> and hides the body overflow. Every scroll-linked measurement — the header shrink, the runway pins, the story progress — had to target the container instead of <code>window</code>, or the page silently stops responding to scroll.</p>
+          <p><strong>Pages that scroll a div, not the window.</strong> The theme puts the scroll on <code>.page-wrapper</code> and hides the body overflow. Every scroll-linked measurement (header shrink, runway pins and story progress) had to target the container instead of <code>window</code>, or the page silently stops responding to scroll.</p>
           <p><strong>Differences that are not bugs.</strong> Five pages ship no <code>&lt;h1&gt;</code>, six product pages share one SEO title, and that title still carries the store's &ldquo;Password: 1&rdquo; suffix. "Fixing" them would have broken fidelity, so the clone reproduces them and records why in its README.</p>
         </div>
       </section>
@@ -126,25 +126,25 @@
 
         <ul class="hairline-list">
           <li class="hairline-item">
-            <div class="row-link row-link--static">
+            <div class="static-row">
               <div class="row-copy">
                 <span class="row-title">Page heights, live vs clone</span>
-                <span class="row-sub">Home 5669 → 5650. Runway 1410 → 1410. Shoe atelier 1057 → 1057. 404 1293 → 1293. Products and collection within a few px at both widths.</span>
+                <span class="row-sub">Home 5669 to 5650. Runway 1410 to 1410. Shoe atelier 1057 to 1057. 404 1293 to 1293. Products and collection within a few px at both widths.</span>
               </div>
               <span class="row-meta tabular">@1440</span>
             </div>
           </li>
           <li class="hairline-item">
-            <div class="row-link row-link--static">
+            <div class="static-row">
               <div class="row-copy">
                 <span class="row-title">Band-by-band pixel diff</span>
                 <span class="row-sub">Screenshots compared band by band against the live page: 1.0 to 4.0 mean error on the measured sections, out of 255.</span>
               </div>
-              <span class="row-meta tabular">0–255</span>
+              <span class="row-meta tabular">0 to 255</span>
             </div>
           </li>
           <li class="hairline-item">
-            <div class="row-link row-link--static">
+            <div class="static-row">
               <div class="row-copy">
                 <span class="row-title">Whole-site audit</span>
                 <span class="row-sub">18 pages at 1440 and 390: zero console errors, zero failed requests, zero broken images, every visible control labelled.</span>
@@ -153,7 +153,7 @@
             </div>
           </li>
           <li class="hairline-item">
-            <div class="row-link row-link--static">
+            <div class="static-row">
               <div class="row-copy">
                 <span class="row-title">Click-path suite</span>
                 <span class="row-sub">Search, add to bag, cart drawer, quantities, removal, mobile menu, story video, rail drag, runway bundle, carousel, sort, atelier detail.</span>
@@ -162,7 +162,7 @@
             </div>
           </li>
           <li class="hairline-item">
-            <div class="row-link row-link--static">
+            <div class="static-row">
               <div class="row-copy">
                 <span class="row-title">Payload</span>
                 <span class="row-sub">Photography recompressed from 36 MB to 8.4 MB at 46 dB PSNR before shipping. The whole demo, videos included, is 18 MB.</span>
@@ -192,7 +192,7 @@
       <section aria-labelledby="limits-heading" class="section-block" data-reveal>
         <h2 id="limits-heading" class="section-title">Limits</h2>
         <div class="prose-block">
-          <p>This is a recreation, not a product. The brand, photography and copy belong to the original store, and the demo is published <code>noindex</code> as an engineering study. There is no checkout, account, order or backend — the bag lives in the browser and "check out" does nothing.</p>
+          <p>This is a recreation, not a product. The brand, photography and copy belong to the original store, and the demo is published <code>noindex</code> as an engineering study. There is no checkout, account, order or backend: the bag lives in the browser and "check out" does nothing.</p>
           <p>One section the theme renders with WebGL is reproduced with a CSS cross-fade: it matches the still frames but not the shader, and a handful of hidden accessibility layers differ from the store by a few pixels.</p>
         </div>
       </section>
@@ -200,10 +200,10 @@
   </main>
 
   <footer class="site-footer">
-    <div class="page-shell">
+    <div class="footer-shell">
       <div class="footer-row">
         <p class="footer-name">Raji Farouq Adewunmi</p>
-        <p class="footer-note">Junior fullstack developer, Lagos. This site is plain HTML and CSS.</p>
+        <p class="footer-note">Junior Full-Stack &amp; AI Engineer, Lagos. Plain HTML and CSS.</p>
       </div>
       <ul class="footer-links">
         <li><a class="prose-link" href="mailto:rfarouq69@gmail.com">Email</a></li>

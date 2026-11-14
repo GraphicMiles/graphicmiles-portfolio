@@ -1,8 +1,8 @@
 # Raji Farouq Adewunmi, portfolio
 
-A personal site for Raji Farouq Adewunmi, a junior fullstack developer in Lagos,
-Nigeria. One page introduces him, a second page lists the shipped work and live
-links in one place, and each build opens as its own case study.
+A personal site for Raji Farouq Adewunmi, a junior full-stack and AI engineer in
+Lagos, Nigeria. One page introduces him, a second page lists the shipped work and
+interface studies in one place, and each self-contained study opens at its own URL.
 
 Live: [designedbymiles.vercel.app](https://designedbymiles.vercel.app)
 
@@ -11,26 +11,27 @@ Live: [designedbymiles.vercel.app](https://designedbymiles.vercel.app)
 A junior application usually arrives as a CV and a GitHub profile, and the reader
 has to reconstruct what the person can actually do. This site is the other way
 round: each project states what the hard part was, names the stack, quotes the
-test count, and links straight to the running build or the repository. A claim on
-this site has to survive a click.
+test count, and links straight to the running build or the public repository. A
+claim on this site has to survive a click.
 
 ## Who it is for
 
-Hiring managers and engineers reviewing a junior fullstack or AI engineering
+Hiring managers and engineers reviewing a junior full-stack or AI engineering
 application, and anyone who wants to see the work before talking.
 
 ## What you can find here
 
 - **The home page.** Who he is, how to reach him, and five featured projects
-  (Legally Unbullied, Scout, Nearspace, Luna, Atelier Drop) with the hard part of each build,
-  the stack, the test evidence and links to the live demo, the code and the docs.
-- **The archive at `/projects`.** The shipped work and live links in one list:
-  what it is, one line about it, one link.
-- **Eleven case studies**, each a complete page of its own: `/atelier-drop-case-study`,
+  (Legally Unbullied, Scout, Nearspace, Luna, Atelier Drop) with the hard part of
+  each build, the stack, the test evidence and verified links to live apps, public
+  repositories and technical documentation.
+- **The archive at `/projects/`.** Separated into shipped products and developer
+  tools (6 builds) followed by self-contained interface and storefront studies
+  (12 studies).
+- **Self-contained studies**, each a complete build of its own: `/atelier-drop-case-study`,
   `/cala`, `/cirrus`, `/drop`, `/ilee`, `/middleground`, `/quarry`, `/rewind`,
-  `/sportybet-demo`, `/tessera` and `/sixhours`. The demo hub at `/demos` lists
-  nine concept builds: five single-page studies under `/demos`, plus Sixhours,
-  Tessera, Rewind and Atelier Drop.
+  `/sportybet-demo`, `/tessera` and `/sixhours`. The demo hub at `/demos/` lists
+  nine interactive concept builds.
 - **Atelier Drop at `/atelier-drop/`.** A self-contained static clone of a
   password-gated Shopify streetwear store (Horizon theme): home, collection,
   nine product pages, cart, search, 404 and four concept templates, with a
