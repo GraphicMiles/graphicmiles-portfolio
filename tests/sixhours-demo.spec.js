@@ -32,7 +32,7 @@ test('the archive and demo hub open the Sixhours demo', async ({ page }) => {
   await expect(page.locator('#home-products .product-card')).toHaveCount(20);
   await expect(page.locator('#home-bundles .bundle-card')).toHaveCount(8);
   await page.goto('/demos/');
-  await expect(page.locator('#concepts-heading').locator('..')).toContainText('9 studies');
+  await expect(page.locator('#concepts-heading').locator('..')).toContainText('10 studies');
   const demoLink = page.getByRole('link', { name: /^Sixhours / });
   await expect(demoLink).toHaveAttribute('href', '/sixhours/');
   await demoLink.click();

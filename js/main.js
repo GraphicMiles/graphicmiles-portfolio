@@ -323,10 +323,23 @@
 
     demos: {
       label: "My demo projects",
-      countLabel: "12 UI studies",
+      countLabel: "13 UI studies",
       initialVisible: 5,
-      moreLabel: "Show all 12 demo projects",
+      moreLabel: "Show all 13 demo projects",
       items: [
+        {
+          id: "bragsheet",
+          title: "Bragsheet",
+          hook: "Private career-receipts landing page with interactive log shell and MCP setup",
+          image: "/images/previews/bragsheet.jpg",
+          alt: "Bragsheet dark landing page with interactive two-pane receipt shell",
+          bordered: false,
+          hero: true,
+          primaryActionLabel: "Open live demo",
+          directLaunch: true,
+          liveUrl: "/bragsheet/",
+          liveLabel: "Open demo"
+        },
         {
           id: "atelier-drop",
           title: "Atelier Drop",

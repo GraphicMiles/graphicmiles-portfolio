@@ -46,7 +46,7 @@ test("home page introduces the developer, switches 3 segments, opens case notes,
   await expect(page.locator("#tab-demos")).toHaveAttribute("aria-selected", "true");
   await expect(page.locator(".feed-entry")).toHaveCount(5);
   await page.locator("#expand-more-btn").click();
-  await expect(page.locator(".feed-entry")).toHaveCount(12);
+  await expect(page.locator(".feed-entry")).toHaveCount(13);
 
   // Slide-in detail view & Back button
   await page.locator("#tab-projects").click();
