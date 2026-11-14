@@ -233,14 +233,14 @@ ol {
 
 .wrap-wide {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1120px;
   margin-inline: auto;
   padding-inline: 24px;
 }
 
 .wrap-narrow {
   width: 100%;
-  max-width: 1024px;
+  max-width: 1120px;
   margin-inline: auto;
   padding-inline: 24px;
 }
@@ -409,9 +409,9 @@ a.eyebrow-pill:hover {
 
 .header-inner {
   height: 100%;
-  max-width: 1280px;
+  max-width: 1120px;
   margin-inline: auto;
-  padding-inline: 20px;
+  padding-inline: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -447,6 +447,7 @@ a.eyebrow-pill:hover {
   font-weight: 500;
   line-height: 19.5px;
   color: var(--muted);
+  white-space: nowrap;
   transition: color 0.2s ease-out;
 }
 
@@ -562,14 +563,14 @@ a.eyebrow-pill:hover {
 .app-window {
   margin-top: 56px;
   width: 100%;
-  max-width: 1020px;
+  max-width: 100%;
   margin-inline: auto;
   background-color: #171717;
   border: 1px solid var(--border-subtle);
   border-radius: 22px;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 296px minmax(0, 1fr);
+  grid-template-columns: 288px minmax(0, 1fr);
   min-height: 510px;
 }
 
@@ -984,7 +985,7 @@ a.eyebrow-pill:hover {
 .statement-copy {
   position: relative;
   z-index: 2;
-  max-width: 560px;
+  max-width: min(560px, calc(100% - 310px));
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -992,10 +993,10 @@ a.eyebrow-pill:hover {
 
 .statement-graphic {
   position: absolute;
-  right: -48px;
+  right: -56px;
   bottom: -68px;
-  width: 420px;
-  height: 420px;
+  width: clamp(320px, 34vw, 410px);
+  height: clamp(320px, 34vw, 410px);
   pointer-events: none;
   z-index: 1;
 }
@@ -1038,6 +1039,7 @@ a.eyebrow-pill:hover {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: 46ch;
 }
 
 .bento-stage {
@@ -1206,7 +1208,7 @@ a.eyebrow-pill:hover {
 
 .moments-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
   align-items: center;
   gap: 56px;
 }
@@ -1292,7 +1294,7 @@ a.eyebrow-pill:hover {
 /* Right iPhone Hardware Frame */
 .phone-wrap {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .iphone-frame {
@@ -1923,7 +1925,9 @@ a.eyebrow-pill:hover {
 }
 
 .testimonial-card {
-  padding: 30px 32px;
+  max-width: 920px;
+  margin-inline: auto;
+  padding: 30px 34px;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 24px;
@@ -1980,8 +1984,9 @@ a.eyebrow-pill:hover {
 
 .plan-col {
   padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 6;
   gap: 18px;
   border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -2019,8 +2024,9 @@ a.eyebrow-pill:hover {
 
 .plan-price-line {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 6px;
+  gap: 4px 6px;
 }
 
 .plan-price {
@@ -2029,11 +2035,13 @@ a.eyebrow-pill:hover {
   letter-spacing: -0.02em;
   line-height: 1;
   color: var(--fg);
+  white-space: nowrap;
 }
 
 .plan-period {
   font-size: 14px;
   color: var(--muted);
+  white-space: nowrap;
 }
 
 .plan-note {
@@ -2046,7 +2054,12 @@ a.eyebrow-pill:hover {
   font-size: 14px;
   line-height: 1.5;
   color: var(--secondary);
-  min-height: 42px;
+}
+
+.plan-cta {
+  width: 100%;
+  max-width: 248px;
+  align-self: end;
 }
 
 .plan-list {
@@ -2117,7 +2130,7 @@ a.eyebrow-pill:hover {
 
 .faq-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  grid-template-columns: minmax(0, 0.58fr) minmax(0, 1.42fr);
   gap: 48px;
   align-items: start;
 }
@@ -2320,9 +2333,83 @@ html.js [data-reveal]:not(.is-in) {
     transform 0.65s var(--ease-spring);
 }
 
-@media (max-width: 980px) {
+@media (max-width: 960px) {
+  .header-left {
+    gap: 14px;
+  }
+
+  .nav-links {
+    gap: 2px;
+  }
+
+  .nav-link {
+    padding: 6px 7px;
+  }
+
+  .app-window {
+    grid-template-columns: 248px minmax(0, 1fr);
+  }
+
+  .statement-card {
+    padding: 36px 32px;
+    min-height: 290px;
+  }
+
+  .statement-copy {
+    max-width: 440px;
+  }
+
+  .statement-graphic {
+    width: 300px;
+    height: 300px;
+    right: -56px;
+    bottom: -64px;
+  }
+
+  .moments-layout {
+    gap: 32px;
+  }
+
+  .sheet-body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sheet-table-pane {
+    border-right: 0;
+    border-bottom: 1px solid #ececea;
+  }
+
+  .wins-table td.cell-impact,
+  .wins-table td.cell-date {
+    white-space: nowrap;
+  }
+
+  .plan-col {
+    padding: 24px 18px;
+  }
+
+  .plan-price {
+    font-size: 32px;
+  }
+
+  .included-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .faq-layout {
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 1.58fr);
+    gap: 28px;
+  }
+}
+
+@media (max-width: 767px) {
   .nav-links {
     display: none;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex;
+    flex-shrink: 0;
   }
 
   .app-window {
@@ -2368,30 +2455,35 @@ html.js [data-reveal]:not(.is-in) {
 
   .bento-grid,
   .moments-layout,
-  .sheet-body,
   .mcp-grid,
   .plan-matrix,
   .faq-layout {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .sheet-table-pane {
-    border-right: 0;
-    border-bottom: 1px solid #ececea;
+  .testimonial-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 22px;
+    gap: 18px;
   }
 
-  .wins-table td.cell-impact,
-  .wins-table td.cell-date {
-    white-space: nowrap;
+  .phone-wrap {
+    justify-content: center;
   }
 
   .plan-col {
+    grid-template-rows: none;
+    grid-row: auto;
     border-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   .plan-col:last-child {
     border-bottom: 0;
+  }
+
+  .plan-cta {
+    max-width: 280px;
   }
 
   .three-col-cards,
@@ -2402,9 +2494,13 @@ html.js [data-reveal]:not(.is-in) {
   .statement-card {
     flex-direction: column;
     align-items: flex-start;
-    padding: 36px 28px 28px;
+    padding: 34px 26px 26px;
     min-height: 0;
     gap: 18px;
+  }
+
+  .statement-copy {
+    max-width: 100%;
   }
 
   .statement-graphic {
@@ -2850,6 +2946,10 @@ html.js [data-reveal]:not(.is-in) {
 
   .plan-col {
     padding: 22px 18px;
+  }
+
+  .plan-cta {
+    max-width: 100%;
   }
 
   .included-banner {
@@ -3708,7 +3808,7 @@ html.js [data-reveal]:not(.is-in) {
             <p class="plan-desc">
               Your full private career ledger for logging daily wins, tracking streaks, and pulling proof for reviews and interviews.
             </p>
-            <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width:100%">Try the web app</a>
+            <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary plan-cta">Try the web app</a>
             <ul class="plan-list">
               <li>
                 <svg><use href="#icon-check" /></svg>
@@ -3743,7 +3843,7 @@ html.js [data-reveal]:not(.is-in) {
             <p class="plan-desc">
               Tell your AI assistant to log a win the moment you finish solving a problem, without exposing your existing vault.
             </p>
-            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft" style="width:100%">Connect your AI</a>
+            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft plan-cta">Connect your AI</a>
             <ul class="plan-list">
               <li>
                 <svg><use href="#icon-check" /></svg>
@@ -3778,7 +3878,7 @@ html.js [data-reveal]:not(.is-in) {
             <p class="plan-desc">
               Start logging on the web app today. Every win, tag, and streak will carry straight into the native Android app at launch.
             </p>
-            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-soft" style="width:100%">Create account now</a>
+            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-soft plan-cta">Create account now</a>
             <ul class="plan-list">
               <li>
                 <svg><use href="#icon-check" /></svg>
@@ -4466,6 +4566,12 @@ html.js [data-reveal]:not(.is-in) {
         mobileBtn.setAttribute("aria-expanded", "false");
         mobileDrawer.hidden = true;
       });
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 767 && !mobileDrawer.hidden) {
+        mobileBtn.setAttribute("aria-expanded", "false");
+        mobileDrawer.hidden = true;
+      }
     });
   }
 
