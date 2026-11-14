@@ -323,10 +323,23 @@
 
     demos: {
       label: "My demo projects",
-      countLabel: "13 UI studies",
+      countLabel: "14 UI studies",
       initialVisible: 5,
-      moreLabel: "Show all 13 demo projects",
+      moreLabel: "Show all 14 demo projects",
       items: [
+        {
+          id: "trace",
+          title: "Trace",
+          hook: "Social wardrobe and style-discovery app with outfit builder and local closet",
+          image: "/images/previews/trace.jpg",
+          alt: "Trace social fashion app feed with wardrobe rail and curated pieces",
+          bordered: true,
+          hero: true,
+          primaryActionLabel: "Open live demo",
+          directLaunch: true,
+          liveUrl: "/trace/",
+          liveLabel: "Open demo"
+        },
         {
           id: "bragsheet",
           title: "Bragsheet",
