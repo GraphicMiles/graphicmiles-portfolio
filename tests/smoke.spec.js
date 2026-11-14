@@ -50,7 +50,7 @@ test("archive lists the case studies and opens Drop", async ({ page }) => {
   const rows = page.locator(".row-title");
   expect(await rows.count()).toBeGreaterThan(5);
 
-  await page.getByRole("link", { name: /Drop/ }).first().click();
+  await page.locator('a[href="/drop/"]').click();
   await expect(page).toHaveURL(/\/drop\/$/);
   await expect(page).toHaveTitle(/Drop/i);
 
@@ -144,5 +144,19 @@ test("the case study links to the demo and to the archive", async ({ page }) => 
   await expect(page.locator("h1")).toContainText("Atelier Drop");
   await expect(page.locator('a[href="/atelier-drop/"]').first()).toBeVisible();
   await expect(page.locator('a[href="/projects/"]').first()).toBeVisible();
+  expect(problems).toEqual([]);
+});
+
+test("archive separates shipped products from interface studies and all core pages render a footer", async ({ page }) => {
+  const problems = watch(page);
+  await page.goto("/projects/");
+  await expect(page.locator("#shipped-heading")).toHaveText(/Shipped products/i);
+  await expect(page.locator("#studies-heading")).toHaveText(/Interface & storefront studies/i);
+  await expect(page.locator('a[href*="odgdelivery"]')).toHaveCount(0);
+
+  for (const route of ["/", "/projects/", "/atelier-drop-case-study", "/demos/", "/404.html"]) {
+    await page.goto(route);
+    await expect(page.locator("footer.site-footer")).toBeVisible();
+  }
   expect(problems).toEqual([]);
 });
