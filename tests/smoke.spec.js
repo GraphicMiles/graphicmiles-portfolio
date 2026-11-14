@@ -25,16 +25,41 @@ function watch(page) {
   return problems;
 }
 
-test("home page introduces the developer and links to the archive", async ({ page }) => {
+test("home page introduces the developer, switches 3 segments, opens case notes, and links to the archive", async ({ page }) => {
   const problems = watch(page);
   await page.goto("/");
 
   await expect(page.locator("h1")).toHaveCount(1);
   await expect(page.locator("h1")).toContainText("Raji Farouq Adewunmi");
 
-  const archive = page.locator('nav[aria-label="Links"] a[href="/projects/"]');
+  // 3-segment switcher renders and switches cleanly
+  await expect(page.locator("#tab-projects")).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator(".feed-entry")).toHaveCount(5);
+
+  await page.locator("#tab-experiments").click();
+  await expect(page.locator("#tab-experiments")).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator(".feed-entry")).toHaveCount(5);
+  await page.locator("#expand-more-btn").click();
+  await expect(page.locator(".feed-entry")).toHaveCount(9);
+
+  await page.locator("#tab-demos").click();
+  await expect(page.locator("#tab-demos")).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator(".feed-entry")).toHaveCount(5);
+  await page.locator("#expand-more-btn").click();
+  await expect(page.locator(".feed-entry")).toHaveCount(12);
+
+  // Slide-in detail view & Back button
+  await page.locator("#tab-projects").click();
+  await page.locator('[data-open-detail="legally-unbullied"]').first().click();
+  await expect(page.locator("#detail-view")).toBeVisible();
+  await expect(page.locator(".detail-title")).toHaveText("Legally Unbullied");
+  await page.locator("#detail-back-btn").click();
+  await expect(page.locator("#detail-view")).toBeHidden();
+
+  // Archive navigation
+  const archive = page.locator('footer.site-footer a[href="/projects/"]');
   await expect(archive).toHaveCount(1);
-  await expect(archive.locator(".row-title")).toHaveText("Archive");
+  await expect(archive).toHaveText("Archive");
 
   await archive.click();
   await expect(page).toHaveURL(/\/projects\/$/);

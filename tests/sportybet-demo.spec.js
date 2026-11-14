@@ -4,12 +4,12 @@ const base='/sportybet-demo/';
 function watch(page){const errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400)errors.push(`${r.status()} ${r.url()}`)});return errors;}
 async function wallet(page){return page.evaluate(()=>JSON.parse(localStorage.getItem('sporty-demo-v2')).ledger.reduce((sum,t)=>sum+t.amount,0));}
 
-test('demo stays archived without appearing on the portfolio homepage',async({page})=>{
+test('demo stays archived without appearing on the default projects view',async({page})=>{
  const errors=watch(page);await page.goto('/');
  await expect(page.locator('a[href="/sportybet-demo/"]')).toHaveCount(0);
- await expect(page.getByRole('heading',{name:'SportyBet interface demo'})).toHaveCount(0);
- await expect(page.locator('article.project')).toHaveCount(5);
- await expect(page.getByRole('heading',{name:'Five things I built'})).toBeVisible();
+ await expect(page.getByRole('heading',{name:/SportyBet/i})).toHaveCount(0);
+ await expect(page.locator('article.feed-entry')).toHaveCount(5);
+ await expect(page.locator('#tab-projects')).toHaveAttribute('aria-selected','true');
  await page.goto('/projects/');await page.getByRole('link',{name:/SportyBet interface demo/}).click();
  await expect(page).toHaveURL(/\/sportybet-demo\/$/);await expect(page.locator('.demo-status')).toContainText('DEMO');
  await expect(page.locator('h1')).toContainText('interactive demo');expect(errors).toEqual([]);
