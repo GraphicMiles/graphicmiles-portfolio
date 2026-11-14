@@ -248,6 +248,7 @@ ol {
 .card {
   background-color: var(--card);
   border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .btn {
@@ -521,8 +522,8 @@ a.eyebrow-pill:hover {
    ========================================================================== */
 
 .hero-section {
-  padding-top: 132px;
-  padding-bottom: 84px;
+  padding-top: 128px;
+  padding-bottom: 80px;
 }
 
 .hero-copy {
@@ -969,8 +970,15 @@ a.eyebrow-pill:hover {
    3. Wide Statement Banner (AppuBot oversized cropped graphic card)
    ========================================================================== */
 
-.statement-section {
-  padding-block: 44px 72px;
+.statement-section,
+.bento-section,
+.moments-section,
+.workspace-section,
+.ai-section,
+.proof-section,
+.access-section,
+.faq-section {
+  padding-block: 72px;
 }
 
 .statement-card {
@@ -1002,12 +1010,8 @@ a.eyebrow-pill:hover {
 }
 
 /* ==========================================================================
-   4. 2x2 Bento Feature Grid ("Four moments where receipts save you")
+   4. 2x2 Bento Feature Grid
    ========================================================================== */
-
-.bento-section {
-  padding-block: 64px 88px;
-}
 
 .section-intro {
   max-width: 680px;
@@ -1018,6 +1022,14 @@ a.eyebrow-pill:hover {
   align-items: center;
   gap: 14px;
   margin-bottom: 48px;
+}
+
+.section-intro .t-h2 {
+  text-wrap: balance;
+}
+
+.section-intro .t-lead {
+  text-wrap: pretty;
 }
 
 .bento-grid {
@@ -1201,10 +1213,6 @@ a.eyebrow-pill:hover {
    5. Interactive Persona / Moment Switcher + iPhone Mockup Stage
       (AppuBot "Give each bot a job" chip selector + phone preview)
    ========================================================================== */
-
-.moments-section {
-  padding-block: 76px 92px;
-}
 
 .moments-layout {
   display: grid;
@@ -1443,10 +1451,6 @@ a.eyebrow-pill:hover {
    6. Full-Width Crisp Light App Showcase Stage
       (AppuBot "Watch your bot work on your Mac" crisp light window inside dark card)
    ========================================================================== */
-
-.workspace-section {
-  padding-block: 56px 92px;
-}
 
 .workspace-stage {
   background-color: #131315;
@@ -1712,10 +1716,6 @@ a.eyebrow-pill:hover {
       (AppuBot "AppuBot Cloud" centered stage + 3 capability cards below)
    ========================================================================== */
 
-.ai-section {
-  padding-block: 76px 92px;
-}
-
 .mcp-stage {
   margin-top: 40px;
   background-color: #151517;
@@ -1902,6 +1902,7 @@ a.eyebrow-pill:hover {
 
 .mini-feature-card {
   background-color: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 24px;
   padding: 24px;
   display: flex;
@@ -1920,17 +1921,11 @@ a.eyebrow-pill:hover {
    8. Real User Proof + Access / Plan Matrix (AppuBot Pricing Architecture)
    ========================================================================== */
 
-.proof-section {
-  padding-block: 48px 84px;
-}
-
 .testimonial-card {
-  max-width: 920px;
-  margin-inline: auto;
-  padding: 30px 34px;
+  padding: 32px 38px;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: 24px;
+  gap: 28px;
   align-items: center;
   border: 1px solid rgba(255, 255, 255, 0.06);
 }
@@ -1944,6 +1939,7 @@ a.eyebrow-pill:hover {
 }
 
 .testimonial-quote {
+  max-width: 68ch;
   font-size: clamp(16px, 1.5vw, 19px);
   line-height: 1.58;
   color: var(--ink);
@@ -1968,36 +1964,28 @@ a.eyebrow-pill:hover {
   color: var(--muted);
 }
 
-/* Access / Platform Matrix (AppuBot multi-column dark slab with warm highlighted column) */
-.access-section {
-  padding-block: 64px 88px;
-}
-
+/* Access / Platform Cards (3 separated cards, never conjoined) */
 .plan-matrix {
-  background-color: var(--card);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  overflow: hidden;
+  gap: 20px;
+  align-items: stretch;
 }
 
 .plan-col {
-  padding: 28px 24px;
+  background-color: var(--card);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 28px 26px;
   display: grid;
   grid-template-rows: subgrid;
   grid-row: span 6;
   gap: 18px;
-  border-right: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.plan-col:last-child {
-  border-right: 0;
 }
 
 .plan-col--featured {
-  background-color: #21181a;
-  border-top: 2px solid var(--brand-crimson-bright);
+  background-color: #1f1719;
+  border-color: rgba(217, 93, 116, 0.38);
 }
 
 .plan-head {
@@ -2020,6 +2008,17 @@ a.eyebrow-pill:hover {
   border-radius: 9999px;
   background-color: var(--brand-crimson-soft);
   color: var(--brand-crimson-bright);
+  white-space: nowrap;
+}
+
+.plan-badge-muted {
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  white-space: nowrap;
 }
 
 .plan-price-line {
@@ -2030,7 +2029,7 @@ a.eyebrow-pill:hover {
 }
 
 .plan-price {
-  font-size: 38px;
+  font-size: 36px;
   font-weight: 500;
   letter-spacing: -0.02em;
   line-height: 1;
@@ -2052,13 +2051,12 @@ a.eyebrow-pill:hover {
 
 .plan-desc {
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.52;
   color: var(--secondary);
 }
 
 .plan-cta {
   width: 100%;
-  max-width: 248px;
   align-self: end;
 }
 
@@ -2092,8 +2090,9 @@ a.eyebrow-pill:hover {
 }
 
 .included-banner {
-  margin-top: 16px;
+  margin-top: 20px;
   padding: 24px 26px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -2121,18 +2120,21 @@ a.eyebrow-pill:hover {
 }
 
 /* ==========================================================================
-   9. Two-Column FAQ Accordion (AppuBot left heading + right details rows)
+   9. Single-Column Full-Rail FAQ Accordion
    ========================================================================== */
 
-.faq-section {
-  padding-block: 76px 92px;
+.faq-container {
+  width: 100%;
+  max-width: 820px;
+  margin-inline: auto;
 }
 
-.faq-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.58fr) minmax(0, 1.42fr);
-  gap: 48px;
-  align-items: start;
+.faq-answer {
+  max-width: 72ch;
+  padding: 0 32px 22px 0;
+  font-size: 15px;
+  line-height: 1.62;
+  color: var(--muted);
 }
 
 .faq-list {
@@ -2175,13 +2177,6 @@ a.eyebrow-pill:hover {
 html:not(.js) .faq-item[open] .faq-icon {
   transform: rotate(45deg);
   color: var(--fg);
-}
-
-.faq-answer {
-  padding: 0 32px 22px 0;
-  font-size: 15px;
-  line-height: 1.62;
-  color: var(--muted);
 }
 
 /* ==========================================================================
@@ -2384,21 +2379,20 @@ html.js [data-reveal]:not(.is-in) {
     white-space: nowrap;
   }
 
+  .plan-matrix {
+    gap: 14px;
+  }
+
   .plan-col {
-    padding: 24px 18px;
+    padding: 22px 18px;
   }
 
   .plan-price {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .included-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .faq-layout {
-    grid-template-columns: minmax(0, 0.42fr) minmax(0, 1.58fr);
-    gap: 28px;
   }
 }
 
@@ -2456,8 +2450,7 @@ html.js [data-reveal]:not(.is-in) {
   .bento-grid,
   .moments-layout,
   .mcp-grid,
-  .plan-matrix,
-  .faq-layout {
+  .plan-matrix {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -2474,16 +2467,11 @@ html.js [data-reveal]:not(.is-in) {
   .plan-col {
     grid-template-rows: none;
     grid-row: auto;
-    border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .plan-col:last-child {
-    border-bottom: 0;
+    padding: 24px 20px;
   }
 
   .plan-cta {
-    max-width: 280px;
+    max-width: 100%;
   }
 
   .three-col-cards,
@@ -2550,7 +2538,18 @@ html.js [data-reveal]:not(.is-in) {
 
   .hero-section {
     padding-top: 96px;
-    padding-bottom: 52px;
+    padding-bottom: 48px;
+  }
+
+  .statement-section,
+  .bento-section,
+  .moments-section,
+  .workspace-section,
+  .ai-section,
+  .proof-section,
+  .access-section,
+  .faq-section {
+    padding-block: 52px;
   }
 
   .hero-ctas {
@@ -3070,8 +3069,8 @@ html.js [data-reveal]:not(.is-in) {
         </nav>
       </div>
       <div class="header-right">
-        <a href="#bragsheet-ai" class="btn btn-sm btn-soft">Connect AI</a>
-        <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">Try the web app</a>
+        <a href="https://app.bragsheet.net/login" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-soft">Sign in</a>
+        <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">Open web app</a>
         <button type="button" class="mobile-menu-btn" id="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-drawer" aria-label="Open menu">
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
             <path d="M3.5 6.5h13M3.5 10h13M3.5 13.5h13" />
@@ -3090,8 +3089,8 @@ html.js [data-reveal]:not(.is-in) {
       <a href="#faq">FAQ</a>
     </div>
     <div class="mobile-drawer-actions">
-      <a href="#bragsheet-ai" class="btn btn-sm btn-soft" style="flex:1">Connect AI</a>
-      <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="flex:1">Try the web app</a>
+      <a href="https://app.bragsheet.net/login" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-soft" style="flex:1">Sign in</a>
+      <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary" style="flex:1">Open web app</a>
     </div>
   </div>
 
@@ -3101,9 +3100,9 @@ html.js [data-reveal]:not(.is-in) {
       <div class="wrap-narrow">
         <div class="hero-copy">
           <a href="#bragsheet-ai" class="eyebrow-pill">
-            <strong>Web app live now</strong>
+            <strong>Web app live free</strong>
             <span class="dot-sep" aria-hidden="true">·</span>
-            <span>Bragsheet AI for Claude &amp; ChatGPT<span class="hide-xs"> · Android coming soon</span></span>
+            <span>MCP for Claude &amp; ChatGPT<span class="hide-xs"> · Android coming soon</span></span>
             <span class="pill-arrow" aria-hidden="true">
               <svg><use href="#icon-arrow-up-right" /></svg>
             </span>
@@ -3122,13 +3121,13 @@ html.js [data-reveal]:not(.is-in) {
           </p>
 
           <div class="hero-ctas">
-            <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              <span>Try the web app</span>
+            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+              <span>Start logging free</span>
               <svg><use href="#icon-arrow-up-right" /></svg>
             </a>
             <a href="#bragsheet-ai" class="btn btn-soft">
               <svg><use href="#icon-spark" /></svg>
-              <span>Connect Claude or ChatGPT</span>
+              <span>See how AI logging works</span>
             </a>
           </div>
         </div>
@@ -3154,7 +3153,7 @@ html.js [data-reveal]:not(.is-in) {
                 <circle cx="7" cy="7" r="4.5" />
                 <path d="M10.5 10.5L13.5 13.5" stroke-linecap="round" />
               </svg>
-              <span>Search 42 receipts</span>
+              <span>Search 42 entries</span>
             </div>
 
             <div class="sidebar-list" role="tablist" aria-label="Bragsheet collections">
@@ -3241,17 +3240,17 @@ html.js [data-reveal]:not(.is-in) {
                 </span>
                 <span id="hero-thread-name">Shipped Work</span>
               </div>
-              <span class="app-main-badge" id="hero-thread-badge">14 receipts · Q4</span>
+              <span class="app-main-badge" id="hero-thread-badge">14 entries · Q4</span>
             </div>
 
             <div class="app-thread" id="hero-thread-feed" aria-live="polite"></div>
 
-            <div class="app-composer" id="hero-composer-form" role="group" aria-label="Quick receipt logger">
+            <div class="app-composer" id="hero-composer-form" role="group" aria-label="Quick win logger">
               <input
                 type="text"
                 id="hero-composer-input"
                 class="composer-field"
-                placeholder="Type a quick win to test logging a receipt..."
+                placeholder="Type a quick win to test logging it..."
                 aria-label="Log a sample win"
                 maxlength="180"
               />
@@ -3271,9 +3270,9 @@ html.js [data-reveal]:not(.is-in) {
       <div class="wrap-wide">
         <div class="card statement-card">
           <div class="statement-copy">
-            <h2 class="t-h2">Most wins aren't forgotten because they were small</h2>
+            <h2 class="t-h2">Your memory fades by Friday. Your work shouldn't.</h2>
             <p class="t-lead">
-              They're forgotten because nobody writes them down the week they happen. Log a win in twenty seconds on the web or straight from Claude and ChatGPT, and own the receipts before review season starts.
+              Nobody forgets what they accomplished because the work was small. They forget because nobody writes it down while the numbers are still fresh. Capture a win in twenty seconds on the web or straight from your AI chat.
             </p>
           </div>
           <svg class="statement-graphic" viewBox="0 0 1080 1080" aria-hidden="true">
@@ -3290,9 +3289,9 @@ html.js [data-reveal]:not(.is-in) {
     <section id="features" class="bento-section" data-reveal>
       <div class="wrap-wide">
         <header class="section-intro">
-          <h2 class="t-h2">The receipts for everything you've built</h2>
+          <h2 class="t-h2">Built for how real work actually happens</h2>
           <p class="t-lead">
-            Less like a blank notes app, more like a structured career memory that stays private to you across every job you hold.
+            Not another blank doc you abandon in February. A structured record that stays yours across every role you hold.
           </p>
         </header>
 
@@ -3300,9 +3299,9 @@ html.js [data-reveal]:not(.is-in) {
           <!-- Card 1 -->
           <article class="card bento-card">
             <div class="bento-copy">
-              <h3 class="t-h3">Capture wins while the numbers are still fresh</h3>
+              <h3 class="t-h3">Capture the outcome before the context disappears</h3>
               <p class="t-body">
-                Record what you shipped, the obstacle you cleared and the real result in seconds, before Friday wipes your memory clean.
+                Jot down what you shipped, the blocker you cleared, and the metric that moved in seconds, before the next sprint buries it.
               </p>
             </div>
             <div class="bento-stage" aria-hidden="true">
@@ -3363,8 +3362,8 @@ html.js [data-reveal]:not(.is-in) {
             </div>
             <div class="bento-stage" aria-hidden="true">
               <div class="stage-top-row">
-                <span class="stage-status-chip chip--violet">42 receipts · 2026</span>
-                <span style="color:var(--muted);font-size:12px">By proof area</span>
+                <span class="stage-status-chip chip--violet">42 wins · 2026</span>
+                <span style="color:var(--muted);font-size:12px">By focus area</span>
               </div>
               <div class="mini-window">
                 <div class="skill-bars">
@@ -3463,7 +3462,7 @@ html.js [data-reveal]:not(.is-in) {
             </div>
 
             <p class="moment-story" id="moment-story-copy">
-              <strong>John stops dreading review week.</strong> Instead of trying to reconstruct twelve months of hard work the night before his manager's form closes, he opens twelve months of dated wins, metrics and shipped fixes.
+              <strong>John stops dreading review week.</strong> Instead of trying to reconstruct a full year of work the night before his manager's form closes, he opens twelve months of dated wins, metrics, and shipped fixes.
               <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="moment-inline-link">Start your log</a>
             </p>
           </div>
@@ -3660,8 +3659,8 @@ html.js [data-reveal]:not(.is-in) {
           </p>
 
           <div class="hero-ctas" style="margin-top:24px">
-            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Connect your AI</a>
-            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft">Read setup guide</a>
+            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Setup guide</a>
+            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-soft">Get your MCP key</a>
           </div>
         </div>
 
@@ -3783,18 +3782,18 @@ html.js [data-reveal]:not(.is-in) {
       </div>
     </section>
 
-    <!-- 9. Access & Platforms Matrix (AppuBot Pricing Slab Architecture) -->
+    <!-- 9. Access & Platforms Cards -->
     <section id="access" class="access-section" data-reveal>
       <div class="wrap-wide">
         <header class="section-intro">
-          <h2 class="t-h2">Start building your record today</h2>
+          <h2 class="t-h2">One private account across every surface</h2>
           <p class="t-lead">
             Free on the web right now, with write-only AI connectors included and native Android on the way.
           </p>
         </header>
 
         <div class="plan-matrix">
-          <!-- Column 1: Web App (Featured) -->
+          <!-- Card 1: Web App (Featured) -->
           <div class="plan-col plan-col--featured">
             <div class="plan-head">
               <span class="plan-name">Bragsheet Web</span>
@@ -3806,34 +3805,34 @@ html.js [data-reveal]:not(.is-in) {
             </div>
             <p class="plan-note">Desktop &amp; mobile browsers · Instant signup</p>
             <p class="plan-desc">
-              Your full private career ledger for logging daily wins, tracking streaks, and pulling proof for reviews and interviews.
+              Your full private ledger for logging daily wins, tracking streaks, and pulling proof for reviews and interviews.
             </p>
-            <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary plan-cta">Try the web app</a>
+            <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary plan-cta">Launch web app</a>
             <ul class="plan-list">
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Unlimited private wins, categories &amp; tags</span>
+                <span>Unlimited entries, categories &amp; tags</span>
               </li>
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Dashboard streaks &amp; accomplishment stats</span>
+                <span>Momentum streaks &amp; proof-area breakdown</span>
               </li>
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Works cleanly on iPhone, Android &amp; desktop web</span>
+                <span>Responsive on iPhone, Android &amp; desktop</span>
               </li>
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Personal account you keep across every job</span>
+                <span>Independent of any employer HR system</span>
               </li>
             </ul>
           </div>
 
-          <!-- Column 2: Bragsheet AI Connector -->
+          <!-- Card 2: Bragsheet AI Connector -->
           <div class="plan-col">
             <div class="plan-head">
               <span class="plan-name">Bragsheet AI (MCP)</span>
-              <span style="font-size:12px;color:var(--muted)">Included</span>
+              <span class="plan-badge-muted">Included</span>
             </div>
             <div class="plan-price-line">
               <span class="plan-price tabular">1 min</span>
@@ -3841,9 +3840,9 @@ html.js [data-reveal]:not(.is-in) {
             </div>
             <p class="plan-note">Claude (Free &amp; Pro), ChatGPT, Mistral &amp; MCP</p>
             <p class="plan-desc">
-              Tell your AI assistant to log a win the moment you finish solving a problem, without exposing your existing vault.
+              Tell your assistant to save a win the moment you solve a problem, without granting read access to your archive.
             </p>
-            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft plan-cta">Connect your AI</a>
+            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft plan-cta">Connect assistant</a>
             <ul class="plan-list">
               <li>
                 <svg><use href="#icon-check" /></svg>
@@ -3859,87 +3858,90 @@ html.js [data-reveal]:not(.is-in) {
               </li>
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Revoke tokens anytime in Settings</span>
+                <span>One-click token revocation in Settings</span>
               </li>
             </ul>
           </div>
 
-          <!-- Column 3: Android App -->
+          <!-- Card 3: Android App -->
           <div class="plan-col">
             <div class="plan-head">
               <span class="plan-name">Bragsheet Android</span>
-              <span style="font-size:12px;color:var(--muted)">Roadmap</span>
+              <span class="plan-badge-muted">Coming soon</span>
             </div>
             <div class="plan-price-line">
-              <span class="plan-price">Soon</span>
+              <span class="plan-price">Android</span>
               <span class="plan-period">/ Google Play</span>
             </div>
             <p class="plan-note">Syncs automatically with your web account</p>
             <p class="plan-desc">
-              Start logging on the web app today. Every win, tag, and streak will carry straight into the native Android app at launch.
+              Start building your log on the web today. Every entry, tag, and streak carries straight into the native Android app at launch.
             </p>
-            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-soft plan-cta">Create account now</a>
+            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-soft plan-cta">Reserve your account</a>
             <ul class="plan-list">
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Same private vault as app.bragsheet.net</span>
+                <span>Shared account with app.bragsheet.net</span>
               </li>
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Pocket capture after meetings or standups</span>
+                <span>Fast pocket capture right after standups</span>
               </li>
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Gentle streak reminders so wins don't slip</span>
+                <span>Optional Friday reminders so wins don't slip</span>
               </li>
               <li>
                 <svg><use href="#icon-check" /></svg>
-                <span>Zero migration needed when Android drops</span>
+                <span>Zero migration needed when Android ships</span>
               </li>
             </ul>
           </div>
         </div>
 
         <div class="card included-banner">
-          <h3 class="t-h3">Every Bragsheet account includes</h3>
+          <h3 class="t-h3">Built into every account</h3>
           <div class="included-grid">
             <div class="included-item">
               <svg><use href="#icon-check" /></svg>
-              <span>Private accomplishment vault</span>
+              <span>Encrypted personal archive</span>
             </div>
             <div class="included-item">
               <svg><use href="#icon-check" /></svg>
-              <span>Structured categories &amp; impact notes</span>
+              <span>Custom categories &amp; outcome notes</span>
             </div>
             <div class="included-item">
               <svg><use href="#icon-check" /></svg>
-              <span>Streak &amp; momentum tracking</span>
+              <span>Timeline filtering by skill &amp; quarter</span>
             </div>
             <div class="included-item">
               <svg><use href="#icon-check" /></svg>
-              <span>Write-only MCP AI connector</span>
+              <span>Scoped OAuth &amp; API key controls</span>
             </div>
             <div class="included-item">
               <svg><use href="#icon-check" /></svg>
-              <span>Zero employer or manager visibility</span>
+              <span>Zero employer or manager access</span>
             </div>
             <div class="included-item">
               <svg><use href="#icon-check" /></svg>
-              <span>Direct support at support@bragsheet.net</span>
+              <span>Direct founder support via email</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 10. Two-Column FAQ Accordion -->
+    <!-- 10. Single-Column Centered FAQ Accordion -->
     <section id="faq" class="faq-section" data-reveal>
       <div class="wrap-narrow">
-        <div class="faq-layout">
-          <div>
-            <h2 class="t-h2">FAQs</h2>
-          </div>
+        <header class="section-intro">
+          <h2 class="t-h2">Frequently asked questions</h2>
+          <p class="t-lead">
+            Straight answers on privacy, AI permissions, and how Bragsheet works.
+          </p>
+        </header>
 
+        <div class="faq-container">
           <div class="faq-list">
             <details class="faq-item" open>
               <summary>
@@ -3947,7 +3949,7 @@ html.js [data-reveal]:not(.is-in) {
                 <svg class="faq-icon"><use href="#icon-plus" /></svg>
               </summary>
               <div class="faq-answer">
-                Notes apps turn into graveyards of unsorted grocery lists and meeting scraps. Bragsheet is purpose-built for career proof: every entry captures what you did, the category, date, and impact so when review season, raise talks, or CV updates arrive, your strongest receipts are already structured.
+                Notes apps turn into graveyards of unsorted grocery lists and meeting scraps. Bragsheet is purpose-built for career proof: every entry records what you did, the category, date, and measurable outcome so when review season, comp talks, or CV updates arrive, your strongest examples are already organized.
               </div>
             </details>
 
@@ -3957,7 +3959,7 @@ html.js [data-reveal]:not(.is-in) {
                 <svg class="faq-icon"><use href="#icon-plus" /></svg>
               </summary>
               <div class="faq-answer">
-                No. Bragsheet is your personal, private career record, not company HR software. When you switch roles or companies, your entire history of accomplishments stays with you.
+                No. Bragsheet is your personal career record, not company HR software. When you switch roles or companies, your entire history of accomplishments stays with you.
               </div>
             </details>
 
@@ -3967,7 +3969,7 @@ html.js [data-reveal]:not(.is-in) {
                 <svg class="faq-icon"><use href="#icon-plus" /></svg>
               </summary>
               <div class="faq-answer">
-                No. The Bragsheet MCP connector (<code class="mono" style="font-size:13.5px;color:var(--secondary)">https://mcp.bragsheet.net/mcp</code>) is deliberately one-way and exposes a single <code class="mono" style="font-size:13.5px;color:var(--secondary)">log_win</code> action. Connected AI assistants cannot read your past wins, edit or delete entries, or see your account credentials.
+                No. The Bragsheet MCP connector (<code class="mono" style="font-size:13.5px;color:var(--secondary)">https://mcp.bragsheet.net/mcp</code>) is strictly one-way and exposes a single <code class="mono" style="font-size:13.5px;color:var(--secondary)">log_win</code> action. Connected assistants cannot read past entries, edit or delete anything, or see your login credentials.
               </div>
             </details>
 
@@ -3987,7 +3989,7 @@ html.js [data-reveal]:not(.is-in) {
                 <svg class="faq-icon"><use href="#icon-plus" /></svg>
               </summary>
               <div class="faq-answer">
-                The Bragsheet web app is live right now at <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" style="color:var(--fg);text-decoration:underline;text-underline-offset:3px">app.bragsheet.net</a> across desktop and mobile browsers, and the native Android app is coming soon.
+                The web app is live right now at <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" style="color:var(--fg);text-decoration:underline;text-underline-offset:3px">app.bragsheet.net</a> across desktop and mobile browsers, and the native Android app is in active development.
               </div>
             </details>
           </div>
@@ -4001,11 +4003,11 @@ html.js [data-reveal]:not(.is-in) {
         <div class="closing-copy">
           <h2 class="t-h2">Log your first win today</h2>
           <p class="t-lead">
-            Next time someone asks what you've accomplished this year, you won't have to guess. You'll have the receipts.
+            Next time someone asks what you accomplished this year, you won't have to guess. You'll have the proof in front of you.
           </p>
           <div class="closing-ctas">
-            <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Try the web app</a>
-            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft">Connect Claude or ChatGPT</a>
+            <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Create free account</a>
+            <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft">Explore AI setup</a>
           </div>
         </div>
 
@@ -4032,7 +4034,7 @@ html.js [data-reveal]:not(.is-in) {
             <span>Bragsheet</span>
           </a>
           <p class="footer-bio">
-            The private record of what you actually did at work, so performance reviews, interviews, and raises stop being a memory test.
+            Your private ledger of career wins, outcomes, and scope, ready whenever review season, comp talks, or job searches arrive.
           </p>
           <div class="footer-pills">
             <a href="https://x.com/Bragsheetapp" target="_blank" rel="noopener noreferrer" class="footer-pill">𝕏 @Bragsheetapp</a>
@@ -4043,7 +4045,7 @@ html.js [data-reveal]:not(.is-in) {
         <div>
           <div class="footer-col-title">Product</div>
           <ul class="footer-links">
-            <li><a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer">Try the web app</a></li>
+            <li><a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer">Web app</a></li>
             <li><a href="https://app.bragsheet.net/login" target="_blank" rel="noopener noreferrer">Sign in</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#moments">Use cases</a></li>
@@ -4091,7 +4093,7 @@ html.js [data-reveal]:not(.is-in) {
   const HERO_THREADS = {
     shipped: {
       name: "Shipped Work",
-      badge: "14 receipts · Q4",
+      badge: "14 entries · Q4",
       time: "17:19",
       colorBg: "rgba(217, 93, 116, 0.18)",
       colorFg: "#d95d74",
@@ -4107,7 +4109,7 @@ html.js [data-reveal]:not(.is-in) {
     },
     reviews: {
       name: "Performance Review",
-      badge: "9 receipts · Ready",
+      badge: "9 entries · Ready",
       time: "14:42",
       colorBg: "rgba(238, 121, 68, 0.18)",
       colorFg: "#ee7944",
@@ -4237,7 +4239,7 @@ html.js [data-reveal]:not(.is-in) {
         </div>
         <div class="msg-system">
           <div class="receipt-header">
-            <span>Private receipt · Owned by you</span>
+            <span>Saved entry · Private archive</span>
             <span class="receipt-saved-pill">Win logged</span>
           </div>
           <div class="receipt-title">${escapeHTML(m.receiptTitle)}</div>
@@ -4288,7 +4290,7 @@ html.js [data-reveal]:not(.is-in) {
     review: {
       chip: "Performance Review",
       leadBold: "John stops dreading review week.",
-      body: "Instead of trying to reconstruct twelve months of hard work the night before his manager's form closes, he opens twelve months of dated wins, metrics and shipped fixes.",
+      body: "Instead of trying to reconstruct a full year of work the night before his manager's form closes, he opens twelve months of dated wins, metrics, and shipped fixes.",
       phoneHeader: "John · Q4 Review",
       date: "Review packet · Ready in 2 min",
       userPrompt: "Pull my strongest Q3 and Q4 operational wins",
