@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bragsheet — You did more than your title shows. Here are the receipts.</title>
-  <meta name="description" content="Bragsheet is the private record of what you actually did at work — so performance reviews, interviews, and raises stop being a memory test." />
+  <title>Bragsheet - You did more than your title shows. Here are the receipts.</title>
+  <meta name="description" content="Bragsheet is the private record of what you actually did at work, so performance reviews, interviews, and raises stop being a memory test." />
   <meta name="robots" content="noindex, nofollow" />
   <meta name="theme-color" content="#0a0a0a" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%238b2e42'/%3E%3Ctext x='32' y='44' font-family='system-ui,sans-serif' font-size='34' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E" />
   <style>
 /* ==========================================================================
-   Bragsheet Landing Page — Built strictly on the AppuBot Design System
+   Bragsheet Landing Page - Built strictly on the AppuBot Design System
    Canvas #0a0a0a, Cards #1a1a1a, Geist Variable & Geist Mono Variable,
    9999px pill controls, zero drop shadows, zero glows, zero pulsating dots.
    ========================================================================== */
@@ -88,6 +88,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -130,6 +131,15 @@ button,
 input {
   font: inherit;
   color: inherit;
+}
+
+a,
+button,
+summary,
+input,
+[role="tab"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 button {
@@ -2118,6 +2128,7 @@ a.eyebrow-pill:hover {
 
 .faq-item {
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
 
 .faq-item > summary {
@@ -2131,6 +2142,7 @@ a.eyebrow-pill:hover {
   font-size: 16px;
   font-weight: 500;
   color: var(--fg);
+  user-select: none;
 }
 
 .faq-item > summary::-webkit-details-marker {
@@ -2143,10 +2155,11 @@ a.eyebrow-pill:hover {
   color: var(--muted);
   flex-shrink: 0;
   margin-top: 3px;
-  transition: transform 0.25s var(--ease-spring), color 0.2s ease;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), color 0.24s ease-in-out;
 }
 
-.faq-item[open] .faq-icon {
+.faq-item.is-expanded .faq-icon,
+html:not(.js) .faq-item[open] .faq-icon {
   transform: rotate(45deg);
   color: var(--fg);
 }
@@ -3005,7 +3018,7 @@ html.js [data-reveal]:not(.is-in) {
           </h1>
 
           <p class="t-lead hero-sub">
-            You did more than your title shows. Bragsheet is the private record of what you actually did — so performance reviews, interviews, and raises stop being a memory test.
+            You did more than your title shows. Bragsheet is the private record of what you actually did, so performance reviews, interviews, and raises stop being a memory test.
           </p>
 
           <div class="hero-ctas">
@@ -3160,7 +3173,7 @@ html.js [data-reveal]:not(.is-in) {
           <div class="statement-copy">
             <h2 class="t-h2">Most wins aren't forgotten because they were small</h2>
             <p class="t-lead">
-              They're forgotten because nobody writes them down the week they happen. Log a win in twenty seconds — on the web or straight from Claude and ChatGPT — and own the receipts before review season starts.
+              They're forgotten because nobody writes them down the week they happen. Log a win in twenty seconds on the web or straight from Claude and ChatGPT, and own the receipts before review season starts.
             </p>
           </div>
           <svg class="statement-graphic" viewBox="0 0 1080 1080" aria-hidden="true">
@@ -3189,7 +3202,7 @@ html.js [data-reveal]:not(.is-in) {
             <div class="bento-copy">
               <h3 class="t-h3">Capture wins while the numbers are still fresh</h3>
               <p class="t-body">
-                Record what you shipped, the obstacle you cleared and the real result in seconds — before Friday wipes your memory clean.
+                Record what you shipped, the obstacle you cleared and the real result in seconds, before Friday wipes your memory clean.
               </p>
             </div>
             <div class="bento-stage" aria-hidden="true">
@@ -3444,7 +3457,7 @@ html.js [data-reveal]:not(.is-in) {
                 <span class="traffic-dot traffic-dot--green"></span>
               </div>
               <div class="sheet-doc-title">
-                2026 Career Receipts <span>— Private Bragsheet</span>
+                2026 Career Receipts <span>· Private Bragsheet</span>
               </div>
               <span style="font-size:12px;color:#71717a" class="hide-xs">app.bragsheet.net</span>
             </div>
@@ -3543,7 +3556,7 @@ html.js [data-reveal]:not(.is-in) {
           <h2 class="t-h2" style="margin-top:16px">Let your AI write your wins for you</h2>
 
           <p class="t-lead" style="margin-top:14px;max-width:610px">
-            Connect Bragsheet once to Claude, ChatGPT, Mistral Le Chat, or any MCP client. Finish a hard task, say "add this to my Bragsheet," and keep moving — takes under a minute to set up.
+            Connect Bragsheet once to Claude, ChatGPT, Mistral Le Chat, or any MCP client. Finish a hard task, say "add this to my Bragsheet," and keep moving. Setup takes under a minute.
           </p>
 
           <div class="hero-ctas" style="margin-top:24px">
@@ -3728,7 +3741,7 @@ html.js [data-reveal]:not(.is-in) {
             </div>
             <p class="plan-note">Claude (Free &amp; Pro), ChatGPT, Mistral &amp; MCP</p>
             <p class="plan-desc">
-              Tell your AI assistant to log a win the moment you finish solving a problem — without exposing your existing vault.
+              Tell your AI assistant to log a win the moment you finish solving a problem, without exposing your existing vault.
             </p>
             <a href="https://bragsheet.net/ai.html" target="_blank" rel="noopener noreferrer" class="btn btn-soft" style="width:100%">Connect your AI</a>
             <ul class="plan-list">
@@ -3763,7 +3776,7 @@ html.js [data-reveal]:not(.is-in) {
             </div>
             <p class="plan-note">Syncs automatically with your web account</p>
             <p class="plan-desc">
-              Start logging on the web app today — every win, tag, and streak will carry straight into the native Android app at launch.
+              Start logging on the web app today. Every win, tag, and streak will carry straight into the native Android app at launch.
             </p>
             <a href="https://app.bragsheet.net/signup" target="_blank" rel="noopener noreferrer" class="btn btn-soft" style="width:100%">Create account now</a>
             <ul class="plan-list">
@@ -3844,7 +3857,7 @@ html.js [data-reveal]:not(.is-in) {
                 <svg class="faq-icon"><use href="#icon-plus" /></svg>
               </summary>
               <div class="faq-answer">
-                No. Bragsheet is your personal, private career record — not company HR software. When you switch roles or companies, your entire history of accomplishments stays with you.
+                No. Bragsheet is your personal, private career record, not company HR software. When you switch roles or companies, your entire history of accomplishments stays with you.
               </div>
             </details>
 
@@ -3888,7 +3901,7 @@ html.js [data-reveal]:not(.is-in) {
         <div class="closing-copy">
           <h2 class="t-h2">Log your first win today</h2>
           <p class="t-lead">
-            Next time someone asks what you've accomplished this year, you won't have to guess — you'll have the receipts.
+            Next time someone asks what you've accomplished this year, you won't have to guess. You'll have the receipts.
           </p>
           <div class="closing-ctas">
             <a href="https://app.bragsheet.net/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Try the web app</a>
@@ -3919,7 +3932,7 @@ html.js [data-reveal]:not(.is-in) {
             <span>Bragsheet</span>
           </a>
           <p class="footer-bio">
-            The private record of what you actually did at work — so performance reviews, interviews, and raises stop being a memory test.
+            The private record of what you actually did at work, so performance reviews, interviews, and raises stop being a memory test.
           </p>
           <div class="footer-pills">
             <a href="https://x.com/Bragsheetapp" target="_blank" rel="noopener noreferrer" class="footer-pill">𝕏 @Bragsheetapp</a>
@@ -4465,6 +4478,101 @@ html.js [data-reveal]:not(.is-in) {
       if (targetEl) {
         e.preventDefault();
         targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+  });
+
+  // 6b. Smooth FAQ Accordion (ease-in-out height + opacity on both reveal and hide)
+  const faqItems = Array.from(document.querySelectorAll(".faq-item"));
+  const reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  faqItems.forEach((details) => {
+    const summary = details.querySelector("summary");
+    const answer = details.querySelector(".faq-answer");
+    if (!summary || !answer) return;
+
+    if (details.open) {
+      details.classList.add("is-expanded");
+    }
+
+    let activeAnim = null;
+
+    summary.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (reducedMotion || !details.animate) {
+        details.open = !details.open;
+        details.classList.toggle("is-expanded", details.open);
+        return;
+      }
+
+      if (activeAnim) {
+        activeAnim.cancel();
+        activeAnim = null;
+      }
+
+      const startHeight = details.getBoundingClientRect().height;
+      const isClosing = details.classList.contains("is-expanded");
+
+      if (isClosing) {
+        details.classList.remove("is-expanded");
+        const endHeight = summary.getBoundingClientRect().height;
+        details.style.height = `${startHeight}px`;
+        details.style.overflow = "hidden";
+
+        answer.animate(
+          [
+            { opacity: 1, transform: "translateY(0)" },
+            { opacity: 0, transform: "translateY(-4px)" }
+          ],
+          { duration: 220, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
+        );
+
+        const anim = details.animate(
+          [{ height: `${startHeight}px` }, { height: `${endHeight}px` }],
+          { duration: 280, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
+        );
+        activeAnim = anim;
+        anim.onfinish = () => {
+          details.open = false;
+          details.style.height = "";
+          details.style.overflow = "";
+          activeAnim = null;
+        };
+        anim.oncancel = () => {
+          details.style.height = "";
+          details.style.overflow = "";
+        };
+      } else {
+        details.style.height = `${startHeight}px`;
+        details.style.overflow = "hidden";
+        details.open = true;
+        details.classList.add("is-expanded");
+
+        const endHeight = summary.getBoundingClientRect().height + answer.getBoundingClientRect().height;
+
+        answer.animate(
+          [
+            { opacity: 0, transform: "translateY(-4px)" },
+            { opacity: 1, transform: "translateY(0)" }
+          ],
+          { duration: 260, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
+        );
+
+        const anim = details.animate(
+          [{ height: `${startHeight}px` }, { height: `${endHeight}px` }],
+          { duration: 280, easing: "cubic-bezier(0.4, 0, 0.2, 1)" }
+        );
+        activeAnim = anim;
+        anim.onfinish = () => {
+          details.style.height = "";
+          details.style.overflow = "";
+          activeAnim = null;
+        };
+        anim.oncancel = () => {
+          details.style.height = "";
+          details.style.overflow = "";
+        };
       }
     });
   });
