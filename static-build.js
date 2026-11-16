@@ -31,7 +31,13 @@ const skip = new Set([
     "static-build.js",
     "package.json",
     "package-lock.json",
-    "vercel.json"
+    "vercel.json",
+    // Development-only files. These must never be copied into dist/, or they get
+    // deployed and served publicly (they used to answer HTTP 200 in production).
+    "tests",
+    "scripts",
+    "playwright.config.js",
+    "README.md"
 ]);
 
 rm(dist);

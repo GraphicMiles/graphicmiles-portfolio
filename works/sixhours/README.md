@@ -6,11 +6,15 @@ A responsive HTML, CSS and vanilla-JavaScript gadget-store preview: 20 products,
 
 No real payments, orders, subscriptions or deliveries are created. Prices, availability, ratings, coverage and delivery fees are illustrative. Use example contact details.
 
-## Source and maintenance
+## Maintenance
 
-Editable source: [`../../demo-sources/sixhours/`](../../demo-sources/sixhours/).
+This directory is the exported static runtime and is what gets deployed. Do not
+hand-edit its bundled JavaScript/CSS.
 
-Build from that directory with `npm ci && npm run build && npm run export:portfolio`. Then run the portfolio's normal `npm run build` from the repository root. This directory contains the exported static runtime; do not hand-edit its bundled JavaScript/CSS.
+The editable generator source that produced it (`demo-sources/sixhours/`) was
+removed from this repository to cut clone weight; it was never part of the
+deployment. Rebuild the portfolio from the repository root with
+`npm run build` after changing anything here.
 
 ## Rights and limits
 

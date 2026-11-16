@@ -7,9 +7,9 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -17,24 +17,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Install dependencies
-        run: npm ci
-
+      # The build has no runtime or dev dependencies; it is a plain Node script.
       - name: Build the site
-        run: npm run build
+        run: node static-build.js
 
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Check the build output
+        run: |
+          set -euo pipefail
+          test -f dist/index.html
+          test -f dist/404.html
 
-      - name: Run the browser tests
-        run: npx playwright test
+          # Guard: development files must never be deployed. These used to be
+          # copied into dist/ and served publicly over HTTP 200.
+          leaked=0
+          for p in tests scripts playwright.config.js README.md package.json static-build.js vercel.json; do
+            if [ -e "dist/$p" ]; then
+              echo "::error::dev file leaked into dist: $p"
+              leaked=1
+            fi
+          done
+          [ "$leaked" -eq 0 ]
 
-      - name: Keep the report when something fails
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 7
+          echo "dist built:"
+          du -sh dist

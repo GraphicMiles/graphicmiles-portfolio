@@ -51,15 +51,12 @@ node scripts/serve-dist.js    # http://127.0.0.1:4173/atelier-drop/
 ```
 
 Opening the files directly also works, because every path inside the folder is
-relative. The repository's Playwright tests cover the demo:
+relative.
 
-```sh
-npx playwright test tests/smoke.spec.js
-```
-
-`tests/smoke.spec.js` opens the demo, asserts the `noindex` meta and the
-JavaScript-built header, adds a product to the bag, and fails if any request
-leaves `127.0.0.1`.
+The Playwright suite that used to cover this demo (`tests/smoke.spec.js`: the
+`noindex` meta, the JavaScript-built header, adding a product to the bag, and
+asserting no request leaves `127.0.0.1`) was removed from the repository to cut
+clone weight. Verify the demo by serving it and walking those paths by hand.
 
 ## The bag
 

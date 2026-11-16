@@ -94,30 +94,12 @@ plain Node scripts. Serve `dist/`, not the repository root: the pages use
 root-absolute paths (`/css/styles.css`) and the demos only exist at their built
 paths.
 
-### Tests
-
-```sh
-npm ci
-npx playwright install chromium
-npm run build
-npm test
-```
-
-The same four steps run in CI (`.github/workflows/ci.yml`) on Node 20 on every
-push and pull request.
-
-Playwright drives the built site over a local static server and checks the
-journeys that matter: the home page, the archive, a case study, the 404 page, the
-mobile navigation, the Atelier Drop clone (its own pages, its bag, its `noindex`
-and that it makes no off-site request), and that no page reports a console error
-or a failed request.
-
 ### Deployment
 
 Vercel. `vercel.json` sets `buildCommand` to `node static-build.js` and
 `outputDirectory` to `dist`. Pushes to `main` deploy, and
-`.github/workflows/ci.yml` runs the build and the Playwright suite on every push
-and pull request.
+`.github/workflows/ci.yml` runs the build and checks its output on every push and
+pull request.
 
 ## Atelier Drop clone
 
@@ -139,6 +121,8 @@ five products sharing one SEO title), and every page ships
 `noindex, nofollow` because the brand, copy and photography belong to the
 original store. Details and asset terms: `works/atelier-drop/README.md`.
 
-## Sixhours demo source
+## Sixhours demo
 
-The generated, deployable app is in `works/sixhours/`. Editable HTML/CSS/vanilla-JavaScript source and its 22 domain tests are in `demo-sources/sixhours/`, which is excluded from the static deployment. See that directory's README for build/export commands and asset-rights limitations. `tests/sixhours-demo.spec.js` covers its portfolio links and local shopping flow on desktop/mobile. Fonts and retail photography have separate rights; this is a design demonstration, not a commercial retailer.
+The deployable app is in `works/sixhours/`. Fonts and retail photography have
+separate rights; this is a design demonstration, not a commercial retailer. See
+`works/sixhours/README.md` for asset-rights limitations.
