@@ -16,10 +16,10 @@ and takes no orders.
 
 Home and collection:
 
-- `index.html` — home: header, story circles, catenary garment rail, runway
+- `index.html` - home: header, story circles, catenary garment rail, runway
   teaser, shoe shelf, lookbook bands, magazine grid, footer
-- `collection.html` — collection grid with sort and filter
-- `search.html` — search overlay page, results filtered in the browser
+- `collection.html` - collection grid with sort and filter
+- `search.html` - search overlay page, results filtered in the browser
 
 Nine product pages, all sharing `product.js` and `data.js`:
 `product-tatum-5-orbit.html`, `product-tatum-5-orbit-copy.html`,
@@ -29,16 +29,16 @@ Nine product pages, all sharing `product.js` and `data.js`:
 
 Bag and utility:
 
-- `cart.html` — bag page: lines, quantities, removal, subtotal
+- `cart.html` - bag page: lines, quantities, removal, subtotal
 - `404.html`
 
 Four concept templates, each a different treatment of the same catalog:
 
-- `page-nike-orbit.html` — products orbiting a hero, add-to-bag from the orbit
-- `page-runway.html` — six pinned looks, each pinning its own product list, with
+- `page-nike-orbit.html` - products orbiting a hero, add-to-bag from the orbit
+- `page-runway.html` - six pinned looks, each pinning its own product list, with
   an add-full-look bundle at the foot
-- `page-scene-rail.html` — rail of garments hanging from a sampled catenary
-- `page-shoe-atelier.html` — shelf wall of shoes with a detail view
+- `page-scene-rail.html` - rail of garments hanging from a sampled catenary
+- `page-shoe-atelier.html` - shelf wall of shoes with a detail view
 
 ## Run it
 
@@ -63,17 +63,17 @@ clone weight. Verify the demo by serving it and walking those paths by hand.
 `assets/js/cart.js` keeps the bag in `localStorage` under `nikey.cart.v1` as
 `{ handle, size, qty, bundle }` lines, renders the drawer and the header badge,
 and dispatches `cart:add` events. Handles come from `data.js`; nothing is
-posted anywhere. Checkout is a dead end by design — there is no store, no
+posted anywhere. Checkout is a dead end by design - there is no store, no
 account and no order.
 
 ## Editing
 
-- `assets/js/data.js` — the nine products: handle, title, price, sizes, imagery
-- `assets/js/lumina-data.js` — the magazine and lookbook entries
-- `assets/css/tokens.css` — colour, type and spacing variables; every other
+- `assets/js/data.js` - the nine products: handle, title, price, sizes, imagery
+- `assets/js/lumina-data.js` - the magazine and lookbook entries
+- `assets/css/tokens.css` - colour, type and spacing variables; every other
   stylesheet is scoped to one section (`orbit.css`, `runway.css`,
   `shoe-atelier.css`, `cart.css`, …)
-- `assets/js/<section>.js` — one module per section, no build step and no
+- `assets/js/<section>.js` - one module per section, no build step and no
   framework
 - product links use the local filenames (`product-<handle>.html`); the bag
   derives its handle by stripping the `product-` prefix and `.html` suffix, so
@@ -107,7 +107,7 @@ repository.
 
 ## Assets
 
-`assets/img/` is 8.4 MB, `assets/video/` is 7.5 MB and the folder totals 18 MB.
+`assets/img/` is 8.2 MB, `assets/video/` is 7.4 MB and the folder totals 17.1 MB.
 Typefaces are GT Standard, Instrument Serif and Inter. Photography, brand marks
 and type all came from the public storefront and are included to show the
 reconstruction, not licensed for reuse.

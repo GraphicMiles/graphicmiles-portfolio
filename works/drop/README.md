@@ -9,7 +9,7 @@ scripted for the page.
 
 ## Files
 
-- `index.html` the built page — one file, no network requests
+- `index.html` the built page - one file, no network requests
 - `src/index.standalone.html` the source of truth, same single file
 - `src/build.py` copies the source to `index.html` and refuses to ship if
   anything would be loaded remotely
@@ -34,7 +34,7 @@ Black and white with two colours, each with one job.
   footer.
 - **Sun Yellow `#ffc61a`** is the only action colour: primary buttons, the
   step numerals, the FAQ sign, the "New" tag. It always carries ink, never
-  white — ink on yellow is 12.6:1.
+  white - ink on yellow is 12.6:1.
 - **Mist `#e8ebfa`** is the cool tinted paper behind cards.
 
 Everything else is ink on white. The composition is symmetric: every section
