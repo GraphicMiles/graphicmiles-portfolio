@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="noindex, nofollow" name="robots"/>
+<meta content="#F5EEE6" name="theme-color"/>
+<meta content="Connect an AI assistant to Bragsheet and log wins through a write-only connector." name="description"/>
+<title>Connect your AI to Bragsheet | Bragsheet</title>
+<link href="assets/bragsheet-mark.svg" rel="icon" type="image/svg+xml"/>
+<link href="css/pages.css" rel="stylesheet"/>
+<link href="css/brand-refresh.css" rel="stylesheet"/>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="page-header">
+<div class="page-header-inner">
+<a aria-label="Bragsheet home" class="brand-lockup" href="index.html">
+<img alt="" class="brand-mark" src="assets/bragsheet-mark.svg"/>
+<span>Bragsheet</span>
+</a>
+<nav aria-label="Main navigation" class="page-nav"><a href="index.html">Home</a><a aria-current="page" href="ai.html">Bragsheet AI</a><a href="founder.html">Founder</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+<div class="page-actions">
+<a class="page-button" href="https://app.bragsheet.net/login">Sign in</a>
+<a class="page-button page-button--primary" href="https://app.bragsheet.net/">Open web app</a>
+</div>
+<button type="button" class="mobile-menu-btn" data-menu-toggle aria-expanded="false" aria-controls="site-mobile-menu" aria-label="Open menu">
+<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M3.5 6.5h13M3.5 10h13M3.5 13.5h13"/></svg>
+</button>
+</div>
+</header>
+<div class="mobile-drawer" id="site-mobile-menu" data-mobile-menu hidden>
+<nav class="mobile-drawer-links" aria-label="Mobile navigation">
+<a href="index.html">Home</a><a href="ai.html">Bragsheet AI</a><a href="founder.html">Founder</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+</nav>
+<div class="mobile-drawer-actions"><a class="page-button" href="https://app.bragsheet.net/login">Sign in</a><a class="page-button page-button--primary" href="https://app.bragsheet.net/">Open web app</a></div>
+</div>
+<main class="page-main ai-page" id="main-content">
+<!-- NAV -->
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="hero-eyebrow">
+AI Assistant setup
+      </div>
+<h1 class="hero-headline">
+        Tell your AI.<br/>
+<em>It writes it down.</em>
+</h1>
+<p class="hero-subhead">
+        Connect your AI assistant to Bragsheet, and the wins you mention in passing get logged where they belong, without you switching apps or breaking your train of thought.
+      </p>
+<!-- Chat demo -->
+<div class="demo">
+<div class="demo-bubble you">
+<div class="bubble you">Just shipped the payments migration two days ahead of schedule. Log that as a win.</div>
+</div>
+<div class="demo-bubble ai">
+<div class="bubble ai">Done. Saved to your Bragsheet: <strong>&ldquo;Shipped the payments migration two days ahead of schedule.&rdquo;</strong></div>
+</div>
+<div class="demo-saved">
+<svg fill="none" height="15" viewbox="0 0 15 15" width="15"><path d="M2 8l3.5 3.5L13 4" stroke="#6B1E2E" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          Saved to Bragsheet
+        </div>
+</div>
+</div>
+</section>
+<!-- HOW IT WORKS -->
+<section>
+<div class="container">
+<span class="section-label">Three steps, one minute</span>
+<h2 class="section-headline">How to connect it</h2>
+<p class="section-sub">You do this once. After that, any win you mention to your assistant can go straight into Bragsheet.</p>
+<div class="steps">
+<div class="step">
+<div class="step-num"><span class="step-index" aria-hidden="true">1</span><span class="step-label">Step 1 of 3</span></div>
+<h3 class="step-title">Add the connector</h3>
+<p class="step-body">In your AI assistant's connector settings, add a custom connector using the Bragsheet address below. Leave any API-key or token fields blank, there's no key to paste.</p>
+</div>
+<div class="step">
+<div class="step-num"><span class="step-index" aria-hidden="true">2</span><span class="step-label">Step 2 of 3</span></div>
+<h3 class="step-title">Approve access</h3>
+<p class="step-body">Your assistant opens a Bragsheet screen. Sign in if needed, <strong>check the account it says you're authorizing</strong>, and tap <strong>Allow</strong>. That's the whole handshake, nothing to copy.</p>
+</div>
+<div class="step">
+<div class="step-num"><span class="step-index" aria-hidden="true">3</span><span class="step-label">Step 3 of 3</span></div>
+<h3 class="step-title">Just say it</h3>
+<p class="step-body">Tell your assistant &ldquo;log this as a win&rdquo; in plain language. It writes the entry to your Bragsheet and confirms.</p>
+</div>
+</div>
+<!-- PER-CLIENT WALKTHROUGHS -->
+<div class="clients">
+<details class="client">
+<summary>
+<span class="client-badge">C</span>
+            Claude
+            
+</summary>
+<div class="client-body">
+<ol>
+<li>Open <code>Settings, then Connectors</code> and choose <strong>Add custom connector</strong> (on some plans this is under <code>Customize, then Connectors</code>).</li>
+<li>Paste the server address from below. Leave the optional <strong>OAuth Client ID, Secret</strong> fields blank, Bragsheet sets those up automatically.</li>
+<li>Choose <strong>Add</strong>, then <strong>Connect</strong>. Bragsheet opens a sign-in and consent screen, confirm the account it shows is yours and tap <strong>Allow</strong>.</li>
+<li>Bragsheet now shows up under Connectors, enable it for a chat via the <code>+</code> button, then just say &ldquo;add this to my Bragsheet.&rdquo;</li>
+</ol>
+<p class="client-note">Works on every Claude plan, including Free (Free allows one custom connector). On Team/Enterprise, an admin may need to approve it first.</p>
+<p class="client-note"><strong>Set this up on desktop.</strong> Adding a custom connector is currently in beta on the Claude mobile app and can be unreliable there. Use <a href="https://claude.ai" rel="noopener" target="_blank">claude.ai</a> on a computer, the Claude desktop app, or Chrome on your phone with &ldquo;Desktop site&rdquo; turned on. Once it's added, the connector works fine from the mobile app, it's just the initial setup that's best done on desktop.</p>
+</div>
+</details>
+<details class="client">
+<summary>
+<span class="client-badge">G</span>
+            ChatGPT
+            
+</summary>
+<div class="client-body">
+<p class="client-note"><strong>Requires a paid ChatGPT plan.</strong> Free ChatGPT accounts cannot add custom connectors at all, this is a ChatGPT platform limit, not a Bragsheet issue. You need Plus, Pro, Business, Enterprise, or Edu. (Claude, above, works on any plan, including Free.)</p>
+<ol>
+<li>Turn on <strong>Developer mode</strong> in ChatGPT settings, if you haven't already, it's required for custom connectors that write data, not just read it.</li>
+<li>Go to <code>Settings, then Apps &amp; Connectors</code> and choose <strong>Create</strong>.</li>
+<li>Name it &ldquo;Bragsheet,&rdquo; paste in the server address below, and finish the sign-in. Bragsheet shows a consent screen, check the account it names is yours, then approve.</li>
+<li>Enable Bragsheet from the tools menu in a chat, then say &ldquo;add this to my Bragsheet.&rdquo;</li>
+</ol>
+</div>
+</details>
+<details class="client">
+<summary>
+<span class="client-badge">M</span>
+            Mistral (Le Chat)
+            
+</summary>
+<div class="client-body">
+<ol>
+<li>In Bragsheet, go to <strong>Settings, then AI Assistant</strong>, open <strong>Connect your AI</strong>, then choose <strong>Advanced: assistant can't sign in</strong> and click <strong>Generate a connection key</strong>. Copy it right away, Bragsheet won't show it again.</li>
+<li>In Mistral, go to <strong>Context, then Connectors, then Add Connector</strong>, then switch to the <strong>Custom MCP Connector</strong> tab.</li>
+<li>Fill in a <strong>Title</strong> (e.g. &ldquo;bragsheet&rdquo;) and set <strong>Server</strong> to the address below, make sure it ends in <code>/mcp</code>.</li>
+<li>Under <strong>Authentication Method</strong>, choose <strong>API Token Authentication</strong>, leave the header type as <strong>Bearer</strong>, and paste the connection key you copied in step 1.</li>
+<li>Click <strong>Connect</strong> (or <strong>Create</strong>). Bragsheet should show as connected under My Connectors.</li>
+<li>In a chat, open the <code>+</code> menu, enable Bragsheet under Connectors, then just say &ldquo;add this to my Bragsheet.&rdquo;</li>
+</ol>
+<p class="client-note">Mistral's custom connectors currently only support a static token, not OAuth sign-in, so use the connection key above rather than waiting for a sign-in prompt. Treat that key like a password: anyone who has it can add wins to your account.</p>
+</div>
+</details>
+<details class="client">
+<summary>
+<span class="client-badge">G</span>
+            Gemini (Spark)
+            
+</summary>
+<div class="client-body">
+<ol>
+<li>Custom connectors only work inside <strong>Gemini Spark</strong>, which needs a <strong>Google AI Ultra</strong> subscription, a personal Google Account (not work/school), being 18+, and having <strong>Keep Activity</strong> turned on. <strong>Spark is not available in every country, this currently includes Nigeria</strong>, along with several other countries. Check Google's Gemini Spark availability page to confirm your country before trying to connect.</li>
+<li>In Gemini, go to <strong>Settings &amp; help, then Connected Apps</strong> (on some accounts it's under <strong>Personal Intelligence, then Connected Apps</strong> first).</li>
+<li>Under <strong>Custom apps for Spark</strong>, click <strong>Add a custom app</strong> and paste the server address below.</li>
+<li>Gemini will try to sign you in through Bragsheet automatically. If it can't, click <strong>Show more</strong> under Advanced features and paste a <code>bsk_</code> key instead, generate one in Bragsheet under <strong>Settings, then AI Assistant</strong>.</li>
+<li>Approve the connection, then use it from a Spark task by saying &ldquo;add this to my Bragsheet.&rdquo;</li>
+</ol>
+<p class="client-note">This is a Spark-only feature, not standard Gemini chat, if you don't have Google AI Ultra or you're in a country where Spark isn't available yet (Nigeria included), you won't see &ldquo;Custom apps for Spark&rdquo; at all, no matter what you try.</p>
+</div>
+</details>
+<details class="client">
+<summary>
+
+            Other MCP clients
+            
+</summary>
+<div class="client-body">
+<ol>
+<li>Find the connector or MCP server settings in your assistant, the exact wording varies, but it's usually under Settings.</li>
+<li>Add a new remote MCP server using the address below.</li>
+<li>If the client supports OAuth, it'll send you to the Bragsheet sign-in and consent screen, approve it there. If it only takes a static key, open <strong>Settings, then AI Assistant</strong> in the Bragsheet app, generate a <code>bsk_</code> key, and paste that instead.</li>
+<li>Say &ldquo;add this to my Bragsheet&rdquo; at the end of any conversation.</li>
+</ol>
+<p class="client-note">Any assistant that speaks the open MCP standard will work, over OAuth where it's supported, or a <code>bsk_</code> key where it isn't.</p>
+</div>
+</details>
+</div>
+<p>
+        Stuck on a step? Email <a href="mailto:support@bragsheet.net">support@bragsheet.net</a> and we'll help you get connected.
+      </p>
+</div>
+</section>
+<!-- CONNECTION DETAILS -->
+<section style="padding-top:0;">
+<div class="container">
+<div class="conn">
+<div class="conn-title">Connection details</div>
+<p class="conn-sub">Add this as a custom connector (MCP server) in your AI assistant. Most assistants sign you in through Bragsheet automatically, there's no key to copy.</p>
+<div class="conn-field">
+<span class="conn-field-label">Server address</span>
+<div class="conn-value">
+<code id="mcp-url">https://mcp.bragsheet.net/mcp</code>
+<button aria-label="Copy Bragsheet MCP server address" class="conn-copy" data-copy="https://mcp.bragsheet.net/mcp" type="button">Copy</button>
+</div>
+</div>
+<div class="conn-field">
+<span class="conn-field-label">Authentication</span>
+<div class="conn-value">
+<code>Sign in through Bragsheet when prompted, no key needed</code>
+</div>
+</div>
+<p class="conn-note">
+          Only for MCP clients that can't sign in this way: generate a <code>bsk_</code> key in <strong>Settings, then AI Assistant</strong> and paste it as the connector's token. Treat it like a password.
+        </p>
+<p class="conn-note">
+          The connector exposes a single action, <code>log_win</code>, it can add a win, and nothing else. Your assistant never receives your Bragsheet password or your account data.
+        </p>
+</div>
+</div>
+</section>
+<!-- WHAT IT CAN & CAN'T DO -->
+<section class="safe">
+<div class="container">
+<span class="section-label">Built to be safe</span>
+<h2 class="section-headline">What it can, and can't, do</h2>
+<p class="section-sub">The connector is deliberately one-way. It can drop a win in. It can't read, change, or remove anything.</p>
+<div class="safe-grid">
+<div class="safe-card safe-card--can">
+<h3 class="safe-card-title">It can</h3>
+<ul class="safe-list">
+<li>
+<svg class="safe-icon" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" fill="#6B1E2E" opacity="0.12" r="9"></circle><path d="M5 9.2l2.6 2.6L13 6.5" stroke="#6B1E2E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+              Add a new win to your Bragsheet, in your own words
+            </li>
+<li>
+<svg class="safe-icon" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" fill="#6B1E2E" opacity="0.12" r="9"></circle><path d="M5 9.2l2.6 2.6L13 6.5" stroke="#6B1E2E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+              Attach a category or tags when you mention them
+            </li>
+<li>
+<svg class="safe-icon" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" fill="#6B1E2E" opacity="0.12" r="9"></circle><path d="M5 9.2l2.6 2.6L13 6.5" stroke="#6B1E2E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"></path></svg>
+              Confirm back to you that the win was saved
+            </li>
+</ul>
+</div>
+<div class="safe-card safe-card--cant">
+<h3 class="safe-card-title">It can't</h3>
+<ul class="safe-list">
+<li>
+<svg class="safe-icon" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" fill="#6B1E2E" opacity="0.12" r="9"></circle><path d="M6 6l6 6M12 6l-6 6" stroke="#6B1E2E" stroke-linecap="round" stroke-width="1.8"></path></svg>
+              Read your existing wins or any of your data
+            </li>
+<li>
+<svg class="safe-icon" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" fill="#6B1E2E" opacity="0.12" r="9"></circle><path d="M6 6l6 6M12 6l-6 6" stroke="#6B1E2E" stroke-linecap="round" stroke-width="1.8"></path></svg>
+              Edit or delete anything already in your account
+            </li>
+<li>
+<svg class="safe-icon" fill="none" height="18" viewbox="0 0 18 18" width="18"><circle cx="9" cy="9" fill="#6B1E2E" opacity="0.12" r="9"></circle><path d="M6 6l6 6M12 6l-6 6" stroke="#6B1E2E" stroke-linecap="round" stroke-width="1.8"></path></svg>
+              Reach your password, email, or payment details
+            </li>
+</ul>
+</div>
+</div>
+<!-- Revoke strip -->
+<div class="revoke">
+<svg fill="none" height="26" viewbox="0 0 26 26" width="26"><path d="M13 2l9 4v6c0 5.5-3.8 9.8-9 11-5.2-1.2-9-5.5-9-11V6l9-4z" stroke="#6B1E2E" stroke-linejoin="round" stroke-width="1.6"></path><path d="M9.5 13l2.2 2.2 5-5" stroke="#6B1E2E" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6"></path></svg>
+<p><strong>Changed your mind? Cut it off instantly.</strong> Revoke access any time in Settings, then AI Assistant. The moment you do, the connection stops working, no win can be written afterward.</p>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section>
+<div class="container">
+<span class="section-label">Quick answers</span>
+<h2 class="section-headline">Common questions</h2>
+<div></div>
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-q">Which AI assistants work with this?</div>
+<div class="faq-a">Any assistant that supports custom connectors (the open MCP standard). You add Bragsheet as a connector and approve it, most assistants sign you in through Bragsheet, with no key to copy.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Is my Bragsheet data sent to the AI?</div>
+<div class="faq-a">No. The connector is write-only, your assistant can hand a new win to Bragsheet, but it can't pull anything back out. Your existing wins, profile, and account details are never exposed.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">What if a connection is compromised?</div>
+<div class="faq-a">Revoke access in <strong>Settings, then AI Assistant</strong>, it's rejected immediately, and even a leaked connection can only ever add wins, never read or delete. If you used a manual <code>bsk_</code> key for an older client, treat it like a password and don't paste it into public places.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">It won't connect in ChatGPT, what's wrong?</div>
+<div class="faq-a">Almost always a plan limit, not a bug. Free ChatGPT accounts can't add custom connectors at all, you need Plus, Pro, Business, Enterprise, or Edu with Developer mode on. Claude works on any plan, including Free, so that's the quickest way to get unblocked.</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Does it cost anything?</div>
+<div class="faq-a">Connecting an assistant is free. Some limits may apply to how many wins can be logged in a short window to keep things fair, but everyday use won't hit them.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta">
+<div class="container narrow">
+<h2 class="cta-headline">Your wins, captured the moment you say them.</h2>
+<p class="cta-sub">Add Bragsheet in your assistant, approve it once, and you're logging wins in about a minute.</p>
+<a class="btn-cream" href="https://app.bragsheet.net" rel="noopener" target="_blank">
+        Open Bragsheet
+        
+</a>
+</div>
+</section>
+<!-- FOOTER -->
+<p aria-atomic="true" aria-live="polite" class="sr-only" id="copy-status"></p></main><script>
+(() => {
+  const button = document.querySelector(".conn-copy");
+  const status = document.getElementById("copy-status");
+  if (!button) return;
+  const value = button.getAttribute("data-copy") || "";
+  const original = button.textContent.trim();
+  const fallbackCopy = () => {
+    const field = document.createElement("textarea");
+    field.value = value;
+    field.setAttribute("readonly", "");
+    field.style.position = "fixed";
+    field.style.opacity = "0";
+    document.body.appendChild(field);
+    field.select();
+    const copied = document.execCommand("copy");
+    field.remove();
+    return copied;
+  };
+  button.addEventListener("click", async () => {
+    let copied = false;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+        copied = true;
+      } else {
+        copied = fallbackCopy();
+      }
+    } catch (error) {
+      try { copied = fallbackCopy(); } catch (_) { copied = false; }
+    }
+    button.textContent = copied ? "Copied" : original;
+    button.classList.toggle("copied", copied);
+    status.textContent = copied ? "Server address copied to clipboard." : "Copy failed. Select and copy the server address manually.";
+    window.setTimeout(() => {
+      button.textContent = original;
+      button.classList.remove("copied");
+    }, 1600);
+  });
+})();
+</script>
+<footer class="site-footer shared-site-footer">
+<div class="wrap-wide shared-footer-inner">
+<a class="brand-lockup" href="index.html" aria-label="Bragsheet home"><img class="brand-mark" src="assets/bragsheet-mark.svg" alt=""><span>Bragsheet</span></a>
+<nav class="shared-footer-links" aria-label="Footer navigation"><a href="index.html">Home</a><a href="ai.html" aria-current="page">Bragsheet AI</a><a href="founder.html">Founder</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="https://app.bragsheet.net/">Open web app</a></nav>
+<p class="shared-footer-note">(c) 2026 Bragsheet. Built by <a href="founder.html">Wisdom Presley</a>. Track your wins. Own your story.</p>
+</div>
+</footer>
+<script src="js/site-menu.js" defer></script>
+</body>
+</html>
