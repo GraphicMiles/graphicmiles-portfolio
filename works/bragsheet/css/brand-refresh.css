@@ -236,7 +236,10 @@ a:hover { color: var(--accent); }
 /* Common footer on all five pages. */
 .page-footer, .site-footer, .footer-bottom, .footer-note { border: 0 !important; }
 .shared-site-footer { padding: 32px 0 24px; background: #F5EEE6 !important; }
-.shared-footer-inner { width: min(1280px,100%); max-width: 1280px; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 18px 28px; }
+.shared-footer-inner {
+  box-sizing: border-box; width: min(1280px,100%); max-width: 1280px; margin-inline: auto; padding-inline: 24px;
+  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 18px 28px;
+}
 .shared-footer-inner > .brand-lockup { color: var(--accent) !important; }
 .shared-footer-links { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 20px; }
 .shared-footer-links a, .shared-footer-note { color: var(--muted); font-size: 13px; text-decoration: none; }
@@ -286,7 +289,7 @@ html.js [data-reveal]:not(.is-in) { transform: translateY(14px); }
   .toc-block ol { columns: 1; }
   .summary-block, .toc-block { padding: 18px; border-radius: 14px; }
   .shared-site-footer { padding-block: 24px 20px; }
-  .shared-footer-inner { grid-template-columns: 1fr; gap: 14px; }
+  .shared-footer-inner { grid-template-columns: 1fr; gap: 14px; padding-inline: 18px; }
   .shared-footer-links { justify-content: flex-start; gap: 10px 18px; }
   .shared-footer-note { grid-column: auto; }
   .hero-section { padding-top: 88px; padding-bottom: 40px; }
@@ -333,6 +336,7 @@ html.js [data-reveal]:not(.is-in) { transform: translateY(14px); }
   .brand-lockup { gap: 7px; }
   .site-header .header-right .btn-primary { padding-inline: 10px; font-size: 11px; }
   .mobile-drawer { padding-inline: 14px; }
+  .shared-footer-inner { padding-inline: 14px; }
   .footer-links { gap: 8px 14px; }
   .page-title { font-size: clamp(34px,10vw,40px); }
   .ai-page .conn-value { align-items: flex-start; flex-direction: column; }
