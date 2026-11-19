@@ -397,15 +397,17 @@
         {
           id: "tessera",
           title: "Tessera",
-          hook: "Product landing page and workflow UI for team AI approvals",
+          hook: "Agent-workflow product page with pixel physics, a scroll timeline and a full access request",
           image: "/images/previews/tessera.jpg",
-          alt: "Tessera workflow landing page",
-          bordered: true,
-          hero: false,
+          alt: "Tessera home page: white headline over a dark page and a pink pixel field",
+          bordered: false,
+          hero: true,
           primaryActionLabel: "Open live demo",
           directLaunch: true,
           liveUrl: "/tessera/",
-          liveLabel: "Open demo"
+          liveLabel: "Open demo",
+          secondaryUrl: "/tessera-product-page",
+          secondaryLabel: "Build notes"
         },
         {
           id: "sportybet-demo",

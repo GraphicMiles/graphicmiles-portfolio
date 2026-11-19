@@ -40,6 +40,12 @@ application, and anyone who wants to see the work before talking.
   `localStorage` bag, no checkout and every page `noindex`. Case study at
   `/atelier-drop-case-study`, asset terms in `works/atelier-drop/README.md`.
 - **Sixhours at `/sixhours/`.** A responsive gadget-store demo with 20 products, eight component-backed sets, local bag and delivery-area checks. No real payments, orders or deliveries.
+- **Tessera at `/tessera/`.** A dark product page for an agent-workflow service: a
+  hero pixel field drawn on a canvas, a matter-js word pile, a scroll-driven
+  workflow timeline, six service cards, a story carousel, an FAQ and an access
+  request that validates before it prints a copyable brief. One HTML file with
+  its fonts and brand marks embedded, so it makes no request after the document.
+  Build notes at `/tessera-product-page`. Nothing is sent anywhere.
 - **The CV.** A single page PDF, linked from the home page.
 
 ## Using it
@@ -69,10 +75,11 @@ site, so a case study can be lifted out on its own.
 index.html              home page
 projects/index.html     the archive
 atelier-drop-case-study.html  case study for the storefront clone
+tessera-product-page.html  build notes for the Tessera product page
 404.html                not-found page
 css/styles.css          stylesheet for the root pages
 js/main.js              accordion, reveal choreography
-fonts/                  Inter Tight, Fraunces, self-hosted woff2
+fonts/                  Inter Tight and Caveat, self-hosted woff2
 images/                 photography, project logos, thumbnails
 works/<slug>/           fourteen self-contained builds
 Raji_Adewunmi_Farouq_CV.pdf

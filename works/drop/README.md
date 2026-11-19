@@ -9,19 +9,20 @@ scripted for the page.
 
 ## Files
 
-- `index.html` the built page - one file, no network requests
-- `src/index.standalone.html` the source of truth, same single file
-- `src/build.py` copies the source to `index.html` and refuses to ship if
-  anything would be loaded remotely
+- `index.html` the page - one file, no network requests
+- `src/build.py` checks the page and refuses to ship if anything would be
+  loaded remotely
 - `src/Switzer-*.woff2` the typeface, already inlined into the page
 - `src/photo-*.jpg` the two photographs, already inlined into the page
-- `src/_legacy/` the previous template + stylesheet build, kept for reference
 
 ## Rebuild
 
 ```sh
 cd src && python3 build.py
 ```
+
+The page is edited in place at `index.html`; `build.py` is the guard that runs
+before shipping it.
 
 Plain HTML, CSS and a little vanilla JS. Type is Switzer, icons are Phosphor.
 

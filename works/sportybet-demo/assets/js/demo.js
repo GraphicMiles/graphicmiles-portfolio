@@ -1,6 +1,8 @@
 "use strict";
 
 (() => {
+const DUP_DESKTOP=new Set(['0','1','3','4']); // these promo pages are identical at both widths
+
   const KEY = "sporty-demo-v2";
   const stamp = () => new Date().toISOString();
   const uid = (prefix) =>
@@ -636,7 +638,7 @@
   function referenceArticle(index){
     const article=SportyPromoReferences[index];if(!article)return false;
     document.documentElement.dataset.promoStandalone='true';
-    pageShell(article.title,`<section class="reference-promo-reader"><h1 class="sr-only">${safe(article.title)}</h1><iframe class="reference-promo-frame" title="${safe(article.title)}" src="reference/promotions/${index}-${innerWidth<1000?'mobile':'desktop'}.html" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe></section>`,{full:true,aside:false});return true;
+    pageShell(article.title,`<section class="reference-promo-reader"><h1 class="sr-only">${safe(article.title)}</h1><iframe class="reference-promo-frame" title="${safe(article.title)}" src="reference/promotions/${index}-${DUP_DESKTOP.has(String(index))?'desktop':(innerWidth<1000?'mobile':'desktop')}.html" sandbox="allow-scripts allow-same-origin" referrerpolicy="no-referrer"></iframe></section>`,{full:true,aside:false});return true;
   }
   window.addEventListener('resize',()=>{const frame=document.querySelector('.reference-promo-frame');if(!frame)return;const device=innerWidth<1000?'mobile':'desktop';if(!frame.src.endsWith('-'+device+'.html'))frame.src=frame.src.replace(/-(desktop|mobile)\.html$/,'-'+device+'.html')});
   window.addEventListener('message',event=>{const frame=document.querySelector('.reference-promo-frame');if(!frame||event.origin!==location.origin||event.source!==frame.contentWindow)return;const message=event.data;if(message?.type==='sporty-demo-article-size'&&Number.isFinite(message.height)){frame.style.height=Math.min(30000,Math.max(300,message.height))+'px';return}if(message?.type==='sporty-demo-article-action'&&['account/login','account/register','games','sports/football'].includes(message.destination))navigate(message.destination)});
