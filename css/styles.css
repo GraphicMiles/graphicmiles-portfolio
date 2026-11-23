@@ -489,14 +489,6 @@ ol {
   width: 100%;
 }
 
-.contact-prompt {
-  font-size: 19px;
-  font-weight: 600;
-  line-height: 1.35;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
 .social-row {
   display: flex;
   flex-direction: row;
@@ -1487,33 +1479,6 @@ ol {
   gap: 16px;
 }
 
-.footer-signoff {
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--ink-footer);
-}
-
-.footer-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px;
-  font-size: 14px;
-  color: var(--ink-footer);
-}
-
-.footer-meta a {
-  color: var(--ink-footer);
-  text-decoration: none;
-  transition: color 0.18s ease;
-}
-
-.footer-meta a:hover {
-  color: var(--ink-strong);
-}
-
 .site-footer .footer-shell {
   width: 100%;
   max-width: 1120px;
@@ -1753,10 +1718,6 @@ ol {
   .row-meta--hide-sm,
   .row-meta--domain {
     display: none;
-  }
-
-  .footer-signoff {
-    font-size: 24px;
   }
 
   .site-footer {

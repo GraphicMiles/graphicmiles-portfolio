@@ -11,7 +11,7 @@
 
   const CATALOG = {
     projects: {
-      label: "My projects",
+      label: "Projects",
       countLabel: "5 shipped apps",
       initialVisible: 5,
       items: [
@@ -124,7 +124,7 @@
     },
 
     experiments: {
-      label: "My experiments",
+      label: "Experiments",
       countLabel: "9 experiments",
       initialVisible: 5,
       moreLabel: "Show 4 more experiments",
@@ -322,10 +322,10 @@
     },
 
     demos: {
-      label: "My demo projects",
+      label: "UI studies",
       countLabel: "14 UI studies",
       initialVisible: 5,
-      moreLabel: "Show all 14 demo projects",
+      moreLabel: "Show all 14 UI studies",
       items: [
         {
           id: "trace",

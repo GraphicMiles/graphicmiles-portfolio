@@ -2,7 +2,7 @@
 
 A personal site for Raji Farouq Adewunmi, a software engineer focused on web,
 mobile and AI. One page introduces him, a second page lists the shipped work and
-interface studies in one place, and each self-contained study opens at its own URL.
+UI studies in one place, and each self-contained study opens at its own URL.
 
 Live: [designedbymiles.vercel.app](https://designedbymiles.vercel.app)
 
@@ -20,17 +20,17 @@ getting in touch.
 ## What you can find here
 
 - **The home page.** Who he is, how to reach him, and a feed of all 28 entries
-  across three tabs: 5 shipped apps, 9 experiments and 14 demo projects. Each
+  across three tabs: 5 shipped apps, 9 experiments and 14 UI studies. Each
   entry states the hard part of the build, names the stack and links to the live
   app, the public repository, or the technical documentation where one exists.
 - **The archive at `/projects/`.** Four sections: shipped products and developer
-  tools (5), experiments and lab builds (9), interface and storefront studies
+  tools (5), experiments and lab builds (9), UI studies
   (14), and a card for the demo hub.
 - **Self-contained studies**, each a complete build of its own: `/trace`,
   `/bragsheet`, `/atelier-drop-case-study`, `/sixhours`, `/sportybet-demo`,
   `/ilee`, `/tessera`, `/cirrus`, `/drop`, `/rewind`, `/cala`, `/quarry`,
   `/demos/03-saas.html` and `/demos/04-media.html`. `/middleground` is listed with
-  the experiments. The demo hub at `/demos/` lists eleven interactive studies.
+  the experiments. The demo hub at `/demos/` lists eleven interactive demos.
 - **Atelier Drop at `/atelier-drop/`.** A self-contained static clone of a
   password-gated Shopify streetwear store (Horizon theme): home, collection,
   nine product pages, cart, search, 404 and four concept templates, with a
