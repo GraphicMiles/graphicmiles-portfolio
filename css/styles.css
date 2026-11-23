@@ -221,11 +221,12 @@ ol {
 }
 
 .availability-text {
-  font-size: 12px;
+  font-family: var(--font-hand);
+  font-size: 17px;
   font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: 0;
-  color: var(--ink-muted);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: rgba(0, 0, 0, 0.78);
 }
 
 .identity-stack {
@@ -328,9 +329,9 @@ ol {
 }
 
 .bio-headline {
-  font-size: 26px;
+  font-size: 21px;
   font-weight: 500;
-  line-height: 1.2;
+  line-height: 1.28;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
