@@ -1,23 +1,21 @@
 # Raji Farouq Adewunmi, portfolio
 
-A personal site for Raji Farouq Adewunmi, a junior full-stack and AI engineer in
-Ogun, Nigeria. One page introduces him, a second page lists the shipped work and
+A personal site for Raji Farouq Adewunmi, a software engineer focused on web,
+mobile and AI. One page introduces him, a second page lists the shipped work and
 interface studies in one place, and each self-contained study opens at its own URL.
 
 Live: [designedbymiles.vercel.app](https://designedbymiles.vercel.app)
 
 ## Why it exists
 
-A junior application usually arrives as a CV and a GitHub profile, and the reader
-has to reconstruct what the person can actually do. This site is the other way
-round: each project states what the hard part was, names the stack and links
-straight to the running build or the public repository. A claim on this site has
-to survive a click.
+A portfolio should make it easy to see what an engineer can build. This site
+pairs each project with its technical challenge, the stack and a link to a live
+build or public repository, so visitors can explore the work directly.
 
 ## Who it is for
 
-Hiring managers and engineers reviewing a junior full-stack or AI engineering
-application, and anyone who wants to see the work before talking.
+Clients, collaborators and engineering teams looking to review the work before
+getting in touch.
 
 ## What you can find here
 
@@ -32,8 +30,7 @@ application, and anyone who wants to see the work before talking.
   `/bragsheet`, `/atelier-drop-case-study`, `/sixhours`, `/sportybet-demo`,
   `/ilee`, `/tessera`, `/cirrus`, `/drop`, `/rewind`, `/cala`, `/quarry`,
   `/demos/03-saas.html` and `/demos/04-media.html`. `/middleground` is listed with
-  the experiments. The demo hub at `/demos/` lists five interactive concept
-  builds.
+  the experiments. The demo hub at `/demos/` lists eleven interactive studies.
 - **Atelier Drop at `/atelier-drop/`.** A self-contained static clone of a
   password-gated Shopify streetwear store (Horizon theme): home, collection,
   nine product pages, cart, search, 404 and four concept templates, with a
