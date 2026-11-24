@@ -3,5 +3,17 @@
   "framework": null,
   "buildCommand": "node static-build.js",
   "outputDirectory": "dist",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/screenrant",
+      "destination": "/breakdown",
+      "permanent": true
+    },
+    {
+      "source": "/screenrant/:path*",
+      "destination": "/breakdown/:path*",
+      "permanent": true
+    }
+  ]
 }

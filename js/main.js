@@ -130,16 +130,16 @@
       moreLabel: "Show 5 more experiments",
       items: [
         {
-          id: "screenrant",
+          id: "breakdown",
           title: "Breakdown",
           hook: "Entertainment news front end for Prime, Hollywood, Marvel and AI — plus an Ask Qi assistant panel",
-          image: "/images/previews/screenrant.jpg",
+          image: "/images/previews/breakdown.jpg",
           alt: "Breakdown entertainment news homepage with hero story, latest rail and secondary cards",
           bordered: true,
           hero: true,
           primaryActionLabel: "Open live build",
           directLaunch: true,
-          liveUrl: "/screenrant/",
+          liveUrl: "/breakdown/",
           liveLabel: "Open build",
           secondaryUrl: "https://github.com/GraphicMiles/designado",
           secondaryLabel: "Designado"
