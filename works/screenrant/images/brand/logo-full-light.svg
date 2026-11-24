@@ -1,8 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325.71 35.35" role="img" aria-label="Fieldnotes">
-  <g fill="#e6e7e7" font-family="Khand, Impact, 'Arial Narrow', Arial, sans-serif" font-weight="700" font-size="34" letter-spacing="1.4">
-    <text x="0" y="28">FIELD</text>
-  </g>
-  <g fill="#d29f13" font-family="Khand, Impact, 'Arial Narrow', Arial, sans-serif" font-weight="700" font-size="34" letter-spacing="1.4">
-    <text x="86" y="28">NOTES</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 325.71 35.35" role="img" aria-label="Breakdown">
+  <text x="0" y="28" font-family="Khand, Impact, 'Arial Narrow', Arial, sans-serif" font-weight="700" font-size="33" letter-spacing="1.2">
+    <tspan fill="#e6e7e7">BREAK</tspan><tspan fill="#d29f13">DOWN</tspan>
+  </text>
 </svg>

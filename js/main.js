@@ -131,10 +131,10 @@
       items: [
         {
           id: "screenrant",
-          title: "Fieldnotes",
-          hook: "Editorial blog front end with hero rails, review carousels and a searchable archive index",
+          title: "Breakdown",
+          hook: "Entertainment news front end for Prime, Hollywood, Marvel and AI — plus an Ask Qi assistant panel",
           image: "/images/previews/screenrant.jpg",
-          alt: "Fieldnotes editorial blog homepage with hero, latest rail and secondary stories",
+          alt: "Breakdown entertainment news homepage with hero story, latest rail and secondary cards",
           bordered: true,
           hero: true,
           primaryActionLabel: "Open live build",
