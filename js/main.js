@@ -125,10 +125,25 @@
 
     experiments: {
       label: "Experiments",
-      countLabel: "9 experiments",
+      countLabel: "10 experiments",
       initialVisible: 5,
-      moreLabel: "Show 4 more experiments",
+      moreLabel: "Show 5 more experiments",
       items: [
+        {
+          id: "screenrant",
+          title: "ScreenRant",
+          hook: "Faithful editorial publication, TV schedule and 120K-title media database clone",
+          image: "/images/previews/screenrant.jpg",
+          alt: "ScreenRant homepage clone with hero preview, latest rail and secondary stories",
+          bordered: true,
+          hero: true,
+          primaryActionLabel: "Open live build",
+          directLaunch: true,
+          liveUrl: "/screenrant/",
+          liveLabel: "Open build",
+          secondaryUrl: "https://github.com/GraphicMiles/designado",
+          secondaryLabel: "Designado"
+        },
         {
           id: "stare-ai",
           title: "Stare",
