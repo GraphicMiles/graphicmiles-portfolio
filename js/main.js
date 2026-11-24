@@ -131,10 +131,10 @@
       items: [
         {
           id: "screenrant",
-          title: "ScreenRant",
-          hook: "Faithful editorial publication, TV schedule and 120K-title media database clone",
+          title: "Fieldnotes",
+          hook: "Editorial blog front end with hero rails, review carousels and a searchable archive index",
           image: "/images/previews/screenrant.jpg",
-          alt: "ScreenRant homepage clone with hero preview, latest rail and secondary stories",
+          alt: "Fieldnotes editorial blog homepage with hero, latest rail and secondary stories",
           bordered: true,
           hero: true,
           primaryActionLabel: "Open live build",
