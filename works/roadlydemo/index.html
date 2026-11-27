@@ -119,6 +119,9 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* No grey or blue flash on tap anywhere; every control has its own
+     pressed and hover states. */
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -188,8 +191,10 @@ a {
   line-height: 1;
 }
 
-.nav-link:hover {
-  opacity: 0.75;
+@media (hover: hover) {
+  .nav-link:hover {
+    opacity: 0.75;
+  }
 }
 
 .brand {
@@ -244,9 +249,11 @@ a {
   font-size: 14px;
 }
 
-.menu-button:hover,
-.button--primary:hover {
-  background: var(--color-accent-hover);
+@media (hover: hover) {
+  .menu-button:hover,
+  .button--primary:hover {
+    background: var(--color-accent-hover);
+  }
 }
 
 /* The one alternative to the accent: a plain white button for a second action. */
@@ -255,8 +262,10 @@ a {
   color: var(--color-ink);
 }
 
-.button--secondary:hover {
-  background: var(--tint-2);
+@media (hover: hover) {
+  .button--secondary:hover {
+    background: var(--tint-2);
+  }
 }
 
 .site-header__register {
@@ -338,8 +347,10 @@ a {
   line-height: 1.1;
 }
 
-.menu-panel__link:hover {
-  opacity: 0.7;
+@media (hover: hover) {
+  .menu-panel__link:hover {
+    opacity: 0.7;
+  }
 }
 
 /* Hero --------------------------------------------------------------- */
@@ -1446,7 +1457,7 @@ a {
   transition: transform 0.2s;
 }
 
-.coverage__group[open] .coverage__toggle {
+.coverage__group[open]:not(.is-closing) .coverage__toggle {
   transform: rotate(45deg);
 }
 
@@ -1522,8 +1533,10 @@ a {
   white-space: nowrap;
 }
 
-.store-button:hover {
-  background: #33436e;
+@media (hover: hover) {
+  .store-button:hover {
+    background: #33436e;
+  }
 }
 
 .store-button:focus-visible {
@@ -1853,8 +1866,12 @@ a {
   transition: color 0.2s ease;
 }
 
-.faq__question:hover .faq__question-text {
-  color: var(--color-accent-hover);
+/* Hover colours only where there is a real pointer; on phones a tap would
+   leave them stuck on after the answer closes. */
+@media (hover: hover) {
+  .faq__question:hover .faq__question-text {
+    color: var(--color-accent-hover);
+  }
 }
 
 .faq__icon {
@@ -1875,7 +1892,7 @@ a {
   height: 14px;
 }
 
-.faq__item[open] .faq__icon {
+.faq__item[open]:not(.is-closing) .faq__icon {
   background: var(--color-accent);
   color: var(--color-white);
   transform: rotate(45deg);
@@ -1899,8 +1916,10 @@ a {
   text-underline-offset: 3px;
 }
 
-.faq__link:hover {
-  color: var(--color-accent-hover);
+@media (hover: hover) {
+  .faq__link:hover {
+    color: var(--color-accent-hover);
+  }
 }
 
 @media (max-width: 767px) {
@@ -2353,8 +2372,10 @@ a {
   text-decoration: none;
 }
 
-.site-footer__links a:hover {
-  color: var(--color-white);
+@media (hover: hover) {
+  .site-footer__links a:hover {
+    color: var(--color-white);
+  }
 }
 
 .site-footer__links--contact a {
@@ -2392,8 +2413,10 @@ a {
   text-decoration: none;
 }
 
-.site-footer__legal a:hover {
-  color: var(--color-white);
+@media (hover: hover) {
+  .site-footer__legal a:hover {
+    color: var(--color-white);
+  }
 }
 
 .visually-hidden {
@@ -3129,16 +3152,11 @@ a {
 
 /* Motion: one strong ease-out for everything that enters, short presses. */
 
-html {
-  interpolate-size: allow-keywords;
-}
-
 .button,
 .menu-button,
 .store-button,
 .trip-widget__tab {
   transition: background-color var(--duration-hover) ease, color var(--duration-hover) ease, transform var(--duration-press) var(--ease-out);
-  -webkit-tap-highlight-color: transparent;
 }
 
 .button:active,
@@ -3264,28 +3282,8 @@ html {
   animation-name: appear;
 }
 
-.faq__item::details-content,
-.coverage__group::details-content {
-  block-size: 0;
-  overflow: hidden;
-  transition: block-size 0.35s var(--ease-out), content-visibility 0.35s allow-discrete;
-}
-
-.faq__item[open]::details-content,
-.coverage__group[open]::details-content {
-  block-size: auto;
-}
-
-.faq__answer {
-  opacity: 0;
-  transform: translate3d(0, -6px, 0);
-  transition: opacity 0.3s ease, transform 0.35s var(--ease-out);
-}
-
-.faq__item[open] .faq__answer {
-  opacity: 1;
-  transform: none;
-}
+/* FAQ answers and coverage lists open and close in script.js (initAccordions),
+   which animates their height the same way in every browser. */
 
 .faq__icon {
   transition: transform 0.3s var(--ease-out), background-color var(--duration-hover) ease, color var(--duration-hover) ease;
@@ -3324,12 +3322,6 @@ html {
   .trip-widget__tab:active {
     transform: none;
   }
-
-  .faq__item::details-content,
-  .coverage__group::details-content,
-  .faq__answer {
-    transition: none;
-  }
 }
 
 /* Android desktop-viewport handsets keep the same roles at their scale. */
@@ -3366,20 +3358,7 @@ html {
   display: none;
 }
 
-/* The account screen fades in and out instead of cutting. */
-.auth-view {
-  transition: opacity 0.22s ease, display 0.22s allow-discrete;
-}
-
-.auth-view[hidden] {
-  opacity: 0;
-}
-
-@starting-style {
-  .auth-view:not([hidden]) {
-    opacity: 0;
-  }
-}
+/* The account screen fades in and out in script.js (initAccountScreen). */
 
 .auth-view__frame {
   display: block;
@@ -3442,8 +3421,10 @@ body.is-auth-open {
   color: var(--color-ink);
 }
 
-.store-buttons--light .store-button:hover {
-  background: var(--color-accent-surface);
+@media (hover: hover) {
+  .store-buttons--light .store-button:hover {
+    background: var(--color-accent-surface);
+  }
 }
 
 .app-get__visual {
@@ -3629,9 +3610,14 @@ body.is-auth-open {
   transition: background-color var(--duration-hover) ease;
 }
 
-.faq__item:hover,
-.faq__item[open] {
+.faq__item[open]:not(.is-closing) {
   background: var(--tint-2);
+}
+
+@media (hover: hover) {
+  .faq__item:hover {
+    background: var(--tint-2);
+  }
 }
 
 .faq__question,
@@ -3697,16 +3683,6 @@ body.is-auth-open {
       animation-range: cover 0% cover 100%;
     }
 
-    .driver-tech {
-      view-timeline: --depth-drive block;
-    }
-
-    .driver-tech__car {
-      animation: depth-drive cubic-bezier(0.33, 1, 0.68, 1) both;
-      animation-timeline: --depth-drive;
-      animation-range: cover 0px cover 70vh;
-    }
-
     .app-get {
       view-timeline: --depth-app block;
     }
@@ -3736,16 +3712,6 @@ body.is-auth-open {
       animation-timeline: --depth-giant;
       animation-range: entry 0% entry 100%;
     }
-  }
-}
-
-@keyframes depth-drive {
-  from {
-    translate: 0 72px;
-  }
-
-  to {
-    translate: none;
   }
 }
 
@@ -4291,38 +4257,10 @@ body.is-auth-open {
   color: var(--color-ink);
 }
 
-/* Opening rises 12px and fades; closing reverses it. */
-.notice-dialog {
-  opacity: 0;
-  translate: 0 12px;
-  transition: opacity 0.2s ease, translate 0.28s var(--ease-out), overlay 0.28s allow-discrete, display 0.28s allow-discrete;
-}
-
-.notice-dialog[open] {
-  opacity: 1;
-  translate: none;
-}
-
-@starting-style {
-  .notice-dialog[open] {
-    opacity: 0;
-    translate: 0 12px;
-  }
-}
-
+/* Opening rises 12px and fades; closing reverses it. The motion runs in
+   script.js (initNotices) so it is the same in every browser. */
 .notice-dialog::backdrop {
-  background: rgb(17 17 20 / 0);
-  transition: background-color 0.28s ease, overlay 0.28s allow-discrete, display 0.28s allow-discrete;
-}
-
-.notice-dialog[open]::backdrop {
   background: rgb(17 17 20 / 0.55);
-}
-
-@starting-style {
-  .notice-dialog[open]::backdrop {
-    background: rgb(17 17 20 / 0);
-  }
 }
 
 .notice-dialog__panel {
@@ -4351,8 +4289,10 @@ body.is-auth-open {
   transition: background-color var(--duration-hover) ease;
 }
 
-.notice-dialog__close:hover {
-  background: var(--tint-3);
+@media (hover: hover) {
+  .notice-dialog__close:hover {
+    background: var(--tint-3);
+  }
 }
 
 .notice-dialog__close svg {
@@ -4414,8 +4354,10 @@ body.is-auth-open {
   text-underline-offset: 2px;
 }
 
-.notice-doc__link:hover {
-  color: var(--color-accent-hover);
+@media (hover: hover) {
+  .notice-doc__link:hover {
+    color: var(--color-accent-hover);
+  }
 }
 
 .notice-doc__quote {
@@ -5455,6 +5397,139 @@ html:has(.notice-dialog[open]) {
   });
 })();
 
+const accordions = (function initAccordions() {
+  // FAQ answers and the coverage lists open and close by animating their
+  // height in script, the same in every browser. (The CSS-only way,
+  // interpolate-size and ::details-content, works in Chrome alone, so on
+  // iPhones they snapped open and shut.) One FAQ answer is open at a time;
+  // while an answer above closes, the page keeps the tapped question still
+  // under the finger instead of letting it slide away.
+  const items = Array.from(document.querySelectorAll(".faq__item, [data-coverage-group]"));
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const EASE = "cubic-bezier(0.23, 1, 0.32, 1)";
+  const running = new Map(); // item -> its height motion and answer fade
+  const target = new Map(); // item -> where it is heading (open or not)
+
+  // Exclusive groups are handled here so closing can animate; the browser's
+  // own name-based grouping would snap the other answer shut.
+  items.forEach((item) => {
+    const group = item.getAttribute("name");
+    if (group) {
+      item.dataset.group = group;
+      item.removeAttribute("name");
+    }
+  });
+
+  function isOpening(item) {
+    return target.has(item) ? target.get(item) : item.open;
+  }
+
+  function closedHeight(item) {
+    const style = getComputedStyle(item);
+    return item.querySelector("summary").getBoundingClientRect().height
+      + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth)
+      + parseFloat(style.paddingTop) + parseFloat(style.paddingBottom);
+  }
+
+  // Heights (and the scroll correction that keeps the tapped question
+  // still) are set together in one frame loop, so nothing lags a frame.
+  let frame = 0;
+  let anchor = null; // { el, top } while the tapped question is held still
+
+  // Matches the site's --ease-out (a quick start that settles gently).
+  const easeOut = (t) => 1 - Math.pow(1 - t, 5);
+
+  function tick(now) {
+    frame = 0;
+    running.forEach((motion, item) => {
+      const t = Math.min(1, (now - motion.start) / motion.duration);
+      if (t >= 1) {
+        running.delete(item);
+        target.delete(item);
+        item.style.height = "";
+        item.style.overflow = "";
+        item.style.flex = "";
+        item.classList.remove("is-closing");
+        if (!motion.open) item.open = false;
+        if (motion.fade) motion.fade.cancel();
+        return;
+      }
+      item.style.height = `${(motion.from + (motion.to - motion.from) * easeOut(t)).toFixed(2)}px`;
+    });
+    if (anchor) {
+      const delta = anchor.el.getBoundingClientRect().top - anchor.top;
+      if (Math.abs(delta) > 0.5) window.scrollTo(window.scrollX, window.scrollY + delta);
+    }
+    if (running.size) frame = requestAnimationFrame(tick);
+    else {
+      anchor = null;
+      document.documentElement.style.overflowAnchor = "";
+    }
+  }
+
+  function animate(item, open) {
+    if (isOpening(item) === open && (running.has(item) || item.open === open)) return;
+    target.set(item, open);
+    const body = item.querySelector(":scope > :not(summary)");
+    const from = item.getBoundingClientRect().height; // mid-animation height too
+    const previous = running.get(item);
+    if (previous && previous.fade) previous.fade.cancel();
+    item.style.height = "";
+    item.open = true; // render the answer so its full height can be measured
+    const to = open ? item.getBoundingClientRect().height : closedHeight(item);
+    const duration = reduceMotion.matches ? 200 : 360;
+    item.style.overflow = "hidden";
+    // The coverage lists sit in a flex column on phones, where a flex basis
+    // would override the animated height.
+    item.style.flex = "none";
+    item.style.height = `${from}px`;
+    // The icon and tint show the new state at once, not when the motion ends.
+    item.classList.toggle("is-closing", !open);
+    let fade = null;
+    if (body && body.animate && !reduceMotion.matches) {
+      fade = body.animate(
+        open
+          ? [{ opacity: 0, transform: "translateY(-6px)" }, { opacity: 1, transform: "none" }]
+          : [{ opacity: 1 }, { opacity: 0 }],
+        { duration: open ? duration : duration * 0.6, easing: open ? EASE : "ease", fill: "forwards" }
+      );
+    }
+    running.set(item, { from, to, open, fade, duration, start: performance.now() });
+    if (!frame) frame = requestAnimationFrame(tick);
+  }
+
+  function setOpen(item, open, held) {
+    if (held) {
+      anchor = { el: held, top: held.getBoundingClientRect().top };
+      // The browser's own scroll anchoring would fight the correction.
+      document.documentElement.style.overflowAnchor = "none";
+    }
+    const group = item.dataset.group;
+    if (open && group) {
+      items.forEach((other) => {
+        if (other !== item && other.dataset.group === group && isOpening(other)) animate(other, false);
+      });
+    }
+    animate(item, open);
+  }
+
+  items.forEach((item) => {
+    const summary = item.querySelector("summary");
+    summary.addEventListener("click", (event) => {
+      // The coverage lists stay open on larger screens (initCoverage).
+      if (event.defaultPrevented) return;
+      event.preventDefault();
+      setOpen(item, !isOpening(item), summary);
+    });
+  });
+
+  return {
+    open(item) {
+      setOpen(item, true, null);
+    }
+  };
+})();
+
 (function initFaqLinks() {
   // Links to a specific question open that answer as well as scrolling to it.
   document.querySelectorAll('a[href^="#faq-"]').forEach((link) => {
@@ -5462,7 +5537,7 @@ html:has(.notice-dialog[open]) {
       const item = document.querySelector(link.getAttribute("href"));
       if (!item || item.tagName !== "DETAILS") return;
       event.preventDefault();
-      item.open = true;
+      accordions.open(item);
       // Opening it closes the other answers, so scroll once their 0.35s collapse
       // has settled; otherwise the question ends up above the viewport.
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -5473,18 +5548,238 @@ html:has(.notice-dialog[open]) {
   });
 })();
 
+// ---- What the reader can see ---------------------------------------------
+// Both car animations follow the part of the page that is on screen.
+// Usually that is simply the window's scroll position. Some hosts (the
+// in-app preview on iPhone, for one) stretch the page's frame to its full
+// height and scroll a panel around it instead: the page then never
+// scrolls, gets no scroll events, and its "screen" is the whole page. For
+// that case a column of invisible markers (with a guard above and below)
+// reports through IntersectionObserver which part of the page is visible.
+const readerView = (function createReaderView() {
+  const MARK = 24; // marker height in px; edges are read every 6px of scroll
+  const HOST_GAP = 200; // px; well beyond any phone toolbar change
+  const listeners = new Set();
+  const regions = [];
+  const latest = new Map();
+  let markEls = [];
+  let markRange = null;
+  let seen = { top: null, bottom: null };
+  let lastBottom = null;
+  let measuredHeight = 0;
+  let hostMode = false;
+
+  const marks = document.createElement("div");
+  marks.className = "scroll-marks";
+  marks.setAttribute("aria-hidden", "true");
+  (document.querySelector("main") || document.body).appendChild(marks);
+  const guardAbove = document.createElement("b");
+  const guardBelow = document.createElement("b");
+
+  // The window's own height. Phone toolbars change window.innerHeight as
+  // they slide; the root element's height does not, so this stays steady.
+  function ownHeight() {
+    return document.documentElement.clientHeight || window.innerHeight;
+  }
+
+  // For laying out markers: the window, but never more than the device
+  // screen (a stretched frame reports the whole page).
+  function guessHeight() {
+    const own = ownHeight();
+    const device = window.screen && window.screen.height ? window.screen.height : own;
+    return Math.min(own, device);
+  }
+
+  function notify() {
+    listeners.forEach((listener) => listener());
+  }
+
+  const observer = "IntersectionObserver" in window
+    ? new IntersectionObserver((entries) => {
+      entries.forEach((entry) => latest.set(entry.target, entry));
+      read();
+      notify();
+    }, { threshold: [0, 0.25, 0.5, 0.75, 1] })
+    : null;
+
+  function showing(element) {
+    const entry = element && latest.get(element);
+    return Boolean(entry && entry.isIntersecting && entry.intersectionRect.height > 0);
+  }
+
+  function read() {
+    let top = null;
+    let bottom = null;
+    let topClear = false;
+    let bottomClear = false;
+    const shift = window.scrollY;
+    for (let i = 0; i < markEls.length; i += 1) {
+      const entry = latest.get(markEls[i]);
+      if (!entry || !entry.isIntersecting || entry.intersectionRect.height <= 0) continue;
+      const rect = entry.intersectionRect;
+      if (top === null) {
+        top = rect.top + shift;
+        // An edge counts only if it falls inside the marked range.
+        topClear = i > 0 || rect.top > entry.boundingClientRect.top + 0.5;
+      }
+      bottom = rect.bottom + shift;
+      bottomClear = i < markEls.length - 1 || rect.bottom < entry.boundingClientRect.bottom - 0.5;
+    }
+    seen = { top: topClear ? top : null, bottom: bottomClear ? bottom : null };
+    if (bottom !== null) lastBottom = bottomClear ? bottom : Infinity;
+    if (seen.top !== null && seen.bottom !== null) measuredHeight = seen.bottom - seen.top;
+    // A host is scrolling the frame when what is really on screen is far
+    // from where the window's scroll position says it is, by either of the
+    // window's heights (they differ by a phone's toolbars).
+    if (seen.bottom !== null) {
+      const gap = Math.min(
+        Math.abs(seen.bottom - (shift + ownHeight())),
+        Math.abs(seen.bottom - (shift + window.innerHeight))
+      );
+      hostMode = gap > HOST_GAP;
+    }
+  }
+
+  function layout() {
+    if (!observer || !regions.length) return;
+    const view = guessHeight();
+    const pageEnd = document.body.offsetHeight - 1;
+    let from = Infinity;
+    let to = -Infinity;
+    regions.forEach((region) => {
+      const range = region(view);
+      if (!range) return;
+      from = Math.min(from, range[0] - view - 2 * MARK);
+      to = Math.max(to, range[1] + view + 2 * MARK);
+    });
+    if (!Number.isFinite(from)) return;
+    from = Math.max(0, Math.floor(from));
+    to = Math.min(pageEnd, Math.ceil(to));
+    // The guards follow the page's length on every layout change, so they
+    // never make the page longer than its content.
+    guardAbove.style.top = "0px";
+    guardAbove.style.height = `${from}px`;
+    guardBelow.style.top = `${to}px`;
+    guardBelow.style.height = `${Math.max(0, pageEnd - to)}px`;
+    if (markRange && markRange.from === from && markRange.to === to) return;
+    markRange = { from, to };
+    observer.disconnect();
+    latest.clear();
+    marks.textContent = "";
+    markEls = [];
+    for (let top = from; top < to; top += MARK) {
+      const mark = document.createElement("i");
+      mark.style.top = `${top}px`;
+      mark.style.height = `${Math.min(MARK, to - top)}px`;
+      marks.appendChild(mark);
+      markEls.push(mark);
+      observer.observe(mark);
+    }
+    marks.append(guardAbove, guardBelow);
+    observer.observe(guardAbove);
+    observer.observe(guardBelow);
+  }
+
+  let measuredWidth = document.documentElement.clientWidth;
+  window.addEventListener("scroll", notify, { passive: true });
+  window.addEventListener("resize", () => {
+    const width = document.documentElement.clientWidth;
+    if (width !== measuredWidth) {
+      measuredWidth = width;
+      measuredHeight = 0;
+      hostMode = false;
+    }
+  });
+
+  return {
+    // Consumers name the stretch of page they follow: a function of the
+    // visible height returning [top, bottom] in page coordinates.
+    addRegion(region) {
+      regions.push(region);
+    },
+    relayout: layout,
+    onChange(listener) {
+      listeners.add(listener);
+    },
+    // The visible height the animations are laid out against.
+    height() {
+      return hostMode ? measuredHeight || guessHeight() : ownHeight();
+    },
+    // The bottom edge of what the reader sees, in page coordinates;
+    // -Infinity / Infinity when the reader is above / below the markers.
+    bottom() {
+      if (!hostMode) return window.scrollY + ownHeight();
+      if (seen.bottom !== null) return seen.bottom;
+      if (lastBottom === Infinity && showing(markEls[markEls.length - 1])) return Infinity;
+      if (showing(guardBelow)) return Infinity;
+      if (showing(guardAbove)) return -Infinity;
+      if (lastBottom === null || !markRange) return -Infinity;
+      return lastBottom > (markRange.from + markRange.to) / 2 ? Infinity : -Infinity;
+    }
+  };
+})();
+
+// Scrolling sets where a car should be; the car glides there, so a wheel
+// notch or a flick reads as driving rather than hopping. With reduced
+// motion it follows the scroll directly, without the extra glide (the
+// movement is the reader's own scrolling).
+function createGlide(goal, draw) {
+  const GLIDE_MS = 110; // time constant: about 90% of the way in a quarter second
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let frame = 0;
+  let shown = null;
+  let last = 0;
+
+  function tick(now) {
+    frame = 0;
+    const target = goal();
+    if (target === null) return;
+    if (shown === null || reduceMotion.matches) {
+      shown = target;
+      draw(target);
+      return;
+    }
+    const dt = Math.min(64, now - (last || now));
+    last = now;
+    const next = shown + (target - shown) * (1 - Math.exp(-dt / GLIDE_MS));
+    if (Math.abs(target - next) < 0.0005) {
+      shown = target;
+      draw(target);
+      return;
+    }
+    shown = next;
+    draw(next);
+    frame = requestAnimationFrame(tick);
+  }
+
+  readerView.onChange(() => update());
+  reduceMotion.addEventListener("change", () => update());
+
+  function update() {
+    if (!frame) {
+      last = performance.now();
+      frame = requestAnimationFrame(tick);
+    }
+  }
+
+  return {
+    update,
+    // Place without gliding next time (the layout changed underneath).
+    reset() {
+      shown = null;
+    }
+  };
+}
+
+function clamp01(value) {
+  return Math.min(Math.max(value, 0), 1);
+}
+
 (function initSafetyRoute() {
   // A car drives the highlighted route across the safety section's road map,
   // tied to scrolling: it starts once the whole road is on screen and arrives
-  // while the road is still in view, scrolling back reverses it. The car
+  // while the road is still in view; scrolling back reverses it. The car
   // belongs to the road art, so it can never leave the road.
-  //
-  // What counts is the part of the page the reader can see. Usually that is
-  // the window's own scroll position. Some hosts (the in-app preview on
-  // iPhone, for one) stretch the page's frame to its full height and scroll
-  // a panel around it instead: the page then never scrolls, gets no scroll
-  // events and reports the whole page as its "screen". For that case a
-  // column of invisible markers reports which part of the page is visible.
   const svg = document.querySelector("[data-safety-roads]");
   if (!svg) return;
   const route = svg.querySelector("[data-safety-route]");
@@ -5492,13 +5787,9 @@ html:has(.notice-dialog[open]) {
   const section = svg.closest(".safety");
   const photo = section.querySelector(".safety__photo");
   const total = route.getTotalLength();
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const STEP = 4;
   const CAR_CLEARANCE = 44; // px kept between the car and the section edges
-  const GLIDE_MS = 110; // time constant: about 90% of the way in a quarter second
-  const MARK = 24; // marker height in px; edges are read every 6px of scroll
 
-  // ---- The stretch of road on screen -------------------------------------
   // The road art is wider than the screen and cropped differently per
   // breakpoint, so the car only travels the longest stretch of route that is
   // inside the section and clear of the round photo. `road` holds it as path
@@ -5551,152 +5842,24 @@ html:has(.notice-dialog[open]) {
     };
   }
 
-  // ---- What the reader can see -------------------------------------------
-  // `seen` is the visible part of the page in page coordinates, as far as
-  // the markers know it: { top, bottom } with null for an edge outside the
-  // marked range.
-  const marks = document.createElement("div");
-  marks.className = "scroll-marks";
-  marks.setAttribute("aria-hidden", "true");
-  section.parentElement.appendChild(marks);
-  const latest = new Map();
-  let markEls = [];
-  // Two long guards fill the page above and below the markers, so a jump
-  // straight past the whole range (a menu link, say) still reports which
-  // side of the road the reader landed on.
-  const guardAbove = document.createElement("b");
-  const guardBelow = document.createElement("b");
-  let markRange = null;
-  let seen = { top: null, bottom: null };
-  let lastBottom = null;
-  let measuredHeight = 0; // visible height as the markers measured it
-  let hostMode = false; // a host scrolls this page's frame from outside
-
-  // A first guess at the visible height for laying out the markers: the
-  // window, but never more than the device screen (a stretched frame
-  // reports the whole page).
-  function guessHeight() {
-    const own = document.documentElement.clientHeight || window.innerHeight;
-    const device = window.screen && window.screen.height ? window.screen.height : own;
-    return Math.min(own, device);
-  }
-
-  // The reader's visible height: what the markers measured when they have
-  // both edges, otherwise the window's own height.
-  function visibleHeight() {
-    return measuredHeight || guessHeight();
-  }
-
-  // True when a host scrolls this page's frame from outside; the window's
-  // scroll position then means nothing.
-  function hostScrolls() {
-    return hostMode;
-  }
-
-  function layoutMarks() {
-    if (!road) return;
-    const view = guessHeight();
-    const pageEnd = document.body.offsetHeight - 1;
-    const from = Math.max(0, Math.floor(road.top - view - 2 * MARK));
-    const to = Math.min(pageEnd, Math.ceil(road.bottom + 2.2 * view + 2 * MARK));
-    // The guards follow the page's length on every layout change, so they
-    // never make the page longer than its content.
-    guardAbove.style.top = "0px";
-    guardAbove.style.height = `${from}px`;
-    guardBelow.style.top = `${to}px`;
-    guardBelow.style.height = `${Math.max(0, pageEnd - to)}px`;
-    if (markRange && markRange.from === from && markRange.to === to) return;
-    markRange = { from, to };
-    observer.disconnect();
-    latest.clear();
-    marks.textContent = "";
-    markEls = [];
-    for (let top = from; top < to; top += MARK) {
-      const mark = document.createElement("i");
-      mark.style.top = `${top}px`;
-      mark.style.height = `${Math.min(MARK, to - top)}px`;
-      marks.appendChild(mark);
-      markEls.push(mark);
-      observer.observe(mark);
-    }
-    marks.append(guardAbove, guardBelow);
-    observer.observe(guardAbove);
-    observer.observe(guardBelow);
-  }
-
-  function showing(element) {
-    const entry = latest.get(element);
-    return Boolean(entry && entry.isIntersecting && entry.intersectionRect.height > 0);
-  }
-
-  function readMarks() {
-    let top = null;
-    let bottom = null;
-    let topClear = false;
-    let bottomClear = false;
-    const children = markEls;
-    for (let i = 0; i < children.length; i += 1) {
-      const entry = latest.get(children[i]);
-      if (!entry || !entry.isIntersecting || entry.intersectionRect.height <= 0) continue;
-      const shift = window.scrollY;
-      const rect = entry.intersectionRect;
-      if (top === null) {
-        top = rect.top + shift;
-        // An edge counts only if it falls inside the marked range.
-        topClear = i > 0 || rect.top > entry.boundingClientRect.top + 0.5;
-      }
-      bottom = rect.bottom + shift;
-      bottomClear = i < children.length - 1 || rect.bottom < entry.boundingClientRect.bottom - 0.5;
-    }
-    seen = { top: topClear ? top : null, bottom: bottomClear ? bottom : null };
-    if (bottom !== null) lastBottom = bottomClear ? bottom : Infinity;
-    if (seen.top !== null && seen.bottom !== null) measuredHeight = seen.bottom - seen.top;
-    // The markers see what is really on screen. If that is far from where
-    // the window's own scroll position says it is, a host is scrolling the
-    // frame: either the frame reports the whole page as its screen, or it
-    // reports a normal screen but never scrolls. (120px is well above any
-    // lag between a marker report and the scroll position.)
-    const own = document.documentElement.clientHeight || window.innerHeight;
-    if (seen.bottom !== null) hostMode = Math.abs(seen.bottom - (window.scrollY + own)) > 120;
-    else if (seen.top !== null) hostMode = Math.abs(seen.top - window.scrollY) > 120;
-  }
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => latest.set(entry.target, entry));
-    readMarks();
-    requestUpdate();
-  }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
-
-  // The bottom edge of what the reader sees, in page coordinates.
-  function visibleBottom() {
-    if (!hostScrolls()) return window.scrollY + (document.documentElement.clientHeight || window.innerHeight);
-    if (seen.bottom !== null) return seen.bottom;
-    // The visible part reaches past the end of the markers.
-    if (lastBottom === Infinity && showing(markEls[markEls.length - 1])) return Infinity;
-    // Nothing marked is visible: the guards say which side the reader is on.
-    if (showing(guardBelow)) return Infinity;
-    if (showing(guardAbove)) return -Infinity;
-    if (lastBottom === null || !markRange) return -Infinity;
-    return lastBottom > (markRange.from + markRange.to) / 2 ? Infinity : -Infinity;
-  }
-
   // Progress runs from 0 when the lowest point of the road is 5% of the
   // visible height above the bottom edge (the whole road is in view) to 1
   // over the next stretch of scrolling, sized so the road is still on
   // screen when the car arrives.
   function progress() {
-    const view = visibleHeight();
+    if (!road) return null;
+    const view = readerView.height();
+    const bottom = readerView.bottom();
+    if (bottom === Infinity) return 1;
+    if (bottom === -Infinity) return 0;
     const span = road.bottom - road.top;
     const startAt = road.bottom + view * 0.05;
     const travel = Math.max(view * 0.75 - span, view * 0.25);
-    const bottom = visibleBottom();
-    if (bottom === Infinity) return 1;
-    if (bottom === -Infinity) return 0;
-    return Math.min(Math.max((bottom - startAt) / travel, 0), 1);
+    return clamp01((bottom - startAt) / travel);
   }
 
-  // ---- Drawing -----------------------------------------------------------
-  function place(length) {
+  function place(share) {
+    const length = road.start + (road.end - road.start) * share;
     const point = route.getPointAtLength(length);
     const ahead = route.getPointAtLength(Math.min(length + 1, total));
     const behind = route.getPointAtLength(Math.max(length - 1, 0));
@@ -5707,70 +5870,74 @@ html:has(.notice-dialog[open]) {
     route.style.strokeDasharray = `${length.toFixed(2)} ${total}`;
   }
 
-  let frame = 0;
-  let shown = null; // the share of the route the car is drawn at
-  let last = 0;
-
-  function draw(share) {
-    shown = share;
-    place(road.start + (road.end - road.start) * share);
-  }
-
-  // Scrolling sets where the car should be; the car glides there, so a wheel
-  // notch or a flick reads as driving rather than hopping. With reduced
-  // motion it follows the scroll directly, without the extra glide.
-  function tick(now) {
-    frame = 0;
-    if (!road) return;
-    const goal = progress();
-    if (shown === null || reduceMotion.matches) {
-      draw(goal);
-      last = now;
-      return;
-    }
-    const dt = Math.min(64, now - (last || now));
-    last = now;
-    const next = shown + (goal - shown) * (1 - Math.exp(-dt / GLIDE_MS));
-    if (Math.abs(goal - next) < 0.0005) {
-      draw(goal);
-      return;
-    }
-    draw(next);
-    frame = requestAnimationFrame(tick);
-  }
-
-  function requestUpdate() {
-    if (!frame) {
-      last = performance.now();
-      frame = requestAnimationFrame(tick);
-    }
-  }
+  const glide = createGlide(progress, place);
+  readerView.addRegion((view) => road && [road.top, road.bottom + 1.2 * view]);
 
   // A new width crops the road differently, so the car is placed again
   // without gliding; any other layout change keeps the glide going.
   let measuredWidth = 0;
   function remeasure() {
     measureRoad();
-    layoutMarks();
+    readerView.relayout();
     const width = document.documentElement.clientWidth;
     if (width !== measuredWidth) {
       measuredWidth = width;
-      measuredHeight = 0;
-      hostMode = false;
-      shown = null;
+      glide.reset();
     }
-    requestUpdate();
+    glide.update();
   }
 
-  window.addEventListener("scroll", requestUpdate, { passive: true });
   window.addEventListener("resize", remeasure);
   window.addEventListener("load", remeasure);
-  reduceMotion.addEventListener("change", requestUpdate);
   if ("ResizeObserver" in window) {
     const resized = new ResizeObserver(remeasure);
     resized.observe(section);
     resized.observe(document.body);
   }
+  remeasure();
+})();
+
+(function initDriveCar() {
+  // The top-down car in Drive & earn glides 72px into place as its section
+  // arrives: from the moment the section's top enters at the bottom of the
+  // screen until it is 70% of a screen up, easing out as it lands.
+  const host = document.querySelector(".driver-tech");
+  const car = host && host.querySelector(".driver-tech__car");
+  if (!car) return;
+  const DISTANCE = 72;
+  let hostTop = 0;
+
+  function arrived() {
+    const view = readerView.height();
+    const bottom = readerView.bottom();
+    if (bottom === Infinity) return 1;
+    if (bottom === -Infinity) return 0;
+    return clamp01((bottom - hostTop) / (view * 0.7));
+  }
+
+  function draw(share) {
+    const eased = 1 - Math.pow(1 - share, 3);
+    car.style.translate = `0 ${(DISTANCE * (1 - eased)).toFixed(2)}px`;
+  }
+
+  const glide = createGlide(arrived, draw);
+  readerView.addRegion((view) => [hostTop, hostTop + 0.7 * view]);
+
+  let measuredWidth = 0;
+  function remeasure() {
+    hostTop = host.getBoundingClientRect().top + window.scrollY;
+    readerView.relayout();
+    const width = document.documentElement.clientWidth;
+    if (width !== measuredWidth) {
+      measuredWidth = width;
+      glide.reset();
+    }
+    glide.update();
+  }
+
+  window.addEventListener("resize", remeasure);
+  window.addEventListener("load", remeasure);
+  if ("ResizeObserver" in window) new ResizeObserver(remeasure).observe(document.body);
   remeasure();
 })();
 
@@ -5920,7 +6087,6 @@ html:has(.notice-dialog[open]) {
   const config = [
     { target: ".trip-plan__visual .trip-schedule", host: ".trip-plan__visual", y: -28 },
     { target: ".app-get__photo", host: ".app-get", y: -24, base: -24 },
-    { target: ".driver-tech__car", host: ".driver-tech", mode: "settle", y: 72 },
     { target: ".safety__media", host: ".safety", y: 20 },
     { target: ".site-footer__giant svg", host: ".site-footer__giant", mode: "settle", span: "host", share: 0.3 }
   ];
@@ -6022,8 +6188,26 @@ html:has(.notice-dialog[open]) {
     frame.contentWindow.postMessage({ source: "roadly-landing", type: "mode", mode, role }, "*");
   }
 
+  // The screen fades in and out in script, so it does the same in every
+  // browser (Safari cannot fade an element in or out of display: none).
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let fading = null;
+
+  function fade(from, to) {
+    if (fading) fading.cancel();
+    fading = null;
+    if (!view.animate || reduceMotion.matches) return null;
+    fading = view.animate([{ opacity: from }, { opacity: to }], { duration: 220, easing: "ease" });
+    return fading;
+  }
+
   function open(mode) {
-    if (view.hidden) returnFocus = document.activeElement;
+    const closing = Boolean(fading) && !view.hidden && !document.body.classList.contains("is-auth-open");
+    if (view.hidden || closing) {
+      if (view.hidden) returnFocus = document.activeElement;
+      view.hidden = false;
+      fade(closing ? Number(getComputedStyle(view).opacity) : 0, 1);
+    }
     if (!frame) {
       frame = document.createElement("iframe");
       frame.className = "auth-view__frame";
@@ -6034,14 +6218,23 @@ html:has(.notice-dialog[open]) {
     } else {
       sendMode(mode);
     }
-    view.hidden = false;
     document.body.classList.add("is-auth-open");
     frame.focus();
   }
 
   function close() {
-    view.hidden = true;
+    // Hidden already, or already fading out.
+    if (view.hidden || !document.body.classList.contains("is-auth-open")) return;
     document.body.classList.remove("is-auth-open");
+    const out = fade(1, 0);
+    if (out) {
+      out.onfinish = () => {
+        fading = null;
+        view.hidden = true;
+      };
+    } else {
+      view.hidden = true;
+    }
     if (returnFocus) returnFocus.focus({ preventScroll: true });
   }
 
@@ -6098,14 +6291,59 @@ html:has(.notice-dialog[open]) {
   const docs = dialog.querySelectorAll("[data-notice]");
   const panel = dialog.querySelector(".notice-dialog__panel");
   let returnFocus = null;
+  let closing = null;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const EASE = "cubic-bezier(0.23, 1, 0.32, 1)";
+  const SHOWN = { opacity: 1, transform: "none" };
+  const LOWERED = { opacity: 0, transform: "translateY(12px)" };
+  const DIMMED = { backgroundColor: "rgb(17 17 20 / 0.55)" };
+  const CLEAR = { backgroundColor: "rgb(17 17 20 / 0)" };
+
+  // Opening rises 12px and fades in; closing reverses it before the dialog
+  // leaves. Script runs it so it looks the same in Safari, which cannot
+  // animate a dialog in or out of the page by CSS alone.
+  function motion(frames, backdrop, duration) {
+    if (!dialog.animate || reduceMotion.matches) return null;
+    try {
+      dialog.animate(backdrop, { duration, easing: "ease", pseudoElement: "::backdrop" });
+    } catch (_) {
+      /* no backdrop animation in this browser; the dim simply appears */
+    }
+    return dialog.animate(frames, { duration, easing: EASE });
+  }
+
+  function close() {
+    if (!dialog.open || closing) return;
+    const out = motion([SHOWN, LOWERED], [DIMMED, CLEAR], 240);
+    if (!out) {
+      dialog.close();
+      return;
+    }
+    closing = out;
+    dialog.style.opacity = "0"; // stay hidden between the last frame and close()
+    out.onfinish = () => {
+      closing = null;
+      dialog.close();
+      dialog.style.opacity = "";
+    };
+  }
 
   function open(name) {
     const doc = dialog.querySelector(`[data-notice="${name}"]`);
     if (!doc) return false;
+    if (closing) {
+      closing.onfinish = null;
+      closing.cancel();
+      closing = null;
+      dialog.style.opacity = "";
+    }
     docs.forEach((item) => { item.hidden = item !== doc; });
     dialog.setAttribute("aria-labelledby", `notice-${name}-title`);
     returnFocus = document.activeElement;
-    if (!dialog.open) dialog.showModal();
+    if (!dialog.open) {
+      dialog.showModal();
+      motion([LOWERED, SHOWN], [CLEAR, DIMMED], 280);
+    }
     panel.scrollTop = 0;
     return true;
   }
@@ -6115,10 +6353,15 @@ html:has(.notice-dialog[open]) {
       if (open(link.dataset.noticeOpen)) event.preventDefault();
     });
   });
-  dialog.querySelector("[data-notice-close]").addEventListener("click", () => dialog.close());
+  dialog.querySelector("[data-notice-close]").addEventListener("click", close);
   // A click on the backdrop (outside the panel) closes it too.
   dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
+    if (event.target === dialog) close();
+  });
+  // Escape fades out the same way.
+  dialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    close();
   });
   dialog.addEventListener("close", () => {
     if (returnFocus) returnFocus.focus({ preventScroll: true });
