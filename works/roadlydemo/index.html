@@ -5128,6 +5128,8 @@ html:has(.notice-dialog[open]) {
 
   <script>document.documentElement.classList.add("js");
 
+</script>
+  <script>
 (function initMenu() {
   const toggle = document.querySelector("[data-menu-toggle]");
   const label = document.querySelector("[data-menu-label]");
@@ -5169,6 +5171,8 @@ html:has(.notice-dialog[open]) {
 })();
 
 
+</script>
+  <script>
 (function initReveal() {
   const sections = document.querySelectorAll("[data-reveal]");
   if (!("IntersectionObserver" in window)) {
@@ -5185,6 +5189,8 @@ html:has(.notice-dialog[open]) {
   sections.forEach((section) => observer.observe(section));
 })();
 
+</script>
+  <script>
 (function initBurn() {
   // Each heading resolves as one element: a navy edge sweeps across it
   // while the blur clears and the line settles. Animating the heading as a
@@ -5233,6 +5239,8 @@ html:has(.notice-dialog[open]) {
   onView.forEach((heading) => observer.observe(heading));
 })();
 
+</script>
+  <script>
 (function initEntrances() {
   // Each group enters once as it scrolls into view; siblings follow one
   // another by 50ms (at most 200ms) so a row of cards reads left to right
@@ -5289,6 +5297,8 @@ html:has(.notice-dialog[open]) {
   targets.forEach((item) => observer.observe(item));
 })();
 
+</script>
+  <script>
 (function initCoverage() {
   const section = document.querySelector(".coverage");
   if (!section) return;
@@ -5336,6 +5346,8 @@ html:has(.notice-dialog[open]) {
   syncGroups();
 })();
 
+</script>
+  <script>
 (function initTripPlanner() {
   const widget = document.querySelector(".trip-widget");
   if (!widget) return;
@@ -5397,6 +5409,28 @@ html:has(.notice-dialog[open]) {
   });
 })();
 
+// Runs `callback` on the next animation frame, or after 50ms if no frame
+// arrives. Some embedded previews on iPhone pause animation frames inside
+// the page, and anything drawn only on them froze in its starting place.
+</script>
+  <script>
+function nextFrame(callback) {
+  let done = false;
+  let raf = 0;
+  let timer = 0;
+  const run = () => {
+    if (done) return;
+    done = true;
+    cancelAnimationFrame(raf);
+    clearTimeout(timer);
+    callback(performance.now());
+  };
+  raf = requestAnimationFrame(run);
+  timer = setTimeout(run, 50);
+}
+
+</script>
+  <script>
 const accordions = (function initAccordions() {
   // FAQ answers and the coverage lists open and close by animating their
   // height in script, the same in every browser. (The CSS-only way,
@@ -5460,7 +5494,10 @@ const accordions = (function initAccordions() {
       const delta = anchor.el.getBoundingClientRect().top - anchor.top;
       if (Math.abs(delta) > 0.5) window.scrollTo(window.scrollX, window.scrollY + delta);
     }
-    if (running.size) frame = requestAnimationFrame(tick);
+    if (running.size) {
+      frame = 1;
+      nextFrame(tick);
+    }
     else {
       anchor = null;
       document.documentElement.style.overflowAnchor = "";
@@ -5495,7 +5532,10 @@ const accordions = (function initAccordions() {
       );
     }
     running.set(item, { from, to, open, fade, duration, start: performance.now() });
-    if (!frame) frame = requestAnimationFrame(tick);
+    if (!frame) {
+      frame = 1;
+      nextFrame(tick);
+    }
   }
 
   function setOpen(item, open, held) {
@@ -5530,6 +5570,8 @@ const accordions = (function initAccordions() {
   };
 })();
 
+</script>
+  <script>
 (function initFaqLinks() {
   // Links to a specific question open that answer as well as scrolling to it.
   document.querySelectorAll('a[href^="#faq-"]').forEach((link) => {
@@ -5556,6 +5598,8 @@ const accordions = (function initAccordions() {
 // scrolls, gets no scroll events, and its "screen" is the whole page. For
 // that case a column of invisible markers (with a guard above and below)
 // reports through IntersectionObserver which part of the page is visible.
+</script>
+  <script>
 const readerView = (function createReaderView() {
   const MARK = 24; // marker height in px; edges are read every 6px of scroll
   const HOST_GAP = 200; // px; well beyond any phone toolbar change
@@ -5723,6 +5767,8 @@ const readerView = (function createReaderView() {
 // notch or a flick reads as driving rather than hopping. With reduced
 // motion it follows the scroll directly, without the extra glide (the
 // movement is the reader's own scrolling).
+</script>
+  <script>
 function createGlide(goal, draw) {
   const GLIDE_MS = 110; // time constant: about 90% of the way in a quarter second
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -5733,7 +5779,9 @@ function createGlide(goal, draw) {
   function tick(now) {
     frame = 0;
     const target = goal();
-    if (target === null) return;
+    // Nothing measured yet, or a measurement that is not a number: drawing
+    // with it would throw and leave the car where the HTML put it.
+    if (target === null || !Number.isFinite(target)) return;
     if (shown === null || reduceMotion.matches) {
       shown = target;
       draw(target);
@@ -5749,7 +5797,8 @@ function createGlide(goal, draw) {
     }
     shown = next;
     draw(next);
-    frame = requestAnimationFrame(tick);
+    frame = 1;
+    nextFrame(tick);
   }
 
   readerView.onChange(() => update());
@@ -5758,12 +5807,22 @@ function createGlide(goal, draw) {
   function update() {
     if (!frame) {
       last = performance.now();
-      frame = requestAnimationFrame(tick);
+      frame = 1;
+      nextFrame(tick);
     }
   }
 
   return {
     update,
+    // Draw where scrolling puts it right now, without waiting for a frame.
+    placeNow() {
+      const target = goal();
+      if (target === null || !Number.isFinite(target)) return;
+      if (shown === null) {
+        shown = target;
+        draw(target);
+      }
+    },
     // Place without gliding next time (the layout changed underneath).
     reset() {
       shown = null;
@@ -5771,10 +5830,14 @@ function createGlide(goal, draw) {
   };
 }
 
+</script>
+  <script>
 function clamp01(value) {
   return Math.min(Math.max(value, 0), 1);
 }
 
+</script>
+  <script>
 (function initSafetyRoute() {
   // A car drives the highlighted route across the safety section's road map,
   // tied to scrolling: it starts once the whole road is on screen and arrives
@@ -5860,6 +5923,7 @@ function clamp01(value) {
 
   function place(share) {
     const length = road.start + (road.end - road.start) * share;
+    if (!Number.isFinite(length)) return;
     const point = route.getPointAtLength(length);
     const ahead = route.getPointAtLength(Math.min(length + 1, total));
     const behind = route.getPointAtLength(Math.max(length - 1, 0));
@@ -5884,6 +5948,7 @@ function clamp01(value) {
       measuredWidth = width;
       glide.reset();
     }
+    glide.placeNow();
     glide.update();
   }
 
@@ -5897,6 +5962,8 @@ function clamp01(value) {
   remeasure();
 })();
 
+</script>
+  <script>
 (function initDriveCar() {
   // The top-down car in Drive & earn glides 72px into place as its section
   // arrives: from the moment the section's top enters at the bottom of the
@@ -5916,6 +5983,7 @@ function clamp01(value) {
   }
 
   function draw(share) {
+    if (!Number.isFinite(share)) return;
     const eased = 1 - Math.pow(1 - share, 3);
     car.style.translate = `0 ${(DISTANCE * (1 - eased)).toFixed(2)}px`;
   }
@@ -5932,6 +6000,7 @@ function clamp01(value) {
       measuredWidth = width;
       glide.reset();
     }
+    glide.placeNow();
     glide.update();
   }
 
@@ -5941,6 +6010,8 @@ function clamp01(value) {
   remeasure();
 })();
 
+</script>
+  <script>
 (function initRiderPile() {
   // The audience cards form one pile in a section of natural height.
   // As the pile travels up through the viewport (its centre moving from 85%
@@ -6021,7 +6092,10 @@ function clamp01(value) {
   }
 
   function requestUpdate() {
-    if (!frame && metrics) frame = requestAnimationFrame(update);
+    if (!frame && metrics) {
+      frame = 1;
+      nextFrame(update);
+    }
   }
 
   function clear() {
@@ -6072,6 +6146,8 @@ function clamp01(value) {
   sync();
 })();
 
+</script>
+  <script>
 (function initDepth() {
   // Scroll-linked layers: each moves a little faster or slower than the page
   // while its host is on screen, and nothing moves on its own. Offsets use the
@@ -6132,7 +6208,10 @@ function clamp01(value) {
   }
 
   function requestUpdate() {
-    if (!frame) frame = requestAnimationFrame(update);
+    if (!frame) {
+      frame = 1;
+      nextFrame(update);
+    }
   }
 
   function start() {
@@ -6163,6 +6242,8 @@ function clamp01(value) {
   start();
 })();
 
+</script>
+  <script>
 (function initAccountScreen() {
   const view = document.querySelector("[data-auth-view]");
   if (!view) return;
@@ -6283,6 +6364,8 @@ function clamp01(value) {
   sync();
 })();
 
+</script>
+  <script>
 (function initNotices() {
   // Privacy, terms, cookies, accessibility and about open in one dialog, so
   // every footer link leads to real content without leaving the page.
